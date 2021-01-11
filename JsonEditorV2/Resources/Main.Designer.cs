@@ -178,6 +178,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;已讀入&quot;.
+        /// </summary>
+        public static string JE_RUN_LOAD_JSON_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已在&quot;{0}&quot;新建檔案庫.
+        /// </summary>
+        public static string JE_RUN_NEW_JSON_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 此文件已有現存 {0} JSON檔案，是否要清空資料夾.
         /// </summary>
         public static string JE_RUN_NEW_JSON_FILES_Q_1 {
@@ -309,6 +327,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_SAVE_JSON_FILES {
             get {
                 return ResourceManager.GetString("JE_TMI_SAVE_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 掃描JSON檔案庫.
+        /// </summary>
+        public static string JE_TMI_SCAN_JSON_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_SCAN_JSON_FILES", resourceCulture);
             }
         }
         

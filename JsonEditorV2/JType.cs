@@ -30,13 +30,47 @@ namespace JsonEditor
 
     public static class Extentions
     {
+        public static JType ToJType(this JsonToken jtn)
+        {
+            switch (jtn)
+            {
+                //case JsonToken.StartObject:
+                //case JsonToken.StartArray:
+                //case JsonToken.StartConstructor:
+                //case JsonToken.EndArray:
+                //case JsonToken.EndConstructor:
+                //case JsonToken.EndObject:
+                //case JsonToken.Comment:
+                //case JsonToken.PropertyName:
+                //case JsonToken.Undefined:
+                //    return JType.Undefied;
+                case JsonToken.None:
+                    return JType.None;
+                case JsonToken.Boolean:
+                    return JType.Boolean;
+                case JsonToken.Date:
+                    return JType.Date;
+                case JsonToken.Integer:
+                    return JType.Long;
+                case JsonToken.Raw:
+                case JsonToken.Bytes:
+                case JsonToken.String:
+                case JsonToken.Null:
+                    return JType.String;
+                case JsonToken.Float:
+                    return JType.Double;
+                default:
+                    return JType.Undefied;
+            }
+        }
+
         public static JType ToJType(this JToken jt)
-        {            
+        {
             switch (jt.Type)
             {
                 case JTokenType.None:
                     return JType.None;
-                case JTokenType.Integer:                    
+                case JTokenType.Integer:
                     return JType.Long;
                 case JTokenType.Float:
                     return JType.Double;
@@ -52,12 +86,12 @@ namespace JsonEditor
                             return JType.Date;
                         else
                             return JType.Time;
-                    }   
+                    }
                     return JType.String;
                 case JTokenType.Guid:
                     return JType.Guid;
                 case JTokenType.Date:
-                    return JType.Date;                
+                    return JType.Date;
                 case JTokenType.TimeSpan:
                     return JType.TimeSpan;
                 case JTokenType.Uri:
@@ -67,6 +101,6 @@ namespace JsonEditor
                 default:
                     return JType.Undefied;
             }
-        }
+        }        
     }
 }

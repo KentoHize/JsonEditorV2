@@ -10,7 +10,7 @@ namespace JsonEditor
     public class JTable : IList<JLine>
     {
         public string Name { get; set; }
-        public List<JColumn> Columns { get; set; } = new List<JColumn>();
+        public List<JColumn> Columns { get; set; } = new List<JColumn>();        
         public List<JLine> Lines { get; set; } = new List<JLine>();
 
         public int Count => ((IList<JLine>)Lines).Count;
@@ -23,12 +23,16 @@ namespace JsonEditor
             : this("", null)
         { }
 
+        public JTable(string name)
+            : this(name, null)
+        { }
+
         public JTable(string name, object jArray)
         {
             bool isFirst = true;
             bool isFirstFirst = true;
 
-            Name = name;
+            Name = name;         
             if (jArray == null)
                 return;
 
@@ -88,7 +92,7 @@ namespace JsonEditor
         /// 讀取JFileInfo檔案設定
         /// </summary>
         /// <param name="jfi"></param>
-        public void LoadFileInfo(JFileInfo jfi)
+        public void LoadFileInfo(JTableInfo jfi)
         {
             //檢查一下是否正確
             if (jfi == null)
@@ -107,9 +111,9 @@ namespace JsonEditor
         /// 擷取JFileInfo檔案內容
         /// </summary>
         /// <returns></returns>
-        public JFileInfo GetJFileInfo()
+        public JTableInfo GetJTableInfo()
         {
-            JFileInfo jfi = new JFileInfo();
+            JTableInfo jfi = new JTableInfo();
             List<JColumn> jcs = new List<JColumn>(Columns);            
             jfi.Name = Name;
             jfi.Columns = jcs;

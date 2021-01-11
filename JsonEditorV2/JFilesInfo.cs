@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,19 @@ namespace JsonEditor
 
         public string Name { get; set; }
         public string DirectoryPath { get; set; }
-        public List<JFileInfo> FilesInfo { get; set; }
+
+        public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
+        public List<JTableInfo> TablesInfo { get; set; }
+
+        public JFilesInfo(string directoryPath)
+            : this(directoryPath.Substring(directoryPath.LastIndexOf("\\") + 1), directoryPath)
+        { }
 
         public JFilesInfo(string name, string directoryPath)
         {
             Name = name;
             DirectoryPath = directoryPath;
-            FilesInfo = new List<JFileInfo>();
+            TablesInfo = new List<JTableInfo>();
         }
 
         #region IDisposable Support

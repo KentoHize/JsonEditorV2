@@ -50,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JColumn.cs" />
-    <Compile Include="JFileInfo.cs" />
+    <Compile Include="JTableInfo.cs" />
     <Compile Include="JFilesInfo.cs" />
     <Compile Include="JLine.cs" />
     <Compile Include="JTable.cs" />

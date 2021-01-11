@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace JsonEditor
 {
-    public class JFileInfo
+    public class JTableInfo
     {
-        public string Name { get; set; }        
+        public string Name { get; set; }
         public List<JColumn> Columns { get; set; }
     }
 }

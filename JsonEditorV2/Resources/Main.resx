@@ -156,6 +156,12 @@
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>欄位型別</value>
   </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
+    <value>"{0}"已讀入"</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
+    <value>已在"{0}"新建檔案庫</value>
+  </data>
   <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
     <value>此文件已有現存 {0} JSON檔案，是否要清空資料夾</value>
   </data>
@@ -200,6 +206,9 @@
   </data>
   <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
     <value>存取JSON檔案庫</value>
+  </data>
+  <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
+    <value>掃描JSON檔案庫</value>
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON 資料檔案編輯器</value>
