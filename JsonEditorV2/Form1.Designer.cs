@@ -50,6 +50,7 @@
             this.lblColumnName = new System.Windows.Forms.Label();
             this.lsbLines = new System.Windows.Forms.ListBox();
             this.trvJsonFiles = new System.Windows.Forms.TreeView();
+            this.imlMain = new System.Windows.Forms.ImageList(this.components);
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.sslMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.tbcMain = new System.Windows.Forms.TabControl();
@@ -70,7 +71,6 @@
             this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
-            this.imlMain = new System.Windows.Forms.ImageList(this.components);
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiNewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsJsonFilesSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -296,6 +296,14 @@
             this.trvJsonFiles.Size = new System.Drawing.Size(278, 428);
             this.trvJsonFiles.TabIndex = 12;
             // 
+            // imlMain
+            // 
+            this.imlMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imlMain.ImageStream")));
+            this.imlMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imlMain.Images.SetKeyName(0, "Directory.png");
+            this.imlMain.Images.SetKeyName(1, "JsonIcon.png");
+            this.imlMain.Images.SetKeyName(2, "ObjectIcon.png");
+            // 
             // stsMain
             // 
             this.stsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -370,18 +378,19 @@
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiNewJsonFiles.Text = "X";
+            this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiLoadJsonFiles
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
@@ -389,43 +398,44 @@
             // 
             this.tmiScanJsonFiles.Enabled = false;
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveJsonFiles.Text = "X";
+            this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
-            this.tmiExit.Size = new System.Drawing.Size(93, 26);
+            this.tmiExit.Size = new System.Drawing.Size(216, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -439,14 +449,6 @@
             // ofdMain
             // 
             this.ofdMain.FileName = "openFileDialog1";
-            // 
-            // imlMain
-            // 
-            this.imlMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imlMain.ImageStream")));
-            this.imlMain.TransparentColor = System.Drawing.Color.Transparent;
-            this.imlMain.Images.SetKeyName(0, "Directory.png");
-            this.imlMain.Images.SetKeyName(1, "JsonIcon.png");
-            this.imlMain.Images.SetKeyName(2, "ObjectIcon.png");
             // 
             // cmsJsonFiles
             // 

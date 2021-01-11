@@ -178,7 +178,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;已讀入&quot;.
+        ///   Looks up a localized string similar to {0}檔案已讀入.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_1 {
             get {
@@ -210,6 +210,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_NEW_JSON_FILES_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_NEW_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;所有檔案已存檔.
+        /// </summary>
+        public static string JE_RUN_SAVE_JSON_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SAVE_JSON_FILES_M_1", resourceCulture);
             }
         }
         

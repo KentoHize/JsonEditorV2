@@ -78,35 +78,33 @@ namespace JsonEditorV2
             DialogResult dr = fbdMain.ShowDialog(this);
             if (dr == DialogResult.OK)
             {
-                //dr = MessageBox.Show(string.Format(Main.JE_RUN_NEW_JSON_FILES_Q_1, 1), Main.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
                 Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
                 string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");
                 if (jsonfiles.Length > 0)
                 {
-                    //        if (jsonfiles.Length == 1 && jsonfiles[0] == Path.Combine(fbdMain.SelectedPath, linkFileName))
-                    //            File.Delete(jsonfiles[0]);
-                    //        else
-                    //        {
-                    //            if (File.Exists(Path.Combine(fbdMain.SelectedPath, linkFileName)))
-                    //                dr = MessageBox.Show($"此文件已有現存{jsonfiles.Length - 1} JSON檔案，是否要清空資料夾", "清空Json檔案", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    //            else
-                    //                dr = MessageBox.Show($"此文件已有現存{jsonfiles.Length} JSON檔案，是否要清空資料夾", "清空Json檔案", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                    //            if (dr == DialogResult.Yes)
-                    //            {
-                    //                foreach (string s in jsonfiles)
-                    //                    File.Delete(s);
-                    //            }
-                    //            else
-                    //                return;
-                    //        }
+                    if (jsonfiles.Length == 1 && jsonfiles[0] == Var.JFI.FileInfoPath)
+                        File.Delete(jsonfiles[0]);
+                    else
+                    {
+                        if (File.Exists(Var.JFI.FileInfoPath))
+                            dr = MessageBox.Show(string.Format(Main.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Main.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        else
+                            dr = MessageBox.Show(string.Format(Main.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Main.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dr == DialogResult.Yes)
+                        {
+                            foreach (string s in jsonfiles)
+                                File.Delete(s);
+                        }
+                        else
+                            return;
+                    }
                 }
 
-                //    tmiCloseAllJsonFiles_Click(this, e);
-                //    tables = new Dictionary<string, JTable>();
-                //    jfi.DirectoryPath = fbdMain.SelectedPath;
-                //    tmiCloseAllJsonFiles.Enabled = true;
-                //    RefreshJsonFilesUI();
+                tmiCloseAllFiles_Click(this, e);
+                Var.Tables = new List<JTable>();
+                Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+                tmiCloseAllFiles.Enabled = true;
+                RefreshTrvJsonFiles();
                 sslMain.Text = string.Format(Main.JE_RUN_NEW_JSON_FILES_M_1, Var.JFI.DirectoryPath);
             }
         }
@@ -155,7 +153,7 @@ namespace JsonEditorV2
                                 int pflag = 0;
                                 object value = "";
                                 JTable jt = new JTable(Path.GetFileNameWithoutExtension(file));
-                                
+
                                 JsonTextReader reader = new JsonTextReader(sr);
                                 reader.Skip();//StartArray
 
@@ -180,8 +178,8 @@ namespace JsonEditorV2
                                             {
                                                 //直接跳出
                                                 int skipFlag = 1;
-                                                while(skipFlag == 0)
-                                                {   
+                                                while (skipFlag == 0)
+                                                {
                                                     reader.Read();
                                                     if (reader.TokenType == JsonToken.StartObject)
                                                         skipFlag++;
@@ -190,14 +188,14 @@ namespace JsonEditorV2
                                                 }
                                             }
                                             else
-                                            {                                                
+                                            {
                                                 if (i == 0)
                                                     jt.Columns.Add(new JColumn(value.ToString(), Extentions.ToJType(reader.TokenType)));
                                                 jl.Add(JValue.FromObject(reader.Value));
                                             }
                                             pflag = 0;
                                         }
-                                    }                                    
+                                    }
                                 }
                                 Var.Tables.Add(jt);
                             }
@@ -222,10 +220,10 @@ namespace JsonEditorV2
             }
         }
 
-        string GetColumnNodeString(JColumn jc)
-            => jc.IsKey ? $"{jc.Name}[Key]:{jc.Type}" : $"{jc.Name}:{jc.Type}";        
+        private string GetColumnNodeString(JColumn jc)
+            => jc.IsKey ? $"{jc.Name}[Key]:{jc.Type}" : $"{jc.Name}:{jc.Type}";
 
-        void RefreshTrvJsonFiles()
+        private void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
             tmiCloseAllFiles.Enabled = false;
@@ -261,8 +259,48 @@ namespace JsonEditorV2
         }
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
-        {
+        {   
+                Var.Tables = null;
+            Var.OpenedTable.Clear();
+            if (Var.JFI != null)
+                Var.JFI.Dispose();
+            Var.RootNode = null;            
+            Var.SelectedColumn = null;
+            Var.SelectedColumnParentTable = null;
+            Var.PageIndex = -1;
+            Var.Lines.Clear();
+            RefreshTrvJsonFiles();            
+            //RefreshPnlFileInfoUI();
+            //RefreshLibLinesUI();
+            //RefreshPnlMainUI();
+            sslMain.Text = "";
+        }
 
+        private void tmiSaveJsonFiles_Click(object sender, EventArgs e)
+        {
+            Var.JFI.TablesInfo.Clear();
+            foreach (JTable jt in Var.Tables)
+                Var.JFI.TablesInfo.Add(jt.GetJTableInfo());
+
+            //存JSONFilesInfo檔
+            using (FileStream fs = new FileStream(Var.JFI.FileInfoPath, FileMode.Create))
+            {
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write(JsonConvert.SerializeObject(Var.JFI, Formatting.Indented));
+                sw.Close();
+            }
+
+            //存JSONFiles
+            foreach (JTable jt in Var.OpenedTable)
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
+                {
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
+                    sw.Close();
+                }
+            }
+            sslMain.Text = string.Format(Main.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace JsonEditor
 {
@@ -14,8 +15,13 @@ namespace JsonEditor
         public string Name { get; set; }
         public string DirectoryPath { get; set; }
 
+        [JsonIgnore]
         public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
         public List<JTableInfo> TablesInfo { get; set; }
+
+        public JFilesInfo()
+            : this("")
+        { }
 
         public JFilesInfo(string directoryPath)
             : this(directoryPath.Substring(directoryPath.LastIndexOf("\\") + 1), directoryPath)
