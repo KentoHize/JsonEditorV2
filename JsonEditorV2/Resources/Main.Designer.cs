@@ -61,6 +61,33 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JSON 資料檔案編輯器 0.1.
+        /// </summary>
+        public static string JE_ABOUT_MESSAGE {
+            get {
+                return ResourceManager.GetString("JE_ABOUT_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created by KentKaze.
+        /// </summary>
+        public static string JE_ABOUT_MESSAGE_2 {
+            get {
+                return ResourceManager.GetString("JE_ABOUT_MESSAGE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 關於.
+        /// </summary>
+        public static string JE_ABOUT_TITLE {
+            get {
+                return ResourceManager.GetString("JE_ABOUT_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 清空.
         /// </summary>
         public static string JE_BTN_CLEAR_MAIN {
@@ -147,6 +174,141 @@ namespace JsonEditorV2.Resources {
         public static string JE_COLUMN_TYPE {
             get {
                 return ResourceManager.GetString("JE_COLUMN_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 此文件已有現存 {0} JSON檔案，是否要清空資料夾.
+        /// </summary>
+        public static string JE_RUN_NEW_JSON_FILES_Q_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_JSON_FILES_Q_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開新檔案.
+        /// </summary>
+        public static string JE_RUN_NEW_JSON_FILES_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 關於.
+        /// </summary>
+        public static string JE_TMI_ABOUT {
+            get {
+                return ResourceManager.GetString("JE_TMI_ABOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 增加欄位.
+        /// </summary>
+        public static string JE_TMI_ADD_COLUMN {
+            get {
+                return ResourceManager.GetString("JE_TMI_ADD_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 關閉所有檔案.
+        /// </summary>
+        public static string JE_TMI_CLOSE_ALL_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_CLOSE_ALL_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 關閉.
+        /// </summary>
+        public static string JE_TMI_CLOSE_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_CLOSE_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 刪除.
+        /// </summary>
+        public static string JE_TMI_DELETE_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_DELETE_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 離開.
+        /// </summary>
+        public static string JE_TMI_EXIT {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案.
+        /// </summary>
+        public static string JE_TMI_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 讀取JSON檔案庫.
+        /// </summary>
+        public static string JE_TMI_LOAD_JSON_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_LOAD_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新增JSON檔案.
+        /// </summary>
+        public static string JE_TMI_NEW_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_NEW_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新建JSON檔案庫.
+        /// </summary>
+        public static string JE_TMI_NEW_JSON_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_NEW_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開啟.
+        /// </summary>
+        public static string JE_TMI_OPEN_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_OPEN_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 重新命名.
+        /// </summary>
+        public static string JE_TMI_RENAME_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_RENAME_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 存取JSON檔案庫.
+        /// </summary>
+        public static string JE_TMI_SAVE_JSON_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_SAVE_JSON_FILES", resourceCulture);
             }
         }
         

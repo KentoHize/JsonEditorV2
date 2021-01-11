@@ -74,6 +74,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Main.resx</DependentUpon>
     </Compile>
+    <Compile Include="Var.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

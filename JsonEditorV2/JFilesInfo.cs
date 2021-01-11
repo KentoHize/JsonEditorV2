@@ -8,6 +8,8 @@ namespace JsonEditor
 {
     public class JFilesInfo : IDisposable
     {
+        public const string FilesInfoName = "JFilesInfo.json";
+
         public string Name { get; set; }
         public string DirectoryPath { get; set; }
         public List<JFileInfo> FilesInfo { get; set; }
