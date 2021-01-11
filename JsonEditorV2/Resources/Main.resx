@@ -159,6 +159,12 @@
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
   </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
+    <value>JFilesInfo連結失敗，忽略後繼續編輯:"{0}"</value>
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
+    <value>讀取檔案</value>
+  </data>
   <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
     <value>已在"{0}"新建檔案庫</value>
   </data>
@@ -170,6 +176,15 @@
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
     <value>"{0}"所有檔案已存檔</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
+    <value>準備掃描檔案，如果檔案數量眾多將會消耗很多時間，是否確定？</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
+    <value>{0}檔案掃描完畢</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
+    <value>掃描檔案</value>
   </data>
   <data name="JE_TMI_ABOUT" xml:space="preserve">
     <value>關於</value>

@@ -187,6 +187,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JFilesInfo連結失敗，忽略後繼續編輯:&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_LOAD_JSON_FILES_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 讀取檔案.
+        /// </summary>
+        public static string JE_RUN_LOAD_JSON_FILES_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 已在&quot;{0}&quot;新建檔案庫.
         /// </summary>
         public static string JE_RUN_NEW_JSON_FILES_M_1 {
@@ -219,6 +237,33 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_SAVE_JSON_FILES_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_SAVE_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 準備掃描檔案，如果檔案數量眾多將會消耗很多時間，是否確定？.
+        /// </summary>
+        public static string JE_RUN_SCAN_JSON_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SCAN_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}檔案掃描完畢.
+        /// </summary>
+        public static string JE_RUN_SCAN_JSON_FILES_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SCAN_JSON_FILES_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 掃描檔案.
+        /// </summary>
+        public static string JE_RUN_SCAN_JSON_FILES_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_SCAN_JSON_FILES_TITLE", resourceCulture);
             }
         }
         

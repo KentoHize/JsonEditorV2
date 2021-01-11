@@ -107,8 +107,10 @@
     </Compile>
     <None Include="TestArea\Test1\Articles.json" />
     <None Include="TestArea\Test1\BestowRecords.json" />
+    <None Include="TestArea\Test1\JFilesInfo.json" />
     <None Include="TestArea\Test1\Persons.json" />
     <None Include="TestArea\Test1\Quotes.json" />
+    <None Include="TestArea\Test2\JFilesInfo.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

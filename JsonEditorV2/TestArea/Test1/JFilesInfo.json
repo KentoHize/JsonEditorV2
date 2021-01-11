@@ -11,12 +11,12 @@
           "Type": "Long",
           "ForeignKey": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "Date",
           "IsKey": false,
-          "Type": "String",
+          "Type": "Date",
           "ForeignKey": null,
           "NumberOfRows": 1,
           "Display": false
@@ -26,7 +26,7 @@
           "IsKey": false,
           "Type": "String",
           "ForeignKey": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 5,
           "Display": false
         },
         {
@@ -34,7 +34,7 @@
           "IsKey": false,
           "Type": "String",
           "ForeignKey": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 17,
           "Display": false
         },
         {
@@ -53,15 +53,15 @@
         {
           "Name": "PersonID",
           "IsKey": false,
-          "Type": "String",
+          "Type": "Guid",
           "ForeignKey": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "BestowerID",
           "IsKey": false,
-          "Type": "String",
+          "Type": "Guid",
           "ForeignKey": null,
           "NumberOfRows": 1,
           "Display": false
@@ -77,7 +77,7 @@
         {
           "Name": "BestowDateTime",
           "IsKey": false,
-          "Type": "String",
+          "Type": "DateTime",
           "ForeignKey": null,
           "NumberOfRows": 1,
           "Display": false
@@ -105,11 +105,11 @@
       "Columns": [
         {
           "Name": "ID",
-          "IsKey": false,
-          "Type": "String",
+          "IsKey": true,
+          "Type": "Guid",
           "ForeignKey": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "Surname",
@@ -252,13 +252,13 @@
           "IsKey": false,
           "Type": "String",
           "ForeignKey": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 2,
           "Display": false
         },
         {
           "Name": "LastBestowDate",
           "IsKey": false,
-          "Type": "String",
+          "Type": "Date",
           "ForeignKey": null,
           "NumberOfRows": 1,
           "Display": false
@@ -282,12 +282,12 @@
           "Type": "Long",
           "ForeignKey": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "Date",
           "IsKey": false,
-          "Type": "String",
+          "Type": "Date",
           "ForeignKey": null,
           "NumberOfRows": 1,
           "Display": false
