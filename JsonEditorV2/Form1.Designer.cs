@@ -1,6 +1,6 @@
 ﻿namespace JsonEditorV2
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,558 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.btnDeleteColumn = new System.Windows.Forms.Button();
+            this.btnClearMain = new System.Windows.Forms.Button();
+            this.btnUpdateMain = new System.Windows.Forms.Button();
+            this.btnUpdateColumn = new System.Windows.Forms.Button();
+            this.pnlFielInfo = new System.Windows.Forms.Panel();
+            this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
+            this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
+            this.txtCloumnFK = new System.Windows.Forms.TextBox();
+            this.btnCloumnFK = new System.Windows.Forms.Button();
+            this.chbColumnDisplay = new System.Windows.Forms.CheckBox();
+            this.chbColumnIsKey = new System.Windows.Forms.CheckBox();
+            this.cobColumnType = new System.Windows.Forms.ComboBox();
+            this.txtColumnName = new System.Windows.Forms.TextBox();
+            this.lblCloumnFK = new System.Windows.Forms.Label();
+            this.lblColumnDisplay = new System.Windows.Forms.Label();
+            this.lblColumnIsKey = new System.Windows.Forms.Label();
+            this.lblColumnType = new System.Windows.Forms.Label();
+            this.lblColumnName = new System.Windows.Forms.Label();
+            this.lsbLines = new System.Windows.Forms.ListBox();
+            this.trvJsonFiles = new System.Windows.Forms.TreeView();
+            this.stsMain = new System.Windows.Forms.StatusStrip();
+            this.sslMain = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tbcMain = new System.Windows.Forms.TabControl();
+            this.pnlMain = new System.Windows.Forms.Panel();
+            this.mnsMain = new System.Windows.Forms.MenuStrip();
+            this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiLoadJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiLoadJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiSaveJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiSaveJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiCloseAllJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.ofdMain = new System.Windows.Forms.OpenFileDialog();
+            this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
+            this.imlMain = new System.Windows.Forms.ImageList(this.components);
+            this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiNewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsJsonFilesSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiOpenJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiRenameJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiCloseJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiDeleteJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlFielInfo.SuspendLayout();
+            this.stsMain.SuspendLayout();
+            this.mnsMain.SuspendLayout();
+            this.cmsJsonFiles.SuspendLayout();
+            this.cmsJsonFilesSelected.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Form1
+            // btnDeleteColumn
+            // 
+            this.btnDeleteColumn.Enabled = false;
+            this.btnDeleteColumn.Location = new System.Drawing.Point(12, 730);
+            this.btnDeleteColumn.Name = "btnDeleteColumn";
+            this.btnDeleteColumn.Size = new System.Drawing.Size(122, 40);
+            this.btnDeleteColumn.TabIndex = 19;
+            this.btnDeleteColumn.Text = "-";
+            this.btnDeleteColumn.UseVisualStyleBackColor = true;
+            // 
+            // btnClearMain
+            // 
+            this.btnClearMain.Enabled = false;
+            this.btnClearMain.Location = new System.Drawing.Point(673, 730);
+            this.btnClearMain.Name = "btnClearMain";
+            this.btnClearMain.Size = new System.Drawing.Size(122, 40);
+            this.btnClearMain.TabIndex = 18;
+            this.btnClearMain.Text = "-";
+            this.btnClearMain.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateMain
+            // 
+            this.btnUpdateMain.Enabled = false;
+            this.btnUpdateMain.Location = new System.Drawing.Point(1155, 730);
+            this.btnUpdateMain.Name = "btnUpdateMain";
+            this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
+            this.btnUpdateMain.TabIndex = 17;
+            this.btnUpdateMain.Text = "-";
+            this.btnUpdateMain.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdateColumn
+            // 
+            this.btnUpdateColumn.Enabled = false;
+            this.btnUpdateColumn.Location = new System.Drawing.Point(156, 730);
+            this.btnUpdateColumn.Name = "btnUpdateColumn";
+            this.btnUpdateColumn.Size = new System.Drawing.Size(122, 40);
+            this.btnUpdateColumn.TabIndex = 16;
+            this.btnUpdateColumn.Text = "-";
+            this.btnUpdateColumn.UseVisualStyleBackColor = true;
+            this.btnUpdateColumn.Click += new System.EventHandler(this.btnUpdateColumn_Click);
+            // 
+            // pnlFielInfo
+            // 
+            this.pnlFielInfo.AutoScroll = true;
+            this.pnlFielInfo.Controls.Add(this.txtColumnNumberOfRows);
+            this.pnlFielInfo.Controls.Add(this.lblColumnNumberOfRows);
+            this.pnlFielInfo.Controls.Add(this.txtCloumnFK);
+            this.pnlFielInfo.Controls.Add(this.btnCloumnFK);
+            this.pnlFielInfo.Controls.Add(this.chbColumnDisplay);
+            this.pnlFielInfo.Controls.Add(this.chbColumnIsKey);
+            this.pnlFielInfo.Controls.Add(this.cobColumnType);
+            this.pnlFielInfo.Controls.Add(this.txtColumnName);
+            this.pnlFielInfo.Controls.Add(this.lblCloumnFK);
+            this.pnlFielInfo.Controls.Add(this.lblColumnDisplay);
+            this.pnlFielInfo.Controls.Add(this.lblColumnIsKey);
+            this.pnlFielInfo.Controls.Add(this.lblColumnType);
+            this.pnlFielInfo.Controls.Add(this.lblColumnName);
+            this.pnlFielInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlFielInfo.Location = new System.Drawing.Point(1, 465);
+            this.pnlFielInfo.Name = "pnlFielInfo";
+            this.pnlFielInfo.Size = new System.Drawing.Size(278, 223);
+            this.pnlFielInfo.TabIndex = 15;
+            // 
+            // txtColumnNumberOfRows
+            // 
+            this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(227, 79);
+            this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
+            this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
+            this.txtColumnNumberOfRows.TabIndex = 15;
+            this.txtColumnNumberOfRows.Text = "0";
+            this.txtColumnNumberOfRows.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnNumberOfRows
+            // 
+            this.lblColumnNumberOfRows.AutoSize = true;
+            this.lblColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnNumberOfRows.Location = new System.Drawing.Point(18, 82);
+            this.lblColumnNumberOfRows.Name = "lblColumnNumberOfRows";
+            this.lblColumnNumberOfRows.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnNumberOfRows.TabIndex = 14;
+            this.lblColumnNumberOfRows.Text = "-";
+            // 
+            // txtCloumnFK
+            // 
+            this.txtCloumnFK.Enabled = false;
+            this.txtCloumnFK.Location = new System.Drawing.Point(145, 184);
+            this.txtCloumnFK.Name = "txtCloumnFK";
+            this.txtCloumnFK.Size = new System.Drawing.Size(101, 27);
+            this.txtCloumnFK.TabIndex = 8;
+            // 
+            // btnCloumnFK
+            // 
+            this.btnCloumnFK.Location = new System.Drawing.Point(245, 184);
+            this.btnCloumnFK.Name = "btnCloumnFK";
+            this.btnCloumnFK.Size = new System.Drawing.Size(30, 27);
+            this.btnCloumnFK.TabIndex = 8;
+            this.btnCloumnFK.Text = "...";
+            this.btnCloumnFK.UseVisualStyleBackColor = true;
+            // 
+            // chbColumnDisplay
+            // 
+            this.chbColumnDisplay.AutoSize = true;
+            this.chbColumnDisplay.Location = new System.Drawing.Point(179, 154);
+            this.chbColumnDisplay.Name = "chbColumnDisplay";
+            this.chbColumnDisplay.Size = new System.Drawing.Size(18, 17);
+            this.chbColumnDisplay.TabIndex = 13;
+            this.chbColumnDisplay.UseVisualStyleBackColor = true;
+            // 
+            // chbColumnIsKey
+            // 
+            this.chbColumnIsKey.AutoSize = true;
+            this.chbColumnIsKey.Location = new System.Drawing.Point(179, 119);
+            this.chbColumnIsKey.Name = "chbColumnIsKey";
+            this.chbColumnIsKey.Size = new System.Drawing.Size(18, 17);
+            this.chbColumnIsKey.TabIndex = 8;
+            this.chbColumnIsKey.UseVisualStyleBackColor = true;
+            // 
+            // cobColumnType
+            // 
+            this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobColumnType.FormattingEnabled = true;
+            this.cobColumnType.Location = new System.Drawing.Point(145, 44);
+            this.cobColumnType.Name = "cobColumnType";
+            this.cobColumnType.Size = new System.Drawing.Size(118, 28);
+            this.cobColumnType.TabIndex = 8;
+            // 
+            // txtColumnName
+            // 
+            this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnName.Location = new System.Drawing.Point(145, 9);
+            this.txtColumnName.Name = "txtColumnName";
+            this.txtColumnName.Size = new System.Drawing.Size(118, 27);
+            this.txtColumnName.TabIndex = 0;
+            this.txtColumnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblCloumnFK
+            // 
+            this.lblCloumnFK.AutoSize = true;
+            this.lblCloumnFK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCloumnFK.Location = new System.Drawing.Point(18, 187);
+            this.lblCloumnFK.Name = "lblCloumnFK";
+            this.lblCloumnFK.Size = new System.Drawing.Size(15, 20);
+            this.lblCloumnFK.TabIndex = 12;
+            this.lblCloumnFK.Text = "-";
+            // 
+            // lblColumnDisplay
+            // 
+            this.lblColumnDisplay.AutoSize = true;
+            this.lblColumnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 152);
+            this.lblColumnDisplay.Name = "lblColumnDisplay";
+            this.lblColumnDisplay.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnDisplay.TabIndex = 11;
+            this.lblColumnDisplay.Text = "-";
+            // 
+            // lblColumnIsKey
+            // 
+            this.lblColumnIsKey.AutoSize = true;
+            this.lblColumnIsKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnIsKey.Location = new System.Drawing.Point(18, 117);
+            this.lblColumnIsKey.Name = "lblColumnIsKey";
+            this.lblColumnIsKey.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnIsKey.TabIndex = 10;
+            this.lblColumnIsKey.Text = "-";
+            // 
+            // lblColumnType
+            // 
+            this.lblColumnType.AutoSize = true;
+            this.lblColumnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnType.Location = new System.Drawing.Point(18, 48);
+            this.lblColumnType.Name = "lblColumnType";
+            this.lblColumnType.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnType.TabIndex = 9;
+            this.lblColumnType.Text = "-";
+            // 
+            // lblColumnName
+            // 
+            this.lblColumnName.AutoSize = true;
+            this.lblColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnName.Location = new System.Drawing.Point(18, 12);
+            this.lblColumnName.Name = "lblColumnName";
+            this.lblColumnName.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnName.TabIndex = 8;
+            this.lblColumnName.Text = "-";
+            // 
+            // lsbLines
+            // 
+            this.lsbLines.FormattingEnabled = true;
+            this.lsbLines.ItemHeight = 16;
+            this.lsbLines.Location = new System.Drawing.Point(284, 62);
+            this.lsbLines.Name = "lsbLines";
+            this.lsbLines.Size = new System.Drawing.Size(383, 708);
+            this.lsbLines.TabIndex = 14;
+            this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.libLines_SelectedIndexChanged);
+            // 
+            // trvJsonFiles
+            // 
+            this.trvJsonFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trvJsonFiles.LabelEdit = true;
+            this.trvJsonFiles.Location = new System.Drawing.Point(1, 32);
+            this.trvJsonFiles.Name = "trvJsonFiles";
+            this.trvJsonFiles.Size = new System.Drawing.Size(278, 428);
+            this.trvJsonFiles.TabIndex = 12;
+            // 
+            // stsMain
+            // 
+            this.stsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.stsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sslMain});
+            this.stsMain.Location = new System.Drawing.Point(0, 781);
+            this.stsMain.Name = "stsMain";
+            this.stsMain.Size = new System.Drawing.Size(1282, 22);
+            this.stsMain.TabIndex = 11;
+            this.stsMain.Text = "sspMain";
+            // 
+            // sslMain
+            // 
+            this.sslMain.Name = "sslMain";
+            this.sslMain.Size = new System.Drawing.Size(0, 17);
+            // 
+            // tbcMain
+            // 
+            this.tbcMain.Location = new System.Drawing.Point(284, 32);
+            this.tbcMain.Name = "tbcMain";
+            this.tbcMain.SelectedIndex = 0;
+            this.tbcMain.Size = new System.Drawing.Size(993, 24);
+            this.tbcMain.TabIndex = 20;
+            // 
+            // pnlMain
+            // 
+            this.pnlMain.AutoScroll = true;
+            this.pnlMain.Location = new System.Drawing.Point(673, 62);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.Size = new System.Drawing.Size(604, 657);
+            this.pnlMain.TabIndex = 21;
+            // 
+            // mnsMain
+            // 
+            this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiFile,
+            this.tmiAbout});
+            this.mnsMain.Location = new System.Drawing.Point(0, 0);
+            this.mnsMain.Name = "mnsMain";
+            this.mnsMain.Size = new System.Drawing.Size(1282, 28);
+            this.mnsMain.TabIndex = 24;
+            this.mnsMain.Text = "menuStrip1";
+            // 
+            // tmiFile
+            // 
+            this.tmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiNewJsonFiles,
+            this.toolStripMenuItem3,
+            this.tmiLoadJsonFile,
+            this.tmiLoadJsonFiles,
+            this.toolStripMenuItem4,
+            this.tmiSaveJsonFile,
+            this.tmiSaveJsonFiles,
+            this.toolStripMenuItem2,
+            this.tmiCloseAllJsonFiles,
+            this.toolStripMenuItem1,
+            this.tmiExit});
+            this.tmiFile.Name = "tmiFile";
+            this.tmiFile.Size = new System.Drawing.Size(51, 24);
+            this.tmiFile.Text = "檔案";
+            // 
+            // tmiNewJsonFiles
+            // 
+            this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(194, 26);
+            this.tmiNewJsonFiles.Text = "新建JSON資料夾";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tmiLoadJsonFile
+            // 
+            this.tmiLoadJsonFile.Name = "tmiLoadJsonFile";
+            this.tmiLoadJsonFile.Size = new System.Drawing.Size(194, 26);
+            this.tmiLoadJsonFile.Text = "讀取JSON檔案";
+            // 
+            // tmiLoadJsonFiles
+            // 
+            this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(194, 26);
+            this.tmiLoadJsonFiles.Text = "讀取JSON資料夾";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tmiSaveJsonFile
+            // 
+            this.tmiSaveJsonFile.Name = "tmiSaveJsonFile";
+            this.tmiSaveJsonFile.Size = new System.Drawing.Size(194, 26);
+            this.tmiSaveJsonFile.Text = "存取JSON檔案";
+            // 
+            // tmiSaveJsonFiles
+            // 
+            this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(194, 26);
+            this.tmiSaveJsonFiles.Text = "存取JSON資料夾";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tmiCloseAllJsonFiles
+            // 
+            this.tmiCloseAllJsonFiles.Enabled = false;
+            this.tmiCloseAllJsonFiles.Name = "tmiCloseAllJsonFiles";
+            this.tmiCloseAllJsonFiles.Size = new System.Drawing.Size(194, 26);
+            this.tmiCloseAllJsonFiles.Text = "關閉所有檔案";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(191, 6);
+            // 
+            // tmiExit
+            // 
+            this.tmiExit.Name = "tmiExit";
+            this.tmiExit.Size = new System.Drawing.Size(194, 26);
+            this.tmiExit.Text = "離開";
+            // 
+            // tmiAbout
+            // 
+            this.tmiAbout.Name = "tmiAbout";
+            this.tmiAbout.Size = new System.Drawing.Size(51, 24);
+            this.tmiAbout.Text = "關於";
+            // 
+            // ofdMain
+            // 
+            this.ofdMain.FileName = "openFileDialog1";
+            // 
+            // imlMain
+            // 
+            this.imlMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imlMain.ImageStream")));
+            this.imlMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imlMain.Images.SetKeyName(0, "JsonIcon.png");
+            this.imlMain.Images.SetKeyName(1, "ObjectIcon.png");
+            this.imlMain.Images.SetKeyName(2, "Directory.png");
+            // 
+            // cmsJsonFiles
+            // 
+            this.cmsJsonFiles.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsJsonFiles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiNewJsonFile});
+            this.cmsJsonFiles.Name = "cmsMain";
+            this.cmsJsonFiles.Size = new System.Drawing.Size(174, 28);
+            // 
+            // tmiNewJsonFile
+            // 
+            this.tmiNewJsonFile.Name = "tmiNewJsonFile";
+            this.tmiNewJsonFile.Size = new System.Drawing.Size(173, 24);
+            this.tmiNewJsonFile.Text = "新增JSON檔案";
+            // 
+            // cmsJsonFilesSelected
+            // 
+            this.cmsJsonFilesSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsJsonFilesSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiOpenJsonFile,
+            this.tmiRenameJsonFile,
+            this.tmiCloseJsonFile,
+            this.tmiDeleteJsonFile,
+            this.toolStripMenuItem5,
+            this.tmiAddColumn});
+            this.cmsJsonFilesSelected.Name = "cmsMain";
+            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(139, 130);
+            // 
+            // tmiOpenJsonFile
+            // 
+            this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(138, 24);
+            this.tmiOpenJsonFile.Text = "開啟";
+            // 
+            // tmiRenameJsonFile
+            // 
+            this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(138, 24);
+            this.tmiRenameJsonFile.Text = "重新命名";
+            // 
+            // tmiCloseJsonFile
+            // 
+            this.tmiCloseJsonFile.Enabled = false;
+            this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(138, 24);
+            this.tmiCloseJsonFile.Text = "關閉";
+            // 
+            // tmiDeleteJsonFile
+            // 
+            this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(138, 24);
+            this.tmiDeleteJsonFile.Text = "刪除";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(135, 6);
+            // 
+            // tmiAddColumn
+            // 
+            this.tmiAddColumn.Name = "tmiAddColumn";
+            this.tmiAddColumn.Size = new System.Drawing.Size(138, 24);
+            this.tmiAddColumn.Text = "增加欄位";
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 627);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(1282, 803);
+            this.Controls.Add(this.pnlMain);
+            this.Controls.Add(this.mnsMain);
+            this.Controls.Add(this.lsbLines);
+            this.Controls.Add(this.tbcMain);
+            this.Controls.Add(this.btnDeleteColumn);
+            this.Controls.Add(this.btnClearMain);
+            this.Controls.Add(this.btnUpdateMain);
+            this.Controls.Add(this.btnUpdateColumn);
+            this.Controls.Add(this.pnlFielInfo);
+            this.Controls.Add(this.trvJsonFiles);
+            this.Controls.Add(this.stsMain);
+            this.Name = "MainForm";
+            this.pnlFielInfo.ResumeLayout(false);
+            this.pnlFielInfo.PerformLayout();
+            this.stsMain.ResumeLayout(false);
+            this.stsMain.PerformLayout();
+            this.mnsMain.ResumeLayout(false);
+            this.mnsMain.PerformLayout();
+            this.cmsJsonFiles.ResumeLayout(false);
+            this.cmsJsonFilesSelected.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnDeleteColumn;
+        private System.Windows.Forms.Button btnClearMain;
+        private System.Windows.Forms.Button btnUpdateMain;
+        private System.Windows.Forms.Button btnUpdateColumn;
+        private System.Windows.Forms.Panel pnlFielInfo;
+        private System.Windows.Forms.TextBox txtColumnNumberOfRows;
+        private System.Windows.Forms.Label lblColumnNumberOfRows;
+        private System.Windows.Forms.TextBox txtCloumnFK;
+        private System.Windows.Forms.Button btnCloumnFK;
+        private System.Windows.Forms.CheckBox chbColumnDisplay;
+        private System.Windows.Forms.CheckBox chbColumnIsKey;
+        private System.Windows.Forms.ComboBox cobColumnType;
+        private System.Windows.Forms.TextBox txtColumnName;
+        private System.Windows.Forms.Label lblCloumnFK;
+        private System.Windows.Forms.Label lblColumnDisplay;
+        private System.Windows.Forms.Label lblColumnIsKey;
+        private System.Windows.Forms.Label lblColumnType;
+        private System.Windows.Forms.Label lblColumnName;
+        private System.Windows.Forms.ListBox lsbLines;
+        private System.Windows.Forms.TreeView trvJsonFiles;
+        private System.Windows.Forms.StatusStrip stsMain;
+        private System.Windows.Forms.ToolStripStatusLabel sslMain;
+        private System.Windows.Forms.TabControl tbcMain;
+        private System.Windows.Forms.Panel pnlMain;
+        private System.Windows.Forms.MenuStrip mnsMain;
+        private System.Windows.Forms.ToolStripMenuItem tmiFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFiles;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem tmiLoadJsonFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiLoadJsonFiles;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem tmiSaveJsonFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiSaveJsonFiles;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem tmiCloseAllJsonFiles;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tmiExit;
+        private System.Windows.Forms.ToolStripMenuItem tmiAbout;
+        private System.Windows.Forms.OpenFileDialog ofdMain;
+        private System.Windows.Forms.FolderBrowserDialog fbdMain;
+        private System.Windows.Forms.ImageList imlMain;
+        private System.Windows.Forms.ContextMenuStrip cmsJsonFiles;
+        private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFile;
+        private System.Windows.Forms.ContextMenuStrip cmsJsonFilesSelected;
+        private System.Windows.Forms.ToolStripMenuItem tmiOpenJsonFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiRenameJsonFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiCloseJsonFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiDeleteJsonFile;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem tmiAddColumn;
     }
 }
 
