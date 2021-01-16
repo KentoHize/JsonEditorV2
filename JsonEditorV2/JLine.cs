@@ -9,7 +9,7 @@ namespace JsonEditor
 {
     public class JLine : IList<JValue>
     {
-        public JValue this[int index] { get => ((IList<JValue>)Values)[index]; set => ((IList<JValue>)Values)[index] = value; }
+        public JValue this[int index] { get => ((IList<JValue>)Values)[index]; set => ((IList<JValue>)Values)[index] = value; }        
 
         public List<JValue> Values { get; set; } = new List<JValue>();
 

@@ -178,6 +178,51 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 取消.
+        /// </summary>
+        public static string JE_INPUTBOX_BTN_CANCEL {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_BTN_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確定.
+        /// </summary>
+        public static string JE_INPUTBOX_BTN_CONFIRM {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_BTN_CONFIRM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案名稱.
+        /// </summary>
+        public static string JE_INPUTBOX_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案&quot;{0}:已存在.
+        /// </summary>
+        public static string JE_INPUTBOX_FILE_EXISTS {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_FILE_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開新JSON檔案.
+        /// </summary>
+        public static string JE_INPUTBOX_TITLE {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}檔案已讀入.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_1 {
@@ -196,11 +241,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 讀取檔案.
+        ///   Looks up a localized string similar to 讀取檔案庫.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案新建失敗:&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_NEW_JSON_FILE_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_JSON_FILE_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 開新檔案.
+        /// </summary>
+        public static string JE_RUN_NEW_JSON_FILE_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_JSON_FILE_TITLE", resourceCulture);
             }
         }
         
@@ -223,7 +286,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 開新檔案.
+        ///   Looks up a localized string similar to 開新檔案庫.
         /// </summary>
         public static string JE_RUN_NEW_JSON_FILES_TITLE {
             get {
@@ -259,7 +322,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掃描檔案.
+        ///   Looks up a localized string similar to 掃描檔案庫.
         /// </summary>
         public static string JE_RUN_SCAN_JSON_FILES_TITLE {
             get {
@@ -286,7 +349,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 關閉所有檔案.
+        ///   Looks up a localized string similar to 關閉檔案庫.
         /// </summary>
         public static string JE_TMI_CLOSE_ALL_FILES {
             get {

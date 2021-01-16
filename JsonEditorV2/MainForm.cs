@@ -105,6 +105,7 @@ namespace JsonEditorV2
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
                 tmiCloseAllFiles.Enabled = true;
                 tmiScanJsonFiles.Enabled = true;
+                tmiNewJsonFile.Enabled = true;
                 RefreshTrvJsonFiles();
                 sslMain.Text = string.Format(Main.JE_RUN_NEW_JSON_FILES_M_1, Var.JFI.DirectoryPath);
             }
@@ -241,7 +242,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Main.JE_RUN_LOAD_JSON_FILES_M_2, ex.Message), Main.JE_RUN_LOAD_JSON_FILES_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                HandleException(ex, Main.JE_RUN_LOAD_JSON_FILES_M_2, Main.JE_RUN_LOAD_JSON_FILES_TITLE);                
             }
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Main.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
@@ -256,6 +257,7 @@ namespace JsonEditorV2
             trvJsonFiles.Nodes.Clear();
             tmiCloseAllFiles.Enabled = false;
             tmiScanJsonFiles.Enabled = false;
+            tmiNewJsonFile.Enabled = false;
             if (Var.Tables == null)
                 return;
 
@@ -286,6 +288,7 @@ namespace JsonEditorV2
 
             tmiCloseAllFiles.Enabled = true;
             tmiScanJsonFiles.Enabled = true;
+            tmiNewJsonFile.Enabled = true;
         }
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
@@ -403,6 +406,11 @@ namespace JsonEditorV2
             //throw new NotImplementedException();
         }
 
+        private void RefreshCloseFileState()
+        {
+
+        }
+
         private void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node == Var.RootNode)
@@ -412,6 +420,35 @@ namespace JsonEditorV2
                 trvJsonFiles.SelectedNode = e.Node;
                 //tmiOpenJsonFile_Click(this, e);
             }
+        }
+
+        private void tmiNewJsonFile_Click(object sender, EventArgs e)
+        {
+            frmInputBox fib = new frmInputBox();
+            fib.StartPosition = FormStartPosition.CenterParent;
+            DialogResult dr = fib.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+                return;
+            try
+            {
+                string newFile = Path.Combine(Var.JFI.DirectoryPath, $"{fib.Tag.ToString()}.json");
+                using (FileStream fs = new FileStream(newFile, FileMode.Create))
+                { }
+
+                JTable jt = new JTable(fib.Tag.ToString());
+                Var.Tables.Add(jt);
+                Var.JFI.TablesInfo.Add(jt.GetJTableInfo());
+                Var.RootNode.Nodes.Add(new TreeNode(jt.Name, 1, 1));
+            }
+            catch(Exception ex)
+            {
+                HandleException(ex, Main.JE_RUN_NEW_JSON_FILE_M_2, Main.JE_RUN_NEW_JSON_FILE_TITLE);
+            }
+        }
+
+        private void HandleException(Exception ex, string content, string title)
+        {
+            MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
