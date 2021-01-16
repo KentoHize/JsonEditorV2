@@ -15,6 +15,14 @@ namespace JsonEditor
         public int NumberOfRows { get; set; }
         public bool Display { get; set; }
 
+        public JColumn()
+            : this("")
+        { }
+
+        public JColumn(string name)
+            : this(name, JType.String)
+        { }
+
         public JColumn(string name, JType type, bool isKey = false, bool display = false, int numberOfRows = 1, string fk = null)
         {
             Name = name;

@@ -2,7 +2,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime;
 using System.Dynamic;
 
 namespace JsonEditor
@@ -10,7 +9,7 @@ namespace JsonEditor
     public class JTable : IList<JLine>
     {
         public string Name { get; set; }
-        public List<JColumn> Columns { get; set; } = new List<JColumn>();        
+        public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
 
         public int Count => ((IList<JLine>)Lines).Count;
@@ -32,7 +31,7 @@ namespace JsonEditor
             bool isFirst = true;
             bool isFirstFirst = true;
 
-            Name = name;         
+            Name = name;
             if (jArray == null)
                 return;
 
@@ -41,7 +40,7 @@ namespace JsonEditor
                 throw new ArgumentNullException();
 
             foreach (JToken jt in jr)
-            {                
+            {
                 JLine items = new JLine();
                 JObject jo = jt as JObject;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
@@ -73,7 +72,7 @@ namespace JsonEditor
                             break;
                         case JTokenType.Boolean:
                             items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
-                            break;                        
+                            break;
                         case JTokenType.Date:
                             items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
                             break;
@@ -96,14 +95,17 @@ namespace JsonEditor
         {
             //檢查一下是否正確
             if (jfi == null)
-                throw new ArgumentNullException();            
+                throw new ArgumentNullException();
             if (Name != jfi.Name)
-                throw new InvalidCastException();            
-            if (Columns.Count != jfi.Columns.Count)
-                throw new MissingFieldException();
-            for(int i = 0; i < jfi.Columns.Count; i++)
-                if (Columns[i].Name != jfi.Columns[i].Name)
+                throw new InvalidCastException();
+            if (Lines.Count != 0)
+            {
+                if (Columns.Count != jfi.Columns.Count)
                     throw new MissingFieldException();
+                for (int i = 0; i < jfi.Columns.Count; i++)
+                    if (Columns[i].Name != jfi.Columns[i].Name)
+                        throw new MissingFieldException();
+            }
             Columns = jfi.Columns;
         }
 
@@ -114,7 +116,7 @@ namespace JsonEditor
         public JTableInfo GetJTableInfo()
         {
             JTableInfo jfi = new JTableInfo();
-            List<JColumn> jcs = new List<JColumn>(Columns);            
+            List<JColumn> jcs = new List<JColumn>(Columns);
             jfi.Name = Name;
             jfi.Columns = jcs;
             return jfi;
@@ -124,10 +126,10 @@ namespace JsonEditor
         /// </summary>
         /// <returns></returns>
         public object GetJsonObject()
-        {            
+        {
             List<object> result = new List<object>();
             foreach (JLine jl in Lines)
-            {                
+            {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
                     line.Add(Columns[i].Name, jl[i]);
@@ -166,7 +168,7 @@ namespace JsonEditor
                 case JType.String:
                     return Convert.ToString(inputValue);
                 case JType.Guid:
-                    return Guid.Parse(inputValue.ToString());                        
+                    return Guid.Parse(inputValue.ToString());
                 default:
                     return Convert.ChangeType(inputValue, Type.GetType(jt.ToString()));
             }

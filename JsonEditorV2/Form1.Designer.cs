@@ -35,15 +35,15 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFielInfo = new System.Windows.Forms.Panel();
+            this.btnColumnFK = new System.Windows.Forms.Button();
             this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
             this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
-            this.txtCloumnFK = new System.Windows.Forms.TextBox();
-            this.btnCloumnFK = new System.Windows.Forms.Button();
+            this.txtColumnFK = new System.Windows.Forms.TextBox();
             this.chbColumnDisplay = new System.Windows.Forms.CheckBox();
             this.chbColumnIsKey = new System.Windows.Forms.CheckBox();
             this.cobColumnType = new System.Windows.Forms.ComboBox();
             this.txtColumnName = new System.Windows.Forms.TextBox();
-            this.lblCloumnFK = new System.Windows.Forms.Label();
+            this.lblColumnFK = new System.Windows.Forms.Label();
             this.lblColumnDisplay = new System.Windows.Forms.Label();
             this.lblColumnIsKey = new System.Windows.Forms.Label();
             this.lblColumnType = new System.Windows.Forms.Label();
@@ -132,15 +132,15 @@
             // pnlFielInfo
             // 
             this.pnlFielInfo.AutoScroll = true;
+            this.pnlFielInfo.Controls.Add(this.btnColumnFK);
             this.pnlFielInfo.Controls.Add(this.txtColumnNumberOfRows);
             this.pnlFielInfo.Controls.Add(this.lblColumnNumberOfRows);
-            this.pnlFielInfo.Controls.Add(this.txtCloumnFK);
-            this.pnlFielInfo.Controls.Add(this.btnCloumnFK);
+            this.pnlFielInfo.Controls.Add(this.txtColumnFK);
             this.pnlFielInfo.Controls.Add(this.chbColumnDisplay);
             this.pnlFielInfo.Controls.Add(this.chbColumnIsKey);
             this.pnlFielInfo.Controls.Add(this.cobColumnType);
             this.pnlFielInfo.Controls.Add(this.txtColumnName);
-            this.pnlFielInfo.Controls.Add(this.lblCloumnFK);
+            this.pnlFielInfo.Controls.Add(this.lblColumnFK);
             this.pnlFielInfo.Controls.Add(this.lblColumnDisplay);
             this.pnlFielInfo.Controls.Add(this.lblColumnIsKey);
             this.pnlFielInfo.Controls.Add(this.lblColumnType);
@@ -151,10 +151,19 @@
             this.pnlFielInfo.Size = new System.Drawing.Size(374, 223);
             this.pnlFielInfo.TabIndex = 15;
             // 
+            // btnColumnFK
+            // 
+            this.btnColumnFK.Location = new System.Drawing.Point(332, 184);
+            this.btnColumnFK.Name = "btnColumnFK";
+            this.btnColumnFK.Size = new System.Drawing.Size(30, 27);
+            this.btnColumnFK.TabIndex = 8;
+            this.btnColumnFK.Text = "...";
+            this.btnColumnFK.UseVisualStyleBackColor = true;
+            // 
             // txtColumnNumberOfRows
             // 
             this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(227, 79);
+            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(326, 81);
             this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
             this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
             this.txtColumnNumberOfRows.TabIndex = 15;
@@ -171,27 +180,18 @@
             this.lblColumnNumberOfRows.TabIndex = 14;
             this.lblColumnNumberOfRows.Text = "-";
             // 
-            // txtCloumnFK
+            // txtColumnFK
             // 
-            this.txtCloumnFK.Enabled = false;
-            this.txtCloumnFK.Location = new System.Drawing.Point(145, 184);
-            this.txtCloumnFK.Name = "txtCloumnFK";
-            this.txtCloumnFK.Size = new System.Drawing.Size(101, 27);
-            this.txtCloumnFK.TabIndex = 8;
-            // 
-            // btnCloumnFK
-            // 
-            this.btnCloumnFK.Location = new System.Drawing.Point(245, 184);
-            this.btnCloumnFK.Name = "btnCloumnFK";
-            this.btnCloumnFK.Size = new System.Drawing.Size(30, 27);
-            this.btnCloumnFK.TabIndex = 8;
-            this.btnCloumnFK.Text = "...";
-            this.btnCloumnFK.UseVisualStyleBackColor = true;
+            this.txtColumnFK.Enabled = false;
+            this.txtColumnFK.Location = new System.Drawing.Point(197, 184);
+            this.txtColumnFK.Name = "txtColumnFK";
+            this.txtColumnFK.Size = new System.Drawing.Size(141, 27);
+            this.txtColumnFK.TabIndex = 8;
             // 
             // chbColumnDisplay
             // 
             this.chbColumnDisplay.AutoSize = true;
-            this.chbColumnDisplay.Location = new System.Drawing.Point(179, 154);
+            this.chbColumnDisplay.Location = new System.Drawing.Point(344, 155);
             this.chbColumnDisplay.Name = "chbColumnDisplay";
             this.chbColumnDisplay.Size = new System.Drawing.Size(18, 17);
             this.chbColumnDisplay.TabIndex = 13;
@@ -200,7 +200,7 @@
             // chbColumnIsKey
             // 
             this.chbColumnIsKey.AutoSize = true;
-            this.chbColumnIsKey.Location = new System.Drawing.Point(179, 119);
+            this.chbColumnIsKey.Location = new System.Drawing.Point(344, 120);
             this.chbColumnIsKey.Name = "chbColumnIsKey";
             this.chbColumnIsKey.Size = new System.Drawing.Size(18, 17);
             this.chbColumnIsKey.TabIndex = 8;
@@ -210,7 +210,7 @@
             // 
             this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnType.FormattingEnabled = true;
-            this.cobColumnType.Location = new System.Drawing.Point(145, 44);
+            this.cobColumnType.Location = new System.Drawing.Point(244, 45);
             this.cobColumnType.Name = "cobColumnType";
             this.cobColumnType.Size = new System.Drawing.Size(118, 28);
             this.cobColumnType.TabIndex = 8;
@@ -218,21 +218,21 @@
             // txtColumnName
             // 
             this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnName.Location = new System.Drawing.Point(145, 9);
+            this.txtColumnName.Location = new System.Drawing.Point(244, 9);
             this.txtColumnName.Name = "txtColumnName";
             this.txtColumnName.Size = new System.Drawing.Size(118, 27);
             this.txtColumnName.TabIndex = 0;
             this.txtColumnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lblCloumnFK
+            // lblColumnFK
             // 
-            this.lblCloumnFK.AutoSize = true;
-            this.lblCloumnFK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCloumnFK.Location = new System.Drawing.Point(18, 187);
-            this.lblCloumnFK.Name = "lblCloumnFK";
-            this.lblCloumnFK.Size = new System.Drawing.Size(15, 20);
-            this.lblCloumnFK.TabIndex = 12;
-            this.lblCloumnFK.Text = "-";
+            this.lblColumnFK.AutoSize = true;
+            this.lblColumnFK.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnFK.Location = new System.Drawing.Point(18, 187);
+            this.lblColumnFK.Name = "lblColumnFK";
+            this.lblColumnFK.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnFK.TabIndex = 12;
+            this.lblColumnFK.Text = "-";
             // 
             // lblColumnDisplay
             // 
@@ -462,13 +462,13 @@
             this.cmsJsonFiles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiNewJsonFile});
             this.cmsJsonFiles.Name = "cmsMain";
-            this.cmsJsonFiles.Size = new System.Drawing.Size(211, 56);
+            this.cmsJsonFiles.Size = new System.Drawing.Size(88, 28);
             // 
             // tmiNewJsonFile
             // 
             this.tmiNewJsonFile.Enabled = false;
             this.tmiNewJsonFile.Name = "tmiNewJsonFile";
-            this.tmiNewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiNewJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiNewJsonFile.Text = "X";
             this.tmiNewJsonFile.Click += new System.EventHandler(this.tmiNewJsonFile_Click);
             // 
@@ -520,6 +520,7 @@
             this.tmiAddColumn.Name = "tmiAddColumn";
             this.tmiAddColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiAddColumn.Text = "X";
+            this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
             // MainForm
             // 
@@ -561,13 +562,13 @@
         private System.Windows.Forms.Panel pnlFielInfo;
         private System.Windows.Forms.TextBox txtColumnNumberOfRows;
         private System.Windows.Forms.Label lblColumnNumberOfRows;
-        private System.Windows.Forms.TextBox txtCloumnFK;
-        private System.Windows.Forms.Button btnCloumnFK;
+        private System.Windows.Forms.TextBox txtColumnFK;
+        private System.Windows.Forms.Button btnColumnFK;
         private System.Windows.Forms.CheckBox chbColumnDisplay;
         private System.Windows.Forms.CheckBox chbColumnIsKey;
         private System.Windows.Forms.ComboBox cobColumnType;
         private System.Windows.Forms.TextBox txtColumnName;
-        private System.Windows.Forms.Label lblCloumnFK;
+        private System.Windows.Forms.Label lblColumnFK;
         private System.Windows.Forms.Label lblColumnDisplay;
         private System.Windows.Forms.Label lblColumnIsKey;
         private System.Windows.Forms.Label lblColumnType;

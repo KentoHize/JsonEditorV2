@@ -16,7 +16,7 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             Var.RM = new ResourceManager("JsonEditorV2.Resources.Main", Type.GetType("JsonEditorV2.Resources.Main").Assembly);
-            Var.CI = new CultureInfo("zh-TW");
+            Var.CI = new CultureInfo("zh-TW");            
             PatchTextFromResource(Var.CI);
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
@@ -32,7 +32,7 @@ namespace JsonEditorV2
             lblColumnType.Text = Main.JE_COLUMN_TYPE;
             lblColumnIsKey.Text = Main.JE_COLUMN_IS_KEY;
             lblColumnDisplay.Text = Main.JE_COLUMN_DISPLAY;
-            lblCloumnFK.Text = Main.JE_COLUMN_FK;
+            lblColumnFK.Text = Main.JE_COLUMN_FK;
             lblColumnNumberOfRows.Text = Main.JE_COLUMN_NUM_OF_ROWS;
             btnClearMain.Text = Main.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Main.JE_BTN_UPDATE_MAIN;
@@ -271,12 +271,14 @@ namespace JsonEditorV2
                 fileNode = new TreeNode(jt.Name, 1, 1);
                 fileNode.Tag = jt.Name;
                 Var.RootNode.Nodes.Add(fileNode);
+                if (Var.SelectedColumnParentTable == jt && Var.SelectedColumn == null)
+                    trvJsonFiles.SelectedNode = fileNode;
                 foreach (JColumn jc in jt.Columns)
                 {
                     tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name, ImageIndex = 2, SelectedImageIndex = 2 };
                     fileNode.Nodes.Add(tr);
                     if (Var.SelectedColumn == jc)
-                        trvJsonFiles.SelectedNode = tr;
+                        trvJsonFiles.SelectedNode = tr;                    
                     if (!string.IsNullOrEmpty(jc.ForeignKey))
                         fks.Add(jc.Name, jc.ForeignKey);
                 }
@@ -289,6 +291,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles.Enabled = true;
             tmiScanJsonFiles.Enabled = true;
             tmiNewJsonFile.Enabled = true;
+            RefreshPnlFileInfo();
         }
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
@@ -302,8 +305,7 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
             Var.Lines.Clear();
-            RefreshTrvJsonFiles();
-            //RefreshPnlFileInfoUI();
+            RefreshTrvJsonFiles();            
             //RefreshLibLinesUI();
             //RefreshPnlMainUI();
             sslMain.Text = "";
@@ -372,12 +374,12 @@ namespace JsonEditorV2
             else if (e.Node.Parent == Var.RootNode)
             {
                 Var.SelectedColumn = null;
-                Var.SelectedColumnParentTable = null;
+                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString()); ;
                 RefreshPnlFileInfo();
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    trvJsonFiles.SelectedNode = e.Node;
+                    trvJsonFiles.SelectedNode = e.Node;                    
                     if (Var.OpenedTable.Exists(m => m.Name == e.Node.Tag.ToString()))
                     {
                         tmiOpenJsonFile.Enabled = false;
@@ -403,7 +405,26 @@ namespace JsonEditorV2
 
         private void RefreshPnlFileInfo()
         {
-            //throw new NotImplementedException();
+            if (Var.SelectedColumn != null)
+            {
+                cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
+                txtColumnName.Text = Var.SelectedColumn.Name;
+                chbColumnDisplay.Checked = Var.SelectedColumn.Display;
+                chbColumnIsKey.Checked = Var.SelectedColumn.IsKey;                
+                txtColumnFK.Text = Var.SelectedColumn.ForeignKey;
+                txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
+                btnUpdateColumn.Enabled = true;                
+            }
+            else
+            {
+                txtColumnName.Text = "";
+                cobColumnType.SelectedIndex = -1;
+                chbColumnDisplay.Checked = false;
+                chbColumnIsKey.Checked = false;
+                txtColumnFK.Text = "";
+                txtColumnNumberOfRows.Text = "0";
+                btnUpdateColumn.Enabled = false;
+            }
         }
 
         private void RefreshCloseFileState()
@@ -424,21 +445,20 @@ namespace JsonEditorV2
 
         private void tmiNewJsonFile_Click(object sender, EventArgs e)
         {
-            frmInputBox fib = new frmInputBox();
+            frmInputBox fib = new frmInputBox("New File");
             fib.StartPosition = FormStartPosition.CenterParent;
             DialogResult dr = fib.ShowDialog(this);
             if (dr == DialogResult.Cancel)
                 return;
             try
             {
-                string newFile = Path.Combine(Var.JFI.DirectoryPath, $"{fib.Tag.ToString()}.json");
+                string newFile = Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json");
                 using (FileStream fs = new FileStream(newFile, FileMode.Create))
                 { }
 
-                JTable jt = new JTable(fib.Tag.ToString());
-                Var.Tables.Add(jt);
-                Var.JFI.TablesInfo.Add(jt.GetJTableInfo());
-                Var.RootNode.Nodes.Add(new TreeNode(jt.Name, 1, 1));
+                JTable jt = new JTable(fib.InputValue);
+                Var.Tables.Add(jt);                
+                Var.RootNode.Nodes.Add(new TreeNode { Text = jt.Name, ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name });
             }
             catch(Exception ex)
             {
@@ -449,6 +469,20 @@ namespace JsonEditorV2
         private void HandleException(Exception ex, string content, string title)
         {
             MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void tmiAddColumn_Click(object sender, EventArgs e)
+        {
+            frmInputBox fib = new frmInputBox("Add Column");
+            fib.StartPosition = FormStartPosition.CenterParent;
+            DialogResult dr = fib.ShowDialog(this);
+            if (dr == DialogResult.Cancel)
+                return;
+            
+            JColumn jc = new JColumn(fib.InputValue);
+            Var.SelectedColumnParentTable.Columns.Add(jc);
+            Var.SelectedColumn = jc;
+            RefreshTrvJsonFiles();
         }
     }
 }

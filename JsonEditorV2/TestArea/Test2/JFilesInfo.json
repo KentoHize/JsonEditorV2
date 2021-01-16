@@ -3,6 +3,31 @@
   "DirectoryPath": "C:\\Programs\\WinForm\\JsonEditorV2\\JsonEditorV2\\TestArea\\Test2",
   "TablesInfo": [
     {
+      "Name": "AD222",
+      "Columns": [
+        {
+          "Name": "TT555",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "T999",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        }
+      ]
+    },
+    {
+      "Name": "Add2222",
+      "Columns": []
+    },
+    {
       "Name": "T2",
       "Columns": []
     },
@@ -17,6 +42,43 @@
     {
       "Name": "T5",
       "Columns": []
+    },
+    {
+      "Name": "Test6",
+      "Columns": [
+        {
+          "Name": "TT7777",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "_P-6",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "G8888",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "Y888",
+          "IsKey": false,
+          "Type": "String",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": false
+        }
+      ]
     }
   ]
 }

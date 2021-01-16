@@ -205,6 +205,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 欄位名稱.
+        /// </summary>
+        public static string JE_INPUTBOX_DESCRIPTION_2 {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_DESCRIPTION_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案&quot;{0}:已存在.
         /// </summary>
         public static string JE_INPUTBOX_FILE_EXISTS {
@@ -219,6 +228,33 @@ namespace JsonEditorV2.Resources {
         public static string JE_INPUTBOX_TITLE {
             get {
                 return ResourceManager.GetString("JE_INPUTBOX_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新增欄位.
+        /// </summary>
+        public static string JE_INPUTBOX_TITLE_2 {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_TITLE_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 錯誤的欄位名稱，請用&apos;_&apos;或英文字母開頭，之後使用&apos;_&apos;、英文字母或是數字，長度不要超過50位.
+        /// </summary>
+        public static string JE_INPUTBOX_WRONG_COLUMN_NAME {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_WRONG_COLUMN_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不符合規則的檔案名稱.
+        /// </summary>
+        public static string JE_INPUTBOX_WRONG_FILE_NAME {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_WRONG_FILE_NAME", resourceCulture);
             }
         }
         
