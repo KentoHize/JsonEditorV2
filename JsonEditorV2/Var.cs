@@ -20,6 +20,7 @@ namespace JsonEditorV2
 
         public static JTable SelectedColumnParentTable { get; set; }
         public static JColumn SelectedColumn { get; set; }
+        public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
 
         public static List<JLine> Lines { get; set; } = new List<JLine>();
         public static JLine SelectedLine { get { return Lines[PageIndex]; } }

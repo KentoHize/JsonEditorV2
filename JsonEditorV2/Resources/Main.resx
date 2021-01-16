@@ -126,11 +126,11 @@
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
     <value>關於</value>
   </data>
-  <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
+  <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
     <value>清空</value>
   </data>
-  <data name="JE_BTN_DELETE_COLUMN" xml:space="preserve">
-    <value>刪除</value>
+  <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
+    <value>清空</value>
   </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>更新</value>
@@ -218,6 +218,21 @@
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     <value>掃描檔案庫</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_1" xml:space="preserve">
+    <value>欄位名稱不正確</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
+    <value>欄位行數不正確</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_3" xml:space="preserve">
+    <value>資料表內的{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
+    <value>欄位"{0}"已更新</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
+    <value>更新欄位</value>
   </data>
   <data name="JE_TMI_ABOUT" xml:space="preserve">
     <value>關於</value>

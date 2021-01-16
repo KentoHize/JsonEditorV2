@@ -7,7 +7,7 @@
       "Columns": [
         {
           "Name": "TT555",
-          "IsKey": false,
+          "IsKey": true,
           "Type": "String",
           "ForeignKey": null,
           "NumberOfRows": 1,
@@ -17,7 +17,7 @@
           "Name": "T999",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "ForeignKey": "Add2222",
           "NumberOfRows": 1,
           "Display": false
         }
@@ -25,7 +25,16 @@
     },
     {
       "Name": "Add2222",
-      "Columns": []
+      "Columns": [
+        {
+          "Name": "HJI99",
+          "IsKey": true,
+          "Type": "Guid",
+          "ForeignKey": null,
+          "NumberOfRows": 1,
+          "Display": true
+        }
+      ]
     },
     {
       "Name": "T2",
@@ -37,7 +46,16 @@
     },
     {
       "Name": "T4",
-      "Columns": []
+      "Columns": [
+        {
+          "Name": "TestCo",
+          "IsKey": true,
+          "Type": "String",
+          "ForeignKey": "AD222",
+          "NumberOfRows": 1,
+          "Display": false
+        }
+      ]
     },
     {
       "Name": "T5",
@@ -48,7 +66,7 @@
       "Columns": [
         {
           "Name": "TT7777",
-          "IsKey": false,
+          "IsKey": true,
           "Type": "String",
           "ForeignKey": null,
           "NumberOfRows": 1,
@@ -73,10 +91,10 @@
         {
           "Name": "Y888",
           "IsKey": false,
-          "Type": "String",
-          "ForeignKey": null,
-          "NumberOfRows": 1,
-          "Display": false
+          "Type": "Guid",
+          "ForeignKey": "Add2222",
+          "NumberOfRows": 11,
+          "Display": true
         }
       ]
     }

@@ -12,6 +12,8 @@ namespace JsonEditor
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
 
+        public bool HasKey { get => Columns.Exists(m => m.IsKey); }
+
         public int Count => ((IList<JLine>)Lines).Count;
 
         public bool IsReadOnly => ((IList<JLine>)Lines).IsReadOnly;
@@ -141,9 +143,9 @@ namespace JsonEditor
         /// <summary>
         /// 用欄位資訊確認末端值的型別並進行轉換
         /// </summary>
-        /// <param name="inputValue">值</param>
+        /// <param name="inputValue">輸入值</param>
         /// <param name="columnName">欄位名</param>
-        /// <returns></returns>
+        /// <returns>轉換後的值</returns>
         public object ParseValue(object inputValue, string columnName)
         {
             JType jt = Columns.Find(m => m.Name == columnName).Type;

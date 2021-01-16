@@ -62,7 +62,7 @@ namespace JsonEditorV2
             switch (BoxType)
             {
                 case "New File":
-                    if (!Regex.IsMatch(txtInput.Text, @"^[\w\-. ]+$"))
+                    if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
                         MessageBox.Show(string.Format(Main.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Main.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
                         return;
@@ -74,7 +74,7 @@ namespace JsonEditorV2
                     }
                     break;
                 case "Add Column":                    
-                    if (!Regex.IsMatch(txtInput.Text, @"^[A-Za-z_][\w\-]{0,49}$"))
+                    if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {                        
                         MessageBox.Show(Main.JE_INPUTBOX_WRONG_COLUMN_NAME, Main.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);                        
                         return;

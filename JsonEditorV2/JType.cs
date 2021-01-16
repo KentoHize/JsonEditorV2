@@ -30,6 +30,77 @@ namespace JsonEditor
 
     public static class Extentions
     {
+        /// <summary>
+        /// 以JType為目標轉換值的型態，失敗時設為初始值(無錯誤訊息)
+        /// </summary>
+        /// <param name="value">輸入值</param>
+        /// <param name="type">J型別</param>
+        /// <returns>輸出值</returns>
+        public static object ParseJType(this object value, JType type)
+        {   
+            switch(type)
+            {
+                case JType.Boolean:
+                    if (bool.TryParse(value.ToString(), out bool r1))
+                        return r1;
+                    else
+                        return false;                    
+                case JType.Byte:
+                    if (byte.TryParse(value.ToString(), out byte r2))
+                        return r2;
+                    else
+                        return 0;
+                case JType.Date:
+                    if (DateTime.TryParse(value.ToString(), out DateTime r3) &&
+                        r3.TimeOfDay.TotalSeconds == 0)
+                            return r3;
+                    else
+                        return new DateTime();
+                case JType.Time:
+                case JType.DateTime:
+                    if (DateTime.TryParse(value.ToString(), out DateTime r4))
+                        return r4;
+                    else
+                        return new DateTime();
+                case JType.Double:
+                    if (double.TryParse(value.ToString(), out double r5))
+                        return r5;
+                    else
+                        return 0.0;
+                case JType.Guid:
+                    if (Guid.TryParse(value.ToString(), out Guid r6))
+                        return r6;
+                    else
+                        return Guid.Empty;
+                case JType.Integer:
+                    if (int.TryParse(value.ToString(), out int r7))
+                        return r7;
+                    else
+                        return 0;
+                case JType.Long:
+                    if (long.TryParse(value.ToString(), out long r8))
+                        return r8;
+                    else
+                        return 0;
+                case JType.None:
+                case JType.Undefied:
+                    return value;
+                case JType.TimeSpan:
+                    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
+                        return r9;
+                    else
+                        return new TimeSpan();
+                case JType.Uri:
+                    if (Uri.TryCreate(value.ToString(), UriKind.RelativeOrAbsolute, out Uri r10))
+                        return r10;
+                    else
+                        return null;
+                case JType.String:
+                default:
+                    return value.ToString();
+            }
+        }
+
         public static JType ToJType(this JsonToken jtn)
         {
             switch (jtn)
@@ -88,6 +159,8 @@ namespace JsonEditor
                             return JType.Time;
                     }
                     return JType.String;
+                case JTokenType.Null:
+                    return JType.String;
                 case JTokenType.Guid:
                     return JType.Guid;
                 case JTokenType.Date:
@@ -96,8 +169,6 @@ namespace JsonEditor
                     return JType.TimeSpan;
                 case JTokenType.Uri:
                     return JType.Uri;
-                case JTokenType.Null:
-                    return JType.String; //Return String
                 default:
                     return JType.Undefied;
             }

@@ -5,7 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Resources;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace JsonEditorV2
@@ -16,7 +19,7 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             Var.RM = new ResourceManager("JsonEditorV2.Resources.Main", Type.GetType("JsonEditorV2.Resources.Main").Assembly);
-            Var.CI = new CultureInfo("zh-TW");            
+            Var.CI = new CultureInfo("zh-TW");
             PatchTextFromResource(Var.CI);
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
@@ -37,7 +40,7 @@ namespace JsonEditorV2
             btnClearMain.Text = Main.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Main.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Main.JE_BTN_UPDATE_COLUMN;
-            btnDeleteColumn.Text = Main.JE_BTN_DELETE_COLUMN;
+            btnClearColumn.Text = Main.JE_BTN_CLEAR_COLUMN;
             tmiFile.Text = Main.JE_TMI_FILE;
             tmiAbout.Text = Main.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Main.JE_TMI_NEW_JSON_FILES;
@@ -62,7 +65,64 @@ namespace JsonEditorV2
 
         private void btnUpdateColumn_Click(object sender, EventArgs e)
         {
+            //確認資料正確
+            if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
+            {
+                MessageBox.Show(Main.JE_RUN_UPDATE_COLUMN_M_1, Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
+            {
+                MessageBox.Show(Main.JE_RUN_UPDATE_COLUMN_M_2, Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            //如果有資料秀出訊息視窗
+            if (Var.SelectedColumnParentTable.Count != 0)
+            {
+                DialogResult dr = MessageBox.Show(string.Format(Main.JE_RUN_UPDATE_COLUMN_M_3, Var.SelectedColumnParentTable.Count), Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (dr == DialogResult.Cancel)
+                    return;
+            }
+
+            Var.SelectedColumn.Name = txtColumnName.Text;
+            Var.SelectedColumn.Display = chbColumnDisplay.Checked;
+            Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
+            if(cobColumnFK.SelectedValue != null)
+                Var.SelectedColumn.ForeignKey = cobColumnFK.SelectedValue.ToString();
+
+            //改型態檢查            
+            JType newType = (JType)cobColumnType.SelectedValue;            
+            if (Var.SelectedColumn.Type != newType)
+            {
+                Var.SelectedColumn.Type = newType;
+                int index = Var.SelectedColumnIndex;
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    jl[index].Value = jl[index].ParseJType(newType);
+            }
+
+            //Key檢查，取消Key時同時取消所有相關FK            
+            if (Var.SelectedColumn.IsKey && !chbColumnIsKey.Checked)
+            {
+                Var.SelectedColumn.IsKey = false;
+                //沒有其他Key
+                if (!Var.SelectedColumnParentTable.HasKey)
+                {
+                    foreach (JTable jt in Var.Tables)
+                        foreach (JColumn jc in jt.Columns)
+                            if (jc.ForeignKey == Var.SelectedColumn.Name)
+                                jc.ForeignKey = null;
+                }
+            }
+            else
+                Var.SelectedColumn.IsKey = chbColumnIsKey.Checked;
+
+            sslMain.Text = string.Format(Main.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumn.Name);
+            RefreshTrvJsonFiles();
+
+            //RefreshLibLinesUI();
+            //RefreshPnlMainUI();
+            //RefreshPnlMainValue();
         }
 
         private void tmiAbout_Click(object sender, EventArgs e)
@@ -242,7 +302,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex, Main.JE_RUN_LOAD_JSON_FILES_M_2, Main.JE_RUN_LOAD_JSON_FILES_TITLE);                
+                HandleException(ex, Main.JE_RUN_LOAD_JSON_FILES_M_2, Main.JE_RUN_LOAD_JSON_FILES_TITLE);
             }
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Main.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
@@ -250,7 +310,17 @@ namespace JsonEditorV2
         }
 
         private string GetColumnNodeString(JColumn jc)
-            => jc.IsKey ? $"{jc.Name}[Key]:{jc.Type}" : $"{jc.Name}:{jc.Type}";
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(jc.Name);
+            if(jc.IsKey)
+                sb.Append("[Key]");
+            if (!string.IsNullOrEmpty(jc.ForeignKey))
+                sb.AppendFormat("[FK:{0}]", jc.ForeignKey);
+            sb.Append(":");
+            sb.Append(jc.Type);
+            return sb.ToString();
+        }  
 
         private void RefreshTrvJsonFiles()
         {
@@ -262,29 +332,32 @@ namespace JsonEditorV2
                 return;
 
             Var.RootNode = new TreeNode(Var.JFI.Name, 0, 0);
+            Var.RootNode.ToolTipText = Var.JFI.Name;
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
 
             Dictionary<string, string> fks = new Dictionary<string, string>();
             foreach (JTable jt in Var.Tables)
             {
-                fileNode = new TreeNode(jt.Name, 1, 1);
-                fileNode.Tag = jt.Name;
+                fileNode = new TreeNode { Text = jt.Name, Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
+                fileNode.ToolTipText = jt.Name;
+                
                 Var.RootNode.Nodes.Add(fileNode);
                 if (Var.SelectedColumnParentTable == jt && Var.SelectedColumn == null)
                     trvJsonFiles.SelectedNode = fileNode;
                 foreach (JColumn jc in jt.Columns)
                 {
                     tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name, ImageIndex = 2, SelectedImageIndex = 2 };
+                    tr.ToolTipText = Text;
                     fileNode.Nodes.Add(tr);
                     if (Var.SelectedColumn == jc)
-                        trvJsonFiles.SelectedNode = tr;                    
+                        trvJsonFiles.SelectedNode = tr;
                     if (!string.IsNullOrEmpty(jc.ForeignKey))
                         fks.Add(jc.Name, jc.ForeignKey);
                 }
 
-                foreach (KeyValuePair<string, string> kvp in fks)
-                    fileNode.Nodes.Add(new TreeNode($"FK:{kvp.Key} -> {kvp.Value}", 1, 1));
+                //foreach (KeyValuePair<string, string> kvp in fks)
+                //    fileNode.Nodes.Add(new TreeNode { Name = $"FK:{kvp.Key} -> {kvp.Value}", ImageIndex = 3, SelectedImageIndex = 3, ));
 
             }
 
@@ -305,7 +378,7 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
             Var.Lines.Clear();
-            RefreshTrvJsonFiles();            
+            RefreshTrvJsonFiles();
             //RefreshLibLinesUI();
             //RefreshPnlMainUI();
             sslMain.Text = "";
@@ -379,7 +452,7 @@ namespace JsonEditorV2
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    trvJsonFiles.SelectedNode = e.Node;                    
+                    trvJsonFiles.SelectedNode = e.Node;
                     if (Var.OpenedTable.Exists(m => m.Name == e.Node.Tag.ToString()))
                     {
                         tmiOpenJsonFile.Enabled = false;
@@ -392,7 +465,7 @@ namespace JsonEditorV2
                     }
                     trvJsonFiles.ContextMenuStrip = cmsJsonFilesSelected;
                 }
-            }
+            }            
             else
             {
                 Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Parent.Tag.ToString());
@@ -405,24 +478,25 @@ namespace JsonEditorV2
 
         private void RefreshPnlFileInfo()
         {
+            var ds = (from t in Var.Tables
+                      where t.HasKey
+                      select new { t.Name }).ToList();
+            ds.Insert(0, new { Name = (string)null });
+            cobColumnFK.DataSource = ds;
             if (Var.SelectedColumn != null)
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 chbColumnDisplay.Checked = Var.SelectedColumn.Display;
-                chbColumnIsKey.Checked = Var.SelectedColumn.IsKey;                
-                txtColumnFK.Text = Var.SelectedColumn.ForeignKey;
+                chbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
+                if (!string.IsNullOrEmpty(Var.SelectedColumn.ForeignKey))
+                    cobColumnFK.SelectedValue = Var.SelectedColumn.ForeignKey;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
-                btnUpdateColumn.Enabled = true;                
+                btnUpdateColumn.Enabled = true;
             }
             else
             {
-                txtColumnName.Text = "";
-                cobColumnType.SelectedIndex = -1;
-                chbColumnDisplay.Checked = false;
-                chbColumnIsKey.Checked = false;
-                txtColumnFK.Text = "";
-                txtColumnNumberOfRows.Text = "0";
+                btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
             }
         }
@@ -457,10 +531,10 @@ namespace JsonEditorV2
                 { }
 
                 JTable jt = new JTable(fib.InputValue);
-                Var.Tables.Add(jt);                
+                Var.Tables.Add(jt);
                 Var.RootNode.Nodes.Add(new TreeNode { Text = jt.Name, ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 HandleException(ex, Main.JE_RUN_NEW_JSON_FILE_M_2, Main.JE_RUN_NEW_JSON_FILE_TITLE);
             }
@@ -478,11 +552,71 @@ namespace JsonEditorV2
             DialogResult dr = fib.ShowDialog(this);
             if (dr == DialogResult.Cancel)
                 return;
-            
+
             JColumn jc = new JColumn(fib.InputValue);
             Var.SelectedColumnParentTable.Columns.Add(jc);
             Var.SelectedColumn = jc;
             RefreshTrvJsonFiles();
+        }
+
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string BackupPath = @"E:\Backup\JsonEditorV2";
+            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
+            if (Directory.Exists(BackupPath))
+                DirectoryCopy(ProjectPath, BackupPath);
+            else
+            {
+                MessageBox.Show("Target backup drive or directory do not exist.");
+                return;
+            }
+            MessageBox.Show("OK");
+        }
+        #region DirectoryCopy
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
+        {
+            // Get the subdirectories for the specified directory.
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+
+            DirectoryInfo[] dirs = dir.GetDirectories();
+
+            Directory.CreateDirectory(destDirName);
+
+            // Get the files in the directory and copy them to the new location.
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string tempPath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(tempPath, true);
+            }
+
+            // If copying subdirectories, copy them and their contents to new location.
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string tempPath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                }
+            }
+        }
+        #endregion
+
+        private void btnClearColumn_Click(object sender, EventArgs e)
+        {
+            txtColumnName.Text = "";
+            cobColumnType.SelectedIndex = -1;
+            chbColumnDisplay.Checked = false;
+            chbColumnIsKey.Checked = false;
+            cobColumnFK.SelectedIndex = -1;
+            txtColumnNumberOfRows.Text = "0";            
         }
     }
 }

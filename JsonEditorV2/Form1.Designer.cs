@@ -30,15 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.btnDeleteColumn = new System.Windows.Forms.Button();
+            this.btnClearColumn = new System.Windows.Forms.Button();
             this.btnClearMain = new System.Windows.Forms.Button();
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFielInfo = new System.Windows.Forms.Panel();
-            this.btnColumnFK = new System.Windows.Forms.Button();
+            this.cobColumnFK = new System.Windows.Forms.ComboBox();
             this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
             this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
-            this.txtColumnFK = new System.Windows.Forms.TextBox();
             this.chbColumnDisplay = new System.Windows.Forms.CheckBox();
             this.chbColumnIsKey = new System.Windows.Forms.CheckBox();
             this.cobColumnType = new System.Windows.Forms.ComboBox();
@@ -69,6 +68,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -88,15 +88,15 @@
             this.cmsJsonFilesSelected.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnDeleteColumn
+            // btnClearColumn
             // 
-            this.btnDeleteColumn.Enabled = false;
-            this.btnDeleteColumn.Location = new System.Drawing.Point(12, 730);
-            this.btnDeleteColumn.Name = "btnDeleteColumn";
-            this.btnDeleteColumn.Size = new System.Drawing.Size(122, 40);
-            this.btnDeleteColumn.TabIndex = 19;
-            this.btnDeleteColumn.Text = "-";
-            this.btnDeleteColumn.UseVisualStyleBackColor = true;
+            this.btnClearColumn.Location = new System.Drawing.Point(12, 730);
+            this.btnClearColumn.Name = "btnClearColumn";
+            this.btnClearColumn.Size = new System.Drawing.Size(122, 40);
+            this.btnClearColumn.TabIndex = 19;
+            this.btnClearColumn.Text = "-";
+            this.btnClearColumn.UseVisualStyleBackColor = true;
+            this.btnClearColumn.Click += new System.EventHandler(this.btnClearColumn_Click);
             // 
             // btnClearMain
             // 
@@ -132,10 +132,9 @@
             // pnlFielInfo
             // 
             this.pnlFielInfo.AutoScroll = true;
-            this.pnlFielInfo.Controls.Add(this.btnColumnFK);
+            this.pnlFielInfo.Controls.Add(this.cobColumnFK);
             this.pnlFielInfo.Controls.Add(this.txtColumnNumberOfRows);
             this.pnlFielInfo.Controls.Add(this.lblColumnNumberOfRows);
-            this.pnlFielInfo.Controls.Add(this.txtColumnFK);
             this.pnlFielInfo.Controls.Add(this.chbColumnDisplay);
             this.pnlFielInfo.Controls.Add(this.chbColumnIsKey);
             this.pnlFielInfo.Controls.Add(this.cobColumnType);
@@ -151,14 +150,16 @@
             this.pnlFielInfo.Size = new System.Drawing.Size(374, 223);
             this.pnlFielInfo.TabIndex = 15;
             // 
-            // btnColumnFK
+            // cobColumnFK
             // 
-            this.btnColumnFK.Location = new System.Drawing.Point(332, 184);
-            this.btnColumnFK.Name = "btnColumnFK";
-            this.btnColumnFK.Size = new System.Drawing.Size(30, 27);
-            this.btnColumnFK.TabIndex = 8;
-            this.btnColumnFK.Text = "...";
-            this.btnColumnFK.UseVisualStyleBackColor = true;
+            this.cobColumnFK.DisplayMember = "Name";
+            this.cobColumnFK.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobColumnFK.FormattingEnabled = true;
+            this.cobColumnFK.Location = new System.Drawing.Point(179, 184);
+            this.cobColumnFK.Name = "cobColumnFK";
+            this.cobColumnFK.Size = new System.Drawing.Size(183, 28);
+            this.cobColumnFK.TabIndex = 16;
+            this.cobColumnFK.ValueMember = "Name";
             // 
             // txtColumnNumberOfRows
             // 
@@ -179,14 +180,6 @@
             this.lblColumnNumberOfRows.Size = new System.Drawing.Size(15, 20);
             this.lblColumnNumberOfRows.TabIndex = 14;
             this.lblColumnNumberOfRows.Text = "-";
-            // 
-            // txtColumnFK
-            // 
-            this.txtColumnFK.Enabled = false;
-            this.txtColumnFK.Location = new System.Drawing.Point(197, 184);
-            this.txtColumnFK.Name = "txtColumnFK";
-            this.txtColumnFK.Size = new System.Drawing.Size(141, 27);
-            this.txtColumnFK.TabIndex = 8;
             // 
             // chbColumnDisplay
             // 
@@ -210,17 +203,17 @@
             // 
             this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnType.FormattingEnabled = true;
-            this.cobColumnType.Location = new System.Drawing.Point(244, 45);
+            this.cobColumnType.Location = new System.Drawing.Point(179, 45);
             this.cobColumnType.Name = "cobColumnType";
-            this.cobColumnType.Size = new System.Drawing.Size(118, 28);
+            this.cobColumnType.Size = new System.Drawing.Size(183, 28);
             this.cobColumnType.TabIndex = 8;
             // 
             // txtColumnName
             // 
             this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnName.Location = new System.Drawing.Point(244, 9);
+            this.txtColumnName.Location = new System.Drawing.Point(179, 9);
             this.txtColumnName.Name = "txtColumnName";
-            this.txtColumnName.Size = new System.Drawing.Size(118, 27);
+            this.txtColumnName.Size = new System.Drawing.Size(183, 27);
             this.txtColumnName.TabIndex = 0;
             this.txtColumnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -358,7 +351,8 @@
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiFile,
-            this.tmiAbout});
+            this.tmiAbout,
+            this.backupToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1382, 28);
@@ -452,6 +446,13 @@
             this.tmiAbout.Text = "X";
             this.tmiAbout.Click += new System.EventHandler(this.tmiAbout_Click);
             // 
+            // backupToolStripMenuItem
+            // 
+            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.backupToolStripMenuItem.Text = "Backup";
+            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
+            // 
             // ofdMain
             // 
             this.ofdMain.FileName = "openFileDialog1";
@@ -531,7 +532,7 @@
             this.Controls.Add(this.mnsMain);
             this.Controls.Add(this.lsbLines);
             this.Controls.Add(this.tbcMain);
-            this.Controls.Add(this.btnDeleteColumn);
+            this.Controls.Add(this.btnClearColumn);
             this.Controls.Add(this.btnClearMain);
             this.Controls.Add(this.btnUpdateMain);
             this.Controls.Add(this.btnUpdateColumn);
@@ -555,15 +556,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnDeleteColumn;
+        private System.Windows.Forms.Button btnClearColumn;
         private System.Windows.Forms.Button btnClearMain;
         private System.Windows.Forms.Button btnUpdateMain;
         private System.Windows.Forms.Button btnUpdateColumn;
         private System.Windows.Forms.Panel pnlFielInfo;
         private System.Windows.Forms.TextBox txtColumnNumberOfRows;
         private System.Windows.Forms.Label lblColumnNumberOfRows;
-        private System.Windows.Forms.TextBox txtColumnFK;
-        private System.Windows.Forms.Button btnColumnFK;
         private System.Windows.Forms.CheckBox chbColumnDisplay;
         private System.Windows.Forms.CheckBox chbColumnIsKey;
         private System.Windows.Forms.ComboBox cobColumnType;
@@ -605,6 +604,8 @@
         private System.Windows.Forms.TabPage tbpStart;
         private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiScanJsonFiles;
+        private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cobColumnFK;
     }
 }
 
