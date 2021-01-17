@@ -70,6 +70,7 @@ namespace JsonEditorV2
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
+            tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
         }
         #endregion
 
@@ -455,7 +456,6 @@ namespace JsonEditorV2
             if (e.Node == Var.RootNode)
             {
                 trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
-
             }
             else if (e.Node.Parent == Var.RootNode)
             {
@@ -476,7 +476,7 @@ namespace JsonEditorV2
                         tmiOpenJsonFile.Enabled = true;
                         tmiCloseJsonFile.Enabled = false;
                     }
-                    trvJsonFiles.ContextMenuStrip = cmsJsonFilesSelected;
+                    trvJsonFiles.ContextMenuStrip = cmsJsonFileSelected;
                 }
             }
             else
@@ -485,7 +485,10 @@ namespace JsonEditorV2
                 Var.SelectedColumn = Var.SelectedColumnParentTable.Columns.Find(t => t.Name == e.Node.Tag.ToString());
                 RefreshPnlFileInfo();
                 if (e.Button == MouseButtons.Right)
-                    trvJsonFiles.ContextMenuStrip = null;
+                {
+                    trvJsonFiles.SelectedNode = e.Node;
+                    trvJsonFiles.ContextMenuStrip = cmsColumnSelected;
+                }
             }
         }
 
@@ -573,6 +576,12 @@ namespace JsonEditorV2
             DialogResult dr = fib.ShowDialog(this);
             if (dr == DialogResult.Cancel)
                 return;
+            
+            if(Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == fib.InputValue))
+            {
+                MessageBox.Show(string.Format(Res.JE_RUN_ADD_COLUMN_M_1, fib.InputValue), Res.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             JColumn jc = new JColumn(fib.InputValue);
             Var.SelectedColumnParentTable.Columns.Add(jc);
@@ -725,9 +734,13 @@ namespace JsonEditorV2
         {
             try
             {
+                
+                //if(Var.OpenedTable trvJsonFiles.SelectedNode.Tag.ToString()]) ))
+
+                //tables[trvJsonFiles.SelectedNode.Tag.ToString()]
                 //LoadJsonFile();
                 //Var.SelectedTable = tables[]
-                //selectedTable = tables[trvJsonFiles.SelectedNode.Tag.ToString()];
+                //Var.SelectedTable = tables[trvJsonFiles.SelectedNode.Tag.ToString()];
                 //selectedLine = null;
                 //selectedColumn = null;
                 //parentTable = null;
@@ -862,6 +875,11 @@ namespace JsonEditorV2
         private void tmiCollapseAll_Click(object sender, EventArgs e)
         {
             Var.RootNode.Collapse();
+        }
+
+        private void tmiDeleteColumn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

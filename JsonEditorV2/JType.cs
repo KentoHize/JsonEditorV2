@@ -25,6 +25,7 @@ namespace JsonEditor
         Guid,
         Uri,
         TimeSpan,
+        Decimal,        
         Undefied
     }
 
@@ -37,7 +38,7 @@ namespace JsonEditor
         /// <param name="type">J型別</param>
         /// <returns>輸出值</returns>
         public static object ParseJType(this object value, JType type)
-        {   
+        {  
             switch(type)
             {
                 case JType.Boolean:
@@ -95,6 +96,11 @@ namespace JsonEditor
                         return r10;
                     else
                         return null;
+                case JType.Decimal:
+                    if (decimal.TryParse(value.ToString(), out decimal r11))
+                        return r11;
+                    else
+                        return 0;
                 case JType.String:
                 default:
                     return value.ToString();
@@ -122,7 +128,7 @@ namespace JsonEditor
                 case JsonToken.Date:
                     return JType.Date;
                 case JsonToken.Integer:
-                    return JType.Long;
+                    return JType.Long;                
                 case JsonToken.Raw:
                 case JsonToken.Bytes:
                 case JsonToken.String:
@@ -142,8 +148,13 @@ namespace JsonEditor
                 case JTokenType.None:
                     return JType.None;
                 case JTokenType.Integer:
-                    return JType.Long;
+                    //To do 不嚴謹
+                    if (jt.ToString().Length > 18)
+                        return JType.Decimal;
+                    else
+                        return JType.Long;
                 case JTokenType.Float:
+                    //To do
                     return JType.Double;
                 case JTokenType.String:
                     if (Guid.TryParse(jt.ToString(), out Guid guid))

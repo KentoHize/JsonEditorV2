@@ -192,6 +192,9 @@
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>不符合規則的檔案名稱</value>
   </data>
+  <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
+    <value>欄位"{0}已存在</value>
+  </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     <value>收縮全部</value>
+  </data>
+  <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
+    <value>刪除</value>
   </data>
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
     <value>刪除</value>

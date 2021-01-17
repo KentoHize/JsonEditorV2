@@ -79,7 +79,7 @@
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiNewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmsJsonFilesSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsJsonFileSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiOpenJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiRenameJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiCloseJsonFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,12 +89,15 @@
             this.tmiExpandAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiCollapseAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.mnsMain.SuspendLayout();
             this.cmsJsonFiles.SuspendLayout();
-            this.cmsJsonFilesSelected.SuspendLayout();
+            this.cmsJsonFileSelected.SuspendLayout();
+            this.cmsColumnSelected.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClearColumn
@@ -542,22 +545,22 @@
             // 
             this.tmiNewJsonFile.Enabled = false;
             this.tmiNewJsonFile.Name = "tmiNewJsonFile";
-            this.tmiNewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiNewJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiNewJsonFile.Text = "X";
             this.tmiNewJsonFile.Click += new System.EventHandler(this.tmiNewJsonFile_Click);
             // 
-            // cmsJsonFilesSelected
+            // cmsJsonFileSelected
             // 
-            this.cmsJsonFilesSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsJsonFilesSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsJsonFileSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsJsonFileSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiOpenJsonFile,
             this.tmiRenameJsonFile,
             this.tmiCloseJsonFile,
             this.tmiDeleteJsonFile,
             this.toolStripMenuItem5,
             this.tmiAddColumn});
-            this.cmsJsonFilesSelected.Name = "cmsMain";
-            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(88, 130);
+            this.cmsJsonFileSelected.Name = "cmsMain";
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(88, 130);
             // 
             // tmiOpenJsonFile
             // 
@@ -600,21 +603,36 @@
             // tmiExpandAll
             // 
             this.tmiExpandAll.Name = "tmiExpandAll";
-            this.tmiExpandAll.Size = new System.Drawing.Size(210, 24);
+            this.tmiExpandAll.Size = new System.Drawing.Size(87, 24);
             this.tmiExpandAll.Text = "X";
             this.tmiExpandAll.Click += new System.EventHandler(this.tmiExpandAll_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(84, 6);
             // 
             // tmiCollapseAll
             // 
             this.tmiCollapseAll.Name = "tmiCollapseAll";
-            this.tmiCollapseAll.Size = new System.Drawing.Size(210, 24);
+            this.tmiCollapseAll.Size = new System.Drawing.Size(87, 24);
             this.tmiCollapseAll.Text = "X";
             this.tmiCollapseAll.Click += new System.EventHandler(this.tmiCollapseAll_Click);
+            // 
+            // cmsColumnSelected
+            // 
+            this.cmsColumnSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsColumnSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiDeleteColumn});
+            this.cmsColumnSelected.Name = "cmsMain";
+            this.cmsColumnSelected.Size = new System.Drawing.Size(211, 56);
+            // 
+            // tmiDeleteColumn
+            // 
+            this.tmiDeleteColumn.Name = "tmiDeleteColumn";
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteColumn.Text = "X";
+            this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
             // MainForm
             // 
@@ -641,7 +659,8 @@
             this.mnsMain.ResumeLayout(false);
             this.mnsMain.PerformLayout();
             this.cmsJsonFiles.ResumeLayout(false);
-            this.cmsJsonFilesSelected.ResumeLayout(false);
+            this.cmsJsonFileSelected.ResumeLayout(false);
+            this.cmsColumnSelected.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -687,7 +706,7 @@
         private System.Windows.Forms.ImageList imlMain;
         private System.Windows.Forms.ContextMenuStrip cmsJsonFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFile;
-        private System.Windows.Forms.ContextMenuStrip cmsJsonFilesSelected;
+        private System.Windows.Forms.ContextMenuStrip cmsJsonFileSelected;
         private System.Windows.Forms.ToolStripMenuItem tmiOpenJsonFile;
         private System.Windows.Forms.ToolStripMenuItem tmiRenameJsonFile;
         private System.Windows.Forms.ToolStripMenuItem tmiCloseJsonFile;
@@ -708,6 +727,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem tmiExpandAll;
         private System.Windows.Forms.ToolStripMenuItem tmiCollapseAll;
+        private System.Windows.Forms.ContextMenuStrip cmsColumnSelected;
+        private System.Windows.Forms.ToolStripMenuItem tmiDeleteColumn;
     }
 }
 

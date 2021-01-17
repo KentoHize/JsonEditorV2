@@ -286,6 +286,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}已存在.
+        /// </summary>
+        public static string JE_RUN_ADD_COLUMN_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_ADD_COLUMN_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}檔案已讀入.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_1 {
@@ -498,6 +507,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_COLLAPSE_ALL {
             get {
                 return ResourceManager.GetString("JE_TMI_COLLAPSE_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 刪除.
+        /// </summary>
+        public static string JE_TMI_DELETE_COLUMN {
+            get {
+                return ResourceManager.GetString("JE_TMI_DELETE_COLUMN", resourceCulture);
             }
         }
         

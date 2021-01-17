@@ -64,12 +64,12 @@ namespace JsonEditorV2
                 case "New File":
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
-                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
                     {
-                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;
