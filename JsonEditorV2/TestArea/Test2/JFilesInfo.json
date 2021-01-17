@@ -1,6 +1,5 @@
 {
   "Name": "Test2",
-  "DirectoryPath": "C:\\Programs\\WinForm\\JsonEditorV2\\JsonEditorV2\\TestArea\\Test2",
   "TablesInfo": [
     {
       "Name": "AD222",
@@ -18,8 +17,8 @@
           "Name": "T999",
           "IsKey": false,
           "Type": "String",
-          "FKTable": null,
-          "FKColumn": null,
+          "FKTable": "AD222",
+          "FKColumn": "TT555",
           "NumberOfRows": 1,
           "Display": false
         }
@@ -36,6 +35,15 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
+        },
+        {
+          "Name": "TTTT",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "T4",
+          "FKColumn": "TestCo",
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },
@@ -103,6 +111,20 @@
           "FKColumn": null,
           "NumberOfRows": 11,
           "Display": true
+        }
+      ]
+    },
+    {
+      "Name": "PAST",
+      "Columns": [
+        {
+          "Name": "AAA",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "AD222",
+          "FKColumn": "TT555",
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     }

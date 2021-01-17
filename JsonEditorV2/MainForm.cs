@@ -24,6 +24,9 @@ namespace JsonEditorV2
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
             tbpStart.BackColor = this.BackColor;
+#if !DEBUG
+            tmiBackup.Visible = false;
+#endif
         }
 
         private void ChangeCulture()
@@ -33,7 +36,7 @@ namespace JsonEditorV2
         }
 
 
-        #region RESOURCES_TEXT_PATCH
+#region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource()
         {
             Res.Culture = Var.CI;            
@@ -66,7 +69,7 @@ namespace JsonEditorV2
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
         }
-        #endregion
+#endregion
 
         private void libLines_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -164,7 +167,7 @@ namespace JsonEditorV2
         {
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\";
-#endif      
+#endif
             DialogResult dr = fbdMain.ShowDialog(this);
             if (dr == DialogResult.OK)
             {
@@ -270,8 +273,8 @@ namespace JsonEditorV2
                     else
                     {
                         //如果很小全讀
-                        if (fs.Length < 10)
-                            Var.Tables.Add(new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd())));
+                        if (fs.Length < 10)                        
+                            Var.Tables.Add(new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd()), true));
                         else
                         {
                             //讀5行之後結束
@@ -348,15 +351,17 @@ namespace JsonEditorV2
         private string GetColumnNodeString(JColumn jc)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(jc.Name);
-            if(jc.IsKey)
-                sb.Append("[Key]");
+            sb.Append(jc.Name);           
             if (!string.IsNullOrEmpty(jc.FKTable))
                 sb.AppendFormat("[FK:{0}]", jc.FKTable);
             sb.Append(":");
             sb.Append(jc.Type);
             return sb.ToString();
-        }  
+        }
+
+
+        private string GetTableNodeString(JTable jt)
+            => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}";
 
         private void RefreshTrvJsonFiles()
         {
@@ -377,16 +382,20 @@ namespace JsonEditorV2
             //Dictionary<string, string> fks = new Dictionary<string, string>();
             foreach (JTable jt in Var.Tables)
             {
-                fileNode = new TreeNode { Text = jt.Name, Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
-                fileNode.ToolTipText = jt.Name;
+                fileNode = new TreeNode { Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
+                fileNode.ToolTipText = fileNode.Text;
                 
                 Var.RootNode.Nodes.Add(fileNode);
                 if (Var.SelectedColumnParentTable == jt && Var.SelectedColumn == null)
                     trvJsonFiles.SelectedNode = fileNode;
                 foreach (JColumn jc in jt.Columns)
                 {
-                    tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name, ImageIndex = 2, SelectedImageIndex = 2 };
-                    tr.ToolTipText = Text;
+                    tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name };
+                    if (jc.IsKey)
+                        tr.ImageIndex = tr.SelectedImageIndex = 3;
+                    else
+                        tr.ImageIndex = tr.SelectedImageIndex = 2;
+                    tr.ToolTipText = tr.Text;
                     fileNode.Nodes.Add(tr);
                     if (Var.SelectedColumn == jc)
                         trvJsonFiles.SelectedNode = tr;
@@ -577,7 +586,7 @@ namespace JsonEditorV2
                 using (FileStream fs = new FileStream(newFile, FileMode.Create))
                 { }
 
-                JTable jt = new JTable(fib.InputValue);
+                JTable jt = new JTable(fib.InputValue, null, true);
                 Var.Tables.Add(jt);
                 Var.RootNode.Nodes.Add(new TreeNode { Text = jt.Name, ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name });
             }
@@ -610,7 +619,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tmiBackup_Click(object sender, EventArgs e)
         {
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
@@ -627,7 +636,7 @@ namespace JsonEditorV2
             }
             MessageBox.Show("OK");
         }
-        #region DirectoryCopy
+#region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
@@ -662,7 +671,7 @@ namespace JsonEditorV2
                 }
             }
         }
-        #endregion
+#endregion
 
         private void btnClearColumn_Click(object sender, EventArgs e)
         {

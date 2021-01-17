@@ -70,7 +70,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguages = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
@@ -384,7 +384,7 @@
             this.tmiFile,
             this.tmiLanguages,
             this.tmiAbout,
-            this.backupToolStripMenuItem});
+            this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
             this.mnsMain.Size = new System.Drawing.Size(1382, 28);
@@ -481,12 +481,12 @@
             this.tmiAbout.Text = "X";
             this.tmiAbout.Click += new System.EventHandler(this.tmiAbout_Click);
             // 
-            // backupToolStripMenuItem
+            // tmiBackup
             // 
-            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
-            this.backupToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.backupToolStripMenuItem.Text = "Backup";
-            this.backupToolStripMenuItem.Click += new System.EventHandler(this.backupToolStripMenuItem_Click);
+            this.tmiBackup.Name = "tmiBackup";
+            this.tmiBackup.Size = new System.Drawing.Size(69, 24);
+            this.tmiBackup.Text = "Backup";
+            this.tmiBackup.Click += new System.EventHandler(this.tmiBackup_Click);
             // 
             // tmiLanguages
             // 
@@ -528,12 +528,12 @@
             this.toolStripMenuItem5,
             this.tmiAddColumn});
             this.cmsJsonFilesSelected.Name = "cmsMain";
-            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(211, 158);
+            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(88, 130);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
@@ -671,7 +671,7 @@
         private System.Windows.Forms.TabPage tbpStart;
         private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiScanJsonFiles;
-        private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tmiBackup;
         private System.Windows.Forms.ComboBox cobColumnFKTable;
         private System.Windows.Forms.ComboBox cobColumnFKColumn;
         private System.Windows.Forms.Label lblColumnFKColumn;

@@ -8,12 +8,15 @@ namespace JsonEditor
 {
     public class JTable : IList<JLine>
     {
+        public const string NOT_NEW = "Not New";
+
         public string Name { get; set; }
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
 
-        public bool HasKey { get => Columns.Exists(m => m.IsKey); }        
-        public bool Loaded { get; set; } = false;
+        public bool HasKey { get => Columns.Exists(m => m.IsKey); }
+        public bool Loaded { get; set; }
+        public bool Changed { get; set; }
 
         public int Count => ((IList<JLine>)Lines).Count;
 
@@ -29,9 +32,11 @@ namespace JsonEditor
             : this(name, null)
         { }
 
-        public JTable(string name, object jArray)
+        public JTable(string name, object jArray, bool isNew = false)
         {
             Name = name;
+            if (isNew)
+                Loaded = true;
             if (jArray == null)
                 return;
             LoadJson(jArray, true);
@@ -151,7 +156,7 @@ namespace JsonEditor
             }
             Loaded = true;
         }
-    
+
 
         /// <summary>
         /// 用欄位資訊確認末端值的型別並進行轉換
