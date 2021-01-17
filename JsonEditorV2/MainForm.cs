@@ -603,8 +603,12 @@ namespace JsonEditorV2
         {
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
-            if (Directory.Exists(BackupPath))
-                DirectoryCopy(ProjectPath, BackupPath);
+            string ProjectName = "JsonEditorV2";
+            
+            File.Copy(Path.Combine(ProjectPath, $"{ProjectName}.sln"), Path.Combine(BackupPath, $"{ProjectName}.sln"), true);
+            
+            if (Directory.Exists(Path.Combine(BackupPath, ProjectName)))
+                DirectoryCopy(Path.Combine(ProjectPath, ProjectName), Path.Combine(BackupPath, ProjectName));
             else
             {
                 MessageBox.Show("Target backup drive or directory do not exist.");
