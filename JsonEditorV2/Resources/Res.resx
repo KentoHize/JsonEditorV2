@@ -159,6 +159,12 @@
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>欄位型別</value>
   </data>
+  <data name="JE_ERROR_DEFAULT_MESSAGE" xml:space="preserve">
+    <value>發生了錯誤，錯誤訊息："{0}"</value>
+  </data>
+  <data name="JE_ERROR_DEFAULT_TITLE" xml:space="preserve">
+    <value>錯誤</value>
+  </data>
   <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
     <value>取消</value>
   </data>
@@ -210,11 +216,14 @@
   <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
     <value>開新檔案</value>
   </data>
+  <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
+    <value>這不是一個空的資料夾，將清空所有檔案，你確定嗎?</value>
+  </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
     <value>"{0}"所有檔案已存檔</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
-    <value>準備掃描檔案，如果檔案數量眾多將會消耗很多時間，是否確定？</value>
+    <value>準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
     <value>{0}檔案掃描完畢</value>
@@ -278,6 +287,9 @@
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
     <value>重新命名</value>
+  </data>
+  <data name="JE_TMI_SAVE_AS_JSON_FILES" xml:space="preserve">
+    <value>另存JSON檔案庫</value>
   </data>
   <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
     <value>存取JSON檔案庫</value>

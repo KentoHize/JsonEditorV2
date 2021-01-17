@@ -55,6 +55,7 @@ namespace JsonEditorV2
             tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
             tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
             tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
+            tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
@@ -352,6 +353,8 @@ namespace JsonEditorV2
             tmiCloseAllFiles.Enabled = false;
             tmiScanJsonFiles.Enabled = false;
             tmiNewJsonFile.Enabled = false;
+            tmiSaveJsonFiles.Enabled = false;
+            tmiSaveAsJsonFiles.Enabled = false;
             if (Var.Tables == null)
                 return;
 
@@ -385,9 +388,14 @@ namespace JsonEditorV2
 
             }
 
+            if (trvJsonFiles.SelectedNode == null || trvJsonFiles.SelectedNode == Var.RootNode)
+                Var.RootNode.Expand();
+
             tmiCloseAllFiles.Enabled = true;
             tmiScanJsonFiles.Enabled = true;
             tmiNewJsonFile.Enabled = true;
+            tmiSaveAsJsonFiles.Enabled = true;
+            tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
         }
 
@@ -568,8 +576,12 @@ namespace JsonEditorV2
             }
         }
 
-        private void HandleException(Exception ex, string content, string title)
+        private void HandleException(Exception ex, string content = null, string title = null)
         {
+            if (string.IsNullOrEmpty(content))
+                content = Res.JE_ERROR_DEFAULT_MESSAGE;
+            if (string.IsNullOrEmpty(title))
+                title = Res.JE_ERROR_DEFAULT_TITLE;
             MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -675,7 +687,30 @@ namespace JsonEditorV2
             ChangeCulture();
         }
 
+        private void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
+        {            
+            DialogResult dr = fbdMain.ShowDialog(this);
+            if (dr != DialogResult.OK)
+                return;
 
+            string[] files = Directory.GetFiles(fbdMain.SelectedPath);
+            if(files.Length != 0)
+            {
+                dr = MessageBox.Show(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (dr != DialogResult.OK)
+                    return;
+                try {
+                    foreach (string s in files)
+                        File.Delete(s);                
+                }
+                catch(Exception ex)
+                {
+                    HandleException(ex);
+                }
+            }
 
+            Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+            tmiSaveJsonFiles_Click(this, e);
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace JsonEditor
         public const string FilesInfoName = "JFilesInfo.json";
 
         public string Name { get; set; }
+
+        [JsonIgnore]
         public string DirectoryPath { get; set; }
 
         [JsonIgnore]

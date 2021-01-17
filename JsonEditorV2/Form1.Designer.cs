@@ -85,6 +85,7 @@
             this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguageZNCH = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguageENUS = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiSaveAsJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -399,6 +400,7 @@
             this.tmiScanJsonFiles,
             this.toolStripMenuItem4,
             this.tmiSaveJsonFiles,
+            this.tmiSaveAsJsonFiles,
             this.toolStripMenuItem2,
             this.tmiCloseAllFiles,
             this.toolStripMenuItem1,
@@ -428,6 +430,7 @@
             // 
             // tmiScanJsonFiles
             // 
+            this.tmiScanJsonFiles.Enabled = false;
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
             this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
@@ -440,6 +443,7 @@
             // 
             // tmiSaveJsonFiles
             // 
+            this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
             this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveJsonFiles.Text = "X";
@@ -577,6 +581,14 @@
             this.tmiLanguageENUS.Text = "English(en-US)";
             this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
             // 
+            // tmiSaveAsJsonFiles
+            // 
+            this.tmiSaveAsJsonFiles.Enabled = false;
+            this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiSaveAsJsonFiles.Text = "X";
+            this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -665,6 +677,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiLanguages;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZNCH;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageENUS;
+        private System.Windows.Forms.ToolStripMenuItem tmiSaveAsJsonFiles;
     }
 }
 

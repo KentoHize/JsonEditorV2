@@ -187,6 +187,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 發生了錯誤，錯誤訊息：&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_ERROR_DEFAULT_MESSAGE {
+            get {
+                return ResourceManager.GetString("JE_ERROR_DEFAULT_MESSAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 錯誤.
+        /// </summary>
+        public static string JE_ERROR_DEFAULT_TITLE {
+            get {
+                return ResourceManager.GetString("JE_ERROR_DEFAULT_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 取消.
         /// </summary>
         public static string JE_INPUTBOX_BTN_CANCEL {
@@ -340,6 +358,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 這不是一個空的資料夾，將清空所有檔案，你確定嗎?.
+        /// </summary>
+        public static string JE_RUN_SAVE_AS_JSON_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SAVE_AS_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;所有檔案已存檔.
         /// </summary>
         public static string JE_RUN_SAVE_JSON_FILES_M_1 {
@@ -349,7 +376,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 準備掃描檔案，如果檔案數量眾多將會消耗很多時間，是否確定？.
+        ///   Looks up a localized string similar to 準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？.
         /// </summary>
         public static string JE_RUN_SCAN_JSON_FILES_M_1 {
             get {
@@ -543,6 +570,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_RENAME_JSON_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_RENAME_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 另存JSON檔案庫.
+        /// </summary>
+        public static string JE_TMI_SAVE_AS_JSON_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_SAVE_AS_JSON_FILES", resourceCulture);
             }
         }
         
