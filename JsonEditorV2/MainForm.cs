@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -37,10 +36,10 @@ namespace JsonEditorV2
         }
 
 
-#region RESOURCES_TEXT_PATCH
+        #region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource()
         {
-            Res.Culture = Var.CI;            
+            Res.Culture = Var.CI;
             Text = Res.JSON_FILE_EDITOR_TITLE;
             lblColumnName.Text = Res.JE_COLUMN_NAME;
             lblColumnType.Text = Res.JE_COLUMN_TYPE;
@@ -69,8 +68,10 @@ namespace JsonEditorV2
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
+            tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
+            tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
         }
-#endregion
+        #endregion
 
         private void libLines_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -90,7 +91,7 @@ namespace JsonEditorV2
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if(cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
+            else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -103,23 +104,29 @@ namespace JsonEditorV2
                 if (dr == DialogResult.Cancel)
                     return;
             }
-            
+
             Var.SelectedColumn.Display = chbColumnDisplay.Checked;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
-            if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn != null)
+            if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
                 Var.SelectedColumn.FKColumn = cobColumnFKColumn.SelectedValue.ToString();
             }
+            else
+                Var.SelectedColumn.FKTable = Var.SelectedColumn.FKColumn = null;
 
-            //改名檢查
-            Var.SelectedColumn.Name = txtColumnName.Text;
+            //改名檢查            
+            if (Var.SelectedColumn.Name != txtColumnName.Text)
             {
-
+                if (!Var.SelectedColumnParentTable.Loaded)
+                    LoadJsonFile(Var.SelectedColumnParentTable);
+                Var.SelectedColumn.Name = txtColumnName.Text;
+                SaveJsonFile(Var.SelectedColumnParentTable);
             }
 
+
             //改型態檢查            
-            JType newType = (JType)cobColumnType.SelectedValue;            
+            JType newType = (JType)cobColumnType.SelectedValue;
             if (Var.SelectedColumn.Type != newType)
             {
                 Var.SelectedColumn.Type = newType;
@@ -136,9 +143,9 @@ namespace JsonEditorV2
                 if (!Var.SelectedColumnParentTable.HasKey)
                 {
                     foreach (JTable jt in Var.Tables)
-                    { 
+                    {
                         foreach (JColumn jc in jt.Columns)
-                        { 
+                        {
                             if (jc.FKTable == Var.SelectedColumn.Name)
                             {
                                 jc.FKTable = null;
@@ -214,7 +221,7 @@ namespace JsonEditorV2
         //掃描全部檔案
         //開啟檔案
         //關閉檔案
-        
+
 
         private void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
@@ -238,7 +245,7 @@ namespace JsonEditorV2
                     }
                     else
                     {
-                        JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd()));
+                        JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd()), true);
                         Var.Tables.Add(jt);
                     }
                 }
@@ -260,77 +267,29 @@ namespace JsonEditorV2
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             Var.Tables = new List<JTable>();
+            JTable table;
 
             foreach (string file in jsonfiles)
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open))
+                FileInfo fi = new FileInfo(file);
+
+                if (file == Var.JFI.FileInfoPath)
                 {
-                    StreamReader sr = new StreamReader(fs);
-                    if (file == Var.JFI.FileInfoPath)
-                    {
-                        Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(sr.ReadToEnd());
-                        Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-                    }
-                    else
-                    {
-                        //如果很小全讀
-                        if (fs.Length < 10)                        
-                            Var.Tables.Add(new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd()), true));
-                        else
-                        {
-                            //讀5行之後結束
-                            int pflag = 0;
-                            object value = "";
-                            JTable jt = new JTable(Path.GetFileNameWithoutExtension(file));
-
-                            JsonTextReader reader = new JsonTextReader(sr);
-                            reader.Skip();//StartArray
-
-                            for (int i = 0; i < 5; i++)
-                            {
-                                JLine jl = new JLine();
-                                //jt.Lines.Add(jl);
-                                reader.Skip();//StartObject
-
-                                while (reader.TokenType != JsonToken.EndObject)
-                                {
-                                    reader.Read();
-                                    if (reader.TokenType == JsonToken.PropertyName)
-                                    {
-                                        pflag = 1;
-                                        value = reader.Value;
-                                    }
-                                    else if (pflag == 1)
-                                    {
-                                        if (reader.TokenType == JsonToken.StartObject ||
-                                            reader.TokenType == JsonToken.StartArray)
-                                        {
-                                            //直接跳出
-                                            int skipFlag = 1;
-                                            while (skipFlag == 0)
-                                            {
-                                                reader.Read();
-                                                if (reader.TokenType == JsonToken.StartObject)
-                                                    skipFlag++;
-                                                else if (reader.TokenType == JsonToken.EndObject)
-                                                    skipFlag--;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (i == 0)
-                                                jt.Columns.Add(new JColumn(value.ToString(), Extentions.ToJType(reader.TokenType)));
-                                            jl.Add(JValue.FromObject(reader.Value));
-                                        }
-                                        pflag = 0;
-                                    }
-                                }
-                            }
-                            Var.Tables.Add(jt);
-                        }
-                    }
-                    sr.Close();
+                    LoadJFilesInfo(file);                    
+                    Var.JFI.DirectoryPath = fbdMain.SelectedPath;
                 }
+                else if (fi.Length < 10)
+                {
+                    table = new JTable(Path.GetFileNameWithoutExtension(file), true);
+                    LoadJsonFile(table);
+                    Var.Tables.Add(table);
+                }
+                else
+                {
+                    table = new JTable(Path.GetFileNameWithoutExtension(file));
+                    LoadPartialJsonFile(table);
+                    Var.Tables.Add(table);
+                }                
             }
 
             //有JFileInfo的話相連
@@ -349,10 +308,12 @@ namespace JsonEditorV2
 
         }
 
+
+
         private string GetColumnNodeString(JColumn jc)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(jc.Name);           
+            sb.Append(jc.Name);
             if (!string.IsNullOrEmpty(jc.FKTable))
                 sb.AppendFormat("[FK:{0}]", jc.FKTable);
             sb.Append(":");
@@ -375,8 +336,9 @@ namespace JsonEditorV2
             if (Var.Tables == null)
                 return;
 
-            Var.RootNode = new TreeNode(Var.JFI.Name, 0, 0);
-            Var.RootNode.ToolTipText = Var.JFI.Name;
+            string fullName = $"{Var.JFI.Name}({Var.JFI.DirectoryPath})";
+            Var.RootNode = new TreeNode($"{fullName.Substring(0, 25)}...", 0, 0);
+            Var.RootNode.ToolTipText = fullName;
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
 
@@ -385,7 +347,7 @@ namespace JsonEditorV2
             {
                 fileNode = new TreeNode { Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
                 fileNode.ToolTipText = fileNode.Text;
-                
+
                 Var.RootNode.Nodes.Add(fileNode);
                 if (Var.SelectedColumnParentTable == jt && Var.SelectedColumn == null)
                     trvJsonFiles.SelectedNode = fileNode;
@@ -453,14 +415,7 @@ namespace JsonEditorV2
 
             //存JSONFiles
             foreach (JTable jt in Var.OpenedTable)
-            {
-                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
-                {
-                    StreamWriter sw = new StreamWriter(fs);
-                    sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
-                    sw.Close();
-                }
-            }
+                SaveJsonFile(jt);
             sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
         }
 
@@ -488,15 +443,20 @@ namespace JsonEditorV2
 
         private void trvJsonFiles_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-                trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
+            trvJsonFiles.ContextMenuStrip = null;
+
+            //if (e.Button == MouseButtons.Right)
+            //    trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
             Var.DblClick = e.Button == MouseButtons.Left && e.Clicks >= 2;
         }
 
         private void trvJsonFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node == Var.RootNode)
-            { }
+            {
+                trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
+
+            }
             else if (e.Node.Parent == Var.RootNode)
             {
                 Var.SelectedColumn = null;
@@ -518,7 +478,7 @@ namespace JsonEditorV2
                     }
                     trvJsonFiles.ContextMenuStrip = cmsJsonFilesSelected;
                 }
-            }            
+            }
             else
             {
                 Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Parent.Tag.ToString());
@@ -570,7 +530,7 @@ namespace JsonEditorV2
             else if (e.Node.Parent == Var.RootNode)
             {
                 trvJsonFiles.SelectedNode = e.Node;
-                //tmiOpenJsonFile_Click(this, e);
+                tmiOpenJsonFile_Click(this, e);
             }
         }
 
@@ -587,7 +547,7 @@ namespace JsonEditorV2
                 using (FileStream fs = new FileStream(newFile, FileMode.Create))
                 { }
 
-                JTable jt = new JTable(fib.InputValue, null, true);
+                JTable jt = new JTable(fib.InputValue, true);
                 Var.Tables.Add(jt);
                 Var.RootNode.Nodes.Add(new TreeNode { Text = jt.Name, ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name });
             }
@@ -625,9 +585,9 @@ namespace JsonEditorV2
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
             string ProjectName = "JsonEditorV2";
-            
+
             File.Copy(Path.Combine(ProjectPath, $"{ProjectName}.sln"), Path.Combine(BackupPath, $"{ProjectName}.sln"), true);
-            
+
             if (Directory.Exists(Path.Combine(BackupPath, ProjectName)))
                 DirectoryCopy(Path.Combine(ProjectPath, ProjectName), Path.Combine(BackupPath, ProjectName));
             else
@@ -637,7 +597,7 @@ namespace JsonEditorV2
             }
             MessageBox.Show("OK");
         }
-#region DirectoryCopy
+        #region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
@@ -672,7 +632,7 @@ namespace JsonEditorV2
                 }
             }
         }
-#endregion
+        #endregion
 
         private void btnClearColumn_Click(object sender, EventArgs e)
         {
@@ -681,7 +641,7 @@ namespace JsonEditorV2
             chbColumnDisplay.Checked = false;
             chbColumnIsKey.Checked = false;
             cobColumnFKTable.SelectedIndex = -1; //聯動            
-            txtColumnNumberOfRows.Text = "0";            
+            txtColumnNumberOfRows.Text = "0";
         }
 
         private void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -692,7 +652,7 @@ namespace JsonEditorV2
             {
                 var ds = (from c in Var.Tables.Find(m => m.Name == cobColumnFKTable.SelectedValue.ToString()).Columns
                           where c.IsKey
-                          select new { c.Name }).ToList();                
+                          select new { c.Name }).ToList();
                 cobColumnFKColumn.DataSource = ds;
                 cobColumnFKColumn.DisplayMember = "Name";
                 cobColumnFKColumn.ValueMember = "Name";
@@ -714,24 +674,24 @@ namespace JsonEditorV2
 
         private void tmiLanguageZNCH_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("zh-TW");            
-            ChangeCulture();            
+            Var.CI = new CultureInfo("zh-TW");
+            ChangeCulture();
         }
 
         private void tmiLanguageENUS_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("en-US");            
+            Var.CI = new CultureInfo("en-US");
             ChangeCulture();
         }
 
         private void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
-        {            
+        {
             DialogResult dr = fbdMain.ShowDialog(this);
             if (dr != DialogResult.OK)
                 return;
 
             string[] files = Directory.GetFiles(fbdMain.SelectedPath);
-            if(files.Length != 0)
+            if (files.Length != 0)
             {
                 dr = MessageBox.Show(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (dr != DialogResult.OK)
@@ -739,9 +699,9 @@ namespace JsonEditorV2
                 try
                 {
                     foreach (string s in files)
-                        File.Delete(s);                
+                        File.Delete(s);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     HandleException(ex);
                 }
@@ -757,7 +717,7 @@ namespace JsonEditorV2
             {
                 HandleException(ex);
             }
-            Var.JFI.DirectoryPath = fbdMain.SelectedPath;            
+            Var.JFI.DirectoryPath = fbdMain.SelectedPath;
             tmiSaveJsonFiles_Click(this, e);
         }
 
@@ -765,8 +725,8 @@ namespace JsonEditorV2
         {
             try
             {
-                LoadJsonFile();
-
+                //LoadJsonFile();
+                //Var.SelectedTable = tables[]
                 //selectedTable = tables[trvJsonFiles.SelectedNode.Tag.ToString()];
                 //selectedLine = null;
                 //selectedColumn = null;
@@ -775,20 +735,133 @@ namespace JsonEditorV2
                 //RefreshPnlMainUI();
                 //RefreshLibLinesUI();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 HandleException(ex);
             }
         }
 
-        private void LoadJsonFile()
+        private void LoadJFilesInfo(string file)
         {
-            using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedTable.Name}.json") , FileMode.Open))
+            try
             {
-                StreamReader sr = new StreamReader(fs);
-                Var.SelectedTable.LoadJson(JsonConvert.DeserializeObject<List<JLine>>(sr.ReadToEnd()));                
-                sr.Dispose();
-            }                
+                using (FileStream fs = new FileStream(file, FileMode.Open))
+                {
+                    StreamReader sr = new StreamReader(fs);
+                    Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(sr.ReadToEnd());
+                    sr.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }            
+        }
+
+        private void LoadJsonFile(JTable jt)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
+                {
+                    StreamReader sr = new StreamReader(fs);
+                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()));
+                    sr.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void LoadPartialJsonFile(JTable jt)
+        {
+            //讀5行之後結束
+            int pflag = 0;
+            object value = "";
+            try
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
+                {
+                    StreamReader sr = new StreamReader(fs);
+                    JsonTextReader reader = new JsonTextReader(sr);
+                    reader.Skip();//StartArray
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        JLine jl = new JLine();                        
+                        reader.Skip();//StartObject
+
+                        while (reader.TokenType != JsonToken.EndObject)
+                        {
+                            reader.Read();
+                            if (reader.TokenType == JsonToken.PropertyName)
+                            {
+                                pflag = 1;
+                                value = reader.Value;
+                            }
+                            else if (pflag == 1)
+                            {
+                                if (reader.TokenType == JsonToken.StartObject ||
+                                    reader.TokenType == JsonToken.StartArray)
+                                {
+                                    //直接跳出
+                                    int skipFlag = 1;
+                                    while (skipFlag == 0)
+                                    {
+                                        reader.Read();
+                                        if (reader.TokenType == JsonToken.StartObject)
+                                            skipFlag++;
+                                        else if (reader.TokenType == JsonToken.EndObject)
+                                            skipFlag--;
+                                    }
+                                }
+                                else
+                                {
+                                    if (i == 0)
+                                        jt.Columns.Add(new JColumn(value.ToString(), Extentions.ToJType(reader.TokenType)));
+                                    jl.Add(JValue.FromObject(reader.Value));
+                                }
+                                pflag = 0;
+                            }
+                        }
+                    }
+                    sr.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void SaveJsonFile(JTable jt)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
+                {
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
+                    sw.Close();
+                }
+                jt.Changed = false;
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void tmiExpandAll_Click(object sender, EventArgs e)
+        {
+            Var.RootNode.ExpandAll();
+        }
+
+        private void tmiCollapseAll_Click(object sender, EventArgs e)
+        {
+            Var.RootNode.Collapse();
         }
     }
 }

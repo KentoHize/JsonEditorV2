@@ -25,20 +25,19 @@ namespace JsonEditor
         public JLine this[int index] { get => ((IList<JLine>)Lines)[index]; set => ((IList<JLine>)Lines)[index] = value; }
 
         public JTable()
-            : this("", null)
+            : this("")
         { }
 
-        public JTable(string name)
-            : this(name, null)
-        { }
+        public JTable(string name, bool isNew = false)        
+        {
+            Name = name;
+            Loaded = isNew;
+        }
 
         public JTable(string name, object jArray, bool isNew = false)
         {
             Name = name;
-            if (isNew)
-                Loaded = true;
-            if (jArray == null)
-                return;
+            Loaded = isNew;
             LoadJson(jArray, true);
         }
 
@@ -102,6 +101,9 @@ namespace JsonEditor
         {
             bool isFirst = true;
             bool isFirstFirst = true;
+
+            if (jArray == null)
+                return;
 
             JArray jr = jArray as JArray;
             if (jr == null)

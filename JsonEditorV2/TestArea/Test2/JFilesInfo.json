@@ -48,6 +48,20 @@
       ]
     },
     {
+      "Name": "PAST",
+      "Columns": [
+        {
+          "Name": "AAA",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "AD222",
+          "FKColumn": "TT555",
+          "NumberOfRows": 1,
+          "Display": false
+        }
+      ]
+    },
+    {
       "Name": "T2",
       "Columns": []
     },
@@ -89,8 +103,8 @@
           "Name": "_P-6",
           "IsKey": false,
           "Type": "String",
-          "FKTable": null,
-          "FKColumn": null,
+          "FKTable": "Add2222",
+          "FKColumn": "HJI99",
           "NumberOfRows": 1,
           "Display": false
         },
@@ -111,20 +125,6 @@
           "FKColumn": null,
           "NumberOfRows": 11,
           "Display": true
-        }
-      ]
-    },
-    {
-      "Name": "PAST",
-      "Columns": [
-        {
-          "Name": "AAA",
-          "IsKey": false,
-          "Type": "String",
-          "FKTable": "AD222",
-          "FKColumn": "TT555",
-          "NumberOfRows": 1,
-          "Display": false
         }
       ]
     }

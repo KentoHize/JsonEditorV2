@@ -261,11 +261,17 @@
   <data name="JE_TMI_CLOSE_JSON_FILE" xml:space="preserve">
     <value>關閉</value>
   </data>
+  <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
+    <value>收縮全部</value>
+  </data>
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
     <value>刪除</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>離開</value>
+  </data>
+  <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
+    <value>展開全部</value>
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>檔案</value>

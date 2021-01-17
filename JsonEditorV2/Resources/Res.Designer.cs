@@ -493,6 +493,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 收縮全部.
+        /// </summary>
+        public static string JE_TMI_COLLAPSE_ALL {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLLAPSE_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 刪除.
         /// </summary>
         public static string JE_TMI_DELETE_JSON_FILE {
@@ -507,6 +516,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_EXIT {
             get {
                 return ResourceManager.GetString("JE_TMI_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 展開全部.
+        /// </summary>
+        public static string JE_TMI_EXPAND_ALL {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPAND_ALL", resourceCulture);
             }
         }
         
