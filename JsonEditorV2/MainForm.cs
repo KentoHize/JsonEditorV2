@@ -699,7 +699,8 @@ namespace JsonEditorV2
                 dr = MessageBox.Show(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (dr != DialogResult.OK)
                     return;
-                try {
+                try
+                {
                     foreach (string s in files)
                         File.Delete(s);                
                 }
@@ -709,7 +710,17 @@ namespace JsonEditorV2
                 }
             }
 
-            Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+            files = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
+            try
+            {
+                foreach (string s in files)
+                    File.Copy(s, Path.Combine(fbdMain.SelectedPath, Path.GetFileName(s)));
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
+            Var.JFI.DirectoryPath = fbdMain.SelectedPath;            
             tmiSaveJsonFiles_Click(this, e);
         }
     }
