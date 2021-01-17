@@ -162,11 +162,23 @@
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>欄位型別</value>
   </data>
-  <data name="JE_ERROR_DEFAULT_MESSAGE" xml:space="preserve">
+  <data name="JE_ERR_COLUMN_COUNT_UNMATCH" xml:space="preserve">
+    <value>JSON關聯檔案中的欄位數量: {0}和實際檔案中的欄位數量: {1}不合</value>
+  </data>
+  <data name="JE_ERR_COLUMN_NAME_UNMATCH" xml:space="preserve">
+    <value>JSON關聯檔案中的欄位名稱:"{0}"和實際檔案中的欄位名稱"{1}"不合</value>
+  </data>
+  <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
     <value>發生了錯誤，錯誤訊息："{0}"</value>
   </data>
-  <data name="JE_ERROR_DEFAULT_TITLE" xml:space="preserve">
+  <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>錯誤</value>
+  </data>
+  <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
+    <value>JSON關聯檔案是空的</value>
+  </data>
+  <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
+    <value>JSON關聯檔案中的檔案名"{0}.json"和實際檔案名稱"{1}.json"不相同</value>
   </data>
   <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
     <value>取消</value>

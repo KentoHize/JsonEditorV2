@@ -8,8 +8,6 @@ namespace JsonEditor
 {
     public class JTable : IList<JLine>
     {
-        public const string NOT_NEW = "Not New";
-
         public string Name { get; set; }
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
@@ -48,17 +46,17 @@ namespace JsonEditor
         public void LoadFileInfo(JTableInfo jfi)
         {
             //檢查一下是否正確
-            if (jfi == null)
-                throw new ArgumentNullException();
+            if (jfi == null)                
+                throw new ArgumentException($"LoadFileInfo:{Name},");
             if (Name != jfi.Name)
-                throw new InvalidCastException();
-            if (Lines.Count != 0)
+                throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");                
+            if (Columns.Count != 0)
             {
-                if (Columns.Count != jfi.Columns.Count)
-                    throw new MissingFieldException();
+                if (Columns.Count != jfi.Columns.Count)  
+                    throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");                    
                 for (int i = 0; i < jfi.Columns.Count; i++)
                     if (Columns[i].Name != jfi.Columns[i].Name)
-                        throw new MissingFieldException();
+                        throw new MissingFieldException($"LoadFileInfo:{Columns[i].Name},{jfi.Columns[i].Name}");
             }
             Columns = jfi.Columns;
         }

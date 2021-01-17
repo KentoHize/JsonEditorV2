@@ -365,6 +365,7 @@
             this.tbcMain.SelectedIndex = 0;
             this.tbcMain.Size = new System.Drawing.Size(993, 24);
             this.tbcMain.TabIndex = 20;
+            this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             // 
             // pnlMain
             // 
@@ -589,8 +590,9 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiCloseJsonFile.Text = "X";
+            this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 

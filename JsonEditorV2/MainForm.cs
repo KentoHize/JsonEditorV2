@@ -277,6 +277,7 @@ namespace JsonEditorV2
                     }
                 }
             }
+            Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
         }
@@ -310,7 +311,7 @@ namespace JsonEditorV2
                 else if (fi.Length < 10)
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
-                    LoadJsonFile(table);
+                    LoadJsonFile(table, true);
                     Var.Tables.Add(table);
                 }
                 else
@@ -413,24 +414,41 @@ namespace JsonEditorV2
             RefreshPnlFileInfo();
         }
 
-        private void RefreshTbcMain()
+        private void RefreshPnlMain()
         {
-            //TBCMain
-            while (Var.OpenedTable.Count > tbcMain.TabPages.Count)
-                tbcMain.TabPages.Add(new TabPage());
+            btnClearMain.Enabled = false;
+            btnUpdateMain.Enabled = false;
+            int lines = 0;
+            pnlMain.Controls.Clear();
+            if (Var.SelectedTable == null)
+                return;
 
-            while (Var.OpenedTable.Count < tbcMain.TabPages.Count && tbcMain.TabPages.Count != 1)
-                tbcMain.TabPages.RemoveAt(tbcMain.TabPages.Count - 1);
+            for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
+            {
+                Label lblLabel = new Label();
+                lblLabel.Name = $"lbl{Var.SelectedTable.Columns[i].Name}";
+                lblLabel.Text = Var.SelectedTable.Columns[i].Name;
+                lblLabel.Left = 10;
+                lblLabel.Top = 30 * lines;
 
-            if (Var.OpenedTable.Count == 0)
-                tbcMain.TabPages[0].Text = "";
+                pnlMain.Controls.Add(lblLabel);
 
-            for(int i = 0; i < Var.OpenedTable.Count; i++)
-                tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
+                TextBox txtText = new TextBox();
+                txtText.Name = $"txt{Var.SelectedTable.Columns[i].Name}";
+                txtText.Left = 200;
+                txtText.Top = 30 * lines;
+                txtText.Width = 200;
+                txtText.Height = 27 * Var.SelectedTable.Columns[i].NumberOfRows;
+                txtText.Multiline = true;
+                lines += Var.SelectedTable.Columns[i].NumberOfRows;
+                pnlMain.Controls.Add(txtText);
+            }
+            btnClearMain.Enabled = true;
+            btnUpdateMain.Enabled = true;
+        }
 
-            tbcMain.SelectedIndex = Var.PageIndex;
-            
-            //LSBLine
+        private void RefreshLsbLines()
+        {
             lsbLines.Items.Clear();
             if (Var.SelectedTable == null)
                 return;
@@ -446,8 +464,30 @@ namespace JsonEditorV2
                 }
                 lsbLines.Items.Add(displayString.ToString());
             }
+
+            
             //if (selectedLine != null)
             //    libLines.SelectedIndex = selectedTable.Lines.FindIndex(m => m == selectedLine);
+
+        }
+
+        private void RefreshTbcMain()
+        {
+            while (Var.OpenedTable.Count > tbcMain.TabPages.Count)
+                tbcMain.TabPages.Add(new TabPage());
+
+            while (Var.OpenedTable.Count < tbcMain.TabPages.Count && tbcMain.TabPages.Count != 1)
+                tbcMain.TabPages.RemoveAt(tbcMain.TabPages.Count - 1);
+
+            if (Var.OpenedTable.Count == 0)
+                tbcMain.TabPages[0].Text = "";
+
+            for(int i = 0; i < Var.OpenedTable.Count; i++)
+                tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
+
+            tbcMain.SelectedIndex = Var.PageIndex;
+            RefreshLsbLines();
+            RefreshPnlMain();
         }
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
@@ -518,19 +558,21 @@ namespace JsonEditorV2
                 Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString()); ;
                 RefreshPnlFileInfo();
 
+                //更新Open Close
+                if (Var.OpenedTable.Exists(m => m.Name == e.Node.Tag.ToString()))
+                {
+                    tmiOpenJsonFile.Enabled = false;
+                    tmiCloseJsonFile.Enabled = true;
+                }
+                else
+                {
+                    tmiOpenJsonFile.Enabled = true;
+                    tmiCloseJsonFile.Enabled = false;
+                }
+
                 if (e.Button == MouseButtons.Right)
                 {
-                    trvJsonFiles.SelectedNode = e.Node;
-                    if (Var.OpenedTable.Exists(m => m.Name == e.Node.Tag.ToString()))
-                    {
-                        tmiOpenJsonFile.Enabled = false;
-                        tmiCloseJsonFile.Enabled = true;
-                    }
-                    else
-                    {
-                        tmiOpenJsonFile.Enabled = true;
-                        tmiCloseJsonFile.Enabled = false;
-                    }
+                    trvJsonFiles.SelectedNode = e.Node;                   
                     trvJsonFiles.ContextMenuStrip = cmsJsonFileSelected;
                 }
             }
@@ -587,7 +629,17 @@ namespace JsonEditorV2
             { }
             else if (e.Node.Parent == Var.RootNode)
             {
-                tmiOpenJsonFile_Click(this, new EventArgs());
+                if (tmiOpenJsonFile.Enabled)
+                    tmiOpenJsonFile_Click(this, new EventArgs());
+                else
+                    tmiCloseJsonFile_Click(this, new EventArgs());
+                
+                //補足效果
+                Var.DblClick = false; 
+                if (trvJsonFiles.SelectedNode.IsExpanded)
+                    trvJsonFiles.SelectedNode.Collapse();
+                else
+                    trvJsonFiles.SelectedNode.Expand();
             }
         }
 
@@ -621,9 +673,25 @@ namespace JsonEditorV2
         private void HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
-                content = Res.JE_ERROR_DEFAULT_MESSAGE;
+                content = Res.JE_ERR_DEFAULT_MESSAGE;
             if (string.IsNullOrEmpty(title))
-                title = Res.JE_ERROR_DEFAULT_TITLE;
+                title = Res.JE_ERR_DEFAULT_TITLE;
+
+            //JFI檢查失敗處理
+            if (ex.Message.Contains("LoadFileInfo"))
+            {                
+                string p1 = ex.Message.Substring(13).Split(',')[0];
+                string p2 = ex.Message.Substring(13).Split(',')[1];
+                if (ex is ArgumentNullException)
+                    content = Res.JE_ERR_JFI_IS_EMPTY;
+                else if (ex is MissingMemberException)
+                    content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
+                else if (ex is IndexOutOfRangeException)
+                    content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
+                else if (ex is MissingFieldException)
+                    content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
+            }
+            
             MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -803,13 +871,6 @@ namespace JsonEditorV2
                 /* 結束 */
             }
 
-            //補足效果
-            Var.DblClick = false; 
-            if (trvJsonFiles.SelectedNode.IsExpanded)
-                trvJsonFiles.SelectedNode.Collapse();
-            else
-                trvJsonFiles.SelectedNode.Expand();
-
             Var.OpenedTable.Add(Var.SelectedColumnParentTable);            
             Var.PageIndex = Var.OpenedTable.Count - 1;
 
@@ -833,14 +894,14 @@ namespace JsonEditorV2
             }
         }
 
-        private void LoadJsonFile(JTable jt)
+        private void LoadJsonFile(JTable jt, bool produceColumnInfo = false)
         {
             try
             {
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
-                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()));
+                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
                     sr.Dispose();
                 }
             }
@@ -1049,6 +1110,26 @@ namespace JsonEditorV2
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_5, fileName);
+        }
+
+        private void tmiCloseJsonFile_Click(object sender, EventArgs e)
+        {
+            if (AskSaveFiles(Res.JE_TMI_CLOSE_JSON_FILE) == DialogResult.Cancel)
+                return;
+
+            if (!Var.OpenedTable.Contains(Var.SelectedColumnParentTable))
+                return;
+
+            Var.OpenedTable.Remove(Var.SelectedColumnParentTable);
+
+            Var.PageIndex = Var.OpenedTable.Count - 1;
+            RefreshTbcMain();
+        }
+
+        private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Var.PageIndex = tbcMain.SelectedIndex;
+            RefreshLsbLines();
         }
     }
 }

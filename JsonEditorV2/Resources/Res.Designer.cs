@@ -196,20 +196,56 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案中的欄位數量: {0}和實際檔案中的欄位數量: {1}不合.
+        /// </summary>
+        public static string JE_ERR_COLUMN_COUNT_UNMATCH {
+            get {
+                return ResourceManager.GetString("JE_ERR_COLUMN_COUNT_UNMATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案中的欄位名稱:&quot;{0}&quot;和實際檔案中的欄位名稱&quot;{1}&quot;不合.
+        /// </summary>
+        public static string JE_ERR_COLUMN_NAME_UNMATCH {
+            get {
+                return ResourceManager.GetString("JE_ERR_COLUMN_NAME_UNMATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 發生了錯誤，錯誤訊息：&quot;{0}&quot;.
         /// </summary>
-        public static string JE_ERROR_DEFAULT_MESSAGE {
+        public static string JE_ERR_DEFAULT_MESSAGE {
             get {
-                return ResourceManager.GetString("JE_ERROR_DEFAULT_MESSAGE", resourceCulture);
+                return ResourceManager.GetString("JE_ERR_DEFAULT_MESSAGE", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 錯誤.
         /// </summary>
-        public static string JE_ERROR_DEFAULT_TITLE {
+        public static string JE_ERR_DEFAULT_TITLE {
             get {
-                return ResourceManager.GetString("JE_ERROR_DEFAULT_TITLE", resourceCulture);
+                return ResourceManager.GetString("JE_ERR_DEFAULT_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案是空的.
+        /// </summary>
+        public static string JE_ERR_JFI_IS_EMPTY {
+            get {
+                return ResourceManager.GetString("JE_ERR_JFI_IS_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案中的檔案名&quot;{0}.json&quot;和實際檔案名稱&quot;{1}.json&quot;不相同.
+        /// </summary>
+        public static string JE_ERR_TABLE_NAME_UNMATCH {
+            get {
+                return ResourceManager.GetString("JE_ERR_TABLE_NAME_UNMATCH", resourceCulture);
             }
         }
         
