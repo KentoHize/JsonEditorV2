@@ -261,6 +261,9 @@
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>檔案</value>
   </data>
+  <data name="JE_TMI_LANGUAGES" xml:space="preserve">
+    <value>語言</value>
+  </data>
   <data name="JE_TMI_LOAD_JSON_FILES" xml:space="preserve">
     <value>讀取JSON檔案庫</value>
   </data>

@@ -493,6 +493,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 語言.
+        /// </summary>
+        public static string JE_TMI_LANGUAGES {
+            get {
+                return ResourceManager.GetString("JE_TMI_LANGUAGES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 讀取JSON檔案庫.
         /// </summary>
         public static string JE_TMI_LOAD_JSON_FILES {

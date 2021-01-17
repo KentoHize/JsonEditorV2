@@ -18,18 +18,25 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
-            Var.RM = new ResourceManager("JsonEditorV2.Resources.Res", Type.GetType("JsonEditorV2.Resources.Res").Assembly);
+            //Var.RM = new ResourceManager("JsonEditorV2.Resources.Res", Type.GetType("JsonEditorV2.Resources.Res").Assembly);
             Var.CI = new CultureInfo("zh-TW");
-            PatchTextFromResource(Var.CI);
+            ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
             tbpStart.BackColor = this.BackColor;
         }
 
-        #region RESOURCES_TEXT_PATCH
-        private void PatchTextFromResource(CultureInfo ci)
+        private void ChangeCulture()
         {
-            Res.Culture = ci;            
+            Res.Culture = Var.CI;
+            PatchTextFromResource();
+        }
+
+
+        #region RESOURCES_TEXT_PATCH
+        private void PatchTextFromResource()
+        {
+            Res.Culture = Var.CI;            
             Text = Res.JSON_FILE_EDITOR_TITLE;
             lblColumnName.Text = Res.JE_COLUMN_NAME;
             lblColumnType.Text = Res.JE_COLUMN_TYPE;
@@ -49,6 +56,7 @@ namespace JsonEditorV2
             tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
             tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
+            tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
             tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
@@ -518,6 +526,7 @@ namespace JsonEditorV2
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
             }
+            trvJsonFiles.Select();
         }
 
         private void RefreshCloseFileState()
@@ -653,5 +662,20 @@ namespace JsonEditorV2
                 cobColumnFKColumn.SelectedIndex = -1;
             }
         }
+
+        private void tmiLanguageZNCH_Click(object sender, EventArgs e)
+        {
+            Var.CI = new CultureInfo("zn-CH");
+            ChangeCulture();            
+        }
+
+        private void tmiLanguageENUS_Click(object sender, EventArgs e)
+        {
+            Var.CI = new CultureInfo("en-US");
+            ChangeCulture();
+        }
+
+
+
     }
 }
