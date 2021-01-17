@@ -12,7 +12,8 @@ namespace JsonEditor
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
 
-        public bool HasKey { get => Columns.Exists(m => m.IsKey); }
+        public bool HasKey { get => Columns.Exists(m => m.IsKey); }        
+        public bool Loaded { get; set; } = false;
 
         public int Count => ((IList<JLine>)Lines).Count;
 
@@ -30,63 +31,10 @@ namespace JsonEditor
 
         public JTable(string name, object jArray)
         {
-            bool isFirst = true;
-            bool isFirstFirst = true;
-
             Name = name;
             if (jArray == null)
                 return;
-
-            JArray jr = jArray as JArray;
-            if (jr == null)
-                throw new ArgumentNullException();
-
-            foreach (JToken jt in jr)
-            {
-                JLine items = new JLine();
-                JObject jo = jt as JObject;
-                foreach (KeyValuePair<string, JToken> kvp in jo)
-                {
-                    if (isFirstFirst)
-                    {
-                        JColumn jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", true,
-                            Math.Abs(kvp.Value.ToString().Length / 50) + 1);
-                        Columns.Add(jc);
-                        isFirstFirst = false;
-                    }
-                    else if (isFirst)
-                        Columns.Add(new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
-                            Math.Abs(kvp.Value.ToString().Length / 50) + 1));
-
-                    switch (kvp.Value.Type)
-                    {
-                        case JTokenType.Integer:
-                            items.Add(JValue.FromObject(Convert.ToInt64(kvp.Value)));
-                            break;
-                        case JTokenType.Float:
-                            items.Add(JValue.FromObject(Convert.ToDouble(kvp.Value)));
-                            break;
-                        case JTokenType.Guid:
-                            items.Add(JValue.FromObject(Guid.Parse(kvp.Value.ToString())));
-                            break;
-                        case JTokenType.Null:
-                            items.Add(JValue.FromObject(null));
-                            break;
-                        case JTokenType.Boolean:
-                            items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
-                            break;
-                        case JTokenType.Date:
-                            items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
-                            break;
-                        default:
-                            items.Add(JValue.FromObject(kvp.Value.ToString()));
-                            break;
-                    }
-                }
-                isFirst = false;
-                Lines.Add(items);
-            }
-
+            LoadJson(jArray, true);
         }
 
         /// <summary>
@@ -139,6 +87,71 @@ namespace JsonEditor
             }
             return result;
         }
+
+        /// <summary>
+        /// 讀取Json物件
+        /// </summary>
+        /// <param name="jArray">JArray</param>
+        /// <param name="produceColumnInfo">是否更新欄位</param>
+        public void LoadJson(object jArray, bool produceColumnInfo = false)
+        {
+            bool isFirst = true;
+            bool isFirstFirst = true;
+
+            JArray jr = jArray as JArray;
+            if (jr == null)
+                throw new ArgumentNullException();
+
+            foreach (JToken jt in jr)
+            {
+                JLine items = new JLine();
+                JObject jo = jt as JObject;
+                foreach (KeyValuePair<string, JToken> kvp in jo)
+                {
+                    if (produceColumnInfo)
+                    {
+                        if (isFirstFirst)
+                        {
+                            JColumn jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", true,
+                                Math.Abs(kvp.Value.ToString().Length / 50) + 1);
+                            Columns.Add(jc);
+                            isFirstFirst = false;
+                        }
+                        else if (isFirst)
+                            Columns.Add(new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
+                                Math.Abs(kvp.Value.ToString().Length / 50) + 1));
+                    }
+                    switch (kvp.Value.Type)
+                    {
+                        case JTokenType.Integer:
+                            items.Add(JValue.FromObject(Convert.ToInt64(kvp.Value)));
+                            break;
+                        case JTokenType.Float:
+                            items.Add(JValue.FromObject(Convert.ToDouble(kvp.Value)));
+                            break;
+                        case JTokenType.Guid:
+                            items.Add(JValue.FromObject(Guid.Parse(kvp.Value.ToString())));
+                            break;
+                        case JTokenType.Null:
+                            items.Add(JValue.FromObject(null));
+                            break;
+                        case JTokenType.Boolean:
+                            items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
+                            break;
+                        case JTokenType.Date:
+                            items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
+                            break;
+                        default:
+                            items.Add(JValue.FromObject(kvp.Value.ToString()));
+                            break;
+                    }
+                }
+                isFirst = false;
+                Lines.Add(items);
+            }
+            Loaded = true;
+        }
+    
 
         /// <summary>
         /// 用欄位資訊確認末端值的型別並進行轉換

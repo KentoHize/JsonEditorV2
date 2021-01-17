@@ -382,8 +382,8 @@
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiFile,
-            this.tmiAbout,
             this.tmiLanguages,
+            this.tmiAbout,
             this.backupToolStripMenuItem});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
@@ -528,13 +528,14 @@
             this.toolStripMenuItem5,
             this.tmiAddColumn});
             this.cmsJsonFilesSelected.Name = "cmsMain";
-            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(88, 130);
+            this.cmsJsonFilesSelected.Size = new System.Drawing.Size(211, 158);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiOpenJsonFile.Text = "X";
+            this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 

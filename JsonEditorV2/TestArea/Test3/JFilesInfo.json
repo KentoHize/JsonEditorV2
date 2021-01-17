@@ -14,7 +14,7 @@
           "Display": true
         },
         {
-          "Name": "Date",
+          "Name": "DateAA",
           "IsKey": false,
           "Type": "Date",
           "FKTable": null,

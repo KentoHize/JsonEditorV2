@@ -99,8 +99,7 @@ namespace JsonEditorV2
                 if (dr == DialogResult.Cancel)
                     return;
             }
-
-            Var.SelectedColumn.Name = txtColumnName.Text;
+            
             Var.SelectedColumn.Display = chbColumnDisplay.Checked;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn != null)
@@ -109,7 +108,13 @@ namespace JsonEditorV2
                 Var.SelectedColumn.FKColumn = cobColumnFKColumn.SelectedValue.ToString();
             }
 
-                //改型態檢查            
+            //改名檢查
+            Var.SelectedColumn.Name = txtColumnName.Text;
+            {
+
+            }
+
+            //改型態檢查            
             JType newType = (JType)cobColumnType.SelectedValue;            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -200,6 +205,12 @@ namespace JsonEditorV2
         {
             Application.Exit();
         }
+
+        //讀取檔案
+        //掃描全部檔案
+        //開啟檔案
+        //關閉檔案
+        
 
         private void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
@@ -726,6 +737,36 @@ namespace JsonEditorV2
             }
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;            
             tmiSaveJsonFiles_Click(this, e);
+        }
+
+        private void tmiOpenJsonFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadJsonFile();
+
+                //selectedTable = tables[trvJsonFiles.SelectedNode.Tag.ToString()];
+                //selectedLine = null;
+                //selectedColumn = null;
+                //parentTable = null;
+                //RefreshPnlFileInfoUI();
+                //RefreshPnlMainUI();
+                //RefreshLibLinesUI();
+            }
+            catch(Exception ex)
+            {
+                HandleException(ex);
+            }
+        }
+
+        private void LoadJsonFile()
+        {
+            using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedTable.Name}.json") , FileMode.Open))
+            {
+                StreamReader sr = new StreamReader(fs);
+                Var.SelectedTable.LoadJson(JsonConvert.DeserializeObject<List<JLine>>(sr.ReadToEnd()));                
+                sr.Dispose();
+            }                
         }
     }
 }
