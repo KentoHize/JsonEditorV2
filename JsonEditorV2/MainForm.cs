@@ -18,7 +18,7 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
-            Var.RM = new ResourceManager("JsonEditorV2.Resources.Main", Type.GetType("JsonEditorV2.Resources.Main").Assembly);
+            Var.RM = new ResourceManager("JsonEditorV2.Resources.Res", Type.GetType("JsonEditorV2.Resources.Res").Assembly);
             Var.CI = new CultureInfo("zh-TW");
             PatchTextFromResource(Var.CI);
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
@@ -29,32 +29,33 @@ namespace JsonEditorV2
         #region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource(CultureInfo ci)
         {
-            Main.Culture = ci;
-            Text = Main.JSON_FILE_EDITOR_TITLE;
-            lblColumnName.Text = Main.JE_COLUMN_NAME;
-            lblColumnType.Text = Main.JE_COLUMN_TYPE;
-            lblColumnIsKey.Text = Main.JE_COLUMN_IS_KEY;
-            lblColumnDisplay.Text = Main.JE_COLUMN_DISPLAY;
-            lblColumnFK.Text = Main.JE_COLUMN_FK;
-            lblColumnNumberOfRows.Text = Main.JE_COLUMN_NUM_OF_ROWS;
-            btnClearMain.Text = Main.JE_BTN_CLEAR_MAIN;
-            btnUpdateMain.Text = Main.JE_BTN_UPDATE_MAIN;
-            btnUpdateColumn.Text = Main.JE_BTN_UPDATE_COLUMN;
-            btnClearColumn.Text = Main.JE_BTN_CLEAR_COLUMN;
-            tmiFile.Text = Main.JE_TMI_FILE;
-            tmiAbout.Text = Main.JE_TMI_ABOUT;
-            tmiNewJsonFiles.Text = Main.JE_TMI_NEW_JSON_FILES;
-            tmiLoadJsonFiles.Text = Main.JE_TMI_LOAD_JSON_FILES;
-            tmiScanJsonFiles.Text = Main.JE_TMI_SCAN_JSON_FILES;
-            tmiSaveJsonFiles.Text = Main.JE_TMI_SAVE_JSON_FILES;
-            tmiCloseAllFiles.Text = Main.JE_TMI_CLOSE_ALL_FILES;
-            tmiExit.Text = Main.JE_TMI_EXIT;
-            tmiOpenJsonFile.Text = Main.JE_TMI_OPEN_JSON_FILE;
-            tmiDeleteJsonFile.Text = Main.JE_TMI_DELETE_JSON_FILE;
-            tmiCloseJsonFile.Text = Main.JE_TMI_CLOSE_JSON_FILE;
-            tmiRenameJsonFile.Text = Main.JE_TMI_RENAME_JSON_FILE;
-            tmiAddColumn.Text = Main.JE_TMI_ADD_COLUMN;
-            tmiNewJsonFile.Text = Main.JE_TMI_NEW_JSON_FILE;
+            Res.Culture = ci;            
+            Text = Res.JSON_FILE_EDITOR_TITLE;
+            lblColumnName.Text = Res.JE_COLUMN_NAME;
+            lblColumnType.Text = Res.JE_COLUMN_TYPE;
+            lblColumnIsKey.Text = Res.JE_COLUMN_IS_KEY;
+            lblColumnDisplay.Text = Res.JE_COLUMN_DISPLAY;
+            lblColumnFKTable.Text = Res.JE_COLUMN_FK_TABLE;
+            lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
+            lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
+            btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
+            btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
+            btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
+            btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
+            tmiFile.Text = Res.JE_TMI_FILE;
+            tmiAbout.Text = Res.JE_TMI_ABOUT;
+            tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
+            tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
+            tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
+            tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
+            tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
+            tmiExit.Text = Res.JE_TMI_EXIT;
+            tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
+            tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
+            tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
+            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
+            tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
+            tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
         }
         #endregion
 
@@ -68,19 +69,24 @@ namespace JsonEditorV2
             //確認資料正確
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
-                MessageBox.Show(Main.JE_RUN_UPDATE_COLUMN_M_1, Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
-                MessageBox.Show(Main.JE_RUN_UPDATE_COLUMN_M_2, Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if(cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
+            {
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                DialogResult dr = MessageBox.Show(string.Format(Main.JE_RUN_UPDATE_COLUMN_M_3, Var.SelectedColumnParentTable.Count), Main.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (dr == DialogResult.Cancel)
                     return;
             }
@@ -88,10 +94,13 @@ namespace JsonEditorV2
             Var.SelectedColumn.Name = txtColumnName.Text;
             Var.SelectedColumn.Display = chbColumnDisplay.Checked;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
-            if(cobColumnFK.SelectedValue != null)
-                Var.SelectedColumn.ForeignKey = cobColumnFK.SelectedValue.ToString();
+            if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn != null)
+            {
+                Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
+                Var.SelectedColumn.FKColumn = cobColumnFKColumn.SelectedValue.ToString();
+            }
 
-            //改型態檢查            
+                //改型態檢查            
             JType newType = (JType)cobColumnType.SelectedValue;            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -109,15 +118,22 @@ namespace JsonEditorV2
                 if (!Var.SelectedColumnParentTable.HasKey)
                 {
                     foreach (JTable jt in Var.Tables)
+                    { 
                         foreach (JColumn jc in jt.Columns)
-                            if (jc.ForeignKey == Var.SelectedColumn.Name)
-                                jc.ForeignKey = null;
+                        { 
+                            if (jc.FKTable == Var.SelectedColumn.Name)
+                            {
+                                jc.FKTable = null;
+                                jc.FKColumn = null;
+                            }
+                        }
+                    }
                 }
             }
             else
                 Var.SelectedColumn.IsKey = chbColumnIsKey.Checked;
 
-            sslMain.Text = string.Format(Main.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumn.Name);
+            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
 
             //RefreshLibLinesUI();
@@ -127,7 +143,7 @@ namespace JsonEditorV2
 
         private void tmiAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{Main.JE_ABOUT_MESSAGE}\n\n{Main.JE_ABOUT_MESSAGE_2}", Main.JE_ABOUT_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void tmiNewJsonFiles_Click(object sender, EventArgs e)
@@ -147,9 +163,9 @@ namespace JsonEditorV2
                     else
                     {
                         if (File.Exists(Var.JFI.FileInfoPath))
-                            dr = MessageBox.Show(string.Format(Main.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Main.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            dr = MessageBox.Show(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Res.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         else
-                            dr = MessageBox.Show(string.Format(Main.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Main.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            dr = MessageBox.Show(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Res.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (dr == DialogResult.Yes)
                         {
                             foreach (string s in jsonfiles)
@@ -167,7 +183,7 @@ namespace JsonEditorV2
                 tmiScanJsonFiles.Enabled = true;
                 tmiNewJsonFile.Enabled = true;
                 RefreshTrvJsonFiles();
-                sslMain.Text = string.Format(Main.JE_RUN_NEW_JSON_FILES_M_1, Var.JFI.DirectoryPath);
+                sslMain.Text = string.Format(Res.JE_RUN_NEW_JSON_FILES_M_1, Var.JFI.DirectoryPath);
             }
         }
 
@@ -178,7 +194,7 @@ namespace JsonEditorV2
 
         private void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show(Main.JE_RUN_SCAN_JSON_FILES_M_1, Main.JE_RUN_SCAN_JSON_FILES_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show(Res.JE_RUN_SCAN_JSON_FILES_M_1, Res.JE_RUN_SCAN_JSON_FILES_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr != DialogResult.OK)
                 return;
 
@@ -204,7 +220,7 @@ namespace JsonEditorV2
                 }
             }
             RefreshTrvJsonFiles();
-            sslMain.Text = string.Format(Main.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
+            sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
         }
 
         private void tmiLoadJsonFiles_Click(object sender, EventArgs e)
@@ -249,7 +265,7 @@ namespace JsonEditorV2
                             for (int i = 0; i < 5; i++)
                             {
                                 JLine jl = new JLine();
-                                jt.Lines.Add(jl);
+                                //jt.Lines.Add(jl);
                                 reader.Skip();//StartObject
 
                                 while (reader.TokenType != JsonToken.EndObject)
@@ -302,10 +318,10 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex, Main.JE_RUN_LOAD_JSON_FILES_M_2, Main.JE_RUN_LOAD_JSON_FILES_TITLE);
+                HandleException(ex, Res.JE_RUN_LOAD_JSON_FILES_M_2, Res.JE_RUN_LOAD_JSON_FILES_TITLE);
             }
             RefreshTrvJsonFiles();
-            sslMain.Text = string.Format(Main.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
+            sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
 
         }
 
@@ -315,8 +331,8 @@ namespace JsonEditorV2
             sb.Append(jc.Name);
             if(jc.IsKey)
                 sb.Append("[Key]");
-            if (!string.IsNullOrEmpty(jc.ForeignKey))
-                sb.AppendFormat("[FK:{0}]", jc.ForeignKey);
+            if (!string.IsNullOrEmpty(jc.FKTable))
+                sb.AppendFormat("[FK:{0}]", jc.FKTable);
             sb.Append(":");
             sb.Append(jc.Type);
             return sb.ToString();
@@ -336,7 +352,7 @@ namespace JsonEditorV2
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
 
-            Dictionary<string, string> fks = new Dictionary<string, string>();
+            //Dictionary<string, string> fks = new Dictionary<string, string>();
             foreach (JTable jt in Var.Tables)
             {
                 fileNode = new TreeNode { Text = jt.Name, Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
@@ -352,8 +368,8 @@ namespace JsonEditorV2
                     fileNode.Nodes.Add(tr);
                     if (Var.SelectedColumn == jc)
                         trvJsonFiles.SelectedNode = tr;
-                    if (!string.IsNullOrEmpty(jc.ForeignKey))
-                        fks.Add(jc.Name, jc.ForeignKey);
+                    //if (!string.IsNullOrEmpty(jc.FKTable))
+                    //    fks.Add(jc.Name, jc.FKTable);
                 }
 
                 //foreach (KeyValuePair<string, string> kvp in fks)
@@ -408,7 +424,7 @@ namespace JsonEditorV2
                     sw.Close();
                 }
             }
-            sslMain.Text = string.Format(Main.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
+            sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
         }
 
         private void trvJsonFiles_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
@@ -482,15 +498,18 @@ namespace JsonEditorV2
                       where t.HasKey
                       select new { t.Name }).ToList();
             ds.Insert(0, new { Name = (string)null });
-            cobColumnFK.DataSource = ds;
+            cobColumnFKTable.DataSource = ds;
             if (Var.SelectedColumn != null)
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 chbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 chbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
-                if (!string.IsNullOrEmpty(Var.SelectedColumn.ForeignKey))
-                    cobColumnFK.SelectedValue = Var.SelectedColumn.ForeignKey;
+                if (!string.IsNullOrEmpty(Var.SelectedColumn.FKTable))
+                    cobColumnFKTable.SelectedValue = Var.SelectedColumn.FKTable;
+                cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
+                if (!string.IsNullOrEmpty(Var.SelectedColumn.FKColumn))
+                    cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
                 btnUpdateColumn.Enabled = true;
             }
@@ -536,7 +555,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex, Main.JE_RUN_NEW_JSON_FILE_M_2, Main.JE_RUN_NEW_JSON_FILE_TITLE);
+                HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
             }
         }
 
@@ -615,8 +634,24 @@ namespace JsonEditorV2
             cobColumnType.SelectedIndex = -1;
             chbColumnDisplay.Checked = false;
             chbColumnIsKey.Checked = false;
-            cobColumnFK.SelectedIndex = -1;
+            cobColumnFKTable.SelectedIndex = -1; //聯動            
             txtColumnNumberOfRows.Text = "0";            
+        }
+
+        private void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cobColumnFKTable.SelectedIndex < 1)
+                cobColumnFKColumn.DataSource = null;
+            else
+            {
+                var ds = (from c in Var.Tables.Find(m => m.Name == cobColumnFKTable.SelectedValue.ToString()).Columns
+                          where c.IsKey
+                          select new { c.Name }).ToList();                
+                cobColumnFKColumn.DataSource = ds;
+                cobColumnFKColumn.DisplayMember = "Name";
+                cobColumnFKColumn.ValueMember = "Name";
+                cobColumnFKColumn.SelectedIndex = -1;
+            }
         }
     }
 }

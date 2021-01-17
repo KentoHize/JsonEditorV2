@@ -9,7 +9,8 @@
           "Name": "No",
           "IsKey": false,
           "Type": "Long",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
         },
@@ -17,7 +18,8 @@
           "Name": "Date",
           "IsKey": false,
           "Type": "Date",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -25,7 +27,8 @@
           "Name": "Chinese",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 5,
           "Display": false
         },
@@ -33,7 +36,8 @@
           "Name": "English",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 17,
           "Display": false
         },
@@ -41,7 +45,8 @@
           "Name": "Japanese",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -54,7 +59,8 @@
           "Name": "PersonID",
           "IsKey": false,
           "Type": "Guid",
-          "ForeignKey": null,
+          "FKTable": "Persons",
+          "FKColumn": "ID",
           "NumberOfRows": 1,
           "Display": true
         },
@@ -62,15 +68,17 @@
           "Name": "BestowerID",
           "IsKey": false,
           "Type": "Guid",
-          "ForeignKey": null,
+          "FKTable": "Persons",
+          "FKColumn": "ID",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "MoralRank",
           "IsKey": false,
           "Type": "Long",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -78,7 +86,8 @@
           "Name": "BestowDateTime",
           "IsKey": false,
           "Type": "DateTime",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -86,7 +95,8 @@
           "Name": "Reason",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -94,7 +104,8 @@
           "Name": "Memo",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -107,7 +118,8 @@
           "Name": "ID",
           "IsKey": true,
           "Type": "Guid",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
         },
@@ -115,7 +127,8 @@
           "Name": "Surname",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -123,7 +136,8 @@
           "Name": "Name",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -131,7 +145,8 @@
           "Name": "OtherName",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -139,7 +154,8 @@
           "Name": "SurnameFirst",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -147,7 +163,8 @@
           "Name": "Yomikata",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -155,7 +172,8 @@
           "Name": "Gender",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -163,7 +181,8 @@
           "Name": "Fiction",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -171,7 +190,8 @@
           "Name": "Wanted",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -179,7 +199,8 @@
           "Name": "Protected",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -187,7 +208,8 @@
           "Name": "TwitterAccount",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -195,7 +217,8 @@
           "Name": "FacebookAccount",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -203,7 +226,8 @@
           "Name": "InstagramAccount",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -211,7 +235,8 @@
           "Name": "From",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -219,7 +244,8 @@
           "Name": "Group",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -227,7 +253,8 @@
           "Name": "IsAOMember",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -235,7 +262,8 @@
           "Name": "IsCelebrity",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -243,7 +271,8 @@
           "Name": "MoralRank",
           "IsKey": false,
           "Type": "Long",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -251,7 +280,8 @@
           "Name": "Description",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 2,
           "Display": false
         },
@@ -259,7 +289,8 @@
           "Name": "LastBestowDate",
           "IsKey": false,
           "Type": "Date",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -267,7 +298,8 @@
           "Name": "PicturePath",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -280,7 +312,8 @@
           "Name": "No",
           "IsKey": false,
           "Type": "Long",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
         },
@@ -288,7 +321,8 @@
           "Name": "Date",
           "IsKey": false,
           "Type": "Date",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -296,7 +330,8 @@
           "Name": "Chinese",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -304,7 +339,8 @@
           "Name": "English",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -312,7 +348,8 @@
           "Name": "Japanese",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }

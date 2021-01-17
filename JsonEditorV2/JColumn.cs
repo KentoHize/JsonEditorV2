@@ -11,7 +11,8 @@ namespace JsonEditor
         public string Name { get; set; }
         public bool IsKey { get; set; }        
         public JType Type { get; set; }
-        public string ForeignKey { get; set; }
+        public string FKTable { get; set; }
+        public string FKColumn { get; set; }
         public int NumberOfRows { get; set; }
         public bool Display { get; set; }
 
@@ -23,14 +24,15 @@ namespace JsonEditor
             : this(name, JType.String)
         { }
 
-        public JColumn(string name, JType type, bool isKey = false, bool display = false, int numberOfRows = 1, string fk = null)
+        public JColumn(string name, JType type, bool isKey = false, bool display = false, int numberOfRows = 1, string fkTable = null, string fkColumn = null)
         {
             Name = name;
             IsKey = isKey;
             Type = type;
             Display = display;
             NumberOfRows = numberOfRows;
-            ForeignKey = fk;
+            FKTable = fkTable;
+            FKColumn = fkColumn;
         }
     }
 }

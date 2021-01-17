@@ -27,21 +27,21 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             BoxType = boxType;
-            lblDescirption.Text = Main.JE_INPUTBOX_DESCRIPTION;
-            btnConfirm.Text = Main.JE_INPUTBOX_BTN_CONFIRM;
-            btnCancel.Text = Main.JE_INPUTBOX_BTN_CANCEL;
+            lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
+            btnConfirm.Text = Res.JE_INPUTBOX_BTN_CONFIRM;
+            btnCancel.Text = Res.JE_INPUTBOX_BTN_CANCEL;
 
             switch (BoxType)
             {
                 case "New File":
                     lblExtensionName.Visible = true;
-                    lblDescirption.Text = Main.JE_INPUTBOX_DESCRIPTION;
-                    Text = Main.JE_TMI_NEW_JSON_FILE;
+                    lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
+                    Text = Res.JE_TMI_NEW_JSON_FILE;
                     break;
                 case "Add Column":
                     lblExtensionName.Visible = false;
-                    lblDescirption.Text = Main.JE_INPUTBOX_DESCRIPTION_2;
-                    Text = Main.JE_TMI_ADD_COLUMN;
+                    lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION_2;
+                    Text = Res.JE_TMI_ADD_COLUMN;
                     break;
                 default:
                     lblExtensionName.Visible = false;
@@ -64,19 +64,19 @@ namespace JsonEditorV2
                 case "New File":
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
-                        MessageBox.Show(string.Format(Main.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Main.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
                         return;
                     }
                     else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
                     {
-                        MessageBox.Show(string.Format(Main.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Main.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error));
                         return;
                     }
                     break;
                 case "Add Column":                    
                     if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {                        
-                        MessageBox.Show(Main.JE_INPUTBOX_WRONG_COLUMN_NAME, Main.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);                        
+                        MessageBox.Show(Res.JE_INPUTBOX_WRONG_COLUMN_NAME, Res.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);                        
                         return;
                     }
                     break;

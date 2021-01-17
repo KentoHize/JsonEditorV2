@@ -71,15 +71,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Main.en-US.Designer.cs">
-      <DependentUpon>Main.en-US.resx</DependentUpon>
+    <Compile Include="Resources\Res.en-US.Designer.cs">
+      <DependentUpon>Res.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Main.Designer.cs">
+    <Compile Include="Resources\Res.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Main.resx</DependentUpon>
+      <DependentUpon>Res.resx</DependentUpon>
     </Compile>
     <Compile Include="Var.cs" />
     <EmbeddedResource Include="frmInputBox.resx">
@@ -97,13 +97,13 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Resources\Main.en-US.resx">
+    <EmbeddedResource Include="Resources\Res.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Main.en-US.Designer.cs</LastGenOutput>
+      <LastGenOutput>Res.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Main.resx">
+    <EmbeddedResource Include="Resources\Res.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Main.Designer.cs</LastGenOutput>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -130,6 +130,7 @@
   <ItemGroup>
     <Content Include="Images\Directory.png" />
     <Content Include="Images\JsonIcon.png" />
+    <Content Include="Images\Key.png" />
     <Content Include="Images\ObjectIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,8 @@
           "Name": "TT555",
           "IsKey": true,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -17,7 +18,8 @@
           "Name": "T999",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": "Add2222",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -30,7 +32,8 @@
           "Name": "HJI99",
           "IsKey": true,
           "Type": "Guid",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
         }
@@ -51,7 +54,8 @@
           "Name": "TestCo",
           "IsKey": true,
           "Type": "String",
-          "ForeignKey": "AD222",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -68,7 +72,8 @@
           "Name": "TT7777",
           "IsKey": true,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -76,7 +81,8 @@
           "Name": "_P-6",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -84,7 +90,8 @@
           "Name": "G8888",
           "IsKey": false,
           "Type": "String",
-          "ForeignKey": null,
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
@@ -92,7 +99,8 @@
           "Name": "Y888",
           "IsKey": false,
           "Type": "Guid",
-          "ForeignKey": "Add2222",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 11,
           "Display": true
         }

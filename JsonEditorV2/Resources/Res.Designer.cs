@@ -22,14 +22,14 @@ namespace JsonEditorV2.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Main {
+    public class Res {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Main() {
+        internal Res() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace JsonEditorV2.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JsonEditorV2.Resources.Main", typeof(Main).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JsonEditorV2.Resources.Res", typeof(Res).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -133,11 +133,20 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 外部索引.
+        ///   Looks up a localized string similar to 外部索引欄位.
         /// </summary>
-        public static string JE_COLUMN_FK {
+        public static string JE_COLUMN_FK_COLUMN {
             get {
-                return ResourceManager.GetString("JE_COLUMN_FK", resourceCulture);
+                return ResourceManager.GetString("JE_COLUMN_FK_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引檔案.
+        /// </summary>
+        public static string JE_COLUMN_FK_TABLE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_FK_TABLE", resourceCulture);
             }
         }
         
@@ -385,7 +394,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資料表內的{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
+        ///   Looks up a localized string similar to 請選擇外部索引欄位.
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_3 {
             get {
@@ -394,11 +403,20 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已更新.
+        ///   Looks up a localized string similar to 資料表內的{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_4 {
             get {
                 return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已更新.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_5 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_5", resourceCulture);
             }
         }
         
