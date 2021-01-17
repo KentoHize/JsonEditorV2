@@ -2,10 +2,10 @@
   "Name": "Test2",
   "TablesInfo": [
     {
-      "Name": "AD222",
+      "Name": "AD33",
       "Columns": [
         {
-          "Name": "TT555",
+          "Name": "TT557",
           "IsKey": true,
           "Type": "String",
           "FKTable": null,
@@ -14,11 +14,11 @@
           "Display": false
         },
         {
-          "Name": "T999",
+          "Name": "AT999",
           "IsKey": false,
           "Type": "String",
-          "FKTable": "AD222",
-          "FKColumn": "TT555",
+          "FKTable": "Add2222",
+          "FKColumn": "HJI99",
           "NumberOfRows": 1,
           "Display": false
         },
@@ -26,8 +26,8 @@
           "Name": "TTT99999",
           "IsKey": false,
           "Type": "Double",
-          "FKTable": "AD222",
-          "FKColumn": "TT555",
+          "FKTable": "AD33",
+          "FKColumn": "TT557",
           "NumberOfRows": 1,
           "Display": false
         },
@@ -37,6 +37,15 @@
           "Type": "String",
           "FKTable": "T4",
           "FKColumn": "TestCo",
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "Y999",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }
@@ -64,7 +73,16 @@
           "Display": false
         },
         {
-          "Name": "A123",
+          "Name": "A41123",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "bbbbbbb",
+          "FKColumn": "AAA",
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "HHH",
           "IsKey": false,
           "Type": "String",
           "FKTable": null,
@@ -75,19 +93,28 @@
       ]
     },
     {
-      "Name": "aaaa",
+      "Name": "bbbbbbb",
       "Columns": [
         {
           "Name": "AAA",
-          "IsKey": false,
+          "IsKey": true,
           "Type": "String",
-          "FKTable": "AD222",
-          "FKColumn": "TT555",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         },
         {
-          "Name": "TEest",
+          "Name": "TEst",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "GGGS99",
           "IsKey": false,
           "Type": "String",
           "FKTable": null,
@@ -99,7 +126,17 @@
     },
     {
       "Name": "T2",
-      "Columns": []
+      "Columns": [
+        {
+          "Name": "SSSS",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "bbbbbbb",
+          "FKColumn": "AAA",
+          "NumberOfRows": 1,
+          "Display": false
+        }
+      ]
     },
     {
       "Name": "T3",

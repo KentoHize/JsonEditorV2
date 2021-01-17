@@ -204,6 +204,12 @@
   <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
     <value>欄位"{0}"已刪除</value>
   </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
+    <value>確定刪除檔案"{0}.json"？</value>
+  </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
+    <value>檔案"{0}.json"已刪除</value>
+  </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
   </data>
@@ -236,6 +242,9 @@
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     <value>這不是一個空的資料夾，將清空所有檔案，你確定嗎?</value>
+  </data>
+  <data name="JE_RUN_SAVE_FILES_CHECK" xml:space="preserve">
+    <value>檔案庫"{0}"尚未存檔，是否存檔？</value>
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
     <value>"{0}"所有檔案已存檔</value>

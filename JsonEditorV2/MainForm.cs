@@ -88,6 +88,24 @@ namespace JsonEditorV2
                         jc.FKTable = jc.FKColumn = null;
         }
 
+        //刷新FK - Table
+        private void RenewFK(JTable sourceTable, string newTableName)
+        {
+            foreach (JTable jt in Var.Tables)
+                foreach (JColumn jc in jt.Columns)
+                    if (jc.FKTable == sourceTable.Name)
+                        jc.FKTable = newTableName;
+        }
+
+        //刷新FK - Column
+        private void RenewFK(JTable sourceTable, JColumn sourceColumn, string newColumnName)
+        {
+            foreach (JTable jt in Var.Tables)
+                foreach (JColumn jc in jt.Columns)
+                    if (jc.FKTable == sourceTable.Name && jc.FKColumn == sourceColumn.Name)
+                        jc.FKColumn = newColumnName;
+        }
+
         private void btnUpdateColumn_Click(object sender, EventArgs e)
         {
             //確認資料正確
@@ -140,8 +158,9 @@ namespace JsonEditorV2
             JType newType = (JType)cobColumnType.SelectedValue;
             if (Var.SelectedColumn.Name != txtColumnName.Text ||
                Var.SelectedColumn.Type != newType)
-            {  
+            {
                 //改名
+                RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
                 Var.SelectedColumn.Name = txtColumnName.Text;
 
                 //改型態檢查            
@@ -170,6 +189,8 @@ namespace JsonEditorV2
 
         private void tmiNewJsonFiles_Click(object sender, EventArgs e)
         {
+            if (AskSaveFiles(Res.JE_TMI_NEW_JSON_FILE) == DialogResult.Cancel)
+                return;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\";
 #endif
@@ -209,8 +230,22 @@ namespace JsonEditorV2
             }
         }
 
-        private void tmiExit_Click(object sender, EventArgs e)
+        private DialogResult AskSaveFiles(string title)
         {
+            if (Var.Changed)
+            {
+                DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                if (dr == DialogResult.Yes)
+                    tmiSaveJsonFiles_Click(this, new EventArgs());
+                return dr;
+            }
+            return DialogResult.No;
+        }
+
+        private void tmiExit_Click(object sender, EventArgs e)
+        {       
+            if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
+                return;
             Application.Exit();
         }
 
@@ -247,6 +282,8 @@ namespace JsonEditorV2
 
         private void tmiLoadJsonFiles_Click(object sender, EventArgs e)
         {
+            if (AskSaveFiles(Res.JE_TMI_LOAD_JSON_FILES) == DialogResult.Cancel)
+                return;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
@@ -377,6 +414,8 @@ namespace JsonEditorV2
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
         {
+            if (AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
+                return;
             Var.Tables = null;
             Var.OpenedTable.Clear();
             if (Var.JFI != null)
@@ -385,7 +424,7 @@ namespace JsonEditorV2
             Var.SelectedColumn = null;
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
-            Var.Lines.Clear();
+            //Var.Lines.Clear();
             RefreshTrvJsonFiles();
             //RefreshLibLinesUI();
             //RefreshPnlMainUI();
@@ -510,7 +549,6 @@ namespace JsonEditorV2
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
             }
-            trvJsonFiles.Select();
         }
 
         private void RefreshCloseFileState()
@@ -948,6 +986,7 @@ namespace JsonEditorV2
             try
             {
                 File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json"));
+                RenewFK(Var.SelectedColumnParentTable, fib.InputValue);
                 Var.SelectedColumnParentTable.Name = fib.InputValue;                
                 Var.SelectedColumnParentTable.Changed = true;
                 Var.JFI.Changed = true;
@@ -958,6 +997,18 @@ namespace JsonEditorV2
             }
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, fib.InputValue);
+        }
+
+        private void tmiDeleteJsonFile_Click(object sender, EventArgs e)
+        {   
+            DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
+                return;
+
+            Var.JFI.Changed = true;
+            string fileName = Var.SelectedColumnParentTable.Name;
+            RefreshTrvJsonFiles();
+            sslMain.Text = string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_5, fileName);
         }
     }
 }

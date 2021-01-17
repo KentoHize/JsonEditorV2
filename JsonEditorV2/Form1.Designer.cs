@@ -317,9 +317,9 @@
             // trvJsonFiles
             // 
             this.trvJsonFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trvJsonFiles.HideSelection = false;
             this.trvJsonFiles.ImageIndex = 0;
             this.trvJsonFiles.ImageList = this.imlMain;
-            this.trvJsonFiles.LabelEdit = true;
             this.trvJsonFiles.Location = new System.Drawing.Point(1, 32);
             this.trvJsonFiles.Name = "trvJsonFiles";
             this.trvJsonFiles.SelectedImageIndex = 0;
@@ -587,8 +587,9 @@
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiDeleteJsonFile.Text = "X";
+            this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
