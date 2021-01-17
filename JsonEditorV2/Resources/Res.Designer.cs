@@ -106,6 +106,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新增資料.
+        /// </summary>
+        public static string JE_BTN_NEW_LINE {
+            get {
+                return ResourceManager.GetString("JE_BTN_NEW_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新.
         /// </summary>
         public static string JE_BTN_UPDATE_COLUMN {
@@ -286,11 +295,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欄位&quot;{0}已存在.
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已存在.
         /// </summary>
         public static string JE_RUN_ADD_COLUMN_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_ADD_COLUMN_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起刪除欄位嗎.
+        /// </summary>
+        public static string JE_RUN_DELETE_COLUMN_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_DELETE_COLUMN_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已刪除.
+        /// </summary>
+        public static string JE_RUN_DELETE_COLUMN_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_DELETE_COLUMN_M_2", resourceCulture);
             }
         }
         
@@ -367,6 +394,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;已存在.
+        /// </summary>
+        public static string JE_RUN_RENAME_JSON_FILE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_RENAME_JSON_FILE_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案已重新命名為&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_RENAME_JSON_FILE_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_RENAME_JSON_FILE_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 這不是一個空的資料夾，將清空所有檔案，你確定嗎?.
         /// </summary>
         public static string JE_RUN_SAVE_AS_JSON_FILES_M_1 {
@@ -439,7 +484,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 資料表內的{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
+        ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_4 {
             get {

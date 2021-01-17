@@ -94,6 +94,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInputBox";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "-";
             this.ResumeLayout(false);
             this.PerformLayout();

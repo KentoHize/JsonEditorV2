@@ -5,24 +5,6 @@
       "Name": "Articles",
       "Columns": [
         {
-          "Name": "No",
-          "IsKey": false,
-          "Type": "Long",
-          "FKTable": null,
-          "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": true
-        },
-        {
-          "Name": "DateAA",
-          "IsKey": false,
-          "Type": "Date",
-          "FKTable": null,
-          "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": false
-        },
-        {
           "Name": "Chinese",
           "IsKey": false,
           "Type": "String",
@@ -58,8 +40,8 @@
           "Name": "PersonID",
           "IsKey": false,
           "Type": "Guid",
-          "FKTable": "Persons",
-          "FKColumn": "ID",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
         },
@@ -67,10 +49,10 @@
           "Name": "BestowerID",
           "IsKey": false,
           "Type": "Guid",
-          "FKTable": "Persons",
-          "FKColumn": "ID",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": false
         },
         {
           "Name": "MoralRank",

@@ -21,6 +21,24 @@
           "FKColumn": "TT555",
           "NumberOfRows": 1,
           "Display": false
+        },
+        {
+          "Name": "TTT99999",
+          "IsKey": false,
+          "Type": "Double",
+          "FKTable": "AD222",
+          "FKColumn": "TT555",
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "H999",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": "T4",
+          "FKColumn": "TestCo",
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },
@@ -44,11 +62,20 @@
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
           "Display": false
+        },
+        {
+          "Name": "A123",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },
     {
-      "Name": "PAST",
+      "Name": "aaaa",
       "Columns": [
         {
           "Name": "AAA",
@@ -56,6 +83,15 @@
           "Type": "String",
           "FKTable": "AD222",
           "FKColumn": "TT555",
+          "NumberOfRows": 1,
+          "Display": false
+        },
+        {
+          "Name": "TEest",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
         }

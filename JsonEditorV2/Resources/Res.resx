@@ -132,6 +132,9 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="JE_BTN_NEW_LINE" xml:space="preserve">
+    <value>新增資料</value>
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -193,7 +196,13 @@
     <value>不符合規則的檔案名稱</value>
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
-    <value>欄位"{0}已存在</value>
+    <value>欄位"{0}"已存在</value>
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
+    <value>檔案內存在{0}筆資料，確定要一起刪除欄位嗎</value>
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
+    <value>欄位"{0}"已刪除</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
@@ -218,6 +227,12 @@
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
     <value>開新檔案</value>
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
+    <value>檔案"{0}.json"已存在</value>
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
+    <value>檔案已重新命名為"{0}"</value>
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     <value>這不是一個空的資料夾，將清空所有檔案，你確定嗎?</value>
@@ -244,7 +259,7 @@
     <value>請選擇外部索引欄位</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
-    <value>資料表內的{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+    <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
     <value>欄位"{0}"已更新</value>

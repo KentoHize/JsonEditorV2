@@ -29,6 +29,8 @@ namespace JsonEditorV2
         public static TreeNode RootNode { get; set; }
         public static bool DblClick { get; set; }
 
+        public static bool Changed { get => Tables.Exists(m => m.Changed) || JFI.Changed; }
+
         public static CultureInfo CI { get; set; }
     }
 }

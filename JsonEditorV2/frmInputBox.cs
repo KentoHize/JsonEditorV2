@@ -26,17 +26,21 @@ namespace JsonEditorV2
         public frmInputBox(string boxType)
         {
             InitializeComponent();
-            BoxType = boxType;
-            lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
+            BoxType = boxType;            
             btnConfirm.Text = Res.JE_INPUTBOX_BTN_CONFIRM;
             btnCancel.Text = Res.JE_INPUTBOX_BTN_CANCEL;
 
             switch (BoxType)
             {
-                case "New File":
+                case "New File":                
                     lblExtensionName.Visible = true;
                     lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
                     Text = Res.JE_TMI_NEW_JSON_FILE;
+                    break;
+                case "Rename File":
+                    lblExtensionName.Visible = true;
+                    lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
+                    Text = Res.JE_TMI_RENAME_JSON_FILE;
                     break;
                 case "Add Column":
                     lblExtensionName.Visible = false;
@@ -61,15 +65,27 @@ namespace JsonEditorV2
             InputValue = txtInput.Text;
             switch (BoxType)
             {
-                case "New File":
+                case "New File":                
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
-                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_NEW_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
                     {
-                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_INPUTBOX_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_NEW_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }                    
+                    break;
+                case "Rename File":
+                    if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
+                    {
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_RENAME_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
+                    {
+                        MessageBox.Show(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_RENAME_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     break;

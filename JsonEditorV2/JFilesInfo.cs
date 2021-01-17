@@ -15,6 +15,9 @@ namespace JsonEditor
         public string Name { get; set; }
 
         [JsonIgnore]
+        public bool Changed { get; set; }
+
+        [JsonIgnore]
         public string DirectoryPath { get; set; }
 
         [JsonIgnore]

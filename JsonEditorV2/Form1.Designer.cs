@@ -91,6 +91,7 @@
             this.tmiCollapseAll = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnNewLine = new System.Windows.Forms.Button();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -309,7 +310,7 @@
             this.lsbLines.ItemHeight = 16;
             this.lsbLines.Location = new System.Drawing.Point(381, 62);
             this.lsbLines.Name = "lsbLines";
-            this.lsbLines.Size = new System.Drawing.Size(383, 708);
+            this.lsbLines.Size = new System.Drawing.Size(383, 660);
             this.lsbLines.TabIndex = 14;
             this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.libLines_SelectedIndexChanged);
             // 
@@ -560,7 +561,7 @@
             this.toolStripMenuItem5,
             this.tmiAddColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(88, 130);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 158);
             // 
             // tmiOpenJsonFile
             // 
@@ -572,8 +573,9 @@
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiRenameJsonFile.Text = "X";
+            this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiCloseJsonFile
             // 
@@ -625,20 +627,32 @@
             this.cmsColumnSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiDeleteColumn});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(211, 56);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 28);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
+            // 
+            // btnNewLine
+            // 
+            this.btnNewLine.Enabled = false;
+            this.btnNewLine.Location = new System.Drawing.Point(642, 730);
+            this.btnNewLine.Name = "btnNewLine";
+            this.btnNewLine.Size = new System.Drawing.Size(122, 40);
+            this.btnNewLine.TabIndex = 26;
+            this.btnNewLine.Text = "-";
+            this.btnNewLine.UseVisualStyleBackColor = true;
+            this.btnNewLine.Click += new System.EventHandler(this.btnNewLine_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1382, 803);
+            this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.mnsMain);
             this.Controls.Add(this.lsbLines);
@@ -729,6 +743,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiCollapseAll;
         private System.Windows.Forms.ContextMenuStrip cmsColumnSelected;
         private System.Windows.Forms.ToolStripMenuItem tmiDeleteColumn;
+        private System.Windows.Forms.Button btnNewLine;
     }
 }
 
