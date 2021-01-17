@@ -32,6 +32,7 @@ namespace JsonEditorV2
         private void ChangeCulture()
         {
             Res.Culture = Var.CI;
+            RefreshTmiLanguages();
             PatchTextFromResource();
         }
 
@@ -699,15 +700,27 @@ namespace JsonEditorV2
             }
         }
 
+        private void RefreshTmiLanguages()
+        {
+            foreach (ToolStripItem tsi in tmiLanguages.DropDownItems)
+            {
+                ToolStripMenuItem tsmi = tsi as ToolStripMenuItem;
+                if (tsmi != null)
+                    tsmi.Checked = false;
+                if (tsmi.Name.Contains(Var.CI.Name.Remove(2, 1).ToUpper()))
+                    tsmi.Checked = true;
+            }
+        }
+
         private void tmiLanguageZNCH_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("zn-CH");
+            Var.CI = new CultureInfo("zh-TW");            
             ChangeCulture();            
         }
 
         private void tmiLanguageENUS_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("en-US");
+            Var.CI = new CultureInfo("en-US");            
             ChangeCulture();
         }
 
