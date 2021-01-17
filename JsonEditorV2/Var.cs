@@ -16,7 +16,7 @@ namespace JsonEditorV2
 
         public static int PageIndex { get; set; }
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
-        public static JTable SelectedTable { get { if (OpenedTable == null) return null; return OpenedTable[PageIndex]; } }
+        public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }
 
         public static JTable SelectedColumnParentTable { get; set; }
         public static JColumn SelectedColumn { get; set; }

@@ -124,13 +124,9 @@
     <None Include="TestArea\Test2\Add2222.json" />
     <None Include="TestArea\Test2\bbbbbbb.json" />
     <None Include="TestArea\Test2\JFilesInfo.json" />
-    <None Include="TestArea\Test2\T10.json" />
-    <None Include="TestArea\Test2\T11.json" />
     <None Include="TestArea\Test2\T2.json" />
     <None Include="TestArea\Test2\T4.json" />
     <None Include="TestArea\Test2\T5.json" />
-    <None Include="TestArea\Test2\T7.json" />
-    <None Include="TestArea\Test2\T9.json" />
     <None Include="TestArea\Test2\Test6.json" />
     <None Include="TestArea\Test3\Articles.json" />
     <None Include="TestArea\Test3\BestowRecords.json" />
