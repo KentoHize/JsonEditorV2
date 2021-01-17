@@ -80,11 +80,12 @@ namespace JsonEditorV2
         }
 
         //取消FK
-        private void CancelFK(JTable sourceTable, JColumn sourceColumn)
+        private void CancelFK(JTable sourceTable, JColumn sourceColumn = null)
         {
             foreach (JTable jt in Var.Tables)
                 foreach (JColumn jc in jt.Columns)
-                    if (jc.FKTable == sourceTable.Name && jc.FKColumn == sourceColumn.Name)
+                    if((sourceColumn == null && jc.FKTable == sourceTable.Name) ||                        
+                       (sourceColumn != null && jc.FKColumn == sourceColumn.Name && jc.FKTable == sourceTable.Name))
                         jc.FKTable = jc.FKColumn = null;
         }
 
@@ -449,11 +450,6 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);            
         }
 
-        private void trvJsonFiles_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-
-        }
-
         private void trvJsonFiles_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
         {
             if (Var.DblClick)
@@ -464,13 +460,6 @@ namespace JsonEditorV2
         {
             if (Var.DblClick)
                 e.Cancel = true;
-        }
-
-        private void trvJsonFiles_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            //if (e.Node == Var.RootNode || 
-            //    (e.Node != Var.RootNode && e.Node.Parent != Var.RootNode))
-            //    e.CancelEdit = true;
         }
 
         private void trvJsonFiles_MouseDown(object sender, MouseEventArgs e)
@@ -581,15 +570,17 @@ namespace JsonEditorV2
 
                 JTable jt = new JTable(fib.InputValue, true);
                 Var.Tables.Add(jt);
-                TreeNode tr = new TreeNode { Text = GetTableNodeString(jt), ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name };
-                tr.ToolTipText = tr.Text;
-                Var.RootNode.Nodes.Add(tr);                
                 Var.JFI.Changed = true;
+                
+                //TreeNode tr = new TreeNode { Text = GetTableNodeString(jt), ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name };
+                //tr.ToolTipText = tr.Text;
+                //Var.RootNode.Nodes.Add(tr); 
             }
             catch (Exception ex)
             {
                 HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
             }
+            RefreshTrvJsonFiles();
         }
 
         private void HandleException(Exception ex, string content = null, string title = null)
@@ -1005,8 +996,19 @@ namespace JsonEditorV2
             if (dr == DialogResult.No)
                 return;
 
+            CancelFK(Var.SelectedColumnParentTable);
             Var.JFI.Changed = true;
             string fileName = Var.SelectedColumnParentTable.Name;
+            try
+            {
+                File.Delete(Path.Combine(Var.JFI.DirectoryPath, $"{fileName}.json"));
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }            
+            Var.Tables.Remove(Var.SelectedColumnParentTable);
+
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_5, fileName);
         }

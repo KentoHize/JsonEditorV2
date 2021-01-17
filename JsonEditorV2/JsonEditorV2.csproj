@@ -120,7 +120,37 @@
     <None Include="TestArea\Test1\JFilesInfo.json" />
     <None Include="TestArea\Test1\Persons.json" />
     <None Include="TestArea\Test1\Quotes.json" />
+    <None Include="TestArea\Test2\AD33.json" />
+    <None Include="TestArea\Test2\Add2222.json" />
+    <None Include="TestArea\Test2\bbbbbbb.json" />
     <None Include="TestArea\Test2\JFilesInfo.json" />
+    <None Include="TestArea\Test2\T10.json" />
+    <None Include="TestArea\Test2\T11.json" />
+    <None Include="TestArea\Test2\T2.json" />
+    <None Include="TestArea\Test2\T4.json" />
+    <None Include="TestArea\Test2\T5.json" />
+    <None Include="TestArea\Test2\T7.json" />
+    <None Include="TestArea\Test2\T9.json" />
+    <None Include="TestArea\Test2\Test6.json" />
+    <None Include="TestArea\Test3\Articles.json" />
+    <None Include="TestArea\Test3\BestowRecords.json" />
+    <None Include="TestArea\Test3\JFilesInfo.json" />
+    <None Include="TestArea\Test3\Persons.json" />
+    <None Include="TestArea\Test3\Quotes.json" />
+    <None Include="TestArea\Test4\JFilesInfo.json" />
+    <None Include="TestArea\Test4\TTT2.json" />
+    <None Include="TestArea\Test5\AD33.json" />
+    <None Include="TestArea\Test5\Add2222.json" />
+    <None Include="TestArea\Test5\bbbbbbb.json" />
+    <None Include="TestArea\Test5\JFilesInfo.json" />
+    <None Include="TestArea\Test5\T10.json" />
+    <None Include="TestArea\Test5\T11.json" />
+    <None Include="TestArea\Test5\T2.json" />
+    <None Include="TestArea\Test5\T4.json" />
+    <None Include="TestArea\Test5\T5.json" />
+    <None Include="TestArea\Test5\T7.json" />
+    <None Include="TestArea\Test5\T9.json" />
+    <None Include="TestArea\Test5\Test6.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

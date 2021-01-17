@@ -326,8 +326,6 @@
             this.trvJsonFiles.ShowNodeToolTips = true;
             this.trvJsonFiles.Size = new System.Drawing.Size(374, 428);
             this.trvJsonFiles.TabIndex = 12;
-            this.trvJsonFiles.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvJsonFiles_BeforeLabelEdit);
-            this.trvJsonFiles.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvJsonFiles_AfterLabelEdit);
             this.trvJsonFiles.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeCollapse);
             this.trvJsonFiles.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeExpand);
             this.trvJsonFiles.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.trvJsonFiles_NodeMouseClick);
