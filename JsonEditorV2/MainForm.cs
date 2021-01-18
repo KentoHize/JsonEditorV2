@@ -479,6 +479,7 @@ namespace JsonEditorV2
         private void RefreshLsbLines()
         {
             lsbLines.Items.Clear();
+            btnNewLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
 
@@ -493,8 +494,7 @@ namespace JsonEditorV2
                 }
                 lsbLines.Items.Add(displayString.ToString());
             }
-
-
+            btnNewLine.Enabled = true;
         }
 
         private void RefreshTbcMain()
@@ -987,7 +987,7 @@ namespace JsonEditorV2
                                 else
                                 {
                                     if (i == 0)
-                                        jt.Columns.Add(new JColumn(value.ToString(), Extentions.ToJType(reader.TokenType)));
+                                        jt.Columns.Add(new JColumn(value.ToString(), JTypeExtentions.ToJType(reader.TokenType)));
                                     jl.Add(JValue.FromObject(reader.Value));
                                 }
                                 pflag = 0;
@@ -1086,7 +1086,14 @@ namespace JsonEditorV2
 
         private void btnNewLine_Click(object sender, EventArgs e)
         {
+            JLine jl = new JLine();
+            foreach (JColumn jc in Var.SelectedTable.Columns)
+                jl.Add(new JValue(new object().ParseJType(jc.Type)));
 
+            Var.SelectedTable.Lines.Add(jl);
+            RefreshTbcMain();
+
+            lsbLines.SelectedIndex = lsbLines.Items.Count - 1;
         }
 
         private void tmiRenameJsonFile_Click(object sender, EventArgs e)
