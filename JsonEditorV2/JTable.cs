@@ -115,7 +115,6 @@ namespace JsonEditor
                 JLine items = new JLine();
                 JObject jo = jt as JObject;
 
-                int i = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
                     if (produceColumnInfo)
@@ -130,13 +129,6 @@ namespace JsonEditor
                         else if (isFirst)
                             Columns.Add(new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
                                 Math.Abs(kvp.Value.ToString().Length / 50) + 1));
-                    }
-
-                    if (kvp.Key != Columns[i].Name)
-                    {
-                        items.Add(new JValue(null));
-                        i++;
-                        continue;
                     }
 
                     switch (kvp.Value.Type)
@@ -163,8 +155,12 @@ namespace JsonEditor
                             items.Add(JValue.FromObject(kvp.Value.ToString()));
                             break;
                     }
-                    i++;
                 }
+
+                //新增加值
+                while (items.Count < Columns.Count)
+                    items.Add(new JValue());
+
                 isFirst = false;
                 Lines.Add(items);
             }

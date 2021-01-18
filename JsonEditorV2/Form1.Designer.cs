@@ -686,6 +686,7 @@
             this.Controls.Add(this.lbColumnFKColumn);
             this.Controls.Add(this.trvJsonFiles);
             this.Controls.Add(this.stsMain);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.lbColumnFKColumn.ResumeLayout(false);
             this.lbColumnFKColumn.PerformLayout();

@@ -30,6 +30,15 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
+        },
+        {
+          "Name": "No",
+          "IsKey": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },
