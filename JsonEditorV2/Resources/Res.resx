@@ -300,6 +300,9 @@
   <data name="JE_TMI_CLOSE_JSON_FILE" xml:space="preserve">
     <value>關閉</value>
   </data>
+  <data name="JE_TMI_CLOSE_TAB" xml:space="preserve">
+    <value>關閉檔案</value>
+  </data>
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     <value>收縮全部</value>
   </data>

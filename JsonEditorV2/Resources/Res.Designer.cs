@@ -610,6 +610,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 關閉檔案.
+        /// </summary>
+        public static string JE_TMI_CLOSE_TAB {
+            get {
+                return ResourceManager.GetString("JE_TMI_CLOSE_TAB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 收縮全部.
         /// </summary>
         public static string JE_TMI_COLLAPSE_ALL {

@@ -55,6 +55,9 @@
             this.stsMain = new System.Windows.Forms.StatusStrip();
             this.sslMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.tbcMain = new System.Windows.Forms.TabControl();
+            this.cmsTabSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiCloseTab = new System.Windows.Forms.ToolStripMenuItem();
+            this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,10 +94,10 @@
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewLine = new System.Windows.Forms.Button();
-            this.tbpStart = new System.Windows.Forms.TabPage();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
+            this.cmsTabSelected.SuspendLayout();
             this.mnsMain.SuspendLayout();
             this.cmsJsonFiles.SuspendLayout();
             this.cmsJsonFileSelected.SuspendLayout();
@@ -120,6 +123,7 @@
             this.btnClearMain.TabIndex = 18;
             this.btnClearMain.Text = "-";
             this.btnClearMain.UseVisualStyleBackColor = true;
+            this.btnClearMain.Click += new System.EventHandler(this.btnClearMain_Click);
             // 
             // btnUpdateMain
             // 
@@ -359,6 +363,7 @@
             // 
             // tbcMain
             // 
+            this.tbcMain.ContextMenuStrip = this.cmsTabSelected;
             this.tbcMain.Controls.Add(this.tbpStart);
             this.tbcMain.Location = new System.Drawing.Point(381, 32);
             this.tbcMain.Name = "tbcMain";
@@ -366,6 +371,31 @@
             this.tbcMain.Size = new System.Drawing.Size(993, 24);
             this.tbcMain.TabIndex = 20;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
+            this.tbcMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseClick);
+            this.tbcMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseDown);
+            // 
+            // cmsTabSelected
+            // 
+            this.cmsTabSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsTabSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiCloseTab});
+            this.cmsTabSelected.Name = "cmsMain";
+            this.cmsTabSelected.Size = new System.Drawing.Size(88, 28);
+            // 
+            // tmiCloseTab
+            // 
+            this.tmiCloseTab.Name = "tmiCloseTab";
+            this.tmiCloseTab.Size = new System.Drawing.Size(87, 24);
+            this.tmiCloseTab.Text = "X";
+            this.tmiCloseTab.Click += new System.EventHandler(this.tmiCloseTab_Click);
+            // 
+            // tbpStart
+            // 
+            this.tbpStart.Location = new System.Drawing.Point(4, 25);
+            this.tbpStart.Name = "tbpStart";
+            this.tbpStart.Size = new System.Drawing.Size(985, 0);
+            this.tbpStart.TabIndex = 0;
+            this.tbpStart.UseVisualStyleBackColor = true;
             // 
             // pnlMain
             // 
@@ -590,7 +620,7 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
@@ -639,14 +669,6 @@
             this.btnNewLine.UseVisualStyleBackColor = true;
             this.btnNewLine.Click += new System.EventHandler(this.btnNewLine_Click);
             // 
-            // tbpStart
-            // 
-            this.tbpStart.Location = new System.Drawing.Point(4, 25);
-            this.tbpStart.Name = "tbpStart";
-            this.tbpStart.Size = new System.Drawing.Size(985, 0);
-            this.tbpStart.TabIndex = 0;
-            this.tbpStart.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -670,6 +692,7 @@
             this.stsMain.ResumeLayout(false);
             this.stsMain.PerformLayout();
             this.tbcMain.ResumeLayout(false);
+            this.cmsTabSelected.ResumeLayout(false);
             this.mnsMain.ResumeLayout(false);
             this.mnsMain.PerformLayout();
             this.cmsJsonFiles.ResumeLayout(false);
@@ -744,6 +767,8 @@
         private System.Windows.Forms.ToolStripMenuItem tmiDeleteColumn;
         private System.Windows.Forms.Button btnNewLine;
         private System.Windows.Forms.TabPage tbpStart;
+        private System.Windows.Forms.ContextMenuStrip cmsTabSelected;
+        private System.Windows.Forms.ToolStripMenuItem tmiCloseTab;
     }
 }
 

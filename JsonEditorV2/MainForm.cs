@@ -16,7 +16,7 @@ namespace JsonEditorV2
     {
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
             Var.CI = new CultureInfo("zh-TW");
             ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
@@ -71,12 +71,13 @@ namespace JsonEditorV2
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
+            tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
         }
         #endregion
 
         private void libLines_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            RefreshPnlMainValue();
         }
 
         //取消FK
@@ -84,7 +85,7 @@ namespace JsonEditorV2
         {
             foreach (JTable jt in Var.Tables)
                 foreach (JColumn jc in jt.Columns)
-                    if((sourceColumn == null && jc.FKTable == sourceTable.Name) ||                        
+                    if ((sourceColumn == null && jc.FKTable == sourceTable.Name) ||
                        (sourceColumn != null && jc.FKColumn == sourceColumn.Name && jc.FKTable == sourceTable.Name))
                         jc.FKTable = jc.FKColumn = null;
         }
@@ -130,12 +131,19 @@ namespace JsonEditorV2
             if (!Var.SelectedColumnParentTable.Loaded)
                 LoadJsonFile(Var.SelectedColumnParentTable);
 
-            //如果有資料秀出訊息視窗
+            JType newType = (JType)cobColumnType.SelectedValue;
+
+            //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (dr == DialogResult.Cancel)
-                    return;
+                if ((Var.SelectedColumn.IsKey != chbColumnIsKey.Checked && chbColumnIsKey.Checked) ||
+                   Var.SelectedColumn.Name != txtColumnName.Text ||
+                   Var.SelectedColumn.Type != newType)
+                {
+                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    if (dr == DialogResult.Cancel)
+                        return;
+                }
             }
 
             Var.SelectedColumnParentTable.Changed = true;
@@ -153,10 +161,11 @@ namespace JsonEditorV2
             //Key檢查，取消Key時同時取消所有相關FK            
             if (Var.SelectedColumn.IsKey && !chbColumnIsKey.Checked)
                 CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
+
+
             Var.SelectedColumn.IsKey = chbColumnIsKey.Checked;
 
             //需要存檔
-            JType newType = (JType)cobColumnType.SelectedValue;
             if (Var.SelectedColumn.Name != txtColumnName.Text ||
                Var.SelectedColumn.Type != newType)
             {
@@ -177,10 +186,6 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
-
-            //RefreshLibLinesUI();
-            //RefreshPnlMainUI();
-            //RefreshPnlMainValue();
         }
 
         private void tmiAbout_Click(object sender, EventArgs e)
@@ -244,7 +249,7 @@ namespace JsonEditorV2
         }
 
         private void tmiExit_Click(object sender, EventArgs e)
-        {       
+        {
             if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
                 return;
             Application.Exit();
@@ -414,6 +419,29 @@ namespace JsonEditorV2
             RefreshPnlFileInfo();
         }
 
+        private void RefreshPnlMainValue()
+        {
+            foreach (Control ctls in pnlMain.Controls)
+                if (ctls is TextBox)
+                    ((TextBox)ctls).Text = "";
+
+            if (Var.SelectedTable == null)
+                return;
+
+            if (lsbLines.SelectedIndex == -1)
+                return;
+
+            for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
+            {
+                TextBox tb = pnlMain.Controls.Find($"txt{Var.SelectedTable.Columns[i].Name}", false)[0] as TextBox;
+                if (tb != null)
+                    if (Var.SelectedTable[lsbLines.SelectedIndex][i].Value != null)
+                        tb.Text = Var.SelectedTable[lsbLines.SelectedIndex][i].Value.ToString();
+                    else
+                        tb.Text = "";
+            }
+        }
+
         private void RefreshPnlMain()
         {
             btnClearMain.Enabled = false;
@@ -445,6 +473,7 @@ namespace JsonEditorV2
             }
             btnClearMain.Enabled = true;
             btnUpdateMain.Enabled = true;
+            RefreshPnlMainValue();
         }
 
         private void RefreshLsbLines()
@@ -465,9 +494,6 @@ namespace JsonEditorV2
                 lsbLines.Items.Add(displayString.ToString());
             }
 
-            
-            //if (selectedLine != null)
-            //    libLines.SelectedIndex = selectedTable.Lines.FindIndex(m => m == selectedLine);
 
         }
 
@@ -476,16 +502,17 @@ namespace JsonEditorV2
             while (Var.OpenedTable.Count > tbcMain.TabPages.Count)
                 tbcMain.TabPages.Add(new TabPage());
 
+            tbcMain.SelectedIndex = Var.PageIndex;
+
             while (Var.OpenedTable.Count < tbcMain.TabPages.Count && tbcMain.TabPages.Count != 1)
                 tbcMain.TabPages.RemoveAt(tbcMain.TabPages.Count - 1);
 
             if (Var.OpenedTable.Count == 0)
                 tbcMain.TabPages[0].Text = "";
 
-            for(int i = 0; i < Var.OpenedTable.Count; i++)
+            for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
-
-            tbcMain.SelectedIndex = Var.PageIndex;
+            
             RefreshLsbLines();
             RefreshPnlMain();
         }
@@ -500,7 +527,7 @@ namespace JsonEditorV2
                 Var.JFI.Dispose();
             Var.RootNode = null;
             Var.SelectedColumn = null;
-            Var.SelectedColumnParentTable = null;            
+            Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
             //Var.Lines.Clear();
             RefreshTrvJsonFiles();
@@ -525,7 +552,7 @@ namespace JsonEditorV2
                     SaveJsonFile(jt);
 
             RefreshTrvJsonFiles();
-            sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);            
+            sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
         }
 
         private void trvJsonFiles_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
@@ -572,7 +599,7 @@ namespace JsonEditorV2
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    trvJsonFiles.SelectedNode = e.Node;                   
+                    trvJsonFiles.SelectedNode = e.Node;
                     trvJsonFiles.ContextMenuStrip = cmsJsonFileSelected;
                 }
             }
@@ -625,17 +652,13 @@ namespace JsonEditorV2
 
         private void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Node == Var.RootNode)
-            { }
-            else if (e.Node.Parent == Var.RootNode)
+            if (e.Node.Parent == Var.RootNode)
             {
                 if (tmiOpenJsonFile.Enabled)
                     tmiOpenJsonFile_Click(this, new EventArgs());
-                else
-                    tmiCloseJsonFile_Click(this, new EventArgs());
-                
+
                 //補足效果
-                Var.DblClick = false; 
+                Var.DblClick = false;
                 if (trvJsonFiles.SelectedNode.IsExpanded)
                     trvJsonFiles.SelectedNode.Collapse();
                 else
@@ -658,7 +681,7 @@ namespace JsonEditorV2
                 JTable jt = new JTable(fib.InputValue, true);
                 Var.Tables.Add(jt);
                 Var.JFI.Changed = true;
-                
+
                 //TreeNode tr = new TreeNode { Text = GetTableNodeString(jt), ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name };
                 //tr.ToolTipText = tr.Text;
                 //Var.RootNode.Nodes.Add(tr); 
@@ -679,7 +702,7 @@ namespace JsonEditorV2
 
             //JFI檢查失敗處理
             if (ex.Message.Contains("LoadFileInfo"))
-            {                
+            {
                 string p1 = ex.Message.Substring(13).Split(',')[0];
                 string p2 = ex.Message.Substring(13).Split(',')[1];
                 if (ex is ArgumentNullException)
@@ -691,7 +714,7 @@ namespace JsonEditorV2
                 else if (ex is MissingFieldException)
                     content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
             }
-            
+
             MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -707,6 +730,14 @@ namespace JsonEditorV2
                 MessageBox.Show(string.Format(Res.JE_RUN_ADD_COLUMN_M_1, fib.InputValue), Res.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+
+            //To DO
+            //if (!Var.SelectedColumnParentTable.Loaded)
+            //    LoadJsonFile(Var.SelectedColumnParentTable);
+            
+            //if (Var.SelectedColumnParentTable.Count != 0)
+            //{ }
 
             JColumn jc = new JColumn(fib.InputValue);
             Var.SelectedColumnParentTable.Columns.Add(jc);
@@ -871,7 +902,7 @@ namespace JsonEditorV2
                 /* 結束 */
             }
 
-            Var.OpenedTable.Add(Var.SelectedColumnParentTable);            
+            Var.OpenedTable.Add(Var.SelectedColumnParentTable);
             Var.PageIndex = Var.OpenedTable.Count - 1;
 
             RefreshTbcMain();
@@ -901,7 +932,7 @@ namespace JsonEditorV2
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
-                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
+                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);                    
                     sr.Dispose();
                 }
             }
@@ -1060,7 +1091,7 @@ namespace JsonEditorV2
 
         private void tmiRenameJsonFile_Click(object sender, EventArgs e)
         {
-            frmInputBox fib = new frmInputBox("Rename File");            
+            frmInputBox fib = new frmInputBox("Rename File");
             DialogResult dr = fib.ShowDialog(this);
             if (dr == DialogResult.Cancel)
                 return;
@@ -1068,8 +1099,8 @@ namespace JsonEditorV2
             if (fib.InputValue == Var.SelectedColumnParentTable.Name)
                 return;
 
-            if(Var.Tables.Exists(m => m.Name == fib.InputValue))
-            {   
+            if (Var.Tables.Exists(m => m.Name == fib.InputValue))
+            {
                 MessageBox.Show(string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_1, fib.InputValue), Res.JE_TMI_RENAME_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -1077,7 +1108,7 @@ namespace JsonEditorV2
             {
                 File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json"));
                 RenewFK(Var.SelectedColumnParentTable, fib.InputValue);
-                Var.SelectedColumnParentTable.Name = fib.InputValue;                
+                Var.SelectedColumnParentTable.Name = fib.InputValue;
                 Var.SelectedColumnParentTable.Changed = true;
                 Var.JFI.Changed = true;
             }
@@ -1090,7 +1121,7 @@ namespace JsonEditorV2
         }
 
         private void tmiDeleteJsonFile_Click(object sender, EventArgs e)
-        {   
+        {
             DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.No)
                 return;
@@ -1105,31 +1136,72 @@ namespace JsonEditorV2
             catch (Exception ex)
             {
                 HandleException(ex);
-            }            
+            }
             Var.Tables.Remove(Var.SelectedColumnParentTable);
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_5, fileName);
         }
 
+        private void CloseJsonFile(int index)
+        {
+            JTable jt = Var.SelectedTable;
+            Var.OpenedTable.RemoveAt(index);
+            if (Var.PageIndex == index)
+                Var.PageIndex = index == 0 ? Var.OpenedTable.Count - 1 : index - 1;
+            else
+                Var.PageIndex = Var.OpenedTable.IndexOf(jt);
+            RefreshTbcMain();
+        }
+
         private void tmiCloseJsonFile_Click(object sender, EventArgs e)
         {
-            if (AskSaveFiles(Res.JE_TMI_CLOSE_JSON_FILE) == DialogResult.Cancel)
-                return;
-
             if (!Var.OpenedTable.Contains(Var.SelectedColumnParentTable))
                 return;
-
-            Var.OpenedTable.Remove(Var.SelectedColumnParentTable);
-
-            Var.PageIndex = Var.OpenedTable.Count - 1;
-            RefreshTbcMain();
+            CloseJsonFile(Var.OpenedTable.IndexOf(Var.SelectedColumnParentTable));
         }
 
         private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             Var.PageIndex = tbcMain.SelectedIndex;
             RefreshLsbLines();
+            RefreshPnlMain();
+        }
+
+        private void btnClearMain_Click(object sender, EventArgs e)
+        {
+            TextBox tb;
+            foreach (Control c in pnlMain.Controls)
+            {
+                if (c as TextBox == null)
+                    continue;
+                tb = c as TextBox;
+                tb.Text = "";
+            }
+        }
+
+        private void tmiCloseTab_Click(object sender, EventArgs e)
+        {
+            CloseJsonFile(Var.ClickedTabIndex);
+        }
+
+        private void tbcMain_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void tbcMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                tbcMain.ContextMenuStrip = null;
+                Var.ClickedTabIndex = -1;
+                for (int i = 0; i < tbcMain.TabPages.Count; i++)
+                    if (tbcMain.GetTabRect(i).Contains(e.Location))
+                        Var.ClickedTabIndex = i;
+                if (Var.ClickedTabIndex != -1 && Var.OpenedTable.Count != 0)
+                    tbcMain.ContextMenuStrip = cmsTabSelected;
+            }
         }
     }
 }

@@ -37,7 +37,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 17,
+          "NumberOfRows": 10,
           "Display": false
         },
         {
@@ -281,7 +281,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 2,
+          "NumberOfRows": 5,
           "Display": false
         },
         {
@@ -331,7 +331,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 3,
           "Display": false
         },
         {
@@ -340,7 +340,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 3,
           "Display": false
         },
         {

@@ -26,7 +26,7 @@ namespace JsonEditor
             : this("")
         { }
 
-        public JTable(string name, bool isNew = false)        
+        public JTable(string name, bool isNew = false)
         {
             Name = name;
             Loaded = isNew;
@@ -46,14 +46,14 @@ namespace JsonEditor
         public void LoadFileInfo(JTableInfo jfi)
         {
             //檢查一下是否正確
-            if (jfi == null)                
+            if (jfi == null)
                 throw new ArgumentException($"LoadFileInfo:{Name},");
             if (Name != jfi.Name)
-                throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");                
+                throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");
             if (Columns.Count != 0)
             {
-                if (Columns.Count != jfi.Columns.Count)  
-                    throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");                    
+                if (Columns.Count != jfi.Columns.Count)
+                    throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");
                 for (int i = 0; i < jfi.Columns.Count; i++)
                     if (Columns[i].Name != jfi.Columns[i].Name)
                         throw new MissingFieldException($"LoadFileInfo:{Columns[i].Name},{jfi.Columns[i].Name}");
@@ -107,10 +107,15 @@ namespace JsonEditor
             if (jr == null)
                 throw new ArgumentNullException();
 
+            if (produceColumnInfo)
+                Columns.Clear();
+
             foreach (JToken jt in jr)
             {
                 JLine items = new JLine();
                 JObject jo = jt as JObject;
+
+                int i = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
                     if (produceColumnInfo)
@@ -126,6 +131,14 @@ namespace JsonEditor
                             Columns.Add(new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
                                 Math.Abs(kvp.Value.ToString().Length / 50) + 1));
                     }
+
+                    if (kvp.Key != Columns[i].Name)
+                    {
+                        items.Add(new JValue(null));
+                        i++;
+                        continue;
+                    }
+
                     switch (kvp.Value.Type)
                     {
                         case JTokenType.Integer:
@@ -150,6 +163,7 @@ namespace JsonEditor
                             items.Add(JValue.FromObject(kvp.Value.ToString()));
                             break;
                     }
+                    i++;
                 }
                 isFirst = false;
                 Lines.Add(items);
