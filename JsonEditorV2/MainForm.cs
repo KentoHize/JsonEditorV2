@@ -137,7 +137,7 @@ namespace JsonEditorV2
             //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                if ((Var.SelectedColumn.IsKey != chbColumnIsKey.Checked && chbColumnIsKey.Checked) ||
+                if ((Var.SelectedColumn.IsKey != ckbColumnIsKey.Checked && ckbColumnIsKey.Checked) ||
                    Var.SelectedColumn.Name != txtColumnName.Text ||
                    Var.SelectedColumn.Type != newType)
                 {
@@ -149,7 +149,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumnParentTable.Changed = true;
             Var.JFI.Changed = true;
-            Var.SelectedColumn.Display = chbColumnDisplay.Checked;
+            Var.SelectedColumn.Display = ckbColumnDisplay.Checked;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
@@ -160,11 +160,11 @@ namespace JsonEditorV2
                 Var.SelectedColumn.FKTable = Var.SelectedColumn.FKColumn = null;
 
             //Key檢查，取消Key時同時取消所有相關FK            
-            if (Var.SelectedColumn.IsKey && !chbColumnIsKey.Checked)
+            if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
                 CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
 
 
-            Var.SelectedColumn.IsKey = chbColumnIsKey.Checked;
+            Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
             //需要存檔?
             if (Var.SelectedColumn.Name != txtColumnName.Text ||
@@ -386,7 +386,7 @@ namespace JsonEditorV2
                 return;
 
             string fullName = $"{Var.JFI.Name}({Var.JFI.DirectoryPath})";
-            Var.RootNode = new TreeNode($"{fullName.Substring(0, 25)}...", 0, 0);            
+            Var.RootNode = new TreeNode($"{fullName.Substring(0, 25)}...", 0, 0);
             if (Var.Changed)
                 Var.RootNode.Text += "*";
             Var.RootNode.ToolTipText = fullName;
@@ -432,12 +432,13 @@ namespace JsonEditorV2
             tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
         }
-        
+
         private void RefreshPnlMainValue()
         {
             btnClearMain.Enabled = false;
             btnUpdateMain.Enabled = false;
-
+            btnDeleteLine.Enabled = false;
+            pnlMain.Enabled = false;
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
                     ((TextBox)ctls).Text = "";
@@ -449,101 +450,37 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-            {
-                TextBox tb = pnlMain.Controls.Find($"txt{Var.SelectedTable.Columns[i].Name}", false)[0] as TextBox;
-                if (tb != null)
-                    if (Var.SelectedTable[lsbLines.SelectedIndex][i].Value != null)
-                        tb.Text = Var.SelectedTable[lsbLines.SelectedIndex][i].Value.ToString();
-                    else
-                        tb.Text = "";
-            }
+                Var.InputControlSets[i].SetValue(Var.SelectedTable[lsbLines.SelectedIndex][i].Value);
 
             btnClearMain.Enabled = true;
             btnUpdateMain.Enabled = true;
+            btnDeleteLine.Enabled = true;
+            pnlMain.Enabled = true;
         }
 
         private void RefreshPnlMain()
         {
             int lines = 0;
             pnlMain.Controls.Clear();
+            Var.InputControlSets.Clear();
             if (Var.SelectedTable == null)
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
-                Label lblLabel = new Label();
-                lblLabel.Name = $"lbl{Var.SelectedTable.Columns[i].Name}";
-                lblLabel.Text = Var.SelectedTable.Columns[i].Name;
-                lblLabel.Left = 10;
-                lblLabel.Top = 30 * lines;
-
-                pnlMain.Controls.Add(lblLabel);
-
-                Control ctlControl = GetControlFromJType(Var.SelectedTable.Columns[i].Type,
-                    Var.SelectedTable.Columns[i].Name);
-
-                if (ctlControl == null)
-                    continue;
-
-                ctlControl.Left = 200;
-                ctlControl.Top = 30 * lines;
-                
-                if(ctlControl is TextBox)
-                {
-                    ctlControl.Width = 200;
-                    ctlControl.Height = 27 * Var.SelectedTable.Columns[i].NumberOfRows;
-                }                
-               
-                pnlMain.Controls.Add(ctlControl);
-
-                CheckBox chkCheckBox = new CheckBox { Name = $"chkNull{Var.SelectedTable.Columns[i].Name}" };
-                chkCheckBox.Text = "Null";
-                chkCheckBox.Left = 410;
-                chkCheckBox.Top = 30 * lines;
-                chkCheckBox.Width = 60;
-                
-                pnlMain.Controls.Add(chkCheckBox);
-
+                InputControlSet ics = new InputControlSet(Var.SelectedTable.Columns[i].Name,
+                    Var.SelectedTable.Columns[i].Type, Var.SelectedTable.Columns[i].NumberOfRows);
+                ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
+                Var.InputControlSets.Add(ics);
             }
             RefreshPnlMainValue();
-        }
-
-        private Control GetControlFromJType(JType type, string name)
-        {
-            switch (type)
-            {
-                case JType.Boolean:
-                    return new CheckBox { Name = $"chk{name}" };
-                case JType.Byte:
-                case JType.Double:
-                case JType.Guid:
-                case JType.Integer:
-                case JType.Long:
-                case JType.Decimal:
-                case JType.TimeSpan:
-                case JType.Uri:
-                case JType.String:
-                    return new TextBox { Name = $"txt{name}", Multiline = true };
-                case JType.Date:
-                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
-                case JType.Time:
-                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Time };
-                case JType.DateTime:                    
-                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long };
-                case JType.None:
-                case JType.Undefied:
-                    return null;
-                default:
-                    return null;
-            }
         }
 
         private void RefreshLsbLines()
         {
             lsbLines.Items.Clear();
             btnNewLine.Enabled = false;
-            btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
 
@@ -554,12 +491,11 @@ namespace JsonEditorV2
                 for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
                 {
                     if (Var.SelectedTable.Columns[i].Display)
-                        displayString.Append(jl[i].Value);
+                        displayString.AppendFormat("{0} ", jl[i].Value);
                 }
                 lsbLines.Items.Add(displayString.ToString());
             }
             btnNewLine.Enabled = true;
-            btnDeleteLine.Enabled = true;
             RefreshTrvSelectedFileChange();
         }
 
@@ -690,8 +626,8 @@ namespace JsonEditorV2
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
                 txtColumnName.Text = Var.SelectedColumn.Name;
-                chbColumnDisplay.Checked = Var.SelectedColumn.Display;
-                chbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
+                ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
+                ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKTable))
                     cobColumnFKTable.SelectedValue = Var.SelectedColumn.FKTable;
                 cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
@@ -873,8 +809,8 @@ namespace JsonEditorV2
         {
             txtColumnName.Text = "";
             cobColumnType.SelectedIndex = 0;
-            chbColumnDisplay.Checked = false;
-            chbColumnIsKey.Checked = false;
+            ckbColumnDisplay.Checked = false;
+            ckbColumnIsKey.Checked = false;
             cobColumnFKTable.SelectedIndex = -1; //聯動            
             txtColumnNumberOfRows.Text = "0";
         }
@@ -1146,8 +1082,8 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Columns.Remove(Var.SelectedColumn);
             Var.SelectedColumn = null;
 
-            //存檔
-            SaveJsonFile(Var.SelectedColumnParentTable);
+            //勿存檔
+            //SaveJsonFile(Var.SelectedColumnParentTable);
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_COLUMN_M_2, removedName);
         }
@@ -1295,14 +1231,9 @@ namespace JsonEditorV2
             if (lsbLines.SelectedIndex == -1)
                 return;
 
-            foreach (Control c in pnlMain.Controls)
-            {
-                if (c is TextBox)
-                {
-                    int index = Var.SelectedTable.Columns.FindIndex(m => m.Name == c.Name.Substring(3));
-                    Var.SelectedTable[lsbLines.SelectedIndex][index].Value = c.Text.ParseJType(Var.SelectedTable.Columns[index].Type);
-                }
-            }
+
+            for(int i = 0; i < Var.InputControlSets.Count; i++)
+                Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValue();
 
             int selectIndex = lsbLines.SelectedIndex;
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);

@@ -57,6 +57,15 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
+        },
+        {
+          "Name": "KLLL",
+          "IsKey": false,
+          "Type": "Boolean",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },
@@ -161,7 +170,7 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         }
       ]
     },

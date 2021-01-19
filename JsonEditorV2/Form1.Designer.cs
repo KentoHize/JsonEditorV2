@@ -40,8 +40,8 @@
             this.cobColumnFKTable = new System.Windows.Forms.ComboBox();
             this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
             this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
-            this.chbColumnDisplay = new System.Windows.Forms.CheckBox();
-            this.chbColumnIsKey = new System.Windows.Forms.CheckBox();
+            this.ckbColumnDisplay = new System.Windows.Forms.CheckBox();
+            this.ckbColumnIsKey = new System.Windows.Forms.CheckBox();
             this.cobColumnType = new System.Windows.Forms.ComboBox();
             this.txtColumnName = new System.Windows.Forms.TextBox();
             this.lblColumnFKTable = new System.Windows.Forms.Label();
@@ -129,7 +129,7 @@
             // btnUpdateMain
             // 
             this.btnUpdateMain.Enabled = false;
-            this.btnUpdateMain.Location = new System.Drawing.Point(1252, 730);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1330, 730);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
             this.btnUpdateMain.TabIndex = 17;
@@ -156,8 +156,8 @@
             this.lbColumnFKColumn.Controls.Add(this.cobColumnFKTable);
             this.lbColumnFKColumn.Controls.Add(this.txtColumnNumberOfRows);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnNumberOfRows);
-            this.lbColumnFKColumn.Controls.Add(this.chbColumnDisplay);
-            this.lbColumnFKColumn.Controls.Add(this.chbColumnIsKey);
+            this.lbColumnFKColumn.Controls.Add(this.ckbColumnDisplay);
+            this.lbColumnFKColumn.Controls.Add(this.ckbColumnIsKey);
             this.lbColumnFKColumn.Controls.Add(this.cobColumnType);
             this.lbColumnFKColumn.Controls.Add(this.txtColumnName);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnFKTable);
@@ -224,23 +224,23 @@
             this.lblColumnNumberOfRows.TabIndex = 14;
             this.lblColumnNumberOfRows.Text = "-";
             // 
-            // chbColumnDisplay
+            // ckbColumnDisplay
             // 
-            this.chbColumnDisplay.AutoSize = true;
-            this.chbColumnDisplay.Location = new System.Drawing.Point(344, 155);
-            this.chbColumnDisplay.Name = "chbColumnDisplay";
-            this.chbColumnDisplay.Size = new System.Drawing.Size(18, 17);
-            this.chbColumnDisplay.TabIndex = 13;
-            this.chbColumnDisplay.UseVisualStyleBackColor = true;
+            this.ckbColumnDisplay.AutoSize = true;
+            this.ckbColumnDisplay.Location = new System.Drawing.Point(344, 155);
+            this.ckbColumnDisplay.Name = "ckbColumnDisplay";
+            this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnDisplay.TabIndex = 13;
+            this.ckbColumnDisplay.UseVisualStyleBackColor = true;
             // 
-            // chbColumnIsKey
+            // ckbColumnIsKey
             // 
-            this.chbColumnIsKey.AutoSize = true;
-            this.chbColumnIsKey.Location = new System.Drawing.Point(344, 120);
-            this.chbColumnIsKey.Name = "chbColumnIsKey";
-            this.chbColumnIsKey.Size = new System.Drawing.Size(18, 17);
-            this.chbColumnIsKey.TabIndex = 8;
-            this.chbColumnIsKey.UseVisualStyleBackColor = true;
+            this.ckbColumnIsKey.AutoSize = true;
+            this.ckbColumnIsKey.Location = new System.Drawing.Point(344, 120);
+            this.ckbColumnIsKey.Name = "ckbColumnIsKey";
+            this.ckbColumnIsKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnIsKey.TabIndex = 8;
+            this.ckbColumnIsKey.UseVisualStyleBackColor = true;
             // 
             // cobColumnType
             // 
@@ -441,19 +441,19 @@
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiLoadJsonFiles
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
@@ -461,20 +461,20 @@
             // 
             this.tmiScanJsonFiles.Enabled = false;
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -482,32 +482,32 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
-            this.tmiExit.Size = new System.Drawing.Size(93, 26);
+            this.tmiExit.Size = new System.Drawing.Size(216, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -727,8 +727,8 @@
         private System.Windows.Forms.Panel lbColumnFKColumn;
         private System.Windows.Forms.TextBox txtColumnNumberOfRows;
         private System.Windows.Forms.Label lblColumnNumberOfRows;
-        private System.Windows.Forms.CheckBox chbColumnDisplay;
-        private System.Windows.Forms.CheckBox chbColumnIsKey;
+        private System.Windows.Forms.CheckBox ckbColumnDisplay;
+        private System.Windows.Forms.CheckBox ckbColumnIsKey;
         private System.Windows.Forms.ComboBox cobColumnType;
         private System.Windows.Forms.TextBox txtColumnName;
         private System.Windows.Forms.Label lblColumnFKTable;

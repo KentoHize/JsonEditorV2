@@ -23,8 +23,7 @@ namespace JsonEditorV2
         public static JColumn SelectedColumn { get; set; }
         public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
 
-        //public static List<JLine> Lines { get; set; } = new List<JLine>();
-        //public static JLine SelectedLine { get { return Lines[PageIndex]; } }
+        public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();       
 
         public static JFilesInfo JFI { get; set; }
         public static TreeNode RootNode { get; set; }
