@@ -174,35 +174,35 @@ namespace JsonEditor
         /// <param name="inputValue">輸入值</param>
         /// <param name="columnName">欄位名</param>
         /// <returns>轉換後的值</returns>
-        public object ParseValue(object inputValue, string columnName)
-        {
-            JType jt = Columns.Find(m => m.Name == columnName).Type;
-            switch (jt)
-            {
-                case JType.Boolean:
-                    return Convert.ToBoolean(inputValue);
-                case JType.Long:
-                    return Convert.ToInt64(inputValue);
-                case JType.Integer:
-                    return Convert.ToInt32(inputValue);
-                case JType.Double:
-                    return Convert.ToDouble(inputValue);
-                case JType.Byte:
-                    return Convert.ToByte(inputValue);
-                case JType.Date:
-                    return Convert.ToDateTime(inputValue).ToShortDateString();
-                case JType.Time:
-                    return Convert.ToDateTime(inputValue).TimeOfDay.ToString();
-                case JType.DateTime:
-                    return Convert.ToDateTime(inputValue);
-                case JType.String:
-                    return Convert.ToString(inputValue);
-                case JType.Guid:
-                    return Guid.Parse(inputValue.ToString());
-                default:
-                    return Convert.ChangeType(inputValue, Type.GetType(jt.ToString()));
-            }
-        }
+        //public object ParseValue(object inputValue, string columnName)
+        //{
+        //    JType jt = Columns.Find(m => m.Name == columnName).Type;
+        //    switch (jt)
+        //    {
+        //        case JType.Boolean:
+        //            return Convert.ToBoolean(inputValue);
+        //        case JType.Long:
+        //            return Convert.ToInt64(inputValue);
+        //        case JType.Integer:
+        //            return Convert.ToInt32(inputValue);
+        //        case JType.Double:
+        //            return Convert.ToDouble(inputValue);
+        //        case JType.Byte:
+        //            return Convert.ToByte(inputValue);
+        //        case JType.Date:
+        //            return Convert.ToDateTime(inputValue).ToShortDateString();
+        //        case JType.Time:
+        //            return Convert.ToDateTime(inputValue).TimeOfDay.ToString();
+        //        case JType.DateTime:
+        //            return Convert.ToDateTime(inputValue);
+        //        case JType.String:
+        //            return Convert.ToString(inputValue);
+        //        case JType.Guid:
+        //            return Guid.Parse(inputValue.ToString());
+        //        default:
+        //            return Convert.ChangeType(inputValue, Type.GetType(jt.ToString()));
+        //    }
+        //}
 
         public int IndexOf(JLine item)
         {

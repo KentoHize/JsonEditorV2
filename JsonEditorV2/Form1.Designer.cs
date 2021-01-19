@@ -94,6 +94,7 @@
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewLine = new System.Windows.Forms.Button();
+            this.btnDeleteLine = new System.Windows.Forms.Button();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -134,6 +135,7 @@
             this.btnUpdateMain.TabIndex = 17;
             this.btnUpdateMain.Text = "-";
             this.btnUpdateMain.UseVisualStyleBackColor = true;
+            this.btnUpdateMain.Click += new System.EventHandler(this.btnUpdateMain_Click);
             // 
             // btnUpdateColumn
             // 
@@ -371,7 +373,6 @@
             this.tbcMain.Size = new System.Drawing.Size(993, 24);
             this.tbcMain.TabIndex = 20;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
-            this.tbcMain.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseClick);
             this.tbcMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseDown);
             // 
             // cmsTabSelected
@@ -669,11 +670,23 @@
             this.btnNewLine.UseVisualStyleBackColor = true;
             this.btnNewLine.Click += new System.EventHandler(this.btnNewLine_Click);
             // 
+            // btnDeleteLine
+            // 
+            this.btnDeleteLine.Enabled = false;
+            this.btnDeleteLine.Location = new System.Drawing.Point(381, 730);
+            this.btnDeleteLine.Name = "btnDeleteLine";
+            this.btnDeleteLine.Size = new System.Drawing.Size(122, 40);
+            this.btnDeleteLine.TabIndex = 27;
+            this.btnDeleteLine.Text = "-";
+            this.btnDeleteLine.UseVisualStyleBackColor = true;
+            this.btnDeleteLine.Click += new System.EventHandler(this.btnDeleteLine_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1382, 803);
+            this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.mnsMain);
@@ -770,6 +783,7 @@
         private System.Windows.Forms.TabPage tbpStart;
         private System.Windows.Forms.ContextMenuStrip cmsTabSelected;
         private System.Windows.Forms.ToolStripMenuItem tmiCloseTab;
+        private System.Windows.Forms.Button btnDeleteLine;
     }
 }
 

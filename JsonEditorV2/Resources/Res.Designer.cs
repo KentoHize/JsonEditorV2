@@ -106,6 +106,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 刪除資料.
+        /// </summary>
+        public static string JE_BTN_DELETE_LINE {
+            get {
+                return ResourceManager.GetString("JE_BTN_DELETE_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新增資料.
         /// </summary>
         public static string JE_BTN_NEW_LINE {

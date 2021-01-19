@@ -2,50 +2,44 @@
   {
     "Chinese": "有奈君主制\n\n以有奈價值來對人評價，綜合最高者為君主，實行君主制\n\n君主提任高評價者成為臣子\n\n君主的繼任人選由君主指定任何一人，若此方法產生糾紛時，君主可以不指定，由臣下推舉其他人選\n\n若是君主同意多數臣子所推舉的新候選人時，他/她即順利繼承君主，若是不同意時，則成為半共和體制，元君主不用受人指揮，而候選人和其支持者共同主持國家\n\n這段時間進行自由辯論、透過時間推演確認候選人的君主地位或失敗告終改換為原先的君主人選",
     "English": "Arina Monarchy\n\nUse Arina's values to evaluate people, the highest is the monarch, and the monarchy will be implemented.\n\nThe monarch promotes high-evaluators to become ministers.\n\nThe monarch's successor is nominated by the monarch. If this method causes a dispute, the monarch may not appoint, and his ministers can choose other candidates.\n\nIf the monarch agrees with the new candidate elected by most of his courtiers, he/she will succeed the monarch smoothly. If not, it will become a semi-republic system. The former monarch does not need to follow orders, the new candidate and his supporters jointly preside over the country.\n\nDuring this time, people and ministers process free debate, confirm the candidate adapts to the monarch through the time advances, or admit it's a failure and change back to the original monarch's successor.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "0"
   },
   {
     "Chinese": "如果是-1階或被標記為「保護中」的處罰對象，你們不能處罰，只有加入有奈教且2階以上人員才能處罰他們\n\n-2階以下(未受保護)的人你們可以逕行處罰，不能對-2階的犯人造成身體的永久傷害及死亡\n\n-3階(未受保護)的人只要沒有死亡，其生命和身體的所有權不會歸你\n\n-4階可任意處置",
     "English": "You cannot punish rank -1 or labeled as \"protected\" people, only rank 2 and higher rank people who join the Arina Organization can punish them.\n\nYou can punish people below rank -2(including rank -2, not protected), and you are prohibited to cause permanent physical damage or death to the sinner of rank -2.\n\nAs long as a rank -3(not protected) person is not dead, the ownership of his life and body will not belong to you.\n\nRank -4 can be disposed of at will.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "1"
   },
   {
     "Chinese": "墮胎沒有問題",
     "English": "Abortion has no problem.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "2"
   },
   {
     "Chinese": "風林火山指的是孫子兵法的\n\n疾如風 徐如林 侵略如火 不動如山\n\n網路上有很多相關的文章，放在這邊意思是說\n\n君子的言論如風一般地傳出去了\n敵人覺得沒有危險而被引誘出來\n君子如林徐徐地等待時機\n敵人思考錯誤並說出了錯誤的事情\n君子如火一般地侵略的反擊\n敵人敗退並嘲諷了君子\n君子如山一樣不會動搖",
     "English": "Fūrinkazan refers to \"As swift as wind, as gentle as forest, as fierce as fire, as unshakable as mountain.\" from Sun Tzu's art of war\n\nThere are many related articles on the Internet. Putting it here means like this\n\nJunzi's speak spread as swift as wind.\nThe enemy felt there was no danger and was lured out.\nJunzi waited as gentle as forest.\nThe enemy thought wrongly and said the wrong things.\nJunzi fought back as fierce as fire.\nThe enemy retreated and taunted Junzi.\nJunzi stayed still as unshakable as mountain.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "3"
   },
   {
     "Chinese": "如果你希望他人如何待你，你就應該如何對待他人\n\n然後就可以開始去街上抱女生和親吻女生，順便摸對方的胸部(疑?)\n\n這個就是傳說中似是而非的歪理，正確的是，自己所不希望的事，就不要對別人做\n\n而且別人如果做自己所不希望的事，那還要研究一下獨立性才能決定誰才是對的\n\n例如說你從來不批評別人，結果別人批評你，於是你就很憤怒\n\n這樣到底誰才是對的呢，有奈教會告訴你說，人本來就可以批評別人，只要批評者真的如此想就可以了",
     "English": "If you want others how to treat you, you should treat them as the same.\n\nThen boys can start to hug and kiss girls on the street, and touch the chest by the way. (what?)\n\nThis is a famous fake truth. The correct belief is \"You don't do things that you don't want others to do the same thing to you.\"\n\nIf others do things that you don't want they do. We still need to consider independence to decide which one is right.\n\nFor example, if you never criticize others, and others criticize you, so you are angry.\n\nWhich one is right? The Arina Organization will tell you that people can criticize others, as long as the speaker really thinks so.",
-    "Japanese": null,
-    "No": null
-  },
-  {
-    "Chinese": "要升為4階，必須要不畏死亡，要升為5階，必須要有受辱、遭苦難也不改其志的意志力\n\n有些角色我們看不出來他/她是否能勝任，那教主可能就不會賜與那麼高的階級",
-    "English": "To be promoted to rank 4, one must not fear death. To be promoted to rank 5, one must have a strong will to suffer humiliation and torments without changing one's mind.\n\nSometimes we cannot see if he/she is competent. Master may not be able to give a character with the high ranks.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "4"
   },
   {
     "Chinese": "除了4、5階的人比較難掉階以外，3階以下的人都有機會掉階，這就是為什麼教主說某人是好人之後呢，他/她後來會變成壞人的原因\n\n如果被判定是壞人的話，除非教主同意，不然他永遠不會升階，所以我們判定壞人會是100%正確，只要世界上沒有耶穌\n\n替別人背罪是錯的，請不要做這種只會讓世間更加混亂的事情",
     "English": "Except for people with rank 4 and 5 that are more difficult to drop, people who are or below rank 3 have a chance to drop. This is why after Master said someone is a good person, he/she becomes a bad person.\n\nIf judged to be a bad person, unless Master agrees, he/she will never be promoted, so we judge the bad person will be 100% correct, as long as there is no Jesus in the world.\n\nIt is wrong to become a scapegoat for others, please don't do this thing that will only make the world more chaotic.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "6"
   },
   {
     "Chinese": "1階以上，叫做好人\n-1階~-3階，尚罪不致死的壞人，-3的話死掉也沒關係\n-4階 必須死的壞人",
     "English": "Rank 1 or higher are good people.\nRank -1 to -3 are bad people who are guilty but have a chance to atone. It doesn’t matter if one died at rank -3.\nRank -4 means wicked people who must die.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "7"
   },
   {
     "Chinese": "在有奈教中我們把人的品格分為以下的等級\n\n5階 巫女、君子\n4階 品女、士\n3階 侍女、執事、專業人員\n2階 啦啦隊、一般工作人員、兵\n1階 小朋友、新手\n0階 未入教、不認識\n-1階 騙子\n-2階 罪犯\n-3階 奴隸(是騙子同時也是罪犯)\n-4階 死囚\n\n教主算6階，實際上也是第5階",
@@ -104,8 +98,8 @@
   {
     "Chinese": "壞事做得多的人會害怕，就要找人撐腰，或是找耶穌替他贖罪，如此一來朋友多、勢大的人得利，因為錢多的人朋友多，最後就會陷入黑道的紛爭之中。\n\n君子就可以直接拆穿說謊的人，從這方面來看，捨近利的君子才是長遠之道，然而能誠心稱讚你的人還是很少的\n\n真有耶穌也只會製造出更多的惡人，君子才是唯一而且正確的治世方式",
     "English": "Those who do many bad things will be afraid, they need someone to make them relieved and release, or find Jesus to atone for them. It turns out that people with more friends and more power will gain more benefits. Since more money makes more friends, there will be lots of underworld groups fighting each other for the interest at last.\n\nJunzi can directly dismantle the lies and lying person. From this point of view, being Junzi will be benefited in the long-term and never fail, although people who can sincerely commend Junzi are still very few.\n\nJesus will only create more wicked people, and Junzi is the only right way to manage the world.",
-    "Japanese": null,
-    "No": null
+    "Japanese": "",
+    "No": "1"
   },
   {
     "Chinese": "君子不會對死亡害怕的原因是因為從來不害人，對於別人說了什麼謊言不一定知道。\n\n只要知道自己不害人的事實，對方暗示你曾經害過他就一定是謊言了，這樣就能馬上辨別出實際上是對方不懷好意",

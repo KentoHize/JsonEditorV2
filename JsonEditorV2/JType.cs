@@ -129,7 +129,9 @@ namespace JsonEditor
                 default:
                     return value.ToString();
             }
-            return type.InitialValue();
+            if(value == null || value.ToString() == new object().ToString())
+                return type.InitialValue();
+            throw new InvalidCastException();
         }
 
         public static JType ToJType(this JsonToken jtn)

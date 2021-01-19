@@ -11,7 +11,7 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "AT999",
@@ -20,7 +20,7 @@
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "TTT99999",
@@ -70,7 +70,7 @@
           "FKTable": "T4",
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         },
         {
           "Name": "A41123",

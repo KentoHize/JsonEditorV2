@@ -132,6 +132,9 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
+    <value>刪除資料</value>
+  </data>
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     <value>新增資料</value>
   </data>

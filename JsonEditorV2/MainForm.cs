@@ -52,6 +52,7 @@ namespace JsonEditorV2
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
             btnNewLine.Text = Res.JE_BTN_NEW_LINE;
+            btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
             tmiFile.Text = Res.JE_TMI_FILE;
             tmiAbout.Text = Res.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
@@ -421,6 +422,9 @@ namespace JsonEditorV2
 
         private void RefreshPnlMainValue()
         {
+            btnClearMain.Enabled = false;
+            btnUpdateMain.Enabled = false;
+
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
                     ((TextBox)ctls).Text = "";
@@ -440,12 +444,14 @@ namespace JsonEditorV2
                     else
                         tb.Text = "";
             }
+
+            btnClearMain.Enabled = true;
+            btnUpdateMain.Enabled = true;
         }
 
         private void RefreshPnlMain()
         {
-            btnClearMain.Enabled = false;
-            btnUpdateMain.Enabled = false;
+           
             int lines = 0;
             pnlMain.Controls.Clear();
             if (Var.SelectedTable == null)
@@ -471,8 +477,6 @@ namespace JsonEditorV2
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 pnlMain.Controls.Add(txtText);
             }
-            btnClearMain.Enabled = true;
-            btnUpdateMain.Enabled = true;
             RefreshPnlMainValue();
         }
 
@@ -480,6 +484,7 @@ namespace JsonEditorV2
         {
             lsbLines.Items.Clear();
             btnNewLine.Enabled = false;
+            btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
 
@@ -495,6 +500,7 @@ namespace JsonEditorV2
                 lsbLines.Items.Add(displayString.ToString());
             }
             btnNewLine.Enabled = true;
+            btnDeleteLine.Enabled = true;
         }
 
         private void RefreshTbcMain()
@@ -1088,10 +1094,13 @@ namespace JsonEditorV2
         {
             JLine jl = new JLine();
             foreach (JColumn jc in Var.SelectedTable.Columns)
-                jl.Add(new JValue(new object().ParseJType(jc.Type)));
+                jl.Add(new JValue(jc.Type.InitialValue()));
 
+            Var.SelectedTable.Changed = true;
             Var.SelectedTable.Lines.Add(jl);
-            RefreshTbcMain();
+            
+            RefreshLsbLines();
+            RefreshPnlMainValue();
 
             lsbLines.SelectedIndex = lsbLines.Items.Count - 1;
         }
@@ -1209,6 +1218,36 @@ namespace JsonEditorV2
                 if (Var.ClickedTabIndex != -1 && Var.OpenedTable.Count != 0)
                     tbcMain.ContextMenuStrip = cmsTabSelected;
             }
+        }
+
+        private void btnDeleteLine_Click(object sender, EventArgs e)
+        {
+            if (lsbLines.SelectedIndex == -1)
+                return;
+            Var.SelectedTable.Lines.RemoveAt(lsbLines.SelectedIndex);
+            Var.SelectedTable.Changed = true;
+
+            RefreshLsbLines();
+            RefreshPnlMain();
+        }
+
+        private void btnUpdateMain_Click(object sender, EventArgs e)
+        {
+            if (lsbLines.SelectedIndex == -1)
+                return;
+
+            foreach(Control c in pnlMain.Controls)
+            {
+                if(c is TextBox)
+                {
+                    int index = Var.SelectedTable.Columns.FindIndex(m => m.Name == c.Name.Substring(3));
+                    Var.SelectedTable[lsbLines.SelectedIndex][index].Value = c.Text.ParseJType(Var.SelectedTable.Columns[index].Type);
+                }
+            }
+
+            Var.SelectedTable.Changed = true;
+            RefreshLsbLines();
+            RefreshPnlMainValue();
         }
     }
 }
