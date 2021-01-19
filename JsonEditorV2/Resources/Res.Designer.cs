@@ -385,6 +385,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;資料已刪除.
+        /// </summary>
+        public static string JE_RUN_DELETE_LINE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_DELETE_LINE_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}檔案已讀入.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_1 {
@@ -453,6 +462,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_NEW_JSON_FILES_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_NEW_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;已新增資料.
+        /// </summary>
+        public static string JE_RUN_NEW_LINE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_LINE_M_1", resourceCulture);
             }
         }
         
@@ -579,6 +597,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_UPDATE_COLUMN_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;資料已更新.
+        /// </summary>
+        public static string JE_RUN_UPDATE_LINE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_LINE_M_1", resourceCulture);
             }
         }
         

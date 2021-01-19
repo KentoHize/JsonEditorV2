@@ -699,6 +699,7 @@
             this.Controls.Add(this.lbColumnFKColumn);
             this.Controls.Add(this.trvJsonFiles);
             this.Controls.Add(this.stsMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.lbColumnFKColumn.ResumeLayout(false);

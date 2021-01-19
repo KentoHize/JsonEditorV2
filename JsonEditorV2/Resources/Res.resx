@@ -225,6 +225,9 @@
   <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
     <value>檔案"{0}.json"已刪除</value>
   </data>
+  <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
+    <value>"{0}"資料已刪除</value>
+  </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
   </data>
@@ -248,6 +251,9 @@
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
     <value>開新檔案</value>
+  </data>
+  <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
+    <value>"{0}"已新增資料</value>
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     <value>檔案"{0}.json"已存在</value>
@@ -290,6 +296,9 @@
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>更新欄位</value>
+  </data>
+  <data name="JE_RUN_UPDATE_LINE_M_1" xml:space="preserve">
+    <value>"{0}"資料已更新</value>
   </data>
   <data name="JE_TMI_ABOUT" xml:space="preserve">
     <value>關於</value>

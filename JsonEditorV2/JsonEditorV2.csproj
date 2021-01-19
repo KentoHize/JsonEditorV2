@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Directory.png" />
+    <Content Include="Images\JsonIcon.ico" />
     <Content Include="Images\JsonIcon.png" />
     <Content Include="Images\Key.png" />
     <Content Include="Images\ObjectIcon.png" />

@@ -361,6 +361,19 @@ namespace JsonEditorV2
         private string GetTableNodeString(JTable jt)
             => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}";
 
+
+        private void RefreshTrvSelectedFileChange()
+        {
+            string fullName = $"{Var.JFI.Name}({Var.JFI.DirectoryPath})";
+
+            if (Var.Changed && Var.RootNode.Text.Last() != '*')
+                Var.RootNode.Text += '*';
+
+            foreach (TreeNode tr in Var.RootNode.Nodes)
+                if (tr.Tag.ToString() == Var.SelectedTable.Name)
+                    tr.Text = GetTableNodeString(Var.SelectedTable);
+        }
+
         private void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
@@ -373,7 +386,7 @@ namespace JsonEditorV2
                 return;
 
             string fullName = $"{Var.JFI.Name}({Var.JFI.DirectoryPath})";
-            Var.RootNode = new TreeNode($"{fullName.Substring(0, 25)}...", 0, 0);
+            Var.RootNode = new TreeNode($"{fullName.Substring(0, 25)}...", 0, 0);            
             if (Var.Changed)
                 Var.RootNode.Text += "*";
             Var.RootNode.ToolTipText = fullName;
@@ -419,7 +432,7 @@ namespace JsonEditorV2
             tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
         }
-
+        
         private void RefreshPnlMainValue()
         {
             btnClearMain.Enabled = false;
@@ -451,7 +464,7 @@ namespace JsonEditorV2
 
         private void RefreshPnlMain()
         {
-           
+
             int lines = 0;
             pnlMain.Controls.Clear();
             if (Var.SelectedTable == null)
@@ -501,6 +514,7 @@ namespace JsonEditorV2
             }
             btnNewLine.Enabled = true;
             btnDeleteLine.Enabled = true;
+            RefreshTrvSelectedFileChange();
         }
 
         private void RefreshTbcMain()
@@ -518,7 +532,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
-            
+
             RefreshLsbLines();
             RefreshPnlMain();
         }
@@ -535,11 +549,8 @@ namespace JsonEditorV2
             Var.SelectedColumn = null;
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
-            //Var.Lines.Clear();
             RefreshTrvJsonFiles();
             RefreshTbcMain();
-            //RefreshLibLinesUI();
-            //RefreshPnlMainUI();
             sslMain.Text = "";
         }
 
@@ -741,7 +752,7 @@ namespace JsonEditorV2
             //To DO
             //if (!Var.SelectedColumnParentTable.Loaded)
             //    LoadJsonFile(Var.SelectedColumnParentTable);
-            
+
             //if (Var.SelectedColumnParentTable.Count != 0)
             //{ }
 
@@ -938,7 +949,7 @@ namespace JsonEditorV2
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
-                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);                    
+                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
                     sr.Dispose();
                 }
             }
@@ -1098,7 +1109,8 @@ namespace JsonEditorV2
 
             Var.SelectedTable.Changed = true;
             Var.SelectedTable.Lines.Add(jl);
-            
+            sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
+
             RefreshLsbLines();
             RefreshPnlMainValue();
 
@@ -1226,6 +1238,7 @@ namespace JsonEditorV2
                 return;
             Var.SelectedTable.Lines.RemoveAt(lsbLines.SelectedIndex);
             Var.SelectedTable.Changed = true;
+            sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
             RefreshLsbLines();
             RefreshPnlMain();
@@ -1236,18 +1249,22 @@ namespace JsonEditorV2
             if (lsbLines.SelectedIndex == -1)
                 return;
 
-            foreach(Control c in pnlMain.Controls)
+            foreach (Control c in pnlMain.Controls)
             {
-                if(c is TextBox)
+                if (c is TextBox)
                 {
                     int index = Var.SelectedTable.Columns.FindIndex(m => m.Name == c.Name.Substring(3));
                     Var.SelectedTable[lsbLines.SelectedIndex][index].Value = c.Text.ParseJType(Var.SelectedTable.Columns[index].Type);
                 }
             }
 
+            int selectIndex = lsbLines.SelectedIndex;
+            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
             RefreshPnlMainValue();
+
+            lsbLines.SelectedIndex = selectIndex;
         }
     }
 }

@@ -47,7 +47,7 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true
         }
       ]
     },

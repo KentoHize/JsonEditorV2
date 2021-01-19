@@ -750,13 +750,5 @@
     "BestowDateTime": "0003/10/25 20:23:03",
     "Reason": "初評定",
     "Memo": ""
-  },
-  {
-    "PersonID": "00000000-0000-0000-0000-000000000000",
-    "BestowerID": "00000000-0000-0000-0000-000000000000",
-    "MoralRank": 0,
-    "BestowDateTime": "0001-01-01T00:00:00",
-    "Reason": "System.Object",
-    "Memo": "System.Object"
   }
 ]
