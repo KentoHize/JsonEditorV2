@@ -5,6 +5,15 @@
       "Name": "Articles",
       "Columns": [
         {
+          "Name": "No",
+          "IsKey": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true
+        },
+        {
           "Name": "Chinese",
           "IsKey": false,
           "Type": "String",
@@ -30,15 +39,6 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false
-        },
-        {
-          "Name": "No",
-          "IsKey": true,
-          "Type": "String",
-          "FKTable": null,
-          "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": true
         }
       ]
     },

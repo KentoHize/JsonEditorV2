@@ -71,6 +71,8 @@ namespace JsonEditorV2
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
+            tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
+            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
         }
@@ -1231,7 +1233,6 @@ namespace JsonEditorV2
             if (lsbLines.SelectedIndex == -1)
                 return;
 
-
             for(int i = 0; i < Var.InputControlSets.Count; i++)
                 Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValue();
 
@@ -1242,6 +1243,66 @@ namespace JsonEditorV2
             RefreshPnlMainValue();
 
             lsbLines.SelectedIndex = selectIndex;
+        }
+
+        private void tmiColumnMoveUp_Click(object sender, EventArgs e)
+        {
+            int index = Var.SelectedColumnIndex;
+            if (index == 0)
+            {
+                MessageBox.Show(string.Format(Res.JE_RUN_COLUMN_MOVE_UP_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                LoadJsonFile(Var.SelectedColumnParentTable);
+
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+            {
+                JValue jv = jl[index - 1];
+                jl[index - 1] = jl[index];
+                jl[index] = jv;
+            }
+
+            JColumn jc = Var.SelectedColumnParentTable.Columns[index - 1];
+            Var.SelectedColumnParentTable.Columns[index - 1] = Var.SelectedColumnParentTable.Columns[index];
+            Var.SelectedColumnParentTable.Columns[index] = jc;
+
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+
+            RefreshTrvJsonFiles();
+            RefreshTbcMain();
+        }
+
+        private void tmiColumnMoveDown_Click(object sender, EventArgs e)
+        {
+            int index = Var.SelectedColumnIndex;
+            if (index == Var.SelectedColumnParentTable.Columns.Count - 1)
+            {
+                MessageBox.Show(string.Format(Res.JE_RUN_COLUMN_MOVE_DOWN_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                LoadJsonFile(Var.SelectedColumnParentTable);
+
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+            {
+                JValue jv = jl[index + 1];
+                jl[index + 1] = jl[index];
+                jl[index] = jv;
+            }
+
+            JColumn jc = Var.SelectedColumnParentTable.Columns[index + 1];
+            Var.SelectedColumnParentTable.Columns[index + 1] = Var.SelectedColumnParentTable.Columns[index];
+            Var.SelectedColumnParentTable.Columns[index] = jc;
+
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+
+            RefreshTrvJsonFiles();
+            RefreshTbcMain();
         }
     }
 }

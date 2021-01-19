@@ -349,6 +349,33 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已移至底端.
+        /// </summary>
+        public static string JE_RUN_COLUMN_MOVE_DOWN_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_COLUMN_MOVE_DOWN_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移動欄位.
+        /// </summary>
+        public static string JE_RUN_COLUMN_MOVE_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_COLUMN_MOVE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已移至頂端.
+        /// </summary>
+        public static string JE_RUN_COLUMN_MOVE_UP_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_COLUMN_MOVE_UP_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起刪除欄位嗎.
         /// </summary>
         public static string JE_RUN_DELETE_COLUMN_M_1 {
@@ -660,6 +687,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_COLLAPSE_ALL {
             get {
                 return ResourceManager.GetString("JE_TMI_COLLAPSE_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 下移.
+        /// </summary>
+        public static string JE_TMI_COLUMN_MOVE_DOWN {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_MOVE_DOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 上移.
+        /// </summary>
+        public static string JE_TMI_COLUMN_MOVE_UP {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_MOVE_UP", resourceCulture);
             }
         }
         

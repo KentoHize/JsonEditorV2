@@ -213,6 +213,15 @@
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     <value>欄位"{0}"已存在</value>
   </data>
+  <data name="JE_RUN_COLUMN_MOVE_DOWN_M_1" xml:space="preserve">
+    <value>欄位"{0}"已移至底端</value>
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_TITLE" xml:space="preserve">
+    <value>移動欄位</value>
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
+    <value>欄位"{0}"已移至頂端</value>
+  </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
     <value>檔案內存在{0}筆資料，確定要一起刪除欄位嗎</value>
   </data>
@@ -317,6 +326,12 @@
   </data>
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     <value>收縮全部</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
+    <value>下移</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
+    <value>上移</value>
   </data>
   <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
     <value>刪除</value>
