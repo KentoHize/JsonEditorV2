@@ -166,7 +166,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = chbColumnIsKey.Checked;
 
-            //需要存檔
+            //需要存檔?
             if (Var.SelectedColumn.Name != txtColumnName.Text ||
                Var.SelectedColumn.Type != newType)
             {
@@ -180,9 +180,9 @@ namespace JsonEditorV2
                     Var.SelectedColumn.Type = newType;
                     int index = Var.SelectedColumnIndex;
                     foreach (JLine jl in Var.SelectedColumnParentTable)
-                        jl[index].Value = jl[index].ParseJType(newType);
+                        jl[index].Value = jl[index].Value.ParseJType(newType);
                 }
-                SaveJsonFile(Var.SelectedColumnParentTable);
+                //SaveJsonFile(Var.SelectedColumnParentTable);
             }
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumn.Name);
@@ -464,7 +464,6 @@ namespace JsonEditorV2
 
         private void RefreshPnlMain()
         {
-
             int lines = 0;
             pnlMain.Controls.Clear();
             if (Var.SelectedTable == null)
@@ -480,17 +479,64 @@ namespace JsonEditorV2
 
                 pnlMain.Controls.Add(lblLabel);
 
-                TextBox txtText = new TextBox();
-                txtText.Name = $"txt{Var.SelectedTable.Columns[i].Name}";
-                txtText.Left = 200;
-                txtText.Top = 30 * lines;
-                txtText.Width = 200;
-                txtText.Height = 27 * Var.SelectedTable.Columns[i].NumberOfRows;
-                txtText.Multiline = true;
+                Control ctlControl = GetControlFromJType(Var.SelectedTable.Columns[i].Type,
+                    Var.SelectedTable.Columns[i].Name);
+
+                if (ctlControl == null)
+                    continue;
+
+                ctlControl.Left = 200;
+                ctlControl.Top = 30 * lines;
+                
+                if(ctlControl is TextBox)
+                {
+                    ctlControl.Width = 200;
+                    ctlControl.Height = 27 * Var.SelectedTable.Columns[i].NumberOfRows;
+                }                
+               
+                pnlMain.Controls.Add(ctlControl);
+
+                CheckBox chkCheckBox = new CheckBox { Name = $"chkNull{Var.SelectedTable.Columns[i].Name}" };
+                chkCheckBox.Text = "Null";
+                chkCheckBox.Left = 410;
+                chkCheckBox.Top = 30 * lines;
+                chkCheckBox.Width = 60;
+                
+                pnlMain.Controls.Add(chkCheckBox);
+
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
-                pnlMain.Controls.Add(txtText);
             }
             RefreshPnlMainValue();
+        }
+
+        private Control GetControlFromJType(JType type, string name)
+        {
+            switch (type)
+            {
+                case JType.Boolean:
+                    return new CheckBox { Name = $"chk{name}" };
+                case JType.Byte:
+                case JType.Double:
+                case JType.Guid:
+                case JType.Integer:
+                case JType.Long:
+                case JType.Decimal:
+                case JType.TimeSpan:
+                case JType.Uri:
+                case JType.String:
+                    return new TextBox { Name = $"txt{name}", Multiline = true };
+                case JType.Date:
+                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
+                case JType.Time:
+                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Time };
+                case JType.DateTime:                    
+                    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long };
+                case JType.None:
+                case JType.Undefied:
+                    return null;
+                default:
+                    return null;
+            }
         }
 
         private void RefreshLsbLines()
@@ -750,11 +796,16 @@ namespace JsonEditorV2
 
 
             //To DO
-            //if (!Var.SelectedColumnParentTable.Loaded)
-            //    LoadJsonFile(Var.SelectedColumnParentTable);
+            if (!Var.SelectedColumnParentTable.Loaded)
+                LoadJsonFile(Var.SelectedColumnParentTable);
 
-            //if (Var.SelectedColumnParentTable.Count != 0)
-            //{ }
+            if (Var.SelectedColumnParentTable.Count != 0)
+            {
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                {
+                    jl.Add(new JValue());
+                }
+            }
 
             JColumn jc = new JColumn(fib.InputValue);
             Var.SelectedColumnParentTable.Columns.Add(jc);
@@ -1211,11 +1262,6 @@ namespace JsonEditorV2
         private void tmiCloseTab_Click(object sender, EventArgs e)
         {
             CloseJsonFile(Var.ClickedTabIndex);
-        }
-
-        private void tbcMain_MouseClick(object sender, MouseEventArgs e)
-        {
-
         }
 
         private void tbcMain_MouseDown(object sender, MouseEventArgs e)

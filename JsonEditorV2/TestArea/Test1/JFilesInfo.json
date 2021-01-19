@@ -37,7 +37,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 10,
+          "NumberOfRows": 8,
           "Display": false
         },
         {

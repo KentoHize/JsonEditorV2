@@ -48,6 +48,15 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true
+        },
+        {
+          "Name": "KL",
+          "IsKey": false,
+          "Type": "Time",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false
         }
       ]
     },

@@ -354,7 +354,7 @@
             this.sslMain});
             this.stsMain.Location = new System.Drawing.Point(0, 781);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1382, 22);
+            this.stsMain.Size = new System.Drawing.Size(1462, 22);
             this.stsMain.TabIndex = 11;
             this.stsMain.Text = "sspMain";
             // 
@@ -370,7 +370,7 @@
             this.tbcMain.Location = new System.Drawing.Point(381, 32);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(993, 24);
+            this.tbcMain.Size = new System.Drawing.Size(1071, 24);
             this.tbcMain.TabIndex = 20;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             this.tbcMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseDown);
@@ -394,7 +394,7 @@
             // 
             this.tbpStart.Location = new System.Drawing.Point(4, 25);
             this.tbpStart.Name = "tbpStart";
-            this.tbpStart.Size = new System.Drawing.Size(985, 0);
+            this.tbpStart.Size = new System.Drawing.Size(1063, 0);
             this.tbpStart.TabIndex = 0;
             this.tbpStart.UseVisualStyleBackColor = true;
             // 
@@ -403,7 +403,7 @@
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Location = new System.Drawing.Point(770, 62);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(604, 657);
+            this.pnlMain.Size = new System.Drawing.Size(682, 657);
             this.pnlMain.TabIndex = 21;
             // 
             // mnsMain
@@ -416,7 +416,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1382, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1462, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -685,7 +685,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1382, 803);
+            this.ClientSize = new System.Drawing.Size(1462, 803);
             this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);

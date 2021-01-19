@@ -30,7 +30,8 @@ namespace JsonEditor
     }
 
     public static class JTypeExtentions
-    {
+    {   
+
         public static object InitialValue(this JType type)
         {
             switch (type)
@@ -72,8 +73,10 @@ namespace JsonEditor
         /// <param name="type">J型別</param>
         /// <returns>輸出值</returns>
         public static object ParseJType(this object value, JType type)
-        {  
-            switch(type)
+        {
+            if (value == null || value.ToString() == new object().ToString())
+                return type.InitialValue();
+            switch (type)
             {
                 case JType.Boolean:
                     if (bool.TryParse(value.ToString(), out bool r1))
@@ -128,9 +131,8 @@ namespace JsonEditor
                     return value.ToString();                    
                 default:
                     return value.ToString();
-            }
-            if(value == null || value.ToString() == new object().ToString())
-                return type.InitialValue();
+            }            
+
             throw new InvalidCastException();
         }
 
