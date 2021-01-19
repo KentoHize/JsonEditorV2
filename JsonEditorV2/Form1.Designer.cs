@@ -98,6 +98,8 @@
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnDeleteLine = new System.Windows.Forms.Button();
+            this.lblColumnRegex = new System.Windows.Forms.Label();
+            this.txtColumnRegex = new System.Windows.Forms.TextBox();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -110,7 +112,7 @@
             // 
             // btnClearColumn
             // 
-            this.btnClearColumn.Location = new System.Drawing.Point(12, 730);
+            this.btnClearColumn.Location = new System.Drawing.Point(0, 761);
             this.btnClearColumn.Name = "btnClearColumn";
             this.btnClearColumn.Size = new System.Drawing.Size(122, 40);
             this.btnClearColumn.TabIndex = 19;
@@ -121,7 +123,7 @@
             // btnClearMain
             // 
             this.btnClearMain.Enabled = false;
-            this.btnClearMain.Location = new System.Drawing.Point(770, 730);
+            this.btnClearMain.Location = new System.Drawing.Point(770, 761);
             this.btnClearMain.Name = "btnClearMain";
             this.btnClearMain.Size = new System.Drawing.Size(122, 40);
             this.btnClearMain.TabIndex = 18;
@@ -132,7 +134,7 @@
             // btnUpdateMain
             // 
             this.btnUpdateMain.Enabled = false;
-            this.btnUpdateMain.Location = new System.Drawing.Point(1330, 730);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1330, 761);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
             this.btnUpdateMain.TabIndex = 17;
@@ -143,7 +145,7 @@
             // btnUpdateColumn
             // 
             this.btnUpdateColumn.Enabled = false;
-            this.btnUpdateColumn.Location = new System.Drawing.Point(253, 730);
+            this.btnUpdateColumn.Location = new System.Drawing.Point(253, 761);
             this.btnUpdateColumn.Name = "btnUpdateColumn";
             this.btnUpdateColumn.Size = new System.Drawing.Size(122, 40);
             this.btnUpdateColumn.TabIndex = 16;
@@ -154,6 +156,8 @@
             // lbColumnFKColumn
             // 
             this.lbColumnFKColumn.AutoScroll = true;
+            this.lbColumnFKColumn.Controls.Add(this.txtColumnRegex);
+            this.lbColumnFKColumn.Controls.Add(this.lblColumnRegex);
             this.lbColumnFKColumn.Controls.Add(this.cobColumnFKColumn);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnFKColumn);
             this.lbColumnFKColumn.Controls.Add(this.cobColumnFKTable);
@@ -171,7 +175,7 @@
             this.lbColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbColumnFKColumn.Location = new System.Drawing.Point(1, 465);
             this.lbColumnFKColumn.Name = "lbColumnFKColumn";
-            this.lbColumnFKColumn.Size = new System.Drawing.Size(374, 259);
+            this.lbColumnFKColumn.Size = new System.Drawing.Size(374, 289);
             this.lbColumnFKColumn.TabIndex = 15;
             // 
             // cobColumnFKColumn
@@ -319,7 +323,7 @@
             this.lsbLines.ItemHeight = 16;
             this.lsbLines.Location = new System.Drawing.Point(381, 62);
             this.lsbLines.Name = "lsbLines";
-            this.lsbLines.Size = new System.Drawing.Size(383, 660);
+            this.lsbLines.Size = new System.Drawing.Size(383, 692);
             this.lsbLines.TabIndex = 14;
             this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.libLines_SelectedIndexChanged);
             // 
@@ -355,7 +359,7 @@
             this.stsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sslMain});
-            this.stsMain.Location = new System.Drawing.Point(0, 781);
+            this.stsMain.Location = new System.Drawing.Point(0, 814);
             this.stsMain.Name = "stsMain";
             this.stsMain.Size = new System.Drawing.Size(1462, 22);
             this.stsMain.TabIndex = 11;
@@ -406,7 +410,7 @@
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Location = new System.Drawing.Point(770, 62);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(682, 657);
+            this.pnlMain.Size = new System.Drawing.Size(682, 692);
             this.pnlMain.TabIndex = 21;
             // 
             // mnsMain
@@ -656,38 +660,38 @@
             this.toolStripMenuItem7,
             this.tmiDeleteColumn});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(211, 110);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 82);
             // 
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
-            this.tmiColumnMoveUp.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveUp.Text = "X";
             this.tmiColumnMoveUp.Click += new System.EventHandler(this.tmiColumnMoveUp_Click);
             // 
             // tmiColumnMoveDown
             // 
             this.tmiColumnMoveDown.Name = "tmiColumnMoveDown";
-            this.tmiColumnMoveDown.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(84, 6);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
             // btnNewLine
             // 
             this.btnNewLine.Enabled = false;
-            this.btnNewLine.Location = new System.Drawing.Point(642, 730);
+            this.btnNewLine.Location = new System.Drawing.Point(642, 761);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(122, 40);
             this.btnNewLine.TabIndex = 26;
@@ -698,7 +702,7 @@
             // btnDeleteLine
             // 
             this.btnDeleteLine.Enabled = false;
-            this.btnDeleteLine.Location = new System.Drawing.Point(381, 730);
+            this.btnDeleteLine.Location = new System.Drawing.Point(381, 761);
             this.btnDeleteLine.Name = "btnDeleteLine";
             this.btnDeleteLine.Size = new System.Drawing.Size(122, 40);
             this.btnDeleteLine.TabIndex = 27;
@@ -706,11 +710,30 @@
             this.btnDeleteLine.UseVisualStyleBackColor = true;
             this.btnDeleteLine.Click += new System.EventHandler(this.btnDeleteLine_Click);
             // 
+            // lblColumnRegex
+            // 
+            this.lblColumnRegex.AutoSize = true;
+            this.lblColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnRegex.Location = new System.Drawing.Point(18, 257);
+            this.lblColumnRegex.Name = "lblColumnRegex";
+            this.lblColumnRegex.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnRegex.TabIndex = 19;
+            this.lblColumnRegex.Text = "-";
+            // 
+            // txtColumnRegex
+            // 
+            this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnRegex.Location = new System.Drawing.Point(179, 254);
+            this.txtColumnRegex.Name = "txtColumnRegex";
+            this.txtColumnRegex.Size = new System.Drawing.Size(183, 27);
+            this.txtColumnRegex.TabIndex = 20;
+            this.txtColumnRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1462, 803);
+            this.ClientSize = new System.Drawing.Size(1462, 836);
             this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
@@ -813,6 +836,8 @@
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveUp;
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveDown;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
+        private System.Windows.Forms.TextBox txtColumnRegex;
+        private System.Windows.Forms.Label lblColumnRegex;
     }
 }
 

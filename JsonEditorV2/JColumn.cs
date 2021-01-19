@@ -15,6 +15,7 @@ namespace JsonEditor
         public string FKColumn { get; set; }
         public int NumberOfRows { get; set; }
         public bool Display { get; set; }
+        public string Regex { get; set; }
 
         public JColumn()
             : this("")
@@ -24,7 +25,7 @@ namespace JsonEditor
             : this(name, JType.String)
         { }
 
-        public JColumn(string name, JType type, bool isKey = false, bool display = false, int numberOfRows = 1, string fkTable = null, string fkColumn = null)
+        public JColumn(string name, JType type, bool isKey = false, bool display = false, int numberOfRows = 1, string regex = null, string fkTable = null, string fkColumn = null)
         {
             Name = name;
             IsKey = isKey;
@@ -33,6 +34,7 @@ namespace JsonEditor
             NumberOfRows = numberOfRows;
             FKTable = fkTable;
             FKColumn = fkColumn;
+            Regex = regex;
         }
     }
 }

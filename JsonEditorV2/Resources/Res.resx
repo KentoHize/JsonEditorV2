@@ -162,6 +162,9 @@
   <data name="JE_COLUMN_NUM_OF_ROWS" xml:space="preserve">
     <value>欄位行數</value>
   </data>
+  <data name="JE_COLUMN_REGEX" xml:space="preserve">
+    <value>正則表達式</value>
+  </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>欄位型別</value>
   </data>
@@ -277,6 +280,9 @@
     <value>檔案庫"{0}"尚未存檔，是否存檔？</value>
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
+    <value>存檔取消，檔案"{0}.json"，資料不合規則</value>
+  </data>
+  <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
     <value>"{0}"所有檔案已存檔</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
@@ -298,9 +304,12 @@
     <value>請選擇外部索引欄位</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
-    <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+    <value>正則表達式格式錯誤</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
+    <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
     <value>欄位"{0}"已更新</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">

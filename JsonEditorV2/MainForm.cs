@@ -47,6 +47,7 @@ namespace JsonEditorV2
             lblColumnFKTable.Text = Res.JE_COLUMN_FK_TABLE;
             lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
+            lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -130,6 +131,21 @@ namespace JsonEditorV2
                 return;
             }
 
+            if (cobColumnType.SelectedValue.ToString() != JType.String.ToString())
+                txtColumnRegex.Text = "";
+
+            //確認Regex正確
+            try
+            {
+                if(txtColumnRegex.Text != "")
+                    Regex.IsMatch("__", txtColumnRegex.Text);
+            }
+            catch
+            {
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_4, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
                 LoadJsonFile(Var.SelectedColumnParentTable);
@@ -143,7 +159,7 @@ namespace JsonEditorV2
                    Var.SelectedColumn.Name != txtColumnName.Text ||
                    Var.SelectedColumn.Type != newType)
                 {
-                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_4, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (dr == DialogResult.Cancel)
                         return;
                 }
@@ -168,26 +184,27 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
-            //需要存檔?
-            if (Var.SelectedColumn.Name != txtColumnName.Text ||
-               Var.SelectedColumn.Type != newType)
-            {
-                //改名
-                RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
-                Var.SelectedColumn.Name = txtColumnName.Text;
+            //改名
+            RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
+            Var.SelectedColumn.Name = txtColumnName.Text;
 
-                //改型態檢查            
-                if (Var.SelectedColumn.Type != newType)
-                {
-                    Var.SelectedColumn.Type = newType;
-                    int index = Var.SelectedColumnIndex;
-                    foreach (JLine jl in Var.SelectedColumnParentTable)
-                        jl[index].Value = jl[index].Value.ParseJType(newType);
-                }
-                //SaveJsonFile(Var.SelectedColumnParentTable);
+            //改型態檢查            
+            if (Var.SelectedColumn.Type != newType)
+            {
+                Var.SelectedColumn.Type = newType;
+                int index = Var.SelectedColumnIndex;
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    jl[index].Value = jl[index].Value.ParseJType(newType);
             }
 
-            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumn.Name);
+            //改Rex檢查
+            if (Var.SelectedColumn.Regex != txtColumnRegex.Text)
+            {
+                Var.SelectedColumn.Regex = txtColumnRegex.Text;
+                Var.SelectedColumnParentTable.CheckValid();
+            }
+
+            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
         }
 
@@ -241,11 +258,14 @@ namespace JsonEditorV2
 
         private DialogResult AskSaveFiles(string title)
         {
+            Var.FailedFlag = false;
             if (Var.Changed)
             {
                 DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                     tmiSaveJsonFiles_Click(this, new EventArgs());
+                if (Var.FailedFlag)
+                    return DialogResult.Cancel;
                 return dr;
             }
             return DialogResult.No;
@@ -353,7 +373,7 @@ namespace JsonEditorV2
             StringBuilder sb = new StringBuilder();
             sb.Append(jc.Name);
             if (!string.IsNullOrEmpty(jc.FKTable))
-                sb.AppendFormat("[FK:{0}]", jc.FKTable);
+                sb.AppendFormat("[FK:{0}->{1}]", jc.FKTable, jc.FKColumn);
             sb.Append(":");
             sb.Append(jc.Type);
             return sb.ToString();
@@ -361,7 +381,7 @@ namespace JsonEditorV2
 
 
         private string GetTableNodeString(JTable jt)
-            => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}";
+            => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}{(jt.Valid ? "" : "(Invalid)")}";
 
 
         private void RefreshTrvSelectedFileChange()
@@ -538,8 +558,27 @@ namespace JsonEditorV2
             sslMain.Text = "";
         }
 
+        private void CheckAllFiles()
+        {
+
+        }
+
         private void tmiSaveJsonFiles_Click(object sender, EventArgs e)
         {
+            //確認所有檔案符合規則
+            foreach (JTable jt in Var.Tables)
+            {
+                if (jt.Loaded)
+                {
+                    if (!jt.CheckValid())
+                    {
+                        MessageBox.Show(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Var.FailedFlag = true;
+                        return;
+                    }
+                }
+            }
+
             Var.JFI.TablesInfo.Clear();
             foreach (JTable jt in Var.Tables)
                 Var.JFI.TablesInfo.Add(jt.GetJTableInfo());
@@ -549,11 +588,11 @@ namespace JsonEditorV2
 
             //存JSONFiles
             foreach (JTable jt in Var.Tables)
-                if (jt.Loaded)
+                if (jt.Loaded) //&& jt.Changed)
                     SaveJsonFile(jt);
 
             RefreshTrvJsonFiles();
-            sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, Var.JFI.DirectoryPath);
+            sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_2, Var.JFI.DirectoryPath);
         }
 
         private void trvJsonFiles_BeforeCollapse(object sender, TreeViewCancelEventArgs e)
@@ -636,6 +675,10 @@ namespace JsonEditorV2
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKColumn))
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
+                if (!string.IsNullOrEmpty(Var.SelectedColumn.Regex))
+                    txtColumnRegex.Text = Var.SelectedColumn.Regex;
+                else
+                    txtColumnRegex.Text = "";
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1233,7 +1276,7 @@ namespace JsonEditorV2
             if (lsbLines.SelectedIndex == -1)
                 return;
 
-            for(int i = 0; i < Var.InputControlSets.Count; i++)
+            for (int i = 0; i < Var.InputControlSets.Count; i++)
                 Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValue();
 
             int selectIndex = lsbLines.SelectedIndex;

@@ -67,10 +67,29 @@ namespace JsonEditor
         }
 
         /// <summary>
-        /// 以JType為目標轉換值的型態，失敗時設為初始值(無錯誤訊息)
+        /// JType的TryParse版本
         /// </summary>
         /// <param name="value">輸入值</param>
-        /// <param name="type">J型別</param>
+        /// <param name="type">JType</param>
+        /// <returns>是否成功</returns>
+        public static bool TryParseJType(this object value, JType type)
+        {
+            try
+            {
+                value.ParseJType(type);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }            
+        }
+
+        /// <summary>
+        /// 以JType為目標轉換值的型態，空值設為初始值，否則引發InvalidCast錯誤訊息
+        /// </summary>
+        /// <param name="value">輸入值</param>
+        /// <param name="type">JType</param>
         /// <returns>輸出值</returns>
         public static object ParseJType(this object value, JType type)
         {

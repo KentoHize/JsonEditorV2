@@ -196,6 +196,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 正則表達式.
+        /// </summary>
+        public static string JE_COLUMN_REGEX {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_REGEX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位型別.
         /// </summary>
         public static string JE_COLUMN_TYPE {
@@ -538,11 +547,20 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;所有檔案已存檔.
+        ///   Looks up a localized string similar to 存檔取消，檔案&quot;{0}.json&quot;，資料不合規則.
         /// </summary>
         public static string JE_RUN_SAVE_JSON_FILES_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_SAVE_JSON_FILES_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;所有檔案已存檔.
+        /// </summary>
+        public static string JE_RUN_SAVE_JSON_FILES_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SAVE_JSON_FILES_M_2", resourceCulture);
             }
         }
         
@@ -601,7 +619,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
+        ///   Looks up a localized string similar to 正則表達式格式錯誤.
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_4 {
             get {
@@ -610,11 +628,20 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已更新.
+        ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_5 {
             get {
                 return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已更新.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_6 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_6", resourceCulture);
             }
         }
         

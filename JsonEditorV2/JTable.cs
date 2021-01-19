@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace JsonEditor
 {
@@ -15,6 +17,7 @@ namespace JsonEditor
         public bool HasKey { get => Columns.Exists(m => m.IsKey); }
         public bool Loaded { get; set; }
         public bool Changed { get; set; }
+        public bool Valid { get; set; }
 
         public int Count => ((IList<JLine>)Lines).Count;
 
@@ -30,13 +33,14 @@ namespace JsonEditor
         {
             Name = name;
             Loaded = isNew;
+            Valid = true;
         }
 
         public JTable(string name, object jArray, bool isNew = false)
         {
             Name = name;
-            Loaded = isNew;
-            LoadJson(jArray, true);
+            Loaded = isNew;            
+            LoadJson(jArray, true);            
         }
 
         /// <summary>
@@ -73,6 +77,7 @@ namespace JsonEditor
             jfi.Columns = jcs;
             return jfi;
         }
+
         /// <summary>
         /// 擷取存檔用的Data Object
         /// </summary>
@@ -158,6 +163,7 @@ namespace JsonEditor
                 }
 
                 //新增加值
+                //Delete Test
                 while (items.Count < Columns.Count)
                     items.Add(new JValue());
 
@@ -165,8 +171,47 @@ namespace JsonEditor
                 Lines.Add(items);
             }
             Loaded = true;
+            Valid = false;
+            CheckValid();
         }
 
+        /// <summary>
+        /// 確認所有資料符合欄位定義
+        /// </summary>
+        public bool CheckValid()
+        {
+            Valid = false;
+
+            //Key Check
+            List<int> keyIndex = new List<int>();
+            for (int i = 0; i < Columns.Count; i++)
+                if (Columns[i].IsKey)
+                    keyIndex.Add(i);
+
+            HashSet<string> keyCheckSet = new HashSet<string>();
+            string checkString;
+            for (int i = 0; i < Lines.Count; i++)
+            {
+                checkString = "";
+                for (int j = 0; j < keyIndex.Count; j++)
+                    checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
+                if (!keyCheckSet.Add(checkString))
+                    return Valid;
+
+                for(int j = 0; j < Columns.Count; j++)
+                {
+                    if (!Lines[i][j].Value.TryParseJType(Columns[j].Type))
+                        return Valid;
+
+                    if (Columns[j].Type == JType.String && 
+                        !string.IsNullOrEmpty(Columns[j].Regex) &&
+                        !Regex.IsMatch(Lines[i][j].Value.ToString(), Columns[j].Regex))
+                        return Valid;
+                }                
+            }
+            Valid = true;
+            return Valid;
+        }
 
         /// <summary>
         /// 用欄位資訊確認末端值的型別並進行轉換

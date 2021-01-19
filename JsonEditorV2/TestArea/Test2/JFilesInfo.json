@@ -11,7 +11,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "AT999",
@@ -20,7 +21,8 @@
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "TTT99999",
@@ -29,7 +31,8 @@
           "FKTable": "AD33",
           "FKColumn": "TT557",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "H999",
@@ -38,7 +41,8 @@
           "FKTable": "T4",
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Y999",
@@ -47,7 +51,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "KL",
@@ -56,7 +61,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "KLLL",
@@ -65,7 +71,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -79,7 +86,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "TTTT",
@@ -88,7 +96,8 @@
           "FKTable": "T4",
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "A41123",
@@ -97,7 +106,8 @@
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "HHH",
@@ -106,7 +116,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -120,7 +131,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "TEst",
@@ -129,7 +141,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "GGGS99",
@@ -138,7 +151,53 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
+        }
+      ]
+    },
+    {
+      "Name": "GroupTesting",
+      "Columns": [
+        {
+          "Name": "Key1",
+          "IsKey": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "^\\w*$"
+        },
+        {
+          "Name": "Key2",
+          "IsKey": true,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": ""
+        },
+        {
+          "Name": "Key3",
+          "IsKey": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": ""
+        },
+        {
+          "Name": "Memo",
+          "IsKey": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -152,7 +211,8 @@
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -170,7 +230,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         }
       ]
     },
@@ -188,7 +249,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "_P-6",
@@ -197,7 +259,8 @@
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "G8888",
@@ -206,7 +269,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Y888",
@@ -215,7 +279,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 11,
-          "Display": true
+          "Display": true,
+          "Regex": null
         }
       ]
     }
