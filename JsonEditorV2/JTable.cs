@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace JsonEditor
 {
@@ -39,8 +38,8 @@ namespace JsonEditor
         public JTable(string name, object jArray, bool isNew = false)
         {
             Name = name;
-            Loaded = isNew;            
-            LoadJson(jArray, true);            
+            Loaded = isNew;
+            LoadJson(jArray, true);
         }
 
         /// <summary>
@@ -192,22 +191,24 @@ namespace JsonEditor
             string checkString;
             for (int i = 0; i < Lines.Count; i++)
             {
-                checkString = "";
-                for (int j = 0; j < keyIndex.Count; j++)
-                    checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
-                if (!keyCheckSet.Add(checkString))
-                    return Valid;
-
-                for(int j = 0; j < Columns.Count; j++)
+                if (keyIndex.Count != 0)
+                {
+                    checkString = "";
+                    for (int j = 0; j < keyIndex.Count; j++)
+                        checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
+                    if (!keyCheckSet.Add(checkString))
+                        return Valid;
+                }
+                for (int j = 0; j < Columns.Count; j++)
                 {
                     if (!Lines[i][j].Value.TryParseJType(Columns[j].Type))
                         return Valid;
 
-                    if (Columns[j].Type == JType.String && 
+                    if (Columns[j].Type == JType.String &&
                         !string.IsNullOrEmpty(Columns[j].Regex) &&
                         !Regex.IsMatch(Lines[i][j].Value.ToString(), Columns[j].Regex))
                         return Valid;
-                }                
+                }
             }
             Valid = true;
             return Valid;

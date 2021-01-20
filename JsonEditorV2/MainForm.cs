@@ -131,6 +131,8 @@ namespace JsonEditorV2
                 return;
             }
 
+            bool recheckTable = false;
+
             if (cobColumnType.SelectedValue.ToString() != JType.String.ToString())
                 txtColumnRegex.Text = "";
 
@@ -181,6 +183,8 @@ namespace JsonEditorV2
             if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
                 CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
 
+            if (!Var.SelectedColumn.IsKey && ckbColumnIsKey.Checked)
+                recheckTable = true;
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
@@ -197,12 +201,16 @@ namespace JsonEditorV2
                     jl[index].Value = jl[index].Value.ParseJType(newType);
             }
 
-            //改Rex檢查
+            //改正則表達式
             if (Var.SelectedColumn.Regex != txtColumnRegex.Text)
             {
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
-                Var.SelectedColumnParentTable.CheckValid();
+                recheckTable = true;
+                
             }
+
+            if(recheckTable)
+                Var.SelectedColumnParentTable.CheckValid();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();

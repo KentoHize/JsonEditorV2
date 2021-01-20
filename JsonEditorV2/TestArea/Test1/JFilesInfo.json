@@ -6,12 +6,13 @@
       "Columns": [
         {
           "Name": "No",
-          "IsKey": false,
+          "IsKey": true,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Date",
@@ -20,7 +21,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Chinese",
@@ -29,7 +31,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 5,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "English",
@@ -38,7 +41,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 8,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Japanese",
@@ -47,7 +51,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -61,7 +66,8 @@
           "FKTable": "Persons",
           "FKColumn": "ID",
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "BestowerID",
@@ -70,7 +76,8 @@
           "FKTable": "Persons",
           "FKColumn": "ID",
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "MoralRank",
@@ -79,7 +86,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "BestowDateTime",
@@ -88,7 +96,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Reason",
@@ -97,7 +106,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Memo",
@@ -106,7 +116,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -120,7 +131,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "Surname",
@@ -129,7 +141,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Name",
@@ -138,7 +151,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "OtherName",
@@ -147,7 +161,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "SurnameFirst",
@@ -156,7 +171,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Yomikata",
@@ -165,7 +181,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Gender",
@@ -174,7 +191,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": "^[mf]?$"
         },
         {
           "Name": "Fiction",
@@ -183,7 +201,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Wanted",
@@ -192,7 +211,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": "^[yn]$"
         },
         {
           "Name": "Protected",
@@ -201,7 +221,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "TwitterAccount",
@@ -210,7 +231,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "FacebookAccount",
@@ -219,7 +241,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "InstagramAccount",
@@ -228,7 +251,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "From",
@@ -237,7 +261,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Group",
@@ -246,7 +271,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "IsAOMember",
@@ -255,7 +281,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": "^[yn]$"
         },
         {
           "Name": "IsCelebrity",
@@ -264,7 +291,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "MoralRank",
@@ -273,7 +301,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Description",
@@ -282,7 +311,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 5,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "LastBestowDate",
@@ -291,7 +321,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "PicturePath",
@@ -300,7 +331,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -309,12 +341,13 @@
       "Columns": [
         {
           "Name": "No",
-          "IsKey": false,
+          "IsKey": true,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Date",
@@ -323,7 +356,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Chinese",
@@ -332,7 +366,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 3,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "English",
@@ -341,7 +376,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 3,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Japanese",
@@ -350,7 +386,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     }
