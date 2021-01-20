@@ -117,7 +117,289 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
+    <value>JSON Files Editor V0.2</value>
+  </data>
+  <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
+    <value>Created by KentKaze</value>
+  </data>
+  <data name="JE_ABOUT_TITLE" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
+    <value>Delete Line</value>
+  </data>
+  <data name="JE_BTN_NEW_GUID" xml:space="preserve">
+    <value>New ID</value>
+  </data>
+  <data name="JE_BTN_NEW_LINE" xml:space="preserve">
+    <value>New Line</value>
+  </data>
+  <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="JE_COLUMN_DISPLAY" xml:space="preserve">
+    <value>Show On List</value>
+  </data>
+  <data name="JE_COLUMN_FK_COLUMN" xml:space="preserve">
+    <value>FK Column</value>
+  </data>
+  <data name="JE_COLUMN_FK_TABLE" xml:space="preserve">
+    <value>FK File</value>
+  </data>
+  <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
+    <value>Is Key</value>
+  </data>
+  <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
+    <value>Is Nullable</value>
+  </data>
+  <data name="JE_COLUMN_NAME" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
+  <data name="JE_COLUMN_NUM_OF_ROWS" xml:space="preserve">
+    <value>Number of Rows</value>
+  </data>
+  <data name="JE_COLUMN_REGEX" xml:space="preserve">
+    <value>Regular Expression</value>
+  </data>
+  <data name="JE_COLUMN_TYPE" xml:space="preserve">
+    <value>Column Type</value>
+  </data>
+  <data name="JE_ERR_COLUMN_COUNT_UNMATCH" xml:space="preserve">
+    <value>JSON關聯檔案中的欄位數量: {0}和實際檔案中的欄位數量: {1}不合</value>
+  </data>
+  <data name="JE_ERR_COLUMN_NAME_UNMATCH" xml:space="preserve">
+    <value>JSON關聯檔案中的欄位名稱:"{0}"和實際檔案中的欄位名稱"{1}"不合</value>
+  </data>
+  <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
+    <value>Error occured, error message: {0}</value>
+  </data>
+  <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
+    <value>JFI File is Empty.</value>
+  </data>
+  <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
+    <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
+  </data>
+  <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="JE_INPUTBOX_BTN_CONFIRM" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="JE_INPUTBOX_DESCRIPTION" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
+  <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
+    <value>File "{0}" exist.</value>
+  </data>
+  <data name="JE_INPUTBOX_TITLE" xml:space="preserve">
+    <value>New Json File</value>
+  </data>
+  <data name="JE_INPUTBOX_TITLE_2" xml:space="preserve">
+    <value>New Column</value>
+  </data>
+  <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
+    <value>錯誤的欄位名稱，請用'_'或英文字母開頭，之後使用'_'、英文字母或是數字，長度不要超過50位</value>
+  </data>
+  <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
+    <value>不符合規則的檔案名稱</value>
+  </data>
+  <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
+    <value>Column"{0}" is exist.</value>
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_DOWN_M_1" xml:space="preserve">
+    <value>Column"{0}" is a bottom column.</value>
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_TITLE" xml:space="preserve">
+    <value>Move Column</value>
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
+    <value>Column"{0}" is a top column.</value>
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
+    <value>檔案內存在{0}筆資料，確定要一起刪除欄位嗎</value>
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
+    <value>Column"{0}" deleted.</value>
+  </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
+    <value>確定刪除檔案"{0}.json"？</value>
+  </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
+    <value>File"{0}.json" deleted.</value>
+  </data>
+  <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
+    <value>Line "{0}" deleted.</value>
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
+    <value>{0} File(s) has Loaded.</value>
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
+    <value>JFI File link failed, error message: "{0}"</value>
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
+    <value>Load Json Folder</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
+    <value>已在"{0}"新建檔案庫</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
+    <value>此文件已有現存 {0} JSON檔案，是否要清空資料夾</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_TITLE" xml:space="preserve">
+    <value>New Json Folder</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILE_M_2" xml:space="preserve">
+    <value>檔案新建失敗:"{0}"</value>
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
+    <value>New Json File</value>
+  </data>
+  <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
+    <value>"{0}" New line added.</value>
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
+    <value>File "{0}.json" exist.</value>
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
+    <value>檔案已重新命名為"{0}"</value>
+  </data>
+  <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
+    <value>This is not a empty folder, Confirm to delete all files in the folder.</value>
+  </data>
+  <data name="JE_RUN_SAVE_FILES_CHECK" xml:space="preserve">
+    <value>Folder "{0}" didn't save, save folder?</value>
+  </data>
+  <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
+    <value>存檔取消，檔案"{0}.json"，資料不合規則</value>
+  </data>
+  <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
+    <value>"{0}" All Files saved.</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
+    <value>準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
+    <value>{0}檔案掃描完畢</value>
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
+    <value>Scan Json Folder</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_1" xml:space="preserve">
+    <value>Column name is illegal.</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
+    <value>Number of rows is incorrect.</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_3" xml:space="preserve">
+    <value>請選擇外部索引欄位</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
+    <value>Regular Expression format error.</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
+    <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
+    <value>Column "{0}" updated.</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
+    <value>Key欄位不能為Null值</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
+    <value>Update Column</value>
+  </data>
+  <data name="JE_RUN_UPDATE_LINE_M_1" xml:space="preserve">
+    <value>"{0}"資料已更新</value>
+  </data>
+  <data name="JE_TMI_ABOUT" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
+    <value>Add Column</value>
+  </data>
+  <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
+    <value>Close Json Folder</value>
+  </data>
+  <data name="JE_TMI_CLOSE_JSON_FILE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="JE_TMI_CLOSE_TAB" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
+    <value>Collapse All</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="JE_TMI_EXIT" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
+    <value>Expand All</value>
+  </data>
+  <data name="JE_TMI_FILE" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="JE_TMI_LANGUAGES" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="JE_TMI_LOAD_JSON_FILES" xml:space="preserve">
+    <value>Load Json Folder</value>
+  </data>
+  <data name="JE_TMI_NEW_JSON_FILE" xml:space="preserve">
+    <value>New Json File</value>
+  </data>
+  <data name="JE_TMI_NEW_JSON_FILES" xml:space="preserve">
+    <value>New Json Folder</value>
+  </data>
+  <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="JE_TMI_SAVE_AS_JSON_FILES" xml:space="preserve">
+    <value>Save as ..  Json Folder</value>
+  </data>
+  <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
+    <value>Save Json Folder</value>
+  </data>
+  <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
+    <value>Scan Json Folder</value>
+  </data>
+  <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
+    <value>"{0}"不符合資料型態</value>
+  </data>
+  <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
+    <value>"{0}"規則檢查失敗</value>
+  </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
-    <value>JSON File Editor</value>
+    <value>JSON Files Editor</value>
   </data>
 </root>

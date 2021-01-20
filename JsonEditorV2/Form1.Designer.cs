@@ -130,7 +130,7 @@
             // 
             this.btnClearMain.Enabled = false;
             this.btnClearMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearMain.Location = new System.Drawing.Point(770, 764);
+            this.btnClearMain.Location = new System.Drawing.Point(801, 764);
             this.btnClearMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearMain.Name = "btnClearMain";
             this.btnClearMain.Size = new System.Drawing.Size(122, 40);
@@ -143,7 +143,7 @@
             // 
             this.btnUpdateMain.Enabled = false;
             this.btnUpdateMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMain.Location = new System.Drawing.Point(1330, 764);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1361, 764);
             this.btnUpdateMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
@@ -156,7 +156,7 @@
             // 
             this.btnUpdateColumn.Enabled = false;
             this.btnUpdateColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateColumn.Location = new System.Drawing.Point(252, 764);
+            this.btnUpdateColumn.Location = new System.Drawing.Point(279, 764);
             this.btnUpdateColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateColumn.Name = "btnUpdateColumn";
             this.btnUpdateColumn.Size = new System.Drawing.Size(122, 40);
@@ -190,13 +190,13 @@
             this.lbColumnFKColumn.Location = new System.Drawing.Point(1, 434);
             this.lbColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.lbColumnFKColumn.Name = "lbColumnFKColumn";
-            this.lbColumnFKColumn.Size = new System.Drawing.Size(374, 324);
+            this.lbColumnFKColumn.Size = new System.Drawing.Size(400, 324);
             this.lbColumnFKColumn.TabIndex = 15;
             // 
             // ckbColumnIsNullable
             // 
             this.ckbColumnIsNullable.AutoSize = true;
-            this.ckbColumnIsNullable.Location = new System.Drawing.Point(344, 154);
+            this.ckbColumnIsNullable.Location = new System.Drawing.Point(371, 154);
             this.ckbColumnIsNullable.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnIsNullable.Name = "ckbColumnIsNullable";
             this.ckbColumnIsNullable.Size = new System.Drawing.Size(18, 17);
@@ -217,7 +217,7 @@
             // txtColumnRegex
             // 
             this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnRegex.Location = new System.Drawing.Point(180, 220);
+            this.txtColumnRegex.Location = new System.Drawing.Point(207, 220);
             this.txtColumnRegex.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnRegex.Name = "txtColumnRegex";
             this.txtColumnRegex.Size = new System.Drawing.Size(184, 27);
@@ -240,7 +240,7 @@
             this.cobColumnFKColumn.DisplayMember = "Name";
             this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKColumn.FormattingEnabled = true;
-            this.cobColumnFKColumn.Location = new System.Drawing.Point(180, 288);
+            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 288);
             this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKColumn.Name = "cobColumnFKColumn";
             this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
@@ -264,7 +264,7 @@
             this.cobColumnFKTable.DisplayMember = "Name";
             this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKTable.FormattingEnabled = true;
-            this.cobColumnFKTable.Location = new System.Drawing.Point(180, 252);
+            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 252);
             this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKTable.Name = "cobColumnFKTable";
             this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
@@ -275,7 +275,7 @@
             // txtColumnNumberOfRows
             // 
             this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(326, 79);
+            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(353, 79);
             this.txtColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
             this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
@@ -297,7 +297,7 @@
             // ckbColumnDisplay
             // 
             this.ckbColumnDisplay.AutoSize = true;
-            this.ckbColumnDisplay.Location = new System.Drawing.Point(344, 188);
+            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 188);
             this.ckbColumnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnDisplay.Name = "ckbColumnDisplay";
             this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
@@ -307,7 +307,7 @@
             // ckbColumnIsKey
             // 
             this.ckbColumnIsKey.AutoSize = true;
-            this.ckbColumnIsKey.Location = new System.Drawing.Point(344, 119);
+            this.ckbColumnIsKey.Location = new System.Drawing.Point(371, 119);
             this.ckbColumnIsKey.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnIsKey.Name = "ckbColumnIsKey";
             this.ckbColumnIsKey.Size = new System.Drawing.Size(18, 17);
@@ -318,7 +318,7 @@
             // 
             this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnType.FormattingEnabled = true;
-            this.cobColumnType.Location = new System.Drawing.Point(180, 44);
+            this.cobColumnType.Location = new System.Drawing.Point(207, 44);
             this.cobColumnType.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnType.Name = "cobColumnType";
             this.cobColumnType.Size = new System.Drawing.Size(184, 28);
@@ -327,7 +327,7 @@
             // txtColumnName
             // 
             this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnName.Location = new System.Drawing.Point(180, 9);
+            this.txtColumnName.Location = new System.Drawing.Point(207, 9);
             this.txtColumnName.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnName.Name = "txtColumnName";
             this.txtColumnName.Size = new System.Drawing.Size(184, 27);
@@ -394,7 +394,7 @@
             this.lsbLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbLines.FormattingEnabled = true;
             this.lsbLines.ItemHeight = 20;
-            this.lsbLines.Location = new System.Drawing.Point(380, 62);
+            this.lsbLines.Location = new System.Drawing.Point(409, 61);
             this.lsbLines.Margin = new System.Windows.Forms.Padding(4);
             this.lsbLines.Name = "lsbLines";
             this.lsbLines.Size = new System.Drawing.Size(384, 684);
@@ -412,7 +412,7 @@
             this.trvJsonFiles.Name = "trvJsonFiles";
             this.trvJsonFiles.SelectedImageIndex = 0;
             this.trvJsonFiles.ShowNodeToolTips = true;
-            this.trvJsonFiles.Size = new System.Drawing.Size(374, 396);
+            this.trvJsonFiles.Size = new System.Drawing.Size(400, 396);
             this.trvJsonFiles.TabIndex = 12;
             this.trvJsonFiles.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeCollapse);
             this.trvJsonFiles.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeExpand);
@@ -436,7 +436,7 @@
             this.sslMain});
             this.stsMain.Location = new System.Drawing.Point(0, 810);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1462, 22);
+            this.stsMain.Size = new System.Drawing.Size(1489, 22);
             this.stsMain.TabIndex = 11;
             this.stsMain.Text = "sspMain";
             // 
@@ -450,7 +450,7 @@
             this.tbcMain.ContextMenuStrip = this.cmsTabSelected;
             this.tbcMain.Controls.Add(this.tbpStart);
             this.tbcMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbcMain.Location = new System.Drawing.Point(380, 32);
+            this.tbcMain.Location = new System.Drawing.Point(409, 32);
             this.tbcMain.Margin = new System.Windows.Forms.Padding(4);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
@@ -487,7 +487,7 @@
             // 
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(770, 62);
+            this.pnlMain.Location = new System.Drawing.Point(801, 61);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(682, 697);
@@ -503,7 +503,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1462, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1489, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -772,7 +772,7 @@
             // 
             this.btnNewLine.Enabled = false;
             this.btnNewLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewLine.Location = new System.Drawing.Point(642, 764);
+            this.btnNewLine.Location = new System.Drawing.Point(671, 764);
             this.btnNewLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(122, 40);
@@ -785,7 +785,7 @@
             // 
             this.btnDeleteLine.Enabled = false;
             this.btnDeleteLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteLine.Location = new System.Drawing.Point(380, 764);
+            this.btnDeleteLine.Location = new System.Drawing.Point(409, 764);
             this.btnDeleteLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteLine.Name = "btnDeleteLine";
             this.btnDeleteLine.Size = new System.Drawing.Size(122, 40);
@@ -802,7 +802,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1462, 832);
+            this.ClientSize = new System.Drawing.Size(1489, 832);
             this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);

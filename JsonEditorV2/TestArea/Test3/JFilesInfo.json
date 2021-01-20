@@ -6,9 +6,20 @@
       "Columns": [
         {
           "Name": "No",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Long",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": ""
+        },
+        {
+          "Name": "Date",
           "IsKey": false,
           "IsNullable": true,
-          "Type": "String",
+          "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
@@ -22,9 +33,9 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 5,
+          "NumberOfRows": 7,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "English",
@@ -33,20 +44,20 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 17,
+          "NumberOfRows": 8,
           "Display": false,
           "Regex": null
         },
         {
           "Name": "Japanese",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         }
       ]
     },
@@ -58,22 +69,22 @@
           "IsKey": false,
           "IsNullable": false,
           "Type": "Guid",
-          "FKTable": null,
-          "FKColumn": null,
+          "FKTable": "Persons",
+          "FKColumn": "ID",
           "NumberOfRows": 1,
-          "Display": true,
-          "Regex": null
+          "Display": false,
+          "Regex": ""
         },
         {
           "Name": "BestowerID",
           "IsKey": false,
           "IsNullable": false,
           "Type": "Guid",
-          "FKTable": null,
-          "FKColumn": null,
+          "FKTable": "Persons",
+          "FKColumn": "ID",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "MoralRank",
@@ -83,8 +94,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "BestowDateTime",
@@ -94,8 +105,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Reason",
@@ -132,8 +143,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true,
-          "Regex": null
+          "Display": false,
+          "Regex": ""
         },
         {
           "Name": "Surname",
@@ -143,8 +154,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Name",
@@ -154,8 +165,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "OtherName",
@@ -166,7 +177,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "SurnameFirst",
@@ -177,7 +188,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "Yomikata",
@@ -199,7 +210,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[mf]?$"
         },
         {
           "Name": "Fiction",
@@ -210,7 +221,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "Wanted",
@@ -221,7 +232,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "Protected",
@@ -232,7 +243,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "TwitterAccount",
@@ -298,7 +309,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "IsCelebrity",
@@ -309,7 +320,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "MoralRank",
@@ -329,7 +340,7 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 2,
+          "NumberOfRows": 5,
           "Display": false,
           "Regex": null
         },
@@ -362,25 +373,25 @@
       "Columns": [
         {
           "Name": "No",
-          "IsKey": false,
+          "IsKey": true,
           "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "Date",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Chinese",
@@ -389,9 +400,9 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 5,
+          "NumberOfRows": 3,
           "Display": false,
-          "Regex": ""
+          "Regex": null
         },
         {
           "Name": "English",
@@ -400,20 +411,20 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 10,
+          "NumberOfRows": 3,
           "Display": false,
-          "Regex": ""
+          "Regex": null
         },
         {
           "Name": "Japanese",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         }
       ]
     }
