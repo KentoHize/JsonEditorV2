@@ -26,7 +26,7 @@ namespace JsonEditor
         Uri,
         TimeSpan,
         Decimal,        
-        Undefied
+        JSONObject
     }
 
     public static class JTypeExtentions
@@ -53,7 +53,7 @@ namespace JsonEditor
                 case JType.Decimal:
                     return 0;
                 case JType.None:
-                case JType.Undefied:
+                case JType.JSONObject:
                     return null;
                 case JType.TimeSpan:
                     return new TimeSpan();
@@ -134,7 +134,7 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
-                case JType.Undefied:
+                case JType.JSONObject:
                     break;
                 case JType.TimeSpan:
                     if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
@@ -187,7 +187,7 @@ namespace JsonEditor
                 case JsonToken.Float:
                     return JType.Double;
                 default:
-                    return JType.Undefied;
+                    return JType.JSONObject;
             }
         }
 
@@ -231,7 +231,7 @@ namespace JsonEditor
                 case JTokenType.Uri:
                     return JType.Uri;
                 default:
-                    return JType.Undefied;
+                    return JType.JSONObject;
             }
         }        
     }

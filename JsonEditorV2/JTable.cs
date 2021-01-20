@@ -163,21 +163,21 @@ namespace JsonEditor
 
                 //新增加值
                 //Delete Test
-                while (items.Count < Columns.Count)
-                    items.Add(new JValue());
+                //while (items.Count < Columns.Count)
+                //    items.Add(new JValue());
 
                 isFirst = false;
                 Lines.Add(items);
             }
             Loaded = true;
             Valid = false;
-            CheckValid();
+            CheckAllValid();
         }
 
         /// <summary>
         /// 確認所有資料符合欄位定義
         /// </summary>
-        public bool CheckValid()
+        public bool CheckAllValid()
         {
             Valid = false;
 
@@ -214,6 +214,7 @@ namespace JsonEditor
             Valid = true;
             return Valid;
         }
+
 
         /// <summary>
         /// 用欄位資訊確認末端值的型別並進行轉換

@@ -120,10 +120,10 @@ namespace JsonEditorV2
                 //case JType.DateTime:                    
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long, ShowUpDown = true };
                 case JType.None:
-                case JType.Undefied:
-                    return null;
+                case JType.JSONObject:
                 default:
-                    return null;
+                    return new Label { Name = $"lvl{name}" };
+                    
             }
         }
     }

@@ -61,7 +61,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON 資料檔案編輯器 0.1.
+        ///   Looks up a localized string similar to JSON 資料檔案編輯器 0.2.
         /// </summary>
         public static string JE_ABOUT_MESSAGE {
             get {

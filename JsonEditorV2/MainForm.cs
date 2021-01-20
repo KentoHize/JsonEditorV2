@@ -267,7 +267,7 @@ namespace JsonEditorV2
             }
 
             if(recheckTable)
-                Var.SelectedColumnParentTable.CheckValid();
+                Var.SelectedColumnParentTable.CheckAllValid();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -630,7 +630,7 @@ namespace JsonEditorV2
             {
                 if (jt.Loaded)
                 {
-                    if (!jt.CheckValid())
+                    if (!jt.CheckAllValid())
                     {
                         MessageBox.Show(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Var.FailedFlag = true;
@@ -1044,7 +1044,7 @@ namespace JsonEditorV2
                 {
                     StreamReader sr = new StreamReader(fs);
                     jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                    jt.CheckValid();
+                    jt.CheckAllValid();
                     sr.Dispose();
                 }
             }
@@ -1338,6 +1338,8 @@ namespace JsonEditorV2
         {
             if (lsbLines.SelectedIndex == -1)
                 return;
+
+            //驗證
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
                 Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValue();

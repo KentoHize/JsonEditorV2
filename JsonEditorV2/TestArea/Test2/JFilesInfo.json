@@ -63,7 +63,7 @@
           "Name": "KL",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "String",
+          "Type": "Time",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
@@ -259,7 +259,41 @@
     },
     {
       "Name": "T3",
-      "Columns": []
+      "Columns": [
+        {
+          "Name": "GG",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": ""
+        },
+        {
+          "Name": "DDD",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": null
+        },
+        {
+          "Name": "ABFD",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Guid",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": ""
+        }
+      ]
     },
     {
       "Name": "T4",
