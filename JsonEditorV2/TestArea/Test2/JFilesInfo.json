@@ -57,7 +57,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": "^(oo|pp)$"
         },
         {
           "Name": "KL",
@@ -90,11 +90,11 @@
           "Name": "HJI99",
           "IsKey": true,
           "IsNullable": false,
-          "Type": "String",
+          "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true,
+          "Display": false,
           "Regex": ""
         },
         {
@@ -102,11 +102,11 @@
           "IsKey": false,
           "IsNullable": false,
           "Type": "String",
-          "FKTable": "T4",
-          "FKColumn": "TestCo",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": "^opop[A-Za-z]$"
         },
         {
           "Name": "A41123",
@@ -154,8 +154,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "TEst",
@@ -165,8 +165,8 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null
+          "Display": true,
+          "Regex": "^ggg$"
         },
         {
           "Name": "GGGS99",
@@ -177,7 +177,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^aaa$"
         }
       ]
     },

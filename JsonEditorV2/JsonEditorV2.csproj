@@ -106,6 +106,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,8 +125,10 @@
     <None Include="TestArea\Test2\AD33.json" />
     <None Include="TestArea\Test2\Add2222.json" />
     <None Include="TestArea\Test2\bbbbbbb.json" />
+    <None Include="TestArea\Test2\GroupTesting.json" />
     <None Include="TestArea\Test2\JFilesInfo.json" />
     <None Include="TestArea\Test2\T2.json" />
+    <None Include="TestArea\Test2\T3.json" />
     <None Include="TestArea\Test2\T4.json" />
     <None Include="TestArea\Test2\T5.json" />
     <None Include="TestArea\Test2\Test6.json" />

@@ -221,7 +221,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "Wanted",
@@ -243,7 +243,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "TwitterAccount",
@@ -320,7 +320,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": "^[yn]$"
         },
         {
           "Name": "MoralRank",

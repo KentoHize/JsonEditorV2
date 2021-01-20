@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="JsonEditorV2.Const">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Const.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.frmInputBox" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAQAAAACBAAAkAAACAAEACAQAAAAAEAAAAAAAAABA=</HashCode>
+      <FileName>frmInputBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.InputControlSet" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEEAAAIAAAAhAAAAAIACAAAAAAAAAMAAAIAACAAAA=</HashCode>
+      <FileName>InputControlSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.MainForm" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFuRcuXFGuMghUG2TQKTRa4incEMpBRDwg/mGnyIilQ=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.Program" Collapsed="true">
+    <Position X="6.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.Var" Collapsed="true">
+    <Position X="6.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAgIAAAABIAAABAAAUAACAAAACAAQAIgAAAAAAEA=</HashCode>
+      <FileName>Var.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditor.JColumn" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABBAACAAAIQQAAAAIAAAAAQAAAAAAIAA=</HashCode>
+      <FileName>JColumn.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditor.JFilesInfo" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAgAAAABAAAAAQAgAACAAAEAAAAAgAAAAA=</HashCode>
+      <FileName>JFilesInfo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JsonEditor.JLine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAEAAAAAAABAQCAAABAQAAAAAAAAECAAgAABQIAA=</HashCode>
+      <FileName>JLine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JsonEditor.JTable" BaseTypeListCollapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEIAAEAAIAFAADAQDAAABQQAAAAAAAAGCAAABAhQYAA=</HashCode>
+      <FileName>JTable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JsonEditor.JTableInfo" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>JTableInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditor.JTypeExtentions">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAACIAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>JType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditor.JValue" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>JValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JsonEditorV2.Resources.Res" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA/GAPAGMaCiASB4hVANkKApAYAIAiYqogAQhwlEKME=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="JsonEditor.JType" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAQAgCAAAQAAAAAAABAACBgQBCAQAAAEAAQA=</HashCode>
+      <FileName>JType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

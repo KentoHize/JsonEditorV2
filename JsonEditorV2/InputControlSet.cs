@@ -1,5 +1,7 @@
 ﻿using JsonEditor;
+using JsonEditorV2.Resources;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace JsonEditorV2
@@ -9,8 +11,13 @@ namespace JsonEditorV2
         public JColumn JColumn { get; set; }
 
         public Control ValueControl { get; set; }
+        public Button ButtonControl { get; set; }
+        public ErrorProvider ValidControl { get; set; }
         public CheckBox NullCheckBox { get; set; }
         public Label NameLabel { get; set; }
+
+        private Control errPositionControl;
+        private object parsedValue;
 
         public InputControlSet(JColumn sourceColumn)
         {
@@ -31,7 +38,8 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(NameLabel);
 
-            ValueControl = GetControlFromJType(JColumn.Type, JColumn.Name);
+            ValueControl = GetValueControlFromJType(JColumn.Type, JColumn.Name);
+            errPositionControl = ValueControl;
 
             if (ValueControl == null)
                 return;
@@ -42,7 +50,7 @@ namespace JsonEditorV2
             if (ValueControl is TextBox)
             {
                 ValueControl.Width = 200;
-                if(JColumn.NumberOfRows > 1)
+                if (JColumn.NumberOfRows > 1)
                     (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
                 ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
                 NameLabel.Height = 30 * JColumn.NumberOfRows;
@@ -50,9 +58,23 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(ValueControl);
 
+            ButtonControl = GetButtonControlFromJType(JColumn.Type, JColumn.Name);
+
+            if (ButtonControl != null)
+            {
+                ValueControl.Width = 150;
+                ButtonControl.Left = 350;
+                ButtonControl.Width = 50;
+                ButtonControl.Top = 30 * lineIndex;
+                pnlMain.Controls.Add(ButtonControl);
+                errPositionControl = ButtonControl;
+            }
+
+            ValidControl = new ErrorProvider();
+
             NullCheckBox = new CheckBox { Name = $"ckbNull{JColumn.Name}" };
             NullCheckBox.Text = "Null";
-            NullCheckBox.Left = 410;
+            NullCheckBox.Left = 430;
             NullCheckBox.Top = 30 * lineIndex;
             NullCheckBox.Width = 60;
             NullCheckBox.CheckedChanged += CkbCheckBox_CheckedChanged;
@@ -63,19 +85,41 @@ namespace JsonEditorV2
             pnlMain.Controls.Add(NullCheckBox);
         }
 
-        public object GetValue()
+        public bool CheckValid()
+        {
+            ValidControl.SetError(errPositionControl, "");
+            if (JColumn.Type == JType.String)
+                if (!string.IsNullOrEmpty(JColumn.Regex))
+                    if (!Regex.IsMatch(ValueControl.Text, JColumn.Regex))
+                    {
+                        ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_REGEX_IS_NOT_MATCH, ValueControl.Text));
+                        return false;
+                    }
+
+            if (ValueControl is TextBox)
+                if (!ValueControl.Text.TryParseJType(JColumn.Type, out parsedValue))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
+                    return false;
+                }
+                    
+            if (ValueControl is CheckBox)
+                if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
+                    return false;
+                }
+            return true;
+        }
+
+        public object GetValueValidated()
         {
             if (NullCheckBox.Checked)
                 return null;
 
-            if (ValueControl is TextBox)
-                return (ValueControl as TextBox).Text.ParseJType(JColumn.Type);
-            else if (ValueControl is CheckBox)
-                return (ValueControl as CheckBox).Checked.ParseJType(JColumn.Type);
-
-            throw new Exception();
+            return parsedValue;
         }
-        
+
         public void SetValue(object value)
         {
             if (JColumn.IsNullable)
@@ -83,7 +127,7 @@ namespace JsonEditorV2
             else if (!JColumn.IsNullable)
                 NullCheckBox.Checked = false;
             if (value == null)
-                return;            
+                return;
             if (ValueControl is TextBox)
                 (ValueControl as TextBox).Text = value.ToString();
             else if (ValueControl is CheckBox)
@@ -93,7 +137,25 @@ namespace JsonEditorV2
         private void CkbCheckBox_CheckedChanged(object sender, EventArgs e)
             => ValueControl.Enabled = !NullCheckBox.Checked;
 
-        private Control GetControlFromJType(JType type, string name)
+        private Button GetButtonControlFromJType(JType type, string name)
+        {
+            switch (type)
+            {
+                case JType.Guid:
+                    Button btn = new Button { Name = $"btn{name}", Text = Res.JE_BTN_NEW_GUID }; ;
+                    btn.Click += BtnNewGUID_Click;
+                    return btn;
+                default:
+                    return null;
+            }
+        }
+
+        private void BtnNewGUID_Click(object sender, EventArgs e)
+        {
+            ValueControl.Text = Guid.NewGuid().ToString();
+        }
+
+        private Control GetValueControlFromJType(JType type, string name)
         {
             switch (type)
             {
@@ -123,7 +185,7 @@ namespace JsonEditorV2
                 case JType.JSONObject:
                 default:
                     return new Label { Name = $"lvl{name}" };
-                    
+
             }
         }
     }

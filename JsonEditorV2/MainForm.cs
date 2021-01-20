@@ -125,9 +125,9 @@ namespace JsonEditorV2
 
                 object result;
                 foreach (JLine jl in jt)
-                { 
+                {
                     for (int i = 0; i < columnIndexs.Count; i++)
-                    {   
+                    {
                         jl[columnIndexs[i]].Value.TryParseJType(newType, out result);
                         jl[columnIndexs[i]].Value = result;
                     }
@@ -143,7 +143,7 @@ namespace JsonEditorV2
                 //欄位名檢查
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }            
+            }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
@@ -162,7 +162,7 @@ namespace JsonEditorV2
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
 
             bool recheckTable = false;
 
@@ -172,7 +172,7 @@ namespace JsonEditorV2
             //確認Regex正確
             try
             {
-                if(txtColumnRegex.Text != "")
+                if (txtColumnRegex.Text != "")
                     Regex.IsMatch("__", txtColumnRegex.Text);
             }
             catch
@@ -226,8 +226,8 @@ namespace JsonEditorV2
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
             //改名
-            if(Var.SelectedColumn.Name != txtColumnName.Text)
-            { 
+            if (Var.SelectedColumn.Name != txtColumnName.Text)
+            {
                 RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
                 Var.SelectedColumn.Name = txtColumnName.Text;
             }
@@ -240,7 +240,7 @@ namespace JsonEditorV2
                 //先檢查自己Table的值
                 object result;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                { 
+                {
                     jl[index].Value.TryParseJType(newType, out result);
                     jl[index].Value = result;
                 }
@@ -254,8 +254,8 @@ namespace JsonEditorV2
             {
                 int index = Var.SelectedColumnIndex;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                    if(jl[index].Value == null)
-                        jl[index].Value = jl[index].Value.ParseJType(newType);                
+                    if (jl[index].Value == null)
+                        jl[index].Value = jl[index].Value.ParseJType(newType);
             }
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
@@ -263,10 +263,10 @@ namespace JsonEditorV2
             if (Var.SelectedColumn.Regex != txtColumnRegex.Text)
             {
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
-                recheckTable = true;                
+                recheckTable = true;
             }
 
-            if(recheckTable)
+            if (recheckTable)
                 Var.SelectedColumnParentTable.CheckAllValid();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
@@ -618,11 +618,6 @@ namespace JsonEditorV2
             sslMain.Text = "";
         }
 
-        private void CheckAllFiles()
-        {
-
-        }
-
         private void tmiSaveJsonFiles_Click(object sender, EventArgs e)
         {
             //確認所有檔案符合規則
@@ -740,7 +735,7 @@ namespace JsonEditorV2
                     txtColumnRegex.Text = Var.SelectedColumn.Regex;
                 else
                     txtColumnRegex.Text = "";
-                
+
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1339,13 +1334,20 @@ namespace JsonEditorV2
             if (lsbLines.SelectedIndex == -1)
                 return;
 
-            //驗證
+            //控制項驗證
+            bool valid = true;
+            for (int i = 0; i < Var.InputControlSets.Count; i++)
+                if (!Var.InputControlSets[i].CheckValid())
+                    valid = false;
+            
+            if (!valid)
+                return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValue();
+                Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
 
             int selectIndex = lsbLines.SelectedIndex;
-            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
+            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);            
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
             RefreshPnlMainValue();
@@ -1416,6 +1418,7 @@ namespace JsonEditorV2
         private void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             cobColumnType.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+            txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1;
         }
     }
 }

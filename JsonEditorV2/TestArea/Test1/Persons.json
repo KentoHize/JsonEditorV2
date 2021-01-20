@@ -452,11 +452,11 @@
     "InstagramAccount": "",
     "From": "Sword Art Online ALO",
     "Group": "i",
-    "IsAOMember": "n",
+    "IsAOMember": "y",
     "IsCelebrity": "y",
     "MoralRank": 3,
     "Description": "マザーズ・ロザリオ編「絶剣（ぜっけん）」と呼ばたヒロイン",
-    "LastBestowDate": "0003/10/25",
+    "LastBestowDate": "0003-10-25T00:00:00",
     "PicturePath": "Yuki.jpg"
   },
   {

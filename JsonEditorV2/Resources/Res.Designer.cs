@@ -115,6 +115,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新ID.
+        /// </summary>
+        public static string JE_BTN_NEW_GUID {
+            get {
+                return ResourceManager.GetString("JE_BTN_NEW_GUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新增資料.
         /// </summary>
         public static string JE_BTN_NEW_LINE {
@@ -876,6 +885,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_SCAN_JSON_FILES {
             get {
                 return ResourceManager.GetString("JE_TMI_SCAN_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;不符合資料型態.
+        /// </summary>
+        public static string JE_VAL_INVALID_CAST {
+            get {
+                return ResourceManager.GetString("JE_VAL_INVALID_CAST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;規則檢查失敗.
+        /// </summary>
+        public static string JE_VAL_REGEX_IS_NOT_MATCH {
+            get {
+                return ResourceManager.GetString("JE_VAL_REGEX_IS_NOT_MATCH", resourceCulture);
             }
         }
         
