@@ -178,6 +178,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 可以為Null值.
+        /// </summary>
+        public static string JE_COLUMN_IS_NULLABLE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_IS_NULLABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位名稱.
         /// </summary>
         public static string JE_COLUMN_NAME {
@@ -642,6 +651,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_UPDATE_COLUMN_M_6 {
             get {
                 return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key欄位不能為Null值.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_7 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_7", resourceCulture);
             }
         }
         

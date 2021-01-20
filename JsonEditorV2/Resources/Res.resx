@@ -156,6 +156,9 @@
   <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
     <value>是索引</value>
   </data>
+  <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
+    <value>可以為Null值</value>
+  </data>
   <data name="JE_COLUMN_NAME" xml:space="preserve">
     <value>欄位名稱</value>
   </data>
@@ -311,6 +314,9 @@
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
     <value>欄位"{0}"已更新</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
+    <value>Key欄位不能為Null值</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>更新欄位</value>

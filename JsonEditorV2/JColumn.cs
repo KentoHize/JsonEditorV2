@@ -9,7 +9,8 @@ namespace JsonEditor
     public class JColumn
     {
         public string Name { get; set; }
-        public bool IsKey { get; set; }        
+        public bool IsKey { get; set; }
+        public bool IsNullable { get; set; }
         public JType Type { get; set; }
         public string FKTable { get; set; }
         public string FKColumn { get; set; }

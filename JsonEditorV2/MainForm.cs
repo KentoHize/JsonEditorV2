@@ -48,6 +48,7 @@ namespace JsonEditorV2
             lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
             lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
+            lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -112,24 +113,56 @@ namespace JsonEditorV2
                         jc.FKColumn = newColumnName;
         }
 
+        //確認FKType
+        private void CheckFKType(JTable sourceTable, JColumn sourceColumn, JType newType)
+        {
+            foreach (JTable jt in Var.Tables)
+            {
+                List<int> columnIndexs = new List<int>();
+                for (int i = 0; i < jt.Columns.Count; i++)
+                    if (jt.Columns[i].FKTable == sourceTable.Name && jt.Columns[i].FKColumn == sourceColumn.Name)
+                        columnIndexs.Add(i);
+
+                object result;
+                foreach (JLine jl in jt)
+                { 
+                    for (int i = 0; i < columnIndexs.Count; i++)
+                    {   
+                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);
+                        jl[columnIndexs[i]].Value = result;
+                    }
+                }
+            }
+        }
+
         private void btnUpdateColumn_Click(object sender, EventArgs e)
         {
-            //確認資料正確
+            //確認資料正確            
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
+                //欄位名檢查
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
+            }            
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
+                //欄位行數檢查
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
+            {
+                //Key和Nullable相斥檢查
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_7, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
+                //欄位FK檢查
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            
 
             bool recheckTable = false;
 
@@ -159,7 +192,8 @@ namespace JsonEditorV2
             {
                 if ((Var.SelectedColumn.IsKey != ckbColumnIsKey.Checked && ckbColumnIsKey.Checked) ||
                    Var.SelectedColumn.Name != txtColumnName.Text ||
-                   Var.SelectedColumn.Type != newType)
+                   Var.SelectedColumn.Type != newType ||
+                   (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked))
                 {
                     DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                     if (dr == DialogResult.Cancel)
@@ -175,6 +209,9 @@ namespace JsonEditorV2
             {
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
                 Var.SelectedColumn.FKColumn = cobColumnFKColumn.SelectedValue.ToString();
+                //設定FK為目前型態
+                newType = Var.Tables.Find(m => m.Name == Var.SelectedColumn.FKTable)
+                    .Columns.Find(m => m.Name == Var.SelectedColumn.FKColumn).Type;
             }
             else
                 Var.SelectedColumn.FKTable = Var.SelectedColumn.FKColumn = null;
@@ -189,24 +226,44 @@ namespace JsonEditorV2
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
             //改名
-            RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
-            Var.SelectedColumn.Name = txtColumnName.Text;
+            if(Var.SelectedColumn.Name != txtColumnName.Text)
+            { 
+                RenewFK(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text);
+                Var.SelectedColumn.Name = txtColumnName.Text;
+            }
 
             //改型態檢查            
             if (Var.SelectedColumn.Type != newType)
             {
                 Var.SelectedColumn.Type = newType;
                 int index = Var.SelectedColumnIndex;
+                //先檢查自己Table的值
+                object result;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                    jl[index].Value = jl[index].Value.ParseJType(newType);
+                { 
+                    jl[index].Value.TryParseJType(newType, out result);
+                    jl[index].Value = result;
+                }
+
+                //檢查FK的值
+                CheckFKType(Var.SelectedColumnParentTable, Var.SelectedColumn, newType);
             }
+
+            //改Nullable
+            if (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked)
+            {
+                int index = Var.SelectedColumnIndex;
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    if(jl[index].Value == null)
+                        jl[index].Value = jl[index].Value.ParseJType(newType);                
+            }
+            Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
             //改正則表達式
             if (Var.SelectedColumn.Regex != txtColumnRegex.Text)
             {
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
-                recheckTable = true;
-                
+                recheckTable = true;                
             }
 
             if(recheckTable)
@@ -677,6 +734,7 @@ namespace JsonEditorV2
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
+                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKTable))
                     cobColumnFKTable.SelectedValue = Var.SelectedColumn.FKTable;
                 cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
@@ -687,6 +745,7 @@ namespace JsonEditorV2
                     txtColumnRegex.Text = Var.SelectedColumn.Regex;
                 else
                     txtColumnRegex.Text = "";
+                
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1354,6 +1413,11 @@ namespace JsonEditorV2
 
             RefreshTrvJsonFiles();
             RefreshTbcMain();
+        }
+
+        private void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cobColumnType.Enabled = cobColumnFKColumn.SelectedIndex == -1;
         }
     }
 }

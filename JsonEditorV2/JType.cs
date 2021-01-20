@@ -71,16 +71,18 @@ namespace JsonEditor
         /// </summary>
         /// <param name="value">輸入值</param>
         /// <param name="type">JType</param>
+        /// <param name="result">失敗回傳初始值</param>
         /// <returns>是否成功</returns>
-        public static bool TryParseJType(this object value, JType type)
+        public static bool TryParseJType(this object value, JType type, out object result)
         {
             try
-            {
-                value.ParseJType(type);
+            {                
+                result = value.ParseJType(type);
                 return true;
             }
             catch
             {
+                result = new object().ParseJType(type);
                 return false;
             }            
         }

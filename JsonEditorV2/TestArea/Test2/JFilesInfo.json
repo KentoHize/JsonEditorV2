@@ -7,6 +7,7 @@
         {
           "Name": "TT557",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -17,6 +18,7 @@
         {
           "Name": "AT999",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
@@ -27,6 +29,7 @@
         {
           "Name": "TTT99999",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Double",
           "FKTable": "AD33",
           "FKColumn": "TT557",
@@ -37,6 +40,7 @@
         {
           "Name": "H999",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "T4",
           "FKColumn": "TestCo",
@@ -47,6 +51,7 @@
         {
           "Name": "Y999",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -57,6 +62,7 @@
         {
           "Name": "KL",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Time",
           "FKTable": null,
           "FKColumn": null,
@@ -67,6 +73,7 @@
         {
           "Name": "KLLL",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Boolean",
           "FKTable": null,
           "FKColumn": null,
@@ -82,6 +89,7 @@
         {
           "Name": "HJI99",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
@@ -92,6 +100,7 @@
         {
           "Name": "TTTT",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "T4",
           "FKColumn": "TestCo",
@@ -102,16 +111,18 @@
         {
           "Name": "A41123",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "HHH",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -127,6 +138,7 @@
         {
           "Name": "AAA",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -137,6 +149,7 @@
         {
           "Name": "TEst",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -147,6 +160,7 @@
         {
           "Name": "GGGS99",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -162,6 +176,7 @@
         {
           "Name": "Key1",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -172,6 +187,7 @@
         {
           "Name": "Key2",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Integer",
           "FKTable": null,
           "FKColumn": null,
@@ -182,6 +198,7 @@
         {
           "Name": "Key3",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -192,6 +209,7 @@
         {
           "Name": "Memo",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -207,6 +225,7 @@
         {
           "Name": "SSSS",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
@@ -226,6 +245,7 @@
         {
           "Name": "TestCo",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -245,6 +265,7 @@
         {
           "Name": "TT7777",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -255,6 +276,7 @@
         {
           "Name": "_P-6",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
@@ -265,6 +287,7 @@
         {
           "Name": "G8888",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -275,6 +298,7 @@
         {
           "Name": "Y888",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,

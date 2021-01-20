@@ -201,7 +201,7 @@ namespace JsonEditor
                 }
                 for (int j = 0; j < Columns.Count; j++)
                 {
-                    if (!Lines[i][j].Value.TryParseJType(Columns[j].Type))
+                    if (!Lines[i][j].Value.TryParseJType(Columns[j].Type, out object o))
                         return Valid;
 
                     if (Columns[j].Type == JType.String &&
