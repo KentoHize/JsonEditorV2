@@ -428,10 +428,7 @@ namespace JsonEditorV2
             }
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
-
         }
-
-
 
         private string GetColumnNodeString(JColumn jc)
         {
@@ -443,7 +440,6 @@ namespace JsonEditorV2
             sb.Append(jc.Type);
             return sb.ToString();
         }
-
 
         private string GetTableNodeString(JTable jt)
             => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}{(jt.Valid ? "" : "(Invalid)")}";
@@ -555,8 +551,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
-                InputControlSet ics = new InputControlSet(Var.SelectedTable.Columns[i].Name,
-                    Var.SelectedTable.Columns[i].Type, Var.SelectedTable.Columns[i].NumberOfRows);
+                InputControlSet ics = new InputControlSet(Var.SelectedTable.Columns[i]);
                 ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
@@ -1049,6 +1044,7 @@ namespace JsonEditorV2
                 {
                     StreamReader sr = new StreamReader(fs);
                     jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
+                    jt.CheckValid();
                     sr.Dispose();
                 }
             }

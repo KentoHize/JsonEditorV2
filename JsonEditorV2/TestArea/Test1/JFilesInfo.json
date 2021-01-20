@@ -7,6 +7,7 @@
         {
           "Name": "No",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
@@ -17,6 +18,7 @@
         {
           "Name": "Date",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
@@ -27,16 +29,18 @@
         {
           "Name": "Chinese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 5,
+          "NumberOfRows": 7,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "English",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -47,6 +51,7 @@
         {
           "Name": "Japanese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -62,6 +67,7 @@
         {
           "Name": "PersonID",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": "Persons",
           "FKColumn": "ID",
@@ -72,6 +78,7 @@
         {
           "Name": "BestowerID",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": "Persons",
           "FKColumn": "ID",
@@ -82,6 +89,7 @@
         {
           "Name": "MoralRank",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
@@ -92,6 +100,7 @@
         {
           "Name": "BestowDateTime",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "DateTime",
           "FKTable": null,
           "FKColumn": null,
@@ -102,6 +111,7 @@
         {
           "Name": "Reason",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -112,6 +122,7 @@
         {
           "Name": "Memo",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -127,6 +138,7 @@
         {
           "Name": "ID",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
@@ -137,6 +149,7 @@
         {
           "Name": "Surname",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -147,6 +160,7 @@
         {
           "Name": "Name",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -157,6 +171,7 @@
         {
           "Name": "OtherName",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -167,6 +182,7 @@
         {
           "Name": "SurnameFirst",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -177,6 +193,7 @@
         {
           "Name": "Yomikata",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -187,6 +204,7 @@
         {
           "Name": "Gender",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -197,6 +215,7 @@
         {
           "Name": "Fiction",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -207,6 +226,7 @@
         {
           "Name": "Wanted",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -217,6 +237,7 @@
         {
           "Name": "Protected",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -227,6 +248,7 @@
         {
           "Name": "TwitterAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -237,6 +259,7 @@
         {
           "Name": "FacebookAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -247,6 +270,7 @@
         {
           "Name": "InstagramAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -257,6 +281,7 @@
         {
           "Name": "From",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -267,6 +292,7 @@
         {
           "Name": "Group",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -277,6 +303,7 @@
         {
           "Name": "IsAOMember",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -287,6 +314,7 @@
         {
           "Name": "IsCelebrity",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -297,6 +325,7 @@
         {
           "Name": "MoralRank",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
@@ -307,6 +336,7 @@
         {
           "Name": "Description",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -317,6 +347,7 @@
         {
           "Name": "LastBestowDate",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
@@ -327,6 +358,7 @@
         {
           "Name": "PicturePath",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -342,6 +374,7 @@
         {
           "Name": "No",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
@@ -352,6 +385,7 @@
         {
           "Name": "Date",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
@@ -362,6 +396,7 @@
         {
           "Name": "Chinese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -372,6 +407,7 @@
         {
           "Name": "English",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -382,6 +418,7 @@
         {
           "Name": "Japanese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,

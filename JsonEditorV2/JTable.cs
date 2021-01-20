@@ -195,7 +195,8 @@ namespace JsonEditor
                 {
                     checkString = "";
                     for (int j = 0; j < keyIndex.Count; j++)
-                        checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
+                        if(Lines[i][j].Value != null)
+                            checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
                     if (!keyCheckSet.Add(checkString))
                         return Valid;
                 }

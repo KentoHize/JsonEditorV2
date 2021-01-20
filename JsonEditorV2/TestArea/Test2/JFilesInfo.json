@@ -13,29 +13,29 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "AT999",
           "IsKey": false,
-          "IsNullable": false,
-          "Type": "String",
+          "IsNullable": true,
+          "Type": "Guid",
           "FKTable": "Add2222",
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "TTT99999",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "Double",
+          "Type": "String",
           "FKTable": "AD33",
           "FKColumn": "TT557",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "H999",
@@ -46,7 +46,7 @@
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "Y999",
@@ -63,23 +63,23 @@
           "Name": "KL",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "Time",
+          "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "KLLL",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "Boolean",
+          "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         }
       ]
     },
@@ -90,12 +90,12 @@
           "Name": "HJI99",
           "IsKey": true,
           "IsNullable": false,
-          "Type": "Guid",
+          "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "TTTT",
@@ -129,6 +129,17 @@
           "NumberOfRows": 1,
           "Display": false,
           "Regex": null
+        },
+        {
+          "Name": "ADGHHWWDSDFDSFASFDSAFDSFDSFDSAFAD",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 4,
+          "Display": false,
+          "Regex": ""
         }
       ]
     },
@@ -209,13 +220,13 @@
         {
           "Name": "Memo",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         }
       ]
     },
@@ -229,6 +240,17 @@
           "Type": "String",
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": null
+        },
+        {
+          "Name": "HJK",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
           "Regex": null

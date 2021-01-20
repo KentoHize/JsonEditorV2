@@ -6,39 +6,47 @@
       "Columns": [
         {
           "Name": "No",
-          "IsKey": true,
+          "IsKey": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": ""
         },
         {
           "Name": "Chinese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 5,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "English",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 17,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Japanese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -48,56 +56,68 @@
         {
           "Name": "PersonID",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "BestowerID",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "MoralRank",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "BestowDateTime",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "DateTime",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Reason",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Memo",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -107,191 +127,233 @@
         {
           "Name": "ID",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "Surname",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Name",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "OtherName",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "SurnameFirst",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Yomikata",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Gender",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Fiction",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Wanted",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Protected",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "TwitterAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "FacebookAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "InstagramAccount",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "From",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Group",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "IsAOMember",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "IsCelebrity",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "MoralRank",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Description",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 2,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "LastBestowDate",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "PicturePath",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     },
@@ -301,47 +363,57 @@
         {
           "Name": "No",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Long",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true
+          "Display": true,
+          "Regex": null
         },
         {
           "Name": "Date",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "Date",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         },
         {
           "Name": "Chinese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": false
+          "NumberOfRows": 5,
+          "Display": false,
+          "Regex": ""
         },
         {
           "Name": "English",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": false
+          "NumberOfRows": 10,
+          "Display": false,
+          "Regex": ""
         },
         {
           "Name": "Japanese",
           "IsKey": false,
+          "IsNullable": false,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": false,
+          "Regex": null
         }
       ]
     }
