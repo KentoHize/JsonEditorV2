@@ -11,5 +11,7 @@ namespace JsonEditorV2
         public const string FileNameRegex = @"^[\w\-. ]+$";
         public const string ColumnNameRegex = @"^[A-Za-z_][\w\-]{0,49}$";
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
+
+        public const long DontLoadFileBytesThreshold = 10000; // bytes
     }
 }

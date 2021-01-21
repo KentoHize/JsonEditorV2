@@ -401,7 +401,7 @@ namespace JsonEditorV2
                     LoadJFilesInfo(file);
                     Var.JFI.DirectoryPath = fbdMain.SelectedPath;
                 }
-                else if (fi.Length < 10)
+                else if (fi.Length < Const.DontLoadFileBytesThreshold)
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
                     LoadJsonFile(table, true);
@@ -692,6 +692,9 @@ namespace JsonEditorV2
                     tmiOpenJsonFile.Enabled = true;
                     tmiCloseJsonFile.Enabled = false;
                 }
+
+                //更新View
+                tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));                    
 
                 if (e.Button == MouseButtons.Right)
                 {
@@ -1425,7 +1428,7 @@ namespace JsonEditorV2
         private void tmiViewJsonFile_Click(object sender, EventArgs e)
         {
             if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
-                Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+                Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));            
         }
     }
 }
