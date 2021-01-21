@@ -119,6 +119,9 @@ namespace JsonEditorV2
             if (NullCheckBox.Checked)
                 return null;
 
+            if (parsedValue is string)
+                parsedValue = ChangeTextToString(parsedValue.ToString());
+
             return parsedValue;
         }
 
@@ -131,10 +134,16 @@ namespace JsonEditorV2
             if (value == null)
                 return;
             if (ValueControl is TextBox)
-                (ValueControl as TextBox).Text = value.ToString();
+                (ValueControl as TextBox).Text = ChangeStringToText(value.ToString());
             else if (ValueControl is CheckBox)
                 (ValueControl as CheckBox).Checked = (bool)value;
         }
+
+        public string ChangeTextToString(string text)
+            => text.Replace("\r\n", "\n");
+
+        public string ChangeStringToText(string s)
+            => s.Replace("\n", "\r\n");
 
         private void CkbCheckBox_CheckedChanged(object sender, EventArgs e)
             => ValueControl.Enabled = !NullCheckBox.Checked;

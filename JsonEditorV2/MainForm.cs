@@ -593,8 +593,8 @@ namespace JsonEditorV2
                 {
                     if (Var.SelectedTable.Columns[i].Display)
                         displayString.AppendFormat("{0} ", jl[i].Value);
-                }
-                lsbLines.Items.Add(displayString.ToString());
+                }                
+                lsbLines.Items.Add(displayString.ToString());                
             }
             btnNewLine.Enabled = true;
             RefreshTrvSelectedFileChange();
@@ -765,11 +765,6 @@ namespace JsonEditorV2
                 btnUpdateColumn.Enabled = false;
             }
             RefreshTbcMain();
-        }
-
-        private void RefreshCloseFileState()
-        {
-
         }
 
         private void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
