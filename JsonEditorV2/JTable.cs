@@ -233,6 +233,8 @@ namespace JsonEditor
         /// </summary>
         public bool CheckAllValid()
         {
+            Valid = false;
+
             //Key Check
             List<int> keyIndex = new List<int>();
             for (int i = 0; i < Columns.Count; i++)
@@ -244,7 +246,7 @@ namespace JsonEditor
             for (int i = 0; i < Lines.Count; i++)
             {
                 if (!CheckLineValid(Lines[i]))
-                    return false;
+                    return Valid;
 
                 if (keyIndex.Count != 0)
                 {
@@ -253,10 +255,11 @@ namespace JsonEditor
                         if(Lines[i][j].Value != null)
                             checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
                     if (!keyCheckSet.Add(checkString))
-                        return false;
+                        return Valid;
                 }               
-            }            
-            return true;
+            }
+            Valid = true;
+            return Valid;
         }
 
         public int IndexOf(JLine item)
