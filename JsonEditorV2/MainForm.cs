@@ -410,40 +410,55 @@ namespace JsonEditorV2
             Var.Tables = new List<JTable>();
             JTable table;
 
+            //有JFI File，先讀取
+            if(jsonfiles.Contains(Var.JFI.FileInfoPath))
+            {
+                LoadJFilesInfo(Var.JFI.FileInfoPath);
+                Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+            }
+
+            //對於 其他檔案開始核對
             foreach (string file in jsonfiles)
             {
                 FileInfo fi = new FileInfo(file);
 
                 if (file == Var.JFI.FileInfoPath)
-                {
-                    LoadJFilesInfo(file);
-                    Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-                }
+                    continue;
                 else if (fi.Length < Const.DontLoadFileBytesThreshold)
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
-                    LoadJsonFile(table, true);
+
+                    if(Var.JFI.TablesInfo.Count != 0)
+                    { 
+                        table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                        LoadJsonFile(table);
+                    }
+                    else
+                        LoadJsonFile(table, true);
                     Var.Tables.Add(table);
                 }
                 else
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file));
-                    LoadPartialJsonFile(table);
+                    if (Var.JFI.TablesInfo.Count != 0)
+                        table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                    else
+                        LoadPartialJsonFile(table);
                     Var.Tables.Add(table);
                 }
             }
 
-            //有JFileInfo的話相連
-            try
-            {
-                if (Var.JFI.TablesInfo.Count != 0)
-                    foreach (JTable jt in Var.Tables)
-                        jt.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == jt.Name));
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex, Res.JE_RUN_LOAD_JSON_FILES_M_2, Res.JE_RUN_LOAD_JSON_FILES_TITLE);
-            }
+            ////有JFileInfo的話相連
+            //try
+            //{
+            //    if (Var.JFI.TablesInfo.Count != 0)
+            //        foreach (JTable jt in Var.Tables)
+            //            jt.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == jt.Name));
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleException(ex, Res.JE_RUN_LOAD_JSON_FILES_M_2, Res.JE_RUN_LOAD_JSON_FILES_TITLE);
+            //}
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
         }
@@ -826,6 +841,7 @@ namespace JsonEditorV2
                     content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
             }
 
+
             MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -842,8 +858,7 @@ namespace JsonEditorV2
                 return;
             }
 
-
-            //To DO
+            //To DO ??
             if (!Var.SelectedColumnParentTable.Loaded)
                 LoadJsonFile(Var.SelectedColumnParentTable);
 
@@ -880,7 +895,7 @@ namespace JsonEditorV2
             }
             MessageBox.Show("OK");
         }
-        #region DirectoryCopy
+#region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
@@ -915,7 +930,7 @@ namespace JsonEditorV2
                 }
             }
         }
-        #endregion
+#endregion
 
         private void btnClearColumn_Click(object sender, EventArgs e)
         {
@@ -1043,8 +1058,10 @@ namespace JsonEditorV2
 
         private void LoadJsonFile(JTable jt, bool produceColumnInfo = false)
         {
+#if !DEBUG
             try
             {
+#endif
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
@@ -1052,11 +1069,13 @@ namespace JsonEditorV2
                     jt.CheckAllValid();
                     sr.Dispose();
                 }
-            }
+#if !DEBUG
+        }
             catch (Exception ex)
             {
                 HandleException(ex);
             }
+#endif
         }
 
         private void LoadPartialJsonFile(JTable jt)
@@ -1204,7 +1223,7 @@ namespace JsonEditorV2
         {
             JLine jl = new JLine();
             foreach (JColumn jc in Var.SelectedTable.Columns)
-                jl.Add(new JValue(jc.Type.InitialValue()));
+                jl.Add(JValue.FromObject(jc.Type.InitialValue()));
 
             Var.SelectedTable.Changed = true;
             Var.SelectedTable.Lines.Add(jl);

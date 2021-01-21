@@ -88,11 +88,56 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i].Value);
+                {
+                    switch(Columns[i].Type)
+                    {
+                        case JType.Date:
+                            if (jl[i].Value != null)
+                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToShortDateString());
+                            else
+                                line.Add(Columns[i].Name, null);
+                            break;
+                        case JType.Time:
+                            if (jl[i].Value != null)
+                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToShortTimeString());
+                            else
+                                line.Add(Columns[i].Name, null);
+                            break;
+                        default:
+                            line.Add(Columns[i].Name, jl[i].Value);
+                            break;
+                    }                    
+                }
+                    
                 result.Add(line);
             }
             return result;
         }
+
+        //public void LoadJsonWithColumnsInfo(object jArray)
+        //{
+        //    if (jArray == null)
+        //        return;
+
+        //    JArray jr = jArray as JArray;
+        //    if (jr == null)
+        //        throw new ArgumentNullException();
+
+        //    foreach (JToken jt in jr)
+        //    {
+        //        JLine items = new JLine();
+        //        JObject jo = jt as JObject;
+
+        //        foreach (KeyValuePair<string, JToken> kvp in jo)
+        //        {
+
+        //        }                
+        //        Lines.Add(items);
+        //    }
+        //    Loaded = true;
+        //    Valid = false;
+        //    CheckAllValid();
+        //}
 
         /// <summary>
         /// 讀取Json物件
@@ -118,53 +163,61 @@ namespace JsonEditor
             {
                 JLine items = new JLine();
                 JObject jo = jt as JObject;
+                JColumn jc = null;
 
+                int i = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
                     if (produceColumnInfo)
                     {
                         if (isFirstFirst)
                         {
-                            JColumn jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", true,
+                            jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", true,
                                 Math.Abs(kvp.Value.ToString().Length / 50) + 1);
                             Columns.Add(jc);
                             isFirstFirst = false;
                         }
                         else if (isFirst)
-                            Columns.Add(new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
-                                Math.Abs(kvp.Value.ToString().Length / 50) + 1));
+                        {
+                            jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
+                                Math.Abs(kvp.Value.ToString().Length / 50) + 1);
+                            Columns.Add(jc);
+                        }
                     }
+                    else
+                        jc = Columns[i];
 
-                    switch (kvp.Value.Type)
-                    {
-                        case JTokenType.Integer:
-                            items.Add(JValue.FromObject(Convert.ToInt64(kvp.Value)));
-                            break;
-                        case JTokenType.Float:
-                            items.Add(JValue.FromObject(Convert.ToDouble(kvp.Value)));
-                            break;
-                        case JTokenType.Guid:
-                            items.Add(JValue.FromObject(Guid.Parse(kvp.Value.ToString())));
-                            break;
-                        case JTokenType.Null:
-                            items.Add(JValue.FromObject(null));
-                            break;
-                        case JTokenType.Boolean:
-                            items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
-                            break;
-                        case JTokenType.Date:
-                            items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
-                            break;
-                        default:
-                            items.Add(JValue.FromObject(kvp.Value.ToString()));
-                            break;
-                    }
+                    if (kvp.Value.Type == JTokenType.Null)
+                        items.Add(JValue.FromObject(null));
+                    else
+                        items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
+
+                    i++;
+                    //switch (kvp.Value.Type)
+                    //{
+                    //    case JTokenType.Integer:
+                    //        items.Add(JValue.FromObject(kvp.Value.ParseJType(jc.Type) ));
+                    //        break;
+                    //    case JTokenType.Float:
+                    //        items.Add(JValue.FromObject(Convert.ToDouble(kvp.Value)));
+                    //        break;
+                    //    case JTokenType.Guid:
+                    //        items.Add(JValue.FromObject(Guid.Parse(kvp.Value.ToString())));
+                    //        break;
+                    //    case JTokenType.Null:
+                    //        items.Add(JValue.FromObject(null));
+                    //        break;
+                    //    case JTokenType.Boolean:
+                    //        items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
+                    //        break;
+                    //    case JTokenType.Date:
+                    //        items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
+                    //        break;
+                    //    default:
+                    //        items.Add(JValue.FromObject(kvp.Value.ToString()));
+                    //        break;
+                    //}
                 }
-
-                //新增加值
-                //Delete Test
-                //while (items.Count < Columns.Count)
-                //    items.Add(new JValue());
 
                 isFirst = false;
                 Lines.Add(items);

@@ -19,7 +19,7 @@
     "IsCelebrity": "y",
     "MoralRank": 6,
     "Description": "有奈教（ありなぎょう）教主、1985年12月2日に出生、才徳兼備、知略と勇気両方ともある教師と軍師、他の人たちの品格段階を評定する人。",
-    "LastBestowDate": "0001-01-01T00:00:00",
+    "LastBestowDate": "0001/01/01",
     "PicturePath": "Man_back.png"
   },
   {
@@ -456,7 +456,7 @@
     "IsCelebrity": "y",
     "MoralRank": 3,
     "Description": "マザーズ・ロザリオ編「絶剣（ぜっけん）」と呼ばたヒロイン",
-    "LastBestowDate": "0003-10-25T00:00:00",
+    "LastBestowDate": "0003/10/25",
     "PicturePath": "Yuki.jpg"
   },
   {
@@ -778,7 +778,7 @@
     "IsCelebrity": "y",
     "MoralRank": 1,
     "Description": "ヒロイン、高校生、SOS団団長",
-    "LastBestowDate": "0003-12-11T00:00:00",
+    "LastBestowDate": "0003/12/11",
     "PicturePath": "Suzumiya_Haruhi.png"
   },
   {

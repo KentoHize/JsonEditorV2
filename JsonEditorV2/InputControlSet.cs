@@ -92,14 +92,14 @@ namespace JsonEditorV2
             ValidControl.SetError(errPositionControl, "");
             if (JColumn.Type == JType.String)
                 if (!string.IsNullOrEmpty(JColumn.Regex))
-                    if (!Regex.IsMatch(ValueControl.Text, JColumn.Regex))
+                    if (!Regex.IsMatch(ChangeTextToString(ValueControl.Text), JColumn.Regex))
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_REGEX_IS_NOT_MATCH, ValueControl.Text));
                         return false;
                     }
 
             if (ValueControl is TextBox)
-                if (!ValueControl.Text.TryParseJType(JColumn.Type, out parsedValue))
+                if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
@@ -118,9 +118,6 @@ namespace JsonEditorV2
         {
             if (NullCheckBox.Checked)
                 return null;
-
-            if (parsedValue is string)
-                parsedValue = ChangeTextToString(parsedValue.ToString());
 
             return parsedValue;
         }

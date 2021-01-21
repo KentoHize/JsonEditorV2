@@ -502,12 +502,12 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 3,
+          "NumberOfRows": 5,
           "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "English",
@@ -516,12 +516,12 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 3,
+          "NumberOfRows": 5,
           "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "Japanese",
