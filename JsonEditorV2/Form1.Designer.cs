@@ -113,6 +113,7 @@
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnDeleteLine = new System.Windows.Forms.Button();
             this.epvMain = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tmiRefreshFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -725,58 +726,59 @@
             this.cmsJsonFiles.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiNewJsonFile,
             this.toolStripMenuItem6,
-            this.tmiExpandAll,
-            this.tmiCollapseAll,
-            this.toolStripMenuItem8,
             this.tmiOpenFolder,
-            this.tmiViewJFIFile});
+            this.tmiViewJFIFile,
+            this.tmiRefreshFiles,
+            this.toolStripMenuItem8,
+            this.tmiExpandAll,
+            this.tmiCollapseAll});
             this.cmsJsonFiles.Name = "cmsMain";
-            this.cmsJsonFiles.Size = new System.Drawing.Size(88, 136);
+            this.cmsJsonFiles.Size = new System.Drawing.Size(211, 188);
             // 
             // tmiNewJsonFile
             // 
             this.tmiNewJsonFile.Enabled = false;
             this.tmiNewJsonFile.Name = "tmiNewJsonFile";
-            this.tmiNewJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiNewJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiNewJsonFile.Text = "X";
             this.tmiNewJsonFile.Click += new System.EventHandler(this.tmiNewJsonFile_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(84, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(207, 6);
             // 
             // tmiExpandAll
             // 
             this.tmiExpandAll.Name = "tmiExpandAll";
-            this.tmiExpandAll.Size = new System.Drawing.Size(87, 24);
+            this.tmiExpandAll.Size = new System.Drawing.Size(210, 24);
             this.tmiExpandAll.Text = "X";
             this.tmiExpandAll.Click += new System.EventHandler(this.tmiExpandAll_Click);
             // 
             // tmiCollapseAll
             // 
             this.tmiCollapseAll.Name = "tmiCollapseAll";
-            this.tmiCollapseAll.Size = new System.Drawing.Size(87, 24);
+            this.tmiCollapseAll.Size = new System.Drawing.Size(210, 24);
             this.tmiCollapseAll.Text = "X";
             this.tmiCollapseAll.Click += new System.EventHandler(this.tmiCollapseAll_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(84, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(207, 6);
             // 
             // tmiOpenFolder
             // 
             this.tmiOpenFolder.Enabled = false;
             this.tmiOpenFolder.Name = "tmiOpenFolder";
-            this.tmiOpenFolder.Size = new System.Drawing.Size(87, 24);
+            this.tmiOpenFolder.Size = new System.Drawing.Size(210, 24);
             this.tmiOpenFolder.Text = "X";
             this.tmiOpenFolder.Click += new System.EventHandler(this.tmiOpenFolder_Click);
             // 
             // tmiViewJFIFile
             // 
             this.tmiViewJFIFile.Name = "tmiViewJFIFile";
-            this.tmiViewJFIFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiViewJFIFile.Size = new System.Drawing.Size(210, 24);
             this.tmiViewJFIFile.Text = "X";
             this.tmiViewJFIFile.Click += new System.EventHandler(this.tmiViewJFIFile_Click);
             // 
@@ -909,6 +911,13 @@
             // 
             this.epvMain.ContainerControl = this;
             // 
+            // tmiRefreshFiles
+            // 
+            this.tmiRefreshFiles.Name = "tmiRefreshFiles";
+            this.tmiRefreshFiles.Size = new System.Drawing.Size(210, 24);
+            this.tmiRefreshFiles.Text = "X";
+            this.tmiRefreshFiles.Click += new System.EventHandler(this.tmiRefreshFiles_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1036,6 +1045,7 @@
         private System.Windows.Forms.Label lblColumnMaxValue;
         private System.Windows.Forms.Label lblColumnMinValue;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJFIFile;
+        private System.Windows.Forms.ToolStripMenuItem tmiRefreshFiles;
     }
 }
 

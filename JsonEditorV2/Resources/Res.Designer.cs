@@ -925,6 +925,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 重新整理.
+        /// </summary>
+        public static string JE_TMI_REFRESH_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_REFRESH_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 重新命名.
         /// </summary>
         public static string JE_TMI_RENAME_JSON_FILE {

@@ -405,6 +405,9 @@
   <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
     <value>Rename</value>
   </data>

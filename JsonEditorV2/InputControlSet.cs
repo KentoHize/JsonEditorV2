@@ -159,7 +159,7 @@ namespace JsonEditorV2
             if (JColumn.Type == JType.Date)
                 (ValueControl as TextBox).Text = ((DateTime)value).ToShortDateString();
             else if (JColumn.Type == JType.Time)
-                (ValueControl as TextBox).Text = ((DateTime)value).ToShortTimeString();
+                (ValueControl as TextBox).Text = ((DateTime)value).ToLongTimeString();
             else if (ValueControl is TextBox)
                 (ValueControl as TextBox).Text = ChangeStringToText(value.ToString());
             else if (ValueControl is CheckBox)

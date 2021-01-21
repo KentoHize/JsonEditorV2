@@ -14,9 +14,9 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "0",
+          "MaxValue": ""
         },
         {
           "Name": "Date",
@@ -415,10 +415,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Regex": "",
+          "Description": "",
+          "MinValue": "-4",
+          "MaxValue": "6"
         },
         {
           "Name": "Description",
@@ -477,9 +477,9 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "0",
+          "MaxValue": ""
         },
         {
           "Name": "Date",
@@ -498,7 +498,7 @@
         {
           "Name": "Chinese",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
@@ -512,7 +512,7 @@
         {
           "Name": "English",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,

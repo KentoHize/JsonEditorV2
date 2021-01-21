@@ -2,7 +2,7 @@
   "Name": "Test2",
   "TablesInfo": [
     {
-      "Name": "AD33",
+      "Name": "AD3333",
       "Columns": [
         {
           "Name": "TT557",
@@ -37,7 +37,7 @@
           "IsKey": false,
           "IsNullable": false,
           "Type": "String",
-          "FKTable": "AD33",
+          "FKTable": "AD3333",
           "FKColumn": "TT557",
           "NumberOfRows": 1,
           "Display": false,
@@ -85,7 +85,7 @@
           "Display": false,
           "Regex": "",
           "Description": "",
-          "MinValue": "779",
+          "MinValue": "789",
           "MaxValue": "10000"
         },
         {
@@ -99,8 +99,8 @@
           "Display": false,
           "Regex": "",
           "Description": "",
-          "MinValue": "0:00:00",
-          "MaxValue": "23:58:59"
+          "MinValue": "0:00:33",
+          "MaxValue": "23:57:59"
         }
       ]
     },
@@ -257,9 +257,9 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "Testljh",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "Key3",

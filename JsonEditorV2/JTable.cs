@@ -99,7 +99,7 @@ namespace JsonEditor
                             break;
                         case JType.Time:
                             if (jl[i].Value != null)
-                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToShortTimeString());
+                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToLongTimeString());
                             else
                                 line.Add(Columns[i].Name, null);
                             break;

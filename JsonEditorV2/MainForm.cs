@@ -110,6 +110,7 @@ namespace JsonEditorV2
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
             tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
+            tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
@@ -523,6 +524,7 @@ namespace JsonEditorV2
                 }
                 else
                 {
+                    //有JFI跳過預讀
                     table = new JTable(Path.GetFileNameWithoutExtension(file));
                     if (Var.JFI.TablesInfo.Count != 0)
                         table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
@@ -674,11 +676,12 @@ namespace JsonEditorV2
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
             }
-            RefreshPnlMainValue();
         }
 
         private void RefreshLsbLines()
         {
+            int index = lsbLines.SelectedIndex;
+
             lsbLines.Items.Clear();
             btnNewLine.Enabled = false;
             if (Var.SelectedTable == null)
@@ -692,13 +695,13 @@ namespace JsonEditorV2
                 {
                     if (Var.SelectedTable.Columns[i].Display)
                     {
-                        //Can Improve
+                        //Can Improve to do(可改長度偵測)
                         if (jl[i].Value == null)
                             continue;
                         else if (Var.SelectedTable.Columns[i].Type == JType.Date)
                             displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToShortDateString());
                         else if (Var.SelectedTable.Columns[i].Type == JType.Time)
-                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToShortTimeString());
+                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToLongTimeString());
                         else if (jl[i].Value.ToString().Length > 12)
                             displayString.AppendFormat("{0}.. ", jl[i].Value.ToString().Substring(0, 10));
                         else
@@ -707,6 +710,9 @@ namespace JsonEditorV2
                 }
                 lsbLines.Items.Add(displayString.ToString());
             }
+
+            if (lsbLines.Items.Count > index && index != -1)
+                lsbLines.SelectedIndex = index;
             btnNewLine.Enabled = true;
             RefreshTrvSelectedFileChange();
         }
@@ -727,8 +733,8 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
 
-            RefreshLsbLines();
             RefreshPnlMain();
+            RefreshLsbLines();
         }
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
@@ -810,7 +816,7 @@ namespace JsonEditorV2
                 Var.SelectedColumn = null;
                 Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString()); ;
                 RefreshPnlFileInfo();
-
+                
                 //更新Open Close
                 if (Var.OpenedTable.Exists(m => m.Name == e.Node.Tag.ToString()))
                 {
@@ -866,9 +872,10 @@ namespace JsonEditorV2
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
 
-                txtColumnRegex.Text = string.IsNullOrEmpty(Var.SelectedColumn.Regex) ? "" : Var.SelectedColumn.Regex;
-                txtColumnMinValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MinValue) ? "" : Var.SelectedColumn.MinValue;
-                txtColumnMaxValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MaxValue) ? "" : Var.SelectedColumn.MaxValue;
+                txtColumnRegex.Text = Var.SelectedColumn.Regex ?? "";
+                txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
+                txtColumnMaxValue.Text = Var.SelectedColumn.MaxValue ?? "";
+                txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1175,6 +1182,7 @@ namespace JsonEditorV2
 #endif
         }
 
+        //必產生Column Info
         private void LoadPartialJsonFile(JTable jt)
         {
             //讀5行之後結束
@@ -1436,8 +1444,8 @@ namespace JsonEditorV2
         private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             Var.PageIndex = tbcMain.SelectedIndex;
-            RefreshLsbLines();
             RefreshPnlMain();
+            RefreshLsbLines();
         }
 
         private void btnClearMain_Click(object sender, EventArgs e)
@@ -1479,8 +1487,8 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            RefreshLsbLines();
             RefreshPnlMain();
+            RefreshLsbLines();
         }
 
         private void btnUpdateMain_Click(object sender, EventArgs e)
@@ -1612,6 +1620,11 @@ namespace JsonEditorV2
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
                 (result.IsDateTime() || result.IsNumber());
+        }
+
+        private void tmiRefreshFiles_Click(object sender, EventArgs e)
+        {
+            RefreshTrvJsonFiles();
         }
     }
 }
