@@ -709,6 +709,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最小值.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_8 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最大值.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_9 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新欄位.
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_TITLE {

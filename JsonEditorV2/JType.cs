@@ -30,8 +30,109 @@ namespace JsonEditor
     }
 
     public static class JTypeExtentions
-    {   
+    {
+        /// <summary>
+        /// 取得JType的最小值
+        /// </summary>
+        /// <param name="type">jtype</param>
+        /// <returns>結果</returns>
+        public static object GetMinValue(this JType type)
+        {
+            switch(type)
+            {
+                case JType.Boolean:
+                    return false;
+                case JType.Byte:
+                    return byte.MinValue;
+                case JType.Date:
+                case JType.Time:
+                case JType.DateTime:                
+                    return DateTime.MinValue;
+                case JType.Double:
+                    return double.MinValue;                
+                case JType.Integer:
+                    return int.MinValue;
+                case JType.Long:
+                    return long.MinValue;
+                case JType.Decimal:
+                    return decimal.MinValue;
+                case JType.TimeSpan:
+                    return TimeSpan.MinValue;
+                case JType.String:                    
+                case JType.Uri:                    
+                case JType.Guid:
+                case JType.None:
+                case JType.JSONObject:
+                    return null;
+                default:
+                    throw new InvalidCastException();
+            }
+        }
 
+        /// <summary>
+        /// 取得JType的最大值
+        /// </summary>
+        /// <param name="type">jtype</param>
+        /// <returns>結果</returns>
+        public static object GetMaxValue(this JType type)
+        {
+            switch (type)
+            {
+                case JType.Boolean:
+                    return true;
+                case JType.Byte:
+                    return byte.MaxValue;
+                case JType.Date:
+                    return DateTime.MaxValue.Date;
+                case JType.Time:                    
+                    return DateTime.MinValue.AddDays(1).AddTicks(-1); //可研究
+                case JType.DateTime:                
+                    return DateTime.MaxValue;
+                case JType.Double:
+                    return double.MaxValue;
+                case JType.Integer:
+                    return int.MaxValue;
+                case JType.Long:
+                    return long.MaxValue;
+                case JType.Decimal:
+                    return decimal.MaxValue;
+                case JType.TimeSpan:
+                    return TimeSpan.MaxValue;
+                case JType.String:                    
+                case JType.Uri:
+                case JType.Guid:
+                case JType.None:
+                case JType.JSONObject:
+                    return null;
+                default:
+                    throw new InvalidCastException();
+            }
+        }
+
+
+        /// <summary>
+        /// 確認JType是數字
+        /// </summary>
+        /// <param name="type">jtype</param>
+        /// <returns>結果</returns>
+        public static bool IsNumber(this JType type)
+            => type == JType.Byte || type == JType.Integer ||
+            type == JType.Long || type == JType.Decimal ||
+            type == JType.Double || type == JType.TimeSpan;
+
+        /// <summary>
+        /// 確認JType是日期或時間
+        /// </summary>
+        /// <param name="type">jtype</param>
+        /// <returns>結果</returns>
+        public static bool IsDateTime(this JType type)
+            => type == JType.Date || type == JType.Time || type == JType.DateTime;
+
+        /// <summary>
+        /// 回傳JType的初始值
+        /// </summary>
+        /// <param name="type">jtype</param>
+        /// <returns>初始值</returns>
         public static object InitialValue(this JType type)
         {
             switch (type)

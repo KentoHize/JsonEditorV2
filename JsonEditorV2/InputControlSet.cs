@@ -104,6 +104,9 @@ namespace JsonEditorV2
                         return false;
                     }
 
+            //if(JColumn.Type.IsNumber())
+                
+
             if (ValueControl is TextBox)
                 if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
                 {

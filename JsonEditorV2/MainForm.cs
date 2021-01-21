@@ -28,13 +28,11 @@ namespace JsonEditorV2
             if (!Directory.Exists(Const.BackupFolder))
                 Directory.CreateDirectory(Const.BackupFolder);
 
-            //有Backup有檔案存在
+            //有Backup檔案存在
             string[] files = Directory.GetFiles(Const.BackupFolder);
-            
-
             if(files.Length != 0)
             {
-                if(File.Exists(Const.BackupRecoverFile))
+                if(File.Exists(Const.BackupRecoverFile) && files.Length > 1)
                 {
                     StreamReader sr = File.OpenText(Const.BackupRecoverFile);
                     string originFileName = sr.ReadLine().ToString().Split('=')[1];
@@ -49,6 +47,8 @@ namespace JsonEditorV2
                     else if (dr == DialogResult.Yes)
                         File.Copy(Path.Combine(Const.BackupFolder, Path.GetFileName(originFileName)), originFileName, true);
                 }
+
+                //無法處理的例外情況
 
                 foreach (string file in files)
                     File.Delete(file);
@@ -172,6 +172,31 @@ namespace JsonEditorV2
             }
         }
 
+        public static bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
+        {
+            if (!string.IsNullOrEmpty(content))
+                return false;
+            if (type.IsNumber())
+            {
+                decimal result;
+                if (!decimal.TryParse(content, out result))
+                    return false;
+                if (isMaxValue)                    
+                    return result < (decimal)type.GetMaxValue();
+                return result > (decimal)type.GetMinValue();
+            }
+            else if (type.IsDateTime())
+            {
+                DateTime result;
+                if (!DateTime.TryParse(content, out result))
+                    return false;
+                if (isMaxValue)                    
+                    return result < (DateTime)type.GetMaxValue();
+                return result > (DateTime)type.GetMinValue();
+            }
+            return false;
+        }
+
         private void btnUpdateColumn_Click(object sender, EventArgs e)
         {
             //確認資料正確            
@@ -201,17 +226,25 @@ namespace JsonEditorV2
             }
 
             JType newType = (JType)cobColumnType.SelectedValue;
-
-
+            
             //確認最大、最小值正確
-            if (newType != JType.Byte && newType != JType.Integer &&
-                newType != JType.Long && newType != JType.Decimal &&
-                newType != JType.Double && newType != JType.Date &&
-                newType != JType.Time && newType != JType.DateTime &&
-                newType != JType.TimeSpan)
+            if (!newType.IsNumber() && !newType.IsDateTime())
             {
                 txtColumnMaxValue.Text = "";
                 txtColumnMinValue.Text = "";
+            }
+            else
+            {
+                if(CheckMinMaxValue(txtColumnMinValue.Text, newType))
+                { 
+                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_8, txtColumnMinValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (CheckMinMaxValue(txtColumnMinValue.Text, newType, true))
+                {
+                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_9, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             //確認Regex正確

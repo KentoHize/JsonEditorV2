@@ -333,6 +333,12 @@
   <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
     <value>Key欄位不能為Null值</value>
   </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_8" xml:space="preserve">
+    <value>"{0}"不是正確的最小值</value>
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_9" xml:space="preserve">
+    <value>"{0}"不是正確的最大值</value>
+  </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>更新欄位</value>
   </data>
