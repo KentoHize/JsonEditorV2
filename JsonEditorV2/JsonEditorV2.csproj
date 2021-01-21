@@ -123,10 +123,13 @@
     <None Include="TestArea\Test1\Persons.json" />
     <None Include="TestArea\Test1\Quotes.json" />
     <None Include="TestArea\Test2\AD33.json" />
+    <None Include="TestArea\Test2\AD3333.json" />
     <None Include="TestArea\Test2\Add2222.json" />
     <None Include="TestArea\Test2\bbbbbbb.json" />
+    <None Include="TestArea\Test2\DSAHG.json" />
     <None Include="TestArea\Test2\GroupTesting.json" />
     <None Include="TestArea\Test2\JFilesInfo.json" />
+    <None Include="TestArea\Test2\JJJ.json" />
     <None Include="TestArea\Test2\T2.json" />
     <None Include="TestArea\Test2\T3.json" />
     <None Include="TestArea\Test2\T4.json" />
@@ -141,8 +144,12 @@
     <None Include="TestArea\Test4\TTT2.json" />
     <None Include="TestArea\Test5\AD33.json" />
     <None Include="TestArea\Test5\Add2222.json" />
+    <None Include="TestArea\Test5\Articles.json" />
     <None Include="TestArea\Test5\bbbbbbb.json" />
+    <None Include="TestArea\Test5\BestowRecords.json" />
     <None Include="TestArea\Test5\JFilesInfo.json" />
+    <None Include="TestArea\Test5\Persons.json" />
+    <None Include="TestArea\Test5\Quotes.json" />
     <None Include="TestArea\Test5\T10.json" />
     <None Include="TestArea\Test5\T11.json" />
     <None Include="TestArea\Test5\T2.json" />

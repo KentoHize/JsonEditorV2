@@ -33,7 +33,7 @@ namespace JsonEditorV2
             NameLabel.Name = $"lbl{JColumn.Name}";
             NameLabel.Text = JColumn.Name;
             NameLabel.Left = 10;
-            NameLabel.Top = 30 * lineIndex;
+            NameLabel.Top = 30 * lineIndex + 5;
             NameLabel.Width = 190;
 
             pnlMain.Controls.Add(NameLabel);
@@ -45,7 +45,7 @@ namespace JsonEditorV2
                 return;
 
             ValueControl.Left = 200;
-            ValueControl.Top = 30 * lineIndex;
+            ValueControl.Top = 30 * lineIndex + 5;
 
             if (ValueControl is TextBox)
             {
@@ -66,7 +66,7 @@ namespace JsonEditorV2
                 ValueControl.Width = 150;
                 ButtonControl.Left = 350;
                 ButtonControl.Width = 50;
-                ButtonControl.Top = 30 * lineIndex;
+                ButtonControl.Top = 30 * lineIndex + 5;
                 pnlMain.Controls.Add(ButtonControl);
                 errPositionControl = ButtonControl;
             }
@@ -76,7 +76,7 @@ namespace JsonEditorV2
             NullCheckBox = new CheckBox { Name = $"ckbNull{JColumn.Name}" };
             NullCheckBox.Text = "Null";
             NullCheckBox.Left = 430;
-            NullCheckBox.Top = 30 * lineIndex;
+            NullCheckBox.Top = 30 * lineIndex + 5;
             NullCheckBox.Width = 60;
             NullCheckBox.CheckedChanged += CkbCheckBox_CheckedChanged;
 
