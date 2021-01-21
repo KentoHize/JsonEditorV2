@@ -50,6 +50,9 @@ namespace JsonEditorV2
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
             lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
             lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
+            lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
+            lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
+            lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -1429,16 +1432,6 @@ namespace JsonEditorV2
         {
             if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
                 Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));            
-        }
-
-        private void txtDescription_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDescription_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

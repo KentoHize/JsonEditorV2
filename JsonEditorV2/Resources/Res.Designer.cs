@@ -151,6 +151,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 欄位描述.
+        /// </summary>
+        public static string JE_COLUMN_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 顯示在清單上.
         /// </summary>
         public static string JE_COLUMN_DISPLAY {
@@ -192,6 +201,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_COLUMN_IS_NULLABLE {
             get {
                 return ResourceManager.GetString("JE_COLUMN_IS_NULLABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最大值.
+        /// </summary>
+        public static string JE_COLUMN_MAX_VALUE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_MAX_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最小值.
+        /// </summary>
+        public static string JE_COLUMN_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_MIN_VALUE", resourceCulture);
             }
         }
         
