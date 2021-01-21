@@ -17,6 +17,9 @@ namespace JsonEditor
         public int NumberOfRows { get; set; }
         public bool Display { get; set; }
         public string Regex { get; set; }
+        public string Description { get; set; }
+        public string MinValue { get; set; }
+        public string MaxValue { get; set; }
 
         public JColumn()
             : this("")

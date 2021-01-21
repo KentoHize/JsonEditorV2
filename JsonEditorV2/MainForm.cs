@@ -169,13 +169,23 @@ namespace JsonEditorV2
                 return;
             }
 
+            JType newType = (JType)cobColumnType.SelectedValue;
 
-            bool recheckTable = false;
-
-            if (cobColumnType.SelectedValue.ToString() != JType.String.ToString())
-                txtColumnRegex.Text = "";
+            
+            //確認最大、最小值正確
+            if (newType != JType.Byte && newType != JType.Integer &&
+                newType != JType.Long && newType != JType.Decimal &&
+                newType != JType.Double && newType != JType.Date &&
+                newType != JType.Time && newType != JType.DateTime &&
+                newType != JType.TimeSpan)
+            {
+                txtColumnMaxValue.Text = "";
+                txtColumnMinValue.Text = "";
+            }
 
             //確認Regex正確
+            if (newType != JType.String)
+                txtColumnRegex.Text = "";
             try
             {
                 if (txtColumnRegex.Text != "")
@@ -187,11 +197,11 @@ namespace JsonEditorV2
                 return;
             }
 
+            bool recheckTable = false;
+
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
-
-            JType newType = (JType)cobColumnType.SelectedValue;
+                LoadJsonFile(Var.SelectedColumnParentTable);            
 
             //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -210,6 +220,7 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Changed = true;
             Var.JFI.Changed = true;
             Var.SelectedColumn.Display = ckbColumnDisplay.Checked;
+            Var.SelectedColumn.Description = txtColumnDescription.Text;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
@@ -265,12 +276,16 @@ namespace JsonEditorV2
             }
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
-            //改正則表達式
-            if (Var.SelectedColumn.Regex != txtColumnRegex.Text)
+            //改最大最小值 及 正則表達式
+            if(Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
+               Var.SelectedColumn.MaxValue != txtColumnMaxValue.Text ||
+               Var.SelectedColumn.Regex != txtColumnRegex.Text)
             {
+                Var.SelectedColumn.MinValue = txtColumnMinValue.Text;
+                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
                 recheckTable = true;
-            }
+            }           
 
             if (recheckTable)
                 Var.SelectedColumnParentTable.CheckAllValid();
@@ -738,11 +753,10 @@ namespace JsonEditorV2
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKColumn))
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
-                if (!string.IsNullOrEmpty(Var.SelectedColumn.Regex))
-                    txtColumnRegex.Text = Var.SelectedColumn.Regex;
-                else
-                    txtColumnRegex.Text = "";
 
+                txtColumnRegex.Text = string.IsNullOrEmpty(Var.SelectedColumn.Regex) ? "" : Var.SelectedColumn.Regex;
+                txtColumnMinValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MinValue) ? "" : Var.SelectedColumn.MinValue;
+                txtColumnMaxValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MaxValue) ? "" : Var.SelectedColumn.MaxValue;                
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1115,6 +1129,7 @@ namespace JsonEditorV2
         {
             try
             {
+                
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
@@ -1186,8 +1201,6 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Columns.Remove(Var.SelectedColumn);
             Var.SelectedColumn = null;
 
-            //勿存檔
-            //SaveJsonFile(Var.SelectedColumnParentTable);
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_COLUMN_M_2, removedName);
         }
@@ -1418,8 +1431,11 @@ namespace JsonEditorV2
 
         private void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cobColumnType.Enabled = cobColumnFKColumn.SelectedIndex == -1;
-            txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+            bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
+            cobColumnType.Enabled = 
+            txtColumnRegex.Enabled = 
+            txtColumnMinValue.Enabled = 
+            txtColumnMaxValue.Enabled = FKIsEmpty;
         }
 
         private void tmiOpenFolder_Click(object sender, EventArgs e)

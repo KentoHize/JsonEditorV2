@@ -36,9 +36,9 @@
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.lbColumnFKColumn = new System.Windows.Forms.Panel();
             this.lblColumnDescription = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.txtMaxValue = new System.Windows.Forms.TextBox();
-            this.txtMinValue = new System.Windows.Forms.TextBox();
+            this.txtColumnDescription = new System.Windows.Forms.TextBox();
+            this.txtColumnMaxValue = new System.Windows.Forms.TextBox();
+            this.txtColumnMinValue = new System.Windows.Forms.TextBox();
             this.lblColumnMaxValue = new System.Windows.Forms.Label();
             this.lblColumnMinValue = new System.Windows.Forms.Label();
             this.ckbColumnIsNullable = new System.Windows.Forms.CheckBox();
@@ -178,9 +178,9 @@
             // 
             this.lbColumnFKColumn.AutoScroll = true;
             this.lbColumnFKColumn.Controls.Add(this.lblColumnDescription);
-            this.lbColumnFKColumn.Controls.Add(this.txtDescription);
-            this.lbColumnFKColumn.Controls.Add(this.txtMaxValue);
-            this.lbColumnFKColumn.Controls.Add(this.txtMinValue);
+            this.lbColumnFKColumn.Controls.Add(this.txtColumnDescription);
+            this.lbColumnFKColumn.Controls.Add(this.txtColumnMaxValue);
+            this.lbColumnFKColumn.Controls.Add(this.txtColumnMinValue);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnMaxValue);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnMinValue);
             this.lbColumnFKColumn.Controls.Add(this.ckbColumnIsNullable);
@@ -219,35 +219,35 @@
             this.lblColumnDescription.TabIndex = 28;
             this.lblColumnDescription.Text = "-";
             // 
-            // txtDescription
+            // txtColumnDescription
             // 
-            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(207, 394);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(184, 27);
-            this.txtDescription.TabIndex = 27;
-            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnDescription.Location = new System.Drawing.Point(207, 394);
+            this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnDescription.Name = "txtColumnDescription";
+            this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnDescription.TabIndex = 27;
+            this.txtColumnDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtMaxValue
+            // txtColumnMaxValue
             // 
-            this.txtMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaxValue.Location = new System.Drawing.Point(207, 254);
-            this.txtMaxValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMaxValue.Name = "txtMaxValue";
-            this.txtMaxValue.Size = new System.Drawing.Size(184, 27);
-            this.txtMaxValue.TabIndex = 26;
-            this.txtMaxValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMaxValue.Location = new System.Drawing.Point(207, 254);
+            this.txtColumnMaxValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMaxValue.Name = "txtColumnMaxValue";
+            this.txtColumnMaxValue.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMaxValue.TabIndex = 26;
+            this.txtColumnMaxValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // txtMinValue
+            // txtColumnMinValue
             // 
-            this.txtMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMinValue.Location = new System.Drawing.Point(207, 219);
-            this.txtMinValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMinValue.Name = "txtMinValue";
-            this.txtMinValue.Size = new System.Drawing.Size(184, 27);
-            this.txtMinValue.TabIndex = 25;
-            this.txtMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMinValue.Location = new System.Drawing.Point(207, 219);
+            this.txtColumnMinValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMinValue.Name = "txtColumnMinValue";
+            this.txtColumnMinValue.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMinValue.TabIndex = 25;
+            this.txtColumnMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblColumnMaxValue
             // 
@@ -1019,9 +1019,9 @@
         private System.Windows.Forms.ToolStripMenuItem tmiOpenFolder;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJsonFile;
         private System.Windows.Forms.Label lblColumnDescription;
-        private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.TextBox txtMaxValue;
-        private System.Windows.Forms.TextBox txtMinValue;
+        private System.Windows.Forms.TextBox txtColumnDescription;
+        private System.Windows.Forms.TextBox txtColumnMaxValue;
+        private System.Windows.Forms.TextBox txtColumnMinValue;
         private System.Windows.Forms.Label lblColumnMaxValue;
         private System.Windows.Forms.Label lblColumnMinValue;
     }
