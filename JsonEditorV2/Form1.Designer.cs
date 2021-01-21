@@ -96,6 +96,7 @@
             this.tmiCollapseAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiViewJFIFile = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsJsonFileSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiOpenJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiViewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -726,9 +727,10 @@
             this.tmiExpandAll,
             this.tmiCollapseAll,
             this.toolStripMenuItem8,
-            this.tmiOpenFolder});
+            this.tmiOpenFolder,
+            this.tmiViewJFIFile});
             this.cmsJsonFiles.Name = "cmsMain";
-            this.cmsJsonFiles.Size = new System.Drawing.Size(88, 112);
+            this.cmsJsonFiles.Size = new System.Drawing.Size(88, 136);
             // 
             // tmiNewJsonFile
             // 
@@ -769,6 +771,13 @@
             this.tmiOpenFolder.Size = new System.Drawing.Size(87, 24);
             this.tmiOpenFolder.Text = "X";
             this.tmiOpenFolder.Click += new System.EventHandler(this.tmiOpenFolder_Click);
+            // 
+            // tmiViewJFIFile
+            // 
+            this.tmiViewJFIFile.Name = "tmiViewJFIFile";
+            this.tmiViewJFIFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiViewJFIFile.Text = "X";
+            this.tmiViewJFIFile.Click += new System.EventHandler(this.tmiViewJFIFile_Click);
             // 
             // cmsJsonFileSelected
             // 
@@ -1024,6 +1033,7 @@
         private System.Windows.Forms.TextBox txtColumnMinValue;
         private System.Windows.Forms.Label lblColumnMaxValue;
         private System.Windows.Forms.Label lblColumnMinValue;
+        private System.Windows.Forms.ToolStripMenuItem tmiViewJFIFile;
     }
 }
 

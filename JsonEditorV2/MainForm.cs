@@ -79,6 +79,7 @@ namespace JsonEditorV2
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
+            tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;            
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
@@ -707,6 +708,7 @@ namespace JsonEditorV2
             if (e.Node == Var.RootNode)
             {
                 trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
+                tmiViewJFIFile.Enabled = File.Exists(Var.JFI.FileInfoPath);
             }
             else if (e.Node.Parent == Var.RootNode)
             {
@@ -727,8 +729,8 @@ namespace JsonEditorV2
                 }
 
                 //更新View
-                tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));                    
-
+                tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+                
                 if (e.Button == MouseButtons.Right)
                 {
                     trvJsonFiles.SelectedNode = e.Node;
@@ -1460,8 +1462,15 @@ namespace JsonEditorV2
 
         private void tmiViewJsonFile_Click(object sender, EventArgs e)
         {
-            if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
-                Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));            
+            if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
+                Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+        }
+
+        private void tmiViewJFIFile_Click(object sender, EventArgs e)
+        {
+            if(Var.JFI != null)
+                if (File.Exists(Var.JFI.FileInfoPath))
+                    Process.Start("notepad.exe", Var.JFI.FileInfoPath);
         }
     }
 }

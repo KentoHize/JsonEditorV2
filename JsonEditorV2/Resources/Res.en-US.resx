@@ -405,8 +405,11 @@
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
     <value>Scan Json Folder</value>
   </data>
+  <data name="JE_TMI_VIEW_JFI_FILE" xml:space="preserve">
+    <value>Open JFI File in Notepad</value>
+  </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
-    <value>Open File in Notepad.</value>
+    <value>Open File in Notepad</value>
   </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
     <value>"{0}"不符合資料型態</value>

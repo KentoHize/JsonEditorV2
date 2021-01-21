@@ -925,6 +925,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 用記事本開啟JSON關聯檔.
+        /// </summary>
+        public static string JE_TMI_VIEW_JFI_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_VIEW_JFI_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 用記事本開啟.
         /// </summary>
         public static string JE_TMI_VIEW_JSON_FILE {

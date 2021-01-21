@@ -183,6 +183,8 @@ namespace JsonEditor
                                 Math.Abs(kvp.Value.ToString().Length / 50) + 1);
                             Columns.Add(jc);
                         }
+                        else
+                            jc = Columns[i];
                     }
                     else
                         jc = Columns[i];

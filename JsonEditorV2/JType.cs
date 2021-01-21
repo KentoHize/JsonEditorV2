@@ -134,8 +134,7 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
-                case JType.JSONObject:
-                    break;
+                    break;                
                 case JType.TimeSpan:
                     if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
                         return r9;
@@ -148,6 +147,8 @@ namespace JsonEditor
                     if (decimal.TryParse(value.ToString(), out decimal r11))
                         return r11;
                     break;
+                case JType.JSONObject:
+                    return value.ToString();
                 case JType.String:
                     return value.ToString();                    
                 default:
@@ -225,7 +226,7 @@ namespace JsonEditor
                 case JTokenType.Guid:
                     return JType.Guid;
                 case JTokenType.Date:
-                    return JType.Date;
+                    return JType.DateTime;
                 case JTokenType.TimeSpan:
                     return JType.TimeSpan;
                 case JTokenType.Uri:

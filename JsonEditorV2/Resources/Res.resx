@@ -405,6 +405,9 @@
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
     <value>掃描JSON檔案庫</value>
   </data>
+  <data name="JE_TMI_VIEW_JFI_FILE" xml:space="preserve">
+    <value>用記事本開啟JSON關聯檔</value>
+  </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>用記事本開啟</value>
   </data>
