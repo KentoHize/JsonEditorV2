@@ -29,24 +29,24 @@
         {
           "Name": "Chinese",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 7,
-          "Display": false,
+          "Display": true,
           "Regex": ""
         },
         {
           "Name": "English",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 8,
           "Display": false,
-          "Regex": null
+          "Regex": ""
         },
         {
           "Name": "Japanese",

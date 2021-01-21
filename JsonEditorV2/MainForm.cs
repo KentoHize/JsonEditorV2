@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace JsonEditorV2
 {
@@ -66,6 +67,7 @@ namespace JsonEditorV2
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
+            tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
             tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
@@ -73,8 +75,9 @@ namespace JsonEditorV2
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
+            tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
-            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
+            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;            
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
         }
@@ -313,9 +316,6 @@ namespace JsonEditorV2
                 tmiCloseAllFiles_Click(this, e);
                 Var.Tables = new List<JTable>();
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-                tmiCloseAllFiles.Enabled = true;
-                tmiScanJsonFiles.Enabled = true;
-                tmiNewJsonFile.Enabled = true;
                 RefreshTrvJsonFiles();
                 sslMain.Text = string.Format(Res.JE_RUN_NEW_JSON_FILES_M_1, Var.JFI.DirectoryPath);
             }
@@ -511,6 +511,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles.Enabled = true;
             tmiScanJsonFiles.Enabled = true;
             tmiNewJsonFile.Enabled = true;
+            tmiOpenFolder.Enabled = true;
             tmiSaveAsJsonFiles.Enabled = true;
             tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
@@ -776,16 +777,10 @@ namespace JsonEditorV2
             try
             {
                 string newFile = Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json");
-                using (FileStream fs = new FileStream(newFile, FileMode.Create))
-                { }
 
                 JTable jt = new JTable(fib.InputValue, true);
                 Var.Tables.Add(jt);
                 Var.JFI.Changed = true;
-
-                //TreeNode tr = new TreeNode { Text = GetTableNodeString(jt), ImageIndex = 1, SelectedImageIndex = 1, Tag = jt.Name };
-                //tr.ToolTipText = tr.Text;
-                //Var.RootNode.Nodes.Add(tr); 
             }
             catch (Exception ex)
             {
@@ -1419,6 +1414,18 @@ namespace JsonEditorV2
         {
             cobColumnType.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+        }
+
+        private void tmiOpenFolder_Click(object sender, EventArgs e)
+        {
+            if(Var.JFI != null)
+                Process.Start(Var.JFI.DirectoryPath);
+        }
+
+        private void tmiViewJsonFile_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
+                Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
         }
     }
 }

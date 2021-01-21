@@ -378,6 +378,9 @@
   <data name="JE_TMI_NEW_JSON_FILES" xml:space="preserve">
     <value>New Json Folder</value>
   </data>
+  <data name="JE_TMI_OPEN_FOLDER" xml:space="preserve">
+    <value>Open Folder in File Explorer</value>
+  </data>
   <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
     <value>Open</value>
   </data>
@@ -392,6 +395,9 @@
   </data>
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
     <value>Scan Json Folder</value>
+  </data>
+  <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
+    <value>Open File in Notepad.</value>
   </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
     <value>"{0}"不符合資料型態</value>

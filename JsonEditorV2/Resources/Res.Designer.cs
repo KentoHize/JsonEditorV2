@@ -844,6 +844,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 打開資料夾.
+        /// </summary>
+        public static string JE_TMI_OPEN_FOLDER {
+            get {
+                return ResourceManager.GetString("JE_TMI_OPEN_FOLDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 開啟.
         /// </summary>
         public static string JE_TMI_OPEN_JSON_FILE {
@@ -885,6 +894,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_SCAN_JSON_FILES {
             get {
                 return ResourceManager.GetString("JE_TMI_SCAN_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 用記事本開啟.
+        /// </summary>
+        public static string JE_TMI_VIEW_JSON_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_VIEW_JSON_FILE", resourceCulture);
             }
         }
         
