@@ -192,7 +192,7 @@ namespace JsonEditorV2
                 case JType.Integer:
                 case JType.Long:
                 case JType.Decimal:
-                case JType.TimeSpan:
+                //case JType.TimeSpan:
                 case JType.Uri:
                 case JType.String:
 

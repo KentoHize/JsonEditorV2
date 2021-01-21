@@ -24,7 +24,7 @@ namespace JsonEditor
         DateTime,
         Guid,
         Uri,
-        TimeSpan,
+        //TimeSpan,
         Decimal,        
         JSONObject
     }
@@ -56,9 +56,9 @@ namespace JsonEditor
                     return long.MinValue;
                 case JType.Decimal:
                     return decimal.MinValue;
-                case JType.TimeSpan:
-                    return TimeSpan.MinValue;
-                case JType.String:                    
+                //case JType.TimeSpan:
+                //    return TimeSpan.MinValue;
+                case JType.String:
                 case JType.Uri:                    
                 case JType.Guid:
                 case JType.None:
@@ -96,8 +96,8 @@ namespace JsonEditor
                     return long.MaxValue;
                 case JType.Decimal:
                     return decimal.MaxValue;
-                case JType.TimeSpan:
-                    return TimeSpan.MaxValue;
+                //case JType.TimeSpan:
+                //    return TimeSpan.MaxValue;
                 case JType.String:                    
                 case JType.Uri:
                 case JType.Guid:
@@ -118,7 +118,7 @@ namespace JsonEditor
         public static bool IsNumber(this JType type)
             => type == JType.Byte || type == JType.Integer ||
             type == JType.Long || type == JType.Decimal ||
-            type == JType.Double || type == JType.TimeSpan;
+            type == JType.Double; /*|| type == JType.TimeSpan;*/
 
         /// <summary>
         /// 確認JType是日期或時間
@@ -156,8 +156,8 @@ namespace JsonEditor
                 case JType.None:
                 case JType.JSONObject:
                     return null;
-                case JType.TimeSpan:
-                    return new TimeSpan();
+                //case JType.TimeSpan:
+                //    return new TimeSpan();
                 case JType.Uri:
                     return null;
                 case JType.String:
@@ -236,10 +236,10 @@ namespace JsonEditor
                     break;
                 case JType.None:
                     break;                
-                case JType.TimeSpan:
-                    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
-                        return r9;
-                    break;
+                //case JType.TimeSpan:
+                //    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
+                //        return r9;
+                //    break;
                 case JType.Uri:
                     if (Uri.TryCreate(value.ToString(), UriKind.RelativeOrAbsolute, out Uri r10))
                         return r10;
@@ -328,8 +328,8 @@ namespace JsonEditor
                     return JType.Guid;
                 case JTokenType.Date:
                     return JType.DateTime;
-                case JTokenType.TimeSpan:
-                    return JType.TimeSpan;
+                //case JTokenType.TimeSpan:
+                //    return JType.TimeSpan;
                 case JTokenType.Uri:
                     return JType.Uri;
                 default:

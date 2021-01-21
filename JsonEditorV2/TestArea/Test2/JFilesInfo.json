@@ -92,15 +92,15 @@
           "Name": "KLLL",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "String",
+          "Type": "Time",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "0:00:00",
+          "MaxValue": "23:58:59"
         }
       ]
     },

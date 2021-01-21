@@ -402,6 +402,7 @@
             this.cobColumnType.Name = "cobColumnType";
             this.cobColumnType.Size = new System.Drawing.Size(184, 28);
             this.cobColumnType.TabIndex = 8;
+            this.cobColumnType.SelectedIndexChanged += new System.EventHandler(this.cobColumnType_SelectedIndexChanged);
             // 
             // txtColumnName
             // 
