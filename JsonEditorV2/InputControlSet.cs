@@ -45,7 +45,7 @@ namespace JsonEditorV2
                 return;
 
             ValueControl.Left = 200;
-            ValueControl.Top = 30 * lineIndex;
+            ValueControl.Top = 30 * lineIndex;            
 
             if (ValueControl is TextBox)
             {
@@ -54,6 +54,7 @@ namespace JsonEditorV2
                     (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
                 ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
                 NameLabel.Height = 30 * JColumn.NumberOfRows;
+                ((TextBox)ValueControl).TextChanged += ValueControl_TextChanged;
             }
 
             pnlMain.Controls.Add(ValueControl);
@@ -83,6 +84,11 @@ namespace JsonEditorV2
                 NullCheckBox.Enabled = false;
 
             pnlMain.Controls.Add(NullCheckBox);
+        }
+
+        private void ValueControl_TextChanged(object sender, EventArgs e)
+        {
+            ValidControl.SetError(errPositionControl, "");
         }
 
         public bool CheckValid()
@@ -130,7 +136,12 @@ namespace JsonEditorV2
                 NullCheckBox.Checked = false;
             if (value == null)
                 return;
-            if (ValueControl is TextBox)
+
+            if (JColumn.Type == JType.Date)
+                (ValueControl as TextBox).Text = ((DateTime)value).ToShortDateString();
+            else if(JColumn.Type == JType.Time)
+                (ValueControl as TextBox).Text = ((DateTime)value).ToShortTimeString();
+            else if (ValueControl is TextBox)
                 (ValueControl as TextBox).Text = ChangeStringToText(value.ToString());
             else if (ValueControl is CheckBox)
                 (ValueControl as CheckBox).Checked = (bool)value;
@@ -143,7 +154,10 @@ namespace JsonEditorV2
             => s.Replace("\n", "\r\n");
 
         private void CkbCheckBox_CheckedChanged(object sender, EventArgs e)
-            => ValueControl.Enabled = !NullCheckBox.Checked;
+        { 
+            ValueControl.Enabled = !NullCheckBox.Checked;
+            ValidControl.SetError(errPositionControl, "");
+        }
 
         private Button GetButtonControlFromJType(JType type, string name)
         {

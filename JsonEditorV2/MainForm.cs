@@ -608,7 +608,18 @@ namespace JsonEditorV2
                 for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
                 {
                     if (Var.SelectedTable.Columns[i].Display)
-                        displayString.AppendFormat("{0} ", jl[i].Value);
+                    {
+                        if (jl[i].Value == null)
+                            continue;
+                        else if (Var.SelectedTable.Columns[i].Type == JType.Date)
+                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToShortDateString());
+                        else if (Var.SelectedTable.Columns[i].Type == JType.Time)
+                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToShortTimeString());
+                        else if (jl[i].Value.ToString().Length > 12)
+                            displayString.AppendFormat("{0}.. ", jl[i].Value.ToString().Substring(0, 10));
+                        else
+                            displayString.AppendFormat("{0} ", jl[i].Value);
+                    }
                 }                
                 lsbLines.Items.Add(displayString.ToString());                
             }
