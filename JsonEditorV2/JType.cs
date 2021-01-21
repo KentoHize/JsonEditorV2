@@ -2,10 +2,6 @@
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JsonEditor
 {
@@ -18,19 +14,57 @@ namespace JsonEditor
         Long,
         Double,
         String,
-        Boolean,        
+        Boolean,
         Date,
         Time,
         DateTime,
         Guid,
         Uri,
         //TimeSpan,
-        Decimal,        
+        Decimal,
         JSONObject
     }
 
     public static class JTypeExtentions
     {
+        /// <summary>
+        /// 比較JType物件的大小
+        /// </summary>
+        /// <param name="instance">值</param>
+        /// <param name="type">JType</param>
+        /// <returns>0:實體等於比較值 1:實體大於比較值 -1:實體小於比較值</returns>
+        public static int CompareTo(this object instance, object value, JType type)
+        {
+            switch (type)
+            {
+                case JType.Boolean:
+                case JType.Byte:
+                    return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));
+                case JType.Date:
+                case JType.Time:
+                case JType.DateTime:
+                    return Convert.ToDateTime(instance).CompareTo(Convert.ToDateTime(value));
+                case JType.Double:
+                    return Convert.ToDouble(instance).CompareTo(Convert.ToDouble(value));
+                case JType.Integer:
+                    return Convert.ToInt32(instance).CompareTo(Convert.ToInt32(value));
+                case JType.Long:
+                    return Convert.ToInt64(instance).CompareTo(Convert.ToInt64(value));
+                case JType.Decimal:
+                    return Convert.ToDecimal(instance).CompareTo(Convert.ToDecimal(value));
+                //case JType.TimeSpan:
+                //
+                case JType.String:
+                case JType.Uri:
+                case JType.Guid:
+                    return instance.ToString().CompareTo(value.ToString());
+                case JType.None:
+                case JType.JSONObject:
+                default:
+                    throw new InvalidCastException();
+            }
+        }
+
         /// <summary>
         /// 取得JType的最小值
         /// </summary>
@@ -38,7 +72,7 @@ namespace JsonEditor
         /// <returns>結果</returns>
         public static object GetMinValue(this JType type)
         {
-            switch(type)
+            switch (type)
             {
                 case JType.Boolean:
                     return false;
@@ -46,10 +80,10 @@ namespace JsonEditor
                     return byte.MinValue;
                 case JType.Date:
                 case JType.Time:
-                case JType.DateTime:                
+                case JType.DateTime:
                     return DateTime.MinValue;
                 case JType.Double:
-                    return double.MinValue;                
+                    return double.MinValue;
                 case JType.Integer:
                     return int.MinValue;
                 case JType.Long:
@@ -59,7 +93,7 @@ namespace JsonEditor
                 //case JType.TimeSpan:
                 //    return TimeSpan.MinValue;
                 case JType.String:
-                case JType.Uri:                    
+                case JType.Uri:
                 case JType.Guid:
                 case JType.None:
                 case JType.JSONObject:
@@ -84,9 +118,9 @@ namespace JsonEditor
                     return byte.MaxValue;
                 case JType.Date:
                     return DateTime.MaxValue.Date;
-                case JType.Time:                    
+                case JType.Time:
                     return DateTime.MinValue.AddDays(1).AddTicks(-1); //可研究
-                case JType.DateTime:                
+                case JType.DateTime:
                     return DateTime.MaxValue;
                 case JType.Double:
                     return double.MaxValue;
@@ -98,7 +132,7 @@ namespace JsonEditor
                     return decimal.MaxValue;
                 //case JType.TimeSpan:
                 //    return TimeSpan.MaxValue;
-                case JType.String:                    
+                case JType.String:
                 case JType.Uri:
                 case JType.Guid:
                 case JType.None:
@@ -177,7 +211,7 @@ namespace JsonEditor
         public static bool TryParseJType(this object value, JType type, out object result)
         {
             try
-            {                
+            {
                 result = value.ParseJType(type);
                 return true;
             }
@@ -185,7 +219,7 @@ namespace JsonEditor
             {
                 result = new object().ParseJType(type);
                 return false;
-            }            
+            }
         }
 
         /// <summary>
@@ -211,7 +245,7 @@ namespace JsonEditor
                 case JType.Date:
                     if (DateTime.TryParse(value.ToString(), out DateTime r3) &&
                         r3.TimeOfDay.TotalSeconds == 0)
-                            return r3;
+                        return r3;
                     break;
                 case JType.Time:
                 case JType.DateTime:
@@ -235,7 +269,7 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
-                    break;                
+                    break;
                 //case JType.TimeSpan:
                 //    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
                 //        return r9;
@@ -251,10 +285,10 @@ namespace JsonEditor
                 case JType.JSONObject:
                     return value.ToString();
                 case JType.String:
-                    return value.ToString();                    
+                    return value.ToString();
                 default:
                     return value.ToString();
-            }            
+            }
 
             throw new InvalidCastException();
         }
@@ -280,7 +314,7 @@ namespace JsonEditor
                 case JsonToken.Date:
                     return JType.Date;
                 case JsonToken.Integer:
-                    return JType.Long;                
+                    return JType.Long;
                 case JsonToken.Raw:
                 case JsonToken.Bytes:
                 case JsonToken.String:
@@ -335,6 +369,6 @@ namespace JsonEditor
                 default:
                     return JType.JSONObject;
             }
-        }        
+        }
     }
 }

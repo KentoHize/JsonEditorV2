@@ -315,6 +315,9 @@
   <data name="JE_RUN_UPDATE_COLUMN_M_1" xml:space="preserve">
     <value>Column name is illegal.</value>
   </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_10" xml:space="preserve">
+    <value>The min value "{0}" is greater than the max value"{1}".</value>
+  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
     <value>Number of rows is incorrect.</value>
   </data>
@@ -420,8 +423,14 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
   </data>
+  <data name="JE_VAL_GREATER_THEN_MAX_VALUE" xml:space="preserve">
+    <value>"{0}" is greater than the max value"{1}".</value>
+  </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
     <value>"{0}"不符合資料型態</value>
+  </data>
+  <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
+    <value>"{0}" is less than the min value "{1}".</value>
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}"規則檢查失敗</value>

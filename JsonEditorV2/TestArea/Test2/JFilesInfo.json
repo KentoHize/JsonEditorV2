@@ -78,15 +78,15 @@
           "Name": "KL",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "Time",
+          "Type": "Double",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "779",
+          "MaxValue": "10000"
         },
         {
           "Name": "KLLL",

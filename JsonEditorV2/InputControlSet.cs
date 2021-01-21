@@ -45,7 +45,7 @@ namespace JsonEditorV2
                 return;
 
             ValueControl.Left = 200;
-            ValueControl.Top = 30 * lineIndex;            
+            ValueControl.Top = 30 * lineIndex;
 
             if (ValueControl is TextBox)
             {
@@ -96,6 +96,23 @@ namespace JsonEditorV2
             if (JColumn.IsNullable && NullCheckBox.Checked)
                 return true;
             ValidControl.SetError(errPositionControl, "");
+   
+            //確定型態符合
+            if (ValueControl is TextBox)
+                if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
+                    return false;
+                }
+
+            if (ValueControl is CheckBox)
+                if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
+                    return false;
+                }
+
+            //確認Regex正確
             if (JColumn.Type == JType.String)
                 if (!string.IsNullOrEmpty(JColumn.Regex))
                     if (!Regex.IsMatch(ChangeTextToString(ValueControl.Text), JColumn.Regex))
@@ -104,22 +121,21 @@ namespace JsonEditorV2
                         return false;
                     }
 
-            //if(JColumn.Type.IsNumber())
-                
+            //確認MinMax正確
+            if (JColumn.Type.IsNumber() || JColumn.Type.IsDateTime())
+            {
+                if (!string.IsNullOrEmpty(JColumn.MinValue) && ValueControl.Text.CompareTo(JColumn.MinValue, JColumn.Type) == -1)
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_LESS_THEN_MIN_VALUE, ValueControl.Text, JColumn.MinValue));
+                    return false;
+                }
+                if (!string.IsNullOrEmpty(JColumn.MaxValue) && ValueControl.Text.CompareTo(JColumn.MaxValue, JColumn.Type) == 1)
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_GREATER_THEN_MAX_VALUE, ValueControl.Text, JColumn.MaxValue));
+                    return false;
+                }
+            }
 
-            if (ValueControl is TextBox)
-                if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
-                {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
-                    return false;
-                }
-                    
-            if (ValueControl is CheckBox)
-                if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
-                {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
-                    return false;
-                }
             return true;
         }
 
@@ -142,7 +158,7 @@ namespace JsonEditorV2
 
             if (JColumn.Type == JType.Date)
                 (ValueControl as TextBox).Text = ((DateTime)value).ToShortDateString();
-            else if(JColumn.Type == JType.Time)
+            else if (JColumn.Type == JType.Time)
                 (ValueControl as TextBox).Text = ((DateTime)value).ToShortTimeString();
             else if (ValueControl is TextBox)
                 (ValueControl as TextBox).Text = ChangeStringToText(value.ToString());
@@ -157,7 +173,7 @@ namespace JsonEditorV2
             => s.Replace("\n", "\r\n");
 
         private void CkbCheckBox_CheckedChanged(object sender, EventArgs e)
-        { 
+        {
             ValueControl.Enabled = !NullCheckBox.Checked;
             ValidControl.SetError(errPositionControl, "");
         }

@@ -172,7 +172,7 @@ namespace JsonEditorV2
             }
         }
 
-        public static bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
+        public bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
         {
             if (string.IsNullOrEmpty(content))
                 return false;
@@ -259,6 +259,12 @@ namespace JsonEditorV2
                     txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
                     return;
                 }
+                if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
+                txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
+                {
+                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_10, txtColumnMinValue.Text, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }   
             }
 
             //確認Regex正確

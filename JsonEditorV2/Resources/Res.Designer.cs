@@ -655,6 +655,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 最小值&quot;{0}&quot;高於最大值&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_10 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位行數不正確.
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_2 {
@@ -970,11 +979,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;高於最大值&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_VAL_GREATER_THEN_MAX_VALUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_GREATER_THEN_MAX_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;不符合資料型態.
         /// </summary>
         public static string JE_VAL_INVALID_CAST {
             get {
                 return ResourceManager.GetString("JE_VAL_INVALID_CAST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;低於最小值&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_VAL_LESS_THEN_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_LESS_THEN_MIN_VALUE", resourceCulture);
             }
         }
         
