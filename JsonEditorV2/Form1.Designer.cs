@@ -932,6 +932,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.lbColumnFKColumn.ResumeLayout(false);
             this.lbColumnFKColumn.PerformLayout();
             this.stsMain.ResumeLayout(false);

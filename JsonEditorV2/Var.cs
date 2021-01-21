@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -16,7 +17,8 @@ namespace JsonEditorV2
 
         public static int PageIndex { get; set; }
         public static int ClickedTabIndex { get; set; }
-        public static bool FailedFlag { get; set; }
+        public static bool CheckFailedFlag { get; set; }
+
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }
 

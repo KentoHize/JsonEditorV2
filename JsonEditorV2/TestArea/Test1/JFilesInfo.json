@@ -143,11 +143,11 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "Memo",
@@ -503,7 +503,7 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 5,
-          "Display": false,
+          "Display": true,
           "Regex": "",
           "Description": "",
           "MinValue": "",

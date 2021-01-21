@@ -304,6 +304,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 發現需要復原的檔案&quot;{0}&quot;建立於 {1}，是否復原到原來的資料夾.
+        /// </summary>
+        public static string JE_ERR_RECOVER_FILE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_ERR_RECOVER_FILE_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON關聯檔案中的檔案名&quot;{0}.json&quot;和實際檔案名稱&quot;{1}.json&quot;不相同.
         /// </summary>
         public static string JE_ERR_TABLE_NAME_UNMATCH {

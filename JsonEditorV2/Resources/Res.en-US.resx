@@ -198,6 +198,9 @@
   <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
     <value>JFI File is Empty.</value>
   </data>
+  <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
+    <value>發現需要復原的檔案"{0}"建立於 {1}，是否復原到原來的資料夾</value>
+  </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
   </data>

@@ -13,7 +13,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "AT999",
@@ -24,7 +27,10 @@
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "TTT99999",
@@ -35,7 +41,10 @@
           "FKColumn": "TT557",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "H999",
@@ -46,7 +55,10 @@
           "FKColumn": "TestCo",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "Y999",
@@ -57,7 +69,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": "^(oo|pp)$"
+          "Regex": "^(oo|pp)$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "KL",
@@ -68,7 +83,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "KLLL",
@@ -79,7 +97,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -95,7 +116,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "TTTT",
@@ -106,7 +130,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": "^opop[A-Za-z]$"
+          "Regex": "^opop[A-Za-z]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "A41123",
@@ -117,7 +144,10 @@
           "FKColumn": "AAA",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "HHH",
@@ -128,7 +158,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "ADGHHWWDSDFDSFASFDSAFDSFDSFDSAFAD",
@@ -139,7 +172,10 @@
           "FKColumn": null,
           "NumberOfRows": 4,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -155,7 +191,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "TEst",
@@ -166,7 +205,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": "^ggg$"
+          "Regex": "^ggg$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "GGGS99",
@@ -177,9 +219,16 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^aaa$"
+          "Regex": "^aaa$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
+    },
+    {
+      "Name": "DSAHG",
+      "Columns": []
     },
     {
       "Name": "GroupTesting",
@@ -193,7 +242,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": "^\\w*$"
+          "Regex": "^\\w*$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "Key2",
@@ -204,7 +256,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "Key3",
@@ -215,7 +270,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "Memo",
@@ -226,7 +284,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -246,7 +307,10 @@
           "FKColumn": "AAA",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "HJK",
@@ -257,7 +321,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -273,7 +340,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "DDD",
@@ -284,7 +354,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "ABFD",
@@ -295,7 +368,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -311,7 +387,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
     },
@@ -331,7 +410,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "_P-6",
@@ -342,7 +424,10 @@
           "FKColumn": "HJI99",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "G8888",
@@ -353,7 +438,10 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
           "Name": "Y888",
@@ -364,13 +452,12 @@
           "FKColumn": null,
           "NumberOfRows": 11,
           "Display": true,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         }
       ]
-    },
-    {
-      "Name": "DSAHG",
-      "Columns": []
     }
   ]
 }

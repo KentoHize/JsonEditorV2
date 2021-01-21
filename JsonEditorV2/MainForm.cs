@@ -3,13 +3,13 @@ using JsonEditorV2.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace JsonEditorV2
 {
@@ -23,6 +23,36 @@ namespace JsonEditorV2
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
             tbpStart.BackColor = this.BackColor;
+
+            //確認Backup資料夾存在
+            if (!Directory.Exists(Const.BackupFolder))
+                Directory.CreateDirectory(Const.BackupFolder);
+
+            //有Backup有檔案存在
+            string[] files = Directory.GetFiles(Const.BackupFolder);
+            
+
+            if(files.Length != 0)
+            {
+                if(File.Exists(Const.BackupRecoverFile))
+                {
+                    StreamReader sr = File.OpenText(Const.BackupRecoverFile);
+                    string originFileName = sr.ReadLine().ToString().Split('=')[1];
+                    string createDate = sr.ReadLine().ToString().Split('=')[1];
+
+                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_ERR_RECOVER_FILE_M_1, Path.GetFileName(originFileName), createDate), Res.JSON_FILE_EDITOR_TITLE, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (dr == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                        return;
+                    }   
+                    else if (dr == DialogResult.Yes)
+                        File.Copy(Path.Combine(Const.BackupFolder, Path.GetFileName(originFileName)), originFileName, true);
+                }
+
+                foreach (string file in files)
+                    File.Delete(file);
+            }
 #if !DEBUG
             tmiBackup.Visible = false;
 #endif
@@ -81,7 +111,7 @@ namespace JsonEditorV2
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
             tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
-            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;            
+            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
         }
@@ -172,7 +202,7 @@ namespace JsonEditorV2
 
             JType newType = (JType)cobColumnType.SelectedValue;
 
-            
+
             //確認最大、最小值正確
             if (newType != JType.Byte && newType != JType.Integer &&
                 newType != JType.Long && newType != JType.Decimal &&
@@ -202,7 +232,7 @@ namespace JsonEditorV2
 
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);            
+                LoadJsonFile(Var.SelectedColumnParentTable);
 
             //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -278,7 +308,7 @@ namespace JsonEditorV2
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
             //改最大最小值 及 正則表達式
-            if(Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
+            if (Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
                Var.SelectedColumn.MaxValue != txtColumnMaxValue.Text ||
                Var.SelectedColumn.Regex != txtColumnRegex.Text)
             {
@@ -286,7 +316,7 @@ namespace JsonEditorV2
                 Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
                 recheckTable = true;
-            }           
+            }
 
             if (recheckTable)
                 Var.SelectedColumnParentTable.CheckAllValid();
@@ -342,13 +372,13 @@ namespace JsonEditorV2
 
         private DialogResult AskSaveFiles(string title)
         {
-            Var.FailedFlag = false;
+            Var.CheckFailedFlag = false;
             if (Var.Changed)
             {
                 DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
                 if (dr == DialogResult.Yes)
                     tmiSaveJsonFiles_Click(this, new EventArgs());
-                if (Var.FailedFlag)
+                if (Var.CheckFailedFlag)
                     return DialogResult.Cancel;
                 return dr;
             }
@@ -412,7 +442,7 @@ namespace JsonEditorV2
             JTable table;
 
             //有JFI File，先讀取
-            if(jsonfiles.Contains(Var.JFI.FileInfoPath))
+            if (jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
                 LoadJFilesInfo(Var.JFI.FileInfoPath);
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
@@ -429,8 +459,8 @@ namespace JsonEditorV2
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
 
-                    if(Var.JFI.TablesInfo.Count != 0)
-                    { 
+                    if (Var.JFI.TablesInfo.Count != 0)
+                    {
                         table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
                         LoadJsonFile(table);
                     }
@@ -609,6 +639,7 @@ namespace JsonEditorV2
                 {
                     if (Var.SelectedTable.Columns[i].Display)
                     {
+                        //Can Improve
                         if (jl[i].Value == null)
                             continue;
                         else if (Var.SelectedTable.Columns[i].Type == JType.Date)
@@ -620,8 +651,8 @@ namespace JsonEditorV2
                         else
                             displayString.AppendFormat("{0} ", jl[i].Value);
                     }
-                }                
-                lsbLines.Items.Add(displayString.ToString());                
+                }
+                lsbLines.Items.Add(displayString.ToString());
             }
             btnNewLine.Enabled = true;
             RefreshTrvSelectedFileChange();
@@ -674,7 +705,7 @@ namespace JsonEditorV2
                     if (!jt.CheckAllValid())
                     {
                         MessageBox.Show(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Var.FailedFlag = true;
+                        Var.CheckFailedFlag = true;
                         return;
                     }
                 }
@@ -741,7 +772,7 @@ namespace JsonEditorV2
 
                 //更新View
                 tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
-                
+
                 if (e.Button == MouseButtons.Right)
                 {
                     trvJsonFiles.SelectedNode = e.Node;
@@ -784,7 +815,7 @@ namespace JsonEditorV2
 
                 txtColumnRegex.Text = string.IsNullOrEmpty(Var.SelectedColumn.Regex) ? "" : Var.SelectedColumn.Regex;
                 txtColumnMinValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MinValue) ? "" : Var.SelectedColumn.MinValue;
-                txtColumnMaxValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MaxValue) ? "" : Var.SelectedColumn.MaxValue;                
+                txtColumnMaxValue.Text = string.IsNullOrEmpty(Var.SelectedColumn.MaxValue) ? "" : Var.SelectedColumn.MaxValue;
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -908,7 +939,7 @@ namespace JsonEditorV2
             }
             MessageBox.Show("OK");
         }
-#region DirectoryCopy
+        #region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
@@ -943,7 +974,7 @@ namespace JsonEditorV2
                 }
             }
         }
-#endregion
+        #endregion
 
         private void btnClearColumn_Click(object sender, EventArgs e)
         {
@@ -1075,13 +1106,13 @@ namespace JsonEditorV2
             try
             {
 #endif
-                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
-                {
-                    StreamReader sr = new StreamReader(fs);
-                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                    jt.CheckAllValid();
-                    sr.Dispose();
-                }
+            using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
+            {
+                StreamReader sr = new StreamReader(fs);
+                jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
+                jt.CheckAllValid();
+                sr.Dispose();
+            }
 #if !DEBUG
         }
             catch (Exception ex)
@@ -1152,41 +1183,70 @@ namespace JsonEditorV2
             }
         }
 
-        private void SaveJsonFile(JTable jt)
+        private bool SaveJsonFile(JTable jt)
         {
             try
             {
-                
+                //檔案備份
+                using (StreamWriter sw = File.CreateText(Const.BackupRecoverFile))
+                {
+                    sw.WriteLine($"OriginFileName={Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")}");                    
+                    sw.WriteLine($"CreateDateTime={DateTime.Now}");
+                }
+                File.Copy(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), Path.Combine(Const.BackupFolder, $"{jt.Name}.json"), true);
+
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
                     sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
                     sw.Close();
                 }
+
+                //備份檔案刪除
+                File.Delete(Path.Combine(Const.BackupFolder, $"{jt.Name}.json"));
+                File.Delete(Const.BackupRecoverFile);
+
                 jt.Changed = false;
             }
             catch (Exception ex)
             {
                 HandleException(ex);
+                return false;
             }
-        }
+            return true;
+       }
 
-        private void SaveJFilesInfo()
+        private bool SaveJFilesInfo()
         {
             try
             {
+                //檔案備份
+                using (StreamWriter sw = File.CreateText(Const.BackupRecoverFile))
+                {   
+                    sw.WriteLine($"OriginFileName=\"{Var.JFI.FileInfoPath}\"");
+                    sw.WriteLine($"CreateDateTime=\"{DateTime.Now}\"");
+                }
+                File.Copy(Var.JFI.FileInfoPath, Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName), true);
+
                 using (FileStream fs = new FileStream(Var.JFI.FileInfoPath, FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
                     sw.Write(JsonConvert.SerializeObject(Var.JFI, Formatting.Indented));
                     sw.Close();
                 }
+
+                //備份檔案刪除
+                File.Delete(Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName));
+                File.Delete(Const.BackupRecoverFile);
+
                 Var.JFI.Changed = false;
             }
             catch (Exception ex)
             {
                 HandleException(ex);
+                return false;
             }
+            return true;
         }
 
         private void tmiExpandAll_Click(object sender, EventArgs e)
@@ -1380,7 +1440,7 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.InputControlSets.Count; i++)
                 if (!Var.InputControlSets[i].CheckValid())
                     valid = false;
-            
+
             if (!valid)
                 return;
 
@@ -1388,7 +1448,7 @@ namespace JsonEditorV2
                 Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
 
             int selectIndex = lsbLines.SelectedIndex;
-            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);            
+            sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
             RefreshPnlMainValue();
@@ -1459,15 +1519,15 @@ namespace JsonEditorV2
         private void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
-            cobColumnType.Enabled = 
-            txtColumnRegex.Enabled = 
-            txtColumnMinValue.Enabled = 
+            cobColumnType.Enabled =
+            txtColumnRegex.Enabled =
+            txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = FKIsEmpty;
         }
 
         private void tmiOpenFolder_Click(object sender, EventArgs e)
         {
-            if(Var.JFI != null)
+            if (Var.JFI != null)
                 Process.Start(Var.JFI.DirectoryPath);
         }
 
@@ -1479,9 +1539,14 @@ namespace JsonEditorV2
 
         private void tmiViewJFIFile_Click(object sender, EventArgs e)
         {
-            if(Var.JFI != null)
+            if (Var.JFI != null)
                 if (File.Exists(Var.JFI.FileInfoPath))
                     Process.Start("notepad.exe", Var.JFI.FileInfoPath);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

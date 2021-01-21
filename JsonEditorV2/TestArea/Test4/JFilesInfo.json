@@ -13,18 +13,52 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null
         },
         {
-          "Name": "TestNumber",
+          "Name": "dHHH",
           "IsKey": false,
-          "IsNullable": true,
-          "Type": "Integer",
+          "IsNullable": false,
+          "Type": "String",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": "654",
+          "MinValue": "",
+          "MaxValue": ""
+        },
+        {
+          "Name": "TestfNumber",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "None",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "654",
+          "MinValue": "",
+          "MaxValue": ""
+        },
+        {
+          "Name": "cvxz",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Time",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "654",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace JsonEditorV2
 {
@@ -13,5 +15,8 @@ namespace JsonEditorV2
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 
         public const long DontLoadFileBytesThreshold = 10000; // bytes
+
+        public static string BackupFolder { get => Path.Combine(Application.StartupPath, "Backup"); }
+        public static string BackupRecoverFile { get => Path.Combine(Const.BackupFolder, "Recover.ini"); }
     }
 }
