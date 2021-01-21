@@ -92,6 +92,7 @@
             this.tmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsJsonFileSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiOpenJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiViewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiRenameJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiCloseJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDeleteJsonFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +106,12 @@
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnDeleteLine = new System.Windows.Forms.Button();
             this.epvMain = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tmiViewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblColumnMinValue = new System.Windows.Forms.Label();
+            this.lblColumnMaxValue = new System.Windows.Forms.Label();
+            this.txtMinValue = new System.Windows.Forms.TextBox();
+            this.txtMaxValue = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -133,7 +139,7 @@
             // 
             this.btnClearMain.Enabled = false;
             this.btnClearMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearMain.Location = new System.Drawing.Point(801, 764);
+            this.btnClearMain.Location = new System.Drawing.Point(818, 764);
             this.btnClearMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearMain.Name = "btnClearMain";
             this.btnClearMain.Size = new System.Drawing.Size(122, 40);
@@ -146,7 +152,7 @@
             // 
             this.btnUpdateMain.Enabled = false;
             this.btnUpdateMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMain.Location = new System.Drawing.Point(1361, 764);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1378, 764);
             this.btnUpdateMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
@@ -159,7 +165,7 @@
             // 
             this.btnUpdateColumn.Enabled = false;
             this.btnUpdateColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateColumn.Location = new System.Drawing.Point(279, 764);
+            this.btnUpdateColumn.Location = new System.Drawing.Point(299, 764);
             this.btnUpdateColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateColumn.Name = "btnUpdateColumn";
             this.btnUpdateColumn.Size = new System.Drawing.Size(122, 40);
@@ -171,6 +177,12 @@
             // lbColumnFKColumn
             // 
             this.lbColumnFKColumn.AutoScroll = true;
+            this.lbColumnFKColumn.Controls.Add(this.lblDescription);
+            this.lbColumnFKColumn.Controls.Add(this.txtDescription);
+            this.lbColumnFKColumn.Controls.Add(this.txtMaxValue);
+            this.lbColumnFKColumn.Controls.Add(this.txtMinValue);
+            this.lbColumnFKColumn.Controls.Add(this.lblColumnMaxValue);
+            this.lbColumnFKColumn.Controls.Add(this.lblColumnMinValue);
             this.lbColumnFKColumn.Controls.Add(this.ckbColumnIsNullable);
             this.lbColumnFKColumn.Controls.Add(this.lblColumnlIsNullable);
             this.lbColumnFKColumn.Controls.Add(this.txtColumnRegex);
@@ -193,7 +205,7 @@
             this.lbColumnFKColumn.Location = new System.Drawing.Point(1, 434);
             this.lbColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.lbColumnFKColumn.Name = "lbColumnFKColumn";
-            this.lbColumnFKColumn.Size = new System.Drawing.Size(400, 324);
+            this.lbColumnFKColumn.Size = new System.Drawing.Size(420, 324);
             this.lbColumnFKColumn.TabIndex = 15;
             // 
             // ckbColumnIsNullable
@@ -220,7 +232,7 @@
             // txtColumnRegex
             // 
             this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnRegex.Location = new System.Drawing.Point(207, 220);
+            this.txtColumnRegex.Location = new System.Drawing.Point(207, 289);
             this.txtColumnRegex.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnRegex.Name = "txtColumnRegex";
             this.txtColumnRegex.Size = new System.Drawing.Size(184, 27);
@@ -231,7 +243,7 @@
             // 
             this.lblColumnRegex.AutoSize = true;
             this.lblColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnRegex.Location = new System.Drawing.Point(18, 222);
+            this.lblColumnRegex.Location = new System.Drawing.Point(18, 292);
             this.lblColumnRegex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnRegex.Name = "lblColumnRegex";
             this.lblColumnRegex.Size = new System.Drawing.Size(15, 20);
@@ -243,7 +255,7 @@
             this.cobColumnFKColumn.DisplayMember = "Name";
             this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKColumn.FormattingEnabled = true;
-            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 288);
+            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 358);
             this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKColumn.Name = "cobColumnFKColumn";
             this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
@@ -255,7 +267,7 @@
             // 
             this.lblColumnFKColumn.AutoSize = true;
             this.lblColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 292);
+            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 362);
             this.lblColumnFKColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKColumn.Name = "lblColumnFKColumn";
             this.lblColumnFKColumn.Size = new System.Drawing.Size(15, 20);
@@ -267,7 +279,7 @@
             this.cobColumnFKTable.DisplayMember = "Name";
             this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKTable.FormattingEnabled = true;
-            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 252);
+            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 323);
             this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKTable.Name = "cobColumnFKTable";
             this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
@@ -300,7 +312,7 @@
             // ckbColumnDisplay
             // 
             this.ckbColumnDisplay.AutoSize = true;
-            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 188);
+            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 189);
             this.ckbColumnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnDisplay.Name = "ckbColumnDisplay";
             this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
@@ -341,7 +353,7 @@
             // 
             this.lblColumnFKTable.AutoSize = true;
             this.lblColumnFKTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 257);
+            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 327);
             this.lblColumnFKTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKTable.Name = "lblColumnFKTable";
             this.lblColumnFKTable.Size = new System.Drawing.Size(15, 20);
@@ -352,7 +364,7 @@
             // 
             this.lblColumnDisplay.AutoSize = true;
             this.lblColumnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 188);
+            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 187);
             this.lblColumnDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDisplay.Name = "lblColumnDisplay";
             this.lblColumnDisplay.Size = new System.Drawing.Size(15, 20);
@@ -397,7 +409,7 @@
             this.lsbLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbLines.FormattingEnabled = true;
             this.lsbLines.ItemHeight = 20;
-            this.lsbLines.Location = new System.Drawing.Point(409, 61);
+            this.lsbLines.Location = new System.Drawing.Point(429, 61);
             this.lsbLines.Margin = new System.Windows.Forms.Padding(4);
             this.lsbLines.Name = "lsbLines";
             this.lsbLines.Size = new System.Drawing.Size(384, 684);
@@ -415,7 +427,7 @@
             this.trvJsonFiles.Name = "trvJsonFiles";
             this.trvJsonFiles.SelectedImageIndex = 0;
             this.trvJsonFiles.ShowNodeToolTips = true;
-            this.trvJsonFiles.Size = new System.Drawing.Size(400, 396);
+            this.trvJsonFiles.Size = new System.Drawing.Size(420, 396);
             this.trvJsonFiles.TabIndex = 12;
             this.trvJsonFiles.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeCollapse);
             this.trvJsonFiles.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeExpand);
@@ -439,7 +451,7 @@
             this.sslMain});
             this.stsMain.Location = new System.Drawing.Point(0, 810);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1489, 22);
+            this.stsMain.Size = new System.Drawing.Size(1507, 22);
             this.stsMain.TabIndex = 11;
             this.stsMain.Text = "sspMain";
             // 
@@ -453,7 +465,7 @@
             this.tbcMain.ContextMenuStrip = this.cmsTabSelected;
             this.tbcMain.Controls.Add(this.tbpStart);
             this.tbcMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbcMain.Location = new System.Drawing.Point(409, 32);
+            this.tbcMain.Location = new System.Drawing.Point(429, 32);
             this.tbcMain.Margin = new System.Windows.Forms.Padding(4);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
@@ -490,7 +502,7 @@
             // 
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(801, 61);
+            this.pnlMain.Location = new System.Drawing.Point(818, 61);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(682, 697);
@@ -506,7 +518,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1489, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1507, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -531,19 +543,19 @@
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiLoadJsonFiles
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
@@ -551,20 +563,20 @@
             // 
             this.tmiScanJsonFiles.Enabled = false;
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -572,32 +584,32 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
-            this.tmiExit.Size = new System.Drawing.Size(93, 26);
+            this.tmiExit.Size = new System.Drawing.Size(216, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -707,7 +719,7 @@
             this.toolStripMenuItem5,
             this.tmiAddColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 182);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(88, 154);
             // 
             // tmiOpenJsonFile
             // 
@@ -715,6 +727,13 @@
             this.tmiOpenJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
+            // 
+            // tmiViewJsonFile
+            // 
+            this.tmiViewJsonFile.Name = "tmiViewJsonFile";
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiViewJsonFile.Text = "X";
+            this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
@@ -791,7 +810,7 @@
             // 
             this.btnNewLine.Enabled = false;
             this.btnNewLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewLine.Location = new System.Drawing.Point(671, 764);
+            this.btnNewLine.Location = new System.Drawing.Point(691, 764);
             this.btnNewLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(122, 40);
@@ -804,7 +823,7 @@
             // 
             this.btnDeleteLine.Enabled = false;
             this.btnDeleteLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteLine.Location = new System.Drawing.Point(409, 764);
+            this.btnDeleteLine.Location = new System.Drawing.Point(429, 764);
             this.btnDeleteLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteLine.Name = "btnDeleteLine";
             this.btnDeleteLine.Size = new System.Drawing.Size(122, 40);
@@ -817,18 +836,76 @@
             // 
             this.epvMain.ContainerControl = this;
             // 
-            // tmiViewJsonFile
+            // lblColumnMinValue
             // 
-            this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
-            this.tmiViewJsonFile.Text = "X";
-            this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
+            this.lblColumnMinValue.AutoSize = true;
+            this.lblColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMinValue.Location = new System.Drawing.Point(18, 222);
+            this.lblColumnMinValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMinValue.Name = "lblColumnMinValue";
+            this.lblColumnMinValue.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMinValue.TabIndex = 23;
+            this.lblColumnMinValue.Text = "-";
+            // 
+            // lblColumnMaxValue
+            // 
+            this.lblColumnMaxValue.AutoSize = true;
+            this.lblColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMaxValue.Location = new System.Drawing.Point(18, 257);
+            this.lblColumnMaxValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMaxValue.Name = "lblColumnMaxValue";
+            this.lblColumnMaxValue.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMaxValue.TabIndex = 24;
+            this.lblColumnMaxValue.Text = "-";
+            // 
+            // txtMinValue
+            // 
+            this.txtMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMinValue.Location = new System.Drawing.Point(207, 219);
+            this.txtMinValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMinValue.Name = "txtMinValue";
+            this.txtMinValue.Size = new System.Drawing.Size(184, 27);
+            this.txtMinValue.TabIndex = 25;
+            this.txtMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtMaxValue
+            // 
+            this.txtMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaxValue.Location = new System.Drawing.Point(207, 254);
+            this.txtMaxValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaxValue.Name = "txtMaxValue";
+            this.txtMaxValue.Size = new System.Drawing.Size(184, 27);
+            this.txtMaxValue.TabIndex = 26;
+            this.txtMaxValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(203, 394);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(184, 27);
+            this.txtDescription.TabIndex = 27;
+            this.txtDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(18, 397);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(15, 20);
+            this.lblDescription.TabIndex = 28;
+            this.lblDescription.Text = "-";
+            this.lblDescription.Click += new System.EventHandler(this.lblDescription_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1489, 832);
+            this.ClientSize = new System.Drawing.Size(1507, 832);
             this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
@@ -943,6 +1020,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem tmiOpenFolder;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJsonFile;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtMaxValue;
+        private System.Windows.Forms.TextBox txtMinValue;
+        private System.Windows.Forms.Label lblColumnMaxValue;
+        private System.Windows.Forms.Label lblColumnMinValue;
     }
 }
 
