@@ -7,11 +7,24 @@
         {
           "Name": "T5",
           "IsKey": true,
+          "IsNullable": false,
           "Type": "String",
-          "FKTable": "TTT2",
-          "FKColumn": "T5",
+          "FKTable": null,
+          "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false
+          "Display": true,
+          "Regex": ""
+        },
+        {
+          "Name": "TestNumber",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": ""
         }
       ]
     }

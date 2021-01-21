@@ -87,6 +87,8 @@ namespace JsonEditorV2
 
         public bool CheckValid()
         {
+            if (JColumn.IsNullable && NullCheckBox.Checked)
+                return true;
             ValidControl.SetError(errPositionControl, "");
             if (JColumn.Type == JType.String)
                 if (!string.IsNullOrEmpty(JColumn.Regex))

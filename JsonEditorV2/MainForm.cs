@@ -1420,10 +1420,5 @@ namespace JsonEditorV2
             cobColumnType.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1;
         }
-
-        private void mnsMain_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
     }
 }
