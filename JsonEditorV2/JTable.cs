@@ -195,32 +195,7 @@ namespace JsonEditor
                         items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
 
                     i++;
-                    //switch (kvp.Value.Type)
-                    //{
-                    //    case JTokenType.Integer:
-                    //        items.Add(JValue.FromObject(kvp.Value.ParseJType(jc.Type) ));
-                    //        break;
-                    //    case JTokenType.Float:
-                    //        items.Add(JValue.FromObject(Convert.ToDouble(kvp.Value)));
-                    //        break;
-                    //    case JTokenType.Guid:
-                    //        items.Add(JValue.FromObject(Guid.Parse(kvp.Value.ToString())));
-                    //        break;
-                    //    case JTokenType.Null:
-                    //        items.Add(JValue.FromObject(null));
-                    //        break;
-                    //    case JTokenType.Boolean:
-                    //        items.Add(JValue.FromObject(Convert.ToBoolean(kvp.Value)));
-                    //        break;
-                    //    case JTokenType.Date:
-                    //        items.Add(JValue.FromObject(DateTime.Parse(kvp.Value.ToString())));
-                    //        break;
-                    //    default:
-                    //        items.Add(JValue.FromObject(kvp.Value.ToString()));
-                    //        break;
-                    //}
                 }
-
                 isFirst = false;
                 Lines.Add(items);
             }
@@ -229,13 +204,35 @@ namespace JsonEditor
             CheckAllValid();
         }
 
+        //確認某一筆資料符合欄位定義
+        public bool CheckLineValid(JLine jl)
+        {
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (!jl[i].Value.TryParseJType(Columns[i].Type, out object o))
+                    return false;
+
+                if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
+                {
+                    if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
+                        return false;
+                    if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)                        
+                        return false;                    
+                }
+
+                if (Columns[i].Type == JType.String &&
+                    !string.IsNullOrEmpty(Columns[i].Regex) &&
+                    !Regex.IsMatch(jl[i].Value.ToString(), Columns[i].Regex))
+                    return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// 確認所有資料符合欄位定義
         /// </summary>
         public bool CheckAllValid()
         {
-            Valid = false;
-
             //Key Check
             List<int> keyIndex = new List<int>();
             for (int i = 0; i < Columns.Count; i++)
@@ -246,6 +243,9 @@ namespace JsonEditor
             string checkString;
             for (int i = 0; i < Lines.Count; i++)
             {
+                if (!CheckLineValid(Lines[i]))
+                    return false;
+
                 if (keyIndex.Count != 0)
                 {
                     checkString = "";
@@ -253,21 +253,10 @@ namespace JsonEditor
                         if(Lines[i][j].Value != null)
                             checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
                     if (!keyCheckSet.Add(checkString))
-                        return Valid;
-                }
-                for (int j = 0; j < Columns.Count; j++)
-                {
-                    if (!Lines[i][j].Value.TryParseJType(Columns[j].Type, out object o))
-                        return Valid;
-
-                    if (Columns[j].Type == JType.String &&
-                        !string.IsNullOrEmpty(Columns[j].Regex) &&
-                        !Regex.IsMatch(Lines[i][j].Value.ToString(), Columns[j].Regex))
-                        return Valid;
-                }
-            }
-            Valid = true;
-            return Valid;
+                        return false;
+                }               
+            }            
+            return true;
         }
 
         public int IndexOf(JLine item)
