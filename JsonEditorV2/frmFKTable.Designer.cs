@@ -36,7 +36,12 @@
             // 
             this.dgvMain.AllowUserToAddRows = false;
             this.dgvMain.AllowUserToDeleteRows = false;
+            this.dgvMain.AllowUserToOrderColumns = true;
+            this.dgvMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMain.Location = new System.Drawing.Point(0, 0);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
@@ -46,6 +51,7 @@
             this.dgvMain.Size = new System.Drawing.Size(988, 406);
             this.dgvMain.TabIndex = 0;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
+            this.dgvMain.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMain_DataBindingComplete);
             // 
             // frmFKTable
             // 
@@ -57,6 +63,7 @@
             this.Name = "frmFKTable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmFKTable";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmFKTable_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.ResumeLayout(false);
 
