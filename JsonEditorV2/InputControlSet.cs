@@ -55,6 +55,8 @@ namespace JsonEditorV2
                 ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
                 NameLabel.Height = 30 * JColumn.NumberOfRows;
                 ((TextBox)ValueControl).TextChanged += ValueControl_TextChanged;
+                if (!string.IsNullOrEmpty(JColumn.FKTable) && !string.IsNullOrEmpty(JColumn.FKColumn))
+                ((TextBox)ValueControl).GotFocus += ValueControl_GotFocus;
             }
 
             pnlMain.Controls.Add(ValueControl);
@@ -84,6 +86,16 @@ namespace JsonEditorV2
                 NullCheckBox.Enabled = false;
 
             pnlMain.Controls.Add(NullCheckBox);
+        }
+
+        private void ValueControl_GotFocus(object sender, EventArgs e)
+        {
+            NameLabel.Focus();
+            JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
+
+            object newValue = frmFKTable.Show(fkTable, JColumn.FKColumn, ValueControl.Text);
+            if (newValue != null)
+                SetValueToString(newValue);
         }
 
         private void ValueControl_TextChanged(object sender, EventArgs e)
@@ -147,7 +159,7 @@ namespace JsonEditorV2
             return parsedValue;
         }
 
-        public void SetValue(object value)
+        public void SetValueToString(object value)
         {
             if (JColumn.IsNullable)
                 NullCheckBox.Checked = value == null;

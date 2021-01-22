@@ -656,7 +656,7 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-                Var.InputControlSets[i].SetValue(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
+                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
 
             if(Var.SelectedTable.Columns.Count != 0)
             {
@@ -933,7 +933,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void HandleException(Exception ex, string content = null, string title = null)
+        private static void HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
                 content = Res.JE_ERR_DEFAULT_MESSAGE;
@@ -1154,7 +1154,7 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        private void LoadJFilesInfo(string file)
+        public static void LoadJFilesInfo(string file)
         {
             try
             {
@@ -1171,7 +1171,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void LoadJsonFile(JTable jt, bool produceColumnInfo = false)
+        public static void LoadJsonFile(JTable jt, bool produceColumnInfo = false)
         {
 #if !DEBUG
             try
@@ -1194,7 +1194,7 @@ namespace JsonEditorV2
         }
 
         //必產生Column Info
-        private void LoadPartialJsonFile(JTable jt)
+        public static void LoadPartialJsonFile(JTable jt)
         {
             //讀5行之後結束
             int pflag = 0;
@@ -1255,7 +1255,7 @@ namespace JsonEditorV2
             }
         }
 
-        private bool SaveJsonFile(JTable jt)
+        public static bool SaveJsonFile(JTable jt)
         {
             try
             {
@@ -1288,7 +1288,7 @@ namespace JsonEditorV2
             return true;
         }
 
-        private bool SaveJFilesInfo()
+        public static bool SaveJFilesInfo()
         {
             try
             {

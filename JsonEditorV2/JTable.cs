@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Dynamic;
 using System.Text.RegularExpressions;
 
@@ -40,6 +41,26 @@ namespace JsonEditor
             Name = name;
             Loaded = isNew;
             LoadJson(jArray, true);
+        }
+
+        /// <summary>
+        /// 轉換成一般的資料表
+        /// </summary>
+        /// <returns>資料表</returns>
+        public DataTable ToDataTable()
+        {
+            DataTable dt = new DataTable(Name);
+            for (int i = 0; i < Columns.Count; i++)
+                dt.Columns.Add(Columns[i].Name, typeof(string));
+
+            foreach(JLine jl in Lines)
+            {   
+                List<object> lo = new List<object>();
+                for (int i = 0; i < Columns.Count; i++)
+                    lo.Add(jl[i].Value);
+                dt.LoadDataRow(lo.ToArray(), true);
+            }
+            return dt;
         }
 
         /// <summary>
