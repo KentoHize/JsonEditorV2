@@ -277,9 +277,10 @@ namespace JsonEditor
                 if (Columns[i].IsKey)
                     keyIndex.Add(i);
 
+            //從最底端開始查起
             HashSet<string> keyCheckSet = new HashSet<string>();
             string checkString;
-            for (int i = 0; i < Lines.Count; i++)
+            for (int i = Lines.Count - 1; i > -1; i--)
             {
                 if (!CheckLineValid(Lines[i]))
                     return Valid;

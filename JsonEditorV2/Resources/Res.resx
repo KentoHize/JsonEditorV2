@@ -294,6 +294,15 @@
   <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
     <value>"{0}"已新增資料</value>
   </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
+    <value>欄位"{0}"已存在</value>
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_2" xml:space="preserve">
+    <value>欄位已重新命名為"{0}"</value>
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
+    <value>重新命名</value>
+  </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     <value>檔案"{0}.json"已存在</value>
   </data>
@@ -416,6 +425,9 @@
   </data>
   <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
     <value>重新整理</value>
+  </data>
+  <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
+    <value>重新命名</value>
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
     <value>重新命名</value>

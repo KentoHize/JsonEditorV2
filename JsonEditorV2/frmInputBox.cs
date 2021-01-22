@@ -13,59 +13,72 @@ using System.Text.RegularExpressions;
 
 namespace JsonEditorV2
 {
+    public enum InputBoxTypes
+    {
+        NewFile = 0,
+        RenameFile,
+        AddColumn,
+        RenameColumn,
+    }
+
     public partial class frmInputBox : Form
     {
-        public string InputValue { get; set; }
-        public string BoxType { get; set; }
+        private InputBoxTypes i_type;
+        private string returnValue;
 
-        public frmInputBox()
-            : this("")
-        {  }
-    
+        public static string Show(IWin32Window owner, InputBoxTypes type)
+        {            
+            frmInputBox frmInputBox = new frmInputBox(type);            
+            frmInputBox.ShowDialog(owner);
+            return frmInputBox.returnValue;
+        }
 
-        public frmInputBox(string boxType)
+        public frmInputBox(InputBoxTypes type)
         {
             InitializeComponent();
-            BoxType = boxType;            
+            i_type = type;
             btnConfirm.Text = Res.JE_INPUTBOX_BTN_CONFIRM;
             btnCancel.Text = Res.JE_INPUTBOX_BTN_CANCEL;
 
-            switch (BoxType)
+            switch (type)
             {
-                case "New File":                
+                case  InputBoxTypes.NewFile:                
                     lblExtensionName.Visible = true;
                     lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
                     Text = Res.JE_TMI_NEW_JSON_FILE;
                     break;
-                case "Rename File":
+                case InputBoxTypes.RenameFile:
                     lblExtensionName.Visible = true;
                     lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION;
                     Text = Res.JE_TMI_RENAME_JSON_FILE;
                     break;
-                case "Add Column":
+                case InputBoxTypes.AddColumn:
                     lblExtensionName.Visible = false;
                     lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION_2;
                     Text = Res.JE_TMI_ADD_COLUMN;
                     break;
+                case InputBoxTypes.RenameColumn:
+                    lblExtensionName.Visible = false;
+                    lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION_2;
+                    Text = Res.JE_TMI_RENAME_COLUMN;
+                    break;
                 default:
                     lblExtensionName.Visible = false;
                     break;
-
             }
-            DialogResult = DialogResult.Cancel;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            returnValue = null;
             Hide();
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            InputValue = txtInput.Text;
-            switch (BoxType)
+        {   
+            switch (i_type)
             {
-                case "New File":                
+                case InputBoxTypes.NewFile:                
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
                         MessageBox.Show(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_NEW_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -77,7 +90,7 @@ namespace JsonEditorV2
                         return;
                     }                    
                     break;
-                case "Rename File":
+                case InputBoxTypes.RenameFile:
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
                         MessageBox.Show(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_RENAME_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,17 +102,25 @@ namespace JsonEditorV2
                         return;
                     }
                     break;
-                case "Add Column":                    
+                case InputBoxTypes.AddColumn:                    
                     if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {                        
                         MessageBox.Show(Res.JE_INPUTBOX_WRONG_COLUMN_NAME, Res.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);                        
                         return;
                     }
                     break;
+                case InputBoxTypes.RenameColumn:
+                    if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
+                    {
+                        MessageBox.Show(Res.JE_INPUTBOX_WRONG_COLUMN_NAME, Res.JE_TMI_RENAME_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    break;
                 default:                    
                     break;
             }
-            DialogResult = DialogResult.OK;            
+            returnValue = txtInput.Text;
+            Hide();
         }
 
         private void frmInputBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -108,6 +129,11 @@ namespace JsonEditorV2
                 btnConfirm_Click(this, new EventArgs());
             else if (e.KeyChar == Convert.ToChar(Keys.Escape))
                 btnCancel_Click(this, new EventArgs());
+        }
+
+        private void txtInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            frmInputBox_KeyPress(this, e);
         }
     }
 }

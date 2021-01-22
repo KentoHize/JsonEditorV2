@@ -294,6 +294,15 @@
   <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
     <value>"{0}" New line added.</value>
   </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
+    <value>Column "{0}" already exists.</value>
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_2" xml:space="preserve">
+    <value>Column has renamed as "{0}".</value>
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
+    <value>Rename</value>
+  </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     <value>File "{0}.json" exist.</value>
   </data>
@@ -416,6 +425,9 @@
   </data>
   <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
     <value>Refresh</value>
+  </data>
+  <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
+    <value>Rename</value>
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
     <value>Rename</value>

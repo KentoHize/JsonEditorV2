@@ -5,7 +5,7 @@
       "Name": "AD3333",
       "Columns": [
         {
-          "Name": "TT557",
+          "Name": "TT8558",
           "IsKey": true,
           "IsNullable": false,
           "Type": "String",
@@ -14,23 +14,23 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
-          "Name": "AT999",
+          "Name": "Y8897",
           "IsKey": false,
           "IsNullable": true,
           "Type": "Guid",
           "FKTable": "Add2222",
-          "FKColumn": "HJI99",
+          "FKColumn": "HIJ96",
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "TTT99999",
@@ -38,7 +38,7 @@
           "IsNullable": false,
           "Type": "String",
           "FKTable": "AD3333",
-          "FKColumn": "TT557",
+          "FKColumn": "TT8558",
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
@@ -108,7 +108,7 @@
       "Name": "Add2222",
       "Columns": [
         {
-          "Name": "HJI99",
+          "Name": "HIJ96",
           "IsKey": true,
           "IsNullable": false,
           "Type": "Guid",
@@ -141,7 +141,7 @@
           "IsNullable": false,
           "Type": "String",
           "FKTable": "bbbbbbb",
-          "FKColumn": "AAA",
+          "FKColumn": "AA3A",
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
@@ -183,7 +183,7 @@
       "Name": "bbbbbbb",
       "Columns": [
         {
-          "Name": "AAA",
+          "Name": "AA3A",
           "IsKey": true,
           "IsNullable": false,
           "Type": "String",
@@ -192,9 +192,9 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "TEst",
@@ -319,7 +319,7 @@
           "IsNullable": false,
           "Type": "String",
           "FKTable": "bbbbbbb",
-          "FKColumn": "AAA",
+          "FKColumn": "AA3A",
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",

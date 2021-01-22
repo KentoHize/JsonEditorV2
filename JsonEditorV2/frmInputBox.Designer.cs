@@ -50,6 +50,7 @@
             this.txtInput.Name = "txtInput";
             this.txtInput.Size = new System.Drawing.Size(135, 22);
             this.txtInput.TabIndex = 1;
+            this.txtInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInput_KeyPress);
             // 
             // btnConfirm
             // 
