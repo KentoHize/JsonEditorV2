@@ -106,6 +106,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Resources\Res.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -175,10 +176,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Directory.png" />
+    <Content Include="Images\DownArrow.png" />
     <Content Include="Images\JsonIcon.ico" />
     <Content Include="Images\JsonIcon.png" />
     <Content Include="Images\Key.png" />
     <Content Include="Images\ObjectIcon.png" />
+    <Content Include="Images\UpArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

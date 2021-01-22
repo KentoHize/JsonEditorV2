@@ -66,9 +66,8 @@ namespace JsonEditor
         {
             DataTable dt = new DataTable(Name);
             for (int i = 0; i < Columns.Count; i++)
-                dt.Columns.Add(Columns[i].Name, Columns[i].Type.ToType());            
-            
-            //DateTime無法分辨
+                dt.Columns.Add(Columns[i].Name, Columns[i].Type.ToType());
+           
             foreach (JLine jl in Lines)
             {
                 List<object> lo = new List<object>();

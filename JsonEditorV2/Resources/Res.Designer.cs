@@ -484,6 +484,33 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 資料行&quot;{0}&quot;已移至底端.
+        /// </summary>
+        public static string JE_RUN_LINE_MOVE_DOWN_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LINE_MOVE_DOWN_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 移動資料行.
+        /// </summary>
+        public static string JE_RUN_LINE_MOVE_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_LINE_MOVE_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 資料行&quot;{0}&quot;已移至頂端.
+        /// </summary>
+        public static string JE_RUN_LINE_MOVE_UP_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LINE_MOVE_UP_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0}檔案已讀入.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_1 {

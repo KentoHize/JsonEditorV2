@@ -595,6 +595,7 @@ namespace JsonEditorV2
             if (Var.Changed)
                 Var.RootNode.Text += "*";
             Var.RootNode.ToolTipText = fullName;
+            Var.RootNode.Expand();
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
 
@@ -603,10 +604,15 @@ namespace JsonEditorV2
             {
                 fileNode = new TreeNode { Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
                 fileNode.ToolTipText = fileNode.Text;
-
                 Var.RootNode.Nodes.Add(fileNode);
-                if (Var.SelectedColumnParentTable == jt && Var.SelectedColumn == null)
-                    trvJsonFiles.SelectedNode = fileNode;
+
+                if (Var.SelectedColumnParentTable == jt)
+                {
+                    fileNode.Expand();
+                    if(Var.SelectedColumn == null)
+                        trvJsonFiles.SelectedNode = fileNode;
+                }
+                    
                 foreach (JColumn jc in jt.Columns)
                 {
                     tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name };
@@ -617,9 +623,7 @@ namespace JsonEditorV2
                     tr.ToolTipText = tr.Text;
                     fileNode.Nodes.Add(tr);
                     if (Var.SelectedColumn == jc)
-                        trvJsonFiles.SelectedNode = tr;
-                    //if (!string.IsNullOrEmpty(jc.FKTable))
-                    //    fks.Add(jc.Name, jc.FKTable);
+                        trvJsonFiles.SelectedNode = tr;                 
                 }
 
                 //foreach (KeyValuePair<string, string> kvp in fks)
@@ -645,6 +649,8 @@ namespace JsonEditorV2
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
             btnDeleteLine.Enabled =
+            btnLineMoveUp.Enabled =
+            btnLineMoveDown.Enabled =
             pnlMain.Enabled = false;
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
@@ -666,6 +672,8 @@ namespace JsonEditorV2
                 pnlMain.Enabled = true;
             }
             btnDeleteLine.Enabled = true;
+            btnLineMoveDown.Enabled = true;
+            btnLineMoveUp.Enabled = true;
         }
 
         private void RefreshPnlMain()
@@ -692,7 +700,7 @@ namespace JsonEditorV2
         private void RefreshLsbLines()
         {
             lsbLines.Items.Clear();
-            btnNewLine.Enabled =
+            btnNewLine.Enabled =                
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
@@ -722,8 +730,8 @@ namespace JsonEditorV2
             }
 
             lsbLines.SelectedIndex = Var.SelectedLineIndex;
-            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             btnNewLine.Enabled = true;
+            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
         }
 
@@ -1640,6 +1648,49 @@ namespace JsonEditorV2
         private void tmiRefreshFiles_Click(object sender, EventArgs e)
         {
             RefreshTrvJsonFiles();
+        }
+
+        private void tmiRenameColumn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLineMoveUp_Click(object sender, EventArgs e)
+        {
+            int index = Var.SelectedLineIndex;
+            if (index == -1)
+                return;
+            else if (index == 0)
+            {
+                MessageBox.Show(string.Format(Res.JE_RUN_LINE_MOVE_UP_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            JLine jl = Var.SelectedTable[index - 1];
+            Var.SelectedTable[index - 1] = Var.SelectedTable[index];
+            Var.SelectedTable[index] = jl;
+            Var.SelectedLineIndex--;
+            Var.SelectedTable.Changed = true;
+            RefreshLsbLines();
+        }
+
+        private void btnLineMoveDown_Click(object sender, EventArgs e)
+        {
+            int index = Var.SelectedLineIndex;
+            if (index == -1)
+                return;
+            else if (index == Var.SelectedTable.Count - 1)
+            {
+                MessageBox.Show(string.Format(Res.JE_RUN_LINE_MOVE_DOWN_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            JLine jl = Var.SelectedTable[index + 1];
+            Var.SelectedTable[index + 1] = Var.SelectedTable[index];
+            Var.SelectedTable[index] = jl;
+            Var.SelectedLineIndex++;
+            Var.SelectedTable.Changed = true;
+            RefreshLsbLines();
         }
     }
 }

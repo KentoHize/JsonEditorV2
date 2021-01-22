@@ -16,6 +16,7 @@ namespace JsonEditorV2
         public object Value { get; set; }
         private string keyColumnName;
         private string currentValue;
+        private JTable fkTable;
 
         public frmFKTable()
         {
@@ -23,8 +24,11 @@ namespace JsonEditorV2
         }
 
         public static object Show(IWin32Window owner, string ColumnName, JTable FKTable, string FKColumnName, string currentValue)
-        {   
+        {
+            
             frmFKTable frmFKTable = new frmFKTable();
+
+            frmFKTable.fkTable = FKTable;
             frmFKTable.Text = ColumnName;
             frmFKTable.keyColumnName = FKColumnName;
             frmFKTable.currentValue = currentValue;
@@ -35,6 +39,7 @@ namespace JsonEditorV2
             frmFKTable.dgvMain.Columns.Clear();            
             frmFKTable.dgvMain.AutoGenerateColumns = true;
             frmFKTable.dgvMain.DataSource = FKTable.ToDataTable();
+            
             frmFKTable.dgvMain.ClearSelection();
             
             frmFKTable.ShowDialog(owner);
@@ -45,6 +50,7 @@ namespace JsonEditorV2
         {
             if (e.RowIndex == -1)
                 return;
+
             Value = dgvMain.Rows[e.RowIndex].Cells[keyColumnName].Value;
             DialogResult = DialogResult.OK;
             Hide();
@@ -61,7 +67,7 @@ namespace JsonEditorV2
         }
 
         private void dgvMain_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        {            
             int i;
             for (i = 0; i < dgvMain.Rows.Count; i++)
             {
@@ -99,6 +105,18 @@ namespace JsonEditorV2
         {
             Left = (Owner.Width - Width) / 2 + Owner.Left;
             Top = (Owner.Height - Height) / 2 + Owner.Top;
+        }
+
+        private void dgvMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value is DateTime)
+            {
+                if (fkTable.Columns[e.ColumnIndex].Type == JType.Time)
+                    e.Value = ((DateTime)e.Value).ToLongTimeString();
+                else if(fkTable.Columns[e.ColumnIndex].Type == JType.Date)
+                    e.Value = ((DateTime)e.Value).ToShortDateString();
+            }
+            
         }
     }
 }

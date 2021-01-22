@@ -113,6 +113,9 @@
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnDeleteLine = new System.Windows.Forms.Button();
+            this.tmiRenameColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLineMoveUp = new System.Windows.Forms.Button();
+            this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.lbColumnFKColumn.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -507,6 +510,8 @@
             this.imlMain.Images.SetKeyName(1, "JsonIcon.png");
             this.imlMain.Images.SetKeyName(2, "ObjectIcon.png");
             this.imlMain.Images.SetKeyName(3, "Key.png");
+            this.imlMain.Images.SetKeyName(4, "UpArrow.png");
+            this.imlMain.Images.SetKeyName(5, "DownArrow.png");
             // 
             // stsMain
             // 
@@ -853,12 +858,13 @@
             // 
             this.cmsColumnSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsColumnSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiColumnMoveUp,
-            this.tmiColumnMoveDown,
+            this.tmiRenameColumn,
+            this.tmiDeleteColumn,
             this.toolStripMenuItem7,
-            this.tmiDeleteColumn});
+            this.tmiColumnMoveUp,
+            this.tmiColumnMoveDown});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 82);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 106);
             // 
             // tmiColumnMoveUp
             // 
@@ -890,7 +896,7 @@
             // 
             this.btnNewLine.Enabled = false;
             this.btnNewLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewLine.Location = new System.Drawing.Point(691, 764);
+            this.btnNewLine.Location = new System.Drawing.Point(690, 764);
             this.btnNewLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(122, 40);
@@ -912,11 +918,50 @@
             this.btnDeleteLine.UseVisualStyleBackColor = true;
             this.btnDeleteLine.Click += new System.EventHandler(this.btnDeleteLine_Click);
             // 
+            // tmiRenameColumn
+            // 
+            this.tmiRenameColumn.Name = "tmiRenameColumn";
+            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameColumn.Text = "X";
+            this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
+            // 
+            // btnLineMoveUp
+            // 
+            this.btnLineMoveUp.Enabled = false;
+            this.btnLineMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLineMoveUp.ImageIndex = 4;
+            this.btnLineMoveUp.ImageList = this.imlMain;
+            this.btnLineMoveUp.Location = new System.Drawing.Point(627, 764);
+            this.btnLineMoveUp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLineMoveUp.Name = "btnLineMoveUp";
+            this.btnLineMoveUp.Size = new System.Drawing.Size(50, 40);
+            this.btnLineMoveUp.TabIndex = 28;
+            this.btnLineMoveUp.Text = "-";
+            this.btnLineMoveUp.UseVisualStyleBackColor = true;
+            this.btnLineMoveUp.Click += new System.EventHandler(this.btnLineMoveUp_Click);
+            // 
+            // btnLineMoveDown
+            // 
+            this.btnLineMoveDown.Enabled = false;
+            this.btnLineMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLineMoveDown.ImageIndex = 5;
+            this.btnLineMoveDown.ImageList = this.imlMain;
+            this.btnLineMoveDown.Location = new System.Drawing.Point(564, 764);
+            this.btnLineMoveDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLineMoveDown.Name = "btnLineMoveDown";
+            this.btnLineMoveDown.Size = new System.Drawing.Size(50, 40);
+            this.btnLineMoveDown.TabIndex = 29;
+            this.btnLineMoveDown.Text = "-";
+            this.btnLineMoveDown.UseVisualStyleBackColor = true;
+            this.btnLineMoveDown.Click += new System.EventHandler(this.btnLineMoveDown_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1507, 832);
+            this.Controls.Add(this.btnLineMoveDown);
+            this.Controls.Add(this.btnLineMoveUp);
             this.Controls.Add(this.btnDeleteLine);
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
@@ -1038,6 +1083,9 @@
         private System.Windows.Forms.Label lblColumnMinValue;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJFIFile;
         private System.Windows.Forms.ToolStripMenuItem tmiRefreshFiles;
+        private System.Windows.Forms.ToolStripMenuItem tmiRenameColumn;
+        private System.Windows.Forms.Button btnLineMoveUp;
+        private System.Windows.Forms.Button btnLineMoveDown;
     }
 }
 

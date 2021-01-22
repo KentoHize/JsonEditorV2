@@ -258,6 +258,15 @@
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>"{0}"資料已刪除</value>
   </data>
+  <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
+    <value>資料行"{0}"已移至底端</value>
+  </data>
+  <data name="JE_RUN_LINE_MOVE_TITLE" xml:space="preserve">
+    <value>移動資料行</value>
+  </data>
+  <data name="JE_RUN_LINE_MOVE_UP_M_1" xml:space="preserve">
+    <value>資料行"{0}"已移至頂端</value>
+  </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
     <value>{0}檔案已讀入</value>
   </data>

@@ -336,7 +336,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": "",
+          "Regex": "^\\w$",
           "Description": "",
           "MinValue": "",
           "MaxValue": ""
@@ -387,6 +387,20 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": ""
+        },
+        {
+          "Name": "GGFT",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Date",
+          "FKTable": "T5",
+          "FKColumn": "DateID",
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },
@@ -420,6 +434,20 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": ""
+        },
+        {
+          "Name": "pydtrt__",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": "Test6",
+          "FKColumn": "TT77",
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },
@@ -438,7 +466,7 @@
           "Regex": "",
           "Description": "",
           "MinValue": "00:01:00",
-          "MaxValue": "00:18:00"
+          "MaxValue": "00:17:00"
         },
         {
           "Name": "Text",
@@ -453,6 +481,20 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": ""
+        },
+        {
+          "Name": "DateID",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Date",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },
@@ -460,18 +502,18 @@
       "Name": "Test6",
       "Columns": [
         {
-          "Name": "TT7777",
+          "Name": "TT77",
           "IsKey": true,
           "IsNullable": false,
-          "Type": "String",
+          "Type": "Guid",
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "_P-6",
