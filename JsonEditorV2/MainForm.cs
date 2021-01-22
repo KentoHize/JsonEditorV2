@@ -398,6 +398,7 @@ namespace JsonEditorV2
 
         private DialogResult AskSaveFiles(string title)
         {
+            Var.AskSaveFlag = true;
             Var.CheckFailedFlag = false;
             if (Var.Changed)
             {
@@ -453,7 +454,7 @@ namespace JsonEditorV2
         private void tmiLoadJsonFiles_Click(object sender, EventArgs e)
         {
             if (AskSaveFiles(Res.JE_TMI_LOAD_JSON_FILES) == DialogResult.Cancel)
-                return;
+                return;            
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
@@ -724,7 +725,7 @@ namespace JsonEditorV2
 
         private void tmiCloseAllFiles_Click(object sender, EventArgs e)
         {
-            if (AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
+            if (!Var.AskSaveFlag && AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
                 return;
             Var.Tables = null;
             Var.OpenedTable.Clear();
@@ -735,6 +736,7 @@ namespace JsonEditorV2
             Var.SelectedColumn = null;
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
+            Var.AskSaveFlag = false;
             RefreshTrvJsonFiles();
             RefreshTbcMain();
             sslMain.Text = "";

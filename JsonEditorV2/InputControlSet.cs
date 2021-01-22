@@ -66,7 +66,8 @@ namespace JsonEditorV2
 
             ButtonControl = GetButtonControlFromJType(JColumn.Type, JColumn.Name);
 
-            if (ButtonControl != null)
+            if (ButtonControl != null && 
+                (JColumn.FKTable == null || JColumn.FKColumn == null))
             {
                 ValueControl.Width = 150;
                 ButtonControl.Left = 350;
