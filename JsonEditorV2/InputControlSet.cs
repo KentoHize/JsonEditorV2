@@ -108,8 +108,12 @@ namespace JsonEditorV2
 
         public bool CheckValid()
         {
+            //確認Null
             if (JColumn.IsNullable && NullCheckBox.Checked)
                 return true;
+            else if (!JColumn.IsNullable && NullCheckBox.Checked)
+                return false;
+
             ValidControl.SetError(errPositionControl, "");
    
             //確定型態符合
@@ -154,15 +158,17 @@ namespace JsonEditorV2
             //外部驗證 - FK驗證
             if(JColumn.FKTable != null && JColumn.FKColumn != null)
             {   
+                //有錯表示有欄位錯誤
                 JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
                 int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
-                //if(!jt.Lines.Exists(m => m.Values[columnIndex].Value == ValueControl.Text))
-                //{
-                //    ValidControl.SetError(errPositionControl, string.Format(Res., ValueControl.Text));
-                //    return false;
-                //}
-            }
+                //結束
                 
+                if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].Value.ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_IS_NOT_FOUND, ValueControl.Text));
+                    return false;
+                }
+            }                
             return true;
         }
 
@@ -170,7 +176,6 @@ namespace JsonEditorV2
         {
             if (NullCheckBox.Checked)
                 return null;
-
             return parsedValue;
         }
 

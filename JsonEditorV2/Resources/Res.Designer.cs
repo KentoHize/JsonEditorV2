@@ -1051,6 +1051,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 外部索引值&quot;{0}&quot;不存在.
+        /// </summary>
+        public static string JE_VAL_FK_IS_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("JE_VAL_FK_IS_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;高於最大值&quot;{1}&quot;.
         /// </summary>
         public static string JE_VAL_GREATER_THEN_MAX_VALUE {

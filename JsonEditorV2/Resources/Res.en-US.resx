@@ -447,6 +447,9 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
   </data>
+  <data name="JE_VAL_FK_IS_NOT_FOUND" xml:space="preserve">
+    <value>Foreign key value"{0}" not exist.</value>
+  </data>
   <data name="JE_VAL_GREATER_THEN_MAX_VALUE" xml:space="preserve">
     <value>"{0}" is greater than the max value"{1}".</value>
   </data>

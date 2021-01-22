@@ -131,31 +131,6 @@ namespace JsonEditor
             return result;
         }
 
-        //public void LoadJsonWithColumnsInfo(object jArray)
-        //{
-        //    if (jArray == null)
-        //        return;
-
-        //    JArray jr = jArray as JArray;
-        //    if (jr == null)
-        //        throw new ArgumentNullException();
-
-        //    foreach (JToken jt in jr)
-        //    {
-        //        JLine items = new JLine();
-        //        JObject jo = jt as JObject;
-
-        //        foreach (KeyValuePair<string, JToken> kvp in jo)
-        //        {
-
-        //        }                
-        //        Lines.Add(items);
-        //    }
-        //    Loaded = true;
-        //    Valid = false;
-        //    CheckAllValid();
-        //}
-
         /// <summary>
         /// 讀取Json物件
         /// </summary>
@@ -245,6 +220,10 @@ namespace JsonEditor
                     !Regex.IsMatch(jl[i].Value.ToString(), Columns[i].Regex))
                     return false;
 
+                //IsNull
+                if (!Columns[i].IsNullable)
+                    if (jl[i] == null)
+                        return false;                
             }
             return true;
         }
@@ -256,7 +235,7 @@ namespace JsonEditor
         {
             Valid = false;
 
-            //Key Check
+            //Key
             List<int> keyIndex = new List<int>();
             for (int i = 0; i < Columns.Count; i++)
                 if (Columns[i].IsKey)

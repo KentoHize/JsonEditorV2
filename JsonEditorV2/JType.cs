@@ -58,9 +58,10 @@ namespace JsonEditor
             {
                 case JType.Boolean:
                 case JType.Byte:
-                    return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));
-                case JType.Date:
+                    return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));                                    
                 case JType.Time:
+                    return Convert.ToDateTime(instance).TimeOfDay.CompareTo(Convert.ToDateTime(instance).TimeOfDay);
+                case JType.Date:
                 case JType.DateTime:
                     return Convert.ToDateTime(instance).CompareTo(Convert.ToDateTime(value));
                 case JType.Double:
