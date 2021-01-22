@@ -28,6 +28,25 @@ namespace JsonEditor
     public static class JTypeExtentions
     {
         /// <summary>
+        /// JType轉換成字串
+        /// </summary>
+        /// <param name="instance">實體</param>
+        /// <param name="type">JType</param>
+        /// <returns>字串</returns>
+        public static string ToString(this object instance, JType type)
+        {
+            switch(type)
+            {
+                case JType.Date:
+                    return ((DateTime)instance).ToShortDateString();
+                case JType.Time:
+                    return ((DateTime)instance).ToLongTimeString();
+                default:
+                    return instance.ToString();
+            }
+        }
+
+        /// <summary>
         /// 比較JType物件的大小
         /// </summary>
         /// <param name="instance">值</param>

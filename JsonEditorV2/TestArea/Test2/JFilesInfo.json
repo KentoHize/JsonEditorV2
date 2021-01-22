@@ -2,7 +2,7 @@
   "Name": "Test2",
   "TablesInfo": [
     {
-      "Name": "AD3333",
+      "Name": "DSA",
       "Columns": [
         {
           "Name": "TT8558",
@@ -37,7 +37,7 @@
           "IsKey": false,
           "IsNullable": false,
           "Type": "String",
-          "FKTable": "AD3333",
+          "FKTable": "DSA",
           "FKColumn": "TT8558",
           "NumberOfRows": 1,
           "Display": false,
@@ -344,11 +344,11 @@
       ]
     },
     {
-      "Name": "T3",
+      "Name": "T7",
       "Columns": [
         {
           "Name": "GG",
-          "IsKey": false,
+          "IsKey": true,
           "IsNullable": false,
           "Type": "String",
           "FKTable": null,
@@ -356,9 +356,9 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "DDD",
@@ -368,7 +368,7 @@
           "FKTable": "GroupTesting",
           "FKColumn": "Key2",
           "NumberOfRows": 1,
-          "Display": false,
+          "Display": true,
           "Regex": "",
           "Description": "",
           "MinValue": "",
@@ -382,7 +382,7 @@
           "FKTable": "T5",
           "FKColumn": "TimeID",
           "NumberOfRows": 1,
-          "Display": false,
+          "Display": true,
           "Regex": "",
           "Description": "",
           "MinValue": "",
@@ -396,7 +396,7 @@
           "FKTable": "T5",
           "FKColumn": "DateID",
           "NumberOfRows": 1,
-          "Display": false,
+          "Display": true,
           "Regex": "",
           "Description": "",
           "MinValue": "",

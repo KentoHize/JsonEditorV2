@@ -124,26 +124,7 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                {
-                    switch(Columns[i].Type)
-                    {
-                        case JType.Date:
-                            if (jl[i].Value != null)
-                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToShortDateString());
-                            else
-                                line.Add(Columns[i].Name, null);
-                            break;
-                        case JType.Time:
-                            if (jl[i].Value != null)
-                                line.Add(Columns[i].Name, ((DateTime)jl[i].Value).ToLongTimeString());
-                            else
-                                line.Add(Columns[i].Name, null);
-                            break;
-                        default:
-                            line.Add(Columns[i].Name, jl[i].Value);
-                            break;
-                    }                    
-                }
+                    line.Add(Columns[i].Name, jl[i].Value.ToString(Columns[i].Type));
                     
                 result.Add(line);
             }
@@ -245,9 +226,11 @@ namespace JsonEditor
         {
             for (int i = 0; i < Columns.Count; i++)
             {
+                //Type
                 if (!jl[i].Value.TryParseJType(Columns[i].Type, out object o))
                     return false;
 
+                //MinMax
                 if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
                 {
                     if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
@@ -256,10 +239,12 @@ namespace JsonEditor
                         return false;                    
                 }
 
+                //Regex
                 if (Columns[i].Type == JType.String &&
                     !string.IsNullOrEmpty(Columns[i].Regex) &&
                     !Regex.IsMatch(jl[i].Value.ToString(), Columns[i].Regex))
                     return false;
+
             }
             return true;
         }

@@ -151,6 +151,18 @@ namespace JsonEditorV2
                 }
             }
 
+            //外部驗證 - FK驗證
+            if(JColumn.FKTable != null && JColumn.FKColumn != null)
+            {   
+                JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
+                int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
+                //if(!jt.Lines.Exists(m => m.Values[columnIndex].Value == ValueControl.Text))
+                //{
+                //    ValidControl.SetError(errPositionControl, string.Format(Res., ValueControl.Text));
+                //    return false;
+                //}
+            }
+                
             return true;
         }
 
@@ -171,12 +183,8 @@ namespace JsonEditorV2
             if (value == null)
                 return;
 
-            if (JColumn.Type == JType.Date)
-                (ValueControl as TextBox).Text = ((DateTime)value).ToShortDateString();
-            else if (JColumn.Type == JType.Time)
-                (ValueControl as TextBox).Text = ((DateTime)value).ToLongTimeString();
-            else if (ValueControl is TextBox)
-                (ValueControl as TextBox).Text = ChangeStringToText(value.ToString());
+            if (ValueControl is TextBox)
+                (ValueControl as TextBox).Text = ChangeStringToText(value.ToString(JColumn.Type));
             else if (ValueControl is CheckBox)
                 (ValueControl as CheckBox).Checked = (bool)value;
         }

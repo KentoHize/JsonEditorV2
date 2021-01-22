@@ -109,14 +109,7 @@ namespace JsonEditorV2
 
         private void dgvMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.Value is DateTime)
-            {
-                if (fkTable.Columns[e.ColumnIndex].Type == JType.Time)
-                    e.Value = ((DateTime)e.Value).ToLongTimeString();
-                else if(fkTable.Columns[e.ColumnIndex].Type == JType.Date)
-                    e.Value = ((DateTime)e.Value).ToShortDateString();
-            }
-            
+            e.Value = e.Value.ToString(fkTable.Columns[e.ColumnIndex].Type);
         }
     }
 }

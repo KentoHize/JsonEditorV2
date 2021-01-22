@@ -679,18 +679,17 @@ namespace JsonEditorV2
                 for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
                 {
                     if (Var.SelectedTable.Columns[i].Display)
-                    {
-                        //Can Improve to do(可改長度偵測)
+                    {   
                         if (jl[i].Value == null)
                             continue;
-                        else if (Var.SelectedTable.Columns[i].Type == JType.Date)
-                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToShortDateString());
-                        else if (Var.SelectedTable.Columns[i].Type == JType.Time)
-                            displayString.AppendFormat("{0} ", ((DateTime)jl[i].Value).ToLongTimeString());
-                        else if (jl[i].Value.ToString().Length > 12)
-                            displayString.AppendFormat("{0}.. ", jl[i].Value.ToString().Substring(0, 10));
+
+                        string r = jl[i].Value.ToString(Var.SelectedTable.Columns[i].Type);
+
+                        //Can Improve to do(可改長度偵測)
+                        if (r.Length > 12)
+                            displayString.AppendFormat("{0}.. ", r.Substring(0, 10));
                         else
-                            displayString.AppendFormat("{0} ", jl[i].Value);
+                            displayString.AppendFormat("{0} ", r);
                     }
                 }
                 lsbLines.Items.Add(displayString.ToString());
@@ -1494,7 +1493,7 @@ namespace JsonEditorV2
                     valid = false;
 
             if (!valid)
-                return;
+                return;            
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
                 Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
