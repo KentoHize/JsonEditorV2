@@ -29,6 +29,7 @@ namespace JsonEditorV2
             frmFKTable frmFKTable = new frmFKTable();
 
             frmFKTable.fkTable = FKTable;
+            DataTable dt = FKTable.ToDataTable();
             frmFKTable.Text = ColumnName;
             frmFKTable.keyColumnName = FKColumnName;
             frmFKTable.currentValue = currentValue;
@@ -37,9 +38,11 @@ namespace JsonEditorV2
                 MainForm.LoadJsonFile(FKTable);
 
             frmFKTable.dgvMain.Columns.Clear();            
-            frmFKTable.dgvMain.AutoGenerateColumns = true;
-            frmFKTable.dgvMain.DataSource = FKTable.ToDataTable();
-            
+            frmFKTable.dgvMain.DataSource = dt;
+            frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.Font = 
+                new Font(frmFKTable.Font, FontStyle.Bold);
+            frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.BackColor =
+            frmFKTable.dgvMain.Columns[FKColumnName].DefaultCellStyle.BackColor = Color.Azure;
             frmFKTable.dgvMain.ClearSelection();
             
             frmFKTable.ShowDialog(owner);

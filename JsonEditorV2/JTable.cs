@@ -124,8 +124,7 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i].Value.ToString(Columns[i].Type));
-                    
+                    line.Add(Columns[i].Name, jl[i].Value == null ? null : jl[i].Value.ToString(Columns[i].Type));                    
                 result.Add(line);
             }
             return result;

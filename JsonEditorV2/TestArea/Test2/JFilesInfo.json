@@ -5,20 +5,6 @@
       "Name": "Add2222",
       "Columns": [
         {
-          "Name": "HIJ96",
-          "IsKey": true,
-          "IsNullable": false,
-          "Type": "Guid",
-          "FKTable": null,
-          "FKColumn": null,
-          "NumberOfRows": 1,
-          "Display": true,
-          "Regex": "",
-          "Description": "",
-          "MinValue": "",
-          "MaxValue": ""
-        },
-        {
           "Name": "TTTT",
           "IsKey": false,
           "IsNullable": false,
@@ -59,6 +45,20 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null
+        },
+        {
+          "Name": "HIJ96",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Guid",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "ADGHHWWDSDFDSFASFDSAFDSFDSFDSAFAD",
@@ -381,6 +381,34 @@
           "Type": "String",
           "FKTable": "Test6",
           "FKColumn": "TT77",
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
+        },
+        {
+          "Name": "dsadsafd",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": "GroupTesting",
+          "FKColumn": "Key3",
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
+        },
+        {
+          "Name": "JKKJ",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": "GroupTesting",
+          "FKColumn": "Key3",
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",

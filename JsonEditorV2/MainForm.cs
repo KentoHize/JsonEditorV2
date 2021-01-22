@@ -1254,8 +1254,10 @@ namespace JsonEditorV2
                     sw.Close();
                 }
 
-                //備份檔案刪除
+                //備份檔案刪除(偵錯時不清空資料夾)
+#if !DEBUG               
                 File.Delete(Path.Combine(Const.BackupFolder, $"{jt.Name}.json"));
+#endif
                 File.Delete(Const.BackupRecoverFile);
 
                 jt.Changed = false;
@@ -1287,10 +1289,8 @@ namespace JsonEditorV2
                     sw.Close();
                 }
 
-                //備份檔案刪除(偵錯時不清空資料夾)
-#if !DEBUG
+                //備份檔案刪除
                 File.Delete(Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName));
-#endif
                 File.Delete(Const.BackupRecoverFile);
 
                 Var.JFI.Changed = false;
