@@ -43,22 +43,20 @@ namespace JsonEditor
             LoadJson(jArray, true);
         }
 
-        //public object[][] ToDataSet()
-        //{
-        //    object[][] result;            
-
-        //    for (int i = 0; i < Columns.Count; i++)
-        //        ds .Columns.Add(Columns[i].Name, typeof(string));
-
-        //    foreach (JLine jl in Lines)
-        //    {
-        //        List<object> lo = new List<object>();
-        //        for (int i = 0; i < Columns.Count; i++)
-        //            lo.Add(jl[i].Value);
-        //        dt.LoadDataRow(lo.ToArray(), true);
-        //    }
-        //    return dt;
-        //}
+        public List<dynamic> ToListItems()
+        {
+            List<dynamic> result = new List<object>();            
+            foreach (JLine jl in Lines)
+            {
+                var l = new ExpandoObject() as IDictionary<string, object>;
+                for (int i = 0; i < Columns.Count; i++)
+                {
+                    l.Add(Columns[i].Name, jl[i].Value);
+                }
+                result.Add(l);
+            }
+            return result;
+        }
 
         /// <summary>
         /// 轉換成一般的資料表
@@ -68,10 +66,11 @@ namespace JsonEditor
         {
             DataTable dt = new DataTable(Name);
             for (int i = 0; i < Columns.Count; i++)
-                dt.Columns.Add(Columns[i].Name, typeof(string));
-
-            foreach(JLine jl in Lines)
-            {   
+                dt.Columns.Add(Columns[i].Name, Columns[i].Type.ToType());            
+            
+            //DateTime無法分辨
+            foreach (JLine jl in Lines)
+            {
                 List<object> lo = new List<object>();
                 for (int i = 0; i < Columns.Count; i++)
                     lo.Add(jl[i].Value);

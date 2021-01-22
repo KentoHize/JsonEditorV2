@@ -378,15 +378,15 @@
           "Name": "ABFD",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "Guid",
-          "FKTable": null,
-          "FKColumn": null,
+          "Type": "Time",
+          "FKTable": "T5",
+          "FKColumn": "TimeID",
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },

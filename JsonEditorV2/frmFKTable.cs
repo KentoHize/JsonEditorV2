@@ -34,8 +34,7 @@ namespace JsonEditorV2
 
             frmFKTable.dgvMain.Columns.Clear();            
             frmFKTable.dgvMain.AutoGenerateColumns = true;
-            var t = FKTable.ToDataTable();
-            frmFKTable.dgvMain.DataSource = t;
+            frmFKTable.dgvMain.DataSource = FKTable.ToDataTable();
             frmFKTable.dgvMain.ClearSelection();
             
             frmFKTable.ShowDialog(owner);

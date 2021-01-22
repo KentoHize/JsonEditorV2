@@ -168,7 +168,7 @@ namespace JsonEditor
         /// <param name="type">jtype</param>
         /// <returns>初始值</returns>
         public static object InitialValue(this JType type)
-        {
+        {   
             switch (type)
             {
                 case JType.Boolean:
@@ -324,6 +324,43 @@ namespace JsonEditor
                     return JType.Double;
                 default:
                     return JType.JSONObject;
+            }
+        }
+
+        public static Type ToType(this JType type)
+        {
+            switch (type)
+            {
+                case JType.Boolean:
+                    return typeof(bool);
+                case JType.Byte:
+                    return typeof(byte);
+                case JType.Date:
+                case JType.Time:
+                case JType.DateTime:
+                    return typeof(DateTime);
+                case JType.Double:
+                    return typeof(double);
+                case JType.Guid:
+                    return typeof(Guid);
+                case JType.Integer:
+                    return typeof(int);
+                case JType.Long:
+                    return typeof(long);
+                case JType.Decimal:
+                    return typeof(decimal);                    
+                case JType.None:
+                    return null;
+                case JType.JSONObject:
+                    return typeof(object);
+                //case JType.TimeSpan:
+                //    return new TimeSpan();
+                case JType.Uri:
+                    return typeof(Uri);
+                case JType.String:
+                    return typeof(string);
+                default:
+                    return null;
             }
         }
 
