@@ -99,10 +99,15 @@ namespace JsonEditorV2
                 default:                    
                     break;
             }
-            DialogResult = DialogResult.OK;
-            
-            
-            
+            DialogResult = DialogResult.OK;            
+        }
+
+        private void frmInputBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+                btnConfirm_Click(this, new EventArgs());
+            else if (e.KeyChar == Convert.ToChar(Keys.Escape))
+                btnCancel_Click(this, new EventArgs());
         }
     }
 }

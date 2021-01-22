@@ -1386,7 +1386,8 @@ namespace JsonEditorV2
             }
             try
             {
-                File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json"));
+                if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
+                    File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{fib.InputValue}.json"));                
                 RenewFK(Var.SelectedColumnParentTable, fib.InputValue);
                 Var.SelectedColumnParentTable.Name = fib.InputValue;
                 Var.SelectedColumnParentTable.Changed = true;

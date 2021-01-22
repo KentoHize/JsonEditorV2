@@ -96,6 +96,7 @@
             this.Name = "frmInputBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "-";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmInputBox_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

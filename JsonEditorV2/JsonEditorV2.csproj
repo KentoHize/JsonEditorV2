@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Const.cs" />
+    <Compile Include="frmFKTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFKTable.Designer.cs">
+      <DependentUpon>frmFKTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
       <DependentUpon>Res.resx</DependentUpon>
     </Compile>
     <Compile Include="Var.cs" />
+    <EmbeddedResource Include="frmFKTable.resx">
+      <DependentUpon>frmFKTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </EmbeddedResource>

@@ -3,28 +3,28 @@
   <Class Name="JsonEditorV2.Const">
     <Position X="8.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AABQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAhQAAAAAAAgAAAAAAAAAAAAEAAAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Const.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JsonEditorV2.frmInputBox" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAQAAAACBAAAkAAACAAEACAQAAAAAEAAAAAAAAABA=</HashCode>
+      <HashCode>AAgAQAAAACBAAAkAAACAAEACCQAAAAAEAAAAAAAAABA=</HashCode>
       <FileName>frmInputBox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JsonEditorV2.InputControlSet" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEEAAAIAAAAhAAAAAIACAAAAAAAAAMAAAIAACAAAA=</HashCode>
+      <HashCode>RVAEEAAAAASAAhAAAAAIACAAAAAAAAAMAAAIAASCAAA=</HashCode>
       <FileName>InputControlSet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="JsonEditorV2.MainForm" Collapsed="true">
     <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AFuRcuXFGuMghUG2TQKTRa4incEMpBRDwg/mGnyIilQ=</HashCode>
+      <HashCode>gFuRcu3FOuMhjUG2TQKTda4incGMpBxHQo/mGnyIilQ=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,14 +38,14 @@
   <Class Name="JsonEditorV2.Var" Collapsed="true">
     <Position X="6.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQAgIAAAABIAAABAAAUAACAAAACAAQAIgAAAAAAEA=</HashCode>
+      <HashCode>AAAQAgIAAAABIAAABAAAUAACAAAACAAQAAgAAAAAAMA=</HashCode>
       <FileName>Var.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="JsonEditor.JColumn" Collapsed="true">
+  <Class Name="JsonEditor.JColumn">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABBAACAAAIQQAAAAIAAAAAQAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAAAAgBBgACAAAIQQAAAAIAAAAAQAgAAAAIAA=</HashCode>
       <FileName>JColumn.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -65,16 +65,16 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="JsonEditor.JTable" BaseTypeListCollapsed="true">
+  <Class Name="JsonEditor.JTable" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QEIAAEAAIAFAADAQDAAABQQAAAAAAAAGCAAABAhQYAA=</HashCode>
+      <HashCode>QEIQAEAAIAFAADAQDAAABQQAAAAAAAAGCAAABAhQYAA=</HashCode>
       <FileName>JTable.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="JsonEditor.JTableInfo" Collapsed="true">
-    <Position X="5.75" Y="1.5" Width="1.5" />
+    <Position X="3.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAgAAAA=</HashCode>
       <FileName>JTableInfo.cs</FileName>
@@ -83,7 +83,7 @@
   <Class Name="JsonEditor.JTypeExtentions">
     <Position X="8.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAACIAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAIAAIAAAAAAAQACICAAAAAAAAAAAAAAAgIAAAAAAg=</HashCode>
       <FileName>JType.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -101,7 +101,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="JsonEditorV2.Properties.Settings" Collapsed="true">
-    <Position X="4" Y="3.5" Width="1.75" />
+    <Position X="5" Y="5.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
@@ -109,13 +109,13 @@
   <Class Name="JsonEditorV2.Resources.Res" Collapsed="true">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AA/GAPAGMaCiASB4hVANkKApAYAIAiYqogAQhwlEKME=</HashCode>
+      <HashCode>AA/WAPIOMaGiJSB4pVANkKApAYAIAjZqogAQhwnEKMU=</HashCode>
     </TypeIdentifier>
   </Class>
   <Enum Name="JsonEditor.JType" Collapsed="true">
     <Position X="0.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAQAgCAAAQAAAAAAABAACBgQBCAQAAAEAAQA=</HashCode>
+      <HashCode>AAAAAAEAAQAgCAAAQAAAAAAABAACBgQBCAAAAAEAAQA=</HashCode>
       <FileName>JType.cs</FileName>
     </TypeIdentifier>
   </Enum>

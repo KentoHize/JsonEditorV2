@@ -289,7 +289,7 @@
     <value>File "{0}.json" exist.</value>
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
-    <value>檔案已重新命名為"{0}"</value>
+    <value>File has renamed as "{0}".</value>
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     <value>This is not a empty folder, Confirm to delete all files in the folder.</value>
@@ -337,16 +337,16 @@
     <value>Key欄位不能為Null值</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_8" xml:space="preserve">
-    <value>"{0}"不是正確的最小值</value>
+    <value>"{0}" is not a correct min value.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_9" xml:space="preserve">
-    <value>"{0}"不是正確的最大值</value>
+    <value>"{0}" is not a correct max value.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>Update Column</value>
   </data>
   <data name="JE_RUN_UPDATE_LINE_M_1" xml:space="preserve">
-    <value>"{0}"資料已更新</value>
+    <value>"{0}" Data updated.</value>
   </data>
   <data name="JE_TMI_ABOUT" xml:space="preserve">
     <value>About</value>
@@ -430,13 +430,13 @@
     <value>"{0}" is greater than the max value"{1}".</value>
   </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
-    <value>"{0}"不符合資料型態</value>
+    <value>"{0}" Invalid data.</value>
   </data>
   <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
     <value>"{0}" is less than the min value "{1}".</value>
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
-    <value>"{0}"規則檢查失敗</value>
+    <value>"{0}" Regular expression check failed.</value>
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON Files Editor</value>

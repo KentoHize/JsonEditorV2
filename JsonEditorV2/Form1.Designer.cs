@@ -571,7 +571,7 @@
             this.pnlMain.Location = new System.Drawing.Point(818, 66);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(682, 697);
+            this.pnlMain.Size = new System.Drawing.Size(682, 692);
             this.pnlMain.TabIndex = 21;
             // 
             // mnsMain
