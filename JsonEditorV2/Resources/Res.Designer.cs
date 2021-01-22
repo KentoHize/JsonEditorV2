@@ -1087,6 +1087,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 不可以為Null值.
+        /// </summary>
+        public static string JE_VAL_NOT_NULLABLE {
+            get {
+                return ResourceManager.GetString("JE_VAL_NOT_NULLABLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;規則檢查失敗.
         /// </summary>
         public static string JE_VAL_REGEX_IS_NOT_MATCH {

@@ -459,6 +459,9 @@
   <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
     <value>"{0}" is less than the min value "{1}".</value>
   </data>
+  <data name="JE_VAL_NOT_NULLABLE" xml:space="preserve">
+    <value>Value can't be Null;</value>
+  </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}" Regular expression check failed.</value>
   </data>

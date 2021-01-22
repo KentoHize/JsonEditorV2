@@ -108,13 +108,16 @@ namespace JsonEditorV2
 
         public bool CheckValid()
         {
+            ValidControl.SetError(errPositionControl, "");
+
             //確認Null
             if (JColumn.IsNullable && NullCheckBox.Checked)
                 return true;
             else if (!JColumn.IsNullable && NullCheckBox.Checked)
+            {
+                ValidControl.SetError(NullCheckBox, string.Format(Res.JE_VAL_NOT_NULLABLE));
                 return false;
-
-            ValidControl.SetError(errPositionControl, "");
+            }
    
             //確定型態符合
             if (ValueControl is TextBox)
@@ -143,12 +146,12 @@ namespace JsonEditorV2
             //確認MinMax正確
             if (JColumn.Type.IsNumber() || JColumn.Type.IsDateTime())
             {
-                if (!string.IsNullOrEmpty(JColumn.MinValue) && ValueControl.Text.CompareTo(JColumn.MinValue, JColumn.Type) == -1)
+                if (!string.IsNullOrEmpty(JColumn.MinValue) && parsedValue.CompareTo(JColumn.MinValue.ParseJType(JColumn.Type), JColumn.Type) == -1)
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_LESS_THEN_MIN_VALUE, ValueControl.Text, JColumn.MinValue));
                     return false;
                 }
-                if (!string.IsNullOrEmpty(JColumn.MaxValue) && ValueControl.Text.CompareTo(JColumn.MaxValue, JColumn.Type) == 1)
+                if (!string.IsNullOrEmpty(JColumn.MaxValue) && parsedValue.CompareTo(JColumn.MaxValue.ParseJType(JColumn.Type), JColumn.Type) == 1)
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_GREATER_THEN_MAX_VALUE, ValueControl.Text, JColumn.MaxValue));
                     return false;

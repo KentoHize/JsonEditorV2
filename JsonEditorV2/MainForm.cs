@@ -554,6 +554,7 @@ namespace JsonEditorV2
             tmiNewJsonFile.Enabled = false;
             tmiSaveJsonFiles.Enabled = false;
             tmiSaveAsJsonFiles.Enabled = false;
+            Var.DblClick = false;
             if (Var.Tables == null)
                 return;
 
@@ -575,7 +576,6 @@ namespace JsonEditorV2
 
                 if (Var.SelectedColumnParentTable == jt)
                 {
-                    fileNode.Expand();
                     if (Var.SelectedColumn == null)
                         trvJsonFiles.SelectedNode = fileNode;
                 }
@@ -1285,8 +1285,10 @@ namespace JsonEditorV2
                     sw.Close();
                 }
 
-                //備份檔案刪除
+                //備份檔案刪除(偵錯時不清空資料夾)
+#if !DEBUG
                 File.Delete(Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName));
+#endif
                 File.Delete(Const.BackupRecoverFile);
 
                 Var.JFI.Changed = false;

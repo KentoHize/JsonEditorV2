@@ -107,13 +107,13 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmiRenameColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiColumnMoveUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiColumnMoveDown = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNewLine = new System.Windows.Forms.Button();
             this.btnDeleteLine = new System.Windows.Forms.Button();
-            this.tmiRenameColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.lbColumnFKColumn.SuspendLayout();
@@ -866,6 +866,25 @@
             this.cmsColumnSelected.Name = "cmsMain";
             this.cmsColumnSelected.Size = new System.Drawing.Size(88, 106);
             // 
+            // tmiRenameColumn
+            // 
+            this.tmiRenameColumn.Name = "tmiRenameColumn";
+            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameColumn.Text = "X";
+            this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
+            // 
+            // tmiDeleteColumn
+            // 
+            this.tmiDeleteColumn.Name = "tmiDeleteColumn";
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteColumn.Text = "X";
+            this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(84, 6);
+            // 
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
@@ -879,18 +898,6 @@
             this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
-            // 
-            // toolStripMenuItem7
-            // 
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(84, 6);
-            // 
-            // tmiDeleteColumn
-            // 
-            this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
-            this.tmiDeleteColumn.Text = "X";
-            this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
             // btnNewLine
             // 
@@ -917,13 +924,6 @@
             this.btnDeleteLine.Text = "-";
             this.btnDeleteLine.UseVisualStyleBackColor = true;
             this.btnDeleteLine.Click += new System.EventHandler(this.btnDeleteLine_Click);
-            // 
-            // tmiRenameColumn
-            // 
-            this.tmiRenameColumn.Name = "tmiRenameColumn";
-            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
-            this.tmiRenameColumn.Text = "X";
-            this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
             // 
             // btnLineMoveUp
             // 
