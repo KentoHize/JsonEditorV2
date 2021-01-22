@@ -16,15 +16,19 @@ namespace JsonEditorV2
         public static List<JTable> Tables { get; set; } = new List<JTable>();
 
         public static int PageIndex { get; set; }
+        public static List<int> LineIndexes { get; set; } = new List<int>();
+
         public static int ClickedTabIndex { get; set; }
         public static bool CheckFailedFlag { get; set; }
 
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }
+        public static int SelectedLineIndex { get => LineIndexes[PageIndex]; set => LineIndexes[PageIndex] = value; }
 
         public static JTable SelectedColumnParentTable { get; set; }
         public static JColumn SelectedColumn { get; set; }
         public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
+        
 
         public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();       
 

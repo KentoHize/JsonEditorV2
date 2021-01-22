@@ -480,7 +480,7 @@
             this.lsbLines.Name = "lsbLines";
             this.lsbLines.Size = new System.Drawing.Size(384, 684);
             this.lsbLines.TabIndex = 14;
-            this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.libLines_SelectedIndexChanged);
+            this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.lsbLines_SelectedIndexChanged);
             // 
             // trvJsonFiles
             // 

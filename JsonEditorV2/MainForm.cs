@@ -118,8 +118,9 @@ namespace JsonEditorV2
         }
         #endregion
 
-        private void libLines_SelectedIndexChanged(object sender, EventArgs e)
+        private void lsbLines_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Var.SelectedLineIndex = lsbLines.SelectedIndex;
             RefreshPnlMainValue();
         }
 
@@ -229,6 +230,8 @@ namespace JsonEditorV2
             {
                 //Key和Nullable相斥檢查
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_7, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
+                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
             }
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
@@ -627,20 +630,20 @@ namespace JsonEditorV2
             if (trvJsonFiles.SelectedNode == null || trvJsonFiles.SelectedNode == Var.RootNode)
                 Var.RootNode.Expand();
 
-            tmiCloseAllFiles.Enabled = true;
-            tmiScanJsonFiles.Enabled = true;
-            tmiNewJsonFile.Enabled = true;
-            tmiOpenFolder.Enabled = true;
-            tmiSaveAsJsonFiles.Enabled = true;
+            tmiCloseAllFiles.Enabled =
+            tmiScanJsonFiles.Enabled =
+            tmiNewJsonFile.Enabled =
+            tmiOpenFolder.Enabled =
+            tmiSaveAsJsonFiles.Enabled =
             tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
         }
 
         private void RefreshPnlMainValue()
         {
-            btnClearMain.Enabled = false;
-            btnUpdateMain.Enabled = false;
-            btnDeleteLine.Enabled = false;
+            btnClearMain.Enabled =
+            btnUpdateMain.Enabled =
+            btnDeleteLine.Enabled =
             pnlMain.Enabled = false;
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
@@ -649,22 +652,29 @@ namespace JsonEditorV2
             if (Var.SelectedTable == null)
                 return;
 
-            if (lsbLines.SelectedIndex == -1)
+            if (Var.SelectedLineIndex == -1)
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-                Var.InputControlSets[i].SetValue(Var.SelectedTable[lsbLines.SelectedIndex][i].Value);
+                Var.InputControlSets[i].SetValue(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
 
-            btnClearMain.Enabled = true;
-            btnUpdateMain.Enabled = true;
-            btnDeleteLine.Enabled = true;
+            if(Var.SelectedTable.Columns.Count != 0)
+            {
+                btnClearMain.Enabled =
+                btnUpdateMain.Enabled = true;
+            }
+
+            btnDeleteLine.Enabled =
             pnlMain.Enabled = true;
         }
 
         private void RefreshPnlMain()
         {
             int lines = 0;
+            btnClearMain.Enabled =
+            btnUpdateMain.Enabled = false;
             pnlMain.Controls.Clear();
+
             Var.InputControlSets.Clear();
             if (Var.SelectedTable == null)
                 return;
@@ -680,10 +690,9 @@ namespace JsonEditorV2
 
         private void RefreshLsbLines()
         {
-            int index = lsbLines.SelectedIndex;
-
             lsbLines.Items.Clear();
-            btnNewLine.Enabled = false;
+            btnNewLine.Enabled =
+            btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
 
@@ -711,8 +720,8 @@ namespace JsonEditorV2
                 lsbLines.Items.Add(displayString.ToString());
             }
 
-            if (lsbLines.Items.Count > index && index != -1)
-                lsbLines.SelectedIndex = index;
+            lsbLines.SelectedIndex = Var.SelectedLineIndex;
+            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             btnNewLine.Enabled = true;
             RefreshTrvSelectedFileChange();
         }
@@ -743,6 +752,7 @@ namespace JsonEditorV2
                 return;
             Var.Tables = null;
             Var.OpenedTable.Clear();
+            Var.LineIndexes.Clear();
             if (Var.JFI != null)
                 Var.JFI.Dispose();
             Var.RootNode = null;
@@ -1138,6 +1148,7 @@ namespace JsonEditorV2
             }
 
             Var.OpenedTable.Add(Var.SelectedColumnParentTable);
+            Var.LineIndexes.Add(-1);
             Var.PageIndex = Var.OpenedTable.Count - 1;
 
             RefreshTbcMain();
@@ -1361,12 +1372,10 @@ namespace JsonEditorV2
 
             Var.SelectedTable.Changed = true;
             Var.SelectedTable.Lines.Add(jl);
+            Var.SelectedLineIndex = lsbLines.Items.Count;
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
-
             RefreshLsbLines();
-            RefreshPnlMainValue();
-
-            lsbLines.SelectedIndex = lsbLines.Items.Count - 1;
+            RefreshPnlMainValue();            
         }
 
         private void tmiRenameJsonFile_Click(object sender, EventArgs e)
@@ -1428,6 +1437,7 @@ namespace JsonEditorV2
         {
             JTable jt = Var.SelectedTable;
             Var.OpenedTable.RemoveAt(index);
+            Var.LineIndexes.RemoveAt(index);
             if (Var.PageIndex == index)
                 Var.PageIndex = index == 0 ? Var.OpenedTable.Count - 1 : index - 1;
             else
@@ -1439,7 +1449,7 @@ namespace JsonEditorV2
         {
             if (!Var.OpenedTable.Contains(Var.SelectedColumnParentTable))
                 return;
-            CloseJsonFile(Var.OpenedTable.IndexOf(Var.SelectedColumnParentTable));
+            CloseJsonFile(Var.OpenedTable.IndexOf(Var.SelectedColumnParentTable));            
         }
 
         private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
@@ -1482,9 +1492,11 @@ namespace JsonEditorV2
 
         private void btnDeleteLine_Click(object sender, EventArgs e)
         {
-            if (lsbLines.SelectedIndex == -1)
+            if (Var.SelectedLineIndex == -1)
                 return;
-            Var.SelectedTable.Lines.RemoveAt(lsbLines.SelectedIndex);
+            Var.SelectedTable.Lines.RemoveAt(Var.SelectedLineIndex);
+            if (Var.SelectedTable.Lines.Count == Var.SelectedLineIndex)
+                Var.SelectedLineIndex--;            
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
@@ -1494,7 +1506,7 @@ namespace JsonEditorV2
 
         private void btnUpdateMain_Click(object sender, EventArgs e)
         {
-            if (lsbLines.SelectedIndex == -1)
+            if (Var.SelectedLineIndex == -1)
                 return;
 
             //控制項驗證
@@ -1507,15 +1519,12 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                Var.SelectedTable[lsbLines.SelectedIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
-
-            int selectIndex = lsbLines.SelectedIndex;
+                Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
+                        
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
-            Var.SelectedTable.Changed = true;
+            Var.SelectedTable.Changed = true;            
             RefreshLsbLines();
             RefreshPnlMainValue();
-
-            lsbLines.SelectedIndex = selectIndex;
         }
 
         private void tmiColumnMoveUp_Click(object sender, EventArgs e)
