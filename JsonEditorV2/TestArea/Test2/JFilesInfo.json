@@ -56,9 +56,9 @@
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "4465",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "Y999",
@@ -86,7 +86,7 @@
           "Regex": "",
           "Description": "",
           "MinValue": "789",
-          "MaxValue": "10000"
+          "MaxValue": "99999"
         },
         {
           "Name": "KLLL",
@@ -115,11 +115,11 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
+          "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "TTTT",
@@ -321,11 +321,11 @@
           "FKTable": "bbbbbbb",
           "FKColumn": "AAA",
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "HJK",
@@ -335,11 +335,11 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },
@@ -364,15 +364,15 @@
           "Name": "DDD",
           "IsKey": false,
           "IsNullable": false,
-          "Type": "String",
-          "FKTable": null,
-          "FKColumn": null,
+          "Type": "Integer",
+          "FKTable": "GroupTesting",
+          "FKColumn": "Key2",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         },
         {
           "Name": "ABFD",
@@ -406,12 +406,55 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null
+        },
+        {
+          "Name": "dsadsa",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": "GroupTesting",
+          "FKColumn": "Key1",
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
         }
       ]
     },
     {
       "Name": "T5",
-      "Columns": []
+      "Columns": [
+        {
+          "Name": "TimeID",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Time",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "00:01:00",
+          "MaxValue": "00:18:00"
+        },
+        {
+          "Name": "Text",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 2,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": ""
+        }
+      ]
     },
     {
       "Name": "Test6",

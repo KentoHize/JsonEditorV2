@@ -17,6 +17,7 @@ namespace JsonEditorV2
         public Label NameLabel { get; set; }
 
         private Control errPositionControl;
+        private Control ownerWindow;
         private object parsedValue;
 
         public InputControlSet(JColumn sourceColumn)
@@ -28,6 +29,8 @@ namespace JsonEditorV2
         {
             if (string.IsNullOrEmpty(JColumn.Name))
                 throw new MissingMemberException();
+
+            ownerWindow = pnlMain.Parent;
 
             NameLabel = new Label();
             NameLabel.Name = $"lbl{JColumn.Name}";
@@ -93,7 +96,7 @@ namespace JsonEditorV2
             NameLabel.Focus();
             JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
 
-            object newValue = frmFKTable.Show(fkTable, JColumn.FKColumn, ValueControl.Text);
+            object newValue = frmFKTable.Show(ownerWindow, JColumn.Name, fkTable, JColumn.FKColumn, ValueControl.Text);
             if (newValue != null)
                 SetValueToString(newValue);
         }

@@ -22,10 +22,11 @@ namespace JsonEditorV2
             InitializeComponent();
         }
 
-        public static object Show(JTable FKTable, string ColumnName, string currentValue)
-        {            
+        public static object Show(IWin32Window owner, string ColumnName, JTable FKTable, string FKColumnName, string currentValue)
+        {   
             frmFKTable frmFKTable = new frmFKTable();
-            frmFKTable.keyColumnName = ColumnName;
+            frmFKTable.Text = ColumnName;
+            frmFKTable.keyColumnName = FKColumnName;
             frmFKTable.currentValue = currentValue;
 
             if (!FKTable.Loaded)
@@ -33,11 +34,11 @@ namespace JsonEditorV2
 
             frmFKTable.dgvMain.Columns.Clear();            
             frmFKTable.dgvMain.AutoGenerateColumns = true;
-            frmFKTable.dgvMain.DataSource = FKTable.ToDataTable();
+            var t = FKTable.ToDataTable();
+            frmFKTable.dgvMain.DataSource = t;
             frmFKTable.dgvMain.ClearSelection();
             
-
-            frmFKTable.ShowDialog();
+            frmFKTable.ShowDialog(owner);
             return frmFKTable.Value;
         }
 
@@ -62,15 +63,43 @@ namespace JsonEditorV2
 
         private void dgvMain_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < dgvMain.Rows.Count; i++)
+            int i;
+            for (i = 0; i < dgvMain.Rows.Count; i++)
             {
                 if (dgvMain.Rows[i].Cells[keyColumnName].Value.ToString() == currentValue)
                 {
-                    dgvMain.Rows[i].Selected = true;
-                    dgvMain.FirstDisplayedScrollingRowIndex = i;
+                    dgvMain.Rows[i].Selected = true;                    
                     break;
                 }
             }
+
+            int autoHeight = dgvMain.ColumnHeadersHeight + 5;
+            int autoWidth = dgvMain.RowHeadersWidth + 3;
+
+            if (dgvMain.Rows.Count != 0)
+            {
+                autoHeight += dgvMain.Rows.Count * (dgvMain.Rows[0].Height + dgvMain.Rows[0].DividerHeight);
+                autoWidth += dgvMain.Columns.Count * (dgvMain.Columns[0].Width + dgvMain.Columns[0].DividerWidth);
+            }
+
+            if (autoHeight < dgvMain.Height)
+                dgvMain.Height = autoHeight;
+            if (autoWidth < dgvMain.Width)
+                dgvMain.Width = autoWidth;
+
+            if (i != dgvMain.Rows.Count)
+                dgvMain.FirstDisplayedScrollingRowIndex = i;
+        }
+
+        private void dgvMain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            frmFKTable_KeyPress(this, e);
+        }
+
+        private void frmFKTable_Paint(object sender, PaintEventArgs e)
+        {
+            Left = (Owner.Width - Width) / 2 + Owner.Left;
+            Top = (Owner.Height - Height) / 2 + Owner.Top;
         }
     }
 }

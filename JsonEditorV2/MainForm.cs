@@ -637,6 +637,7 @@ namespace JsonEditorV2
             tmiSaveAsJsonFiles.Enabled =
             tmiSaveJsonFiles.Enabled = true;
             RefreshPnlFileInfo();
+            RefreshTbcMain();
         }
 
         private void RefreshPnlMainValue()
@@ -661,18 +662,18 @@ namespace JsonEditorV2
             if(Var.SelectedTable.Columns.Count != 0)
             {
                 btnClearMain.Enabled =
-                btnUpdateMain.Enabled = true;
+                btnUpdateMain.Enabled =
+                pnlMain.Enabled = true;
             }
-
-            btnDeleteLine.Enabled =
-            pnlMain.Enabled = true;
+            btnDeleteLine.Enabled = true;
         }
 
         private void RefreshPnlMain()
         {
             int lines = 0;
             btnClearMain.Enabled =
-            btnUpdateMain.Enabled = false;
+            btnUpdateMain.Enabled =
+            pnlMain.Enabled = false;
             pnlMain.Controls.Clear();
 
             Var.InputControlSets.Clear();
@@ -818,6 +819,11 @@ namespace JsonEditorV2
         {
             if (e.Node == Var.RootNode)
             {
+                Var.SelectedColumn = null;
+                Var.SelectedColumnParentTable = null;
+                trvJsonFiles.SelectedNode = e.Node;
+                RefreshPnlFileInfo();
+
                 trvJsonFiles.ContextMenuStrip = cmsJsonFiles;
                 tmiViewJFIFile.Enabled = File.Exists(Var.JFI.FileInfoPath);
             }
@@ -892,8 +898,7 @@ namespace JsonEditorV2
             {
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
-            }
-            RefreshTbcMain();
+            }            
         }
 
         private void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)

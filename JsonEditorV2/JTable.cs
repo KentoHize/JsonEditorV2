@@ -43,6 +43,23 @@ namespace JsonEditor
             LoadJson(jArray, true);
         }
 
+        //public object[][] ToDataSet()
+        //{
+        //    object[][] result;            
+
+        //    for (int i = 0; i < Columns.Count; i++)
+        //        ds .Columns.Add(Columns[i].Name, typeof(string));
+
+        //    foreach (JLine jl in Lines)
+        //    {
+        //        List<object> lo = new List<object>();
+        //        for (int i = 0; i < Columns.Count; i++)
+        //            lo.Add(jl[i].Value);
+        //        dt.LoadDataRow(lo.ToArray(), true);
+        //    }
+        //    return dt;
+        //}
+
         /// <summary>
         /// 轉換成一般的資料表
         /// </summary>
