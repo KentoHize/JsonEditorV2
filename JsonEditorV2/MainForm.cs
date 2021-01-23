@@ -345,7 +345,7 @@ namespace JsonEditorV2
             }
 
             if (recheckTable)
-                Var.SelectedColumnParentTable.CheckAllValid();
+                Var.SelectedColumnParentTable.CehckValid();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -696,7 +696,7 @@ namespace JsonEditorV2
                 lsbLines.Items.Add(displayString.ToString());
             }
 
-            Var.SelectedTable.CheckAllValid();
+            Var.SelectedTable.CehckValid();
             lsbLines.SelectedIndex = Var.SelectedLineIndex;
             btnNewLine.Enabled = true;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
@@ -749,7 +749,7 @@ namespace JsonEditorV2
             {
                 if (jt.Loaded)
                 {
-                    if (!jt.CheckAllValid())
+                    if (!jt.CehckValid())
                     {
                         MessageBox.Show(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Var.CheckFailedFlag = true;
@@ -1161,7 +1161,7 @@ namespace JsonEditorV2
             {
                 StreamReader sr = new StreamReader(fs);
                 jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                jt.CheckAllValid();
+                jt.CehckValid();
                 sr.Dispose();
             }
 #if !DEBUG
@@ -1237,8 +1237,10 @@ namespace JsonEditorV2
 
         public static bool SaveJsonFile(JTable jt)
         {
+#if !DEBUG
             try
             {
+#endif
                 //檔案備份
                 using (StreamWriter sw = File.CreateText(Const.BackupRecoverFile))
                 {
@@ -1252,22 +1254,26 @@ namespace JsonEditorV2
                     StreamWriter sw = new StreamWriter(fs);
                     sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
                     sw.Close();
+                    
                 }
 
+                
                 //備份檔案刪除(偵錯時不清空資料夾)
-#if !DEBUG               
+#if !DEBUG
                 File.Delete(Path.Combine(Const.BackupFolder, $"{jt.Name}.json"));
 #endif
                 File.Delete(Const.BackupRecoverFile);
 
                 jt.Changed = false;
+                return true;
+#if !DEBUG
             }
             catch (Exception ex)
             {
                 HandleException(ex);
                 return false;
             }
-            return true;
+#endif 
         }
 
         public static bool SaveJFilesInfo()

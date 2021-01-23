@@ -159,7 +159,7 @@ namespace JsonEditor
                 int i = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
-                    if (produceColumnInfo)
+                    if (produceColumnInfo) //Scan
                     {
                         if (isFirstFirst)
                         {
@@ -176,15 +176,25 @@ namespace JsonEditor
                         }
                         else
                             jc = Columns[i];
+
+                        if (kvp.Value.Type == JTokenType.Null)
+                        {
+                            jc.IsNullable = true;
+                            items.Add(JValue.FromObject(null));
+                        }
+                        else
+                        { 
+                            items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
+                        }
                     }
-                    else
+                    else //Load
+                    {
                         jc = Columns[i];
-
-                    if (kvp.Value.Type == JTokenType.Null)
-                        items.Add(JValue.FromObject(null));
-                    else
-                        items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
-
+                        if (kvp.Value.Type == JTokenType.Null)
+                            items.Add(JValue.FromObject(null));
+                        else
+                            items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
+                    }
                     i++;
                 }
                 isFirst = false;
@@ -192,7 +202,7 @@ namespace JsonEditor
             }
             Loaded = true;
             Valid = false;
-            CheckAllValid();
+            CehckValid();
         }
 
         //確認某一筆資料符合欄位定義
@@ -221,7 +231,7 @@ namespace JsonEditor
 
                 //IsNull
                 if (!Columns[i].IsNullable)
-                    if (jl[i] == null)
+                    if (jl[i].Value == null)
                         return false;                
             }
             return true;
@@ -230,7 +240,7 @@ namespace JsonEditor
         /// <summary>
         /// 確認所有資料符合欄位定義
         /// </summary>
-        public bool CheckAllValid()
+        public bool CehckValid()
         {
             Valid = false;
 
