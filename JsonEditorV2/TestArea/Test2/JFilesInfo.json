@@ -165,7 +165,7 @@
           "Type": "Guid",
           "FKTable": "Add2222",
           "FKColumn": "HIJ96",
-          "NumberOfRows": 1,
+          "NumberOfRows": 2,
           "Display": true,
           "Regex": "",
           "Description": "",

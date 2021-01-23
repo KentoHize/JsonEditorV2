@@ -673,8 +673,8 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-            {
-                InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
+            {   
+                InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i], Var.SelectedLineIndex);
                 ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
@@ -1599,6 +1599,7 @@ namespace JsonEditorV2
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
             cobColumnType.Enabled =
             txtColumnRegex.Enabled =
+            txtColumnMaxLength.Enabled =
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = FKIsEmpty;
         }
@@ -1662,6 +1663,8 @@ namespace JsonEditorV2
             JType result = (JType)Enum.Parse(typeof(JType), cobColumnType.SelectedValue.ToString());
             txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
                  result == JType.String;
+            txtColumnMaxLength.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
+                (result == JType.String || result == JType.Uri);
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
                 (result.IsDateTime() || result.IsNumber());

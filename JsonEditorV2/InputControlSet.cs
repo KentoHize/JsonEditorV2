@@ -20,11 +20,14 @@ namespace JsonEditorV2
         private Control errPositionControl;
         private Control ownerWindow;
         private object parsedValue;
+        private int l_Index;
 
-        public InputControlSet(JTable sourceTable, JColumn sourceColumn)
+
+        public InputControlSet(JTable sourceTable, JColumn sourceColumn, int lineIndex)
         {
             JTable = sourceTable;
             JColumn = sourceColumn;
+            l_Index = lineIndex;
         }
 
         public void DrawControl(Panel pnlMain, int lineIndex)
@@ -171,13 +174,13 @@ namespace JsonEditorV2
                 }
             }
 
-            //確認唯一值
+            //確認唯一值(用到LineIndex ColumnIndex)
             if(JColumn.IsUnique)
             {
                 int columnIndex = JTable.Columns.IndexOf(JColumn);
                 for(int i = 0; i < JTable.Count; i++)
                 {
-                    if(parsedValue == JTable[i][columnIndex].Value)
+                    if(i != l_Index && parsedValue.CompareTo(JTable[i][columnIndex].Value, JColumn.Type) == 0)
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, parsedValue));
                         return false;
