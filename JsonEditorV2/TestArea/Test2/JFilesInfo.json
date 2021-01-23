@@ -78,10 +78,10 @@
           "NumberOfRows": 4,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null,
-          "TextMaxLength": 0,
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 100,
           "IsUnique": false
         }
       ]
@@ -722,13 +722,13 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": false,
-          "Regex": null,
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null,
-          "TextMaxLength": 0,
-          "IsUnique": false
+          "Display": true,
+          "Regex": "^[A-Za-z0-9]{0,20}$",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 20,
+          "IsUnique": true
         }
       ]
     }

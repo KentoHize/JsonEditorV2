@@ -646,8 +646,10 @@ namespace JsonEditorV2
             if (Var.SelectedLineIndex == -1)
                 return;
 
+            
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
+                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);                
+                
 
             if (Var.SelectedTable.Columns.Count != 0)
             {
@@ -674,7 +676,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {   
-                InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i], Var.SelectedLineIndex);
+                InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
                 ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
@@ -1519,7 +1521,7 @@ namespace JsonEditorV2
             //控制項驗證
             bool valid = true;
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                if (!Var.InputControlSets[i].CheckValid())
+                if (!Var.InputControlSets[i].CheckValid(Var.SelectedLineIndex))
                     valid = false;
 
             if (!valid)
