@@ -210,6 +210,12 @@ namespace JsonEditor
         {
             for (int i = 0; i < Columns.Count; i++)
             {
+                //IsNull
+                if (jl[i].Value == null && Columns[i].IsNullable)
+                    return true;
+                else if (jl[i].Value == null && !Columns[i].IsNullable)
+                    return false;
+
                 //Type
                 if (!jl[i].Value.TryParseJType(Columns[i].Type, out object o))
                     return false;
@@ -231,12 +237,7 @@ namespace JsonEditor
                 //Regex
                 if (!string.IsNullOrEmpty(Columns[i].Regex) &&
                     !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].Regex))
-                    return false;
-
-                //IsNull
-                if (!Columns[i].IsNullable)
-                    if (jl[i].Value == null)
-                        return false;
+                    return false;                
             }
             return true;
         }

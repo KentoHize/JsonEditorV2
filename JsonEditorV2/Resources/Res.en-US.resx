@@ -169,7 +169,7 @@
     <value>Unique Column</value>
   </data>
   <data name="JE_COLUMN_MAX_LENGTH" xml:space="preserve">
-    <value>Text Maximum Length</value>
+    <value>Maximum Length</value>
   </data>
   <data name="JE_COLUMN_MAX_VALUE" xml:space="preserve">
     <value>Max Value</value>

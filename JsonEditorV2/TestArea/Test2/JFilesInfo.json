@@ -16,7 +16,9 @@
           "Regex": "^opop[A-Za-z]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "A41123",
@@ -30,7 +32,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "HHH",
@@ -44,7 +48,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "HIJ96",
@@ -58,7 +64,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "ADGHHWWDSDFDSFASFDSAFDSFDSFDSAFAD",
@@ -72,7 +80,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -91,7 +101,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "TEst",
@@ -105,7 +117,9 @@
           "Regex": "^ggg$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "GGGS99",
@@ -119,7 +133,9 @@
           "Regex": "^aaa$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -138,7 +154,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Y8897",
@@ -152,7 +170,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "TTT99999",
@@ -166,7 +186,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "H999",
@@ -180,7 +202,9 @@
           "Regex": "",
           "Description": "4465",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Y999",
@@ -194,7 +218,9 @@
           "Regex": "^(oo|pp)$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "KL",
@@ -208,7 +234,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "789",
-          "MaxValue": "99999"
+          "MaxValue": "99999",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "KLLL",
@@ -222,7 +250,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "0:00:33",
-          "MaxValue": "23:57:59"
+          "MaxValue": "23:57:59",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -245,7 +275,9 @@
           "Regex": "^\\w*$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Key2",
@@ -259,7 +291,9 @@
           "Regex": "",
           "Description": "Testljh",
           "MinValue": "0",
-          "MaxValue": "6"
+          "MaxValue": "6",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Key3",
@@ -273,7 +307,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Memo",
@@ -282,12 +318,14 @@
           "Type": "String",
           "FKTable": null,
           "FKColumn": null,
-          "NumberOfRows": 1,
+          "NumberOfRows": 3,
           "Display": false,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 15,
+          "IsUnique": false
         }
       ]
     },
@@ -306,7 +344,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -325,7 +365,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "HJK",
@@ -339,7 +381,9 @@
           "Regex": "^\\w$",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -358,7 +402,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "dsadsa",
@@ -372,7 +418,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "pydtrt__",
@@ -386,7 +434,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "dsadsafd",
@@ -400,7 +450,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "JKKJ",
@@ -414,7 +466,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -433,7 +487,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "00:01:00",
-          "MaxValue": "00:17:00"
+          "MaxValue": "00:17:00",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Text",
@@ -447,7 +503,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "DateID",
@@ -461,7 +519,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -480,7 +540,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 6,
+          "IsUnique": false
         },
         {
           "Name": "DDD",
@@ -494,7 +556,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "ABFD",
@@ -508,7 +572,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "GGFT",
@@ -522,7 +588,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -541,7 +609,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "_P-6",
@@ -555,7 +625,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "G8888",
@@ -569,7 +641,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Y888",
@@ -583,7 +657,78 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        }
+      ]
+    },
+    {
+      "Name": "TestUnique",
+      "Columns": [
+        {
+          "Name": "U1",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": true
+        },
+        {
+          "Name": "U2",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": true
+        },
+        {
+          "Name": "N1",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 10,
+          "IsUnique": false
+        },
+        {
+          "Name": "N2",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     }

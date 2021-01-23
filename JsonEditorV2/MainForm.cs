@@ -1265,7 +1265,8 @@ namespace JsonEditorV2
                     sw.WriteLine($"OriginFileName={Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")}");
                     sw.WriteLine($"CreateDateTime={DateTime.Now}");
                 }
-                File.Copy(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), Path.Combine(Const.BackupFolder, $"{jt.Name}.json"), true);
+                if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")))
+                    File.Copy(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), Path.Combine(Const.BackupFolder, $"{jt.Name}.json"), true);
 
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
                 {
@@ -1304,7 +1305,8 @@ namespace JsonEditorV2
                     sw.WriteLine($"OriginFileName=\"{Var.JFI.FileInfoPath}\"");
                     sw.WriteLine($"CreateDateTime=\"{DateTime.Now}\"");
                 }
-                File.Copy(Var.JFI.FileInfoPath, Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName), true);
+                if(File.Exists(Var.JFI.FileInfoPath))
+                    File.Copy(Var.JFI.FileInfoPath, Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName), true);
 
                 using (FileStream fs = new FileStream(Var.JFI.FileInfoPath, FileMode.Create))
                 {
