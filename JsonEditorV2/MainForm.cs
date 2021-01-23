@@ -658,8 +658,8 @@ namespace JsonEditorV2
                 pnlMain.Enabled = true;
             }
             btnDeleteLine.Enabled = true;
-            btnLineMoveDown.Enabled = true;
-            btnLineMoveUp.Enabled = true;
+            btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
+            btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
         }
 
         private void RefreshPnlMain()
