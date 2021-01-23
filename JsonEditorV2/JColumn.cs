@@ -20,6 +20,8 @@ namespace JsonEditor
         public string Description { get; set; }
         public string MinValue { get; set; }
         public string MaxValue { get; set; }
+        public long TextMaxLength { get; set; }
+        public bool IsUnique { get; set; }
 
         public JColumn()
             : this("")

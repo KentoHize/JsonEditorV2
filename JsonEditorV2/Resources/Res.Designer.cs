@@ -205,6 +205,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 唯一值.
+        /// </summary>
+        public static string JE_COLUMN_IS_UNIQUE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_IS_UNIQUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 文字最大長度.
+        /// </summary>
+        public static string JE_COLUMN_MAX_LENGTH {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_MAX_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 最大值.
         /// </summary>
         public static string JE_COLUMN_MAX_VALUE {
@@ -718,6 +736,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 文字最大長度錯誤，合法值為0(不限)或正整數.
+        /// </summary>
+        public static string JE_RUN_UPDATE_COLUMN_M_11 {
+            get {
+                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位行數不正確.
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_2 {
@@ -1101,6 +1128,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_VAL_REGEX_IS_NOT_MATCH {
             get {
                 return ResourceManager.GetString("JE_VAL_REGEX_IS_NOT_MATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 文字超過最大長度{0}.
+        /// </summary>
+        public static string JE_VAL_TEXT_MAXIMUM_LENGTH_OVER {
+            get {
+                return ResourceManager.GetString("JE_VAL_TEXT_MAXIMUM_LENGTH_OVER", resourceCulture);
             }
         }
         

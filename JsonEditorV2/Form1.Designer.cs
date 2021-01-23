@@ -35,7 +35,12 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pblFileInfo = new System.Windows.Forms.Panel();
+            this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
+            this.lblColumnIsUnique = new System.Windows.Forms.Label();
+            this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
+            this.lblColumnMaxLength = new System.Windows.Forms.Label();
             this.lblColumnDescription = new System.Windows.Forms.Label();
+            this.txtColumnDescription = new System.Windows.Forms.TextBox();
             this.txtColumnMaxValue = new System.Windows.Forms.TextBox();
             this.txtColumnMinValue = new System.Windows.Forms.TextBox();
             this.lblColumnMaxValue = new System.Windows.Forms.Label();
@@ -115,11 +120,6 @@
             this.btnDeleteLine = new System.Windows.Forms.Button();
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
-            this.lblColumnMaxLength = new System.Windows.Forms.Label();
-            this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
-            this.lblColumnUnique = new System.Windows.Forms.Label();
-            this.txtColumnDescription = new System.Windows.Forms.TextBox();
-            this.ckbColumnUnique = new System.Windows.Forms.CheckBox();
             this.pblFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -184,8 +184,8 @@
             // pblFileInfo
             // 
             this.pblFileInfo.AutoScroll = true;
-            this.pblFileInfo.Controls.Add(this.ckbColumnUnique);
-            this.pblFileInfo.Controls.Add(this.lblColumnUnique);
+            this.pblFileInfo.Controls.Add(this.ckbColumnIsUnique);
+            this.pblFileInfo.Controls.Add(this.lblColumnIsUnique);
             this.pblFileInfo.Controls.Add(this.txtColumnMaxLength);
             this.pblFileInfo.Controls.Add(this.lblColumnMaxLength);
             this.pblFileInfo.Controls.Add(this.lblColumnDescription);
@@ -218,7 +218,48 @@
             this.pblFileInfo.Name = "pblFileInfo";
             this.pblFileInfo.Size = new System.Drawing.Size(420, 324);
             this.pblFileInfo.TabIndex = 15;
-            this.pblFileInfo.Paint += new System.Windows.Forms.PaintEventHandler(this.lbColumnFKColumn_Paint);
+            // 
+            // ckbColumnIsUnique
+            // 
+            this.ckbColumnIsUnique.AutoSize = true;
+            this.ckbColumnIsUnique.Location = new System.Drawing.Point(371, 364);
+            this.ckbColumnIsUnique.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnIsUnique.Name = "ckbColumnIsUnique";
+            this.ckbColumnIsUnique.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnIsUnique.TabIndex = 32;
+            this.ckbColumnIsUnique.UseVisualStyleBackColor = true;
+            // 
+            // lblColumnIsUnique
+            // 
+            this.lblColumnIsUnique.AutoSize = true;
+            this.lblColumnIsUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnIsUnique.Location = new System.Drawing.Point(18, 362);
+            this.lblColumnIsUnique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnIsUnique.Name = "lblColumnIsUnique";
+            this.lblColumnIsUnique.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnIsUnique.TabIndex = 31;
+            this.lblColumnIsUnique.Text = "-";
+            // 
+            // txtColumnMaxLength
+            // 
+            this.txtColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMaxLength.Location = new System.Drawing.Point(207, 324);
+            this.txtColumnMaxLength.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMaxLength.Name = "txtColumnMaxLength";
+            this.txtColumnMaxLength.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMaxLength.TabIndex = 30;
+            this.txtColumnMaxLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnMaxLength
+            // 
+            this.lblColumnMaxLength.AutoSize = true;
+            this.lblColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMaxLength.Location = new System.Drawing.Point(18, 327);
+            this.lblColumnMaxLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMaxLength.Name = "lblColumnMaxLength";
+            this.lblColumnMaxLength.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMaxLength.TabIndex = 29;
+            this.lblColumnMaxLength.Text = "-";
             // 
             // lblColumnDescription
             // 
@@ -230,6 +271,16 @@
             this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
             this.lblColumnDescription.TabIndex = 28;
             this.lblColumnDescription.Text = "-";
+            // 
+            // txtColumnDescription
+            // 
+            this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnDescription.Location = new System.Drawing.Point(207, 464);
+            this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnDescription.Name = "txtColumnDescription";
+            this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnDescription.TabIndex = 27;
+            this.txtColumnDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtColumnMaxValue
             // 
@@ -611,19 +662,19 @@
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 6);
             // 
             // tmiLoadJsonFiles
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
@@ -631,20 +682,20 @@
             // 
             this.tmiScanJsonFiles.Enabled = false;
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -652,32 +703,32 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(90, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(93, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(90, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
-            this.tmiExit.Size = new System.Drawing.Size(216, 26);
+            this.tmiExit.Size = new System.Drawing.Size(93, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -954,58 +1005,6 @@
             this.btnLineMoveDown.UseVisualStyleBackColor = true;
             this.btnLineMoveDown.Click += new System.EventHandler(this.btnLineMoveDown_Click);
             // 
-            // lblColumnMaxLength
-            // 
-            this.lblColumnMaxLength.AutoSize = true;
-            this.lblColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMaxLength.Location = new System.Drawing.Point(18, 327);
-            this.lblColumnMaxLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnMaxLength.Name = "lblColumnMaxLength";
-            this.lblColumnMaxLength.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnMaxLength.TabIndex = 29;
-            this.lblColumnMaxLength.Text = "-";
-            // 
-            // txtColumnMaxLength
-            // 
-            this.txtColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMaxLength.Location = new System.Drawing.Point(207, 324);
-            this.txtColumnMaxLength.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnMaxLength.Name = "txtColumnMaxLength";
-            this.txtColumnMaxLength.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnMaxLength.TabIndex = 30;
-            this.txtColumnMaxLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnUnique
-            // 
-            this.lblColumnUnique.AutoSize = true;
-            this.lblColumnUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnUnique.Location = new System.Drawing.Point(18, 362);
-            this.lblColumnUnique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnUnique.Name = "lblColumnUnique";
-            this.lblColumnUnique.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnUnique.TabIndex = 31;
-            this.lblColumnUnique.Text = "-";
-            // 
-            // txtColumnDescription
-            // 
-            this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnDescription.Location = new System.Drawing.Point(207, 464);
-            this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnDescription.Name = "txtColumnDescription";
-            this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnDescription.TabIndex = 27;
-            this.txtColumnDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // ckbColumnUnique
-            // 
-            this.ckbColumnUnique.AutoSize = true;
-            this.ckbColumnUnique.Location = new System.Drawing.Point(371, 364);
-            this.ckbColumnUnique.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnUnique.Name = "ckbColumnUnique";
-            this.ckbColumnUnique.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnUnique.TabIndex = 32;
-            this.ckbColumnUnique.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1138,8 +1137,8 @@
         private System.Windows.Forms.Button btnLineMoveDown;
         private System.Windows.Forms.TextBox txtColumnMaxLength;
         private System.Windows.Forms.Label lblColumnMaxLength;
-        private System.Windows.Forms.CheckBox ckbColumnUnique;
-        private System.Windows.Forms.Label lblColumnUnique;
+        private System.Windows.Forms.CheckBox ckbColumnIsUnique;
+        private System.Windows.Forms.Label lblColumnIsUnique;
         private System.Windows.Forms.TextBox txtColumnDescription;
     }
 }

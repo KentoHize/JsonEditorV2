@@ -165,6 +165,12 @@
   <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
     <value>Is Nullable</value>
   </data>
+  <data name="JE_COLUMN_IS_UNIQUE" xml:space="preserve">
+    <value>Unique Column</value>
+  </data>
+  <data name="JE_COLUMN_MAX_LENGTH" xml:space="preserve">
+    <value>Text Maximum Length</value>
+  </data>
   <data name="JE_COLUMN_MAX_VALUE" xml:space="preserve">
     <value>Max Value</value>
   </data>
@@ -336,6 +342,9 @@
   <data name="JE_RUN_UPDATE_COLUMN_M_10" xml:space="preserve">
     <value>The min value "{0}" is greater than the max value"{1}".</value>
   </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_11" xml:space="preserve">
+    <value>Text maximum length is invalid, it should be 0(unlimited) or a positive integer.</value>
+  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
     <value>Number of rows is incorrect.</value>
   </data>
@@ -464,6 +473,9 @@
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}" Regular expression check failed.</value>
+  </data>
+  <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
+    <value>Text over maximum length: {0}.</value>
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON Files Editor</value>

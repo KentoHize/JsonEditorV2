@@ -45,7 +45,7 @@ namespace JsonEditor
 
         public List<dynamic> ToListItems()
         {
-            List<dynamic> result = new List<object>();            
+            List<dynamic> result = new List<object>();
             foreach (JLine jl in Lines)
             {
                 var l = new ExpandoObject() as IDictionary<string, object>;
@@ -67,7 +67,7 @@ namespace JsonEditor
             DataTable dt = new DataTable(Name);
             for (int i = 0; i < Columns.Count; i++)
                 dt.Columns.Add(Columns[i].Name, Columns[i].Type.ToType());
-           
+
             foreach (JLine jl in Lines)
             {
                 List<object> lo = new List<object>();
@@ -124,7 +124,7 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i].Value == null ? null : jl[i].Value.ToString(Columns[i].Type));                    
+                    line.Add(Columns[i].Name, jl[i].Value == null ? null : jl[i].Value.ToString(Columns[i].Type));
                 result.Add(line);
             }
             return result;
@@ -183,7 +183,7 @@ namespace JsonEditor
                             items.Add(JValue.FromObject(null));
                         }
                         else
-                        { 
+                        {
                             items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
                         }
                     }
@@ -219,20 +219,24 @@ namespace JsonEditor
                 {
                     if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
                         return false;
-                    if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)                        
-                        return false;                    
+                    if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
+                        return false;
                 }
 
+                //MaxLength
+                if (Columns[i].TextMaxLength != 0 &&
+                    jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].TextMaxLength)
+                    return false;
+
                 //Regex
-                if (Columns[i].Type == JType.String &&
-                    !string.IsNullOrEmpty(Columns[i].Regex) &&
-                    !Regex.IsMatch(jl[i].Value.ToString(), Columns[i].Regex))
+                if (!string.IsNullOrEmpty(Columns[i].Regex) &&
+                    !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].Regex))
                     return false;
 
                 //IsNull
                 if (!Columns[i].IsNullable)
                     if (jl[i].Value == null)
-                        return false;                
+                        return false;
             }
             return true;
         }
@@ -251,7 +255,7 @@ namespace JsonEditor
                     keyIndex.Add(i);
 
             //從最底端開始查起
-            HashSet<string> keyCheckSet = new HashSet<string>();
+            HashSet<string> keyCheckSet = new HashSet<string>();            
             string checkString;
             for (int i = Lines.Count - 1; i > -1; i--)
             {
@@ -262,12 +266,16 @@ namespace JsonEditor
                 {
                     checkString = "";
                     for (int j = 0; j < keyIndex.Count; j++)
-                        if(Lines[i][j].Value != null)
-                            checkString = string.Concat(checkString, Lines[i][j].Value.ToString());
+                        if (Lines[i][keyIndex[j]].Value != null)
+                            checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
                     if (!keyCheckSet.Add(checkString))
                         return Valid;
-                }               
+                }
             }
+
+            //Unique
+            //To do運算量太大
+
             Valid = true;
             return Valid;
         }

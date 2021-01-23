@@ -53,6 +53,8 @@ namespace JsonEditorV2
             lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
             lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
+            lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
+            lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -196,6 +198,12 @@ namespace JsonEditorV2
                 MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
+            {
+                //文字最大長度檢查
+                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_11, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
             {
                 //Key和Nullable相斥檢查
@@ -278,7 +286,7 @@ namespace JsonEditorV2
             //先改名
             if (Var.SelectedColumn.Name != txtColumnName.Text)
                 if (!ChangeColumnName(Var.SelectedColumnParentTable, Var.SelectedColumn, txtColumnName.Text))
-                    return;            
+                    return;
 
             //輸入較無關值
             Var.SelectedColumnParentTable.Changed = true;
@@ -323,6 +331,12 @@ namespace JsonEditorV2
                 CheckFKType(Var.SelectedColumnParentTable, Var.SelectedColumn, newType);
             }
 
+            //改Unique
+            if (!Var.SelectedColumn.IsUnique && ckbColumnIsUnique.Checked)
+                recheckTable = true;
+
+            Var.SelectedColumn.IsUnique = ckbColumnIsUnique.Checked;
+
             //改Nullable
             if (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked)
             {
@@ -333,14 +347,16 @@ namespace JsonEditorV2
             }
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
-            //改最大最小值 及 正則表達式
+            //改最大最小值 、最大長度 及 正則表達式
             if (Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
                Var.SelectedColumn.MaxValue != txtColumnMaxValue.Text ||
-               Var.SelectedColumn.Regex != txtColumnRegex.Text)
+               Var.SelectedColumn.Regex != txtColumnRegex.Text ||
+               Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
                 Var.SelectedColumn.MinValue = txtColumnMinValue.Text;
-                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
+                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;                
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
+                Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;
             }
 
@@ -869,6 +885,8 @@ namespace JsonEditorV2
                 txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
                 txtColumnMaxValue.Text = Var.SelectedColumn.MaxValue ?? "";
                 txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
+                txtColumnMaxLength.Text = Var.SelectedColumn.TextMaxLength.ToString();
+                ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1723,11 +1741,6 @@ namespace JsonEditorV2
             Var.SelectedLineIndex++;
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
-        }
-
-        private void lbColumnFKColumn_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

@@ -165,6 +165,12 @@
   <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
     <value>可以為Null值</value>
   </data>
+  <data name="JE_COLUMN_IS_UNIQUE" xml:space="preserve">
+    <value>唯一值</value>
+  </data>
+  <data name="JE_COLUMN_MAX_LENGTH" xml:space="preserve">
+    <value>文字最大長度</value>
+  </data>
   <data name="JE_COLUMN_MAX_VALUE" xml:space="preserve">
     <value>最大值</value>
   </data>
@@ -336,6 +342,9 @@
   <data name="JE_RUN_UPDATE_COLUMN_M_10" xml:space="preserve">
     <value>最小值"{0}"高於最大值"{1}"</value>
   </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_11" xml:space="preserve">
+    <value>文字最大長度錯誤，合法值為0(不限)或正整數</value>
+  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
     <value>欄位行數不正確</value>
   </data>
@@ -464,6 +473,9 @@
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}"規則檢查失敗</value>
+  </data>
+  <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
+    <value>文字超過最大長度{0}</value>
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON 資料檔案編輯器</value>

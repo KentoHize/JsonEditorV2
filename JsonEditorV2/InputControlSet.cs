@@ -159,6 +159,16 @@ namespace JsonEditorV2
                 }
             }
 
+            //確認MaxLength正確
+            if(JColumn.TextMaxLength != 0)
+            {
+                if(parsedValue.ToString().Length > JColumn.TextMaxLength)
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, JColumn.TextMaxLength));
+                    return false;
+                }
+            }
+
             //外部驗證 - FK驗證
             if(JColumn.FKTable != null && JColumn.FKColumn != null)
             {   
