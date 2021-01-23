@@ -28,15 +28,14 @@ namespace JsonEditorV2
             
             frmFKTable frmFKTable = new frmFKTable();
 
+            if (!FKTable.Loaded)
+                MainForm.LoadJsonFile(FKTable);
+
             frmFKTable.fkTable = FKTable;
             DataTable dt = FKTable.ToDataTable();
             frmFKTable.Text = ColumnName;
             frmFKTable.keyColumnName = FKColumnName;
-            frmFKTable.currentValue = currentValue;
-
-            if (!FKTable.Loaded)
-                MainForm.LoadJsonFile(FKTable);
-
+            frmFKTable.currentValue = currentValue;           
             frmFKTable.dgvMain.Columns.Clear();            
             frmFKTable.dgvMain.DataSource = dt;
             frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.Font = 

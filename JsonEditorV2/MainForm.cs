@@ -18,7 +18,8 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
-            Var.CI = new CultureInfo("zh-TW");
+            //Var.CI = new CultureInfo("zh-TW");
+            Var.CI = new CultureInfo("en-US");
             ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
