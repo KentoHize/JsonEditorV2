@@ -1724,5 +1724,10 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
         }
+
+        private void lbColumnFKColumn_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
