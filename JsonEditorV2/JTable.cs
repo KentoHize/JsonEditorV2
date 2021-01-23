@@ -272,9 +272,18 @@ namespace JsonEditor
                         return Valid;
                 }
             }
-
+            
             //Unique
-            //To do運算量太大
+            for(int i = 0; i < Columns.Count; i++)
+            {
+                if(Columns[i].IsUnique)
+                {
+                    HashSet<object> uniqueCheckSet = new HashSet<object>();
+                    for (int j = Lines.Count - 1; j > -1; j--)
+                        if (!uniqueCheckSet.Add(Lines[j][i].Value))
+                            return Valid;
+                }
+            }
 
             Valid = true;
             return Valid;

@@ -477,6 +477,9 @@
   <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
     <value>Text over maximum length: {0}.</value>
   </data>
+  <data name="JE_VAL_VALUE_IS_NOT_UNIQUE" xml:space="preserve">
+    <value>Value "{0}" exist.</value>
+  </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON Files Editor</value>
   </data>

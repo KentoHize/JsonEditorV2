@@ -674,7 +674,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
-                InputControlSet ics = new InputControlSet(Var.SelectedTable.Columns[i]);
+                InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
                 ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);

@@ -1141,6 +1141,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 值&quot;{0}&quot;已存在.
+        /// </summary>
+        public static string JE_VAL_VALUE_IS_NOT_UNIQUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_VALUE_IS_NOT_UNIQUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON 資料檔案編輯器.
         /// </summary>
         public static string JSON_FILE_EDITOR_TITLE {

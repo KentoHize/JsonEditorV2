@@ -8,6 +8,7 @@ namespace JsonEditorV2
 {
     public class InputControlSet
     {
+        public JTable JTable { get; set; }
         public JColumn JColumn { get; set; }
 
         public Control ValueControl { get; set; }
@@ -20,8 +21,9 @@ namespace JsonEditorV2
         private Control ownerWindow;
         private object parsedValue;
 
-        public InputControlSet(JColumn sourceColumn)
+        public InputControlSet(JTable sourceTable, JColumn sourceColumn)
         {
+            JTable = sourceTable;
             JColumn = sourceColumn;
         }
 
@@ -166,6 +168,20 @@ namespace JsonEditorV2
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, JColumn.TextMaxLength));
                     return false;
+                }
+            }
+
+            //確認唯一值
+            if(JColumn.IsUnique)
+            {
+                int columnIndex = JTable.Columns.IndexOf(JColumn);
+                for(int i = 0; i < JTable.Count; i++)
+                {
+                    if(parsedValue == JTable[i][columnIndex].Value)
+                    {
+                        ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, parsedValue));
+                        return false;
+                    }
                 }
             }
 
