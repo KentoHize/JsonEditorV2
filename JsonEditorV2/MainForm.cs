@@ -218,7 +218,7 @@ namespace JsonEditorV2
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE;
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -1687,7 +1687,7 @@ namespace JsonEditorV2
             //已存在同名欄位
             if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == newName))
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_RENAME_COLUMN_M_1, newName), Res.JE_RUN_RENAME_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_RENAME_COLUMN_M_1, newName), Res.JE_RUN_RENAME_COLUMN_TITLE);
                 return false;
             }
 
@@ -1721,7 +1721,7 @@ namespace JsonEditorV2
                 return;
             else if (index == 0)
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_LINE_MOVE_UP_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_LINE_MOVE_UP_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE);
                 return;
             }
 
@@ -1740,7 +1740,7 @@ namespace JsonEditorV2
                 return;
             else if (index == Var.SelectedTable.Count - 1)
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_LINE_MOVE_DOWN_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_LINE_MOVE_DOWN_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE);
                 return;
             }
 
