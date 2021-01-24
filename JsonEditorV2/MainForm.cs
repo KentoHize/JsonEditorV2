@@ -382,7 +382,7 @@ namespace JsonEditorV2
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\";
 #endif
-            DialogResult dr = fbdMain.ShowDialog(this);
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr == DialogResult.OK)
             {
                 Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
@@ -477,7 +477,7 @@ namespace JsonEditorV2
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
-            DialogResult dr = fbdMain.ShowDialog(this);
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
 
@@ -1100,7 +1100,7 @@ namespace JsonEditorV2
 
         private void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
         {
-            DialogResult dr = fbdMain.ShowDialog(this);
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
 
