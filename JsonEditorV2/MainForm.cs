@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Aritiafel.Organizations;
+using Aritiafel.Items;
 
 namespace JsonEditorV2
 {
@@ -190,25 +192,25 @@ namespace JsonEditorV2
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
                 //欄位名檢查
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
             {
                 //文字最大長度檢查
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_11, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_11, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
             {
                 //Key和Nullable相斥檢查
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_7, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_7, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
@@ -216,7 +218,7 @@ namespace JsonEditorV2
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE;
                 return;
             }
 
@@ -232,20 +234,20 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_8, txtColumnMinValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_8, txtColumnMinValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
                     txtColumnMinValue.Text = newType.GetMinValue().ToString();
                     return;
                 }
                 if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType, true))
                 {
-                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_9, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_9, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
                     txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
                     return;
                 }
                 if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
                 txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
                 {
-                    MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_10, txtColumnMinValue.Text, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_10, txtColumnMinValue.Text, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
                     return;
                 }
             }
@@ -260,7 +262,7 @@ namespace JsonEditorV2
             }
             catch
             {
-                MessageBox.Show(Res.JE_RUN_UPDATE_COLUMN_M_4, Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_4, Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -278,7 +280,7 @@ namespace JsonEditorV2
                    Var.SelectedColumn.Type != newType ||
                    (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked))
                 {
-                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                    DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE);
                     if (dr == DialogResult.Cancel)
                         return;
                 }
@@ -370,7 +372,7 @@ namespace JsonEditorV2
 
         private void tmiAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE);
         }
 
         private void tmiNewJsonFiles_Click(object sender, EventArgs e)
@@ -392,9 +394,9 @@ namespace JsonEditorV2
                     else
                     {
                         if (File.Exists(Var.JFI.FileInfoPath))
-                            dr = MessageBox.Show(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Res.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Res.JE_RUN_NEW_JSON_FILES_TITLE, ResponseOption.YesNo);
                         else
-                            dr = MessageBox.Show(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Res.JE_RUN_NEW_JSON_FILES_TITLE, MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Res.JE_RUN_NEW_JSON_FILES_TITLE, ResponseOption.YesNo);
                         if (dr == DialogResult.Yes)
                         {
                             foreach (string s in jsonfiles)
@@ -419,7 +421,7 @@ namespace JsonEditorV2
             Var.CheckFailedFlag = false;
             if (Var.Changed)
             {
-                DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                DialogResult dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, ResponseOption.YesNoCancel);
                 if (dr == DialogResult.Yes)
                     tmiSaveJsonFiles_Click(this, new EventArgs());
                 if (Var.CheckFailedFlag)
@@ -438,7 +440,7 @@ namespace JsonEditorV2
 
         private void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show(Res.JE_RUN_SCAN_JSON_FILES_M_1, Res.JE_RUN_SCAN_JSON_FILES_TITLE, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult dr = RabbitCouriers.SentWarningQuestion(Res.JE_RUN_SCAN_JSON_FILES_M_1, Res.JE_RUN_SCAN_JSON_FILES_TITLE);
             if (dr != DialogResult.OK)
                 return;
 
@@ -468,7 +470,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
         }
 
-        private void tmiLoadJsonFiles_Click(object sender, EventArgs e)
+        public void tmiLoadJsonFiles_Click(object sender, EventArgs e)
         {
             if (AskSaveFiles(Res.JE_TMI_LOAD_JSON_FILES) == DialogResult.Cancel)
                 return;            
@@ -770,7 +772,7 @@ namespace JsonEditorV2
                 {
                     if (!jt.CehckValid())
                     {
-                        MessageBox.Show(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES);
                         Var.CheckFailedFlag = true;
                         return;
                     }
@@ -957,8 +959,7 @@ namespace JsonEditorV2
                     content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
             }
 
-
-            MessageBox.Show(string.Format(content, ex.Message), title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
         }
 
         private void tmiAddColumn_Click(object sender, EventArgs e)
@@ -969,7 +970,7 @@ namespace JsonEditorV2
 
             if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == columnName))
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_ADD_COLUMN_M_1, columnName), Res.JE_TMI_ADD_COLUMN, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_ADD_COLUMN_M_1, columnName), Res.JE_TMI_ADD_COLUMN);
                 return;
             }
 
@@ -1005,10 +1006,10 @@ namespace JsonEditorV2
                 DirectoryCopy(Path.Combine(ProjectPath, ProjectName), Path.Combine(BackupPath, ProjectName));
             else
             {
-                MessageBox.Show("Target backup drive or directory do not exist.");
+                RabbitCouriers.SentInformation("Target backup drive or directory do not exist.");
                 return;
             }
-            MessageBox.Show("OK");
+            RabbitCouriers.SentInformation("OK");
         }
         #region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
@@ -1106,7 +1107,7 @@ namespace JsonEditorV2
             string[] files = Directory.GetFiles(fbdMain.SelectedPath);
             if (files.Length != 0)
             {
-                dr = MessageBox.Show(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                dr = RabbitCouriers.SentWarningQuestion(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES);
                 if (dr != DialogResult.OK)
                     return;
                 try
@@ -1352,7 +1353,7 @@ namespace JsonEditorV2
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_DELETE_COLUMN_M_1, Var.SelectedColumnParentTable.Count), Res.JE_TMI_DELETE_COLUMN, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_DELETE_COLUMN_M_1, Var.SelectedColumnParentTable.Count), Res.JE_TMI_DELETE_COLUMN);
                 if (dr == DialogResult.Cancel)
                     return;
             }
@@ -1400,7 +1401,7 @@ namespace JsonEditorV2
 
             if (Var.Tables.Exists(m => m.Name == newName))
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_1, newName), Res.JE_TMI_RENAME_JSON_FILE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_1, newName), Res.JE_TMI_RENAME_JSON_FILE);
                 return;
             }
             try
@@ -1422,7 +1423,7 @@ namespace JsonEditorV2
 
         private void tmiDeleteJsonFile_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, ResponseOption.YesNo);
             if (dr == DialogResult.No)
                 return;
 
@@ -1542,7 +1543,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             if (index == 0)
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_COLUMN_MOVE_UP_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_COLUMN_MOVE_UP_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE);
                 return;
             }
 
@@ -1572,7 +1573,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             if (index == Var.SelectedColumnParentTable.Columns.Count - 1)
             {
-                MessageBox.Show(string.Format(Res.JE_RUN_COLUMN_MOVE_DOWN_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_COLUMN_MOVE_DOWN_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE);
                 return;
             }
 
@@ -1643,7 +1644,7 @@ namespace JsonEditorV2
                     string createDate = sr.ReadLine().ToString().Split('=')[1];
                     sr.Close();
 
-                    DialogResult dr = MessageBox.Show(string.Format(Res.JE_ERR_RECOVER_FILE_M_1, Path.GetFileName(originFileName), createDate), Res.JSON_FILE_EDITOR_TITLE, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    DialogResult dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_ERR_RECOVER_FILE_M_1, Path.GetFileName(originFileName), createDate), Res.JSON_FILE_EDITOR_TITLE, ResponseOption.YesNoCancel);
                     if (dr == DialogResult.Cancel)
                     {
                         Application.Exit();

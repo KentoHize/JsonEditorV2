@@ -53,7 +53,7 @@
           "IsUnique": false
         },
         {
-          "Name": "HIJ96",
+          "Name": "HIJ98",
           "IsKey": true,
           "IsNullable": false,
           "Type": "Guid",
@@ -164,7 +164,7 @@
           "IsNullable": true,
           "Type": "Guid",
           "FKTable": "Add2222",
-          "FKColumn": "HIJ96",
+          "FKColumn": "HIJ98",
           "NumberOfRows": 2,
           "Display": true,
           "Regex": "",
@@ -619,7 +619,7 @@
           "IsNullable": false,
           "Type": "Guid",
           "FKTable": "Add2222",
-          "FKColumn": "HIJ96",
+          "FKColumn": "HIJ98",
           "NumberOfRows": 1,
           "Display": false,
           "Regex": "",

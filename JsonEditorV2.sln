@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.1321
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEditorV2", "JsonEditorV2\JsonEditorV2.csproj", "{EDB9301D-6C75-475A-9F66-08A14865D6D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonEditorV2Tests", "JsonEditorV2Tests\JsonEditorV2Tests.csproj", "{ED9992D4-6003-48E2-8EA9-E201636D1D9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EDB9301D-6C75-475A-9F66-08A14865D6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB9301D-6C75-475A-9F66-08A14865D6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDB9301D-6C75-475A-9F66-08A14865D6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9992D4-6003-48E2-8EA9-E201636D1D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9992D4-6003-48E2-8EA9-E201636D1D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9992D4-6003-48E2-8EA9-E201636D1D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9992D4-6003-48E2-8EA9-E201636D1D9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
