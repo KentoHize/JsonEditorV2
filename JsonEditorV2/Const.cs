@@ -16,7 +16,7 @@ namespace JsonEditorV2
 
         public const long DontLoadFileBytesThreshold = 10000; // bytes
 
-        public static string BackupFolder { get => Path.Combine(Application.StartupPath, "Backup"); }
+        public static string BackupFolder { get => Path.Combine(Application.UserAppDataPath, "Backup"); }
         public static string BackupRecoverFile { get => Path.Combine(Const.BackupFolder, "Recover.ini"); }
     }
 }

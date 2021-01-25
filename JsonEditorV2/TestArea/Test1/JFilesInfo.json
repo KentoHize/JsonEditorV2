@@ -16,7 +16,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "0",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Date",
@@ -30,7 +32,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Chinese",
@@ -44,7 +48,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "English",
@@ -58,7 +64,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Japanese",
@@ -72,7 +80,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -91,7 +101,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "BestowerID",
@@ -105,7 +117,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "MoralRank",
@@ -119,7 +133,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "-4",
-          "MaxValue": "6"
+          "MaxValue": "6",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "BestowDateTime",
@@ -133,7 +149,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Reason",
@@ -147,7 +165,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Memo",
@@ -161,7 +181,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -180,7 +202,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Surname",
@@ -194,7 +218,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Name",
@@ -208,7 +234,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "OtherName",
@@ -222,7 +250,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "SurnameFirst",
@@ -236,7 +266,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Yomikata",
@@ -250,7 +282,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Gender",
@@ -264,7 +298,9 @@
           "Regex": "^[mf]?$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Fiction",
@@ -278,7 +314,9 @@
           "Regex": "^[yn]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Wanted",
@@ -292,7 +330,9 @@
           "Regex": "^[yn]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Protected",
@@ -306,7 +346,9 @@
           "Regex": "^[yn]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "TwitterAccount",
@@ -320,7 +362,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "FacebookAccount",
@@ -334,7 +378,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "InstagramAccount",
@@ -348,7 +394,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "From",
@@ -362,7 +410,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Group",
@@ -376,7 +426,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "IsAOMember",
@@ -390,7 +442,9 @@
           "Regex": "^[yn]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "IsCelebrity",
@@ -404,7 +458,9 @@
           "Regex": "^[yn]$",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "MoralRank",
@@ -418,7 +474,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "-4",
-          "MaxValue": "6"
+          "MaxValue": "6",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Description",
@@ -432,7 +490,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "LastBestowDate",
@@ -446,7 +506,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "PicturePath",
@@ -460,7 +522,9 @@
           "Regex": null,
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -479,7 +543,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "0",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Date",
@@ -493,7 +559,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Chinese",
@@ -507,7 +575,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "English",
@@ -521,7 +591,9 @@
           "Regex": "",
           "Description": "",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Japanese",
@@ -535,7 +607,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     }

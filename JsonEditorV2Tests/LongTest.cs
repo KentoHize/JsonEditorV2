@@ -16,7 +16,7 @@ namespace JsonEditorV2Tests
     {
         public TestContext TestContext { get; set; }
 
-        public string FileName { get; set; }
+        public string InputText { get; set; }
 
         [TestInitialize]
         public void TestInitialize()
@@ -30,13 +30,27 @@ namespace JsonEditorV2Tests
             if(newForm is frmInputBox)
             {   
                 frmInputBox frmInputBox = newForm as frmInputBox;
-                //輸入值
-                string input = FileName;
-                TestContext.WriteLine($"Text = {input}");
-                (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
-                //按下OK
-                TestContext.WriteLine($"Confirm Button Clicked");
-                frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
+                
+                switch(frmInputBox.InputBoxType)
+                {
+                    case InputBoxTypes.NewFile:
+                    case InputBoxTypes.RenameFile:
+                    case InputBoxTypes.AddColumn:
+                    case InputBoxTypes.RenameColumn:
+                        //輸入值
+                        string input = InputText;
+                        TestContext.WriteLine($"Text = {input}");
+                        (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
+                        //按下OK
+                        TestContext.WriteLine($"Confirm Button Clicked");
+                        frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
+                        break;                    
+                       
+                    default:
+                        break;
+                }
+                
+                
             }
             return newForm.DialogResult;
         }
@@ -46,25 +60,57 @@ namespace JsonEditorV2Tests
         {
             MainForm mf = new MainForm();
 
+            EventArgs e = new EventArgs();
+            ApplicationContext ac = new ApplicationContext(mf);
+            
+            //Form_Load
+            //mf.MainForm_Load(mf, e);
+
             //開新檔案庫
             AdventurerAssociation.RegisterMember(new Bard("SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test6"));
-            mf.tmiNewJsonFiles_Click(mf, new EventArgs());
+            mf.tmiNewJsonFiles_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
             //建立三個檔案
-            FileName = "SetA";
-            mf.tmiNewJsonFile_Click(mf, new EventArgs());            
+            InputText = "SetA";
+            mf.tmiNewJsonFile_Click(mf, e);            
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
 
-            FileName = "SetB";
-            mf.tmiNewJsonFile_Click(mf, new EventArgs());
+            InputText = "SetB";
+            mf.tmiNewJsonFile_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
 
-            FileName = "SetC";
-            mf.tmiNewJsonFile_Click(mf, new EventArgs());
+            InputText = "SetC";
+            mf.tmiNewJsonFile_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
+
+            //Click Node
+            TreeView tv = mf.Controls.Find("trvJsonFiles", false)[0] as TreeView;
+            TreeNodeMouseClickEventArgs tnmc = new TreeNodeMouseClickEventArgs(tv.Nodes[0].Nodes[0], MouseButtons.Right, 1, 0, 0);
+            mf.trvJsonFiles_NodeMouseClick(mf, tnmc);
+
+            /*
+            //Delete File
+            mf.tmiDeleteJsonFile_Click(mf, e);
+            */
+            //Rename
+            InputText = "SetA1";
+            mf.tmiRenameJsonFile_Click(mf, e);
+
+            //Add Column
+            InputText = "AAAA_2";
+            mf.tmiAddColumn_Click(mf, e);
+
+            //存檔
+            //AdventurerAssociation.RegisterMember(new Bard("SelectedPath", ""))
+            mf.tmiSaveJsonFiles_Click(mf, e);
+
+            //關閉
+            mf.tmiCloseAllFiles_Click(mf, e);
+            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
+            ac.Dispose();
         }
     }
 }

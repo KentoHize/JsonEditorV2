@@ -24,7 +24,7 @@ namespace JsonEditorV2
 
     public partial class frmInputBox : Form
     {
-        private InputBoxTypes i_type;
+        public InputBoxTypes InputBoxType { get; set; }
         private string returnValue;
 
         public static string Show(IWin32Window owner, InputBoxTypes type)
@@ -37,7 +37,7 @@ namespace JsonEditorV2
         public frmInputBox(InputBoxTypes type)
         {
             InitializeComponent();
-            i_type = type;
+            InputBoxType = type;
             btnConfirm.Text = Res.JE_INPUTBOX_BTN_CONFIRM;
             btnCancel.Text = Res.JE_INPUTBOX_BTN_CANCEL;
 
@@ -77,7 +77,7 @@ namespace JsonEditorV2
 
         public void btnConfirm_Click(object sender, EventArgs e)
         {   
-            switch (i_type)
+            switch (InputBoxType)
             {
                 case InputBoxTypes.NewFile:                
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
