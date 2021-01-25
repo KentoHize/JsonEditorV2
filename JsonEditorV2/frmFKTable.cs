@@ -48,7 +48,7 @@ namespace JsonEditorV2
             return frmFKTable.Value;
         }
 
-        private void dgvMain_CellClick(object sender, DataGridViewCellEventArgs e)
+        public void dgvMain_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1)
                 return;
@@ -58,7 +58,7 @@ namespace JsonEditorV2
             Hide();
         }
 
-        private void frmFKTable_KeyPress(object sender, KeyPressEventArgs e)
+        public void frmFKTable_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
@@ -68,7 +68,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void dgvMain_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        public void dgvMain_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {            
             int i;
             for (i = 0; i < dgvMain.Rows.Count; i++)
@@ -98,18 +98,18 @@ namespace JsonEditorV2
                 dgvMain.FirstDisplayedScrollingRowIndex = i;
         }
 
-        private void dgvMain_KeyPress(object sender, KeyPressEventArgs e)
+        public void dgvMain_KeyPress(object sender, KeyPressEventArgs e)
         {
             frmFKTable_KeyPress(this, e);
         }
 
-        private void frmFKTable_Paint(object sender, PaintEventArgs e)
+        public void frmFKTable_Paint(object sender, PaintEventArgs e)
         {
             Left = (Owner.Width - Width) / 2 + Owner.Left;
             Top = (Owner.Height - Height) / 2 + Owner.Top;
         }
 
-        private void dgvMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        public void dgvMain_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             e.Value = e.Value.ToString(fkTable.Columns[e.ColumnIndex].Type);
         }

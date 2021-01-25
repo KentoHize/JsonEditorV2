@@ -187,7 +187,7 @@ namespace JsonEditorV2
             return false;
         }
 
-        private void btnUpdateColumn_Click(object sender, EventArgs e)
+        public void btnUpdateColumn_Click(object sender, EventArgs e)
         {
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
@@ -370,12 +370,12 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void tmiAbout_Click(object sender, EventArgs e)
+        public void tmiAbout_Click(object sender, EventArgs e)
         {
             RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE);
         }
 
-        private void tmiNewJsonFiles_Click(object sender, EventArgs e)
+        public void tmiNewJsonFiles_Click(object sender, EventArgs e)
         {
             if (AskSaveFiles(Res.JE_TMI_NEW_JSON_FILE) == DialogResult.Cancel)
                 return;
@@ -415,7 +415,7 @@ namespace JsonEditorV2
             }
         }
 
-        private DialogResult AskSaveFiles(string title)
+        public DialogResult AskSaveFiles(string title)
         {
             Var.AskSaveFlag = true;
             Var.CheckFailedFlag = false;
@@ -431,14 +431,14 @@ namespace JsonEditorV2
             return DialogResult.No;
         }
 
-        private void tmiExit_Click(object sender, EventArgs e)
+        public void tmiExit_Click(object sender, EventArgs e)
         {
             if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
                 return;
             Application.Exit();
         }
 
-        private void tmiScanJsonFiles_Click(object sender, EventArgs e)
+        public void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
             DialogResult dr = RabbitCouriers.SentWarningQuestion(Res.JE_RUN_SCAN_JSON_FILES_M_1, Res.JE_RUN_SCAN_JSON_FILES_TITLE);
             if (dr != DialogResult.OK)
@@ -526,22 +526,14 @@ namespace JsonEditorV2
                 }
             }
 
-            ////有JFileInfo的話相連
-            //try
-            //{
-            //    if (Var.JFI.TablesInfo.Count != 0)
-            //        foreach (JTable jt in Var.Tables)
-            //            jt.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == jt.Name));
-            //}
-            //catch (Exception ex)
-            //{
-            //    HandleException(ex, Res.JE_RUN_LOAD_JSON_FILES_M_2, Res.JE_RUN_LOAD_JSON_FILES_TITLE);
-            //}
+            // TO DO
+            //JFICheck
+
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
         }
 
-        private string GetColumnNodeString(JColumn jc)
+        public string GetColumnNodeString(JColumn jc)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(jc.Name);
@@ -552,7 +544,7 @@ namespace JsonEditorV2
             return sb.ToString();
         }
 
-        private string GetTableNodeString(JTable jt)
+        public string GetTableNodeString(JTable jt)
             => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}{(jt.Valid ? "" : "(Invalid)")}";
 
 
@@ -744,7 +736,7 @@ namespace JsonEditorV2
             RefreshLsbLines();
         }
 
-        private void tmiCloseAllFiles_Click(object sender, EventArgs e)
+        public void tmiCloseAllFiles_Click(object sender, EventArgs e)
         {
             if (!Var.AskSaveFlag && AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
                 return;
@@ -763,7 +755,7 @@ namespace JsonEditorV2
             sslMain.Text = "";
         }
 
-        private void tmiSaveJsonFiles_Click(object sender, EventArgs e)
+        public void tmiSaveJsonFiles_Click(object sender, EventArgs e)
         {
             //確認所有檔案符合規則
             foreach (JTable jt in Var.Tables)
@@ -807,13 +799,13 @@ namespace JsonEditorV2
                 e.Cancel = true;
         }
 
-        private void trvJsonFiles_MouseDown(object sender, MouseEventArgs e)
+        public void trvJsonFiles_MouseDown(object sender, MouseEventArgs e)
         {
             trvJsonFiles.ContextMenuStrip = null;
             Var.DblClick = e.Button == MouseButtons.Left && e.Clicks >= 2;
         }
 
-        private void trvJsonFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        public void trvJsonFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node == Var.RootNode)
             {
@@ -901,7 +893,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        public void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Parent == Var.RootNode)
             {
@@ -917,7 +909,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void tmiNewJsonFile_Click(object sender, EventArgs e)
+        public void tmiNewJsonFile_Click(object sender, EventArgs e)
         {
             string fileName = frmInputBox.Show(this, InputBoxTypes.NewFile);
             if (string.IsNullOrEmpty(fileName))
@@ -937,7 +929,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private static void HandleException(Exception ex, string content = null, string title = null)
+        public static void HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
                 content = Res.JE_ERR_DEFAULT_MESSAGE;
@@ -962,7 +954,7 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
         }
 
-        private void tmiAddColumn_Click(object sender, EventArgs e)
+        public void tmiAddColumn_Click(object sender, EventArgs e)
         {
             string columnName = frmInputBox.Show(this, InputBoxTypes.AddColumn);
             if (string.IsNullOrEmpty(columnName))
@@ -994,7 +986,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void tmiBackup_Click(object sender, EventArgs e)
+        public void tmiBackup_Click(object sender, EventArgs e)
         {
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
@@ -1048,7 +1040,7 @@ namespace JsonEditorV2
         }
         #endregion
 
-        private void btnClearColumn_Click(object sender, EventArgs e)
+        public void btnClearColumn_Click(object sender, EventArgs e)
         {
             txtColumnName.Text = "";
             cobColumnType.SelectedIndex = 0;
@@ -1058,7 +1050,7 @@ namespace JsonEditorV2
             txtColumnNumberOfRows.Text = "0";
         }
 
-        private void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
+        public void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobColumnFKTable.SelectedIndex < 1)
                 cobColumnFKColumn.DataSource = null;
@@ -1074,7 +1066,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void RefreshTmiLanguages()
+        public void RefreshTmiLanguages()
         {
             foreach (ToolStripItem tsi in tmiLanguages.DropDownItems)
             {
@@ -1086,19 +1078,19 @@ namespace JsonEditorV2
             }
         }
 
-        private void tmiLanguageZNCH_Click(object sender, EventArgs e)
+        public void tmiLanguageZNCH_Click(object sender, EventArgs e)
         {
             Var.CI = new CultureInfo("zh-TW");
             ChangeCulture();
         }
 
-        private void tmiLanguageENUS_Click(object sender, EventArgs e)
+        public void tmiLanguageENUS_Click(object sender, EventArgs e)
         {
             Var.CI = new CultureInfo("en-US");
             ChangeCulture();
         }
 
-        private void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
+        public void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
         {
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
@@ -1135,7 +1127,7 @@ namespace JsonEditorV2
             tmiSaveJsonFiles_Click(this, e);
         }
 
-        private void tmiOpenJsonFile_Click(object sender, EventArgs e)
+        public void tmiOpenJsonFile_Click(object sender, EventArgs e)
         {
             if (Var.OpenedTable.Contains(Var.SelectedColumnParentTable))
                 return;
@@ -1333,18 +1325,18 @@ namespace JsonEditorV2
             return true;
         }
 
-        private void tmiExpandAll_Click(object sender, EventArgs e)
+        public void tmiExpandAll_Click(object sender, EventArgs e)
         {
             Var.RootNode.ExpandAll();
         }
 
-        private void tmiCollapseAll_Click(object sender, EventArgs e)
+        public void tmiCollapseAll_Click(object sender, EventArgs e)
         {
             Var.RootNode.Collapse();
             Var.RootNode.Expand();
         }
 
-        private void tmiDeleteColumn_Click(object sender, EventArgs e)
+        public void tmiDeleteColumn_Click(object sender, EventArgs e)
         {
             //讀檔            
             if (!Var.SelectedColumnParentTable.Loaded)
@@ -1376,7 +1368,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_COLUMN_M_2, removedName);
         }
 
-        private void btnNewLine_Click(object sender, EventArgs e)
+        public void btnNewLine_Click(object sender, EventArgs e)
         {
             JLine jl = new JLine();
             foreach (JColumn jc in Var.SelectedTable.Columns)
@@ -1390,7 +1382,7 @@ namespace JsonEditorV2
             RefreshPnlMainValue();
         }
 
-        private void tmiRenameJsonFile_Click(object sender, EventArgs e)
+        public void tmiRenameJsonFile_Click(object sender, EventArgs e)
         {
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameFile);
             if (string.IsNullOrEmpty(newName))
@@ -1421,7 +1413,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
         }
 
-        private void tmiDeleteJsonFile_Click(object sender, EventArgs e)
+        public void tmiDeleteJsonFile_Click(object sender, EventArgs e)
         {
             DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, ResponseOption.YesNo);
             if (dr == DialogResult.No)
@@ -1456,21 +1448,21 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        private void tmiCloseJsonFile_Click(object sender, EventArgs e)
+        public void tmiCloseJsonFile_Click(object sender, EventArgs e)
         {
             if (!Var.OpenedTable.Contains(Var.SelectedColumnParentTable))
                 return;
             CloseJsonFile(Var.OpenedTable.IndexOf(Var.SelectedColumnParentTable));
         }
 
-        private void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
+        public void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             Var.PageIndex = tbcMain.SelectedIndex;
             RefreshPnlMain();
             RefreshLsbLines();
         }
 
-        private void btnClearMain_Click(object sender, EventArgs e)
+        public void btnClearMain_Click(object sender, EventArgs e)
         {
             TextBox tb;
             foreach (Control c in pnlMain.Controls)
@@ -1482,12 +1474,12 @@ namespace JsonEditorV2
             }
         }
 
-        private void tmiCloseTab_Click(object sender, EventArgs e)
+        public void tmiCloseTab_Click(object sender, EventArgs e)
         {
             CloseJsonFile(Var.ClickedTabIndex);
         }
 
-        private void tbcMain_MouseDown(object sender, MouseEventArgs e)
+        public void tbcMain_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -1501,7 +1493,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void btnDeleteLine_Click(object sender, EventArgs e)
+        public void btnDeleteLine_Click(object sender, EventArgs e)
         {
             if (Var.SelectedLineIndex == -1)
                 return;
@@ -1515,7 +1507,7 @@ namespace JsonEditorV2
             RefreshLsbLines();
         }
 
-        private void btnUpdateMain_Click(object sender, EventArgs e)
+        public void btnUpdateMain_Click(object sender, EventArgs e)
         {
             if (Var.SelectedLineIndex == -1)
                 return;
@@ -1538,7 +1530,7 @@ namespace JsonEditorV2
             RefreshPnlMainValue();
         }
 
-        private void tmiColumnMoveUp_Click(object sender, EventArgs e)
+        public void tmiColumnMoveUp_Click(object sender, EventArgs e)
         {
             int index = Var.SelectedColumnIndex;
             if (index == 0)
@@ -1568,7 +1560,7 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        private void tmiColumnMoveDown_Click(object sender, EventArgs e)
+        public void tmiColumnMoveDown_Click(object sender, EventArgs e)
         {
             int index = Var.SelectedColumnIndex;
             if (index == Var.SelectedColumnParentTable.Columns.Count - 1)
@@ -1598,7 +1590,7 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        private void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
+        public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
             cobColumnType.Enabled =
@@ -1608,26 +1600,26 @@ namespace JsonEditorV2
             txtColumnMaxValue.Enabled = FKIsEmpty;
         }
 
-        private void tmiOpenFolder_Click(object sender, EventArgs e)
+        public void tmiOpenFolder_Click(object sender, EventArgs e)
         {
             if (Var.JFI != null)
                 Process.Start(Var.JFI.DirectoryPath);
         }
 
-        private void tmiViewJsonFile_Click(object sender, EventArgs e)
+        public void tmiViewJsonFile_Click(object sender, EventArgs e)
         {
             if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
                 Process.Start("notepad.exe", Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
         }
 
-        private void tmiViewJFIFile_Click(object sender, EventArgs e)
+        public void tmiViewJFIFile_Click(object sender, EventArgs e)
         {
             if (Var.JFI != null)
                 if (File.Exists(Var.JFI.FileInfoPath))
                     Process.Start("notepad.exe", Var.JFI.FileInfoPath);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public void MainForm_Load(object sender, EventArgs e)
         {
             //確認Backup資料夾存在
             if (!Directory.Exists(Const.BackupFolder))
@@ -1660,7 +1652,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void cobColumnType_SelectedIndexChanged(object sender, EventArgs e)
+        public void cobColumnType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobColumnType.SelectedIndex == -1)
                 return;
@@ -1674,12 +1666,12 @@ namespace JsonEditorV2
                 (result.IsDateTime() || result.IsNumber());
         }
 
-        private void tmiRefreshFiles_Click(object sender, EventArgs e)
+        public void tmiRefreshFiles_Click(object sender, EventArgs e)
         {
             RefreshTrvJsonFiles();
         }
 
-        private bool ChangeColumnName(JTable sourceTable, JColumn sourceColumn, string newName)
+        public bool ChangeColumnName(JTable sourceTable, JColumn sourceColumn, string newName)
         {   
             if (newName == Var.SelectedColumn.Name)
                 return false;
@@ -1701,7 +1693,7 @@ namespace JsonEditorV2
             return true;
         }
 
-        private void tmiRenameColumn_Click(object sender, EventArgs e)
+        public void tmiRenameColumn_Click(object sender, EventArgs e)
         {
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
             if (string.IsNullOrEmpty(newName))
@@ -1714,7 +1706,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_COLUMN_M_2, newName);
         }
 
-        private void btnLineMoveUp_Click(object sender, EventArgs e)
+        public void btnLineMoveUp_Click(object sender, EventArgs e)
         {
             int index = Var.SelectedLineIndex;
             if (index == -1)
@@ -1733,7 +1725,7 @@ namespace JsonEditorV2
             RefreshLsbLines();
         }
 
-        private void btnLineMoveDown_Click(object sender, EventArgs e)
+        public void btnLineMoveDown_Click(object sender, EventArgs e)
         {
             int index = Var.SelectedLineIndex;
             if (index == -1)

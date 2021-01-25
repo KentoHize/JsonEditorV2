@@ -69,13 +69,13 @@ namespace JsonEditorV2
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        public void btnCancel_Click(object sender, EventArgs e)
         {
             returnValue = null;
             Hide();
         }
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        public void btnConfirm_Click(object sender, EventArgs e)
         {   
             switch (i_type)
             {
@@ -124,7 +124,7 @@ namespace JsonEditorV2
             Hide();
         }
 
-        private void frmInputBox_KeyPress(object sender, KeyPressEventArgs e)
+        public void frmInputBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter))
                 btnConfirm_Click(this, new EventArgs());
@@ -132,7 +132,7 @@ namespace JsonEditorV2
                 btnCancel_Click(this, new EventArgs());
         }
 
-        private void txtInput_KeyPress(object sender, KeyPressEventArgs e)
+        public void txtInput_KeyPress(object sender, KeyPressEventArgs e)
         {
             frmInputBox_KeyPress(this, e);
         }
