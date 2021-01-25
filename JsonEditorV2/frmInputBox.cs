@@ -30,7 +30,7 @@ namespace JsonEditorV2
         public static string Show(IWin32Window owner, InputBoxTypes type)
         {            
             frmInputBox frmInputBox = new frmInputBox(type);            
-            frmInputBox.ShowDialog(owner);
+            frmInputBox.ShowDialogOrCallEvent(owner);
             return frmInputBox.returnValue;
         }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using JsonEditor;
+using Aritiafel.Organizations;
 
 namespace JsonEditorV2
 {
@@ -44,7 +45,7 @@ namespace JsonEditorV2
             frmFKTable.dgvMain.Columns[FKColumnName].DefaultCellStyle.BackColor = Color.Azure;
             frmFKTable.dgvMain.ClearSelection();
             
-            frmFKTable.ShowDialog(owner);
+            frmFKTable.ShowDialogOrCallEvent(owner);
             return frmFKTable.Value;
         }
 

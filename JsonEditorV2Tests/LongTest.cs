@@ -16,10 +16,29 @@ namespace JsonEditorV2Tests
     {
         public TestContext TestContext { get; set; }
 
+        public string FileName { get; set; }
+
         [TestInitialize]
         public void TestInitialize()
         {
             AdventurerAssociation.RegisterMembers();
+            AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+        }
+
+        private DialogResult AdventurerAssociation_Form_Start(Form newForm)
+        {
+            if(newForm is frmInputBox)
+            {   
+                frmInputBox frmInputBox = newForm as frmInputBox;
+                //輸入值
+                string input = FileName;
+                TestContext.WriteLine($"Text = {input}");
+                (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
+                //按下OK
+                TestContext.WriteLine($"Confirm Button Clicked");
+                frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
+            }
+            return newForm.DialogResult;
         }
 
         [TestMethod]
@@ -32,11 +51,19 @@ namespace JsonEditorV2Tests
             mf.tmiNewJsonFiles_Click(mf, new EventArgs());
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
+            //建立三個檔案
+            FileName = "SetA";
+            mf.tmiNewJsonFile_Click(mf, new EventArgs());            
+            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
-            //建立三個檔案            
+
+            FileName = "SetB";
             mf.tmiNewJsonFile_Click(mf, new EventArgs());
+            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
-            mf.
+
+            FileName = "SetC";
+            mf.tmiNewJsonFile_Click(mf, new EventArgs());
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
         }
     }
