@@ -1110,20 +1110,20 @@ namespace JsonEditorV2
                 ToolStripMenuItem tsmi = tsi as ToolStripMenuItem;
                 if (tsmi != null)
                     tsmi.Checked = false;
-                if (tsmi.Name.Contains(Var.CI.Name.Remove(2, 1).ToUpper()))
+                if (tsmi.Name.Contains(Setting.CI.Name.Remove(2, 1).ToUpper()))
                     tsmi.Checked = true;
             }
         }
 
         public void tmiLanguageZNCH_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("zh-TW");
+            Setting.CI = new CultureInfo("zh-TW");
             ChangeCulture();
         }
 
         public void tmiLanguageENUS_Click(object sender, EventArgs e)
         {
-            Var.CI = new CultureInfo("en-US");
+            Setting.CI = new CultureInfo("en-US");
             ChangeCulture();
         }
 

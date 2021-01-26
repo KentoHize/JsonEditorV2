@@ -17,7 +17,7 @@
     "Group": "i",
     "IsAOMember": "y",
     "IsCelebrity": "y",
-    "MoralRank": 6,
+    "MoralRank": "6",
     "Description": "有奈教（ありなぎょう）教主、1985年12月2日に出生、才徳兼備、知略と勇気両方ともある教師と軍師、他の人たちの品格段階を評定する人。",
     "LastBestowDate": "0001/01/01",
     "PicturePath": "Man_back.png"
@@ -40,7 +40,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "字雲長，三國時代的蜀軍武將",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Guan_Yu.jpg"
@@ -63,7 +63,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "字孔明，三國時代的蜀軍軍師、蜀國丞相",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Zhuge_Liang.jpg"
@@ -86,7 +86,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "魔法少女まどか☆マギカに登場する 、「魔法少女」とされている主人公",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Madoka.png"
@@ -109,7 +109,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "ラキオスに属するスピリット、純真無垢な存在",
     "LastBestowDate": "0003/11/18",
     "PicturePath": "Aseria.jpg"
@@ -132,7 +132,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "セイバー（Saber）、Fate/Stay Nightのメインヒロイン。士郎と契約した剣士のサーヴァント",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Seibaa.jpg"
@@ -155,7 +155,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 5,
+    "MoralRank": "5",
     "Description": "Angel Beats!のヒロイン。死後の世界にある学校の生徒会長",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Tachibana_Kanade.png"
@@ -178,7 +178,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "字子龍，三國時代的蜀軍武將",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Zhao_Yun.jpg"
@@ -201,7 +201,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "織田信長 日本の戦国時代から安土桃山時代にかけての武将、戦国大名",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Oda_Nobunaga.jpg"
@@ -224,7 +224,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "戦女神シリーズ 「神殺し」とよばれた主人公",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Serika.jpg"
@@ -247,7 +247,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "咲-Saki-の主人公、清澄高校1年生",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Miyanaga_saki.png"
@@ -270,7 +270,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "アリシゼーション編のヒロイン、ボトムアップ型の人工知能",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Alice_Zuberg.png"
@@ -293,7 +293,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "PSYCHO-PASS ヒロイン、主人公。公安局刑事課一係の監視官",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Tsunemori_Akane.jpg"
@@ -316,7 +316,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 4,
+    "MoralRank": "4",
     "Description": "忍者集団の一派である霧幻天神流の18代目頭首となるはずだったハヤテの妹。主人公。",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Kasumi.jpg"
@@ -339,7 +339,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "鬼滅の刃の主人公、13 -> 15歳、嗅覚が良い少年",
     "LastBestowDate": "0003/12/09",
     "PicturePath": "Kamado_Tanzirou.jpg"
@@ -362,7 +362,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "本作の主人公。中学2年生の平凡な少女だが、魔法少女になった",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Miki_Sayaka.png"
@@ -385,7 +385,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "メインヒロイン、格好いい美少女",
     "LastBestowDate": "0003/12/20",
     "PicturePath": "Sento_Isuzu.jpg"
@@ -408,7 +408,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "リーザス女王リアに仕える忍者、ランスの恋人",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Kentou_Kanami.png"
@@ -431,7 +431,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "ファントム・バレット編のヒロイン、女子高生",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Asada_Sinon.jpg"
@@ -454,7 +454,7 @@
     "Group": "i",
     "IsAOMember": "y",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "マザーズ・ロザリオ編「絶剣（ぜっけん）」と呼ばたヒロイン",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Yuki.jpg"
@@ -477,7 +477,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "フェアリィ・ダンス編のヒロイン。和人の1歳下の義妹",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Kirigaya_Sukuha.jpg"
@@ -500,7 +500,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 3,
+    "MoralRank": "3",
     "Description": "ドイツ人と日本人の父母を持つハーフ、学生兼空手師範",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Hitomi.jpg"
@@ -523,7 +523,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "エヴァンゲリオンの主人公、EVA初号機専属操縦者",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "ikari_shinji.jpg"
@@ -546,7 +546,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "Fate/StayNightの主人公、穂群原学園2年生、「正義の味方」を目指し魔術師",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Emiya_Sirou.jpg"
@@ -569,7 +569,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "SOS団団員、元文芸部員、宇宙人",
     "LastBestowDate": "0003/12/11",
     "PicturePath": "nagato_yuki.jpg"
@@ -592,7 +592,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "高校3年生で、陽太の幼馴染み",
     "LastBestowDate": "0004/01/05",
     "PicturePath": "Izanami_Kyouko.png"
@@ -615,7 +615,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "修道服を着た少女。自らを“全知の神”と名乗る",
     "LastBestowDate": "0004/01/05",
     "PicturePath": "Hina.png"
@@ -638,7 +638,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "ヤマハが開発した音声合成システムVOCALOIDにより女声の歌声を合成することのできるソフトウェア音源。およびそのキャラクターである、年齢16歳、身長158cm、体重42kgの設定",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Hatune_Miku.jpg"
@@ -661,7 +661,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "学園都市第3位の超能力者（レベル5）、能力名の「超電磁砲（レールガン）」。「とある科学の超電磁砲」の主人公",
     "LastBestowDate": "0003/11/15",
     "PicturePath": "Misaka_Mikoto.png"
@@ -684,7 +684,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "14歳の少女。EVA 弐号機の操縦者、新劇場版は式波.アスカ.ラングレーです",
     "LastBestowDate": "0003/12/22",
     "PicturePath": "Asuka_Rangurei.jpg"
@@ -707,7 +707,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 2,
+    "MoralRank": "2",
     "Description": "SAOプレイヤー、メイスの使い手、愛称は「リズ」",
     "LastBestowDate": "0003/12/30",
     "PicturePath": "Rizubetto.jpg"
@@ -730,7 +730,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 1,
+    "MoralRank": "1",
     "Description": "主人公であり、受験を控えた高校3年生",
     "LastBestowDate": "0004/01/05",
     "PicturePath": "Narukami_Youta.png"
@@ -753,7 +753,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 1,
+    "MoralRank": "1",
     "Description": "SAOの主人公、VRMMOプレイヤーとして高い仮想世界適性を持ってる",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Kirigaya_Kazuto.jpg"
@@ -776,7 +776,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 1,
+    "MoralRank": "1",
     "Description": "ヒロイン、高校生、SOS団団長",
     "LastBestowDate": "0003/12/11",
     "PicturePath": "Suzumiya_Haruhi.png"
@@ -799,7 +799,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 1,
+    "MoralRank": "1",
     "Description": "SOS団団員、未来人",
     "LastBestowDate": "0003/12/11",
     "PicturePath": "Asahina_Mikuru.jpg"
@@ -822,7 +822,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": 1,
+    "MoralRank": "1",
     "Description": "抜け忍となったかすみを追う刺客、くノ一",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Ayane.jpg"
@@ -845,7 +845,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "戦国時代から安土桃山時代にかけての武将、大名。天下人、（初代）武家関白、太閤",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Toyotomi_Hideyoshi.jpg"
@@ -868,7 +868,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "中國國民黨籍的中華民國政治人物，立法委員 ",
     "LastBestowDate": "0003/11/24",
     "PicturePath": "chiang-wan-an.jpg"
@@ -891,7 +891,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "中華民國民主進步黨籍政治人物 第15任 中華民國副總統",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Lai-ching-te.jpg"
@@ -914,7 +914,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "第十、十一任中華民國總統 曾任民主進步黨主席、臺北市議會議員、立法委員、臺北市市長",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "A-bian.jpg"
@@ -937,7 +937,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "日本の政治家。自由民主党所属の衆議院議員（8期）、内閣総理大臣（第99代）、自由民主党総裁（第26代）。",
     "LastBestowDate": "0003/12/10",
     "PicturePath": "Suga_Yoshihide.jpg"
@@ -960,7 +960,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "朝鮮民主主義人民共和國現任最高領導人",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Kim-Jong-un.jpg"
@@ -983,7 +983,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "日本の政治家。自由民主党所属の衆議院議員、内閣総理大臣",
     "LastBestowDate": "0003/12/10",
     "PicturePath": "Shinzo_Abe.jpg"
@@ -1006,7 +1006,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "日本棋院職業棋士",
     "LastBestowDate": "0003/12/21",
     "PicturePath": "Xie_Yimin.jpg"
@@ -1029,7 +1029,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -1,
+    "MoralRank": "-1",
     "Description": "Fate/Stay Nightメインヒロインの一人、穂群原学園女生徒魔術師、アーチャーのマスター",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Tousaka_Rin.jpg"
@@ -1052,7 +1052,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -2,
+    "MoralRank": "-2",
     "Description": "中華民國政治人物，第12、13任中華民國總統，第4、6任中國國民黨主席",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Ma-ying-jeou.jpg"
@@ -1075,7 +1075,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣男藝人、主持人、歌手、唱片製作人、演員、商人",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Jacky-Wu.jpg"
@@ -1098,7 +1098,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "中華民國外科醫師、政治人物，臺北市市長、台灣民眾黨創始人兼黨主席",
     "LastBestowDate": "0003/12/27",
     "PicturePath": "Ko-wen-je.jpg"
@@ -1121,7 +1121,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "中華民國民主進步黨籍政治人物，高雄市市長",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Cheng-chi-mai.jpg"
@@ -1144,7 +1144,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "中華人民共和國政治人物、中國共產黨中央委員會總書記、中華人民共和國主席、中央軍事委員會主席",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Xi-Jin-ping.jpg"
@@ -1167,7 +1167,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "45th president of the United States, businessman.",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Donald_Trump.jpg"
@@ -1190,7 +1190,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "天主教會第266任教宗，本名Jorge Mario Bergoglio",
     "LastBestowDate": "0003/11/27",
     "PicturePath": "Papa_Francesco.jpg"
@@ -1213,7 +1213,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "シリーズの主人公、鬼畜戦士の異名を持つ戦士",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Rance.png"
@@ -1236,7 +1236,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣女明星、藝人、演員",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Esther_wu.jpg"
@@ -1259,7 +1259,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣華語流行音樂女歌手、演員",
     "LastBestowDate": "0003/10/30",
     "PicturePath": "Jolin_Tsai.jpg"
@@ -1282,7 +1282,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣女明星、演員、歌手",
     "LastBestowDate": "0003/11/14",
     "PicturePath": "Ariel_Lin.jpg"
@@ -1305,7 +1305,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "日本女優",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Hamabe_minami.jpg"
@@ -1328,7 +1328,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "俗稱「雞排妹」，台灣女明星、藝人、演員、模特兒",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Ili_Change.jpg"
@@ -1351,7 +1351,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "日本女優",
     "LastBestowDate": "0003/10/29",
     "PicturePath": "Hashimoto_Kanna.jpg"
@@ -1374,7 +1374,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "日本のコスプレイヤー、グラビアアイドル",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Iori_Moe.jpg"
@@ -1397,7 +1397,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣Cosplayer、模特兒",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Simo.jpg"
@@ -1420,7 +1420,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "臺灣女子職業圍棋選手。台灣棋院職業七段棋士",
     "LastBestowDate": "0003/11/20",
     "PicturePath": "Joanne_Missingham.jpg"
@@ -1443,7 +1443,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣女明星，藝人，女子演唱團體S.H.E的成員",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Selina.jpg"
@@ -1466,7 +1466,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "台灣女明星，歌手，音樂製作人，華語流行樂壇天后",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "A-Mei.jpg"
@@ -1489,7 +1489,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "English actress, model, and activist.",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Emma_watson.jpg"
@@ -1512,7 +1512,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "American businesswoman, the daughter and second child of President Trump.",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Ivanka_Trump.jpg"
@@ -1535,7 +1535,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "中國Cosplayer，模特兒",
     "LastBestowDate": "0003/11/13",
     "PicturePath": "yami.jpg"
@@ -1558,7 +1558,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "SAOのメインヒロイン、血盟騎士団の副団長、細剣使い",
     "LastBestowDate": "0003/10/25",
     "PicturePath": "Yuuki_Asuna.jpg"
@@ -1581,7 +1581,7 @@
     "Group": "g",
     "IsAOMember": "n",
     "IsCelebrity": "n",
-    "MoralRank": -3,
+    "MoralRank": "-3",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1604,7 +1604,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1627,7 +1627,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1650,7 +1650,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "中華民國民主進步黨籍政治人物、律師，行政院院長",
     "LastBestowDate": "0003/11/25",
     "PicturePath": "Su-tseng-chang.jpg"
@@ -1673,7 +1673,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1696,7 +1696,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "44th merican politician and attorney, president of the United States.",
     "LastBestowDate": "0003/11/26",
     "PicturePath": "Barack_Obama.jpg"
@@ -1719,7 +1719,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "American business magnate, software developer, co-founder of Microsoft Corporation.",
     "LastBestowDate": "0004/01/01",
     "PicturePath": "Bill_Gates.jpg"
@@ -1742,7 +1742,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1765,7 +1765,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/12/13",
     "PicturePath": ""
@@ -1788,7 +1788,7 @@
     "Group": "i",
     "IsAOMember": "n",
     "IsCelebrity": "y",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/12/21",
     "PicturePath": ""
@@ -1811,7 +1811,7 @@
     "Group": "g",
     "IsAOMember": "n",
     "IsCelebrity": "n",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/10/25",
     "PicturePath": ""
@@ -1834,7 +1834,7 @@
     "Group": "g",
     "IsAOMember": "n",
     "IsCelebrity": "n",
-    "MoralRank": -4,
+    "MoralRank": "-4",
     "Description": "-",
     "LastBestowDate": "0003/11/15",
     "PicturePath": ""
