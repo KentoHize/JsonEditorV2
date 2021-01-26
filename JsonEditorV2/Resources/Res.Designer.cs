@@ -547,6 +547,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 目標資料夾&quot;{0}&quot;沒有Json檔案存在.
+        /// </summary>
+        public static string JE_RUN_LOAD_JSON_FILES_M_3 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_M_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 讀取檔案庫.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_TITLE {

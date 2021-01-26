@@ -212,7 +212,11 @@ namespace JsonEditor
             {
                 //IsNull
                 if (jl[i].Value == null && Columns[i].IsNullable)
+                {
+                    jl[i].Valid = true;
                     return true;
+                }
+                    
                 else if (jl[i].Value == null && !Columns[i].IsNullable)
                 {
                     jl[i].Valid = false;
@@ -263,17 +267,19 @@ namespace JsonEditor
                     jl[i].Valid = false;
                     jl[i].InvalidReason = JValueInvalidReasons.RegularExpressionNotMatch;
                     return false;
-                }                    
+                }
+
+                jl[i].Valid = true;
             }
             return true;
         }
 
         /// <summary>
-        /// 確認所有資料符合欄位定義
+        /// 確認所有資料符合欄位定義 - 完整檢查
         /// </summary>
         public bool CehckValid()
         {
-            Valid = false;
+            Valid = true;
 
             //Key
             List<int> keyIndex = new List<int>();
@@ -287,7 +293,7 @@ namespace JsonEditor
             for (int i = Lines.Count - 1; i > -1; i--)
             {
                 if (!CheckLineValid(Lines[i]))
-                    return false;
+                    Valid = false;
 
                 if (keyIndex.Count != 0)
                 {
@@ -302,7 +308,7 @@ namespace JsonEditor
                             Lines[i][keyIndex[j]].Valid = false;
                             Lines[i][keyIndex[j]].InvalidReason = JValueInvalidReasons.DuplicateKey;
                         }
-                        return false;
+                        Valid = false;
                     }
                         
                 }
@@ -322,15 +328,13 @@ namespace JsonEditor
                             Lines[j][i].InvalidReason = JValueInvalidReasons.NotUnique;
                             Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].Valid = false;
                             Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].InvalidReason = JValueInvalidReasons.NotUnique;
-                            return false;
+                            Valid = false;
                         }
                         else
                             uniqueCheckDictionary.Add(Lines[j][i].Value, j);
                     }
                 }
             }
-
-            Valid = true;
             return Valid;
         }
 

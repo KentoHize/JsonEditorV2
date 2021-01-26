@@ -59,9 +59,8 @@ namespace JsonEditorV2
                     (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
                 ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
                 NameLabel.Height = 30 * JColumn.NumberOfRows;
-                TextControl.TextChanged += ValueControl_TextChanged;
-                if (!string.IsNullOrEmpty(JColumn.FKTable) && !string.IsNullOrEmpty(JColumn.FKColumn))
-                TextControl.GotFocus += ValueControl_GotFocus;
+                TextControl.TextChanged += ValueControl_TextChanged;                
+                TextControl.GotFocus += TextControl_GotFocus;
             }
 
             pnlMain.Controls.Add(ValueControl);
@@ -86,7 +85,7 @@ namespace JsonEditorV2
             NullCheckBox.Left = 430;
             NullCheckBox.Top = 30 * lineIndex + 5;
             NullCheckBox.Width = 60;
-            NullCheckBox.CheckedChanged += CkbCheckBox_CheckedChanged;
+            NullCheckBox.CheckedChanged += NullCheckBox_CheckedChanged;
 
             if (!JColumn.IsNullable)
                 NullCheckBox.Enabled = false;
@@ -94,14 +93,19 @@ namespace JsonEditorV2
             pnlMain.Controls.Add(NullCheckBox);
         }
 
-        private void ValueControl_GotFocus(object sender, EventArgs e)
+        private void TextControl_GotFocus(object sender, EventArgs e)
         {
-            NameLabel.Focus();
-            JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
+            if (!JColumn.IsNullable)
+                NullCheckBox.Checked = false;
+            if (!string.IsNullOrEmpty(JColumn.FKTable) && !string.IsNullOrEmpty(JColumn.FKColumn))
+            {
+                NameLabel.Focus();
+                JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
 
-            object newValue = frmFKTable.Show(ownerWindow, JColumn.Name, fkTable, JColumn.FKColumn, ValueControl.Text);
-            if (newValue != null)
-                SetValueToString(newValue);
+                object newValue = frmFKTable.Show(ownerWindow, JColumn.Name, fkTable, JColumn.FKColumn, ValueControl.Text);
+                if (newValue != null)
+                    SetValueToString(newValue);
+            }
         }
 
         private void ValueControl_TextChanged(object sender, EventArgs e)
@@ -211,10 +215,8 @@ namespace JsonEditorV2
 
         public void SetValueToString(object value)
         {
-            if (JColumn.IsNullable)
-                NullCheckBox.Checked = value == null;
-            else if (!JColumn.IsNullable)
-                NullCheckBox.Checked = false;
+            NullCheckBox.Checked = value == null;
+
             if (value == null)
                 return;
 
@@ -230,10 +232,11 @@ namespace JsonEditorV2
         public string ChangeStringToText(string s)
             => s.Replace("\n", "\r\n");
 
-        private void CkbCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void NullCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            ValueControl.Enabled = !NullCheckBox.Checked;
+            ValueControl.Enabled = !NullCheckBox.Checked || !JColumn.IsNullable;
             ValidControl.SetError(errPositionControl, "");
+            ValidControl.SetError(NullCheckBox, "");
         }
 
         private Button GetButtonControlFromJType(JType type, string name)

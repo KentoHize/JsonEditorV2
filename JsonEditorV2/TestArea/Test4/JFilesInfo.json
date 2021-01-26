@@ -16,7 +16,9 @@
           "Regex": "",
           "Description": null,
           "MinValue": null,
-          "MaxValue": null
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "dHHH",
@@ -30,12 +32,14 @@
           "Regex": "",
           "Description": "654",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "TestfNumber",
           "IsKey": false,
-          "IsNullable": false,
+          "IsNullable": true,
           "Type": "None",
           "FKTable": null,
           "FKColumn": null,
@@ -44,7 +48,9 @@
           "Regex": "",
           "Description": "654",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "cvxz",
@@ -58,7 +64,9 @@
           "Regex": "",
           "Description": "654",
           "MinValue": "",
-          "MaxValue": ""
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     }

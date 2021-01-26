@@ -1,4 +1,6 @@
-﻿using JsonEditor;
+﻿using Aritiafel.Items;
+using Aritiafel.Organizations;
+using JsonEditor;
 using JsonEditorV2.Resources;
 using Newtonsoft.Json;
 using System;
@@ -10,8 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Aritiafel.Organizations;
-using Aritiafel.Items;
 
 namespace JsonEditorV2
 {
@@ -21,7 +21,7 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             //Var.CI = new CultureInfo("zh-TW");
-            Var.CI = new CultureInfo("en-US");            
+            Var.CI = new CultureInfo("en-US");
             ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
@@ -357,7 +357,7 @@ namespace JsonEditorV2
                Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
                 Var.SelectedColumn.MinValue = txtColumnMinValue.Text;
-                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;                
+                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
                 Var.SelectedColumn.Regex = txtColumnRegex.Text;
                 Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;
@@ -487,6 +487,14 @@ namespace JsonEditorV2
             Var.Tables = new List<JTable>();
             JTable table;
 
+            //檔案數為0
+            if (jsonfiles.Length == 0)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
+                return;
+            }
+
+
             //有JFI File，先讀取
             if (jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
@@ -495,7 +503,7 @@ namespace JsonEditorV2
 
                 //不合法，錯誤訊息之後扔出
                 if (!Var.JFI.CheckValid())
-                { 
+                {
                     //錯誤訊息
                     Var.JFI.TablesInfo = null;
                 }
@@ -648,10 +656,11 @@ namespace JsonEditorV2
             if (Var.SelectedLineIndex == -1)
                 return;
 
-            
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);                
-                
+            {
+                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
+                Var.InputControlSets[i].CheckValid(i);
+            }
 
             if (Var.SelectedTable.Columns.Count != 0)
             {
@@ -677,7 +686,7 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
-            {   
+            {
                 InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
                 ics.DrawControl(pnlMain, lines);
                 lines += Var.SelectedTable.Columns[i].NumberOfRows;
@@ -693,6 +702,8 @@ namespace JsonEditorV2
             if (Var.SelectedTable == null)
                 return;
 
+            Var.SelectedTable.CehckValid();
+
             StringBuilder displayString;
             foreach (JLine jl in Var.SelectedTable)
             {
@@ -700,7 +711,7 @@ namespace JsonEditorV2
                 for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
                 {
                     if (Var.SelectedTable.Columns[i].Display)
-                    {   
+                    {
                         if (jl[i].Value == null)
                             continue;
 
@@ -713,10 +724,12 @@ namespace JsonEditorV2
                             displayString.AppendFormat("{0} ", r);
                     }
                 }
+                if (!jl.IsValid())
+                    displayString.Append("(Invalid)");
                 lsbLines.Items.Add(displayString.ToString());
             }
 
-            Var.SelectedTable.CehckValid();
+
             lsbLines.SelectedIndex = Var.SelectedLineIndex;
             btnNewLine.Enabled = true;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
@@ -1262,32 +1275,32 @@ namespace JsonEditorV2
             try
             {
 #endif
-                //檔案備份
-                using (StreamWriter sw = File.CreateText(Const.BackupRecoverFile))
-                {
-                    sw.WriteLine($"OriginFileName={Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")}");
-                    sw.WriteLine($"CreateDateTime={DateTime.Now}");
-                }
-                if(File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")))
-                    File.Copy(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), Path.Combine(Const.BackupFolder, $"{jt.Name}.json"), true);
+            //檔案備份
+            using (StreamWriter sw = File.CreateText(Const.BackupRecoverFile))
+            {
+                sw.WriteLine($"OriginFileName={Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")}");
+                sw.WriteLine($"CreateDateTime={DateTime.Now}");
+            }
+            if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json")))
+                File.Copy(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), Path.Combine(Const.BackupFolder, $"{jt.Name}.json"), true);
 
-                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
-                {
-                    StreamWriter sw = new StreamWriter(fs);
-                    sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
-                    sw.Close();
-                    
-                }
+            using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
+            {
+                StreamWriter sw = new StreamWriter(fs);
+                sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
+                sw.Close();
 
-                
-                //備份檔案刪除(偵錯時不清空資料夾)
+            }
+
+
+            //備份檔案刪除(偵錯時不清空資料夾)
 #if !DEBUG
                 File.Delete(Path.Combine(Const.BackupFolder, $"{jt.Name}.json"));
 #endif
-                File.Delete(Const.BackupRecoverFile);
+            File.Delete(Const.BackupRecoverFile);
 
-                jt.Changed = false;
-                return true;
+            jt.Changed = false;
+            return true;
 #if !DEBUG
             }
             catch (Exception ex)
@@ -1308,7 +1321,7 @@ namespace JsonEditorV2
                     sw.WriteLine($"OriginFileName=\"{Var.JFI.FileInfoPath}\"");
                     sw.WriteLine($"CreateDateTime=\"{DateTime.Now}\"");
                 }
-                if(File.Exists(Var.JFI.FileInfoPath))
+                if (File.Exists(Var.JFI.FileInfoPath))
                     File.Copy(Var.JFI.FileInfoPath, Path.Combine(Const.BackupFolder, JFilesInfo.FilesInfoName), true);
 
                 using (FileStream fs = new FileStream(Var.JFI.FileInfoPath, FileMode.Create))
@@ -1526,7 +1539,7 @@ namespace JsonEditorV2
                     valid = false;
 
             if (!valid)
-                return;            
+                return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
                 Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
@@ -1679,7 +1692,7 @@ namespace JsonEditorV2
         }
 
         public bool ChangeColumnName(JTable sourceTable, JColumn sourceColumn, string newName)
-        {   
+        {
             if (newName == Var.SelectedColumn.Name)
                 return false;
 
