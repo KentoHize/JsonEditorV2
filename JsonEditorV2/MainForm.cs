@@ -21,7 +21,8 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             //Var.CI = new CultureInfo("zh-TW");
-            Var.CI = new CultureInfo("en-US");
+            Setting.CI = new CultureInfo("en-US");
+            Setting.UseQuickCheck = false;
             ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
@@ -33,8 +34,8 @@ namespace JsonEditorV2
 
         private void ChangeCulture()
         {
-            Res.Culture = Var.CI;
-            RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Var.CI);
+            Res.Culture = Setting.CI;
+            RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
         }

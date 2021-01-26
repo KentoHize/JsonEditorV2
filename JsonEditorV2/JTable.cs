@@ -281,10 +281,13 @@ namespace JsonEditor
             return true;
         }
 
+
         /// <summary>
-        /// 確認所有資料符合欄位定義 - 完整檢查
+        /// 確認所有資料符合欄位定義
         /// </summary>
-        public bool CehckValid()
+        /// <param name="quickCheck">快速檢查(遇到單欄錯誤即跳出)</param>
+        /// <returns></returns>
+        public bool CehckValid(bool quickCheck = false)
         {
             Valid = true;
 
@@ -303,7 +306,12 @@ namespace JsonEditor
             for (int i = Lines.Count - 1; i > -1; i--)
             {
                 if (!CheckLineValid(i))
+                {
                     Valid = false;
+                    if (quickCheck)
+                        return false;
+                }
+                    
 
                 if (keyIndex.Count != 0)
                 {
@@ -319,6 +327,8 @@ namespace JsonEditor
                             AddInvalidRecord(keyCheckSet[checkString], keyIndex[j], JValueInvalidReasons.DuplicateKey);
                         }   
                         Valid = false;
+                        if (quickCheck)
+                            return false;
                     }
                     else
                         keyCheckSet.Add(checkString, i);
@@ -338,6 +348,8 @@ namespace JsonEditor
                             AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
                             AddInvalidRecord(uniqueCheckDictionary[Lines[j][i].Value], i, JValueInvalidReasons.NotUnique);
                             Valid = false;
+                            if (quickCheck)
+                                return false;
                         }
                         else
                             uniqueCheckDictionary.Add(Lines[j][i].Value, j);

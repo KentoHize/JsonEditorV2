@@ -1,7 +1,6 @@
 ﻿using JsonEditor;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Resources;
@@ -29,8 +28,7 @@ namespace JsonEditorV2
 
         public static JTable SelectedColumnParentTable { get; set; }
         public static JColumn SelectedColumn { get; set; }
-        public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
-        
+        public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }        
 
         public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();       
 
@@ -39,7 +37,5 @@ namespace JsonEditorV2
         public static bool DblClick { get; set; }
 
         public static bool Changed { get { if (Tables == null || JFI == null) return false; return Tables.Exists(m => m.Changed) || JFI.Changed; } }
-
-        public static CultureInfo CI { get; set; }
     }
 }
