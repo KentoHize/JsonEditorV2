@@ -186,7 +186,10 @@ namespace JsonEditor
                         }
                         else
                         {
-                            items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
+                            JValue jv = JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type));
+                            if(!Changed)
+                                Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
+                            items.Add(jv);
                         }
                     }
                     else //Load
@@ -195,7 +198,12 @@ namespace JsonEditor
                         if (kvp.Value.Type == JTokenType.Null)
                             items.Add(JValue.FromObject(null));
                         else
-                            items.Add(JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type)));
+                        {
+                            JValue jv = JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type));
+                            if(!Changed)
+                                Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);                                
+                            items.Add(jv);
+                        }                            
                     }
                     i++;
                 }
