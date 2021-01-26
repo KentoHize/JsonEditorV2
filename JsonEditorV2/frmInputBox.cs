@@ -82,38 +82,38 @@ namespace JsonEditorV2
                 case InputBoxTypes.NewFile:                
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
-                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_NEW_JSON_FILE);
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_FILE_NAME", Res.JE_TMI_NEW_JSON_FILE, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"));
                         return;
                     }
                     else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
                     {
-                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_NEW_JSON_FILE);
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_FILE_EXISTS", Res.JE_TMI_NEW_JSON_FILE, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"));
                         return;
                     }                    
                     break;
                 case InputBoxTypes.RenameFile:
                     if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
                     {
-                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_INPUTBOX_WRONG_FILE_NAME, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_RENAME_JSON_FILE);
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_FILE_NAME", Res.JE_TMI_RENAME_JSON_FILE, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"));
                         return;
                     }
                     else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
                     {
-                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_INPUTBOX_FILE_EXISTS, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")), Res.JE_TMI_RENAME_JSON_FILE);
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_FILE_EXISTS", Res.JE_TMI_RENAME_JSON_FILE, Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json"));
                         return;
                     }
                     break;
                 case InputBoxTypes.AddColumn:                    
                     if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {
-                        RabbitCouriers.SentErrorMessage(Res.JE_INPUTBOX_WRONG_COLUMN_NAME, Res.JE_TMI_ADD_COLUMN);                        
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_COLUMN_NAME", Res.JE_TMI_ADD_COLUMN);                        
                         return;
                     }
                     break;
                 case InputBoxTypes.RenameColumn:
                     if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {
-                        RabbitCouriers.SentErrorMessage(Res.JE_INPUTBOX_WRONG_COLUMN_NAME, Res.JE_TMI_RENAME_COLUMN);
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_COLUMN_NAME", Res.JE_TMI_RENAME_COLUMN);
                         return;
                     }
                     break;
