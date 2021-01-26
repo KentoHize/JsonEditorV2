@@ -473,7 +473,7 @@ namespace JsonEditorV2
         public void tmiLoadJsonFiles_Click(object sender, EventArgs e)
         {
             if (AskSaveFiles(Res.JE_TMI_LOAD_JSON_FILES) == DialogResult.Cancel)
-                return;            
+                return;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
@@ -492,6 +492,13 @@ namespace JsonEditorV2
             {
                 LoadJFilesInfo(Var.JFI.FileInfoPath);
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+
+                //不合法，錯誤訊息之後扔出
+                if (!Var.JFI.CheckValid())
+                { 
+                    //錯誤訊息
+                    Var.JFI.TablesInfo = null;
+                }
             }
 
             //對於 其他檔案開始核對

@@ -52,16 +52,16 @@ namespace JsonEditorV2
             ValueControl.Left = 200;
             ValueControl.Top = 30 * lineIndex + 5;
 
-            if (ValueControl is TextBox)
+            if (ValueControl is TextBox TextControl)
             {
                 ValueControl.Width = 200;
                 if (JColumn.NumberOfRows > 1)
                     (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
                 ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
                 NameLabel.Height = 30 * JColumn.NumberOfRows;
-                ((TextBox)ValueControl).TextChanged += ValueControl_TextChanged;
+                TextControl.TextChanged += ValueControl_TextChanged;
                 if (!string.IsNullOrEmpty(JColumn.FKTable) && !string.IsNullOrEmpty(JColumn.FKColumn))
-                ((TextBox)ValueControl).GotFocus += ValueControl_GotFocus;
+                TextControl.GotFocus += ValueControl_GotFocus;
             }
 
             pnlMain.Controls.Add(ValueControl);
@@ -218,10 +218,10 @@ namespace JsonEditorV2
             if (value == null)
                 return;
 
-            if (ValueControl is TextBox)
-                (ValueControl as TextBox).Text = ChangeStringToText(value.ToString(JColumn.Type));
-            else if (ValueControl is CheckBox)
-                (ValueControl as CheckBox).Checked = (bool)value;
+            if (ValueControl is TextBox TextControl)
+                TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type));
+            else if (ValueControl is CheckBox CheckControl)
+                CheckControl.Checked = (bool)value;
         }
 
         public string ChangeTextToString(string text)

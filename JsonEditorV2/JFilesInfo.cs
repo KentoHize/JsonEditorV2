@@ -13,6 +13,7 @@ namespace JsonEditor
         public const string FilesInfoName = "JFilesInfo.json";
 
         public string Name { get; set; }
+        public List<JTableInfo> TablesInfo { get; set; }
 
         [JsonIgnore]
         public bool Changed { get; set; }
@@ -22,7 +23,56 @@ namespace JsonEditor
 
         [JsonIgnore]
         public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
-        public List<JTableInfo> TablesInfo { get; set; }
+        
+
+        public bool CheckColumnValid(JColumn jc)
+        {
+            int a = 333_33;
+            return true;
+            
+        }
+
+        public bool CheckValid()
+        {
+            //Key
+            //List<int> keyIndex = new List<int>();
+            //for (int i = 0; i < Columns.Count; i++)
+            //    if (Columns[i].IsKey)
+            //        keyIndex.Add(i);
+
+            //從最底端開始查起
+            //HashSet<string> keyCheckSet = new HashSet<string>();
+            //string checkString;
+            //for (int i = Lines.Count - 1; i > -1; i--)
+            //{
+            //    if (!CheckLineValid(Lines[i]))
+            //        return Valid;
+
+            //    if (keyIndex.Count != 0)
+            //    {
+            //        checkString = "";
+            //        for (int j = 0; j < keyIndex.Count; j++)
+            //            if (Lines[i][keyIndex[j]].Value != null)
+            //                checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
+            //        if (!keyCheckSet.Add(checkString))
+            //            return Valid;
+            //    }
+            //}
+
+            //Unique
+            //for (int i = 0; i < Columns.Count; i++)
+            //{
+            //    if (Columns[i].IsUnique)
+            //    {
+            //        HashSet<object> uniqueCheckSet = new HashSet<object>();
+            //        for (int j = Lines.Count - 1; j > -1; j--)
+            //            if (!uniqueCheckSet.Add(Lines[j][i].Value))
+            //                return Valid;
+            //    }
+            //}
+
+            return true;
+        }
 
         public JFilesInfo()
             : this("")
