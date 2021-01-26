@@ -659,7 +659,7 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
                 Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
-                Var.InputControlSets[i].CheckValid(i);
+                Var.InputControlSets[i].CheckValid(Var.SelectedLineIndex);
             }
 
             if (Var.SelectedTable.Columns.Count != 0)

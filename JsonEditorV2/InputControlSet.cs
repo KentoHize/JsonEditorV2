@@ -196,6 +196,9 @@ namespace JsonEditorV2
                 JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
                 int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
                 //結束
+
+                if (!jt.Loaded)
+                    MainForm.LoadJsonFile(jt);
                 
                 if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].Value.ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
                 {
