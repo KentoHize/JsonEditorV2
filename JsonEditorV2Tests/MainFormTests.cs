@@ -27,6 +27,7 @@ namespace JsonEditorV2.Tests
                 fs = new FileStream(@"C:\Programs\TestArea\Output_Test.txt", FileMode.Create);
                 AdventurerAssociation.RegisterMembers(fs);
                 AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+                RabbitCouriers.RegisterRMAndCI(Resources.Res.ResourceManager, new System.Globalization.CultureInfo("en-US"));
             }
         }
 

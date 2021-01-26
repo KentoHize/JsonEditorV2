@@ -8,6 +8,7 @@ using Aritiafel.Organizations;
 using Aritiafel.Characters;
 using System.Windows.Forms;
 using JsonEditorV2;
+using JsonEditorV2.Resources;
 
 namespace JsonEditorV2Tests
 {
@@ -21,8 +22,12 @@ namespace JsonEditorV2Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            AdventurerAssociation.RegisterMembers();
-            AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+            if(!AdventurerAssociation.Registered)
+            { 
+                AdventurerAssociation.RegisterMembers();
+                AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+                //RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, new )
+            }
         }
 
         private DialogResult AdventurerAssociation_Form_Start(Form newForm)
@@ -102,6 +107,9 @@ namespace JsonEditorV2Tests
             //Add Column
             InputText = "AAAA_2";
             mf.tmiAddColumn_Click(mf, e);
+
+            //Select Column
+
 
             //存檔
             //AdventurerAssociation.RegisterMember(new Bard("SelectedPath", ""))

@@ -21,7 +21,7 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             //Var.CI = new CultureInfo("zh-TW");
-            Var.CI = new CultureInfo("en-US");
+            Var.CI = new CultureInfo("en-US");            
             ChangeCulture();
             cobColumnType.DataSource = Enum.GetValues(typeof(JType));
             cobColumnType.SelectedIndex = -1;
@@ -34,6 +34,7 @@ namespace JsonEditorV2
         private void ChangeCulture()
         {
             Res.Culture = Var.CI;
+            RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Var.CI);
             RefreshTmiLanguages();
             PatchTextFromResource();
         }
@@ -42,7 +43,6 @@ namespace JsonEditorV2
         #region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource()
         {
-            Res.Culture = Var.CI;
             Text = Res.JSON_FILE_EDITOR_TITLE;
             lblColumnName.Text = Res.JE_COLUMN_NAME;
             lblColumnType.Text = Res.JE_COLUMN_TYPE;
@@ -192,25 +192,25 @@ namespace JsonEditorV2
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
                 //欄位名檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_1, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_1", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_2, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_2", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
             {
                 //文字最大長度檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_11, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_11", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
             {
                 //Key和Nullable相斥檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_7, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_7", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
@@ -218,7 +218,7 @@ namespace JsonEditorV2
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_3, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_3", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -234,20 +234,20 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_8, txtColumnMinValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_8", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
                     txtColumnMinValue.Text = newType.GetMinValue().ToString();
                     return;
                 }
                 if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType, true))
                 {
-                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_9, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_9", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
                     txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
                     return;
                 }
                 if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
                 txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
                 {
-                    RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_10, txtColumnMinValue.Text, txtColumnMaxValue.Text), Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_10", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
                     return;
                 }
             }
@@ -262,7 +262,7 @@ namespace JsonEditorV2
             }
             catch
             {
-                RabbitCouriers.SentErrorMessage(Res.JE_RUN_UPDATE_COLUMN_M_4, Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_4", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -280,7 +280,7 @@ namespace JsonEditorV2
                    Var.SelectedColumn.Type != newType ||
                    (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked))
                 {
-                    DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_UPDATE_COLUMN_M_5, Var.SelectedColumnParentTable.Count), Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                    DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_UPDATE_COLUMN_M_5", Res.JE_RUN_UPDATE_COLUMN_TITLE, Var.SelectedColumnParentTable.Count.ToString());
                     if (dr == DialogResult.Cancel)
                         return;
                 }
@@ -394,9 +394,9 @@ namespace JsonEditorV2
                     else
                     {
                         if (File.Exists(Var.JFI.FileInfoPath))
-                            dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length - 1), Res.JE_RUN_NEW_JSON_FILES_TITLE, ResponseOption.YesNo);
+                            dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_NEW_JSON_FILES_Q_1", Res.JE_RUN_NEW_JSON_FILES_TITLE, ChoiceOptions.YesNo, (jsonfiles.Length - 1).ToString());
                         else
-                            dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_NEW_JSON_FILES_Q_1, jsonfiles.Length), Res.JE_RUN_NEW_JSON_FILES_TITLE, ResponseOption.YesNo);
+                            dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_NEW_JSON_FILES_Q_1", Res.JE_RUN_NEW_JSON_FILES_TITLE, ChoiceOptions.YesNo, jsonfiles.Length.ToString());
                         if (dr == DialogResult.Yes)
                         {
                             foreach (string s in jsonfiles)
@@ -421,7 +421,7 @@ namespace JsonEditorV2
             Var.CheckFailedFlag = false;
             if (Var.Changed)
             {
-                DialogResult dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_RUN_SAVE_FILES_CHECK, Var.JFI.DirectoryPath), title, ResponseOption.YesNoCancel);
+                DialogResult dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SAVE_FILES_CHECK", title, ChoiceOptions.YesNoCancel, Var.JFI.DirectoryPath);
                 if (dr == DialogResult.Yes)
                     tmiSaveJsonFiles_Click(this, new EventArgs());
                 if (Var.CheckFailedFlag)
@@ -440,7 +440,7 @@ namespace JsonEditorV2
 
         public void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
-            DialogResult dr = RabbitCouriers.SentWarningQuestion(Res.JE_RUN_SCAN_JSON_FILES_M_1, Res.JE_RUN_SCAN_JSON_FILES_TITLE);
+            DialogResult dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE);
             if (dr != DialogResult.OK)
                 return;
 
@@ -764,7 +764,7 @@ namespace JsonEditorV2
                 {
                     if (!jt.CehckValid())
                     {
-                        RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_1, jt.Name), Res.JE_TMI_SAVE_JSON_FILES);
+                        RabbitCouriers.SentErrorMessageByResource("JE_RUN_SAVE_JSON_FILES_M_1", Res.JE_TMI_SAVE_JSON_FILES, jt.Name);
                         Var.CheckFailedFlag = true;
                         return;
                     }
@@ -962,7 +962,7 @@ namespace JsonEditorV2
 
             if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == columnName))
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_ADD_COLUMN_M_1, columnName), Res.JE_TMI_ADD_COLUMN);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_ADD_COLUMN, columnName);
                 return;
             }
 
@@ -1099,7 +1099,7 @@ namespace JsonEditorV2
             string[] files = Directory.GetFiles(fbdMain.SelectedPath);
             if (files.Length != 0)
             {
-                dr = RabbitCouriers.SentWarningQuestion(Res.JE_RUN_SAVE_AS_JSON_FILES_M_1, Res.JE_TMI_SAVE_AS_JSON_FILES);
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SAVE_AS_JSON_FILES_M_1", Res.JE_TMI_SAVE_AS_JSON_FILES);
                 if (dr != DialogResult.OK)
                     return;
                 try
@@ -1345,7 +1345,7 @@ namespace JsonEditorV2
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_DELETE_COLUMN_M_1, Var.SelectedColumnParentTable.Count), Res.JE_TMI_DELETE_COLUMN);
+                DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_DELETE_COLUMN_M_1", Res.JE_TMI_DELETE_COLUMN, Var.SelectedColumnParentTable.Count.ToString());
                 if (dr == DialogResult.Cancel)
                     return;
             }
@@ -1393,7 +1393,7 @@ namespace JsonEditorV2
 
             if (Var.Tables.Exists(m => m.Name == newName))
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_1, newName), Res.JE_TMI_RENAME_JSON_FILE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_RENAME_JSON_FILE_M_1", Res.JE_TMI_RENAME_JSON_FILE, newName);
                 return;
             }
             try
@@ -1415,7 +1415,7 @@ namespace JsonEditorV2
 
         public void tmiDeleteJsonFile_Click(object sender, EventArgs e)
         {
-            DialogResult dr = RabbitCouriers.SentNoramlQuestion(string.Format(Res.JE_RUN_DELETE_JSON_FILE_M_1, Var.SelectedColumnParentTable.Name), Res.JE_TMI_DELETE_JSON_FILE, ResponseOption.YesNo);
+            DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_DELETE_JSON_FILE_M_1", Res.JE_TMI_DELETE_JSON_FILE, ChoiceOptions.YesNo, Var.SelectedColumnParentTable.Name);
             if (dr == DialogResult.No)
                 return;
 
@@ -1535,7 +1535,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             if (index == 0)
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_COLUMN_MOVE_UP_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_COLUMN_MOVE_UP_M_1", Res.JE_RUN_COLUMN_MOVE_TITLE, Var.SelectedColumn.Name);
                 return;
             }
 
@@ -1565,7 +1565,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             if (index == Var.SelectedColumnParentTable.Columns.Count - 1)
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_COLUMN_MOVE_DOWN_M_1, Var.SelectedColumn.Name), Res.JE_RUN_COLUMN_MOVE_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_COLUMN_MOVE_DOWN_M_1", Res.JE_RUN_COLUMN_MOVE_TITLE, Var.SelectedColumn.Name);
                 return;
             }
 
@@ -1636,7 +1636,7 @@ namespace JsonEditorV2
                     string createDate = sr.ReadLine().ToString().Split('=')[1];
                     sr.Close();
 
-                    DialogResult dr = RabbitCouriers.SentWarningQuestion(string.Format(Res.JE_ERR_RECOVER_FILE_M_1, Path.GetFileName(originFileName), createDate), Res.JSON_FILE_EDITOR_TITLE, ResponseOption.YesNoCancel);
+                    DialogResult dr = RabbitCouriers.SentWarningQuestionByResource("JE_ERR_RECOVER_FILE_M_1", Res.JSON_FILE_EDITOR_TITLE, ChoiceOptions.YesNoCancel, Path.GetFileName(originFileName), createDate);
                     if (dr == DialogResult.Cancel)
                     {
                         Application.Exit();
@@ -1679,7 +1679,7 @@ namespace JsonEditorV2
             //已存在同名欄位
             if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == newName))
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_RENAME_COLUMN_M_1, newName), Res.JE_RUN_RENAME_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_RENAME_COLUMN_M_1", Res.JE_RUN_RENAME_COLUMN_TITLE, newName);
                 return false;
             }
 
@@ -1713,7 +1713,7 @@ namespace JsonEditorV2
                 return;
             else if (index == 0)
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_LINE_MOVE_UP_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_UP_M_1", Res.JE_RUN_LINE_MOVE_TITLE, lsbLines.Items[index].ToString());
                 return;
             }
 
@@ -1732,7 +1732,7 @@ namespace JsonEditorV2
                 return;
             else if (index == Var.SelectedTable.Count - 1)
             {
-                RabbitCouriers.SentErrorMessage(string.Format(Res.JE_RUN_LINE_MOVE_DOWN_M_1, lsbLines.Items[index].ToString()), Res.JE_RUN_LINE_MOVE_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_DOWN_M_1", Res.JE_RUN_LINE_MOVE_TITLE, lsbLines.Items[index].ToString());
                 return;
             }
 
