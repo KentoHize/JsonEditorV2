@@ -151,6 +151,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 快速檢查.
+        /// </summary>
+        public static string JE_CKB_QUICK_CEHCK {
+            get {
+                return ResourceManager.GetString("JE_CKB_QUICK_CEHCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位描述.
         /// </summary>
         public static string JE_COLUMN_DESCRIPTION {

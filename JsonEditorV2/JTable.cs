@@ -204,7 +204,6 @@ namespace JsonEditor
             }
             Loaded = true;
             Valid = false;
-            CehckValid();
         }
 
         protected void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)

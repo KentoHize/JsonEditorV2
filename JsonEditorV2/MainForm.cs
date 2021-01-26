@@ -65,6 +65,7 @@ namespace JsonEditorV2
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
             btnNewLine.Text = Res.JE_BTN_NEW_LINE;
             btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
+            ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
             tmiFile.Text = Res.JE_TMI_FILE;
             tmiAbout.Text = Res.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
@@ -365,7 +366,7 @@ namespace JsonEditorV2
             }
 
             if (recheckTable)
-                Var.SelectedColumnParentTable.CehckValid();
+                Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -703,7 +704,7 @@ namespace JsonEditorV2
             if (Var.SelectedTable == null)
                 return;
 
-            Var.SelectedTable.CehckValid();
+            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
 
             StringBuilder displayString;
             for(int i = 0; i < Var.SelectedTable.Count; i++)
@@ -1212,7 +1213,7 @@ namespace JsonEditorV2
             {
                 StreamReader sr = new StreamReader(fs);
                 jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                jt.CehckValid();
+                jt.CehckValid(Setting.UseQuickCheck);
                 sr.Dispose();
             }
 #if !DEBUG
@@ -1779,6 +1780,11 @@ namespace JsonEditorV2
             Var.SelectedLineIndex++;
             Var.SelectedTable.Changed = true;
             RefreshLsbLines();
+        }
+
+        private void ckbQuickCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Setting.UseQuickCheck = ckbQuickCheck.Checked;
         }
     }
 }

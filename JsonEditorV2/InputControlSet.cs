@@ -189,6 +189,8 @@ namespace JsonEditorV2
                 }
             }
 
+            //跳過Key檢查
+
             //外部驗證 - FK驗證
             if(JColumn.FKTable != null && JColumn.FKColumn != null)
             {   
