@@ -19,7 +19,7 @@ namespace JsonEditor
         public bool Changed { get; set; }
         public bool Valid { get; set; }
 
-        public Dictionary<long, Dictionary<long, JValueInvalidReasons>> InvalidRecords { get; set; } = new Dictionary<long, Dictionary<long, JValueInvalidReasons>>();
+        public Dictionary<long, Dictionary<int, JValueInvalidReasons>> InvalidRecords { get; set; } = new Dictionary<long, Dictionary<int, JValueInvalidReasons>>();
 
         public int Count => ((IList<JLine>)Lines).Count;
 
@@ -211,6 +211,14 @@ namespace JsonEditor
         {
             if (indexOfLine == -1)
                 return;
+
+            if (!InvalidRecords.ContainsKey(indexOfLine))
+                InvalidRecords.Add(indexOfLine, new Dictionary<int, JValueInvalidReasons>());
+
+            if (!InvalidRecords[indexOfLine].ContainsKey(indexOfColumn))
+                InvalidRecords[indexOfLine].Add(indexOfColumn, reason);
+            else
+                InvalidRecords[indexOfLine][indexOfColumn] = reason;
         }
 
         public bool CheckLineValid(int index)
@@ -290,7 +298,7 @@ namespace JsonEditor
                     keyIndex.Add(i);
 
             //從最底端開始查起
-            HashSet<string> keyCheckSet = new HashSet<string>();            
+            Dictionary<string, int> keyCheckSet = new Dictionary<string, int>();
             string checkString;
             for (int i = Lines.Count - 1; i > -1; i--)
             {
@@ -303,12 +311,17 @@ namespace JsonEditor
                     for (int j = 0; j < keyIndex.Count; j++)
                         if (Lines[i][keyIndex[j]].Value != null)
                             checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
-                    if (!keyCheckSet.Add(checkString))
+                    if (keyCheckSet.ContainsKey(checkString))
                     {
-                        for(int j = 0; j < keyIndex.Count; j++)
+                        for (int j = 0; j < keyIndex.Count; j++)
+                        {
                             AddInvalidRecord(i, keyIndex[j], JValueInvalidReasons.DuplicateKey);
+                            AddInvalidRecord(keyCheckSet[checkString], keyIndex[j], JValueInvalidReasons.DuplicateKey);
+                        }   
                         Valid = false;
-                    }                        
+                    }
+                    else
+                        keyCheckSet.Add(checkString, i);
                 }
             }
             
