@@ -25,13 +25,13 @@ namespace JsonEditorV2
     public partial class frmInputBox : Form
     {
         public InputBoxTypes InputBoxType { get; set; }
-        private string returnValue;
+        public string ReturnValue { get; set; }
 
         public static string Show(IWin32Window owner, InputBoxTypes type)
         {            
             frmInputBox frmInputBox = new frmInputBox(type);            
             frmInputBox.ShowDialogOrCallEvent(owner);
-            return frmInputBox.returnValue;
+            return frmInputBox.ReturnValue;
         }
 
         public frmInputBox(InputBoxTypes type)
@@ -71,7 +71,7 @@ namespace JsonEditorV2
 
         public void btnCancel_Click(object sender, EventArgs e)
         {
-            returnValue = null;
+            ReturnValue = null;
             Hide();
         }
 
@@ -120,7 +120,7 @@ namespace JsonEditorV2
                 default:                    
                     break;
             }
-            returnValue = txtInput.Text;
+            ReturnValue = txtInput.Text;
             Hide();
         }
 

@@ -20,11 +20,13 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
-            //Var.CI = new CultureInfo("zh-TW");
             Setting.CI = new CultureInfo("en-US");
             Setting.UseQuickCheck = false;
             ChangeCulture();
-            cobColumnType.DataSource = Enum.GetValues(typeof(JType));
+            cobColumnType.DataSource =
+                Enum.GetValues(typeof(JType)).OfType<JType>()
+                .Except(new List<JType> { JType.None })
+                .ToList();
             cobColumnType.SelectedIndex = -1;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -452,19 +454,16 @@ namespace JsonEditorV2
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             foreach (string file in jsonfiles)
             {
-                using (FileStream fs = new FileStream(file, FileMode.Open))
+                if (file == Var.JFI.FileInfoPath)
                 {
-                    StreamReader sr = new StreamReader(fs);
-                    if (file == Var.JFI.FileInfoPath)
-                    {
-                        Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(sr.ReadToEnd());
-                        Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-                    }
-                    else
-                    {
-                        JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), JsonConvert.DeserializeObject(sr.ReadToEnd()), true);
-                        Var.Tables.Add(jt);
-                    }
+                    LoadJFilesInfo(file);                    
+                    Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+                }
+                else
+                {
+                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), true);                    
+                    LoadJsonFile(jt, true);
+                    Var.Tables.Add(jt);
                 }
             }
             Var.JFI.Changed = true;
@@ -521,7 +520,6 @@ namespace JsonEditorV2
                 else if (fi.Length < Const.DontLoadFileBytesThreshold)
                 {
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
-
                     if (Var.JFI.TablesInfo.Count != 0)
                     {
                         table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
@@ -707,7 +705,7 @@ namespace JsonEditorV2
             Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
 
             StringBuilder displayString;
-            for(int i = 0; i < Var.SelectedTable.Count; i++)
+            for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 displayString = new StringBuilder();
                 for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
@@ -1035,8 +1033,8 @@ namespace JsonEditorV2
             foreach (string pj2 in Project2Name)
             {
                 if (!Directory.Exists(Path.Combine(BackupPath2, pj2)))
-                    Directory.CreateDirectory(Path.Combine(BackupPath2, pj2));                
-                    DirectoryCopy(Path.Combine(ProjectPath2, pj2), Path.Combine(BackupPath2, pj2));                
+                    Directory.CreateDirectory(Path.Combine(BackupPath2, pj2));
+                DirectoryCopy(Path.Combine(ProjectPath2, pj2), Path.Combine(BackupPath2, pj2));
             }
 
             RabbitCouriers.SentInformation("OK");
@@ -1309,7 +1307,6 @@ namespace JsonEditorV2
                 sw.Close();
 
             }
-
 
             //備份檔案刪除(偵錯時不清空資料夾)
 #if !DEBUG

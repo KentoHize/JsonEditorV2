@@ -15,6 +15,7 @@ namespace JsonEditorV2
     public partial class frmFKTable : Form
     {
         public object Value { get; set; }
+
         private string keyColumnName;
         private string currentValue;
         private JTable fkTable;
@@ -25,8 +26,7 @@ namespace JsonEditorV2
         }
 
         public static object Show(IWin32Window owner, string ColumnName, JTable FKTable, string FKColumnName, string currentValue)
-        {
-            
+        {            
             frmFKTable frmFKTable = new frmFKTable();
 
             if (!FKTable.Loaded)
@@ -44,7 +44,8 @@ namespace JsonEditorV2
             frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.BackColor =
             frmFKTable.dgvMain.Columns[FKColumnName].DefaultCellStyle.BackColor = Color.Azure;
             frmFKTable.dgvMain.ClearSelection();
-            
+            frmFKTable.dgvMain.Columns[FKColumnName].DisplayIndex = 0;
+
             frmFKTable.ShowDialogOrCallEvent(owner);
             return frmFKTable.Value;
         }

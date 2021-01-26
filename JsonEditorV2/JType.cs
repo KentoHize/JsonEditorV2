@@ -22,7 +22,7 @@ namespace JsonEditor
         Uri,
         //TimeSpan,
         Decimal,
-        JSONObject
+        Object
     }
 
     public static class JTypeExtentions
@@ -79,7 +79,7 @@ namespace JsonEditor
                 case JType.Guid:
                     return instance.ToString().CompareTo(value.ToString());
                 case JType.None:
-                case JType.JSONObject:
+                case JType.Object:
                 default:
                     throw new InvalidCastException();
             }
@@ -116,7 +116,7 @@ namespace JsonEditor
                 case JType.Uri:
                 case JType.Guid:
                 case JType.None:
-                case JType.JSONObject:
+                case JType.Object:
                     return null;
                 default:
                     throw new InvalidCastException();
@@ -156,7 +156,7 @@ namespace JsonEditor
                 case JType.Uri:
                 case JType.Guid:
                 case JType.None:
-                case JType.JSONObject:
+                case JType.Object:
                     return null;
                 default:
                     throw new InvalidCastException();
@@ -208,7 +208,7 @@ namespace JsonEditor
                 case JType.Decimal:
                     return 0;
                 case JType.None:
-                case JType.JSONObject:
+                case JType.Object:
                     return null;
                 //case JType.TimeSpan:
                 //    return new TimeSpan();
@@ -289,7 +289,7 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
-                    break;
+                    return null;                    
                 //case JType.TimeSpan:
                 //    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
                 //        return r9;
@@ -302,7 +302,7 @@ namespace JsonEditor
                     if (decimal.TryParse(value.ToString(), out decimal r11))
                         return r11;
                     break;
-                case JType.JSONObject:
+                case JType.Object:
                     return value.ToString();
                 case JType.String:
                     return value.ToString();
@@ -343,7 +343,7 @@ namespace JsonEditor
                 case JsonToken.Float:
                     return JType.Double;
                 default:
-                    return JType.JSONObject;
+                    return JType.Object;
             }
         }
 
@@ -371,7 +371,7 @@ namespace JsonEditor
                     return typeof(decimal);                    
                 case JType.None:
                     return null;
-                case JType.JSONObject:
+                case JType.Object:
                     return typeof(object);
                 //case JType.TimeSpan:
                 //    return new TimeSpan();
@@ -391,13 +391,15 @@ namespace JsonEditor
                 case JTokenType.None:
                     return JType.None;
                 case JTokenType.Integer:
-                    //To do 不嚴謹
-                    if (jt.ToString().Length > 18)
+                    if (jt.ToString().Length > 28) //decimal.MaxValue.ToString().Length - 1
+                        return JType.String;
+                    else if (jt.ToString().Length > 18) //long.MaxValue.ToString().Length - 1
                         return JType.Decimal;
-                    else
+                    else if (jt.ToString().Length > 9) //int.MaxValue.ToString().Length - 1
                         return JType.Long;
-                case JTokenType.Float:
-                    //To do
+                    else
+                        return JType.Integer;
+                case JTokenType.Float:                    
                     return JType.Double;
                 case JTokenType.String:
                     if (Guid.TryParse(jt.ToString(), out Guid guid))
@@ -407,6 +409,8 @@ namespace JsonEditor
                         //To do 不嚴謹
                         if (jt.ToString().Length > 10)
                             return JType.DateTime;
+                        else if (jt.ToString() == DateTime.MinValue.ToLongTimeString())
+                            return JType.Time;
                         else if (datetime.TimeOfDay.TotalSeconds == 0)
                             return JType.Date;
                         else
@@ -424,7 +428,7 @@ namespace JsonEditor
                 case JTokenType.Uri:
                     return JType.Uri;
                 default:
-                    return JType.JSONObject;
+                    return JType.Object;
             }
         }
     }

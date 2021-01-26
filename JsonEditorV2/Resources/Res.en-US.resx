@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
-    <value>JSON Files Editor V0.2</value>
+    <value>JSON Files Editor V0.3</value>
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
     <value>Created by KentKaze</value>
