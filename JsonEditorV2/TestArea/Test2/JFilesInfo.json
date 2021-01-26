@@ -731,6 +731,59 @@
           "IsUnique": true
         }
       ]
+    },
+    {
+      "Name": "UnicodeTest",
+      "Columns": [
+        {
+          "Name": "Key",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Han",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": true
+        },
+        {
+          "Name": "UnicodeString",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "Regex": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        }
+      ]
     }
   ]
 }

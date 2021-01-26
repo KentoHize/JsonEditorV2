@@ -235,7 +235,7 @@
     <value>錯誤的欄位名稱，請用'_'或英文字母開頭，之後使用'_'、英文字母或是數字，長度不要超過50位</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
-    <value>不符合規則的檔案名稱</value>
+    <value>Wrong file name.</value>
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     <value>Column"{0}" is exist.</value>
@@ -256,7 +256,7 @@
     <value>Column"{0}" deleted.</value>
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
-    <value>確定刪除檔案"{0}.json"？</value>
+    <value>Confirm to delete file "{0}.json"?</value>
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
     <value>File"{0}.json" deleted.</value>
@@ -283,7 +283,7 @@
     <value>Load Json Folder</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
-    <value>已在"{0}"新建檔案庫</value>
+    <value>New Json folder created at "{0}".</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
     <value>此文件已有現存 {0} JSON檔案，是否要清空資料夾</value>
@@ -292,7 +292,7 @@
     <value>New Json Folder</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_M_2" xml:space="preserve">
-    <value>檔案新建失敗:"{0}"</value>
+    <value>File create failed :"{0}"</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
     <value>New Json File</value>
@@ -322,7 +322,7 @@
     <value>Folder "{0}" didn't save, save folder?</value>
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
-    <value>存檔取消，檔案"{0}.json"，資料不合規則</value>
+    <value>Save cancel. File "{0}.json" is not valid.</value>
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
     <value>"{0}" All Files saved.</value>
@@ -331,7 +331,7 @@
     <value>準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
-    <value>{0}檔案掃描完畢</value>
+    <value>{0} File(s) scan complete.</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     <value>Scan Json Folder</value>
@@ -349,7 +349,7 @@
     <value>Number of rows is incorrect.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_3" xml:space="preserve">
-    <value>請選擇外部索引欄位</value>
+    <value>Pleace choice foreign key column.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
     <value>Regular Expression format error.</value>
@@ -361,7 +361,7 @@
     <value>Column "{0}" updated.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
-    <value>Key欄位不能為Null值</value>
+    <value>Key column's value can't be Null.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_8" xml:space="preserve">
     <value>"{0}" is not a correct min value.</value>
