@@ -13,14 +13,6 @@ namespace JsonEditor
 
         public List<JValue> Values { get; set; } = new List<JValue>();
 
-        public bool IsValid()
-        {
-            for (int i = 0; i < Values.Count; i++)
-                if (!Values[i].Valid)
-                    return false;
-            return true;
-        }
-
         public int Count => ((IList<JValue>)Values).Count;
 
         public bool IsReadOnly => ((IList<JValue>)Values).IsReadOnly;

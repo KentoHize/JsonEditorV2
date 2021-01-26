@@ -705,17 +705,17 @@ namespace JsonEditorV2
             Var.SelectedTable.CehckValid();
 
             StringBuilder displayString;
-            foreach (JLine jl in Var.SelectedTable)
+            for(int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 displayString = new StringBuilder();
-                for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
+                for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
                 {
-                    if (Var.SelectedTable.Columns[i].Display)
+                    if (Var.SelectedTable.Columns[j].Display)
                     {
-                        if (jl[i].Value == null)
+                        if (Var.SelectedTable[i][j].Value == null)
                             continue;
 
-                        string r = jl[i].Value.ToString(Var.SelectedTable.Columns[i].Type);
+                        string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
 
                         //Can Improve to do(可改長度偵測)
                         if (r.Length > 12)
@@ -724,11 +724,10 @@ namespace JsonEditorV2
                             displayString.AppendFormat("{0} ", r);
                     }
                 }
-                if (!jl.IsValid())
+                if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
                     displayString.Append("(Invalid)");
                 lsbLines.Items.Add(displayString.ToString());
             }
-
 
             lsbLines.SelectedIndex = Var.SelectedLineIndex;
             btnNewLine.Enabled = true;

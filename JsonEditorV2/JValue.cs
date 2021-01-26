@@ -9,13 +9,7 @@ namespace JsonEditor
 {
     public class JValue
     {
-        public object Value { get; set; }
-
-        [JsonIgnore]
-        public bool Valid { get; set; } = true;
-
-        [JsonIgnore]
-        public JValueInvalidReasons InvalidReason { get; set; } = JValueInvalidReasons.None;
+        public object Value { get; set; }        
 
         public JValue()
             : this(null)

@@ -305,11 +305,11 @@
           "NumberOfRows": 1,
           "Display": true,
           "Regex": "",
-          "Description": null,
-          "MinValue": null,
-          "MaxValue": null,
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
           "TextMaxLength": 0,
-          "IsUnique": false
+          "IsUnique": true
         },
         {
           "Name": "Memo",
@@ -715,7 +715,7 @@
           "IsUnique": false
         },
         {
-          "Name": "N2",
+          "Name": "U3",
           "IsKey": false,
           "IsNullable": false,
           "Type": "String",
@@ -760,7 +760,7 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "",
+          "Regex": "^\\w{0,20}$",
           "Description": "",
           "MinValue": "",
           "MaxValue": "",

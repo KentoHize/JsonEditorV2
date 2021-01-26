@@ -19,6 +19,8 @@ namespace JsonEditor
         public bool Changed { get; set; }
         public bool Valid { get; set; }
 
+        public Dictionary<long, Dictionary<long, JValueInvalidReasons>> InvalidRecords { get; set; } = new Dictionary<long, Dictionary<long, JValueInvalidReasons>>();
+
         public int Count => ((IList<JLine>)Lines).Count;
 
         public bool IsReadOnly => ((IList<JLine>)Lines).IsReadOnly;
@@ -205,30 +207,34 @@ namespace JsonEditor
             CehckValid();
         }
 
+        protected void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)
+        {
+            if (indexOfLine == -1)
+                return;
+        }
+
+        public bool CheckLineValid(int index)
+            => CheckLineValid(Lines[index], index);
+
         //確認某一筆資料符合欄位定義
-        public bool CheckLineValid(JLine jl)
+        public bool CheckLineValid(JLine jl, int indexOfLine = -1)
         {
             for (int i = 0; i < Columns.Count; i++)
             {
                 //IsNull
                 if (jl[i].Value == null && Columns[i].IsNullable)
-                {
-                    jl[i].Valid = true;
                     return true;
-                }
                     
                 else if (jl[i].Value == null && !Columns[i].IsNullable)
-                {
-                    jl[i].Valid = false;
-                    jl[i].InvalidReason = JValueInvalidReasons.NullValue;
+                {   
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.NullValue);                    
                     return false;
                 }                    
 
                 //Type
                 if (jl[i].Value.GetType() != Columns[i].Type.ToType())
                 {
-                    jl[i].Valid = false;
-                    jl[i].InvalidReason = JValueInvalidReasons.WrongType;
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);                    
                     return false;
                 }                    
 
@@ -237,26 +243,22 @@ namespace JsonEditor
                 {
                     if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
                     {
-                        jl[i].Valid = false;
-                        jl[i].InvalidReason = JValueInvalidReasons.LessThenMinValue;
+                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LessThenMinValue);                        
                         return false;
                     }
                         
                     if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
                     {
-                        jl[i].Valid = false;
-                        jl[i].InvalidReason = JValueInvalidReasons.GreaterThenMaxValue;
+                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.GreaterThenMaxValue);                        
                         return false;
-                    }
-                        
+                    }                        
                 }
 
                 //MaxLength
                 if (Columns[i].TextMaxLength != 0 &&
                     jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].TextMaxLength)
                 {
-                    jl[i].Valid = false;
-                    jl[i].InvalidReason = JValueInvalidReasons.LongerThenMaxLength;
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LongerThenMaxLength);                    
                     return false;
                 }                    
 
@@ -264,12 +266,9 @@ namespace JsonEditor
                 if (!string.IsNullOrEmpty(Columns[i].Regex) &&
                     !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].Regex))
                 {
-                    jl[i].Valid = false;
-                    jl[i].InvalidReason = JValueInvalidReasons.RegularExpressionNotMatch;
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.RegularExpressionNotMatch);                    
                     return false;
                 }
-
-                jl[i].Valid = true;
             }
             return true;
         }
@@ -280,6 +279,9 @@ namespace JsonEditor
         public bool CehckValid()
         {
             Valid = true;
+
+            //刪除Valid資料
+            InvalidRecords.Clear();
 
             //Key
             List<int> keyIndex = new List<int>();
@@ -292,7 +294,7 @@ namespace JsonEditor
             string checkString;
             for (int i = Lines.Count - 1; i > -1; i--)
             {
-                if (!CheckLineValid(Lines[i]))
+                if (!CheckLineValid(i))
                     Valid = false;
 
                 if (keyIndex.Count != 0)
@@ -304,13 +306,9 @@ namespace JsonEditor
                     if (!keyCheckSet.Add(checkString))
                     {
                         for(int j = 0; j < keyIndex.Count; j++)
-                        { 
-                            Lines[i][keyIndex[j]].Valid = false;
-                            Lines[i][keyIndex[j]].InvalidReason = JValueInvalidReasons.DuplicateKey;
-                        }
+                            AddInvalidRecord(i, keyIndex[j], JValueInvalidReasons.DuplicateKey);
                         Valid = false;
-                    }
-                        
+                    }                        
                 }
             }
             
@@ -324,10 +322,8 @@ namespace JsonEditor
                     {
                         if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
                         {
-                            Lines[j][i].Valid = false;
-                            Lines[j][i].InvalidReason = JValueInvalidReasons.NotUnique;
-                            Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].Valid = false;
-                            Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].InvalidReason = JValueInvalidReasons.NotUnique;
+                            AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
+                            AddInvalidRecord(uniqueCheckDictionary[Lines[j][i].Value], i, JValueInvalidReasons.NotUnique);
                             Valid = false;
                         }
                         else
