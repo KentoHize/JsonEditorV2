@@ -26,10 +26,9 @@ namespace JsonEditor
         
 
         public bool CheckColumnValid(JColumn jc)
-        {
-            int a = 333_33;
-            return true;
-            
+        {            
+            //TO DO
+            return true;            
         }
 
         public bool CheckValid()

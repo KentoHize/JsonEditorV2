@@ -198,7 +198,7 @@ namespace JsonEditorV2
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_IS_NOT_FOUND, ValueControl.Text));
                     return false;
                 }
-            }                
+            }
             return true;
         }
 

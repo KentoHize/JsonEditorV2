@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,12 @@ namespace JsonEditor
     public class JValue
     {
         public object Value { get; set; }
+
+        [JsonIgnore]
+        public bool Valid { get; set; } = true;
+
+        [JsonIgnore]
+        public JValueInvalidReasons InvalidReason { get; set; } = JValueInvalidReasons.None;
 
         public JValue()
             : this(null)

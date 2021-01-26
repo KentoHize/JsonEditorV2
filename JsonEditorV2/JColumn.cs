@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace JsonEditor
         public string MaxValue { get; set; }
         public long TextMaxLength { get; set; }
         public bool IsUnique { get; set; }
+
+        [JsonIgnore]
+        public bool Valid { get; set; } = true;
+
+        [JsonIgnore]
+        public JValueInvalidReasons InvalidReason { get; set; } = JValueInvalidReasons.None;
 
         public JColumn()
             : this("")

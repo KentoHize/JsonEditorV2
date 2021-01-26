@@ -214,30 +214,56 @@ namespace JsonEditor
                 if (jl[i].Value == null && Columns[i].IsNullable)
                     return true;
                 else if (jl[i].Value == null && !Columns[i].IsNullable)
+                {
+                    jl[i].Valid = false;
+                    jl[i].InvalidReason = JValueInvalidReasons.NullValue;
                     return false;
+                }                    
 
                 //Type
-                if (!jl[i].Value.TryParseJType(Columns[i].Type, out object o))
+                if (jl[i].Value.GetType() != Columns[i].Type.ToType())
+                {
+                    jl[i].Valid = false;
+                    jl[i].InvalidReason = JValueInvalidReasons.WrongType;
                     return false;
+                }                    
 
                 //MinMax
                 if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
                 {
                     if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
+                    {
+                        jl[i].Valid = false;
+                        jl[i].InvalidReason = JValueInvalidReasons.LessThenMinValue;
                         return false;
+                    }
+                        
                     if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
+                    {
+                        jl[i].Valid = false;
+                        jl[i].InvalidReason = JValueInvalidReasons.GreaterThenMaxValue;
                         return false;
+                    }
+                        
                 }
 
                 //MaxLength
                 if (Columns[i].TextMaxLength != 0 &&
                     jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].TextMaxLength)
+                {
+                    jl[i].Valid = false;
+                    jl[i].InvalidReason = JValueInvalidReasons.LongerThenMaxLength;
                     return false;
+                }                    
 
                 //Regex
                 if (!string.IsNullOrEmpty(Columns[i].Regex) &&
                     !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].Regex))
-                    return false;                
+                {
+                    jl[i].Valid = false;
+                    jl[i].InvalidReason = JValueInvalidReasons.RegularExpressionNotMatch;
+                    return false;
+                }                    
             }
             return true;
         }
@@ -261,7 +287,7 @@ namespace JsonEditor
             for (int i = Lines.Count - 1; i > -1; i--)
             {
                 if (!CheckLineValid(Lines[i]))
-                    return Valid;
+                    return false;
 
                 if (keyIndex.Count != 0)
                 {
@@ -270,7 +296,15 @@ namespace JsonEditor
                         if (Lines[i][keyIndex[j]].Value != null)
                             checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
                     if (!keyCheckSet.Add(checkString))
-                        return Valid;
+                    {
+                        for(int j = 0; j < keyIndex.Count; j++)
+                        { 
+                            Lines[i][keyIndex[j]].Valid = false;
+                            Lines[i][keyIndex[j]].InvalidReason = JValueInvalidReasons.DuplicateKey;
+                        }
+                        return false;
+                    }
+                        
                 }
             }
             
@@ -279,10 +313,20 @@ namespace JsonEditor
             {
                 if(Columns[i].IsUnique)
                 {
-                    HashSet<object> uniqueCheckSet = new HashSet<object>();
+                    Dictionary<object, int> uniqueCheckDictionary = new Dictionary<object, int>();
                     for (int j = Lines.Count - 1; j > -1; j--)
-                        if (!uniqueCheckSet.Add(Lines[j][i].Value))
-                            return Valid;
+                    {
+                        if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
+                        {
+                            Lines[j][i].Valid = false;
+                            Lines[j][i].InvalidReason = JValueInvalidReasons.NotUnique;
+                            Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].Valid = false;
+                            Lines[uniqueCheckDictionary[Lines[j][i].Value]][i].InvalidReason = JValueInvalidReasons.NotUnique;
+                            return false;
+                        }
+                        else
+                            uniqueCheckDictionary.Add(Lines[j][i].Value, j);
+                    }
                 }
             }
 
