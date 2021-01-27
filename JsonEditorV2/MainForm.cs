@@ -456,12 +456,12 @@ namespace JsonEditorV2
             {
                 if (file == Var.JFI.FileInfoPath)
                 {
-                    LoadJFilesInfo(file);                    
+                    LoadJFilesInfo(file);
                     Var.JFI.DirectoryPath = fbdMain.SelectedPath;
                 }
                 else
                 {
-                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), true);                    
+                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), true);
                     LoadJsonFile(jt, true);
                     Var.Tables.Add(jt);
                 }
@@ -481,8 +481,8 @@ namespace JsonEditorV2
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-            
-            tmiCloseAllFiles_Click(this, e);            
+
+            tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             Var.Tables = new List<JTable>();
@@ -783,7 +783,7 @@ namespace JsonEditorV2
                     if (!jt.CehckValid())
                     {
                         //To Do
-                        ExceptionHandler.SentTableInvalidMessage(jt);                        
+                        ExceptionHandler.SentTableInvalidMessage(jt);
                         //RabbitCouriers.SentErrorMessageByResource("JE_RUN_SAVE_JSON_FILES_M_1", Res.JE_TMI_SAVE_JSON_FILES, jt.Name);
                         Var.CheckFailedFlag = true;
                         return;
@@ -949,7 +949,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        public static void HandleException(Exception ex, string content = null, string title = null)
+        public static bool HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
                 content = Res.JE_ERR_DEFAULT_MESSAGE;
@@ -972,6 +972,7 @@ namespace JsonEditorV2
             }
 
             RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
+            return false;
         }
 
         public void tmiAddColumn_Click(object sender, EventArgs e)
@@ -1202,26 +1203,23 @@ namespace JsonEditorV2
             }
         }
 
-        public static void LoadJsonFile(JTable jt, bool produceColumnInfo = false)
+        public static bool LoadJsonFile(JTable jt, bool produceColumnInfo = false)
         {
-#if !DEBUG
             try
             {
-#endif
-            using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
-            {
-                StreamReader sr = new StreamReader(fs);
-                jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                jt.CehckValid(Setting.UseQuickCheck);
-                sr.Dispose();
+                using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
+                {
+                    StreamReader sr = new StreamReader(fs);
+                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
+                    jt.CehckValid(Setting.UseQuickCheck);
+                    sr.Dispose();
+                }
             }
-#if !DEBUG
-        }
             catch (Exception ex)
             {
-                HandleException(ex);
+                return HandleException(ex);                
             }
-#endif
+            return true;
         }
 
         //必產生Column Info

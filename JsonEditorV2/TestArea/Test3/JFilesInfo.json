@@ -13,7 +13,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Date",
@@ -24,7 +29,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Chinese",
@@ -35,7 +45,12 @@
           "FKColumn": null,
           "NumberOfRows": 7,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "English",
@@ -46,7 +61,12 @@
           "FKColumn": null,
           "NumberOfRows": 8,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Japanese",
@@ -57,7 +77,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -73,7 +98,12 @@
           "FKColumn": "ID",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "BestowerID",
@@ -84,7 +114,12 @@
           "FKColumn": "ID",
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "MoralRank",
@@ -95,7 +130,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "BestowDateTime",
@@ -106,7 +146,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Reason",
@@ -117,7 +162,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Memo",
@@ -128,7 +178,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -144,7 +199,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Surname",
@@ -155,7 +215,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Name",
@@ -166,7 +231,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "OtherName",
@@ -177,7 +247,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "SurnameFirst",
@@ -188,7 +263,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Yomikata",
@@ -199,7 +279,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Gender",
@@ -210,7 +295,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[mf]?$"
+          "Regex": "^[mf]?$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Fiction",
@@ -221,7 +311,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[yn]$"
+          "Regex": "^[yn]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Wanted",
@@ -232,7 +327,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[yn]$"
+          "Regex": "^[yn]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Protected",
@@ -243,7 +343,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[yn]$"
+          "Regex": "^[yn]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "TwitterAccount",
@@ -254,7 +359,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "FacebookAccount",
@@ -265,7 +375,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "InstagramAccount",
@@ -276,7 +391,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "From",
@@ -287,7 +407,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Group",
@@ -298,7 +423,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "IsAOMember",
@@ -309,7 +439,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[yn]$"
+          "Regex": "^[yn]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "IsCelebrity",
@@ -320,7 +455,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": "^[yn]$"
+          "Regex": "^[yn]$",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "MoralRank",
@@ -331,7 +471,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Description",
@@ -342,7 +487,12 @@
           "FKColumn": null,
           "NumberOfRows": 5,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "LastBestowDate",
@@ -353,7 +503,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "PicturePath",
@@ -364,7 +519,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     },
@@ -380,7 +540,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Date",
@@ -391,7 +556,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": true,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Chinese",
@@ -402,7 +572,12 @@
           "FKColumn": null,
           "NumberOfRows": 3,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "English",
@@ -413,7 +588,12 @@
           "FKColumn": null,
           "NumberOfRows": 3,
           "Display": false,
-          "Regex": null
+          "Regex": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         },
         {
           "Name": "Japanese",
@@ -424,7 +604,12 @@
           "FKColumn": null,
           "NumberOfRows": 1,
           "Display": false,
-          "Regex": ""
+          "Regex": "",
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
         }
       ]
     }

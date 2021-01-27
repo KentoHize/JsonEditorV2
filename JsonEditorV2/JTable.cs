@@ -137,6 +137,7 @@ namespace JsonEditor
         /// </summary>
         /// <param name="jArray">JArray</param>
         /// <param name="produceColumnInfo">是否更新欄位</param>
+        /// <returns>讀取成功與否</returns>
         public void LoadJson(object jArray, bool produceColumnInfo = false)
         {
             bool isFirst = true;
@@ -206,6 +207,18 @@ namespace JsonEditor
                     }
                     else //Load
                     {
+                        //Loading Error
+
+                        //比定義的資料列還大
+                        //if (i > Columns.Count - 1)
+                        //    return; //throw new Expception?
+
+                        if (jo.Count != Columns.Count)
+                            throw new DataException("Lines Column Count not match.");
+                        //To do
+
+                        //Loading Error Exit
+
                         jc = Columns[i];
                         if (kvp.Value.Type == JTokenType.Null)
                             items.Add(JValue.FromObject(null));
@@ -232,7 +245,7 @@ namespace JsonEditor
                 Lines.Add(items);
             }
             Loaded = true;
-            Valid = false;
+            Valid = false;         
         }
 
         protected void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)
