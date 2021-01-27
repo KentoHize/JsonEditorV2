@@ -468,6 +468,9 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
   </data>
+  <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
+    <value>Key value "{0}" duplicated.</value>
+  </data>
   <data name="JE_VAL_FK_IS_NOT_FOUND" xml:space="preserve">
     <value>Foreign key value "{0}" not exist.</value>
   </data>

@@ -1114,6 +1114,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 鍵值&quot;{0}&quot;重複.
+        /// </summary>
+        public static string JE_VAL_DUPLICATE_KEY {
+            get {
+                return ResourceManager.GetString("JE_VAL_DUPLICATE_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 外部索引值&quot;{0}&quot;不存在.
         /// </summary>
         public static string JE_VAL_FK_IS_NOT_FOUND {
