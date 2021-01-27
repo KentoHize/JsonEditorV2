@@ -217,7 +217,7 @@
     <value>發現需要復原的檔案"{0}"建立於 {1}，是否復原到原來的資料夾</value>
   </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
-    <value>檔案"{0}.json"資料不合規則：行 {1}，欄位"{2}",</value>
+    <value>檔案"{0}.json"資料不合規則：行 {1}，欄位"{2}"，</value>
   </data>
   <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
     <value>"{0}.json"檔案資料與宣告格式不相容，資料載入失敗</value>

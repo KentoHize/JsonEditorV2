@@ -208,7 +208,7 @@
     <value>JFI File is Empty.</value>
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
-    <value>File "{0}.json" is not valid: {1}.</value>
+    <value>File "{0}.json" is not a valid json file: {1}.</value>
   </data>
   <data name="JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
     <value>Load file "{0}" failed, confirm it exist and not damaged.</value>
@@ -220,7 +220,7 @@
     <value>File "{0}.json" is not valid at line {1}, column "{2}", </value>
   </data>
   <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
-    <value>File "{0.json} data is not consistent with JFI File. Load failed.</value>
+    <value>File "{0}.json" data is not consistent with JFI File. Load failed.</value>
   </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
