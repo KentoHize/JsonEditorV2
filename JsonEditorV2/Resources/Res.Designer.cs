@@ -340,11 +340,20 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 讀取JSON關聯檔案&quot;{0}&quot;失敗，請確認檔案是否存在或損毀.
+        /// </summary>
+        public static string JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT {
+            get {
+                return ResourceManager.GetString("JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 讀取檔案&quot;{0}&quot;時發生錯誤，請確認檔案是否存在或損毀.
         /// </summary>
-        public static string JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT {
+        public static string JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT {
             get {
-                return ResourceManager.GetString("JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT", resourceCulture);
+                return ResourceManager.GetString("JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT", resourceCulture);
             }
         }
         

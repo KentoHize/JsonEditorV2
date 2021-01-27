@@ -521,7 +521,13 @@ namespace JsonEditorV2
                     table = new JTable(Path.GetFileNameWithoutExtension(file), true);
                     if (Var.JFI.TablesInfo.Count != 0)
                     {
-                        table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                        try
+                        { 
+                            table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                        }
+                        catch (Exception ex)
+                        { ExceptionHandler.HandleException(ex); }
+
                         LoadJsonFile(table);
                     }
                     else
@@ -533,7 +539,14 @@ namespace JsonEditorV2
                     //有JFI跳過預讀
                     table = new JTable(Path.GetFileNameWithoutExtension(file));
                     if (Var.JFI.TablesInfo.Count != 0)
-                        table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                    {
+                        try
+                        {
+                            table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
+                        }
+                        catch (Exception ex)
+                        { ExceptionHandler.HandleException(ex); }
+                    }   
                     else
                         LoadPartialJsonFile(table);
                     Var.Tables.Add(table);
@@ -1160,21 +1173,34 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        public static void LoadJFilesInfo(string file)
+        public static bool LoadJFilesInfo(string file)
         {
+            string jsonString = "";
             try
             {
                 using (FileStream fs = new FileStream(file, FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
-                    Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(sr.ReadToEnd());
+                    jsonString = sr.ReadToEnd();
                     sr.Dispose();
                 }
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(ex);
+                ExceptionHandler.OpenJFIFileFailed(file, ex);
+                return false;
             }
+
+            try
+            {
+                Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(jsonString);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.JsonConvertDeserializeObjectFailed(JFilesInfo.FilesInfoName, ex);
+                return false;
+            }
+            return true;
         }
 
         public static bool LoadJsonFile(JTable jt, bool produceColumnInfo = false)

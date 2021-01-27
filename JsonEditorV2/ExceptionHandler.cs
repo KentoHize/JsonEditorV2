@@ -11,12 +11,17 @@ namespace JsonEditorV2
 {
     public static class ExceptionHandler
     {
-        public static void OpenJsonFileFailed(string filePath, Exception ex)
+        public static void OpenJFIFileFailed(string filePath, Exception ex)
         {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
         }
 
-        //DeserializeObject
+        public static void OpenJsonFileFailed(string filePath, Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
+        }
+
+        //JFI, Table File 
         public static void JsonConvertDeserializeObjectFailed(string fileName, Exception ex)
         {
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);

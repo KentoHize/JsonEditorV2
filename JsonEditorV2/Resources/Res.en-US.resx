@@ -210,8 +210,11 @@
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
     <value>File "{0}.json" is not a valid json file: {1}.</value>
   </data>
-  <data name="JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>Load file "{0}" failed, confirm it exist and not damaged.</value>
+  <data name="JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT" xml:space="preserve">
+    <value>Load JFI File "{0}" failed, confirm the file exist and not damaged.</value>
+  </data>
+  <data name="JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
+    <value>Load file "{0}" failed, confirm the file exist and not damaged.</value>
   </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
     <value>Backup file "{0}" found, confirm to recover the file to former folder "{1}"?</value>

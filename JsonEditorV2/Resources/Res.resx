@@ -210,7 +210,10 @@
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
     <value>檔案"{0}.json"格式不正確：{1}</value>
   </data>
-  <data name="JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
+  <data name="JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT" xml:space="preserve">
+    <value>讀取JSON關聯檔案"{0}"失敗，請確認檔案是否存在或損毀</value>
+  </data>
+  <data name="JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
     <value>讀取檔案"{0}"時發生錯誤，請確認檔案是否存在或損毀</value>
   </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
