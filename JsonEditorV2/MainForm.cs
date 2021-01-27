@@ -979,12 +979,8 @@ namespace JsonEditorV2
                 LoadJsonFile(Var.SelectedColumnParentTable);
 
             if (Var.SelectedColumnParentTable.Count != 0)
-            {
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                {
-                    jl.Add(new JValue());
-                }
-            }
+                    jl.Add(JValue.FromObject(""));
 
             JColumn jc = new JColumn(columnName);
             Var.SelectedColumnParentTable.Columns.Add(jc);
