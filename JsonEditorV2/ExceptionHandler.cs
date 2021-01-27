@@ -21,7 +21,6 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
         }
 
-        //JFI, Table File 
         public static void JsonConvertDeserializeObjectFailed(string fileName, Exception ex)
         {
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
@@ -30,6 +29,11 @@ namespace JsonEditorV2
         public static void JTableLoadJsonFailed(JTable jt, Exception ex)
         {
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name);
+        }
+
+        public static void JsonConvertDeserializeJFIFailed(Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);
         }
 
         public static bool HandleException(Exception ex, string content = null, string title = null)

@@ -207,6 +207,9 @@
   <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
     <value>JSON關聯檔案是空的</value>
   </data>
+  <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
+    <value>JSON關聯檔案格式不正確：{0}</value>
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
     <value>檔案"{0}.json"格式不正確：{1}</value>
   </data>

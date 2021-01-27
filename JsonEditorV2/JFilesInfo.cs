@@ -23,12 +23,14 @@ namespace JsonEditor
 
         [JsonIgnore]
         public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
-        
+
+        [JsonIgnore]
+        public Dictionary<int, Dictionary<int, JColumnInvalidReason>> InvalidRecords { get; set; } = new Dictionary<int, Dictionary<int, JColumnInvalidReason>>();
 
         public bool CheckColumnValid(JColumn jc)
         {            
             //TO DO
-            return true;            
+            return true;
         }
 
         public bool CheckValid()

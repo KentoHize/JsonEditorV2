@@ -1193,9 +1193,12 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                ExceptionHandler.JsonConvertDeserializeObjectFailed(JFilesInfo.FilesInfoName, ex);
+                ExceptionHandler.JsonConvertDeserializeJFIFailed(ex);
                 return false;
             }
+
+            if (!Var.JFI.CheckValid())
+                return false;
             return true;
         }
 

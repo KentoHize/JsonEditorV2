@@ -331,6 +331,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案格式不正確：{0}.
+        /// </summary>
+        public static string JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT {
+            get {
+                return ResourceManager.GetString("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;格式不正確：{1}.
         /// </summary>
         public static string JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT {
