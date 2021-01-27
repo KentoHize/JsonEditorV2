@@ -207,11 +207,20 @@
   <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
     <value>JFI File is Empty.</value>
   </data>
+  <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
+    <value>File "{0}.json" is not valid: {1}.</value>
+  </data>
+  <data name="JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
+    <value>Load file "{0}" failed, confirm it exist and not damaged.</value>
+  </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
     <value>Backup file "{0}" found, confirm to recover the file to former folder "{1}"?</value>
   </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
     <value>File "{0}.json" is not valid at line {1}, column "{2}", </value>
+  </data>
+  <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
+    <value>File "{0.json} data is not consistent with JFI File. Load failed.</value>
   </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
@@ -493,7 +502,7 @@
     <value>Text over maximum length: {0}.</value>
   </data>
   <data name="JE_VAL_VALUE_IS_NOT_UNIQUE" xml:space="preserve">
-    <value>Value "{0}" exist.</value>
+    <value>Value "{0}" exists.</value>
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON Files Editor</value>

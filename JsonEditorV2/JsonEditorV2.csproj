@@ -170,6 +170,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TestArea\Bad Json Test\Bad Json.json" />
     <None Include="TestArea\Test1\Articles.json" />
     <None Include="TestArea\Test1\BestowRecords.json" />
     <None Include="TestArea\Test1\JFilesInfo.json" />
@@ -211,6 +212,12 @@
     <None Include="TestArea\Test5\T7.json" />
     <None Include="TestArea\Test5\T9.json" />
     <None Include="TestArea\Test5\Test6.json" />
+    <None Include="TestArea\Test6\JFilesInfo.json" />
+    <None Include="TestArea\Test6\SetA1.json" />
+    <None Include="TestArea\Test6\SetB.json" />
+    <None Include="TestArea\Test6\SetC.json" />
+    <None Include="TestArea\WrongTypeStringTest\JFilesInfo.json" />
+    <None Include="TestArea\WrongTypeStringTest\ScanThis.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -237,6 +244,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TestArea\Test7\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

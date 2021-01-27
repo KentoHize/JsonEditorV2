@@ -11,6 +11,48 @@ namespace JsonEditorV2
 {
     public static class ExceptionHandler
     {
+        public static void OpenJsonFileFailed(string filePath, Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
+        }
+
+        //DeserializeObject
+        public static void JsonConvertDeserializeObjectFailed(string fileName, Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
+        }
+
+        public static void JTableLoadJsonFailed(JTable jt, Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name);
+        }
+
+        public static bool HandleException(Exception ex, string content = null, string title = null)
+        {
+            if (string.IsNullOrEmpty(content))
+                content = Res.JE_ERR_DEFAULT_MESSAGE;
+            if (string.IsNullOrEmpty(title))
+                title = Res.JE_ERR_DEFAULT_TITLE;
+
+            //JFI檢查失敗處理
+            if (ex.Message.Contains("LoadFileInfo"))
+            {
+                string p1 = ex.Message.Substring(13).Split(',')[0];
+                string p2 = ex.Message.Substring(13).Split(',')[1];
+                if (ex is ArgumentNullException)
+                    content = Res.JE_ERR_JFI_IS_EMPTY;
+                else if (ex is MissingMemberException)
+                    content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
+                else if (ex is IndexOutOfRangeException)
+                    content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
+                else if (ex is MissingFieldException)
+                    content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
+            }
+
+            RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
+            return false;
+        }
+
         public static void SentTableInvalidMessage(JTable jt)
         {
             var kvp1 = jt.InvalidRecords.First();
@@ -21,7 +63,6 @@ namespace JsonEditorV2
                 jt.Name, kvp1.Key + 1, jt.Columns[kvp2.Key].Name);
 
             //To Do
-
             switch (kvp2.Value)
             {
                 case JValueInvalidReasons.NullValue:
@@ -52,9 +93,7 @@ namespace JsonEditorV2
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);
                     break;
             }
-            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES);
-
-            
+            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES);            
         }
     }
 }

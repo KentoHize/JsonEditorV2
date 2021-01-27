@@ -331,6 +331,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;格式不正確：{1}.
+        /// </summary>
+        public static string JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT {
+            get {
+                return ResourceManager.GetString("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 讀取檔案&quot;{0}&quot;時發生錯誤，請確認檔案是否存在或損毀.
+        /// </summary>
+        public static string JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT {
+            get {
+                return ResourceManager.GetString("JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 發現需要復原的檔案&quot;{0}&quot;建立於 {1}，是否復原到原來的資料夾.
         /// </summary>
         public static string JE_ERR_RECOVER_FILE_M_1 {
@@ -345,6 +363,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL {
             get {
                 return ResourceManager.GetString("JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}.json&quot;檔案資料與宣告格式不相容，資料載入失敗.
+        /// </summary>
+        public static string JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT {
+            get {
+                return ResourceManager.GetString("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", resourceCulture);
             }
         }
         

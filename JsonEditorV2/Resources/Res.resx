@@ -207,11 +207,20 @@
   <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
     <value>JSON關聯檔案是空的</value>
   </data>
+  <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
+    <value>檔案"{0}.json"格式不正確：{1}</value>
+  </data>
+  <data name="JE_ERR_OPEN_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
+    <value>讀取檔案"{0}"時發生錯誤，請確認檔案是否存在或損毀</value>
+  </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
     <value>發現需要復原的檔案"{0}"建立於 {1}，是否復原到原來的資料夾</value>
   </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
     <value>檔案"{0}.json"資料不合規則：行 {1}，欄位"{2}",</value>
+  </data>
+  <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
+    <value>"{0}.json"檔案資料與宣告格式不相容，資料載入失敗</value>
   </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>JSON關聯檔案中的檔案名"{0}.json"和實際檔案名稱"{1}.json"不相同</value>

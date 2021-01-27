@@ -944,35 +944,9 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
+                ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
             }
             RefreshTrvJsonFiles();
-        }
-
-        public static bool HandleException(Exception ex, string content = null, string title = null)
-        {
-            if (string.IsNullOrEmpty(content))
-                content = Res.JE_ERR_DEFAULT_MESSAGE;
-            if (string.IsNullOrEmpty(title))
-                title = Res.JE_ERR_DEFAULT_TITLE;
-
-            //JFI檢查失敗處理
-            if (ex.Message.Contains("LoadFileInfo"))
-            {
-                string p1 = ex.Message.Substring(13).Split(',')[0];
-                string p2 = ex.Message.Substring(13).Split(',')[1];
-                if (ex is ArgumentNullException)
-                    content = Res.JE_ERR_JFI_IS_EMPTY;
-                else if (ex is MissingMemberException)
-                    content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
-                else if (ex is IndexOutOfRangeException)
-                    content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
-                else if (ex is MissingFieldException)
-                    content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
-            }
-
-            RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
-            return false;
         }
 
         public void tmiAddColumn_Click(object sender, EventArgs e)
@@ -1147,7 +1121,7 @@ namespace JsonEditorV2
                 }
                 catch (Exception ex)
                 {
-                    HandleException(ex);
+                    ExceptionHandler.HandleException(ex);
                 }
             }
 
@@ -1159,7 +1133,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
             }
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;
             tmiSaveJsonFiles_Click(this, e);
@@ -1199,26 +1173,50 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
             }
         }
 
         public static bool LoadJsonFile(JTable jt, bool produceColumnInfo = false)
         {
+            string jsonString = "";
+            object jsonObject;
             try
-            {
+            {                
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
-                    jt.LoadJson(JsonConvert.DeserializeObject(sr.ReadToEnd()), produceColumnInfo);
-                    jt.CehckValid(Setting.UseQuickCheck);
+                    jsonString = sr.ReadToEnd();
                     sr.Dispose();
-                }
+                }                 
             }
             catch (Exception ex)
             {
-                return HandleException(ex);                
+                ExceptionHandler.OpenJsonFileFailed(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), ex);
+                return false;
             }
+
+            try
+            {
+                jsonObject = JsonConvert.DeserializeObject(jsonString);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.JsonConvertDeserializeObjectFailed(jt.Name, ex);
+                return false;
+            }
+
+            try
+            {
+                jt.LoadJson(jsonObject, produceColumnInfo);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.JTableLoadJsonFailed(jt, ex);
+                return false;
+            }
+
+            jt.CehckValid(Setting.UseQuickCheck);
             return true;
         }
 
@@ -1280,7 +1278,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
             }
         }
 
@@ -1319,7 +1317,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
                 return false;
             }
 #endif 
@@ -1353,7 +1351,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
                 return false;
             }
             return true;
@@ -1441,7 +1439,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
+                ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
             }
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
@@ -1462,7 +1460,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                HandleException(ex);
+                ExceptionHandler.HandleException(ex);
             }
             Var.Tables.Remove(Var.SelectedColumnParentTable);
 
