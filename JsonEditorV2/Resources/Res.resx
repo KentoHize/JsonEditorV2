@@ -210,8 +210,14 @@
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
     <value>發現需要復原的檔案"{0}"建立於 {1}，是否復原到原來的資料夾</value>
   </data>
+  <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
+    <value>檔案"{0}.json"資料不合規則：行 {1}，欄位"{2}",</value>
+  </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>JSON關聯檔案中的檔案名"{0}.json"和實際檔案名稱"{1}.json"不相同</value>
+  </data>
+  <data name="JE_ERR_UNKNOWN_ERROR" xml:space="preserve">
+    <value>未知的錯誤</value>
   </data>
   <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
     <value>取消</value>

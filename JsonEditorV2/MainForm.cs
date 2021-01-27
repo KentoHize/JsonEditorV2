@@ -782,7 +782,9 @@ namespace JsonEditorV2
                 {
                     if (!jt.CehckValid())
                     {
-                        RabbitCouriers.SentErrorMessageByResource("JE_RUN_SAVE_JSON_FILES_M_1", Res.JE_TMI_SAVE_JSON_FILES, jt.Name);
+                        //To Do
+                        ExceptionHandler.SentTableInvalidMessage(jt);                        
+                        //RabbitCouriers.SentErrorMessageByResource("JE_RUN_SAVE_JSON_FILES_M_1", Res.JE_TMI_SAVE_JSON_FILES, jt.Name);
                         Var.CheckFailedFlag = true;
                         return;
                     }
@@ -796,7 +798,7 @@ namespace JsonEditorV2
             //存JSONFilesInfo檔
             SaveJFilesInfo();
 
-            //存JSONFiles
+            //存JSONFiles(有讀出的)
             foreach (JTable jt in Var.Tables)
                 if (jt.Loaded) //&& jt.Changed)
                     SaveJsonFile(jt);

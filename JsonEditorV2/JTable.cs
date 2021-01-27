@@ -19,7 +19,7 @@ namespace JsonEditor
         public bool Changed { get; set; }
         public bool Valid { get; set; }
 
-        public Dictionary<long, Dictionary<int, JValueInvalidReasons>> InvalidRecords { get; set; } = new Dictionary<long, Dictionary<int, JValueInvalidReasons>>();
+        public Dictionary<int, Dictionary<int, JValueInvalidReasons>> InvalidRecords { get; set; } = new Dictionary<int, Dictionary<int, JValueInvalidReasons>>();
 
         public int Count => ((IList<JLine>)Lines).Count;
 

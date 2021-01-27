@@ -340,11 +340,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;資料不合規則：行 {1}，欄位&quot;{2}&quot;,.
+        /// </summary>
+        public static string JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL {
+            get {
+                return ResourceManager.GetString("JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON關聯檔案中的檔案名&quot;{0}.json&quot;和實際檔案名稱&quot;{1}.json&quot;不相同.
         /// </summary>
         public static string JE_ERR_TABLE_NAME_UNMATCH {
             get {
                 return ResourceManager.GetString("JE_ERR_TABLE_NAME_UNMATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未知的錯誤.
+        /// </summary>
+        public static string JE_ERR_UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("JE_ERR_UNKNOWN_ERROR", resourceCulture);
             }
         }
         
