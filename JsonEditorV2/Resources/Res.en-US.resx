@@ -121,7 +121,7 @@
     <value>JSON Files Editor V0.3</value>
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
-    <value>Created by KentKaze</value>
+    <value>Author: KentKaze</value>
   </data>
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
     <value>About</value>
@@ -208,7 +208,7 @@
     <value>JFI File is Empty.</value>
   </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
-    <value>發現需要復原的檔案"{0}"建立於 {1}，是否復原到原來的資料夾</value>
+    <value>Backup file "{0}" found, confirm to recover the file to former folder "{1}"?</value>
   </data>
   <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
     <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
@@ -235,7 +235,7 @@
     <value>New Column</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
-    <value>錯誤的欄位名稱，請用'_'或英文字母開頭，之後使用'_'、英文字母或是數字，長度不要超過50位</value>
+    <value>Wrong column name, use a '_' or an alphabet at the head and  '_', alphabets or numbers at the body to complete a name, text length must less than 50.</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>Wrong file name.</value>
@@ -253,7 +253,7 @@
     <value>Column"{0}" is a top column.</value>
   </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
-    <value>檔案內存在{0}筆資料，確定要一起刪除欄位嗎</value>
+    <value>This file has {0} line(s) of data, confirm to drop same column data synchronously?</value>
   </data>
   <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
     <value>Column"{0}" deleted.</value>
@@ -334,7 +334,7 @@
     <value>"{0}" All Files saved.</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
-    <value>準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？</value>
+    <value>Ready to scan All Json files, recreate JFI file according to files' content. If there are many files in the Json folder, it will consume a long time to scan, are you sure?</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
     <value>{0} File(s) scan complete.</value>
