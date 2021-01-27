@@ -186,9 +186,21 @@ namespace JsonEditor
                         }
                         else
                         {
-                            JValue jv = JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type));
-                            if(!Changed)
-                                Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
+                            JValue jv;
+                            if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
+                            {
+                                jv = JValue.FromObject(parsedObj);
+                                if (!Changed)
+                                    Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
+                            }   
+                            else
+                            {
+                                //型態換為String，把前面的資料換掉
+                                for (int k = 0; k < Lines.Count; k++)
+                                    Lines[k][i].Value = Lines[k][i].Value.ToString(Columns[i].Type);
+                                Columns[i].Type = JType.String;
+                                jv = JValue.FromObject(kvp.Value.ToString());
+                            }
                             items.Add(jv);
                         }
                     }
@@ -199,9 +211,18 @@ namespace JsonEditor
                             items.Add(JValue.FromObject(null));
                         else
                         {
-                            JValue jv = JValue.FromObject(kvp.Value.ToString().ParseJType(jc.Type));
-                            if(!Changed)
-                                Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);                                
+                            JValue jv;
+                            if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
+                            {
+                                jv = JValue.FromObject(parsedObj);
+                                if (!Changed)
+                                    Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
+                            }
+                            else
+                            {
+                                jv = JValue.FromObject(parsedObj);
+                                Changed = true;
+                            }
                             items.Add(jv);
                         }                            
                     }

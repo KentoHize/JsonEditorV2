@@ -18,7 +18,7 @@ namespace JsonEditorV2
 
             StringBuilder result = new StringBuilder();
             result.AppendFormat(Res.JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL,
-                jt.Name, kvp1.Key, jt.Columns[kvp2.Key].Name);
+                jt.Name, kvp1.Key + 1, jt.Columns[kvp2.Key].Name);
 
             //To Do
 
