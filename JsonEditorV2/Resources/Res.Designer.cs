@@ -304,7 +304,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 發生了錯誤，錯誤訊息：&quot;{0}&quot;.
+        ///   Looks up a localized string similar to 錯誤發生：&quot;{0}&quot;.
         /// </summary>
         public static string JE_ERR_DEFAULT_MESSAGE {
             get {
@@ -601,7 +601,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 此文件已有現存 {0} JSON檔案，是否要清空資料夾.
+        ///   Looks up a localized string similar to 資料夾已有現存 {0} JSON檔案，是否要清空資料夾.
         /// </summary>
         public static string JE_RUN_NEW_JSON_FILES_Q_1 {
             get {

@@ -199,7 +199,7 @@
     <value>JSON關聯檔案中的欄位名稱:"{0}"和實際檔案中的欄位名稱"{1}"不合</value>
   </data>
   <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
-    <value>發生了錯誤，錯誤訊息："{0}"</value>
+    <value>錯誤發生："{0}"</value>
   </data>
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>錯誤</value>
@@ -292,7 +292,7 @@
     <value>已在"{0}"新建檔案庫</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
-    <value>此文件已有現存 {0} JSON檔案，是否要清空資料夾</value>
+    <value>資料夾已有現存 {0} JSON檔案，是否要清空資料夾</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_TITLE" xml:space="preserve">
     <value>開新檔案庫</value>

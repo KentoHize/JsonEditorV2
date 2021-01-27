@@ -199,7 +199,7 @@
     <value>JSON關聯檔案中的欄位名稱:"{0}"和實際檔案中的欄位名稱"{1}"不合</value>
   </data>
   <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
-    <value>Error occured, error message: {0}</value>
+    <value>Error occured: {0}</value>
   </data>
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>Error</value>
@@ -292,7 +292,7 @@
     <value>New Json folder created at "{0}".</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
-    <value>此文件已有現存 {0} JSON檔案，是否要清空資料夾</value>
+    <value>There are {0} Json file(s) in the target folder, confirm to delete all files?</value>
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_TITLE" xml:space="preserve">
     <value>New Json Folder</value>
@@ -361,7 +361,7 @@
     <value>Regular Expression format error.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
-    <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
+    <value>This file has {0} lines of data, confirm to update synchronously? (If type didn't match will change to an initial value)</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
     <value>Column "{0}" updated.</value>

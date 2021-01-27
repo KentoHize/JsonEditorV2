@@ -36,6 +36,9 @@ namespace JsonEditorV2
         public static TreeNode RootNode { get; set; }
         public static bool DblClick { get; set; }
 
+        //To Do
+        public static bool Locked { get; set; }
+
         public static bool Changed { get { if (Tables == null || JFI == null) return false; return Tables.Exists(m => m.Changed) || JFI.Changed; } }
     }
 }

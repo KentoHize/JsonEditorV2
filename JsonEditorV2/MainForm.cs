@@ -481,8 +481,8 @@ namespace JsonEditorV2
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-
-            tmiCloseAllFiles_Click(this, e);
+            
+            tmiCloseAllFiles_Click(this, e);            
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             Var.Tables = new List<JTable>();
@@ -494,7 +494,6 @@ namespace JsonEditorV2
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
                 return;
             }
-
 
             //有JFI File，先讀取
             if (jsonfiles.Contains(Var.JFI.FileInfoPath))
