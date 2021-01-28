@@ -489,7 +489,7 @@
   <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
     <value>"{0}" is not a correct min value.</value>
   </data>
-  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
+  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE" xml:space="preserve">
     <value>The min value "{0}" is greater than the max value"{1}".</value>
   </data>
   <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">

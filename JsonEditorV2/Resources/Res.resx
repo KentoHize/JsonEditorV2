@@ -489,7 +489,7 @@
   <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
     <value>"{0}"不是正確的最小值</value>
   </data>
-  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
+  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE" xml:space="preserve">
     <value>最小值"{0}"高於最大值"{1}"</value>
   </data>
   <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">

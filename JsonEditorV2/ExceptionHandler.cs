@@ -22,9 +22,60 @@ namespace JsonEditorV2
                 case JColumnInvalidReason.IllegalRegularExpression:
                     result.AppendFormat(Res.JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION);
                     break;
-                
+                case JColumnInvalidReason.IllegalName:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_ILLEGAL_NAME);
+                    break;
+                case JColumnInvalidReason.IsKeyAndIsNullable:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_IS_KEY_AND_IS_NULL);
+                    break;
+                case JColumnInvalidReason.ForeignKeyColumnMissing:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_MISSING);
+                    break;
+                case JColumnInvalidReason.ForeignKeyTableMissing:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_FK_TABLE_MISSING);
+                    break;
+                case JColumnInvalidReason.NumberOfRowsIsNegativeOrTooBig:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG);
+                    break;
+                case JColumnInvalidReason.NumberOrDateTimeHasRegularExpression:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION);
+                    break;
+                case JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE);
+                    break;
+                case JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE);
+                    break;
+                case JColumnInvalidReason.MinValueTypeCastFailed:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED, 
+                        Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
+                        .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MinValue);
+                    break;
+                case JColumnInvalidReason.MaxValueTypeCastFailed:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED,
+                        Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
+                        .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MaxValue);
+                    break;
+                case JColumnInvalidReason.MinValueGreaterThanMaxValue:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE,
+                        Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
+                        .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MinValue,
+                        Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
+                        .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MaxValue);
+                    break;
+                case JColumnInvalidReason.MaxLengthIsNegative:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE);
+                    break;
+                case JColumnInvalidReason.ForeignKeyTableNotExist:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_FK_TABLE_NOT_EXIST);
+                    break;
+                case JColumnInvalidReason.ForeignKeyColumnNotExist:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST);
+                    break;
+                case JColumnInvalidReason.ForeignKeyColumnTypeNotMatch:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH);
+                    break;
             }
-
             RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_LOAD_JSON_FILES);
         }
 

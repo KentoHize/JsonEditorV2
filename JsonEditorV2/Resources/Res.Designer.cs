@@ -1179,9 +1179,9 @@ namespace JsonEditorV2.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 最小值&quot;{0}&quot;高於最大值&quot;{1}&quot;.
         /// </summary>
-        public static string JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE {
+        public static string JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE {
             get {
-                return ResourceManager.GetString("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE", resourceCulture);
+                return ResourceManager.GetString("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE", resourceCulture);
             }
         }
         
