@@ -985,43 +985,9 @@ namespace JsonEditorV2
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
         }
-
-        public void tmiBackup_Click(object sender, EventArgs e)
-        {
-            string BackupPath = @"E:\Backup\JsonEditorV2";
-            string BackupPath2 = @"E:\Backup\Aritiafel";
-            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
-            string ProjectPath2 = @"C:\Programs\Standard\Aritiafel";
-            string[] ProjectName = new string[] { "JsonEditorV2", "JsonEditorV2Tests" };
-            string[] Project2Name = new string[] { "Aritiafel", "AritiafelTestForm", "AritiafelTestFormTests" };
-
-            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
-            File.Copy(Path.Combine(ProjectPath2, $"{Project2Name[0]}.sln"), Path.Combine(BackupPath2, $"{Project2Name[0]}.sln"), true);
-
-            foreach (string pj in ProjectName)
-            {
-                if (!Directory.Exists(Path.Combine(BackupPath, pj)))
-                    Directory.CreateDirectory(Path.Combine(BackupPath, pj));
-
-                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj));
-                //else
-                //{
-                //    RabbitCouriers.SentInformation("Target backup drive or directory do not exist.");
-                //    return;
-                //}
-            }
-
-            foreach (string pj2 in Project2Name)
-            {
-                if (!Directory.Exists(Path.Combine(BackupPath2, pj2)))
-                    Directory.CreateDirectory(Path.Combine(BackupPath2, pj2));
-                DirectoryCopy(Path.Combine(ProjectPath2, pj2), Path.Combine(BackupPath2, pj2));
-            }
-
-            RabbitCouriers.SentInformation("OK");
-        }
+        
         #region DirectoryCopy
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs = true)
+        private static void DirectoryCopy(string sourceDirName, string destDirName, string[] ignoreDirName = null, bool copySubDirs = true)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
@@ -1035,23 +1001,23 @@ namespace JsonEditorV2
 
             DirectoryInfo[] dirs = dir.GetDirectories();
 
-            Directory.CreateDirectory(destDirName);
-
-            // Get the files in the directory and copy them to the new location.
-            FileInfo[] files = dir.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                string tempPath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(tempPath, true);
+            if(ignoreDirName != null && !ignoreDirName.Contains(destDirName))
+            { 
+                Directory.CreateDirectory(destDirName);            
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    string tempPath = Path.Combine(destDirName, file.Name);
+                    file.CopyTo(tempPath, true);
+                }
             }
-
-            // If copying subdirectories, copy them and their contents to new location.
+            
             if (copySubDirs)
             {
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string tempPath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, tempPath, copySubDirs);
+                    DirectoryCopy(subdir.FullName, tempPath, ignoreDirName, copySubDirs);
                 }
             }
         }
@@ -1803,6 +1769,60 @@ namespace JsonEditorV2
         private void ckbQuickCheck_CheckedChanged(object sender, EventArgs e)
         {
             Setting.UseQuickCheck = ckbQuickCheck.Checked;
+        }
+
+        private void tmiJsonEditorBackup_Click(object sender, EventArgs e)
+        {
+            string BackupPath = @"E:\Backup\JsonEditorV2";
+            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
+            string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
+            string[] ProjectName = new string[] { "JsonEditorV2", "JsonEditorV2Tests" };
+
+            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
+
+            foreach (string pj in ProjectName)
+            {
+                if (!Directory.Exists(Path.Combine(BackupPath, pj)))
+                    Directory.CreateDirectory(Path.Combine(BackupPath, pj));
+
+                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);
+            }
+            RabbitCouriers.SentInformation("OK");
+        }
+
+        private void tmiTestDataBackup_Click(object sender, EventArgs e)
+        {
+            string BackupPath = @"E:\Backup\JsonEditorV2\JsonEditorV2";
+            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";            
+            string[] ProjectName = new string[] { "TestArea", "TestData" };
+
+            foreach (string pj in ProjectName)
+            {
+                if (!Directory.Exists(Path.Combine(BackupPath, pj)))
+                    Directory.CreateDirectory(Path.Combine(BackupPath, pj));
+
+                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj));
+            }
+            RabbitCouriers.SentInformation("OK");
+        }
+
+        private void tmiAritiafelBackup_Click(object sender, EventArgs e)
+        {   
+            string BackupPath = @"E:\Backup\Aritiafel";            
+            string ProjectPath = @"C:\Programs\Standard\Aritiafel";
+            string[] IgnoreDirName = new string[] { "bin", "obj" };
+            string[] ProjectName = new string[] { "Aritiafel", "AritiafelTestForm", "AritiafelTestFormTests" };
+
+            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
+
+            foreach (string pj in ProjectName)
+            {
+                if (!Directory.Exists(Path.Combine(BackupPath, pj)))
+                    Directory.CreateDirectory(Path.Combine(BackupPath, pj));
+
+                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);                
+            }
+            RabbitCouriers.SentInformation("OK");
         }
     }
 }

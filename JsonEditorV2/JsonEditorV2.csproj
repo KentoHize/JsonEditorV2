@@ -218,6 +218,69 @@
     <None Include="TestArea\Test6\SetC.json" />
     <None Include="TestArea\WrongTypeStringTest\JFilesInfo.json" />
     <None Include="TestArea\WrongTypeStringTest\ScanThis.json" />
+    <None Include="TestData\Bad JFI File\Bad JFI File\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnMissing\FKTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnMissing\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnMissing\MainTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnNotExist\FKTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnNotExist\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnNotExist\MainTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnTypeNotMatch\FKTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnTypeNotMatch\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyColumnTypeNotMatch\MainTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableMissing\FKTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableMissing\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableMissing\MainTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableNotExist\FKTable.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableNotExist\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\ForeignKeyTableNotExist\MainTable.json" />
+    <None Include="TestData\Bad JFI File\IllegalName\FKTable.json" />
+    <None Include="TestData\Bad JFI File\IllegalName\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\IllegalName\MainTable.json" />
+    <None Include="TestData\Bad JFI File\IllegalRegularExpression\FKTable.json" />
+    <None Include="TestData\Bad JFI File\IllegalRegularExpression\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\IllegalRegularExpression\MainTable.json" />
+    <None Include="TestData\Bad JFI File\IsKeyAndIsNullable\FKTable.json" />
+    <None Include="TestData\Bad JFI File\IsKeyAndIsNullable\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\IsKeyAndIsNullable\MainTable.json" />
+    <None Include="TestData\Bad JFI File\MaxLengthIsNegative\FKTable.json" />
+    <None Include="TestData\Bad JFI File\MaxLengthIsNegative\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\MaxLengthIsNegative\MainTable.json" />
+    <None Include="TestData\Bad JFI File\MaxValueTypeCastFailed\FKTable.json" />
+    <None Include="TestData\Bad JFI File\MaxValueTypeCastFailed\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\MaxValueTypeCastFailed\MainTable.json" />
+    <None Include="TestData\Bad JFI File\MinValueGreaterThanMaxValue\FKTable.json" />
+    <None Include="TestData\Bad JFI File\MinValueGreaterThanMaxValue\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\MinValueGreaterThanMaxValue\MainTable.json" />
+    <None Include="TestData\Bad JFI File\MinValueTypeCastFailed\FKTable.json" />
+    <None Include="TestData\Bad JFI File\MinValueTypeCastFailed\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\MinValueTypeCastFailed\MainTable.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMaxValue\FKTable.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMaxValue\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMaxValue\MainTable.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMinValue\FKTable.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMinValue\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\NotNumberOrDateTimeHaveMinValue\MainTable.json" />
+    <None Include="TestData\Bad JFI File\NumberOfRowsIsNegativeOrTooBig\FKTable.json" />
+    <None Include="TestData\Bad JFI File\NumberOfRowsIsNegativeOrTooBig\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\NumberOfRowsIsNegativeOrTooBig\MainTable.json" />
+    <None Include="TestData\Bad JFI File\NumberOrDateTimeHaveRegularExpression\FKTable.json" />
+    <None Include="TestData\Bad JFI File\NumberOrDateTimeHaveRegularExpression\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\NumberOrDateTimeHaveRegularExpression\MainTable.json" />
+    <None Include="TestData\Bad JFI File\Right JFI File\FKTable.json" />
+    <None Include="TestData\Bad JFI File\Right JFI File\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\Right JFI File\MainTable.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\Add2222.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\bbbbbbb.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\DSA.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\DSAHG.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\GroupTesting.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\JFilesInfo.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\JJJ.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\T2.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\T4.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\T5.json" />
+    <None Include="TestData\Bad JFI File\Wrong Match JFI File\T7.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -247,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestArea\Test7\" />
-    <Folder Include="TestData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
