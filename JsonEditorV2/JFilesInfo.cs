@@ -70,7 +70,7 @@ namespace JsonEditor
                 return JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue;
             else if (!jc.MinValue.TryParseJType(jc.Type, out object min) && !string.IsNullOrEmpty(jc.MinValue))
                 return JColumnInvalidReason.MinValueTypeCastFailed;
-            else if (!jc.MinValue.TryParseJType(jc.Type, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
+            else if (!jc.MaxValue.TryParseJType(jc.Type, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
                 return JColumnInvalidReason.MaxValueTypeCastFailed;
             else if (min != null && max != null && min.CompareTo(max, jc.Type) == 1)
                 return JColumnInvalidReason.MinValueGreaterThanMaxValue;

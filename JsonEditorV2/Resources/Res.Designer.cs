@@ -1204,7 +1204,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欄位行數不正確.
+        ///   Looks up a localized string similar to 欄位行數過大或為負值.
         /// </summary>
         public static string JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG {
             get {

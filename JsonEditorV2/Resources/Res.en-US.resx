@@ -499,7 +499,7 @@
     <value>Non-number or Non-datetime column has a min value.</value>
   </data>
   <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
-    <value>Number of rows is incorrect.</value>
+    <value>Number of rows is negative or too big.</value>
   </data>
   <data name="JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION" xml:space="preserve">
     <value>Number or datetime type column has a regular expression.</value>
