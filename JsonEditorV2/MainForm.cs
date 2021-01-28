@@ -1202,13 +1202,14 @@ namespace JsonEditorV2
                 else
                     jt.LoadJson(jsonObject);
             }
-            catch (Exception ex)
+            catch (JFileInvalidException ex)
             {
                 ExceptionHandler.JTableLoadJsonFailed(jt, ex);
                 return false;
             }
 
-            jt.CehckValid(Setting.UseQuickCheck);
+            if(!scan)
+                jt.CehckValid(Setting.UseQuickCheck);
             return true;
         }
 

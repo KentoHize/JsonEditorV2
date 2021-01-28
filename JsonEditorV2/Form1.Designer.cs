@@ -652,8 +652,8 @@
             this.tmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiNewJsonFiles,
             this.toolStripMenuItem3,
-            this.tmiLoadJsonFiles,
             this.tmiScanJsonFiles,
+            this.tmiLoadJsonFiles,
             this.toolStripMenuItem4,
             this.tmiSaveJsonFiles,
             this.tmiSaveAsJsonFiles,

@@ -105,14 +105,18 @@ namespace JsonEditor
 
         #region Type Upgrade Logic
         // Type Family
+
         // None Boolean
+
         // None Byte Integer Long Decimal
         // None Byte Integer Long Double
-        // None Time DateTime String
-        // None Date DateTime String
+
+        // None Time String
+        // None Date DateTime String        
         // None Uri String
         // None Guid String
         // None String
+        
         // None Object
         // None Array
 
@@ -174,10 +178,22 @@ namespace JsonEditor
                     else
                         return false;
                 case JType.Time:
+                    if (jt.IsStringFamily())
+                    {
+                        jc.Type = JType.String;
+                        return true;
+                    }
+                    else
+                        return false;
                 case JType.Date:
-                    if (jt == JType.DateTime || jt == JType.String)
+                    if (jt == JType.DateTime)
                     {
                         jc.Type = jt;
+                        return true;
+                    }
+                    else if (jt.IsStringFamily())
+                    {
+                        jc.Type = JType.String;
                         return true;
                     }
                     else
@@ -185,9 +201,9 @@ namespace JsonEditor
                 case JType.DateTime:
                 case JType.Uri:
                 case JType.Guid:
-                    if (jt == JType.String)
+                    if (jt.IsStringFamily())
                     {
-                        jc.Type = jt;
+                        jc.Type = JType.String;
                         return true;
                     }
                     else
@@ -208,7 +224,7 @@ namespace JsonEditor
                 Columns.Add(jc);
             }
             
-            if(jToken == null)
+            if(jToken.Type == JTokenType.Null)
             {
                 jc.IsNullable = true;
                 return null;
@@ -216,10 +232,14 @@ namespace JsonEditor
             else
             {
                 JType jType = jToken.ToJType();
+                string jTokenString = jToken.ToString();
                 if (!ParseTypeToColumn(jType, jc))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildColumnTypeVary);
 
-                return jToken.ToString().ParseJType(jc.Type);
+                if (jc.Type == JType.String && jc.NumberOfRows < 30 && jTokenString.Length > jc.NumberOfRows * 20)
+                    jc.NumberOfRows = jTokenString.Length / 20 + 1 > 30 ? 30 : jTokenString.Length / 20 + 1;
+
+                return jTokenString.ParseJType(jc.Type);
             }
         }
 
@@ -241,8 +261,9 @@ namespace JsonEditor
             List<Dictionary<string, object>> scannedResult = new List<Dictionary<string, object>>();
             for (int i = 0; i < jr.Count; i++)
             {
-                JObject jo = jr[i] as JObject;                
-                scannedResult[i] = new Dictionary<string, object>();
+                JObject jo = jr[i] as JObject;
+                scannedResult.Add(new Dictionary<string, object>());
+
                 if (jo == null)
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
 
@@ -250,12 +271,12 @@ namespace JsonEditor
                 {
                     try
                     {
-                        scannedResult[i].Add(kvp.Key, ParseJToken(kvp.Key, kvp.Value));                        
+                        scannedResult[i].Add(kvp.Key, ParseJToken(kvp.Key, kvp.Value));
                     }
                     catch (JFileInvalidException ex)
                     {
                         ex.LineIndex = i;
-                        throw ex;
+                        throw ex;                        
                     }                    
                 }
             }
@@ -265,10 +286,24 @@ namespace JsonEditor
             {
                 JLine jl = new JLine();
                 for(int i = 0; i < Columns.Count; i++)
-                    jl.Add(JValue.FromObject(line[Columns[i].Name]));
+                    jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
                 Lines.Add(jl);
             }
-           
+
+            //最後設定
+            for (int i = 0; i < Columns.Count; i++)
+            { 
+                if (Columns[i].Type == JType.None)
+                    Columns[i].Type = JType.String;
+                if (Columns[i].Name == "ID" && !Columns[i].IsNullable)
+                { 
+                    Columns[i].IsKey = true;
+                    Columns[i].Display = true;
+                }
+                Columns[i].Display = i == 0;
+
+            }
+
             Loaded = true;
             Valid = true;
         }

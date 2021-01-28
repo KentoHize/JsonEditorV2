@@ -171,7 +171,7 @@ namespace JsonEditor
         /// <summary>
         /// 確認JType是數字
         /// </summary>
-        /// <param name="type">jtype</param>
+        /// <param name="type">JType</param>
         /// <returns>結果</returns>
         public static bool IsNumber(this JType type)
             => type == JType.Byte || type == JType.Integer ||
@@ -181,10 +181,18 @@ namespace JsonEditor
         /// <summary>
         /// 確認JType是日期或時間
         /// </summary>
-        /// <param name="type">jtype</param>
+        /// <param name="type">JType</param>
         /// <returns>結果</returns>
         public static bool IsDateTime(this JType type)
             => type == JType.Date || type == JType.Time || type == JType.DateTime;
+
+        /// <summary>
+        /// 確認JType是一種字串
+        /// </summary>
+        /// <param name="type">JType</param>
+        /// <returns>結果</returns>
+        public static bool IsStringFamily(this JType type)
+            => IsDateTime(type) || type == JType.Guid || type == JType.Uri || type == JType.String;
 
         /// <summary>
         /// 回傳JType的初始值
@@ -402,6 +410,8 @@ namespace JsonEditor
             {
                 case JTokenType.None:
                     return JType.None;
+                case JTokenType.Boolean:
+                    return JType.Boolean;
                 case JTokenType.Integer:
                     if (jt.ToString().Length > 28) //decimal.MaxValue.ToString().Length - 1
                         return JType.String;
@@ -409,8 +419,10 @@ namespace JsonEditor
                         return JType.Decimal;
                     else if (jt.ToString().Length > 9) //int.MaxValue.ToString().Length - 1
                         return JType.Long;
-                    else
+                    else if (int.TryParse(jt.ToString(), out int r) && (r < 0 || r > byte.MaxValue))
                         return JType.Integer;
+                    else
+                        return JType.Byte;
                 case JTokenType.Float:                    
                     return JType.Double;
                 case JTokenType.String:

@@ -94,8 +94,9 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
         }
 
-        public static void JTableLoadJsonFailed(JTable jt, Exception ex)
+        public static void JTableLoadJsonFailed(JTable jt, JFileInvalidException ex)
         {
+            // To Do
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name);
         }
 
