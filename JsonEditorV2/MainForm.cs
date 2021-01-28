@@ -1001,7 +1001,7 @@ namespace JsonEditorV2
 
             DirectoryInfo[] dirs = dir.GetDirectories();
 
-            if(ignoreDirName != null && !ignoreDirName.Contains(destDirName))
+            if(ignoreDirName == null || !ignoreDirName.Contains(Path.GetFileName(destDirName)))
             { 
                 Directory.CreateDirectory(destDirName);            
                 FileInfo[] files = dir.GetFiles();
@@ -1009,15 +1009,15 @@ namespace JsonEditorV2
                 {
                     string tempPath = Path.Combine(destDirName, file.Name);
                     file.CopyTo(tempPath, true);
-                }
-            }
+                }            
             
-            if (copySubDirs)
-            {
-                foreach (DirectoryInfo subdir in dirs)
+                if (copySubDirs)
                 {
-                    string tempPath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, tempPath, ignoreDirName, copySubDirs);
+                    foreach (DirectoryInfo subdir in dirs)
+                    {
+                        string tempPath = Path.Combine(destDirName, subdir.Name);
+                        DirectoryCopy(subdir.FullName, tempPath, ignoreDirName, copySubDirs);
+                    }
                 }
             }
         }
@@ -1778,7 +1778,6 @@ namespace JsonEditorV2
             string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
             string[] ProjectName = new string[] { "JsonEditorV2", "JsonEditorV2Tests" };
 
-            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
 
             foreach (string pj in ProjectName)
             {
@@ -1787,6 +1786,9 @@ namespace JsonEditorV2
 
                 DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);
             }
+
+            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
+
             RabbitCouriers.SentInformation("OK");
         }
 
@@ -1813,7 +1815,6 @@ namespace JsonEditorV2
             string[] IgnoreDirName = new string[] { "bin", "obj" };
             string[] ProjectName = new string[] { "Aritiafel", "AritiafelTestForm", "AritiafelTestFormTests" };
 
-            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
 
             foreach (string pj in ProjectName)
             {
@@ -1822,6 +1823,9 @@ namespace JsonEditorV2
 
                 DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);                
             }
+
+            File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
+
             RabbitCouriers.SentInformation("OK");
         }
     }
