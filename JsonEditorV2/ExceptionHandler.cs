@@ -11,7 +11,7 @@ namespace JsonEditorV2
 {
     public static class ExceptionHandler
     {
-        public static void JFIFileIsIsInvalid(JFilesInfo JFI)
+        public static void JFIFileIsInvalid(JFilesInfo JFI)
         {
             StringBuilder result = new StringBuilder();
             result.AppendFormat(Res.JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL,
@@ -138,8 +138,7 @@ namespace JsonEditorV2
             StringBuilder result = new StringBuilder();
             result.AppendFormat(Res.JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL,
                 jt.Name, kvp1.Key + 1, jt.Columns[kvp2.Key].Name);
-
-            //To Do
+            
             switch (kvp2.Value)
             {
                 case JValueInvalidReasons.NullValue:
@@ -166,6 +165,7 @@ namespace JsonEditorV2
                 case JValueInvalidReasons.DuplicateKey:
                     result.AppendFormat(Res.JE_VAL_DUPLICATE_KEY, jt[kvp1.Key][kvp2.Key].Value ?? "");
                     break;
+                //To Do
                 default:
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);
                     break;

@@ -91,6 +91,9 @@
             this.tmiLanguageENUS = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiJsonEditorBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiTestDataBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiAritiafelBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -121,9 +124,6 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
-            this.tmiJsonEditorBackup = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiTestDataBackup = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiAritiafelBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.pblFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -776,6 +776,27 @@
             this.tmiBackup.Size = new System.Drawing.Size(69, 24);
             this.tmiBackup.Text = "Backup";
             // 
+            // tmiJsonEditorBackup
+            // 
+            this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiJsonEditorBackup.Text = "Json Editor";
+            this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
+            // 
+            // tmiTestDataBackup
+            // 
+            this.tmiTestDataBackup.Name = "tmiTestDataBackup";
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiTestDataBackup.Text = "Test Data";
+            this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
+            // 
+            // tmiAritiafelBackup
+            // 
+            this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiAritiafelBackup.Text = "Aritiafel";
+            this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
+            // 
             // ofdMain
             // 
             this.ofdMain.FileName = "openFileDialog1";
@@ -1022,27 +1043,6 @@
             this.ckbQuickCheck.Text = "-";
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
-            // 
-            // tmiJsonEditorBackup
-            // 
-            this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
-            this.tmiJsonEditorBackup.Text = "JsonEditor";
-            this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
-            // 
-            // tmiTestDataBackup
-            // 
-            this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
-            this.tmiTestDataBackup.Text = "TestData";
-            this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
-            // 
-            // tmiAritiafelBackup
-            // 
-            this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
-            this.tmiAritiafelBackup.Text = "Aritiafel";
-            this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
             // 
             // MainForm
             // 

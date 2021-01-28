@@ -1161,7 +1161,7 @@ namespace JsonEditorV2
 
             if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
             {
-                ExceptionHandler.JFIFileIsIsInvalid(Var.JFI);
+                ExceptionHandler.JFIFileIsInvalid(Var.JFI);
                 return false;
             }   
             return true;
