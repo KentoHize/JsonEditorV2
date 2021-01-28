@@ -217,16 +217,18 @@ namespace JsonEditor
             {
                 JType jType = jToken.ToJType();
                 if (!ParseTypeToColumn(jType, jc))
-                    throw; // to do
+                    throw new JFileInvalidException(JFileInvalidReasons.ChildColumnTypeVary);
 
                 return jToken.ToString().ParseJType(jc.Type);
             }
         }
 
+        /// <summary>
+        /// 掃描Json物件
+        /// </summary>
+        /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
         public void ScanJson(object jArray)
         {
-            //if(CheckJObjectReadable(jArray) == null)
-            //    throw new ArgumentException("jArray");
             Lines.Clear();
             Columns.Clear();
 
@@ -235,12 +237,12 @@ namespace JsonEditor
             if (jr == null)
                 throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
-            Dictionary<string, JColumn> newColumns = new Dictionary<string, JColumn>();
-
+            //掃描jArray
+            List<Dictionary<string, object>> scannedResult = new List<Dictionary<string, object>>();
             for (int i = 0; i < jr.Count; i++)
             {
-                JObject jo = jr[i] as JObject;
-                JLine jl = new JLine();
+                JObject jo = jr[i] as JObject;                
+                scannedResult[i] = new Dictionary<string, object>();
                 if (jo == null)
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
 
@@ -248,16 +250,24 @@ namespace JsonEditor
                 {
                     try
                     {
-                        jl.Add(JValue.FromObject(ParseJToken(kvp.Key, kvp.Value)));
+                        scannedResult[i].Add(kvp.Key, ParseJToken(kvp.Key, kvp.Value));                        
                     }
                     catch (JFileInvalidException ex)
                     {
-
+                        ex.LineIndex = i;
+                        throw ex;
                     }                    
                 }
-                Lines.Add(jl);
             }
 
+            //放入Table
+            foreach(Dictionary<string, object> line in scannedResult)
+            {
+                JLine jl = new JLine();
+                for(int i = 0; i < Columns.Count; i++)
+                    jl.Add(JValue.FromObject(line[Columns[i].Name]));
+                Lines.Add(jl);
+            }
            
             Loaded = true;
             Valid = true;
@@ -268,7 +278,6 @@ namespace JsonEditor
         /// </summary>
         /// <param name="jArray">JArray</param>
         /// <param name="produceColumnInfo">是否更新欄位</param>
-        /// <returns>讀取成功與否</returns>
         public void LoadJson(object jArray, bool produceColumnInfo = false)
         {
             bool isFirst = true;
