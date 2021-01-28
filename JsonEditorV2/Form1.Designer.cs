@@ -124,6 +124,8 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiRunSomething = new System.Windows.Forms.ToolStripMenuItem();
             this.pblFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -770,7 +772,9 @@
             this.tmiBackup.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiJsonEditorBackup,
             this.tmiTestDataBackup,
-            this.tmiAritiafelBackup});
+            this.tmiAritiafelBackup,
+            this.toolStripMenuItem9,
+            this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
             this.tmiBackup.Size = new System.Drawing.Size(69, 24);
             this.tmiBackup.Text = "Backup";
@@ -778,21 +782,21 @@
             // tmiJsonEditorBackup
             // 
             this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(156, 26);
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiJsonEditorBackup.Text = "Json Editor";
             this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
             // 
             // tmiTestDataBackup
             // 
             this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(156, 26);
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiTestDataBackup.Text = "Test Data";
             this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
             // 
             // tmiAritiafelBackup
             // 
             this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(156, 26);
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiAritiafelBackup.Text = "Aritiafel";
             this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
             // 
@@ -1043,6 +1047,18 @@
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
             // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(213, 6);
+            // 
+            // tmiRunSomething
+            // 
+            this.tmiRunSomething.Name = "tmiRunSomething";
+            this.tmiRunSomething.Size = new System.Drawing.Size(216, 26);
+            this.tmiRunSomething.Text = "Run something";
+            this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1183,6 +1199,8 @@
         private System.Windows.Forms.ToolStripMenuItem tmiJsonEditorBackup;
         private System.Windows.Forms.ToolStripMenuItem tmiTestDataBackup;
         private System.Windows.Forms.ToolStripMenuItem tmiAritiafelBackup;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem tmiRunSomething;
     }
 }
 

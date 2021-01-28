@@ -1827,5 +1827,45 @@ namespace JsonEditorV2
 
             RabbitCouriers.SentInformation("OK");
         }
+
+        private void tmiRunSomething_Click(object sender, EventArgs e)
+        {   
+            //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
+            //string[] ProjectName = new string[] { "TestArea", "TestData" };
+
+            //foreach (string pj in ProjectName)
+            //    ChangeRegex(Path.Combine(ProjectPath, pj));
+            RabbitCouriers.SentInformation("OK");
+        }
+
+        private void ChangeRegex(string folderName)
+        {
+            string[] files = Directory.GetFiles(folderName, "*.bak");
+            string s;
+
+            foreach(string file in files)
+            {
+                using (FileStream fs1 = new FileStream(file, FileMode.Open))
+                {
+                    StreamReader sr = new StreamReader(fs1);
+                    s = sr.ReadToEnd();
+                    sr.Close();
+                }
+                
+                File.Move(file, $"{file}.bak");
+
+                using (FileStream fs2 = new FileStream(file, FileMode.Create))
+                {
+                    StreamWriter sw = new StreamWriter(fs2);
+                    sw.Write(s.Replace("Regex", "RegularExpression"));
+                    sw.Close();
+                }
+            }
+
+            string[] folders = Directory.GetDirectories(folderName);
+
+            foreach (string folder in folders)
+                ChangeRegex(folder);
+        }
     }
 }
