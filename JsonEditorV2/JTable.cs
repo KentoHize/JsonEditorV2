@@ -353,7 +353,6 @@ namespace JsonEditor
             {
                 JLine jl = new JLine();
                 JObject jo = jr[i] as JObject;
-                JColumn jc = null;
 
                 if (jo == null)
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
@@ -364,9 +363,7 @@ namespace JsonEditor
                 int j = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
-                    jc = Columns[j];
-
-                    if (jc.Name != kvp.Key)
+                    if (Columns[j].Name != kvp.Key)
                         if (Columns.Find(m => m.Name == kvp.Key) != null)
                             throw new JFileInvalidException(JFileInvalidReasons.ChildColumnOrderVary, i);
                         else
@@ -374,11 +371,11 @@ namespace JsonEditor
 
                     if (kvp.Value.Type == JTokenType.Null)
                         jl.Add(JValue.FromObject(null));
-                    else if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
+                    else if (kvp.Value.ToString().TryParseJType(Columns[j].Type, out object parsedObj))
                     {
                         jl.Add(JValue.FromObject(parsedObj));
                         if (!Changed)
-                            Changed = kvp.Value.ToString() != parsedObj.ToString(jc.Type);
+                            Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type);
                     }
                     else
                     {
