@@ -196,25 +196,25 @@ namespace JsonEditorV2
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
                 //欄位名檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_1", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_ILLEGAL_NAME", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_2", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
             {
                 //文字最大長度檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_11", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
             {
                 //Key和Nullable相斥檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_7", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_IS_KEY_AND_IS_NULL", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
@@ -222,7 +222,7 @@ namespace JsonEditorV2
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_3", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_FK_COLUMN_MISSING", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -238,20 +238,20 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_8", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
                     txtColumnMinValue.Text = newType.GetMinValue().ToString();
                     return;
                 }
                 if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType, true))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_9", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
                     txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
                     return;
                 }
                 if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
                 txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_10", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
                     return;
                 }
             }
@@ -266,7 +266,7 @@ namespace JsonEditorV2
             }
             catch
             {
-                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_4", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
