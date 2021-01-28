@@ -73,7 +73,6 @@ namespace JsonEditor
                 return JColumnInvalidReason.MinValueGreaterThanMaxValue;
             else if (jc.TextMaxLength < 0)
                 return JColumnInvalidReason.MaxLengthIsNegative;
-
             return JColumnInvalidReason.None;
         }
 

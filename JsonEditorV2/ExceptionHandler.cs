@@ -11,6 +11,20 @@ namespace JsonEditorV2
 {
     public static class ExceptionHandler
     {
+        public static void JFIFileIsIsInvalid(JFilesInfo JFI)
+        {
+            StringBuilder result = new StringBuilder();
+
+            switch (JFI.InvalidReason)
+            {
+                case JColumnInvalidReason.IllegalRegularExpression:
+                    break;
+                
+            }
+
+            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_LOAD_JSON_FILES);
+        }
+
         public static void OpenJFIFileFailed(string filePath, Exception ex)
         {
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
@@ -102,7 +116,7 @@ namespace JsonEditorV2
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);
                     break;
             }
-            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES);            
+            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES);
         }
     }
 }

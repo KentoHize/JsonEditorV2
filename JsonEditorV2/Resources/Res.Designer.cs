@@ -799,60 +799,6 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 欄位名稱不正確.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_1 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 最小值&quot;{0}&quot;高於最大值&quot;{1}&quot;.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_10 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 文字最大長度錯誤，合法值為0(不限)或正整數.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_11 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_11", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 欄位行數不正確.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_2 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 請選擇外部索引欄位.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_3 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 正則表達式格式錯誤.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_4 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值).
         /// </summary>
         public static string JE_RUN_UPDATE_COLUMN_M_5 {
@@ -867,33 +813,6 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_UPDATE_COLUMN_M_6 {
             get {
                 return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_6", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Key欄位不能為Null值.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_7 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_7", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最小值.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_8 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_8", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最大值.
-        /// </summary>
-        public static string JE_RUN_UPDATE_COLUMN_M_9 {
-            get {
-                return ResourceManager.GetString("JE_RUN_UPDATE_COLUMN_M_9", resourceCulture);
             }
         }
         
@@ -1155,6 +1074,87 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_VIEW_JSON_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_VIEW_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引欄位遺失.
+        /// </summary>
+        public static string JE_VAL_COLUMN_FK_COLUMN_MISSING {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_FK_COLUMN_MISSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位名稱不正確.
+        /// </summary>
+        public static string JE_VAL_COLUMN_ILLEGAL_NAME {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_ILLEGAL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 正則表達式格式錯誤.
+        /// </summary>
+        public static string JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key欄位不能為Null值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_IS_KEY_AND_IS_NULL {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_IS_KEY_AND_IS_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 文字最大長度錯誤，合法值為0(不限)或正整數.
+        /// </summary>
+        public static string JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最大值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;不是正確的最小值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 最小值&quot;{0}&quot;高於最大值&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位行數不正確.
+        /// </summary>
+        public static string JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG", resourceCulture);
             }
         }
         

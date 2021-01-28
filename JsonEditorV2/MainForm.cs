@@ -196,25 +196,25 @@ namespace JsonEditorV2
             if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
             {
                 //欄位名檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_1", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_1", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_2", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_2", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
             {
                 //文字最大長度檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_11", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_11", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
             {
                 //Key和Nullable相斥檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_7", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_7", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
@@ -222,7 +222,7 @@ namespace JsonEditorV2
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_3", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_3", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -238,20 +238,20 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_8", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_8", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
                     txtColumnMinValue.Text = newType.GetMinValue().ToString();
                     return;
                 }
                 if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType, true))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_9", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_9", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
                     txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
                     return;
                 }
                 if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
                 txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_10", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_10", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
                     return;
                 }
             }
@@ -266,7 +266,7 @@ namespace JsonEditorV2
             }
             catch
             {
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_UPDATE_COLUMN_M_4", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                RabbitCouriers.SentErrorMessageByResource("JE_VAL_UPDATE_COLUMN_M_4", Res.JE_RUN_UPDATE_COLUMN_TITLE);
                 return;
             }
 
@@ -482,13 +482,14 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
+            //關閉檔案
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             Var.Tables = new List<JTable>();
             JTable table;
 
-            //檔案數為0
+            //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
@@ -498,15 +499,16 @@ namespace JsonEditorV2
             //有JFI File，先讀取
             if (jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
-                LoadJFilesInfo(Var.JFI.FileInfoPath);
-                Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-
-                //不合法，錯誤訊息之後扔出
-                if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
+                if(!LoadJFilesInfo(Var.JFI.FileInfoPath))
                 {
-                    //錯誤訊息
-                    Var.JFI.TablesInfo = null;
+                    //讀取失敗，跳出
+                    if (Var.JFI.InvalidReason != JColumnInvalidReason.None)
+                    {
+                        //Res.JE_JFI
+                    }
+                    return;
                 }
+                Var.JFI.DirectoryPath = fbdMain.SelectedPath;
             }
 
             //對於 其他檔案開始核對
@@ -1198,7 +1200,10 @@ namespace JsonEditorV2
             }
 
             if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
+            {
+                ExceptionHandler.JFIFileIsIsInvalid(Var.JFI);
                 return false;
+            }   
             return true;
         }
 

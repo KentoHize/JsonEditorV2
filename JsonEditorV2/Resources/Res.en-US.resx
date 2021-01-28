@@ -363,38 +363,11 @@
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     <value>Scan Json Folder</value>
   </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_1" xml:space="preserve">
-    <value>Column name is illegal.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_10" xml:space="preserve">
-    <value>The min value "{0}" is greater than the max value"{1}".</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_11" xml:space="preserve">
-    <value>Text maximum length is invalid, it should be 0(unlimited) or a positive integer.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
-    <value>Number of rows is incorrect.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_3" xml:space="preserve">
-    <value>Pleace choice foreign key column.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
-    <value>Regular Expression format error.</value>
-  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
     <value>This file has {0} lines of data, confirm to update synchronously? (If type didn't match will change to an initial value)</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
     <value>Column "{0}" updated.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
-    <value>Key column's value can't be Null.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_8" xml:space="preserve">
-    <value>"{0}" is not a correct min value.</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_9" xml:space="preserve">
-    <value>"{0}" is not a correct max value.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>Update Column</value>
@@ -482,6 +455,33 @@
   </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
+    <value>Foreign key column is missing.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
+    <value>Column name is illegal.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION" xml:space="preserve">
+    <value>Regular Expression format error.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_IS_KEY_AND_IS_NULL" xml:space="preserve">
+    <value>Key column's value can't be Null.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE" xml:space="preserve">
+    <value>Text maximum length is invalid, it should be 0(unlimited) or a positive integer.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED" xml:space="preserve">
+    <value>"{0}" is not a correct max value.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
+    <value>"{0}" is not a correct min value.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
+    <value>The min value "{0}" is greater than the max value"{1}".</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
+    <value>Number of rows is incorrect.</value>
   </data>
   <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
     <value>Key value "{0}" duplicated.</value>

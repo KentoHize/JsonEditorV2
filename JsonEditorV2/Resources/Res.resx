@@ -363,38 +363,11 @@
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     <value>掃描檔案庫</value>
   </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_1" xml:space="preserve">
-    <value>欄位名稱不正確</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_10" xml:space="preserve">
-    <value>最小值"{0}"高於最大值"{1}"</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_11" xml:space="preserve">
-    <value>文字最大長度錯誤，合法值為0(不限)或正整數</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_2" xml:space="preserve">
-    <value>欄位行數不正確</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_3" xml:space="preserve">
-    <value>請選擇外部索引欄位</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_4" xml:space="preserve">
-    <value>正則表達式格式錯誤</value>
-  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
     <value>檔案內存在{0}筆資料，確定要一起更改嗎(型態不合的資料將設為初始值)</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
     <value>欄位"{0}"已更新</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_7" xml:space="preserve">
-    <value>Key欄位不能為Null值</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_8" xml:space="preserve">
-    <value>"{0}"不是正確的最小值</value>
-  </data>
-  <data name="JE_RUN_UPDATE_COLUMN_M_9" xml:space="preserve">
-    <value>"{0}"不是正確的最大值</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
     <value>更新欄位</value>
@@ -482,6 +455,33 @@
   </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>用記事本開啟</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
+    <value>外部索引欄位遺失</value>
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
+    <value>欄位名稱不正確</value>
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION" xml:space="preserve">
+    <value>正則表達式格式錯誤</value>
+  </data>
+  <data name="JE_VAL_COLUMN_IS_KEY_AND_IS_NULL" xml:space="preserve">
+    <value>Key欄位不能為Null值</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE" xml:space="preserve">
+    <value>文字最大長度錯誤，合法值為0(不限)或正整數</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED" xml:space="preserve">
+    <value>"{0}"不是正確的最大值</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
+    <value>"{0}"不是正確的最小值</value>
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
+    <value>最小值"{0}"高於最大值"{1}"</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
+    <value>欄位行數不正確</value>
   </data>
   <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
     <value>鍵值"{0}"重複</value>
