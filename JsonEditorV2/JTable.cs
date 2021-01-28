@@ -38,13 +38,6 @@ namespace JsonEditor
             Valid = true;
         }
 
-        //public JTable(string name, object jArray, bool isNew = false)
-        //{
-        //    Name = name;
-        //    Loaded = isNew;
-        //    LoadJson(jArray, true);
-        //}
-
         public List<dynamic> ToListItems()
         {
             List<dynamic> result = new List<object>();
@@ -80,28 +73,6 @@ namespace JsonEditor
             return dt;
         }
 
-        ///// <summary>
-        ///// 讀取JFileInfo檔案設定
-        ///// </summary>
-        ///// <param name="jfi"></param>
-        //public void LoadFileInfo(JTableInfo jfi)
-        //{
-        //    //檢查一下是否正確
-        //    if (jfi == null)
-        //        throw new ArgumentException($"LoadFileInfo:{Name},");
-        //    if (Name != jfi.Name)
-        //        throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");
-        //    if (Columns.Count != 0)
-        //    {
-        //        if (Columns.Count != jfi.Columns.Count)
-        //            throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");
-        //        for (int i = 0; i < jfi.Columns.Count; i++)
-        //            if (Columns[i].Name != jfi.Columns[i].Name)
-        //                throw new MissingFieldException($"LoadFileInfo:{Columns[i].Name},{jfi.Columns[i].Name}");
-        //    }
-        //    Columns = jfi.Columns;
-        //}
-
         /// <summary>
         /// 擷取JFileInfo檔案內容
         /// </summary>
@@ -132,6 +103,63 @@ namespace JsonEditor
             return result;
         }
 
+        //private JArray CheckJObjectReadable(object jObject, bool strict = false)
+        //{
+        //    JArray jr = jObject as JArray;
+        //    JObject jo;
+        //    HashSet<string> columnName;
+
+        //    if (jr == null)
+        //        return null;
+
+        //    if (jr.Count == 0)
+        //        return jr;
+
+        //    if(strict)
+        //    {
+        //        jo = jr.First;                
+        //    }
+
+
+        //    foreach (JToken jt in jr)
+        //    {
+        //         = jt as JObject;
+        //        if (jo == null)
+        //            return null;
+        //    }
+            
+        //    if (jo.Count == 0)
+        //        return jr;
+            
+        //}
+
+        public void ScanJson(object jArray)
+        {
+            //if(CheckJObjectReadable(jArray) == null)
+            //    throw new ArgumentException("jArray");
+
+            JArray jr = jArray as JArray;
+            
+            //if (jr == null)
+
+                Dictionary<string, JColumn> Columns = new Dictionary<string, JColumn>();
+
+            
+            
+                
+
+            // Type Family
+            // Boolean String Object
+            // Byte Integer Long Decimal String Object
+            // Double String Object
+            // Time DateTime String Object
+            // Date String Object
+            // Uri String Object
+            // Guid String Object
+            // String Object
+            // Object
+        }
+
         /// <summary>
         /// 讀取Json物件
         /// </summary>
@@ -153,11 +181,32 @@ namespace JsonEditor
             if (produceColumnInfo)
                 Columns.Clear();
 
+            //做檢查
+
+            //foreach(JToken jt in jr)
+            //{
+            //    JObject jo = jt as JObject;
+
+            //    //1.資料欄數字正確
+            //    if (jo.Count != Columns.Count)
+            //        ;
+                    
+                
+            //    //2.資料欄名正確
+                
+                
+            //    //3.資料正確(非Array, Object)
+
+
+            //}
+
             foreach (JToken jt in jr)
             {
                 JLine items = new JLine();
                 JObject jo = jt as JObject;
                 JColumn jc = null;
+
+                Console.WriteLine(jo.Count);
 
                 int i = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
@@ -196,7 +245,7 @@ namespace JsonEditor
                             }   
                             else
                             {
-                                //型態換為String，把前面的資料換掉
+                                //確認型別失敗，型態換為String，把前面的資料換掉
                                 for (int k = 0; k < Lines.Count; k++)
                                     Lines[k][i].Value = Lines[k][i].Value.ToString(Columns[i].Type);
                                 Columns[i].Type = JType.String;
@@ -237,7 +286,7 @@ namespace JsonEditor
                                 Changed = true;
                             }
                             items.Add(jv);
-                        }                            
+                        }
                     }
                     i++;
                 }

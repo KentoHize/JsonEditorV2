@@ -1,0 +1,90 @@
+{
+  "Name": "Original Files",
+  "TablesInfo": [
+    {
+      "Name": "Quotes",
+      "Columns": [
+        {
+          "Name": "No",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Date",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Date",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Chinese",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "English",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Japanese",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": null,
+          "Description": null,
+          "MinValue": null,
+          "MaxValue": null,
+          "TextMaxLength": 0,
+          "IsUnique": false
+        }
+      ]
+    }
+  ]
+}

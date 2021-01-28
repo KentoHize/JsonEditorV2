@@ -301,7 +301,7 @@
     <value>{0} File(s) has Loaded.</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
-    <value>JFI File is not exist, use scan instead.</value>
+    <value>JFI File not exist, scan folder to create files info.</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_3" xml:space="preserve">
     <value>There is no Json file in the target folder "{0}".</value>

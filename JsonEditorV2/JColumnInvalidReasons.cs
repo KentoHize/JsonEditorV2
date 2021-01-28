@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JsonEditor
 {
-    public enum JColumnInvalidReason
+    public enum JColumnInvalidReasons
     {
         None = 0,
         IllegalName,        

@@ -200,7 +200,7 @@ namespace JsonEditorV2
                 //結束
 
                 if (!jt.Loaded)
-                    MainForm.LoadJsonFile(jt);
+                    MainForm.LoadOrScanJsonFile(jt);
                 
                 if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].Value.ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
                 {

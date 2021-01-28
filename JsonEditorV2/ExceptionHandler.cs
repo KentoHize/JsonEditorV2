@@ -19,60 +19,60 @@ namespace JsonEditorV2
 
             switch (JFI.InvalidReason)
             {
-                case JColumnInvalidReason.IllegalRegularExpression:
+                case JColumnInvalidReasons.IllegalRegularExpression:
                     result.AppendFormat(Res.JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION);
                     break;
-                case JColumnInvalidReason.IllegalName:
+                case JColumnInvalidReasons.IllegalName:
                     result.AppendFormat(Res.JE_VAL_COLUMN_ILLEGAL_NAME);
                     break;
-                case JColumnInvalidReason.IsKeyAndIsNullable:
+                case JColumnInvalidReasons.IsKeyAndIsNullable:
                     result.AppendFormat(Res.JE_VAL_COLUMN_IS_KEY_AND_IS_NULL);
                     break;
-                case JColumnInvalidReason.ForeignKeyColumnMissing:
+                case JColumnInvalidReasons.ForeignKeyColumnMissing:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_MISSING);
                     break;
-                case JColumnInvalidReason.ForeignKeyTableMissing:
+                case JColumnInvalidReasons.ForeignKeyTableMissing:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_TABLE_MISSING);
                     break;
-                case JColumnInvalidReason.NumberOfRowsIsNegativeOrTooBig:
+                case JColumnInvalidReasons.NumberOfRowsIsNegativeOrTooBig:
                     result.AppendFormat(Res.JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG);
                     break;
-                case JColumnInvalidReason.NumberOrDateTimeHasRegularExpression:
+                case JColumnInvalidReasons.NumberOrDateTimeHasRegularExpression:
                     result.AppendFormat(Res.JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION);
                     break;
-                case JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue:
+                case JColumnInvalidReasons.NotNumberOrDateTimeHaveMinValue:
                     result.AppendFormat(Res.JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE);
                     break;
-                case JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue:
+                case JColumnInvalidReasons.NotNumberOrDateTimeHaveMaxValue:
                     result.AppendFormat(Res.JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE);
                     break;
-                case JColumnInvalidReason.MinValueTypeCastFailed:
+                case JColumnInvalidReasons.MinValueTypeCastFailed:
                     result.AppendFormat(Res.JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED, 
                         Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
                         .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MinValue);
                     break;
-                case JColumnInvalidReason.MaxValueTypeCastFailed:
+                case JColumnInvalidReasons.MaxValueTypeCastFailed:
                     result.AppendFormat(Res.JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED,
                         Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
                         .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MaxValue);
                     break;
-                case JColumnInvalidReason.MinValueGreaterThanMaxValue:
+                case JColumnInvalidReasons.MinValueGreaterThanMaxValue:
                     result.AppendFormat(Res.JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE,
                         Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
                         .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MinValue,
                         Var.JFI.TablesInfo.Find(m => m.Name == Var.JFI.InvalidFileName)
                         .Columns.Find(m => m.Name == Var.JFI.InvalidColumnName).MaxValue);
                     break;
-                case JColumnInvalidReason.MaxLengthIsNegative:
+                case JColumnInvalidReasons.MaxLengthIsNegative:
                     result.AppendFormat(Res.JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE);
                     break;
-                case JColumnInvalidReason.ForeignKeyTableNotExist:
+                case JColumnInvalidReasons.ForeignKeyTableNotExist:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_TABLE_NOT_EXIST);
                     break;
-                case JColumnInvalidReason.ForeignKeyColumnNotExist:
+                case JColumnInvalidReasons.ForeignKeyColumnNotExist:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST);
                     break;
-                case JColumnInvalidReason.ForeignKeyColumnTypeNotMatch:
+                case JColumnInvalidReasons.ForeignKeyColumnTypeNotMatch:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH);
                     break;
             }
@@ -104,6 +104,8 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);
         }
 
+
+
         public static bool HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
@@ -111,7 +113,7 @@ namespace JsonEditorV2
             if (string.IsNullOrEmpty(title))
                 title = Res.JE_ERR_DEFAULT_TITLE;
 
-            //JFI檢查失敗處理
+            //JFI檢查失敗處理 (待註解)
             if (ex.Message.Contains("LoadFileInfo"))
             {
                 string p1 = ex.Message.Substring(13).Split(',')[0];

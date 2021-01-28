@@ -610,7 +610,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON關聯檔案不存在，請改用掃描JSON資料夾.
+        ///   Looks up a localized string similar to JSON關聯檔案不存在，掃描JSON資料夾以建立新的關聯檔案.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_2 {
             get {

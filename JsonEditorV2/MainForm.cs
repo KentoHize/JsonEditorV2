@@ -275,7 +275,7 @@ namespace JsonEditorV2
 
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
 
             //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -482,7 +482,7 @@ namespace JsonEditorV2
                     continue;
 
                 JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
-                LoadJsonFile(table, true);
+                LoadOrScanJsonFile(table, true);
                 Var.Tables.Add(table);
             }
 
@@ -548,7 +548,7 @@ namespace JsonEditorV2
 
                 //小檔案直接讀取
                 if (fi.Length < Setting.DontLoadFileBytesThreshold)                    
-                    LoadJsonFile(table);
+                    LoadOrScanJsonFile(table);
 
                 Var.Tables.Add(table);
             }
@@ -925,15 +925,15 @@ namespace JsonEditorV2
         {
             if (e.Node.Parent == Var.RootNode)
             {
-                if (tmiOpenJsonFile.Enabled)
-                    tmiOpenJsonFile_Click(this, new EventArgs());
-
                 //補足效果
                 Var.DblClick = false;
-                if (e.Node.IsExpanded)
-                    e.Node.Collapse();
-                else
-                    e.Node.Expand();
+                //if (e.Node.IsExpanded)
+                //    e.Node.Collapse();
+                //else
+                //    e.Node.Expand();
+
+                if (tmiOpenJsonFile.Enabled)
+                    tmiOpenJsonFile_Click(this, new EventArgs());
             }
         }
 
@@ -971,7 +971,7 @@ namespace JsonEditorV2
 
             //To DO ??
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
 
             if (Var.SelectedColumnParentTable.Count != 0)
                 foreach (JLine jl in Var.SelectedColumnParentTable)
@@ -1116,7 +1116,7 @@ namespace JsonEditorV2
 
             if (!Var.SelectedColumnParentTable.Loaded)
             {
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
                 /* 特殊 */
                 trvJsonFiles.SelectedNode.Text = GetTableNodeString(Var.SelectedColumnParentTable);
                 trvJsonFiles.SelectedNode.ToolTipText = trvJsonFiles.SelectedNode.Text;
@@ -1158,7 +1158,7 @@ namespace JsonEditorV2
                 return false;
             }
 
-            if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
+            if (Var.JFI.CheckValid() != JColumnInvalidReasons.None)
             {
                 ExceptionHandler.JFIFileIsInvalid(Var.JFI);
                 return false;
@@ -1166,7 +1166,7 @@ namespace JsonEditorV2
             return true;
         }
 
-        public static bool LoadJsonFile(JTable jt, bool produceColumnInfo = false)
+        public static bool LoadOrScanJsonFile(JTable jt, bool scan = false)
         {
             string jsonString = "";
             object jsonObject;
@@ -1197,7 +1197,10 @@ namespace JsonEditorV2
 
             try
             {
-                jt.LoadJson(jsonObject, produceColumnInfo);
+                if (scan)
+                    jt.ScanJson(jsonObject);
+                else
+                    jt.LoadJson(jsonObject);
             }
             catch (Exception ex)
             {
@@ -1209,7 +1212,8 @@ namespace JsonEditorV2
             return true;
         }
 
-        //必產生Column Info
+        #region TempClosed
+        //暫時用不到
         public static void LoadPartialJsonFile(JTable jt)
         {
             //讀5行之後結束
@@ -1270,6 +1274,7 @@ namespace JsonEditorV2
                 ExceptionHandler.HandleException(ex);
             }
         }
+        #endregion
 
         public static bool SaveJsonFile(JTable jt)
         {
@@ -1361,7 +1366,7 @@ namespace JsonEditorV2
         {
             //讀檔            
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
 
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -1561,7 +1566,7 @@ namespace JsonEditorV2
             }
 
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {
@@ -1591,7 +1596,7 @@ namespace JsonEditorV2
             }
 
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadJsonFile(Var.SelectedColumnParentTable);
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {

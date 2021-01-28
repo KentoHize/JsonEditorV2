@@ -30,7 +30,7 @@ namespace JsonEditorV2
             frmFKTable frmFKTable = new frmFKTable();
 
             if (!FKTable.Loaded)
-                MainForm.LoadJsonFile(FKTable);
+                MainForm.LoadOrScanJsonFile(FKTable);
 
             frmFKTable.fkTable = FKTable;
             DataTable dt = FKTable.ToDataTable();

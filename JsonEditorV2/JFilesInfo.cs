@@ -33,10 +33,10 @@ namespace JsonEditor
         public string InvalidColumnName { get; set; }
 
         [JsonIgnore]
-        public JColumnInvalidReason InvalidReason { get; set; }
+        public JColumnInvalidReasons InvalidReason { get; set; }
 
 
-        private JColumnInvalidReason SetInvalidReason(string filename, string columnName, JColumnInvalidReason reason)
+        private JColumnInvalidReasons SetInvalidReason(string filename, string columnName, JColumnInvalidReasons reason)
         {
             InvalidFileName = filename;
             InvalidColumnName = columnName;
@@ -44,67 +44,67 @@ namespace JsonEditor
             return InvalidReason;
         }
 
-        public JColumnInvalidReason CheckColumnValid(JColumn jc)
+        public JColumnInvalidReasons CheckColumnValid(JColumn jc)
         {
             try {
                 if(!string.IsNullOrEmpty(jc.RegularExpression))
                     Regex.IsMatch("_", jc.RegularExpression);
             }
-            catch { return JColumnInvalidReason.IllegalRegularExpression; }
+            catch { return JColumnInvalidReasons.IllegalRegularExpression; }
 
             if (!Regex.IsMatch(jc.Name, Const.ColumnNameRegex))
-                return JColumnInvalidReason.IllegalName;
+                return JColumnInvalidReasons.IllegalName;
             else if (jc.IsKey && jc.IsNullable)
-                return JColumnInvalidReason.IsKeyAndIsNullable;
+                return JColumnInvalidReasons.IsKeyAndIsNullable;
             else if (!string.IsNullOrEmpty(jc.FKTable) && string.IsNullOrEmpty(jc.FKColumn))
-                return JColumnInvalidReason.ForeignKeyColumnMissing;
+                return JColumnInvalidReasons.ForeignKeyColumnMissing;
             else if (string.IsNullOrEmpty(jc.FKTable) && !string.IsNullOrEmpty(jc.FKColumn))
-                return JColumnInvalidReason.ForeignKeyTableMissing;
+                return JColumnInvalidReasons.ForeignKeyTableMissing;
             else if (jc.NumberOfRows < 0 || jc.NumberOfRows > Const.NumberOfRowsMaxValue)
-                return JColumnInvalidReason.NumberOfRowsIsNegativeOrTooBig;
+                return JColumnInvalidReasons.NumberOfRowsIsNegativeOrTooBig;
             else if (!string.IsNullOrEmpty(jc.RegularExpression) && (jc.Type.IsNumber() || jc.Type.IsDateTime()))
-                return JColumnInvalidReason.NumberOrDateTimeHasRegularExpression;
+                return JColumnInvalidReasons.NumberOrDateTimeHasRegularExpression;
             else if (!string.IsNullOrEmpty(jc.MinValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
-                return JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue;
+                return JColumnInvalidReasons.NotNumberOrDateTimeHaveMinValue;
             else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
-                return JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue;
+                return JColumnInvalidReasons.NotNumberOrDateTimeHaveMaxValue;
             else if (!jc.MinValue.TryParseJType(jc.Type, out object min) && !string.IsNullOrEmpty(jc.MinValue))
-                return JColumnInvalidReason.MinValueTypeCastFailed;
+                return JColumnInvalidReasons.MinValueTypeCastFailed;
             else if (!jc.MaxValue.TryParseJType(jc.Type, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
-                return JColumnInvalidReason.MaxValueTypeCastFailed;
+                return JColumnInvalidReasons.MaxValueTypeCastFailed;
             else if (min != null && max != null && min.CompareTo(max, jc.Type) == 1)
-                return JColumnInvalidReason.MinValueGreaterThanMaxValue;
+                return JColumnInvalidReasons.MinValueGreaterThanMaxValue;
             else if (jc.TextMaxLength < 0)
-                return JColumnInvalidReason.MaxLengthIsNegative;
-            return JColumnInvalidReason.None;
+                return JColumnInvalidReasons.MaxLengthIsNegative;
+            return JColumnInvalidReasons.None;
         }
 
-        public JColumnInvalidReason CheckValid()
+        public JColumnInvalidReasons CheckValid()
         {
-            JColumnInvalidReason result = JColumnInvalidReason.None;
+            JColumnInvalidReasons result = JColumnInvalidReasons.None;
             for(int i = 0; i < TablesInfo.Count; i++)
             {
                 for (int j = 0; j < TablesInfo[i].Columns.Count; j++)
                 {
                     result = CheckColumnValid(TablesInfo[i].Columns[j]);
-                    if (result != JColumnInvalidReason.None)
+                    if (result != JColumnInvalidReasons.None)
                         return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, result);
                     
                     if (!string.IsNullOrEmpty(TablesInfo[i].Columns[j].FKTable))
                     {
                         JTableInfo fkJti = TablesInfo.Find(m => m.Name == TablesInfo[i].Columns[j].FKTable);                        
                         if (fkJti == null)
-                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableNotExist);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReasons.ForeignKeyTableNotExist);
                         JColumn fkJc = fkJti.Columns.Find(m => m.Name == TablesInfo[i].Columns[j].FKColumn);
                         if (fkJc == null)
-                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnNotExist);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReasons.ForeignKeyColumnNotExist);
 
                         if (fkJc.Type != TablesInfo[i].Columns[j].Type)
-                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnTypeNotMatch);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReasons.ForeignKeyColumnTypeNotMatch);
                     }
                 }                    
             }
-            return JColumnInvalidReason.None;          
+            return JColumnInvalidReasons.None;          
         }
 
         public JFilesInfo()
