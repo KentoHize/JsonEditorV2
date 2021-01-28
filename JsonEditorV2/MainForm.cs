@@ -23,6 +23,7 @@ namespace JsonEditorV2
             Setting.CI = new CultureInfo("en-US");
             Setting.UseQuickCheck = false;
             Setting.DontLoadFileBytesThreshold = 10000;
+            Setting.NumberOfRowsMaxValue = 30;
             ChangeCulture();
             cobColumnType.DataSource =
                 Enum.GetValues(typeof(JType)).OfType<JType>()
@@ -148,7 +149,7 @@ namespace JsonEditorV2
                 {
                     for (int i = 0; i < columnIndexs.Count; i++)
                     {
-                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);
+                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);                        
                         jl[columnIndexs[i]].Value = result;
                     }
                 }
@@ -332,10 +333,12 @@ namespace JsonEditorV2
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                 {
                     jl[index].Value.TryParseJType(newType, out result);
+                    if (result == null && !Var.SelectedColumn.IsNullable)
+                        result = newType.InitialValue();
                     jl[index].Value = result;
                 }
 
-                //檢查FK的值
+                //檢查FK的值                
                 CheckFKType(Var.SelectedColumnParentTable, Var.SelectedColumn, newType);
             }
 
@@ -351,7 +354,7 @@ namespace JsonEditorV2
                 int index = Var.SelectedColumnIndex;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                     if (jl[index].Value == null)
-                        jl[index].Value = jl[index].Value.ParseJType(newType);
+                        jl[index].Value = newType.InitialValue();
             }
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
@@ -696,7 +699,10 @@ namespace JsonEditorV2
             {
                 InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
                 ics.DrawControl(pnlMain, lines);
-                lines += Var.SelectedTable.Columns[i].NumberOfRows;
+                if (Var.SelectedTable.Columns[i].NumberOfRows < 1)
+                    lines++;
+                else
+                    lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
             }
         }
@@ -1198,7 +1204,7 @@ namespace JsonEditorV2
             try
             {
                 if (scan)
-                    jt.ScanJson(jsonObject);
+                    jt.ScanJson(jsonObject, Setting.NumberOfRowsMaxValue);
                 else
                     jt.LoadJson(jsonObject);
             }

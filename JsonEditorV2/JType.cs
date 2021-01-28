@@ -256,14 +256,17 @@ namespace JsonEditor
         }
 
         /// <summary>
-        /// 以JType為目標轉換值的型態，空值設為初始值，否則引發InvalidCast錯誤訊息
+        /// 以JType為目標轉換值的型態，new object設為初始值，否則引發InvalidCast錯誤訊息
         /// </summary>
         /// <param name="value">輸入值</param>
         /// <param name="type">JType</param>
         /// <returns>輸出值</returns>
         public static object ParseJType(this object value, JType type)
         {
-            if (value == null || value.ToString() == new object().ToString())
+            if (value == null)
+                return null;
+
+            if (value.ToString() == new object().ToString())
                 return type.InitialValue();
             switch (type)
             {

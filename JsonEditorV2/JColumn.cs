@@ -28,7 +28,7 @@ namespace JsonEditor
         public bool Valid { get; set; } = true;
 
         [JsonIgnore]
-        public JValueInvalidReasons InvalidReason { get; set; } = JValueInvalidReasons.None;
+        public JValueInvalidReasons InvalidReason { get; set; } = JValueInvalidReasons.None;        
 
         public JColumn()
             : this("")

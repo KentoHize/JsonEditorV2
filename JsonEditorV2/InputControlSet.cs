@@ -55,10 +55,15 @@ namespace JsonEditorV2
             if (ValueControl is TextBox TextControl)
             {
                 ValueControl.Width = 200;
+                if (JColumn.NumberOfRows == 0)
+                {
+                    ValueControl.Left += 100;
+                    ValueControl.Width = 100;
+                }
                 if (JColumn.NumberOfRows > 1)
                     (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
-                ValueControl.Height = 30 * JColumn.NumberOfRows - 4;
-                NameLabel.Height = 30 * JColumn.NumberOfRows;
+                ValueControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
+                NameLabel.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
                 TextControl.TextChanged += ValueControl_TextChanged;                
                 TextControl.GotFocus += TextControl_GotFocus;
             }

@@ -60,7 +60,7 @@ namespace JsonEditor
                 return JColumnInvalidReasons.ForeignKeyColumnMissing;
             else if (string.IsNullOrEmpty(jc.FKTable) && !string.IsNullOrEmpty(jc.FKColumn))
                 return JColumnInvalidReasons.ForeignKeyTableMissing;
-            else if (jc.NumberOfRows < 0 || jc.NumberOfRows > Const.NumberOfRowsMaxValue)
+            else if (jc.NumberOfRows < 0 || jc.NumberOfRows > Setting.NumberOfRowsMaxValue)
                 return JColumnInvalidReasons.NumberOfRowsIsNegativeOrTooBig;
             else if (!string.IsNullOrEmpty(jc.RegularExpression) && (jc.Type.IsNumber() || jc.Type.IsDateTime()))
                 return JColumnInvalidReasons.NumberOrDateTimeHasRegularExpression;

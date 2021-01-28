@@ -214,7 +214,7 @@ namespace JsonEditor
         }
         #endregion
 
-        private object ParseJToken(string key, JToken jToken)
+        private string ParseJToken(string key, JToken jToken)
         {
             JColumn jc = Columns.Find(m => m.Name == key);
 
@@ -231,15 +231,10 @@ namespace JsonEditor
             }
             else
             {
-                JType jType = jToken.ToJType();
-                string jTokenString = jToken.ToString();
+                JType jType = jToken.ToJType();                
                 if (!ParseTypeToColumn(jType, jc))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildColumnTypeVary);
-
-                if (jc.Type == JType.String && jc.NumberOfRows < 30 && jTokenString.Length > jc.NumberOfRows * 20)
-                    jc.NumberOfRows = jTokenString.Length / 20 + 1 > 30 ? 30 : jTokenString.Length / 20 + 1;
-
-                return jTokenString;
+                return jToken.ToString();
             }
         }
 
@@ -247,7 +242,7 @@ namespace JsonEditor
         /// 掃描Json物件
         /// </summary>
         /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
-        public void ScanJson(object jArray)
+        public void ScanJson(object jArray, int numberOfRowsMaxValue = 20)
         {
             Lines.Clear();
             Columns.Clear();
@@ -258,11 +253,11 @@ namespace JsonEditor
                 throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
             //掃描jArray
-            List<Dictionary<string, object>> scannedResult = new List<Dictionary<string, object>>();
+            List<Dictionary<string, string>> scannedResult = new List<Dictionary<string, string>>();
             for (int i = 0; i < jr.Count; i++)
             {
                 JObject jo = jr[i] as JObject;
-                scannedResult.Add(new Dictionary<string, object>());
+                scannedResult.Add(new Dictionary<string, string>());
 
                 if (jo == null)
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
@@ -270,7 +265,7 @@ namespace JsonEditor
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
                     try
-                    {
+                    {   
                         scannedResult[i].Add(kvp.Key, ParseJToken(kvp.Key, kvp.Value));
                     }
                     catch (JFileInvalidException ex)
@@ -281,14 +276,38 @@ namespace JsonEditor
                 }
             }
 
+            //long 有可能不夠大 Warning
+            Dictionary<int, long> charsCountDivide10 = new Dictionary<int, long>();
+
+            //設定Column
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (Columns[i].Type == JType.None)
+                    Columns[i].Type = JType.String;
+                if (Columns[i].Name == "ID" && !Columns[i].IsNullable)
+                {
+                    Columns[i].IsKey = true;
+                    Columns[i].Display = true;
+                }
+                Columns[i].Display = i == 0;
+
+                if (Columns[i].Type == JType.String)
+                    charsCountDivide10.Add(i, 0);
+            }
+
             //放入Table
-            foreach(Dictionary<string, object> line in scannedResult)
+            foreach (Dictionary<string, string> line in scannedResult)
             {
                 JLine jl = new JLine();
                 for (int i = 0; i < Columns.Count; i++)
-                { 
+                {
                     if (line.ContainsKey(Columns[i].Name))
+                    {
                         jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
+                        if (Columns[i].Type == JType.String)
+                            if(line[Columns[i].Name] != null)
+                                charsCountDivide10[i] += line[Columns[i].Name].Length / 10;
+                    }   
                     else
                     {
                         Columns[i].IsNullable = true;
@@ -300,16 +319,17 @@ namespace JsonEditor
 
             //最後設定
             for (int i = 0; i < Columns.Count; i++)
-            { 
-                if (Columns[i].Type == JType.None)
-                    Columns[i].Type = JType.String;
-                if (Columns[i].Name == "ID" && !Columns[i].IsNullable)
-                { 
-                    Columns[i].IsKey = true;
-                    Columns[i].Display = true;
+            {
+                if (Columns[i].Type == JType.String)
+                {
+                    //設定行長依照字數平均值
+                    int avageOfLines = (int)(charsCountDivide10[i] / Lines.Count);
+                    if (avageOfLines > 20)
+                        avageOfLines = (avageOfLines + 20) / 3;
+                    else if(avageOfLines > 10)
+                        avageOfLines = (avageOfLines + 10) / 2;
+                    Columns[i].NumberOfRows = avageOfLines + 1 > numberOfRowsMaxValue ? numberOfRowsMaxValue : avageOfLines + 1;
                 }
-                Columns[i].Display = i == 0;
-
             }
 
             Loaded = true;

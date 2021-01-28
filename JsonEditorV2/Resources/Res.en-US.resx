@@ -154,7 +154,7 @@
     <value>Description</value>
   </data>
   <data name="JE_COLUMN_DISPLAY" xml:space="preserve">
-    <value>Show On List</value>
+    <value>Show on List</value>
   </data>
   <data name="JE_COLUMN_FK_COLUMN" xml:space="preserve">
     <value>FK Column</value>
