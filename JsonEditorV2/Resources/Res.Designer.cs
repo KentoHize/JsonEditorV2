@@ -1195,6 +1195,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JSON關聯檔案不合規則：檔案&quot;{0}&quot;，欄位&quot;{1}&quot;，.
+        /// </summary>
+        public static string JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL {
+            get {
+                return ResourceManager.GetString("JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &quot;{0}&quot;低於最小值&quot;{1}&quot;.
         /// </summary>
         public static string JE_VAL_LESS_THEN_MIN_VALUE {

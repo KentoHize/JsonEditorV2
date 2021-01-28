@@ -495,6 +495,9 @@
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
     <value>"{0}"不符合資料型態</value>
   </data>
+  <data name="JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
+    <value>JSON關聯檔案不合規則：檔案"{0}"，欄位"{1}"，</value>
+  </data>
   <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
     <value>"{0}"低於最小值"{1}"</value>
   </data>

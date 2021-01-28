@@ -499,15 +499,9 @@ namespace JsonEditorV2
             //有JFI File，先讀取
             if (jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
+                //讀取失敗跳出
                 if(!LoadJFilesInfo(Var.JFI.FileInfoPath))
-                {
-                    //讀取失敗，跳出
-                    if (Var.JFI.InvalidReason != JColumnInvalidReason.None)
-                    {
-                        //Res.JE_JFI
-                    }
                     return;
-                }
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
             }
 

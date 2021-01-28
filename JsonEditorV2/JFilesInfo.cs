@@ -27,7 +27,7 @@ namespace JsonEditor
         public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
 
         [JsonIgnore]
-        public int InvalidTableIndex { get; set; }
+        public string InvalidFileName { get; set; }
 
         [JsonIgnore]
         public string InvalidColumnName { get; set; }
@@ -36,9 +36,9 @@ namespace JsonEditor
         public JColumnInvalidReason InvalidReason { get; set; }
 
 
-        private JColumnInvalidReason SetInvalidReason(int tableIndex, string columnName, JColumnInvalidReason reason)
+        private JColumnInvalidReason SetInvalidReason(string filename, string columnName, JColumnInvalidReason reason)
         {
-            InvalidTableIndex = tableIndex;
+            InvalidFileName = filename;
             InvalidColumnName = columnName;
             InvalidReason = reason;
             return InvalidReason;
@@ -88,19 +88,19 @@ namespace JsonEditor
                 {
                     result = CheckColumnValid(TablesInfo[i].Columns[j]);
                     if (result != JColumnInvalidReason.None)
-                        return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, result);
+                        return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, result);
                     
                     if (!string.IsNullOrEmpty(TablesInfo[i].Columns[j].FKTable))
                     {
                         JTableInfo fkJti = TablesInfo.Find(m => m.Name == TablesInfo[i].Columns[j].FKTable);                        
                         if (fkJti == null)
-                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableMissing);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableMissing);
                         JColumn fkJc = fkJti.Columns.Find(m => m.Name == TablesInfo[i].Columns[j].FKColumn);
                         if (fkJc == null)
-                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnNotExist);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnNotExist);
 
                         if (fkJc.Type != TablesInfo[i].Columns[j].Type)
-                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnTypeNotMatch);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnTypeNotMatch);
                     }
                 }                    
             }

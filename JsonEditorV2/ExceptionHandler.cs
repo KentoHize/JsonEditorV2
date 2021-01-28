@@ -14,10 +14,13 @@ namespace JsonEditorV2
         public static void JFIFileIsIsInvalid(JFilesInfo JFI)
         {
             StringBuilder result = new StringBuilder();
+            result.AppendFormat(Res.JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL,
+                JFI.InvalidFileName, JFI.InvalidColumnName);
 
             switch (JFI.InvalidReason)
             {
                 case JColumnInvalidReason.IllegalRegularExpression:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION);
                     break;
                 
             }
