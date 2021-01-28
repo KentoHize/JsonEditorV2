@@ -610,7 +610,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JFilesInfo連結失敗，忽略後繼續編輯:&quot;{0}&quot;.
+        ///   Looks up a localized string similar to JSON關聯檔案不存在，請改用掃描JSON資料夾.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_2 {
             get {
@@ -624,6 +624,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_LOAD_JSON_FILES_M_3 {
             get {
                 return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_M_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案&quot;{0.json}&quot;未在JSON關聯檔案中出現，請確認JSON檔案是否正確.
+        /// </summary>
+        public static string JE_RUN_LOAD_JSON_FILES_M_4 {
+            get {
+                return ResourceManager.GetString("JE_RUN_LOAD_JSON_FILES_M_4", resourceCulture);
             }
         }
         

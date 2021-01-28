@@ -301,10 +301,13 @@
     <value>{0}檔案已讀入</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
-    <value>JFilesInfo連結失敗，忽略後繼續編輯:"{0}"</value>
+    <value>JSON關聯檔案不存在，請改用掃描JSON資料夾</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_3" xml:space="preserve">
     <value>目標資料夾"{0}"沒有Json檔案存在</value>
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_4" xml:space="preserve">
+    <value>檔案"{0.json}"未在JSON關聯檔案中出現，請確認JSON檔案是否正確</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
     <value>讀取檔案庫</value>

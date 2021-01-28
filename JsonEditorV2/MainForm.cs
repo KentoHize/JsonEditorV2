@@ -461,7 +461,7 @@ namespace JsonEditorV2
                 }
                 else
                 {
-                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file), true);
+                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file));
                     LoadJsonFile(jt, true);
                     Var.Tables.Add(jt);
                 }
@@ -486,8 +486,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();
-            JTable table;
+            Var.Tables = new List<JTable>();            
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -496,14 +495,17 @@ namespace JsonEditorV2
                 return;
             }
 
-            //有JFI File，先讀取
-            if (jsonfiles.Contains(Var.JFI.FileInfoPath))
+            //JFI檔案不存在，離開
+            if (!jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
-                //讀取失敗跳出
-                if(!LoadJFilesInfo(Var.JFI.FileInfoPath))
-                    return;
-                Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_2", Res.JE_TMI_LOAD_JSON_FILES);
+                return;
             }
+
+            //讀取JFI失敗跳出
+            if (!LoadJFilesInfo(Var.JFI.FileInfoPath))
+                return;
+            Var.JFI.DirectoryPath = fbdMain.SelectedPath;
 
             //對於 其他檔案開始核對
             foreach (string file in jsonfiles)
@@ -512,45 +514,23 @@ namespace JsonEditorV2
 
                 if (file == Var.JFI.FileInfoPath)
                     continue;
-                else if (fi.Length < Const.DontLoadFileBytesThreshold)
-                {
-                    table = new JTable(Path.GetFileNameWithoutExtension(file), true);
-                    if (Var.JFI.TablesInfo.Count != 0)
-                    {
-                        try
-                        { 
-                            table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
-                        }
-                        catch (Exception ex)
-                        { ExceptionHandler.HandleException(ex); }
 
-                        LoadJsonFile(table);
-                    }
-                    else
-                        LoadJsonFile(table, true);
-                    Var.Tables.Add(table);
-                }
-                else
+                JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
+                JTableInfo jti = Var.JFI.TablesInfo.Find(m => m.Name == table.Name);
+                if (jti == null)
                 {
-                    //有JFI跳過預讀
-                    table = new JTable(Path.GetFileNameWithoutExtension(file));
-                    if (Var.JFI.TablesInfo.Count != 0)
-                    {
-                        try
-                        {
-                            table.LoadFileInfo(Var.JFI.TablesInfo.Find(m => m.Name == table.Name));
-                        }
-                        catch (Exception ex)
-                        { ExceptionHandler.HandleException(ex); }
-                    }   
-                    else
-                        LoadPartialJsonFile(table);
-                    Var.Tables.Add(table);
+                    //沒找到相關資料，錯誤訊息後跳過檔案
+                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
+                    continue;
                 }
+
+                table.Columns = jti.Columns;
+                //小檔案直接讀取
+                if (fi.Length < Const.DontLoadFileBytesThreshold)                    
+                    LoadJsonFile(table);
+
+                Var.Tables.Add(table);
             }
-
-            // TO DO
-            //JFICheck
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);

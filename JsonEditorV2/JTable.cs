@@ -38,12 +38,12 @@ namespace JsonEditor
             Valid = true;
         }
 
-        public JTable(string name, object jArray, bool isNew = false)
-        {
-            Name = name;
-            Loaded = isNew;
-            LoadJson(jArray, true);
-        }
+        //public JTable(string name, object jArray, bool isNew = false)
+        //{
+        //    Name = name;
+        //    Loaded = isNew;
+        //    LoadJson(jArray, true);
+        //}
 
         public List<dynamic> ToListItems()
         {
@@ -80,27 +80,27 @@ namespace JsonEditor
             return dt;
         }
 
-        /// <summary>
-        /// 讀取JFileInfo檔案設定
-        /// </summary>
-        /// <param name="jfi"></param>
-        public void LoadFileInfo(JTableInfo jfi)
-        {
-            //檢查一下是否正確
-            if (jfi == null)
-                throw new ArgumentException($"LoadFileInfo:{Name},");
-            if (Name != jfi.Name)
-                throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");
-            if (Columns.Count != 0)
-            {
-                if (Columns.Count != jfi.Columns.Count)
-                    throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");
-                for (int i = 0; i < jfi.Columns.Count; i++)
-                    if (Columns[i].Name != jfi.Columns[i].Name)
-                        throw new MissingFieldException($"LoadFileInfo:{Columns[i].Name},{jfi.Columns[i].Name}");
-            }
-            Columns = jfi.Columns;
-        }
+        ///// <summary>
+        ///// 讀取JFileInfo檔案設定
+        ///// </summary>
+        ///// <param name="jfi"></param>
+        //public void LoadFileInfo(JTableInfo jfi)
+        //{
+        //    //檢查一下是否正確
+        //    if (jfi == null)
+        //        throw new ArgumentException($"LoadFileInfo:{Name},");
+        //    if (Name != jfi.Name)
+        //        throw new MissingMemberException($"LoadFileInfo:{Name},{jfi.Name}");
+        //    if (Columns.Count != 0)
+        //    {
+        //        if (Columns.Count != jfi.Columns.Count)
+        //            throw new IndexOutOfRangeException($"LoadFileInfo:{Columns.Count},{jfi.Columns.Count}");
+        //        for (int i = 0; i < jfi.Columns.Count; i++)
+        //            if (Columns[i].Name != jfi.Columns[i].Name)
+        //                throw new MissingFieldException($"LoadFileInfo:{Columns[i].Name},{jfi.Columns[i].Name}");
+        //    }
+        //    Columns = jfi.Columns;
+        //}
 
         /// <summary>
         /// 擷取JFileInfo檔案內容
