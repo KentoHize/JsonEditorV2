@@ -239,7 +239,7 @@ namespace JsonEditor
                 if (jc.Type == JType.String && jc.NumberOfRows < 30 && jTokenString.Length > jc.NumberOfRows * 20)
                     jc.NumberOfRows = jTokenString.Length / 20 + 1 > 30 ? 30 : jTokenString.Length / 20 + 1;
 
-                return jTokenString.ParseJType(jc.Type);
+                return jTokenString;
             }
         }
 
@@ -285,8 +285,16 @@ namespace JsonEditor
             foreach(Dictionary<string, object> line in scannedResult)
             {
                 JLine jl = new JLine();
-                for(int i = 0; i < Columns.Count; i++)
-                    jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
+                for (int i = 0; i < Columns.Count; i++)
+                { 
+                    if (line.ContainsKey(Columns[i].Name))
+                        jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
+                    else
+                    {
+                        Columns[i].IsNullable = true;
+                        jl.Add(JValue.FromObject(null));
+                    }
+                }
                 Lines.Add(jl);
             }
 
