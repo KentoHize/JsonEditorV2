@@ -46,7 +46,10 @@ namespace JsonEditor
 
         public JColumnInvalidReason CheckColumnValid(JColumn jc)
         {
-            try { Regex.IsMatch("_", jc.RegularExpression); }
+            try {
+                if(!string.IsNullOrEmpty(jc.RegularExpression))
+                    Regex.IsMatch("_", jc.RegularExpression);
+            }
             catch { return JColumnInvalidReason.IllegalRegularExpression; }
 
             if (!Regex.IsMatch(jc.Name, Const.ColumnNameRegex))
@@ -65,11 +68,11 @@ namespace JsonEditor
                 return JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue;
             else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
                 return JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue;
-            else if (!jc.MinValue.TryParseJType(jc.Type, out object min))
+            else if (!jc.MinValue.TryParseJType(jc.Type, out object min) && !string.IsNullOrEmpty(jc.MinValue))
                 return JColumnInvalidReason.MinValueTypeCastFailed;
-            else if (!jc.MinValue.TryParseJType(jc.Type, out object max))
+            else if (!jc.MinValue.TryParseJType(jc.Type, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
                 return JColumnInvalidReason.MaxValueTypeCastFailed;
-            else if (min.CompareTo(max, jc.Type) == 1)
+            else if (min != null && max != null && min.CompareTo(max, jc.Type) == 1)
                 return JColumnInvalidReason.MinValueGreaterThanMaxValue;
             else if (jc.TextMaxLength < 0)
                 return JColumnInvalidReason.MaxLengthIsNegative;
