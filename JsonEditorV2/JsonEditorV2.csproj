@@ -103,6 +103,7 @@
     <Compile Include="InputControlSet.cs" />
     <Compile Include="JColumn.cs" />
     <Compile Include="JColumnInvalidReasons.cs" />
+    <Compile Include="JFileInvalidException.cs" />
     <Compile Include="JFileInvalidReasons.cs" />
     <Compile Include="JTableInfo.cs" />
     <Compile Include="JFilesInfo.cs" />

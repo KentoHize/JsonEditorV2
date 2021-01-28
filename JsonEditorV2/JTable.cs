@@ -103,61 +103,164 @@ namespace JsonEditor
             return result;
         }
 
-        //private JArray CheckJObjectReadable(object jObject, bool strict = false)
-        //{
-        //    JArray jr = jObject as JArray;
-        //    JObject jo;
-        //    HashSet<string> columnName;
+        #region Type Upgrade Logic
+        // Type Family
+        // None Boolean
+        // None Byte Integer Long Decimal
+        // None Byte Integer Long Double
+        // None Time DateTime String
+        // None Date DateTime String
+        // None Uri String
+        // None Guid String
+        // None String
+        // None Object
+        // None Array
 
-        //    if (jr == null)
-        //        return null;
+        /// <summary>
+        /// 與欄位做型別比對，欄位型別不變或升級傳回true，型別轉換失敗傳回false
+        /// </summary>
+        /// <param name="jt">待檢查型別</param>
+        /// <param name="jc">欄位</param>
+        /// <returns>型別測試成功</returns>
+        private bool ParseTypeToColumn(JType jt, JColumn jc)
+        {
+            if (jc.Type == jt)
+                return true;
+            else if (jt == JType.None)
+                return true;
 
-        //    if (jr.Count == 0)
-        //        return jr;
+            switch (jc.Type)
+            {
+                case JType.None:
+                    jc.Type = jt;
+                    return true;
+                case JType.Boolean:
+                    return false;
+                case JType.Byte:
+                    if (jt == JType.Integer || jt == JType.Long ||
+                        jt == JType.Decimal || jt == JType.Double)
+                    {
+                        jc.Type = jt;
+                        return true;
+                    }
+                    else
+                        return false;
+                case JType.Integer:
+                    if (jt == JType.Byte)
+                        return true;
+                    else if (jt == JType.Long || jt == JType.Decimal ||
+                             jt == JType.Double)
+                    {
+                        jc.Type = jt;
+                        return true;
+                    }
+                    else
+                        return false;
+                case JType.Long:
+                    if (jt == JType.Byte || jt == JType.Integer)
+                        return true;
+                    else if (jt == JType.Decimal || jt == JType.Double)
+                    {
+                        jc.Type = jt;
+                        return true;
+                    }
+                    else
+                        return false;
+                case JType.Decimal:
+                case JType.Double:
+                    if (jt == JType.Byte || jt == JType.Integer ||
+                        jt == JType.Long)
+                        return true;
+                    else
+                        return false;
+                case JType.Time:
+                case JType.Date:
+                    if (jt == JType.DateTime || jt == JType.String)
+                    {
+                        jc.Type = jt;
+                        return true;
+                    }
+                    else
+                        return false;
+                case JType.DateTime:
+                case JType.Uri:
+                case JType.Guid:
+                    if (jt == JType.String)
+                    {
+                        jc.Type = jt;
+                        return true;
+                    }
+                    else
+                        return false;
+                default:
+                    return false;
+            }
+        }
+        #endregion
 
-        //    if(strict)
-        //    {
-        //        jo = jr.First;                
-        //    }
+        private object ParseJToken(string key, JToken jToken)
+        {
+            JColumn jc = Columns.Find(m => m.Name == key);
 
-
-        //    foreach (JToken jt in jr)
-        //    {
-        //         = jt as JObject;
-        //        if (jo == null)
-        //            return null;
-        //    }
+            if (jc == null)
+            {
+                jc = new JColumn(key, JType.None);
+                Columns.Add(jc);
+            }
             
-        //    if (jo.Count == 0)
-        //        return jr;
-            
-        //}
+            if(jToken == null)
+            {
+                jc.IsNullable = true;
+                return null;
+            }
+            else
+            {
+                JType jType = jToken.ToJType();
+                if (!ParseTypeToColumn(jType, jc))
+                    throw; // to do
+
+                return jToken.ToString().ParseJType(jc.Type);
+            }
+        }
 
         public void ScanJson(object jArray)
         {
             //if(CheckJObjectReadable(jArray) == null)
             //    throw new ArgumentException("jArray");
+            Lines.Clear();
+            Columns.Clear();
 
             JArray jr = jArray as JArray;
-            
-            //if (jr == null)
 
-                Dictionary<string, JColumn> Columns = new Dictionary<string, JColumn>();
+            if (jr == null)
+                throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
-            
-            
-                
+            Dictionary<string, JColumn> newColumns = new Dictionary<string, JColumn>();
 
-            // Type Family
-            // Boolean String Object
-            // Byte Integer Long Decimal String Object
-            // Double String Object
-            // Time DateTime String Object
-            // Date String Object
-            // Uri String Object
-            // Guid String Object
-            // String Object
-            // Object
+            for (int i = 0; i < jr.Count; i++)
+            {
+                JObject jo = jr[i] as JObject;
+                JLine jl = new JLine();
+                if (jo == null)
+                    throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
+
+                foreach (KeyValuePair<string, JToken> kvp in jo)
+                {
+                    try
+                    {
+                        jl.Add(JValue.FromObject(ParseJToken(kvp.Key, kvp.Value)));
+                    }
+                    catch (JFileInvalidException ex)
+                    {
+
+                    }                    
+                }
+                Lines.Add(jl);
+            }
+
+           
+            Loaded = true;
+            Valid = true;
         }
 
         /// <summary>

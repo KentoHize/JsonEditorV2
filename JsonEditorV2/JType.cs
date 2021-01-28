@@ -22,7 +22,8 @@ namespace JsonEditor
         Uri,
         //TimeSpan,
         Decimal,
-        Object
+        Object,
+        Array
     }
 
     public static class JTypeExtentions
@@ -80,6 +81,7 @@ namespace JsonEditor
                     return instance.ToString().CompareTo(value.ToString());
                 case JType.None:
                 case JType.Object:
+                case JType.Array:
                 default:
                     throw new InvalidCastException();
             }
@@ -117,6 +119,7 @@ namespace JsonEditor
                 case JType.Guid:
                 case JType.None:
                 case JType.Object:
+                case JType.Array:
                     return null;
                 default:
                     throw new InvalidCastException();
@@ -157,6 +160,7 @@ namespace JsonEditor
                 case JType.Guid:
                 case JType.None:
                 case JType.Object:
+                case JType.Array:
                     return null;
                 default:
                     throw new InvalidCastException();
@@ -209,6 +213,7 @@ namespace JsonEditor
                     return 0;
                 case JType.None:
                 case JType.Object:
+                case JType.Array:
                     return null;
                 //case JType.TimeSpan:
                 //    return new TimeSpan();
@@ -289,6 +294,7 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
+                case JType.Array:
                     return null;                    
                 //case JType.TimeSpan:
                 //    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
@@ -313,12 +319,15 @@ namespace JsonEditor
             throw new InvalidCastException();
         }
 
+#region TempClosed
         public static JType ToJType(this JsonToken jtn)
         {
             switch (jtn)
             {
-                //case JsonToken.StartObject:
-                //case JsonToken.StartArray:
+                case JsonToken.StartObject:
+                    return JType.Object;
+                case JsonToken.StartArray:
+                    return JType.Array; // Not Valid
                 //case JsonToken.StartConstructor:
                 //case JsonToken.EndArray:
                 //case JsonToken.EndConstructor:
@@ -342,10 +351,12 @@ namespace JsonEditor
                     return JType.String;
                 case JsonToken.Float:
                     return JType.Double;
+                
                 default:
-                    return JType.Object;
+                    return JType.None;
             }
         }
+        #endregion
 
         public static Type ToType(this JType type)
         {
@@ -372,6 +383,7 @@ namespace JsonEditor
                 case JType.None:
                     return null;
                 case JType.Object:
+                case JType.Array:
                     return typeof(object);
                 //case JType.TimeSpan:
                 //    return new TimeSpan();
@@ -427,6 +439,10 @@ namespace JsonEditor
                 //    return JType.TimeSpan;
                 case JTokenType.Uri:
                     return JType.Uri;
+                case JTokenType.Object:
+                    return JType.Object;
+                case JTokenType.Array:
+                    return JType.Array;
                 default:
                     return JType.Object;
             }

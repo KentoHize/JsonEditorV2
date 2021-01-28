@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JsonEditorV2
+namespace JsonEditor
 {
     public enum JFileInvalidReasons
     {   
         None = 0,
         //Scan
         RootElementNotArray,
-        FirstChildElementNotObject,
-        //Load
+        ChildElementNotObject,
+        ChildColumnTypeVary,
+        //Strict
         ChildColumnCountVary,
         ChildColumnNameVary
     }
