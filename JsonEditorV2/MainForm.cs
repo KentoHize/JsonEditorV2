@@ -1214,7 +1214,7 @@ namespace JsonEditorV2
                 return false;
             }
 
-            if(!scan)
+            if(!jt.Valid)
                 jt.CehckValid(Setting.UseQuickCheck);
             return true;
         }

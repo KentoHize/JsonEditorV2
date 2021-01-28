@@ -15,6 +15,7 @@ namespace JsonEditor
         ChildColumnTypeVary,
         //Strict
         ChildColumnCountVary,
-        ChildColumnNameVary
+        ChildColumnNameVary,
+        ChildColumnOrderVary
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json.Linq;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -116,7 +115,7 @@ namespace JsonEditor
         // None Uri String
         // None Guid String
         // None String
-        
+
         // None Object
         // None Array
 
@@ -223,15 +222,15 @@ namespace JsonEditor
                 jc = new JColumn(key, JType.None);
                 Columns.Add(jc);
             }
-            
-            if(jToken.Type == JTokenType.Null)
+
+            if (jToken.Type == JTokenType.Null)
             {
                 jc.IsNullable = true;
                 return null;
             }
             else
             {
-                JType jType = jToken.ToJType();                
+                JType jType = jToken.ToJType();
                 if (!ParseTypeToColumn(jType, jc))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildColumnTypeVary);
                 return jToken.ToString();
@@ -265,16 +264,18 @@ namespace JsonEditor
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
                     try
-                    {   
+                    {
                         scannedResult[i].Add(kvp.Key, ParseJToken(kvp.Key, kvp.Value));
                     }
                     catch (JFileInvalidException ex)
                     {
                         ex.LineIndex = i;
-                        throw ex;                        
-                    }                    
+                        throw ex;
+                    }
                 }
             }
+
+            Valid = true;
 
             //long 有可能不夠大 Warning
             Dictionary<int, long> charsCountDivide10 = new Dictionary<int, long>();
@@ -288,6 +289,7 @@ namespace JsonEditor
                 {
                     Columns[i].IsKey = true;
                     Columns[i].Display = true;
+                    Valid = false;
                 }
                 Columns[i].Display = i == 0;
 
@@ -305,9 +307,9 @@ namespace JsonEditor
                     {
                         jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
                         if (Columns[i].Type == JType.String)
-                            if(line[Columns[i].Name] != null)
+                            if (line[Columns[i].Name] != null)
                                 charsCountDivide10[i] += line[Columns[i].Name].Length / 10;
-                    }   
+                    }
                     else
                     {
                         Columns[i].IsNullable = true;
@@ -326,150 +328,70 @@ namespace JsonEditor
                     int avageOfLines = (int)(charsCountDivide10[i] / Lines.Count);
                     if (avageOfLines > 20)
                         avageOfLines = (avageOfLines + 20) / 3;
-                    else if(avageOfLines > 10)
+                    else if (avageOfLines > 10)
                         avageOfLines = (avageOfLines + 10) / 2;
                     Columns[i].NumberOfRows = avageOfLines + 1 > numberOfRowsMaxValue ? numberOfRowsMaxValue : avageOfLines + 1;
                 }
             }
-
             Loaded = true;
-            Valid = true;
         }
 
         /// <summary>
         /// 讀取Json物件
         /// </summary>
         /// <param name="jArray">JArray</param>
-        /// <param name="produceColumnInfo">是否更新欄位</param>
-        public void LoadJson(object jArray, bool produceColumnInfo = false)
+        public void LoadJson(object jArray)
         {
-            bool isFirst = true;
-            bool isFirstFirst = true;
-
-            if (jArray == null)
-                return;
+            Lines.Clear();
 
             JArray jr = jArray as JArray;
+
             if (jr == null)
-                throw new ArgumentNullException();
+                throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
-            if (produceColumnInfo)
-                Columns.Clear();
-
-            //做檢查
-
-            //foreach(JToken jt in jr)
-            //{
-            //    JObject jo = jt as JObject;
-
-            //    //1.資料欄數字正確
-            //    if (jo.Count != Columns.Count)
-            //        ;
-                    
-                
-            //    //2.資料欄名正確
-                
-                
-            //    //3.資料正確(非Array, Object)
-
-
-            //}
-
-            foreach (JToken jt in jr)
+            for (int i = 0; i < jr.Count; i++)
             {
-                JLine items = new JLine();
-                JObject jo = jt as JObject;
+                JLine jl = new JLine();
+                JObject jo = jr[i] as JObject;
                 JColumn jc = null;
 
-                Console.WriteLine(jo.Count);
+                if (jo == null)
+                    throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
 
-                int i = 0;
+                if (jo.Count != Columns.Count)
+                    throw new JFileInvalidException(JFileInvalidReasons.ChildColumnCountVary, i);
+
+                int j = 0;
                 foreach (KeyValuePair<string, JToken> kvp in jo)
                 {
-                    if (produceColumnInfo) //Scan
+                    jc = Columns[j];
+
+                    if (jc.Name != kvp.Key)
+                        if (Columns.Find(m => m.Name == kvp.Key) != null)
+                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnOrderVary, i);
+                        else
+                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnNameVary, i);
+
+                    if (kvp.Value.Type == JTokenType.Null)
+                        jl.Add(JValue.FromObject(null));
+                    else if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
                     {
-                        if (isFirstFirst)
-                        {
-                            jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", true,
-                                Math.Abs(kvp.Value.ToString().Length / 50) + 1);
-                            Columns.Add(jc);
-                            isFirstFirst = false;
-                        }
-                        else if (isFirst)
-                        {
-                            jc = new JColumn(kvp.Key, kvp.Value.ToJType(), kvp.Key == "ID", false,
-                                Math.Abs(kvp.Value.ToString().Length / 50) + 1);
-                            Columns.Add(jc);
-                        }
-                        else
-                            jc = Columns[i];
-
-                        if (kvp.Value.Type == JTokenType.Null)
-                        {
-                            jc.IsNullable = true;
-                            items.Add(JValue.FromObject(null));
-                        }
-                        else
-                        {
-                            JValue jv;
-                            if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
-                            {
-                                jv = JValue.FromObject(parsedObj);
-                                if (!Changed)
-                                    Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
-                            }   
-                            else
-                            {
-                                //確認型別失敗，型態換為String，把前面的資料換掉
-                                for (int k = 0; k < Lines.Count; k++)
-                                    Lines[k][i].Value = Lines[k][i].Value.ToString(Columns[i].Type);
-                                Columns[i].Type = JType.String;
-                                jv = JValue.FromObject(kvp.Value.ToString());
-                            }
-                            items.Add(jv);
-                        }
+                        jl.Add(JValue.FromObject(parsedObj));
+                        if (!Changed)
+                            Changed = kvp.Value.ToString() != parsedObj.ToString(jc.Type);
                     }
-                    else //Load
+                    else
                     {
-                        //Loading Error
-
-                        //比定義的資料列還大
-                        //if (i > Columns.Count - 1)
-                        //    return; //throw new Expception?
-
-                        if (jo.Count != Columns.Count)
-                            throw new DataException("Lines Column Count not match.");
-                        //To do
-
-                        //Loading Error Exit
-
-                        jc = Columns[i];
-                        if (kvp.Value.Type == JTokenType.Null)
-                            items.Add(JValue.FromObject(null));
-                        else
-                        {
-                            JValue jv;
-                            if (kvp.Value.ToString().TryParseJType(jc.Type, out object parsedObj))
-                            {
-                                jv = JValue.FromObject(parsedObj);
-                                if (!Changed)
-                                    Changed = kvp.Value.ToString() != jv.Value.ToString(jc.Type);
-                            }
-                            else
-                            {
-                                jv = JValue.FromObject(parsedObj);
-                                Changed = true;
-                            }
-                            items.Add(jv);
-                        }
+                        jl.Add(JValue.FromObject(parsedObj));
+                        Changed = true;
                     }
-                    i++;
+                    j++;
                 }
-                isFirst = false;
-                Lines.Add(items);
+
+                Lines.Add(jl);
             }
             Loaded = true;
-            Valid = false;         
+            Valid = false;
         }
 
         protected void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)
@@ -497,49 +419,49 @@ namespace JsonEditor
                 //IsNull
                 if (jl[i].Value == null && Columns[i].IsNullable)
                     return true;
-                    
+
                 else if (jl[i].Value == null && !Columns[i].IsNullable)
-                {   
-                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.NullValue);                    
+                {
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.NullValue);
                     return false;
-                }                    
+                }
 
                 //Type
                 if (jl[i].Value.GetType() != Columns[i].Type.ToType())
                 {
-                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);                    
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);
                     return false;
-                }                    
+                }
 
                 //MinMax
                 if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
                 {
                     if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
                     {
-                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LessThenMinValue);                        
+                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LessThenMinValue);
                         return false;
                     }
-                        
+
                     if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
                     {
-                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.GreaterThenMaxValue);                        
+                        AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.GreaterThenMaxValue);
                         return false;
-                    }                        
+                    }
                 }
 
                 //MaxLength
                 if (Columns[i].TextMaxLength != 0 &&
                     jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].TextMaxLength)
                 {
-                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LongerThenMaxLength);                    
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LongerThenMaxLength);
                     return false;
-                }                    
+                }
 
                 //Regex
                 if (!string.IsNullOrEmpty(Columns[i].RegularExpression) &&
                     !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].RegularExpression))
                 {
-                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.RegularExpressionNotMatch);                    
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.RegularExpressionNotMatch);
                     return false;
                 }
             }
@@ -576,7 +498,7 @@ namespace JsonEditor
                     if (quickCheck)
                         return false;
                 }
-                    
+
 
                 if (keyIndex.Count != 0)
                 {
@@ -590,7 +512,7 @@ namespace JsonEditor
                         {
                             AddInvalidRecord(i, keyIndex[j], JValueInvalidReasons.DuplicateKey);
                             AddInvalidRecord(keyCheckSet[checkString], keyIndex[j], JValueInvalidReasons.DuplicateKey);
-                        }   
+                        }
                         Valid = false;
                         if (quickCheck)
                             return false;
@@ -599,11 +521,11 @@ namespace JsonEditor
                         keyCheckSet.Add(checkString, i);
                 }
             }
-            
+
             //Unique
-            for(int i = 0; i < Columns.Count; i++)
+            for (int i = 0; i < Columns.Count; i++)
             {
-                if(Columns[i].IsUnique)
+                if (Columns[i].IsUnique)
                 {
                     Dictionary<object, int> uniqueCheckDictionary = new Dictionary<object, int>();
                     for (int j = Lines.Count - 1; j > -1; j--)
