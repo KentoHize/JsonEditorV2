@@ -26,6 +26,6 @@ namespace JsonEditor
         MaxValueTypeCastFailed,
         MaxValueGreaterThanTypeMaxValue,
         MinValueGreaterThanMaxValue,
-        IllegalRegularExpression
+        IllegalRegularExpression,
     }
 }

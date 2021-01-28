@@ -1,0 +1,95 @@
+{
+  "Name": "Test7",
+  "TablesInfo": [
+    {
+      "Name": "FKTable",
+      "Columns": [
+        {
+          "Name": "ID",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Guid",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "NumberColumn",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Double",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "5",
+          "MaxValue": "10",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "TextColumn",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 30,
+          "IsUnique": false
+        }
+      ]
+    },
+    {
+      "Name": "MainTable",
+      "Columns": [
+        {
+          "Name": "ID",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "FKTableID",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "String",
+          "FKTable": "FKTable",
+          "FKColumn": "ID",
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        }
+      ]
+    }
+  ]
+}

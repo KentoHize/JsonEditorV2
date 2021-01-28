@@ -247,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestArea\Test7\" />
+    <Folder Include="TestData\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
