@@ -22,6 +22,7 @@ namespace JsonEditorV2
             InitializeComponent();
             Setting.CI = new CultureInfo("en-US");
             Setting.UseQuickCheck = false;
+            Setting.DontLoadFileBytesThreshold = 10000;
             ChangeCulture();
             cobColumnType.DataSource =
                 Enum.GetValues(typeof(JType)).OfType<JType>()
@@ -446,6 +447,9 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
                 return;
+#if DEBUG
+            fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
+#endif
 
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
@@ -464,9 +468,9 @@ namespace JsonEditorV2
             }
 
             //JFI檔案存在，詢問是否繼續
-            if (!jsonfiles.Contains(Var.JFI.FileInfoPath))
+            if (jsonfiles.Contains(Var.JFI.FileInfoPath))
             {
-                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE);
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE, Var.JFI.DirectoryPath);
                 if (dr != DialogResult.OK)
                     return;
             }
@@ -478,7 +482,7 @@ namespace JsonEditorV2
                     continue;
 
                 JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
-                LoadJsonFile(table);
+                LoadJsonFile(table, true);
                 Var.Tables.Add(table);
             }
 
@@ -581,8 +585,7 @@ namespace JsonEditorV2
         private void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
-            tmiCloseAllFiles.Enabled = false;
-            tmiScanJsonFiles.Enabled = false;
+            tmiCloseAllFiles.Enabled = false;            
             tmiNewJsonFile.Enabled = false;
             tmiSaveJsonFiles.Enabled = false;
             tmiSaveAsJsonFiles.Enabled = false;
@@ -633,8 +636,7 @@ namespace JsonEditorV2
             if (trvJsonFiles.SelectedNode == null || trvJsonFiles.SelectedNode == Var.RootNode)
                 Var.RootNode.Expand();
 
-            tmiCloseAllFiles.Enabled =
-            tmiScanJsonFiles.Enabled =
+            tmiCloseAllFiles.Enabled =            
             tmiNewJsonFile.Enabled =
             tmiOpenFolder.Enabled =
             tmiSaveAsJsonFiles.Enabled =
@@ -928,10 +930,10 @@ namespace JsonEditorV2
 
                 //補足效果
                 Var.DblClick = false;
-                if (trvJsonFiles.SelectedNode.IsExpanded)
-                    trvJsonFiles.SelectedNode.Collapse();
+                if (e.Node.IsExpanded)
+                    e.Node.Collapse();
                 else
-                    trvJsonFiles.SelectedNode.Expand();
+                    e.Node.Expand();
             }
         }
 
