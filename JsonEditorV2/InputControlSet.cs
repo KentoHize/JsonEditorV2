@@ -143,8 +143,8 @@ namespace JsonEditorV2
 
             //確認Regex正確
             if (JColumn.Type == JType.String)
-                if (!string.IsNullOrEmpty(JColumn.Regex))
-                    if (!Regex.IsMatch(ChangeTextToString(ValueControl.Text), JColumn.Regex))
+                if (!string.IsNullOrEmpty(JColumn.RegularExpression))
+                    if (!Regex.IsMatch(ChangeTextToString(ValueControl.Text), JColumn.RegularExpression))
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_REGEX_IS_NOT_MATCH, ValueControl.Text));
                         return false;

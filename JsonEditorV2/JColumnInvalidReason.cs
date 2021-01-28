@@ -11,7 +11,7 @@ namespace JsonEditor
         None = 0,
         IllegalName,        
         NumberOfRowsIsNegativeOrTooBig,
-        MaxLengthIsNegativeOrTooBig,
+        MaxLengthIsNegative,
         IsKeyAndIsNullable,
         ForeignKeyTableNotExist,
         ForeignKeyColumnNotExist,
@@ -21,7 +21,9 @@ namespace JsonEditor
         NumberOrDateTimeHaveRegularExpression,
         NotNumberOrDateTimeHaveMinValue,
         NotNumberOrDateTimeHaveMaxValue,
+        MinValueTypeCastFailed,
         MinValueLessThanTypeMinValue,
+        MaxValueTypeCastFailed,
         MaxValueGreaterThanTypeMaxValue,
         MinValueGreaterThanMaxValue,
         IllegalRegularExpression

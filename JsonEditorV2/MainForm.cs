@@ -154,7 +154,7 @@ namespace JsonEditorV2
             }
         }
 
-        public bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
+        public static bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
         {
             if (string.IsNullOrEmpty(content))
                 return false;
@@ -357,12 +357,12 @@ namespace JsonEditorV2
             //改最大最小值 、最大長度 及 正則表達式
             if (Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
                Var.SelectedColumn.MaxValue != txtColumnMaxValue.Text ||
-               Var.SelectedColumn.Regex != txtColumnRegex.Text ||
+               Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
                Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
                 Var.SelectedColumn.MinValue = txtColumnMinValue.Text;
                 Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
-                Var.SelectedColumn.Regex = txtColumnRegex.Text;
+                Var.SelectedColumn.RegularExpression = txtColumnRegex.Text;
                 Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;
             }
@@ -502,7 +502,7 @@ namespace JsonEditorV2
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
 
                 //不合法，錯誤訊息之後扔出
-                if (!Var.JFI.CheckValid())
+                if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
                 {
                     //錯誤訊息
                     Var.JFI.TablesInfo = null;
@@ -911,7 +911,7 @@ namespace JsonEditorV2
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
 
-                txtColumnRegex.Text = Var.SelectedColumn.Regex ?? "";
+                txtColumnRegex.Text = Var.SelectedColumn.RegularExpression ?? "";
                 txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
                 txtColumnMaxValue.Text = Var.SelectedColumn.MaxValue ?? "";
                 txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
@@ -1197,7 +1197,7 @@ namespace JsonEditorV2
                 return false;
             }
 
-            if (!Var.JFI.CheckValid())
+            if (Var.JFI.CheckValid() != JColumnInvalidReason.None)
                 return false;
             return true;
         }

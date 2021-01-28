@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using JsonEditorV2;
 using Newtonsoft.Json;
 
 namespace JsonEditor
@@ -25,54 +27,82 @@ namespace JsonEditor
         public string FileInfoPath { get => Path.Combine(DirectoryPath, FilesInfoName); }
 
         [JsonIgnore]
-        public Dictionary<int, Dictionary<int, JColumnInvalidReason>> InvalidRecords { get; set; } = new Dictionary<int, Dictionary<int, JColumnInvalidReason>>();
+        public int InvalidTableIndex { get; set; }
 
-        public bool CheckColumnValid(JColumn jc)
-        {            
-            //TO DO
-            return true;
+        [JsonIgnore]
+        public string InvalidColumnName { get; set; }
+
+        [JsonIgnore]
+        public JColumnInvalidReason InvalidReason { get; set; }
+
+
+        private JColumnInvalidReason SetInvalidReason(int tableIndex, string columnName, JColumnInvalidReason reason)
+        {
+            InvalidTableIndex = tableIndex;
+            InvalidColumnName = columnName;
+            InvalidReason = reason;
+            return InvalidReason;
         }
 
-        public bool CheckValid()
+        public JColumnInvalidReason CheckColumnValid(JColumn jc)
         {
-            //Key
-            //List<int> keyIndex = new List<int>();
-            //for (int i = 0; i < Columns.Count; i++)
-            //    if (Columns[i].IsKey)
-            //        keyIndex.Add(i);
+            try { Regex.IsMatch("_", jc.RegularExpression); }
+            catch { return JColumnInvalidReason.IllegalRegularExpression; }
 
-            //從最底端開始查起
-            //HashSet<string> keyCheckSet = new HashSet<string>();
-            //string checkString;
-            //for (int i = Lines.Count - 1; i > -1; i--)
-            //{
-            //    if (!CheckLineValid(Lines[i]))
-            //        return Valid;
+            if (!Regex.IsMatch(jc.Name, Const.ColumnNameRegex))
+                return JColumnInvalidReason.IllegalName;
+            else if (jc.IsKey && jc.IsNullable)
+                return JColumnInvalidReason.IsKeyAndIsNullable;
+            else if (!string.IsNullOrEmpty(jc.FKTable) && string.IsNullOrEmpty(jc.FKColumn))
+                return JColumnInvalidReason.ForeignKeyColumnMissing;
+            else if (string.IsNullOrEmpty(jc.FKTable) && !string.IsNullOrEmpty(jc.FKColumn))
+                return JColumnInvalidReason.ForeignKeyTableMissing;
+            else if (jc.NumberOfRows < 0 || jc.NumberOfRows > Const.NumberOfRowsMaxValue)
+                return JColumnInvalidReason.NumberOfRowsIsNegativeOrTooBig;
+            else if (!string.IsNullOrEmpty(jc.RegularExpression) && (jc.Type.IsNumber() || jc.Type.IsDateTime()))
+                return JColumnInvalidReason.NumberOrDateTimeHaveRegularExpression;
+            else if (!string.IsNullOrEmpty(jc.MinValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
+                return JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue;
+            else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
+                return JColumnInvalidReason.NotNumberOrDateTimeHaveMaxValue;
+            else if (!jc.MinValue.TryParseJType(jc.Type, out object min))
+                return JColumnInvalidReason.MinValueTypeCastFailed;
+            else if (!jc.MinValue.TryParseJType(jc.Type, out object max))
+                return JColumnInvalidReason.MaxValueTypeCastFailed;
+            else if (min.CompareTo(max, jc.Type) == 1)
+                return JColumnInvalidReason.MinValueGreaterThanMaxValue;
+            else if (jc.TextMaxLength < 0)
+                return JColumnInvalidReason.MaxLengthIsNegative;
 
-            //    if (keyIndex.Count != 0)
-            //    {
-            //        checkString = "";
-            //        for (int j = 0; j < keyIndex.Count; j++)
-            //            if (Lines[i][keyIndex[j]].Value != null)
-            //                checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
-            //        if (!keyCheckSet.Add(checkString))
-            //            return Valid;
-            //    }
-            //}
+            return JColumnInvalidReason.None;
+        }
 
-            //Unique
-            //for (int i = 0; i < Columns.Count; i++)
-            //{
-            //    if (Columns[i].IsUnique)
-            //    {
-            //        HashSet<object> uniqueCheckSet = new HashSet<object>();
-            //        for (int j = Lines.Count - 1; j > -1; j--)
-            //            if (!uniqueCheckSet.Add(Lines[j][i].Value))
-            //                return Valid;
-            //    }
-            //}
+        public JColumnInvalidReason CheckValid()
+        {
+            JColumnInvalidReason result = JColumnInvalidReason.None;
+            for(int i = 0; i < TablesInfo.Count; i++)
+            {
+                for (int j = 0; j < TablesInfo[i].Columns.Count; j++)
+                {
+                    result = CheckColumnValid(TablesInfo[i].Columns[j]);
+                    if (result != JColumnInvalidReason.None)
+                        return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, result);
+                    
+                    if (!string.IsNullOrEmpty(TablesInfo[i].Columns[j].FKTable))
+                    {
+                        JTableInfo fkJti = TablesInfo.Find(m => m.Name == TablesInfo[i].Columns[j].FKTable);                        
+                        if (fkJti == null)
+                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableMissing);
+                        JColumn fkJc = fkJti.Columns.Find(m => m.Name == TablesInfo[i].Columns[j].FKColumn);
+                        if (fkJc == null)
+                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnNotExist);
 
-            return true;
+                        if (fkJc.Type != TablesInfo[i].Columns[j].Type)
+                            return SetInvalidReason(i, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnTypeNotMatch);
+                    }
+                }                    
+            }
+            return JColumnInvalidReason.None;          
         }
 
         public JFilesInfo()

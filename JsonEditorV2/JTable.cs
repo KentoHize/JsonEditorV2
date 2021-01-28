@@ -312,8 +312,8 @@ namespace JsonEditor
                 }                    
 
                 //Regex
-                if (!string.IsNullOrEmpty(Columns[i].Regex) &&
-                    !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].Regex))
+                if (!string.IsNullOrEmpty(Columns[i].RegularExpression) &&
+                    !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].RegularExpression))
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.RegularExpressionNotMatch);                    
                     return false;

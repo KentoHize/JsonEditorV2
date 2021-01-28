@@ -17,7 +17,7 @@ namespace JsonEditor
         public string FKColumn { get; set; }
         public int NumberOfRows { get; set; }
         public bool Display { get; set; }
-        public string Regex { get; set; }
+        public string RegularExpression { get; set; }
         public string Description { get; set; }
         public string MinValue { get; set; }
         public string MaxValue { get; set; }
@@ -47,7 +47,7 @@ namespace JsonEditor
             NumberOfRows = numberOfRows;
             FKTable = fkTable;
             FKColumn = fkColumn;
-            Regex = regex;
+            RegularExpression = regex;
         }
     }
 }
