@@ -18,7 +18,7 @@ namespace JsonEditor
         ForeignKeyTableMissing,
         ForeignKeyColumnMissing,
         ForeignKeyColumnTypeNotMatch,
-        NumberOrDateTimeHaveRegularExpression,
+        NumberOrDateTimeHasRegularExpression,
         NotNumberOrDateTimeHaveMinValue,
         NotNumberOrDateTimeHaveMaxValue,
         MinValueTypeCastFailed,

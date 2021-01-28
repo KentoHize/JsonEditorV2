@@ -459,6 +459,18 @@
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
     <value>Foreign key column is missing.</value>
   </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST" xml:space="preserve">
+    <value>Foreign key column is not exist.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH" xml:space="preserve">
+    <value>The type of foreign key column is not match.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_MISSING" xml:space="preserve">
+    <value>Foreign key file is missing.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_NOT_EXIST" xml:space="preserve">
+    <value>Foreign key file is not exist.</value>
+  </data>
   <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
     <value>Column name is illegal.</value>
   </data>
@@ -480,8 +492,17 @@
   <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
     <value>The min value "{0}" is greater than the max value"{1}".</value>
   </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">
+    <value>Non-number or Non-datetime column has a max value.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE" xml:space="preserve">
+    <value>Non-number or Non-datetime column has a min value.</value>
+  </data>
   <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
     <value>Number of rows is incorrect.</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION" xml:space="preserve">
+    <value>Number or datetime type column has a regular expression.</value>
   </data>
   <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
     <value>Key value "{0}" duplicated.</value>

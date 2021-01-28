@@ -457,7 +457,19 @@
     <value>用記事本開啟</value>
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
-    <value>外部索引欄位遺失</value>
+    <value>外部索引欄位名遺失</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST" xml:space="preserve">
+    <value>外部索引欄位不存在</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH" xml:space="preserve">
+    <value>外部索引欄位型別與此欄位型別不合</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_MISSING" xml:space="preserve">
+    <value>外部索引檔案名遺失</value>
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_NOT_EXIST" xml:space="preserve">
+    <value>外部索引檔案不存在</value>
   </data>
   <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
     <value>欄位名稱不正確</value>
@@ -480,8 +492,17 @@
   <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE" xml:space="preserve">
     <value>最小值"{0}"高於最大值"{1}"</value>
   </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">
+    <value>非數字或日期時間含有最大值</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE" xml:space="preserve">
+    <value>非數字或日期時間含有最小值</value>
+  </data>
   <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
     <value>欄位行數不正確</value>
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION" xml:space="preserve">
+    <value>數字或日期時間含有正則表達式驗證</value>
   </data>
   <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
     <value>鍵值"{0}"重複</value>

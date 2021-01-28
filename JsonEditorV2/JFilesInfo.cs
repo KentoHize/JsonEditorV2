@@ -63,7 +63,7 @@ namespace JsonEditor
             else if (jc.NumberOfRows < 0 || jc.NumberOfRows > Const.NumberOfRowsMaxValue)
                 return JColumnInvalidReason.NumberOfRowsIsNegativeOrTooBig;
             else if (!string.IsNullOrEmpty(jc.RegularExpression) && (jc.Type.IsNumber() || jc.Type.IsDateTime()))
-                return JColumnInvalidReason.NumberOrDateTimeHaveRegularExpression;
+                return JColumnInvalidReason.NumberOrDateTimeHasRegularExpression;
             else if (!string.IsNullOrEmpty(jc.MinValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
                 return JColumnInvalidReason.NotNumberOrDateTimeHaveMinValue;
             else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
@@ -94,7 +94,7 @@ namespace JsonEditor
                     {
                         JTableInfo fkJti = TablesInfo.Find(m => m.Name == TablesInfo[i].Columns[j].FKTable);                        
                         if (fkJti == null)
-                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableMissing);
+                            return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyTableNotExist);
                         JColumn fkJc = fkJti.Columns.Find(m => m.Name == TablesInfo[i].Columns[j].FKColumn);
                         if (fkJc == null)
                             return SetInvalidReason(TablesInfo[i].Name, TablesInfo[i].Columns[j].Name, JColumnInvalidReason.ForeignKeyColumnNotExist);

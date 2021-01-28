@@ -1078,11 +1078,47 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 外部索引欄位遺失.
+        ///   Looks up a localized string similar to 外部索引欄位名遺失.
         /// </summary>
         public static string JE_VAL_COLUMN_FK_COLUMN_MISSING {
             get {
                 return ResourceManager.GetString("JE_VAL_COLUMN_FK_COLUMN_MISSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引欄位不存在.
+        /// </summary>
+        public static string JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引欄位型別與此欄位型別不合.
+        /// </summary>
+        public static string JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引檔案名遺失.
+        /// </summary>
+        public static string JE_VAL_COLUMN_FK_TABLE_MISSING {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_FK_TABLE_MISSING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 外部索引檔案不存在.
+        /// </summary>
+        public static string JE_VAL_COLUMN_FK_TABLE_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_FK_TABLE_NOT_EXIST", resourceCulture);
             }
         }
         
@@ -1150,11 +1186,38 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 非數字或日期時間含有最大值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 非數字或日期時間含有最小值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位行數不正確.
         /// </summary>
         public static string JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG {
             get {
                 return ResourceManager.GetString("JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 數字或日期時間含有正則表達式驗證.
+        /// </summary>
+        public static string JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION", resourceCulture);
             }
         }
         
