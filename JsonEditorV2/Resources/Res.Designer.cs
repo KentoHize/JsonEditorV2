@@ -781,7 +781,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 準備掃描全部JSON檔案，根據資料重新建立JSON檔案關聯檔，會覆蓋原有的檔案關聯檔，如果JSON檔案數量眾多將會消耗很多時間，是否確定？.
+        ///   Looks up a localized string similar to 資料夾&quot;{0}&quot;已存在JSON關聯檔案，確定繼續掃描目標資料夾？(之後存檔後將覆蓋舊的JSON關聯檔).
         /// </summary>
         public static string JE_RUN_SCAN_JSON_FILES_M_1 {
             get {

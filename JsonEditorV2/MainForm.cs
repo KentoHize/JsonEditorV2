@@ -444,28 +444,44 @@ namespace JsonEditorV2
 
         public void tmiScanJsonFiles_Click(object sender, EventArgs e)
         {
-            DialogResult dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE);
+            if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
+                return;
+
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
 
-            tmiCloseAllFiles_Click(this, e);
-            Var.Tables = new List<JTable>();
-            Var.JFI = new JFilesInfo(Var.JFI.DirectoryPath);
+            tmiCloseAllFiles_Click(this, e);            
+            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
+            Var.Tables = new List<JTable>();
+
+            //檔案數為0，丟出訊息後離開
+            if (jsonfiles.Length == 0)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
+                return;
+            }
+
+            //JFI檔案存在，詢問是否繼續
+            if (!jsonfiles.Contains(Var.JFI.FileInfoPath))
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            //全部讀取
             foreach (string file in jsonfiles)
             {
                 if (file == Var.JFI.FileInfoPath)
-                {
-                    LoadJFilesInfo(file);
-                    Var.JFI.DirectoryPath = fbdMain.SelectedPath;
-                }
-                else
-                {
-                    JTable jt = new JTable(Path.GetFileNameWithoutExtension(file));
-                    LoadJsonFile(jt, true);
-                    Var.Tables.Add(jt);
-                }
+                    continue;
+
+                JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
+                LoadJsonFile(table);
+                Var.Tables.Add(table);
             }
+
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
@@ -486,7 +502,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();            
+            Var.Tables = new List<JTable>();
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -507,15 +523,16 @@ namespace JsonEditorV2
                 return;
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;
 
-            //對於 其他檔案開始核對
+            //開始讀檔
             foreach (string file in jsonfiles)
             {
-                FileInfo fi = new FileInfo(file);
-
                 if (file == Var.JFI.FileInfoPath)
                     continue;
 
+                FileInfo fi = new FileInfo(file);
                 JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
+                
+                //設置欄位訊息
                 JTableInfo jti = Var.JFI.TablesInfo.Find(m => m.Name == table.Name);
                 if (jti == null)
                 {
@@ -523,10 +540,10 @@ namespace JsonEditorV2
                     RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
                     continue;
                 }
-
                 table.Columns = jti.Columns;
+
                 //小檔案直接讀取
-                if (fi.Length < Const.DontLoadFileBytesThreshold)                    
+                if (fi.Length < Setting.DontLoadFileBytesThreshold)                    
                     LoadJsonFile(table);
 
                 Var.Tables.Add(table);
