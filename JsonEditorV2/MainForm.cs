@@ -349,10 +349,9 @@ namespace JsonEditorV2
                Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
                Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
-                if (!string.IsNullOrEmpty(txtColumnMinValue.Text))
-                    Var.SelectedColumn.MinValue = txtColumnMinValue.Text.ParseJType(newType).ToString(newType);
-                if (!string.IsNullOrEmpty(txtColumnMaxValue.Text))
-                    Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text.ParseJType(newType).ToString(newType);
+                
+                Var.SelectedColumn.MinValue = txtColumnMinValue.Text != "" ? (txtColumnMinValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
+                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text != "" ? (txtColumnMaxValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
                 Var.SelectedColumn.RegularExpression = txtColumnRegex.Text;
                 Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;
