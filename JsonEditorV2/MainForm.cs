@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -20,20 +21,6 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
-            Setting.CI = new CultureInfo("en-US");
-            Setting.UseQuickCheck = false;
-            Setting.DontLoadFileBytesThreshold = 10000;
-            Setting.NumberOfRowsMaxValue = 30;
-            ChangeCulture();
-            cobColumnType.DataSource =
-                Enum.GetValues(typeof(JType)).OfType<JType>()
-                .Except(new List<JType> { JType.None })
-                .ToList();
-            cobColumnType.SelectedIndex = -1;
-            tbpStart.BackColor = this.BackColor;
-#if !DEBUG
-            tmiBackup.Visible = false;
-#endif
         }
 
         private void ChangeCulture()
@@ -440,7 +427,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
                 return;
-            Application.Exit();
+            Close();            
         }
 
         public void tmiScanJsonFiles_Click(object sender, EventArgs e)
@@ -1651,9 +1638,48 @@ namespace JsonEditorV2
 
         public void MainForm_Load(object sender, EventArgs e)
         {
+            //讀取Setting
+            if(File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Open))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        PropertyInfo[] pis = typeof(Setting).GetProperties();
+                        while(!sr.EndOfStream)
+                        {
+                            string line = sr.ReadLine();
+                            PropertyInfo pi = typeof(Setting).GetProperty(line.Split('=')[0]);
+                            if (pi.PropertyType == typeof(CultureInfo))
+                                pi.SetValue(null, new CultureInfo(line.Split('=')[1]));
+                            else
+                                pi.SetValue(null, Convert.ChangeType(line.Split('=')[1], pi.PropertyType));
+                        }
+                    }
+                }
+            }
+            else //讀取預設值
+            {
+                Setting.CI = new CultureInfo("en-US");
+                Setting.UseQuickCheck = false;
+                Setting.DontLoadFileBytesThreshold = 10000;
+                Setting.NumberOfRowsMaxValue = 30;
+            }
+
+            ckbQuickCheck.Checked = Setting.UseQuickCheck;
+            ChangeCulture();
+            cobColumnType.DataSource =
+                Enum.GetValues(typeof(JType)).OfType<JType>()
+                .Except(new List<JType> { JType.None })
+                .ToList();
+            cobColumnType.SelectedIndex = -1;
+            tbpStart.BackColor = this.BackColor;
+#if !DEBUG
+            tmiBackup.Visible = false;
+#endif
             //確認Backup資料夾存在
             if (!Directory.Exists(Const.BackupFolder))
-                Directory.CreateDirectory(Const.BackupFolder);
+                    Directory.CreateDirectory(Const.BackupFolder);
 
             //有Backup檔案存在
             string[] files = Directory.GetFiles(Const.BackupFolder);
@@ -1875,6 +1901,24 @@ namespace JsonEditorV2
 
             foreach (string folder in folders)
                 ChangeRegex(folder);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {   
+            //Setting.ini存取
+            try
+            {
+                using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Create))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        PropertyInfo[] pis = typeof(Setting).GetProperties();
+                        foreach (var pi in pis)
+                            sw.WriteLine($"{pi.Name}={pi.GetValue(null)}");
+                    }
+                }
+            }
+            catch { }
         }
     }
 }

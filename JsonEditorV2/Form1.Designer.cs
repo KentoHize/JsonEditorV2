@@ -77,8 +77,8 @@
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmiLoadJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiScanJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiLoadJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiSaveJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSaveAsJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +94,8 @@
             this.tmiJsonEditorBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiTestDataBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAritiafelBackup = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiRunSomething = new System.Windows.Forms.ToolStripMenuItem();
             this.ofdMain = new System.Windows.Forms.OpenFileDialog();
             this.fbdMain = new System.Windows.Forms.FolderBrowserDialog();
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -124,8 +126,6 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmiRunSomething = new System.Windows.Forms.ToolStripMenuItem();
             this.pblFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -677,19 +677,19 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
-            // tmiLoadJsonFiles
-            // 
-            this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
-            this.tmiLoadJsonFiles.Text = "X";
-            this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
-            // 
             // tmiScanJsonFiles
             // 
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
             this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
+            // 
+            // tmiLoadJsonFiles
+            // 
+            this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiLoadJsonFiles.Text = "X";
+            this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -782,23 +782,35 @@
             // tmiJsonEditorBackup
             // 
             this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(183, 26);
             this.tmiJsonEditorBackup.Text = "Json Editor";
             this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
             // 
             // tmiTestDataBackup
             // 
             this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(183, 26);
             this.tmiTestDataBackup.Text = "Test Data";
             this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
             // 
             // tmiAritiafelBackup
             // 
             this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(183, 26);
             this.tmiAritiafelBackup.Text = "Aritiafel";
             this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 6);
+            // 
+            // tmiRunSomething
+            // 
+            this.tmiRunSomething.Name = "tmiRunSomething";
+            this.tmiRunSomething.Size = new System.Drawing.Size(183, 26);
+            this.tmiRunSomething.Text = "Run something";
+            this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
             // 
             // ofdMain
             // 
@@ -1047,18 +1059,6 @@
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
             // 
-            // toolStripMenuItem9
-            // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(213, 6);
-            // 
-            // tmiRunSomething
-            // 
-            this.tmiRunSomething.Name = "tmiRunSomething";
-            this.tmiRunSomething.Size = new System.Drawing.Size(216, 26);
-            this.tmiRunSomething.Text = "Run something";
-            this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1086,6 +1086,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.pblFileInfo.ResumeLayout(false);
             this.pblFileInfo.PerformLayout();
