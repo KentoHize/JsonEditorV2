@@ -370,7 +370,7 @@
     <value>"{0}" All Files saved.</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
-    <value>Folder "{0}" already had a JFI file, confirm to continue scan target folder? (new JFI file will replace the old one when a save command has committed.)</value>
+    <value>Folder "{0}" already has a JFI file, confirm to continue scan target folder? (new JFI file will replace the old one when a save command has committed.)</value>
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
     <value>{0} File(s) scan complete.</value>

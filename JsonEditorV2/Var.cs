@@ -12,7 +12,7 @@ namespace JsonEditorV2
 {
     public static class Var
     {
-        public static JDatabase Database { get; set; } = new JDatabase();
+        public static JDatabase Database { get; set; }
         public static List<JTable> Tables { get => Database.Tables; set => Database.Tables = value; }
         public static JFilesInfo JFI { get => Database.JFI; set => Database.JFI = value; }
 

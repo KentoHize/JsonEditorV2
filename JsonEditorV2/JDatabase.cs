@@ -8,7 +8,7 @@ namespace JsonEditor
 {
     public class JDatabase
     {
-        public string Name { get; set; }
+        public string Name { get => JFI != null ? JFI.Name : null; }
 
         public List<JTable> Tables { get; set; } = new List<JTable>();
 
@@ -34,6 +34,7 @@ namespace JsonEditor
                     return false;
             }
 
+            //FK Value Check
             for (int i = 0; i < jt.Columns.Count; i++)
             {
                 JTable fkTable = Tables.Find(m => m.Name == jt.Columns[i].FKTable);

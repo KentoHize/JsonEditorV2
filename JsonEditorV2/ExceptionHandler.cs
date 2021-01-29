@@ -152,19 +152,19 @@ namespace JsonEditorV2
             switch (kvp2.Value)
             {
                 case JValueInvalidReasons.NullValue:
-                    result.AppendFormat(Res.JE_VAL_NOT_NULLABLE, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_NOT_NULLABLE);
                     break;
                 case JValueInvalidReasons.WrongType:
                     result.AppendFormat(Res.JE_VAL_INVALID_CAST, jt[kvp1.Key][kvp2.Key].Value ?? "");
                     break;
                 case JValueInvalidReasons.LessThenMinValue:
-                    result.AppendFormat(Res.JE_VAL_LESS_THEN_MIN_VALUE, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_LESS_THEN_MIN_VALUE, jt[kvp1.Key][kvp2.Key].Value, jt.Columns[kvp2.Key].MinValue ?? "");
                     break;
                 case JValueInvalidReasons.GreaterThenMaxValue:
-                    result.AppendFormat(Res.JE_VAL_GREATER_THEN_MAX_VALUE, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_GREATER_THEN_MAX_VALUE, jt[kvp1.Key][kvp2.Key].Value, jt.Columns[kvp2.Key].MaxValue ?? "");
                     break;
                 case JValueInvalidReasons.LongerThenMaxLength:
-                    result.AppendFormat(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, jt.Columns[kvp2.Key].TextMaxLength);
                     break;
                 case JValueInvalidReasons.RegularExpressionNotMatch:
                     result.AppendFormat(Res.JE_VAL_REGEX_IS_NOT_MATCH, jt[kvp1.Key][kvp2.Key].Value ?? "");

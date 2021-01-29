@@ -21,6 +21,7 @@ namespace JsonEditorV2
         public MainForm()
         {
             InitializeComponent();
+            Var.Database = new JDatabase();
         }
 
         private void ChangeCulture()
@@ -773,7 +774,7 @@ namespace JsonEditorV2
 
         public void tmiSaveJsonFiles_Click(object sender, EventArgs e)
         {
-            //確認所有檔案符合規則
+            //確認所有開啟過的檔案符合規則
             foreach (JTable jt in Var.Tables)
             {
                 if (jt.Loaded)

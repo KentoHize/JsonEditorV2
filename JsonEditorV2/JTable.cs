@@ -526,9 +526,22 @@ namespace JsonEditor
                 if (Columns[i].IsUnique)
                 {
                     Dictionary<object, int> uniqueCheckDictionary = new Dictionary<object, int>();
+                    int nullObjectIndex = -1;
                     for (int j = Lines.Count - 1; j > -1; j--)
                     {
-                        if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
+                        //Null Check
+                        if (Lines[j][i].Value == null)
+                            if(nullObjectIndex == -1)
+                                nullObjectIndex = j;
+                            else
+                            {
+                                AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
+                                AddInvalidRecord(nullObjectIndex, i, JValueInvalidReasons.NotUnique);
+                                Valid = false;
+                                if (quickCheck)
+                                    return false;
+                            }                            
+                        else if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
                         {
                             AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
                             AddInvalidRecord(uniqueCheckDictionary[Lines[j][i].Value], i, JValueInvalidReasons.NotUnique);
