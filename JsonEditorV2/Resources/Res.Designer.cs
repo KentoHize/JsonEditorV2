@@ -1278,9 +1278,9 @@ namespace JsonEditorV2.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 外部索引值&quot;{0}&quot;不存在.
         /// </summary>
-        public static string JE_VAL_FK_IS_NOT_FOUND {
+        public static string JE_VAL_FK_VALUE_NOT_FOUND {
             get {
-                return ResourceManager.GetString("JE_VAL_FK_IS_NOT_FOUND", resourceCulture);
+                return ResourceManager.GetString("JE_VAL_FK_VALUE_NOT_FOUND", resourceCulture);
             }
         }
         

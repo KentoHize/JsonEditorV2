@@ -175,7 +175,9 @@ namespace JsonEditorV2
                 case JValueInvalidReasons.DuplicateKey:
                     result.AppendFormat(Res.JE_VAL_DUPLICATE_KEY, jt[kvp1.Key][kvp2.Key].Value ?? "");
                     break;
-                //To Do
+                case JValueInvalidReasons.FoeignKeyValueNotExists:
+                    result.AppendFormat(Res.JE_VAL_FK_VALUE_NOT_FOUND, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    break;
                 default:
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);
                     break;

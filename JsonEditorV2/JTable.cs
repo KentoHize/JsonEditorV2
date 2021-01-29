@@ -393,7 +393,7 @@ namespace JsonEditor
             Valid = false;
         }
 
-        protected void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)
+        public void AddInvalidRecord(int indexOfLine, int indexOfColumn, JValueInvalidReasons reason)
         {
             if (indexOfLine == -1)
                 return;

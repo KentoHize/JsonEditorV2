@@ -209,7 +209,7 @@ namespace JsonEditorV2
                 
                 if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].Value.ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
                 {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_IS_NOT_FOUND, ValueControl.Text));
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_VALUE_NOT_FOUND, ValueControl.Text));
                     return false;
                 }
             }

@@ -16,6 +16,7 @@ namespace JsonEditor
         LongerThenMaxLength,
         RegularExpressionNotMatch,
         DuplicateKey,
-        NotUnique
+        NotUnique,
+        FoeignKeyValueNotExists
     }
 }

@@ -136,7 +136,7 @@ namespace JsonEditorV2
                 {
                     for (int i = 0; i < columnIndexs.Count; i++)
                     {
-                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);                        
+                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);
                         jl[columnIndexs[i]].Value = result;
                     }
                 }
@@ -156,7 +156,7 @@ namespace JsonEditorV2
             {
                 DateTime result;
                 if (!DateTime.TryParse(content, out result))
-                    return false;                
+                    return false;
                 else if (type == JType.Date)
                     return result.TimeOfDay.TotalSeconds == 0;
                 else
@@ -218,14 +218,14 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);                    
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
                     txtColumnMinValue.SelectAll();
                     txtColumnMinValue.Focus();
                     return;
                 }
                 if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);                    
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
                     txtColumnMaxValue.SelectAll();
                     txtColumnMaxValue.Focus();
                     return;
@@ -346,7 +346,7 @@ namespace JsonEditorV2
                Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
                Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
-                if(!string.IsNullOrEmpty(txtColumnMinValue.Text))
+                if (!string.IsNullOrEmpty(txtColumnMinValue.Text))
                     Var.SelectedColumn.MinValue = txtColumnMinValue.Text.ParseJType(newType).ToString(newType);
                 if (!string.IsNullOrEmpty(txtColumnMaxValue.Text))
                     Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text.ParseJType(newType).ToString(newType);
@@ -427,7 +427,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
                 return;
-            Close();            
+            Close();
         }
 
         public void tmiScanJsonFiles_Click(object sender, EventArgs e)
@@ -442,7 +442,7 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
-            tmiCloseAllFiles_Click(this, e);            
+            tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
             Var.Tables = new List<JTable>();
@@ -522,7 +522,7 @@ namespace JsonEditorV2
 
                 FileInfo fi = new FileInfo(file);
                 JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
-                
+
                 //設置欄位訊息
                 JTableInfo jti = Var.JFI.TablesInfo.Find(m => m.Name == table.Name);
                 if (jti == null)
@@ -534,7 +534,7 @@ namespace JsonEditorV2
                 table.Columns = jti.Columns;
 
                 //小檔案直接讀取
-                if (fi.Length < Setting.DontLoadFileBytesThreshold)                    
+                if (fi.Length < Setting.DontLoadFileBytesThreshold)
                     LoadOrScanJsonFile(table);
 
                 Var.Tables.Add(table);
@@ -572,7 +572,7 @@ namespace JsonEditorV2
         private void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
-            tmiCloseAllFiles.Enabled = false;            
+            tmiCloseAllFiles.Enabled = false;
             tmiNewJsonFile.Enabled = false;
             tmiSaveJsonFiles.Enabled = false;
             tmiSaveAsJsonFiles.Enabled = false;
@@ -623,7 +623,7 @@ namespace JsonEditorV2
             if (trvJsonFiles.SelectedNode == null || trvJsonFiles.SelectedNode == Var.RootNode)
                 Var.RootNode.Expand();
 
-            tmiCloseAllFiles.Enabled =            
+            tmiCloseAllFiles.Enabled =
             tmiNewJsonFile.Enabled =
             tmiOpenFolder.Enabled =
             tmiSaveAsJsonFiles.Enabled =
@@ -780,14 +780,38 @@ namespace JsonEditorV2
                 {
                     if (!jt.CehckValid())
                     {
-                        //To Do
                         ExceptionHandler.SentTableInvalidMessage(jt);
-                        //RabbitCouriers.SentErrorMessageByResource("JE_RUN_SAVE_JSON_FILES_M_1", Res.JE_TMI_SAVE_JSON_FILES, jt.Name);
                         Var.CheckFailedFlag = true;
                         return;
                     }
+
+                    //確認已開檔案的ForeignKey值存在(較久時間)
+                    //To DO => Add DataBase?
+                    for (int i = 0; i < jt.Columns.Count; i++)
+                    {
+                        if (!string.IsNullOrEmpty(jt.Columns[i].FKTable) &&
+                           !string.IsNullOrEmpty(jt.Columns[i].FKColumn) &&
+                           Var.Tables.Find(m => m.Name == jt.Columns[i].FKTable).Loaded)
+                        {
+
+                            JTable fkTable = Var.Tables.Find(m => m.Name == jt.Columns[i].FKTable);
+                            int fkColumnIndex = fkTable.Columns.FindIndex(m => m.Name == jt.Columns[i].FKColumn);
+
+                            for(int j = 0; j < jt.Count; j++)
+                            {
+                                if (!fkTable.Lines.Exists(m => m.Values[fkColumnIndex].Value == jt[j][i].Value))
+                                {
+                                    jt.AddInvalidRecord(j, i, JValueInvalidReasons.FoeignKeyValueNotExists);
+                                    ExceptionHandler.SentTableInvalidMessage(jt);
+                                    Var.CheckFailedFlag = true;
+                                    return;
+                                }
+                            }
+                        }
+                    }
                 }
             }
+
 
             Var.JFI.TablesInfo.Clear();
             foreach (JTable jt in Var.Tables)
@@ -974,7 +998,7 @@ namespace JsonEditorV2
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
         }
-        
+
         #region DirectoryCopy
         private static void DirectoryCopy(string sourceDirName, string destDirName, string[] ignoreDirName = null, bool copySubDirs = true)
         {
@@ -990,16 +1014,16 @@ namespace JsonEditorV2
 
             DirectoryInfo[] dirs = dir.GetDirectories();
 
-            if(ignoreDirName == null || !ignoreDirName.Contains(Path.GetFileName(destDirName)))
-            { 
-                Directory.CreateDirectory(destDirName);            
+            if (ignoreDirName == null || !ignoreDirName.Contains(Path.GetFileName(destDirName)))
+            {
+                Directory.CreateDirectory(destDirName);
                 FileInfo[] files = dir.GetFiles();
                 foreach (FileInfo file in files)
                 {
                     string tempPath = Path.Combine(destDirName, file.Name);
                     file.CopyTo(tempPath, true);
-                }            
-            
+                }
+
                 if (copySubDirs)
                 {
                     foreach (DirectoryInfo subdir in dirs)
@@ -1152,7 +1176,7 @@ namespace JsonEditorV2
             {
                 ExceptionHandler.JFIFileIsInvalid(Var.JFI);
                 return false;
-            }   
+            }
             return true;
         }
 
@@ -1161,13 +1185,13 @@ namespace JsonEditorV2
             string jsonString = "";
             object jsonObject;
             try
-            {                
+            {
                 using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Open))
                 {
                     StreamReader sr = new StreamReader(fs);
                     jsonString = sr.ReadToEnd();
                     sr.Dispose();
-                }                 
+                }
             }
             catch (Exception ex)
             {
@@ -1198,7 +1222,7 @@ namespace JsonEditorV2
                 return false;
             }
 
-            if(!jt.Valid)
+            if (!jt.Valid)
                 jt.CehckValid(Setting.UseQuickCheck);
             return true;
         }
@@ -1639,14 +1663,14 @@ namespace JsonEditorV2
         public void MainForm_Load(object sender, EventArgs e)
         {
             //讀取Setting
-            if(File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
+            if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
             {
                 using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Open))
                 {
                     using (StreamReader sr = new StreamReader(fs))
                     {
                         PropertyInfo[] pis = typeof(Setting).GetProperties();
-                        while(!sr.EndOfStream)
+                        while (!sr.EndOfStream)
                         {
                             string line = sr.ReadLine();
                             PropertyInfo pi = typeof(Setting).GetProperty(line.Split('=')[0]);
@@ -1679,7 +1703,7 @@ namespace JsonEditorV2
 #endif
             //確認Backup資料夾存在
             if (!Directory.Exists(Const.BackupFolder))
-                    Directory.CreateDirectory(Const.BackupFolder);
+                Directory.CreateDirectory(Const.BackupFolder);
 
             //有Backup檔案存在
             string[] files = Directory.GetFiles(Const.BackupFolder);
@@ -1829,7 +1853,7 @@ namespace JsonEditorV2
         private void tmiTestDataBackup_Click(object sender, EventArgs e)
         {
             string BackupPath = @"E:\Backup\JsonEditorV2\JsonEditorV2";
-            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";            
+            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             string[] ProjectName = new string[] { "TestArea", "TestData" };
 
             foreach (string pj in ProjectName)
@@ -1843,8 +1867,8 @@ namespace JsonEditorV2
         }
 
         private void tmiAritiafelBackup_Click(object sender, EventArgs e)
-        {   
-            string BackupPath = @"E:\Backup\Aritiafel";            
+        {
+            string BackupPath = @"E:\Backup\Aritiafel";
             string ProjectPath = @"C:\Programs\Standard\Aritiafel";
             string[] IgnoreDirName = new string[] { "bin", "obj" };
             string[] ProjectName = new string[] { "Aritiafel", "AritiafelTestForm", "AritiafelTestFormTests" };
@@ -1855,7 +1879,7 @@ namespace JsonEditorV2
                 if (!Directory.Exists(Path.Combine(BackupPath, pj)))
                     Directory.CreateDirectory(Path.Combine(BackupPath, pj));
 
-                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);                
+                DirectoryCopy(Path.Combine(ProjectPath, pj), Path.Combine(BackupPath, pj), IgnoreDirName);
             }
 
             File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
@@ -1864,7 +1888,7 @@ namespace JsonEditorV2
         }
 
         private void tmiRunSomething_Click(object sender, EventArgs e)
-        {   
+        {
             //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             //string[] ProjectName = new string[] { "TestArea", "TestData" };
 
@@ -1878,7 +1902,7 @@ namespace JsonEditorV2
             string[] files = Directory.GetFiles(folderName, "*.bak");
             string s;
 
-            foreach(string file in files)
+            foreach (string file in files)
             {
                 using (FileStream fs1 = new FileStream(file, FileMode.Open))
                 {
@@ -1886,7 +1910,7 @@ namespace JsonEditorV2
                     s = sr.ReadToEnd();
                     sr.Close();
                 }
-                
+
                 File.Move(file, $"{file}.bak");
 
                 using (FileStream fs2 = new FileStream(file, FileMode.Create))
@@ -1904,7 +1928,7 @@ namespace JsonEditorV2
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {   
+        {
             //Setting.ini存取
             try
             {
