@@ -270,6 +270,7 @@ namespace JsonEditor
                     catch (JFileInvalidException ex)
                     {
                         ex.LineIndex = i;
+                        ex.ColumnName = kvp.Key;
                         throw ex;
                     }
                 }
@@ -365,9 +366,9 @@ namespace JsonEditor
                 {
                     if (Columns[j].Name != kvp.Key)
                         if (Columns.Find(m => m.Name == kvp.Key) != null)
-                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnOrderVary, i);
+                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnOrderVary, i, kvp.Key);
                         else
-                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnNameVary, i);
+                            throw new JFileInvalidException(JFileInvalidReasons.ChildColumnNameVary, i, kvp.Key);
 
                     if (kvp.Value.Type == JTokenType.Null)
                         jl.Add(JValue.FromObject(null));

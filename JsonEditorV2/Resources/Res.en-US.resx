@@ -193,19 +193,19 @@
     <value>Column Type</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1}, column count not match.</value>
+    <value>Invalid Json data file "{0}.json": Index {1}, column count not match.</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_NAME_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1}, column name not match.</value>
+    <value>Invalid Json data file "{0}.json": Index {1}, column name "{2}" not match.</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_ORDER_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1}, column order is wrong.</value>
+    <value>Invalid Json data file "{0}.json": Index {1}, column "{2}" order is wrong.</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1}, column type too many.</value>
+    <value>Invalid Json data file "{0}.json": Index {1}, column "{2}" type too many.</value>
   </data>
   <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1}, child element is not an object.</value>
+    <value>Invalid Json data file "{0}.json": Index {1}, child element is not an object.</value>
   </data>
   <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
     <value>Error occured: {0}</value>
@@ -232,7 +232,7 @@
     <value>Backup file "{0}" found, confirm to recover the file to former folder "{1}"?</value>
   </data>
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Root element must be an array.</value>
+    <value>Invalid Json data file "{0}.json": Root element must be an array.</value>
   </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     <value>Scan File Failed</value>

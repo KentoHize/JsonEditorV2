@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JsonEditor
 {
     public class JFileInvalidException : Exception
     {
-        public JFileInvalidReasons Reason { get; set; }        
+        public JFileInvalidReasons Reason { get; set; }
         public int LineIndex { get; set; }
+        public string ColumnName { get; set; }
 
-        public JFileInvalidException(JFileInvalidReasons reason, int lineIndex = -1)
+        public JFileInvalidException(JFileInvalidReasons reason, int lineIndex = -1, string columnName = "")
         {
-            Reason = reason;            
+            Reason = reason;
             LineIndex = lineIndex;
-                
+            ColumnName = columnName;
         }
     }
 }

@@ -295,7 +295,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位名稱不正確.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位名稱&quot;{2}&quot;，不正確.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_NAME_VARY {
             get {
@@ -304,7 +304,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位順序不正確.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位&quot;{2}&quot;順序不正確.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_ORDER_VARY {
             get {
@@ -313,7 +313,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位值型別種類太多.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位&quot;{2}&quot;型別種類太多.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_TYPE_VARY {
             get {

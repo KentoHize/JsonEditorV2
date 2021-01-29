@@ -29,16 +29,16 @@
   },
   {
     "No": "4",
-    "Date": "0002/06/09",
+    "DateTime": "0002/06/09",
     "Chinese": "好人在壞人的上位",
     "English": "The rank of a good person is upper than a non-good one.",
     "Japanese": null
   },
   {
     "No": "5",
-    "Date": "0002/05/28",
+    "DateTime": "0002/05/28",
     "Chinese": "唯有君子和品女是正途",
     "English": "Junzi or a girl of virtue is the only and right way to go.",
     "Japanese": null
-  }  
+  }
 ]

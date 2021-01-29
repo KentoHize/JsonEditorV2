@@ -448,7 +448,7 @@ namespace JsonEditorV2
             if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
                 return;
 #if DEBUG
-            fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
+            fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestData\";
 #endif
 
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);

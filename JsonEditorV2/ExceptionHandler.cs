@@ -109,13 +109,13 @@ namespace JsonEditorV2
                     RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_COUNT_VARY", title, jt.Name, ex.LineIndex);
                     break;
                 case JFileInvalidReasons.ChildColumnNameVary:
-                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_NAME_VARY", title, jt.Name, ex.LineIndex);
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_NAME_VARY", title, jt.Name, ex.LineIndex, ex.ColumnName);
                     break;
                 case JFileInvalidReasons.ChildColumnOrderVary:
-                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_ORDER_VARY", title, jt.Name, ex.LineIndex);
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_ORDER_VARY", title, jt.Name, ex.LineIndex, ex.ColumnName);
                     break;
                 case JFileInvalidReasons.ChildColumnTypeVary:
-                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_TYPE_VARY", title, jt.Name, ex.LineIndex);
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_TYPE_VARY", title, jt.Name, ex.LineIndex, ex.ColumnName);
                     break;
                 default:
                     RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", title, jt.Name);
