@@ -208,19 +208,21 @@ namespace JsonEditor
                 case JType.Boolean:
                     return false;
                 case JType.Byte:
-                    return 0;
+                    return (byte)0;
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
                     return new DateTime();
                 case JType.Double:
-                    return 0.0;
+                    return (double)0;
                 case JType.Guid:
                     return Guid.Empty;
                 case JType.Integer:
+                    return (int)0;
                 case JType.Long:
+                    return (long)0;
                 case JType.Decimal:
-                    return 0;
+                    return (decimal)0;
                 case JType.None:
                 case JType.Object:
                 case JType.Array:
