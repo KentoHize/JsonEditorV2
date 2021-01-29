@@ -156,39 +156,24 @@ namespace JsonEditorV2
             }
         }
 
-        public static bool CheckMinMaxValue(string content, JType type, bool isMaxValue = false)
+        public static bool CheckMinMaxValue(string content, JType type)
         {
             if (string.IsNullOrEmpty(content))
                 return false;
             if (type.IsNumber())
-            {
                 if (type == JType.Double)
-                {
-                    if (!double.TryParse(content, out double result))
-                        return false;
-                    if (isMaxValue)
-                        return result <= Convert.ToDouble(type.GetMaxValue());
-                    return result >= Convert.ToDouble(type.GetMinValue());
-                }
+                    return double.TryParse(content, out double result);
                 else
-                {
-                    if (!decimal.TryParse(content, out decimal result))
-                        return false;
-                    if (isMaxValue)
-                        return result <= Convert.ToDecimal(type.GetMaxValue());
-                    return result >= Convert.ToDecimal(type.GetMinValue());
-                }
-            }
+                    return content.TryParseJType(type, out object result);
             else if (type.IsDateTime())
             {
                 DateTime result;
                 if (!DateTime.TryParse(content, out result))
-                    return false;
-                if (type == JType.Time)
-                    result = DateTime.MinValue.Add(result.TimeOfDay);
-                if (isMaxValue)
-                    return result <= (DateTime)type.GetMaxValue();
-                return result >= (DateTime)type.GetMinValue();
+                    return false;                
+                else if (type == JType.Date)
+                    return result.TimeOfDay.TotalSeconds == 0;
+                else
+                    return true;
             }
             return false;
         }
@@ -199,18 +184,24 @@ namespace JsonEditorV2
             {
                 //欄位名檢查
                 RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_ILLEGAL_NAME", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                txtColumnName.SelectAll();
+                txtColumnName.Focus();
                 return;
             }
             else if (!Regex.IsMatch(txtColumnNumberOfRows.Text, Const.NumberOfRowsRegex))
             {
                 //欄位行數檢查
                 RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                txtColumnNumberOfRows.SelectAll();
+                txtColumnNumberOfRows.Focus();
                 return;
             }
             else if (!long.TryParse(txtColumnMaxLength.Text, out long r1) || r1 < 0)
             {
                 //文字最大長度檢查
                 RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                txtColumnMaxLength.SelectAll();
+                txtColumnMaxLength.Focus();
                 return;
             }
             else if (ckbColumnIsKey.Checked && ckbColumnIsNullable.Checked)
@@ -240,20 +231,22 @@ namespace JsonEditorV2
             {
                 if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
-                    txtColumnMinValue.Text = newType.GetMinValue().ToString();
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);                    
+                    txtColumnMinValue.SelectAll();
+                    txtColumnMinValue.Focus();
                     return;
                 }
-                if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType, true))
+                if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType))
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
-                    txtColumnMaxValue.Text = newType.GetMaxValue().ToString();
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);                    
+                    txtColumnMaxValue.SelectAll();
+                    txtColumnMaxValue.Focus();
                     return;
                 }
                 if (txtColumnMinValue.Text != "" && txtColumnMaxValue.Text != "" &&
                 txtColumnMinValue.Text.CompareTo(txtColumnMaxValue.Text, newType) == 1)
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MIN_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text, txtColumnMaxValue.Text);
                     return;
                 }
             }
@@ -269,6 +262,8 @@ namespace JsonEditorV2
             catch
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION", Res.JE_RUN_UPDATE_COLUMN_TITLE);
+                txtColumnRegex.SelectAll();
+                txtColumnRegex.Focus();
                 return;
             }
 
@@ -364,8 +359,10 @@ namespace JsonEditorV2
                Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
                Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
             {
-                Var.SelectedColumn.MinValue = txtColumnMinValue.Text;
-                Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text;
+                if(!string.IsNullOrEmpty(txtColumnMinValue.Text))
+                    Var.SelectedColumn.MinValue = txtColumnMinValue.Text.ParseJType(newType).ToString(newType);
+                if (!string.IsNullOrEmpty(txtColumnMaxValue.Text))
+                    Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text.ParseJType(newType).ToString(newType);
                 Var.SelectedColumn.RegularExpression = txtColumnRegex.Text;
                 Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;

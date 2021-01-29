@@ -351,6 +351,91 @@
       ]
     },
     {
+      "Name": "MinMaxTest",
+      "Columns": [
+        {
+          "Name": "Number",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Decimal",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "-3",
+          "MaxValue": "383.6",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Date",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Date",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "1600/05/01",
+          "MaxValue": "1684/12/01",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Time",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Time",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "1:40:01",
+          "MaxValue": "3:58:00",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "DateTime",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "DateTime",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "0002/05/28 20:00:00",
+          "MaxValue": "2002/05/28 10:00:58",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        },
+        {
+          "Name": "Integer",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": false,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "TextMaxLength": 0,
+          "IsUnique": false
+        }
+      ]
+    },
+    {
       "Name": "T2",
       "Columns": [
         {

@@ -339,7 +339,7 @@ namespace JsonEditor
         /// <summary>
         /// 讀取Json物件
         /// </summary>
-        /// <param name="jArray">JArray</param>
+        /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
         public void LoadJson(object jArray)
         {
             Lines.Clear();
@@ -379,6 +379,7 @@ namespace JsonEditor
                     }
                     else
                     {
+                        //資料損毀通知
                         jl.Add(JValue.FromObject(parsedObj));
                         Changed = true;
                     }
@@ -495,7 +496,6 @@ namespace JsonEditor
                     if (quickCheck)
                         return false;
                 }
-
 
                 if (keyIndex.Count != 0)
                 {

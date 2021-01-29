@@ -283,6 +283,9 @@
     <None Include="TestData\Bad JFI File\Wrong Match JFI File\T4.json" />
     <None Include="TestData\Bad JFI File\Wrong Match JFI File\T5.json" />
     <None Include="TestData\Bad JFI File\Wrong Match JFI File\T7.json" />
+    <None Include="TestData\Bad Json Files\Bad Json Files 1\Quotes.json" />
+    <None Include="TestData\Bad Json Files\Original Files\JFilesInfo.json" />
+    <None Include="TestData\Bad Json Files\Original Files\Quotes.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

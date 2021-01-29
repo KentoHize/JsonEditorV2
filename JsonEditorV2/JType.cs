@@ -265,9 +265,9 @@ namespace JsonEditor
         {
             if (value == null)
                 return null;
-
             if (value.ToString() == new object().ToString())
                 return type.InitialValue();
+
             switch (type)
             {
                 case JType.Boolean:
