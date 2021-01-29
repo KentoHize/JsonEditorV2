@@ -192,20 +192,26 @@
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>Column Type</value>
   </data>
-  <data name="JE_ERR_COLUMN_COUNT_UNMATCH" xml:space="preserve">
-    <value>JSON關聯檔案中的欄位數量: {0}和實際檔案中的欄位數量: {1}不合</value>
+  <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Index {1}, column count not match.</value>
   </data>
-  <data name="JE_ERR_COLUMN_NAME_UNMATCH" xml:space="preserve">
-    <value>JSON關聯檔案中的欄位名稱:"{0}"和實際檔案中的欄位名稱"{1}"不合</value>
+  <data name="JE_ERR_CHILD_COLUMN_NAME_VARY" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Index {1}, column name not match.</value>
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_ORDER_VARY" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Index {1},  column order is wrong.</value>
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Index {1},  column type too many.</value>
+  </data>
+  <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Index {1}, child element is not an object.</value>
   </data>
   <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
     <value>Error occured: {0}</value>
   </data>
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="JE_ERR_JFI_IS_EMPTY" xml:space="preserve">
-    <value>JFI File is Empty.</value>
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     <value>JFI Files is not a valid Json file or format wrong: {0}</value>
@@ -216,20 +222,26 @@
   <data name="JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT" xml:space="preserve">
     <value>Load JFI File "{0}" failed, confirm the file exist and not damaged.</value>
   </data>
+  <data name="JE_ERR_LOAD_JSON_FAILED_TITLE" xml:space="preserve">
+    <value>Load File Failed</value>
+  </data>
   <data name="JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
     <value>Load file "{0}" failed, confirm the file exist and not damaged.</value>
   </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
     <value>Backup file "{0}" found, confirm to recover the file to former folder "{1}"?</value>
   </data>
+  <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
+    <value>Invalid Json file "{0}.json": Root element must be an array.</value>
+  </data>
+  <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
+    <value>Scan File Failed</value>
+  </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
     <value>File "{0}.json" is not valid at line {1}, column "{2}", </value>
   </data>
   <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
     <value>File "{0}.json" data is not consistent with JFI File. Load failed.</value>
-  </data>
-  <data name="JE_ERR_TABLE_NAME_UNMATCH" xml:space="preserve">
-    <value>File name "{1}.json" is unmatched with "{0}" in JFI File</value>
   </data>
   <data name="JE_ERR_UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error.</value>

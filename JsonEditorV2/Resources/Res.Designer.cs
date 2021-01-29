@@ -286,20 +286,47 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON關聯檔案中的欄位數量: {0}和實際檔案中的欄位數量: {1}不合.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位數量過多或過少.
         /// </summary>
-        public static string JE_ERR_COLUMN_COUNT_UNMATCH {
+        public static string JE_ERR_CHILD_COLUMN_COUNT_VARY {
             get {
-                return ResourceManager.GetString("JE_ERR_COLUMN_COUNT_UNMATCH", resourceCulture);
+                return ResourceManager.GetString("JE_ERR_CHILD_COLUMN_COUNT_VARY", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON關聯檔案中的欄位名稱:&quot;{0}&quot;和實際檔案中的欄位名稱&quot;{1}&quot;不合.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位名稱不正確.
         /// </summary>
-        public static string JE_ERR_COLUMN_NAME_UNMATCH {
+        public static string JE_ERR_CHILD_COLUMN_NAME_VARY {
             get {
-                return ResourceManager.GetString("JE_ERR_COLUMN_NAME_UNMATCH", resourceCulture);
+                return ResourceManager.GetString("JE_ERR_CHILD_COLUMN_NAME_VARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位順序不正確.
+        /// </summary>
+        public static string JE_ERR_CHILD_COLUMN_ORDER_VARY {
+            get {
+                return ResourceManager.GetString("JE_ERR_CHILD_COLUMN_ORDER_VARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位值型別不合.
+        /// </summary>
+        public static string JE_ERR_CHILD_COLUMN_TYPE_VARY {
+            get {
+                return ResourceManager.GetString("JE_ERR_CHILD_COLUMN_TYPE_VARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，子元素非物件.
+        /// </summary>
+        public static string JE_ERR_CHILD_ELEMENT_NOT_OBJECT {
+            get {
+                return ResourceManager.GetString("JE_ERR_CHILD_ELEMENT_NOT_OBJECT", resourceCulture);
             }
         }
         
@@ -318,15 +345,6 @@ namespace JsonEditorV2.Resources {
         public static string JE_ERR_DEFAULT_TITLE {
             get {
                 return ResourceManager.GetString("JE_ERR_DEFAULT_TITLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JSON關聯檔案是空的.
-        /// </summary>
-        public static string JE_ERR_JFI_IS_EMPTY {
-            get {
-                return ResourceManager.GetString("JE_ERR_JFI_IS_EMPTY", resourceCulture);
             }
         }
         
@@ -358,6 +376,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 讀取檔案失敗.
+        /// </summary>
+        public static string JE_ERR_LOAD_JSON_FAILED_TITLE {
+            get {
+                return ResourceManager.GetString("JE_ERR_LOAD_JSON_FAILED_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 讀取檔案&quot;{0}&quot;時發生錯誤，請確認檔案是否存在或損毀.
         /// </summary>
         public static string JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT {
@@ -376,6 +403,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，根元素非陣列.
+        /// </summary>
+        public static string JE_ERR_ROOT_ELEMENT_NOT_ARRAY {
+            get {
+                return ResourceManager.GetString("JE_ERR_ROOT_ELEMENT_NOT_ARRAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 掃描檔案失敗.
+        /// </summary>
+        public static string JE_ERR_SCAN_JSON_FAILED_TITLE {
+            get {
+                return ResourceManager.GetString("JE_ERR_SCAN_JSON_FAILED_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;資料不合規則：行 {1}，欄位&quot;{2}&quot;，.
         /// </summary>
         public static string JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL {
@@ -390,15 +435,6 @@ namespace JsonEditorV2.Resources {
         public static string JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT {
             get {
                 return ResourceManager.GetString("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to JSON關聯檔案中的檔案名&quot;{0}.json&quot;和實際檔案名稱&quot;{1}.json&quot;不相同.
-        /// </summary>
-        public static string JE_ERR_TABLE_NAME_UNMATCH {
-            get {
-                return ResourceManager.GetString("JE_ERR_TABLE_NAME_UNMATCH", resourceCulture);
             }
         }
         

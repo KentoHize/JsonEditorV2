@@ -1207,7 +1207,7 @@ namespace JsonEditorV2
             }
             catch (JFileInvalidException ex)
             {
-                ExceptionHandler.JTableLoadJsonFailed(jt, ex);
+                ExceptionHandler.JTableLoadOrScanJsonFailed(jt, ex, scan);
                 return false;
             }
 

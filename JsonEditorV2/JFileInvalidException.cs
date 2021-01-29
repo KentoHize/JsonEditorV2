@@ -8,12 +8,12 @@ namespace JsonEditor
 {
     public class JFileInvalidException : Exception
     {
-        public JFileInvalidReasons Reason { get; set; }
+        public JFileInvalidReasons Reason { get; set; }        
         public int LineIndex { get; set; }
 
         public JFileInvalidException(JFileInvalidReasons reason, int lineIndex = -1)
         {
-            Reason = reason;
+            Reason = reason;            
             LineIndex = lineIndex;
                 
         }

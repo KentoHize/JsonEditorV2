@@ -94,10 +94,34 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
         }
 
-        public static void JTableLoadJsonFailed(JTable jt, JFileInvalidException ex)
+        public static void JTableLoadOrScanJsonFailed(JTable jt, JFileInvalidException ex, bool isScan)
         {
-            // To Do
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name);
+            string title = isScan ? Res.JE_TMI_SCAN_JSON_FILES : Res.JE_ERR_LOAD_JSON_FAILED_TITLE;
+            switch(ex.Reason)
+            {
+                case JFileInvalidReasons.RootElementNotArray:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_ROOT_ELEMENT_NOT_ARRAY", title, jt.Name);
+                    break;
+                case JFileInvalidReasons.ChildElementNotObject:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_ELEMENT_NOT_OBJECT", title, jt.Name, ex.LineIndex);
+                    break;
+                case JFileInvalidReasons.ChildColumnCountVary:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_COUNT_VARY", title, jt.Name, ex.LineIndex);
+                    break;
+                case JFileInvalidReasons.ChildColumnNameVary:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_NAME_VARY", title, jt.Name, ex.LineIndex);
+                    break;
+                case JFileInvalidReasons.ChildColumnOrderVary:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_ORDER_VARY", title, jt.Name, ex.LineIndex);
+                    break;
+                case JFileInvalidReasons.ChildColumnTypeVary:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_CHILD_COLUMN_TYPE_VARY", title, jt.Name, ex.LineIndex);
+                    break;
+                default:
+                    RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT", title, jt.Name);
+                    //Trace
+                    break;
+            }
         }
 
         public static void JsonConvertDeserializeJFIFailed(Exception ex)
@@ -115,19 +139,19 @@ namespace JsonEditorV2
                 title = Res.JE_ERR_DEFAULT_TITLE;
 
             //JFI檢查失敗處理 (待註解)
-            if (ex.Message.Contains("LoadFileInfo"))
-            {
-                string p1 = ex.Message.Substring(13).Split(',')[0];
-                string p2 = ex.Message.Substring(13).Split(',')[1];
-                if (ex is ArgumentNullException)
-                    content = Res.JE_ERR_JFI_IS_EMPTY;
-                else if (ex is MissingMemberException)
-                    content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
-                else if (ex is IndexOutOfRangeException)
-                    content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
-                else if (ex is MissingFieldException)
-                    content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
-            }
+            //if (ex.Message.Contains("LoadFileInfo"))
+            //{
+            //    string p1 = ex.Message.Substring(13).Split(',')[0];
+            //    string p2 = ex.Message.Substring(13).Split(',')[1];
+            //    if (ex is ArgumentNullException)
+            //        content = Res.JE_ERR_JFI_IS_EMPTY;
+            //    else if (ex is MissingMemberException)
+            //        content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
+            //    else if (ex is IndexOutOfRangeException)
+            //        content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
+            //    else if (ex is MissingFieldException)
+            //        content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
+            //}
 
             RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
             return false;
