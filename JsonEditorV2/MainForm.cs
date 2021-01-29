@@ -355,8 +355,8 @@ namespace JsonEditorV2
                 recheckTable = true;
             }
 
-            if (recheckTable)
-                Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
+            //if (recheckTable)
+            //    Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -445,7 +445,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();
+            Var.Tables = new List<JTable>();            
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -698,8 +698,8 @@ namespace JsonEditorV2
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-
-            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
+            
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             StringBuilder displayString;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
@@ -778,37 +778,12 @@ namespace JsonEditorV2
             {
                 if (jt.Loaded)
                 {
-                    if (!jt.CehckValid())
+                    if(!Var.Database.CheckTableValid(jt))
                     {
                         ExceptionHandler.SentTableInvalidMessage(jt);
                         Var.CheckFailedFlag = true;
                         return;
-                    }
-
-                    //確認已開檔案的ForeignKey值存在(較久時間)
-                    //To DO => Add DataBase?
-                    for (int i = 0; i < jt.Columns.Count; i++)
-                    {
-                        if (!string.IsNullOrEmpty(jt.Columns[i].FKTable) &&
-                           !string.IsNullOrEmpty(jt.Columns[i].FKColumn) &&
-                           Var.Tables.Find(m => m.Name == jt.Columns[i].FKTable).Loaded)
-                        {
-
-                            JTable fkTable = Var.Tables.Find(m => m.Name == jt.Columns[i].FKTable);
-                            int fkColumnIndex = fkTable.Columns.FindIndex(m => m.Name == jt.Columns[i].FKColumn);
-
-                            for(int j = 0; j < jt.Count; j++)
-                            {
-                                if (!fkTable.Lines.Exists(m => m.Values[fkColumnIndex].Value == jt[j][i].Value))
-                                {
-                                    jt.AddInvalidRecord(j, i, JValueInvalidReasons.FoeignKeyValueNotExists);
-                                    ExceptionHandler.SentTableInvalidMessage(jt);
-                                    Var.CheckFailedFlag = true;
-                                    return;
-                                }
-                            }
-                        }
-                    }
+                    }                   
                 }
             }
 
@@ -1223,7 +1198,7 @@ namespace JsonEditorV2
             }
 
             if (!jt.Valid)
-                jt.CehckValid(Setting.UseQuickCheck);
+                Var.Database.CheckTableValid(jt, Setting.UseQuickCheck);
             return true;
         }
 

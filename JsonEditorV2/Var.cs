@@ -12,7 +12,9 @@ namespace JsonEditorV2
 {
     public static class Var
     {
-        public static List<JTable> Tables { get; set; } = new List<JTable>();
+        public static JDatabase Database { get; set; } = new JDatabase();
+        public static List<JTable> Tables { get => Database.Tables; set => Database.Tables = value; }
+        public static JFilesInfo JFI { get => Database.JFI; set => Database.JFI = value; }
 
         public static int PageIndex { get; set; }
         public static List<int> LineIndexes { get; set; } = new List<int>();
@@ -32,13 +34,13 @@ namespace JsonEditorV2
 
         public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();       
 
-        public static JFilesInfo JFI { get; set; }
+        
         public static TreeNode RootNode { get; set; }
         public static bool DblClick { get; set; }
 
         //To Do
         public static bool Locked { get; set; }
 
-        public static bool Changed { get { if (Tables == null || JFI == null) return false; return Tables.Exists(m => m.Changed) || JFI.Changed; } }
+        public static bool Changed { get { if ( Database.Tables == null || Database.JFI == null) return false; return Database.Tables.Exists(m => m.Changed) || Database.JFI.Changed; } }
     }
 }

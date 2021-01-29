@@ -78,7 +78,9 @@ namespace JsonEditor
                 case JType.String:
                 case JType.Uri:
                 case JType.Guid:
-                    return instance.ToString().CompareTo(value.ToString());
+                    if(value != null)
+                        return instance.ToString().CompareTo(value.ToString());
+                    return 1;
                 case JType.None:
                 case JType.Object:
                 case JType.Array:
