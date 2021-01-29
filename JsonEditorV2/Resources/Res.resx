@@ -202,7 +202,7 @@
     <value>無效的JSON檔案"{0}.json"，索引：{1}，欄位順序不正確</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
-    <value>無效的JSON檔案"{0}.json"，索引：{1}，欄位值型別不合</value>
+    <value>無效的JSON檔案"{0}.json"，索引：{1}，欄位值型別種類太多</value>
   </data>
   <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
     <value>無效的JSON檔案"{0}.json"，索引：{1}，子元素非物件</value>

@@ -199,10 +199,10 @@
     <value>Invalid Json file "{0}.json": Index {1}, column name not match.</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_ORDER_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1},  column order is wrong.</value>
+    <value>Invalid Json file "{0}.json": Index {1}, column order is wrong.</value>
   </data>
   <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
-    <value>Invalid Json file "{0}.json": Index {1},  column type too many.</value>
+    <value>Invalid Json file "{0}.json": Index {1}, column type too many.</value>
   </data>
   <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
     <value>Invalid Json file "{0}.json": Index {1}, child element is not an object.</value>

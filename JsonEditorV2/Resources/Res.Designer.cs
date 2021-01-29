@@ -313,7 +313,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位值型別不合.
+        ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位值型別種類太多.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_TYPE_VARY {
             get {

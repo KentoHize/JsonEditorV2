@@ -96,7 +96,7 @@ namespace JsonEditorV2
 
         public static void JTableLoadOrScanJsonFailed(JTable jt, JFileInvalidException ex, bool isScan)
         {
-            string title = isScan ? Res.JE_TMI_SCAN_JSON_FILES : Res.JE_ERR_LOAD_JSON_FAILED_TITLE;
+            string title = isScan ? Res.JE_ERR_SCAN_JSON_FAILED_TITLE : Res.JE_ERR_LOAD_JSON_FAILED_TITLE;
             switch(ex.Reason)
             {
                 case JFileInvalidReasons.RootElementNotArray:
@@ -129,29 +129,12 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);
         }
 
-
-
         public static bool HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))
                 content = Res.JE_ERR_DEFAULT_MESSAGE;
             if (string.IsNullOrEmpty(title))
-                title = Res.JE_ERR_DEFAULT_TITLE;
-
-            //JFI檢查失敗處理 (待註解)
-            //if (ex.Message.Contains("LoadFileInfo"))
-            //{
-            //    string p1 = ex.Message.Substring(13).Split(',')[0];
-            //    string p2 = ex.Message.Substring(13).Split(',')[1];
-            //    if (ex is ArgumentNullException)
-            //        content = Res.JE_ERR_JFI_IS_EMPTY;
-            //    else if (ex is MissingMemberException)
-            //        content = string.Format(Res.JE_ERR_TABLE_NAME_UNMATCH, p1, p2);
-            //    else if (ex is IndexOutOfRangeException)
-            //        content = string.Format(Res.JE_ERR_COLUMN_COUNT_UNMATCH, p1, p2);
-            //    else if (ex is MissingFieldException)
-            //        content = string.Format(Res.JE_ERR_COLUMN_NAME_UNMATCH, p1, p2);
-            //}
+                title = Res.JE_ERR_DEFAULT_TITLE;      
 
             RabbitCouriers.SentErrorMessage(string.Format(content, ex.Message), title);
             return false;
