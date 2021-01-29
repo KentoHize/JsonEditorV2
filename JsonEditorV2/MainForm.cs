@@ -209,6 +209,8 @@ namespace JsonEditorV2
 
             JType newType = (JType)cobColumnType.SelectedValue;
 
+
+
             //確認最大、最小值正確
             if (!newType.IsNumber() && !newType.IsDateTime())
             {
@@ -1610,11 +1612,7 @@ namespace JsonEditorV2
         public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
-            cobColumnType.Enabled =
-            txtColumnRegex.Enabled =
-            txtColumnMaxLength.Enabled =
-            txtColumnMinValue.Enabled =
-            txtColumnMaxValue.Enabled = FKIsEmpty;
+            cobColumnType.Enabled = FKIsEmpty;
         }
 
         public void tmiOpenFolder_Click(object sender, EventArgs e)

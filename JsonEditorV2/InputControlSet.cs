@@ -186,7 +186,7 @@ namespace JsonEditorV2
                 int columnIndex = JTable.Columns.IndexOf(JColumn);
                 for(int i = 0; i < JTable.Count; i++)
                 {
-                    if(i != lineIndex && parsedValue.CompareTo(JTable[i][columnIndex].Value, JColumn.Type) == 0)
+                    if(i != lineIndex && parsedValue == JTable[i][columnIndex].Value)
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, parsedValue));
                         return false;
