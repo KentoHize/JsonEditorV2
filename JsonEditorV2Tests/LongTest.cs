@@ -1,5 +1,6 @@
 ﻿using Aritiafel.Characters;
 using Aritiafel.Organizations;
+using JsonEditor;
 using JsonEditorV2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -61,8 +62,14 @@ namespace JsonEditorV2Tests
             JETS.NewJsonFile("A");
             JETS.AddColumn("A", "DDD");
             JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnIsKey, true);
-            JETS.UpdateCurrentColumn();
+            JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnType, JType.Integer );            
+            JETS.UpdateCurrentColumn();            
+            JETS.OpenJsonFile("A");
+            JETS.NewLine();
+            JETS.ChangeMainPanelValueControlValue("DDD", 2);
+            JETS.UpdateMainValue();
             JETS.SaveJsonFiles();
+            JETS.CloseJsonFiles();
             JETS.Exit();
 
             JETS.PrintMessage(TestContext);

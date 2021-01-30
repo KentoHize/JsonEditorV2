@@ -25,6 +25,7 @@ namespace JsonEditorV2Tests
         public string InputText { get; set; }
         public string CurrentFileName { get; set; }
         public string CurrentColumnName { get; set; }
+        public int SelectedLineIndex { get; set; }
 
         private EventArgs ea = new EventArgs();
 
@@ -96,11 +97,42 @@ namespace JsonEditorV2Tests
             return newForm.DialogResult;
         }
 
-        public Control SelectColumnPanelControl(ColumnAttributeNames attributeName)
+        public void OpenJsonFile(string fileName)
+        {   
+            ClickOnTreeView(MouseButtons.Right, fileName);
+
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try { MainForm.tmiOpenJsonFile_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void UpdateMainValue()
         {
             DoEventsUntilFormReadyAndResetFormReady();
 
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try { MainForm.btnUpdateMain_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public Control SelectColumnPanelValueControl(ColumnAttributeNames attributeName)
+        {
             Control valueControl = MainForm.Controls.Find("pnlFileInfo", false)[0].Controls.Find(TestConst.ColumnAttributesInfo[attributeName].ValueControlName, false)[0];
+
+            DoEventsUntilFormReadyAndResetFormReady();            
+            
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -116,10 +148,9 @@ namespace JsonEditorV2Tests
 
         public void ChangeColumnPanelControlValue(ColumnAttributeNames attributeName, object value)
         {
-            Control valueControl = SelectColumnPanelControl(attributeName);
+            Control valueControl = SelectColumnPanelValueControl(attributeName);
 
             DoEventsUntilFormReadyAndResetFormReady();
-
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -129,7 +160,7 @@ namespace JsonEditorV2Tests
                     else if (valueControl is CheckBox)
                         ((CheckBox)valueControl).Checked = (bool)value;
                     else
-                        ((ComboBox)valueControl).SelectedValue = value;
+                        ((ComboBox)valueControl).SelectedItem = value;
                 }
                 catch (Exception ex)
                 { Exception = ex; }
@@ -138,12 +169,126 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
+        //public void SetCurrentLineValue(string columnName, object value)
+        //{
+        //    if (CurrentFileName != fileName || CurrentColumnName != columnName)
+        //        ClickOnTreeView(fileName, columnName);
+
+        //    ChangeColumnPanelControlValue(attributeName, value);
+        //}
+
         public void SetColumnAttribute(string fileName, string columnName, ColumnAttributeNames attributeName, object value)
         {
             if (CurrentFileName != fileName || CurrentColumnName != columnName)
                 ClickOnTreeView(fileName, columnName);
 
             ChangeColumnPanelControlValue(attributeName, value);
+        }
+
+        public void ChangeMainPanelValueControlValue(string columnName, object value)
+        {
+            Control valueControl = SelectMainPanelValueControl(columnName);
+
+            DoEventsUntilFormReadyAndResetFormReady();
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    if (valueControl is TextBox)
+                        valueControl.Text = value.ToString();
+                    else if (valueControl is CheckBox)
+                        ((CheckBox)valueControl).Checked = (bool)value;
+                    else
+                        ((ComboBox)valueControl).SelectedItem = value;
+                }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public Control SelectMainPanelValueControl(string columnName)
+        {
+            Control[] ctls;
+            ctls = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"txt{columnName}", false);
+            if(ctls.Length == 0)
+            {
+                ctls = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"ckb{columnName}", false);
+                if (ctls.Length == 0)
+                    ctls = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"cob{columnName}", false);
+            }
+            if (ctls.Length == 0)
+                throw new ArgumentException();
+
+            Control valueControl = ctls[0];
+
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    valueControl.Focus();
+                    valueControl.Select();
+                }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+            return valueControl;
+        }
+
+        public void SelectLine(int index)
+        {
+            if (SelectedLineIndex == index)
+                return;
+
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            ListBox lsb = MainForm.Controls.Find("lsbLines", false)[0] as ListBox;
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { lsb.SelectedIndex = index; }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void NewLine()
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.btnNewLine_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void CloseJsonFiles(ResponseOptions saveFile = ResponseOptions.Yes)
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
+            AdventurerAssociation.RegisterMember(courier);
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.tmiCloseAllFiles_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
         }
 
         public void UpdateCurrentColumn()
@@ -258,10 +403,12 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
-        public void Exit()
+        public void Exit(ResponseOptions saveFile = ResponseOptions.Yes)
         {
             DoEventsUntilFormReadyAndResetFormReady();
 
+            Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
+            AdventurerAssociation.RegisterMember(courier);
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -281,7 +428,7 @@ namespace JsonEditorV2Tests
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
-            AdventurerAssociation.RegisterMember(courier);            
+            AdventurerAssociation.RegisterMember(courier);
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {   
                 try
