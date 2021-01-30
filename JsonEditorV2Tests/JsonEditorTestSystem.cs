@@ -16,6 +16,7 @@ namespace JsonEditorV2Tests
         public const string OutputOverview = @"C:\Programs\Reports\Json Editor V2\Overview.txt";
 
         public Task TestThread { get; set; }
+        public FileStream OutputFileStream { get; set; }
         public Exception Exception { get; set; }
 
         public MainForm MainForm { get; set; }
@@ -29,9 +30,17 @@ namespace JsonEditorV2Tests
 
         public JsonEditorTestSystem()
         {
-            FileStream fs = new FileStream(OutputOverview, FileMode.Create);
-            AdventurerAssociation.RegisterMembers(fs);
-            AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+            if (!AdventurerAssociation.Registered)
+            {
+                OutputFileStream = new FileStream(OutputOverview, FileMode.Create);
+                AdventurerAssociation.RegisterMembers(OutputFileStream);
+                AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+            }
+            else
+            {
+                AdventurerAssociation.Archivist.WriteRecord("----------------------------------------------------");
+                AdventurerAssociation.Archivist.WriteRecord("----------------------------------------------------");
+            }
             MainForm = new MainForm();
             MainForm.StartPosition = FormStartPosition.Manual;
             MainForm.Left = 30000;
@@ -100,9 +109,6 @@ namespace JsonEditorV2Tests
 
         private void MainFormInvoke(MainForm_Events formEvent, EventArgs args = null, object sender = null)
         {
-            //if (MainForm.Visible != false)
-            //    DoEventsUntilFormReadyAndResetFormReady();
-
             DoEventsUntilFormReadyAndResetFormReady();
             EndInvokeAndThrowException(MainFormBeginInvoke(formEvent, args, sender));
         }
@@ -117,8 +123,7 @@ namespace JsonEditorV2Tests
                 }
                 catch (Exception ex)
                 { Exception = ex; }
-            }
-            );
+            });
         }
 
         public void OpenJsonFile(string fileName)
@@ -342,7 +347,6 @@ namespace JsonEditorV2Tests
         {
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             AdventurerAssociation.RegisterMember(courier);
-
             MainFormInvoke(MainForm.tmiExit_Click);
         }
 
@@ -354,7 +358,6 @@ namespace JsonEditorV2Tests
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
-
             MainFormInvoke(MainForm.tmiScanJsonFiles_Click);
         }
 
@@ -365,7 +368,6 @@ namespace JsonEditorV2Tests
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
-
             MainFormInvoke(MainForm.tmiLoadJsonFiles_Click);
         }
 
@@ -388,7 +390,6 @@ namespace JsonEditorV2Tests
 
         ~JsonEditorTestSystem()
         {
-            AdventurerAssociation.Archivist.Stream.Close();
             TestThread.Dispose();
         }
     }
