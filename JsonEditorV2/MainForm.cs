@@ -5,6 +5,7 @@ using JsonEditorV2.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -1703,7 +1704,24 @@ namespace JsonEditorV2
                 foreach (string file in files)
                     File.Delete(file);
             }
+
+            //Test Area
+            
+            // Get secret click event key
+            //FieldInfo eventClick = typeof(Control).GetField("EventClick", BindingFlags.NonPublic | BindingFlags.Static);
+            //object secret = eventClick.GetValue(null);
+            //// Retrieve the click event
+            //PropertyInfo eventsProp = typeof(Button).GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
+            //EventHandlerList events = (EventHandlerList)eventsProp.GetValue(btnClearMain, null);
+            //Delegate click = events[secret];
+            // Remove it from button1, add it to button2
+            //events.RemoveHandler(secret, click);
+            //events = (EventHandlerList)eventsProp.GetValue(btnClearMain, null);
+            //events.AddHandler(secret, click);
+
         }
+
+
 
         public void cobColumnType_SelectedIndexChanged(object sender, EventArgs e)
         {

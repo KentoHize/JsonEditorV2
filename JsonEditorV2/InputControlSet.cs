@@ -262,7 +262,7 @@ namespace JsonEditorV2
             }
         }
 
-        private void BtnNewGUID_Click(object sender, EventArgs e)
+        public void BtnNewGUID_Click(object sender, EventArgs e)
         {
             ValueControl.Text = Guid.NewGuid().ToString();
         }

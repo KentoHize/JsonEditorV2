@@ -3,7 +3,9 @@ using Aritiafel.Organizations;
 using JsonEditorV2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,20 +49,19 @@ namespace JsonEditorV2Tests
             MainForm.Top = 30000;
             MainForm.Shown += MainForm_Shown;
             TestThread = new Task(() => Application.Run(MainForm));
-            TestThread.Start(); 
+            TestThread.Start();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
             FormReady = true;
-            MainForm.Visible = false;
         }
- 
+
         private void DoEventsUntilFormReadyAndResetFormReady()
         {
             while (!FormReady)
                 Application.DoEvents();
-           
+
             FormReady = false;
         }
 
@@ -127,7 +128,7 @@ namespace JsonEditorV2Tests
         }
 
         public void OpenJsonFile(string fileName)
-        {   
+        {
             ClickOnTreeView(MouseButtons.Right, fileName);
 
             MainFormInvoke(MainForm.tmiOpenJsonFile_Click);
@@ -141,13 +142,15 @@ namespace JsonEditorV2Tests
         public Control SelectColumnPanelValueControl(ColumnAttributeNames attributeName)
         {
             Control valueControl = MainForm.Controls.Find("pnlFileInfo", false)[0].Controls.Find(TestConst.ColumnAttributesInfo[attributeName].ValueControlName, false)[0];
-            
+
             DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
-                { valueControl.Focus();
-                  valueControl.Select(); }
+                {
+                    valueControl.Focus();
+                    valueControl.Select();
+                }
                 catch (Exception ex)
                 { Exception = ex; }
             });
@@ -173,7 +176,7 @@ namespace JsonEditorV2Tests
                 }
                 catch (Exception ex)
                 { Exception = ex; }
-            });            
+            });
             EndInvokeAndThrowException(ar);
         }
 
@@ -193,9 +196,58 @@ namespace JsonEditorV2Tests
             ChangeColumnPanelControlValue(attributeName, value);
         }
 
+        private void RaiseEventViaReflection(object source, string eventName)
+        {
+            ((EventHandlerList)source.GetType()
+                .GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance)
+                .GetValue(source, null))
+            [typeof(Control)
+            .GetField($"Event{eventName}", BindingFlags.Static | BindingFlags.NonPublic)
+            .GetValue(source)]
+            .DynamicInvoke(source, EventArgs.Empty);
+        }
+
+        public void ClickMainPanelNewButton(string columnName)
+        {
+            Button newButton = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"btn{columnName}", false)[0] as Button;
+
+            DoEventsUntilFormReadyAndResetFormReady();
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { RaiseEventViaReflection(newButton, "Click"); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void ChangeMainPanelNullControlValue(string columnName, bool isNull = true)
+        {
+            CheckBox nullControl = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"ckbNull{columnName}", false)[0] as CheckBox;
+
+            DoEventsUntilFormReadyAndResetFormReady();
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { nullControl.Checked = isNull; }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+            EndInvokeAndThrowException(ar);
+        }
+
         public void ChangeMainPanelValueControlValue(string columnName, object value)
         {
+            if (value == null)
+            {
+                ChangeMainPanelNullControlValue(columnName);
+                return;
+            }
+
             Control valueControl = SelectMainPanelValueControl(columnName);
+
+            //FKTable Date Picker
 
             DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
@@ -219,7 +271,7 @@ namespace JsonEditorV2Tests
         {
             Control[] ctls;
             ctls = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"txt{columnName}", false);
-            if(ctls.Length == 0)
+            if (ctls.Length == 0)
             {
                 ctls = MainForm.Controls.Find("pnlMain", false)[0].Controls.Find($"ckb{columnName}", false);
                 if (ctls.Length == 0)
@@ -252,7 +304,7 @@ namespace JsonEditorV2Tests
 
             DoEventsUntilFormReadyAndResetFormReady();
             ListBox lsb = MainForm.Controls.Find("lsbLines", false)[0] as ListBox;
-            
+
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -263,12 +315,12 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
-        public void ClearColumn()
+        public void ClearColumnPanel()
         {
             MainFormInvoke(MainForm.btnClearColumn_Click);
         }
 
-        public void ClearMain()
+        public void ClearMainPanel()
         {
             MainFormInvoke(MainForm.btnClearMain_Click);
         }
@@ -276,6 +328,39 @@ namespace JsonEditorV2Tests
         public void NewLine()
         {
             MainFormInvoke(MainForm.btnNewLine_Click);
+        }
+
+        public void DeleteLine(int index = -1)
+        {
+            if (index != -1 && SelectedLineIndex != index)
+                SelectLine(index);
+
+            MainFormInvoke(MainForm.btnDeleteLine_Click);
+        }
+
+        public void LineMoveUp()
+        {
+            MainFormInvoke(MainForm.btnLineMoveUp_Click);
+        }
+
+        public void LineMoveDown()
+        {
+            MainFormInvoke(MainForm.btnLineMoveDown_Click);
+        }
+
+        public void SetQuickCheck(bool quickCheck)
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+            CheckBox control = MainForm.Controls.Find("ckbQuickCheck", false)[0] as CheckBox;
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { control.Checked = quickCheck; }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+            EndInvokeAndThrowException(ar);
         }
 
         public void CloseJsonFiles(ResponseOptions saveFile = ResponseOptions.Yes)
@@ -293,14 +378,14 @@ namespace JsonEditorV2Tests
         public void ClickOnTreeView(string fileName = "", string columnName = "")
             => ClickOnTreeView(MouseButtons.Left, fileName, columnName);
 
-        public void ClickOnTreeView(MouseButtons button ,string fileName = "", string columnName = "")
+        public void ClickOnTreeView(MouseButtons button, string fileName = "", string columnName = "")
         {
             TreeNodeMouseClickEventArgs tea = null;
             TreeNode[] trs;
 
-            if(string.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(fileName))
                 tea = new TreeNodeMouseClickEventArgs(Var.RootNode, button, 1, 0, 0);
-            else if(string.IsNullOrEmpty(columnName))
+            else if (string.IsNullOrEmpty(columnName))
             {
                 trs = Var.RootNode.Nodes.Find(fileName, false);
                 if (trs.Length != 0)
@@ -314,7 +399,7 @@ namespace JsonEditorV2Tests
                     trs = trs[0].Nodes.Find(columnName, false);
                     if (trs.Length != 0)
                         tea = new TreeNodeMouseClickEventArgs(trs[0], button, 1, 0, 0);
-                }   
+                }
             }
 
             if (tea == null)
@@ -335,7 +420,7 @@ namespace JsonEditorV2Tests
         }
 
         public void AddColumn(string filename, string columnName)
-        {            
+        {
             ClickOnTreeView(MouseButtons.Right, filename);
 
             InputText = columnName;
@@ -350,14 +435,14 @@ namespace JsonEditorV2Tests
                 MainFormInvoke(MainForm.tmiLanguageENUS_Click);
         }
 
-        
+
 
         public void NewJsonFile(string fileName)
         {
             ClickOnTreeView(MouseButtons.Right);
 
             InputText = fileName;
-            MainFormInvoke(MainForm.tmiNewJsonFile_Click);          
+            MainFormInvoke(MainForm.tmiNewJsonFile_Click);
         }
 
         public void SaveJsonFiles()
@@ -395,7 +480,7 @@ namespace JsonEditorV2Tests
         }
 
         public void LoadJsonFiles(string targetPath, ResponseOptions saveFile = ResponseOptions.Yes)
-        {   
+        {
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);

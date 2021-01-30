@@ -36,17 +36,21 @@ namespace JsonEditorV2Tests
             JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnDisplay, true);
             JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnType, JType.Integer);
             JETS.UpdateCurrentColumn();
+            JETS.AddColumn("A", "BB");
+            JETS.SetColumnAttribute("A", "BB", ColumnAttributeNames.ColumnType, JType.Guid);
+            JETS.UpdateCurrentColumn();
             JETS.OpenJsonFile("A");
             for (int i = 0; i < 100; i++)
             {
                 JETS.NewLine();
-                JETS.NewLine();
-                JETS.SelectLine(i * 2);
+                //JETS.SelectLine(i);
                 JETS.ChangeMainPanelValueControlValue("DDD", i);
+                //JETS.ClearMainPanel();
+                JETS.ClickMainPanelNewButton("BB");
                 JETS.UpdateMainValue();
-                JETS.SelectLine(i * 2 + 1);
-                JETS.ChangeMainPanelValueControlValue("DDD", i - 5);
-                JETS.UpdateMainValue();
+                //JETS.SelectLine(i * 2 + 1);
+                //JETS.ChangeMainPanelValueControlValue("DDD", i - 5);
+                //JETS.UpdateMainValue();
             }
             JETS.SaveJsonFiles();
             JETS.CloseJsonFiles();
@@ -54,7 +58,8 @@ namespace JsonEditorV2Tests
 
             JETS.PrintMessage(TestContext);
 
-            Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");            
+            //Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");            
+            Process.Start("notepad.exe", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest\A.json");
         }
 
         [TestMethod]
