@@ -319,7 +319,7 @@
     <value>There is no Json file in the target folder "{0}".</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_4" xml:space="preserve">
-    <value>File "{0.json}"'s information didn't exists in the JFI File, confirm JFI File is correct.</value>
+    <value>File "{0}.json"'s information didn't exists in the JFI File, confirm JFI File is correct.</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
     <value>Load Json Folder</value>

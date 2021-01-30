@@ -664,7 +664,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 檔案&quot;{0.json}&quot;未在JSON關聯檔案中出現，請確認JSON檔案是否正確.
+        ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;未在JSON關聯檔案中出現，請確認JSON檔案是否正確.
         /// </summary>
         public static string JE_RUN_LOAD_JSON_FILES_M_4 {
             get {

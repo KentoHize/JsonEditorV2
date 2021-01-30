@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
 
 namespace JsonEditorV2Tests
 {
@@ -15,44 +16,6 @@ namespace JsonEditorV2Tests
         public TestContext TestContext { get; set; }
 
         public JsonEditorTestSystem JETS { get; set; }
-
-        //public string InputText { get; set; }
-
-        //[TestInitialize]
-        //public void TestInitialize()
-        //{
-        //    if(!AdventurerAssociation.Registered)
-        //        AdventurerAssociation.RegisterMembers();
-        //    AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
-        //}
-
-        //private DialogResult AdventurerAssociation_Form_Start(Form newForm)
-        //{
-        //    if (newForm is frmInputBox)
-        //    {
-        //        frmInputBox frmInputBox = newForm as frmInputBox;
-
-        //        switch (frmInputBox.InputBoxType)
-        //        {
-        //            case InputBoxTypes.NewFile:
-        //            case InputBoxTypes.RenameFile:
-        //            case InputBoxTypes.AddColumn:
-        //            case InputBoxTypes.RenameColumn:
-        //                //輸入值
-        //                string input = InputText;
-        //                TestContext.WriteLine($"Text = {input}");
-        //                (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
-        //                //按下OK
-        //                TestContext.WriteLine($"Confirm Button Clicked");
-        //                frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
-        //                break;
-
-        //            default:
-        //                break;
-        //        }
-        //    }
-        //    return newForm.DialogResult;
-        //}
 
         [TestMethod]
         public void SystemTest()
@@ -65,9 +28,12 @@ namespace JsonEditorV2Tests
             JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnType, JType.Integer );            
             JETS.UpdateCurrentColumn();            
             JETS.OpenJsonFile("A");
-            JETS.NewLine();
-            JETS.ChangeMainPanelValueControlValue("DDD", 2);
-            JETS.UpdateMainValue();
+            for(int i = 0; i < 100; i++)
+            { 
+                JETS.NewLine();
+                JETS.ChangeMainPanelValueControlValue("DDD", i);
+                JETS.UpdateMainValue();
+            }
             JETS.SaveJsonFiles();
             JETS.CloseJsonFiles();
             JETS.Exit();
@@ -76,59 +42,28 @@ namespace JsonEditorV2Tests
 
             Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
         }
-        
-        public void CreateData()
+
+        [TestMethod]
+        public void LoadJFITest()
         {
-            MainForm mf = new MainForm();
-            EventArgs e = new EventArgs();
-            ApplicationContext ac = new ApplicationContext(mf);
+            string JFITestFolder = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestData\Bad JFI File";
+            JETS = new JsonEditorTestSystem();
 
-            //開新檔案庫
-            AdventurerAssociation.RegisterMember(new Bard("SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test6"));
-            mf.tmiNewJsonFiles_Click(mf, e);
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-
-            //建立三個檔案
-            //InputText = "SetA";
-            //AdventurerAssociation.Bard.InputInformation["DialogResult"] = DialogResult.OK; //跳過不測
+            string[] dirs = Directory.GetDirectories(JFITestFolder);
+            foreach (string dir in dirs)
+            {
+                try
+                {
+                    JETS.LoadJsonFiles(dir);
+                }
+                catch
+                {
+                    MessageBox.Show(dir);
+                }
+            }
             
-            mf.tmiNewJsonFile_Click(mf, e);
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-
-            //InputText = "SetB";
-            mf.tmiNewJsonFile_Click(mf, e);
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-
-            //InputText = "SetC";
-            mf.tmiNewJsonFile_Click(mf, e);
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-
-            //選擇第一個檔案Click Node
-            TreeView tv = mf.Controls.Find("trvJsonFiles", false)[0] as TreeView;
-            TreeNodeMouseClickEventArgs tnmc = new TreeNodeMouseClickEventArgs(tv.Nodes[0].Nodes[0], MouseButtons.Right, 1, 0, 0);
-            mf.trvJsonFiles_NodeMouseClick(mf, tnmc);
-
-            //Rename
-            //InputText = "SetA1";
-            mf.tmiRenameJsonFile_Click(mf, e);
-
-            //Add Column
-            //InputText = "AAAA_2";
-            mf.tmiAddColumn_Click(mf, e);
-
-            //Rename Column
-            //InputText = "AAAA_3";
-            mf.tmiRenameColumn_Click(mf, e);
-
-
-            //存檔
-            //AdventurerAssociation.RegisterMember(new Bard("SelectedPath", ""))
-            mf.tmiSaveJsonFiles_Click(mf, e);
-
-            //關閉
-            mf.tmiCloseAllFiles_Click(mf, e);
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-            ac.Dispose();
+                
+            JETS.Exit();
         }
     }
 }

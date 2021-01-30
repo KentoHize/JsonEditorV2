@@ -319,7 +319,7 @@
     <value>目標資料夾"{0}"沒有Json檔案存在</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_4" xml:space="preserve">
-    <value>檔案"{0.json}"未在JSON關聯檔案中出現，請確認JSON檔案是否正確</value>
+    <value>檔案"{0}.json"未在JSON關聯檔案中出現，請確認JSON檔案是否正確</value>
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
     <value>讀取檔案庫</value>

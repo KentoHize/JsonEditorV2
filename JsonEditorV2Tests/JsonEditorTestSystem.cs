@@ -420,6 +420,47 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
+        public void ScanJsonFiles(string targetPath, ResponseOptions haveJFIQuestion = ResponseOptions.OK, ResponseOptions saveFile = ResponseOptions.Yes)
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
+            courier.AddResponse(haveJFIQuestion, "JE_RUN_SCAN_JSON_FILES_M_1");
+            Bard bard = new Bard("SelectedPath", targetPath);
+            bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
+            AdventurerAssociation.RegisterMember(bard);
+            AdventurerAssociation.RegisterMember(courier);
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.tmiScanJsonFiles_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void LoadJsonFiles(string targetPath, ResponseOptions saveFile = ResponseOptions.Yes)
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
+            Bard bard = new Bard("SelectedPath", targetPath);
+            bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
+            AdventurerAssociation.RegisterMember(bard);
+            AdventurerAssociation.RegisterMember(courier);
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.tmiLoadJsonFiles_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
         public void NewJsonFiles(string targetPath, ResponseOptions deleteFile = ResponseOptions.Yes)
         {
             DoEventsUntilFormReadyAndResetFormReady();
