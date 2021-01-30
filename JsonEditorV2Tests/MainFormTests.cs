@@ -12,67 +12,67 @@ using System.IO;
 
 namespace JsonEditorV2.Tests
 {
-    [TestClass]
-    public class MainFormTests
-    {
-        public TestContext TestContext { get; set; }
+    //[TestClass]
+    //public class MainFormTests
+    //{
+    //    public TestContext TestContext { get; set; }
 
-        static FileStream fs;
+    //    static FileStream fs;
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            if(!AdventurerAssociation.Registered)
-            {
-                //fs = new FileStream(@"C:\Programs\TestArea\Output_Test.txt", FileMode.Create);
-                AdventurerAssociation.RegisterMembers();
-                AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
-                RabbitCouriers.RegisterRMAndCI(Resources.Res.ResourceManager, new System.Globalization.CultureInfo("en-US"));
-            }
-        }
+    //    [TestInitialize]
+    //    public void TestInitialize()
+    //    {
+    //        if(!AdventurerAssociation.Registered)
+    //        {
+    //            //fs = new FileStream(@"C:\Programs\TestArea\Output_Test.txt", FileMode.Create);
+    //            AdventurerAssociation.RegisterMembers();
+    //            AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+    //            RabbitCouriers.RegisterRMAndCI(Resources.Res.ResourceManager, new System.Globalization.CultureInfo("en-US"));
+    //        }
+    //    }
 
-        private DialogResult AdventurerAssociation_Form_Start(Form newForm)
-        {
-            return newForm.DialogResult;
-        }
+    //    private DialogResult AdventurerAssociation_Form_Start(Form newForm)
+    //    {
+    //        return newForm.DialogResult;
+    //    }
 
-        [TestCleanup]
-        public void TestCleanup()
-        {
+    //    [TestCleanup]
+    //    public void TestCleanup()
+    //    {
             
-        }
+    //    }
 
-        [ClassCleanup]
-        public static void Cleanup()
-        {
-            fs.Close();
-        }
+    //    [ClassCleanup]
+    //    public static void Cleanup()
+    //    {
+    //        fs.Close();
+    //    }
 
-        [TestMethod]
-        public void tmiLoadJsonFiles_ClickTest()
-        {
-            MainForm mf = new MainForm();
-            Bard bard = new Bard();
-            bard.InputInformation.Add("FolderBrowserDialog.SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test2");
-            bard.InputInformation.Add("FolderBrowserDialog.DialogResult", DialogResult.Cancel);
+    //    [TestMethod]
+    //    public void tmiLoadJsonFiles_ClickTest()
+    //    {
+    //        MainForm mf = new MainForm();
+    //        Bard bard = new Bard();
+    //        bard.InputInformation.Add("FolderBrowserDialog.SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test2");
+    //        bard.InputInformation.Add("FolderBrowserDialog.DialogResult", DialogResult.Cancel);
             
-            AdventurerAssociation.RegisterMember(bard);
-            //AdventurerAssociation.RegisterMember(new Courier(InputResponseOptions.Cancel));
-            mf.tmiLoadJsonFiles_Click(mf, new EventArgs());            
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-        }
+    //        AdventurerAssociation.RegisterMember(bard);
+    //        //AdventurerAssociation.RegisterMember(new Courier(InputResponseOptions.Cancel));
+    //        mf.tmiLoadJsonFiles_Click(mf, new EventArgs());            
+    //        AdventurerAssociation.PrintMessageFromArchivist(TestContext);
+    //    }
 
-        [TestMethod]
-        public void tmiLoadJsonFiles_ClickTest2()
-        {
-            MainForm mf = new MainForm();
-            Bard bard = new Bard();
-            bard.InputInformation.Add("SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test5");
-            bard.InputInformation.Add("DialogResult", DialogResult.OK);
-            AdventurerAssociation.RegisterMember(bard);
-            //AdventurerAssociation.RegisterMember(new Courier(InputResponseOptions.Cancel));
-            mf.tmiLoadJsonFiles_Click(mf, new EventArgs());
-            AdventurerAssociation.PrintMessageFromArchivist(TestContext);
-        }
-    }
+    //    [TestMethod]
+    //    public void tmiLoadJsonFiles_ClickTest2()
+    //    {
+    //        MainForm mf = new MainForm();
+    //        Bard bard = new Bard();
+    //        bard.InputInformation.Add("SelectedPath", @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test5");
+    //        bard.InputInformation.Add("DialogResult", DialogResult.OK);
+    //        AdventurerAssociation.RegisterMember(bard);
+    //        //AdventurerAssociation.RegisterMember(new Courier(InputResponseOptions.Cancel));
+    //        mf.tmiLoadJsonFiles_Click(mf, new EventArgs());
+    //        AdventurerAssociation.PrintMessageFromArchivist(TestContext);
+    //    }
+    //}
 }

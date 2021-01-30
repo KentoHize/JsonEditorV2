@@ -32,23 +32,28 @@ namespace JsonEditorV2Tests
             JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
             JETS.NewJsonFile("A");
             JETS.AddColumn("A", "DDD");
-            JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnIsKey, true);
+            JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnDisplay, true);
             JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnType, JType.Integer);
             JETS.UpdateCurrentColumn();
             JETS.OpenJsonFile("A");
             for (int i = 0; i < 100; i++)
             {
                 JETS.NewLine();
+                JETS.NewLine();
+                JETS.SelectLine(i * 2);
                 JETS.ChangeMainPanelValueControlValue("DDD", i);
+                JETS.UpdateMainValue();
+                JETS.SelectLine(i * 2 + 1);
+                JETS.ChangeMainPanelValueControlValue("DDD", i - 5);
                 JETS.UpdateMainValue();
             }
             JETS.SaveJsonFiles();
-            //JETS.CloseJsonFiles();
+            JETS.CloseJsonFiles();
             JETS.Exit();
 
             JETS.PrintMessage(TestContext);
 
-            Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
+            Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");            
         }
 
         [TestMethod]

@@ -177,7 +177,7 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
-        //public void SetLineValue(string columnName, object value)
+        //public void SetLineValue(int lineIndex, string columnName, object value)
         //{
         //    if (CurrentFileName != fileName || CurrentColumnName != columnName)
         //        ClickOnTreeView(fileName, columnName);
@@ -248,13 +248,15 @@ namespace JsonEditorV2Tests
         {
             if (SelectedLineIndex == index)
                 return;
+            SelectedLineIndex = index;
 
-            ListBox lsb = MainForm.Controls.Find("lsbLines", false)[0] as ListBox;
             DoEventsUntilFormReadyAndResetFormReady();
+            ListBox lsb = MainForm.Controls.Find("lsbLines", false)[0] as ListBox;
+            
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
-                { lsb.SelectedIndex = index; }
+                { lsb.SelectedIndex = SelectedLineIndex; }
                 catch (Exception ex)
                 { Exception = ex; }
             });

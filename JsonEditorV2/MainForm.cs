@@ -88,7 +88,7 @@ namespace JsonEditorV2
         }
         #endregion
 
-        private void lsbLines_SelectedIndexChanged(object sender, EventArgs e)
+        public void lsbLines_SelectedIndexChanged(object sender, EventArgs e)
         {
             Var.SelectedLineIndex = lsbLines.SelectedIndex;
             RefreshPnlMainValue();
