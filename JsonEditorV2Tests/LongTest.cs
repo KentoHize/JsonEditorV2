@@ -54,11 +54,14 @@ namespace JsonEditorV2Tests
         //}
 
         [TestMethod]
-        public void SysytemTest()
+        public void SystemTest()
         {
             JETS = new JsonEditorTestSystem();
             JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
             JETS.NewJsonFile("A");
+            JETS.AddColumn("A", "DDD");
+            JETS.SetColumnAttribute("A", "DDD", ColumnAttributeNames.ColumnIsKey, true);
+            JETS.UpdateCurrentColumn();
             JETS.SaveJsonFiles();
             JETS.Exit();
 

@@ -21,7 +21,10 @@ namespace JsonEditorV2Tests
         public MainForm MainForm { get; set; }
         public bool FormReady { get; set; }
 
+        //In Form Variable
         public string InputText { get; set; }
+        public string CurrentFileName { get; set; }
+        public string CurrentColumnName { get; set; }
 
         private EventArgs ea = new EventArgs();
 
@@ -31,11 +34,20 @@ namespace JsonEditorV2Tests
             AdventurerAssociation.RegisterMembers(fs);
             AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
             MainForm = new MainForm();
-            MainForm.Activated += MainForm_Activated;
+            MainForm.StartPosition = FormStartPosition.Manual;
+            MainForm.Left = 30000;
+            MainForm.Top = 30000;
+            MainForm.Shown += MainForm_Shown;
             TestThread = new Task(() => Application.Run(MainForm));
             TestThread.Start();
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            MainForm.Visible = false;
+            FormReady = true;
+        }
+ 
         private void DoEventsUntilFormReadyAndResetFormReady()
         {
             while (!FormReady)
@@ -84,26 +96,88 @@ namespace JsonEditorV2Tests
             return newForm.DialogResult;
         }
 
-        private void MainForm_Activated(object sender, EventArgs e)
+        public Control SelectColumnPanelControl(ColumnAttributeNames attributeName)
         {
-            MainForm.Visible = false;
-            FormReady = true;
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            Control valueControl = MainForm.Controls.Find("pnlFileInfo", false)[0].Controls.Find(TestConst.ColumnAttributesInfo[attributeName].ValueControlName, false)[0];
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { valueControl.Focus();
+                  valueControl.Select(); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+            return valueControl;
         }
 
-        public void RightClickOnTreeView(string fileName = "", string columnName = "")
+        public void ChangeColumnPanelControlValue(ColumnAttributeNames attributeName, object value)
         {
+            Control valueControl = SelectColumnPanelControl(attributeName);
+
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    if (valueControl is TextBox)
+                        valueControl.Text = value.ToString();
+                    else if (valueControl is CheckBox)
+                        ((CheckBox)valueControl).Checked = (bool)value;
+                    else
+                        ((ComboBox)valueControl).SelectedValue = value;
+                }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void SetColumnAttribute(string fileName, string columnName, ColumnAttributeNames attributeName, object value)
+        {
+            if (CurrentFileName != fileName || CurrentColumnName != columnName)
+                ClickOnTreeView(fileName, columnName);
+
+            ChangeColumnPanelControlValue(attributeName, value);
+        }
+
+        public void UpdateCurrentColumn()
+        {
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.btnUpdateColumn_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void ClickOnTreeView(string fileName = "", string columnName = "")
+            => ClickOnTreeView(MouseButtons.Left, fileName, columnName);
+
+        public void ClickOnTreeView(MouseButtons button ,string fileName = "", string columnName = "")
+        {   
             DoEventsUntilFormReadyAndResetFormReady();
 
             TreeNodeMouseClickEventArgs tea = null;
             TreeNode[] trs;
 
             if(string.IsNullOrEmpty(fileName))
-                tea = new TreeNodeMouseClickEventArgs(Var.RootNode, MouseButtons.Right, 1, 0, 0);
+                tea = new TreeNodeMouseClickEventArgs(Var.RootNode, button, 1, 0, 0);
             else if(string.IsNullOrEmpty(columnName))
             {
                 trs = Var.RootNode.Nodes.Find(fileName, false);
                 if (trs.Length != 0)
-                    tea = new TreeNodeMouseClickEventArgs(trs[0], MouseButtons.Right, 1, 0, 0);
+                    tea = new TreeNodeMouseClickEventArgs(trs[0], button, 1, 0, 0);
             }
             else
             {
@@ -112,7 +186,7 @@ namespace JsonEditorV2Tests
                 {
                     trs = trs[0].Nodes.Find(columnName, false);
                     if (trs.Length != 0)
-                        tea = new TreeNodeMouseClickEventArgs(trs[0], MouseButtons.Right, 1, 0, 0);
+                        tea = new TreeNodeMouseClickEventArgs(trs[0], button, 1, 0, 0);
                 }   
             }
 
@@ -127,16 +201,37 @@ namespace JsonEditorV2Tests
                 { Exception = ex; }
             });
 
+            CurrentFileName = fileName;
+            CurrentColumnName = columnName;
+
+            EndInvokeAndThrowException(ar);
+        }
+
+        public void AddColumn(string filename, string columnName)
+        {            
+            ClickOnTreeView(MouseButtons.Right, filename);
+
+            DoEventsUntilFormReadyAndResetFormReady();
+
+            InputText = columnName;
+            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                { MainForm.tmiAddColumn_Click(MainForm, ea); }
+                catch (Exception ex)
+                { Exception = ex; }
+            });
+
             EndInvokeAndThrowException(ar);
         }
 
         public void NewJsonFile(string fileName)
-        {   
-            InputText = fileName;
-            RightClickOnTreeView();
+        {
+            ClickOnTreeView(MouseButtons.Right);
 
             DoEventsUntilFormReadyAndResetFormReady();
 
+            InputText = fileName;
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -186,8 +281,7 @@ namespace JsonEditorV2Tests
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
-            AdventurerAssociation.RegisterMember(courier);
-            
+            AdventurerAssociation.RegisterMember(courier);            
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {   
                 try

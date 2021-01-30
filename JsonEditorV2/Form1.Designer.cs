@@ -34,7 +34,7 @@
             this.btnClearMain = new System.Windows.Forms.Button();
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
-            this.pblFileInfo = new System.Windows.Forms.Panel();
+            this.pnlFileInfo = new System.Windows.Forms.Panel();
             this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
             this.lblColumnIsUnique = new System.Windows.Forms.Label();
             this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
@@ -126,7 +126,7 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
-            this.pblFileInfo.SuspendLayout();
+            this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.cmsTabSelected.SuspendLayout();
@@ -187,43 +187,43 @@
             this.btnUpdateColumn.UseVisualStyleBackColor = true;
             this.btnUpdateColumn.Click += new System.EventHandler(this.btnUpdateColumn_Click);
             // 
-            // pblFileInfo
+            // pnlFileInfo
             // 
-            this.pblFileInfo.AutoScroll = true;
-            this.pblFileInfo.Controls.Add(this.ckbColumnIsUnique);
-            this.pblFileInfo.Controls.Add(this.lblColumnIsUnique);
-            this.pblFileInfo.Controls.Add(this.txtColumnMaxLength);
-            this.pblFileInfo.Controls.Add(this.lblColumnMaxLength);
-            this.pblFileInfo.Controls.Add(this.lblColumnDescription);
-            this.pblFileInfo.Controls.Add(this.txtColumnDescription);
-            this.pblFileInfo.Controls.Add(this.txtColumnMaxValue);
-            this.pblFileInfo.Controls.Add(this.txtColumnMinValue);
-            this.pblFileInfo.Controls.Add(this.lblColumnMaxValue);
-            this.pblFileInfo.Controls.Add(this.lblColumnMinValue);
-            this.pblFileInfo.Controls.Add(this.ckbColumnIsNullable);
-            this.pblFileInfo.Controls.Add(this.lblColumnlIsNullable);
-            this.pblFileInfo.Controls.Add(this.txtColumnRegex);
-            this.pblFileInfo.Controls.Add(this.lblColumnRegex);
-            this.pblFileInfo.Controls.Add(this.cobColumnFKColumn);
-            this.pblFileInfo.Controls.Add(this.lblColumnFKColumn);
-            this.pblFileInfo.Controls.Add(this.cobColumnFKTable);
-            this.pblFileInfo.Controls.Add(this.txtColumnNumberOfRows);
-            this.pblFileInfo.Controls.Add(this.lblColumnNumberOfRows);
-            this.pblFileInfo.Controls.Add(this.ckbColumnDisplay);
-            this.pblFileInfo.Controls.Add(this.ckbColumnIsKey);
-            this.pblFileInfo.Controls.Add(this.cobColumnType);
-            this.pblFileInfo.Controls.Add(this.txtColumnName);
-            this.pblFileInfo.Controls.Add(this.lblColumnFKTable);
-            this.pblFileInfo.Controls.Add(this.lblColumnDisplay);
-            this.pblFileInfo.Controls.Add(this.lblColumnIsKey);
-            this.pblFileInfo.Controls.Add(this.lblColumnType);
-            this.pblFileInfo.Controls.Add(this.lblColumnName);
-            this.pblFileInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pblFileInfo.Location = new System.Drawing.Point(1, 434);
-            this.pblFileInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.pblFileInfo.Name = "pblFileInfo";
-            this.pblFileInfo.Size = new System.Drawing.Size(420, 324);
-            this.pblFileInfo.TabIndex = 15;
+            this.pnlFileInfo.AutoScroll = true;
+            this.pnlFileInfo.Controls.Add(this.ckbColumnIsUnique);
+            this.pnlFileInfo.Controls.Add(this.lblColumnIsUnique);
+            this.pnlFileInfo.Controls.Add(this.txtColumnMaxLength);
+            this.pnlFileInfo.Controls.Add(this.lblColumnMaxLength);
+            this.pnlFileInfo.Controls.Add(this.lblColumnDescription);
+            this.pnlFileInfo.Controls.Add(this.txtColumnDescription);
+            this.pnlFileInfo.Controls.Add(this.txtColumnMaxValue);
+            this.pnlFileInfo.Controls.Add(this.txtColumnMinValue);
+            this.pnlFileInfo.Controls.Add(this.lblColumnMaxValue);
+            this.pnlFileInfo.Controls.Add(this.lblColumnMinValue);
+            this.pnlFileInfo.Controls.Add(this.ckbColumnIsNullable);
+            this.pnlFileInfo.Controls.Add(this.lblColumnlIsNullable);
+            this.pnlFileInfo.Controls.Add(this.txtColumnRegex);
+            this.pnlFileInfo.Controls.Add(this.lblColumnRegex);
+            this.pnlFileInfo.Controls.Add(this.cobColumnFKColumn);
+            this.pnlFileInfo.Controls.Add(this.lblColumnFKColumn);
+            this.pnlFileInfo.Controls.Add(this.cobColumnFKTable);
+            this.pnlFileInfo.Controls.Add(this.txtColumnNumberOfRows);
+            this.pnlFileInfo.Controls.Add(this.lblColumnNumberOfRows);
+            this.pnlFileInfo.Controls.Add(this.ckbColumnDisplay);
+            this.pnlFileInfo.Controls.Add(this.ckbColumnIsKey);
+            this.pnlFileInfo.Controls.Add(this.cobColumnType);
+            this.pnlFileInfo.Controls.Add(this.txtColumnName);
+            this.pnlFileInfo.Controls.Add(this.lblColumnFKTable);
+            this.pnlFileInfo.Controls.Add(this.lblColumnDisplay);
+            this.pnlFileInfo.Controls.Add(this.lblColumnIsKey);
+            this.pnlFileInfo.Controls.Add(this.lblColumnType);
+            this.pnlFileInfo.Controls.Add(this.lblColumnName);
+            this.pnlFileInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlFileInfo.Location = new System.Drawing.Point(1, 434);
+            this.pnlFileInfo.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlFileInfo.Name = "pnlFileInfo";
+            this.pnlFileInfo.Size = new System.Drawing.Size(420, 324);
+            this.pnlFileInfo.TabIndex = 15;
             // 
             // ckbColumnIsUnique
             // 
@@ -1077,7 +1077,7 @@
             this.Controls.Add(this.btnClearMain);
             this.Controls.Add(this.btnUpdateMain);
             this.Controls.Add(this.btnUpdateColumn);
-            this.Controls.Add(this.pblFileInfo);
+            this.Controls.Add(this.pnlFileInfo);
             this.Controls.Add(this.trvJsonFiles);
             this.Controls.Add(this.stsMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1088,8 +1088,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.pblFileInfo.ResumeLayout(false);
-            this.pblFileInfo.PerformLayout();
+            this.pnlFileInfo.ResumeLayout(false);
+            this.pnlFileInfo.PerformLayout();
             this.stsMain.ResumeLayout(false);
             this.stsMain.PerformLayout();
             this.tbcMain.ResumeLayout(false);
@@ -1110,7 +1110,7 @@
         private System.Windows.Forms.Button btnClearMain;
         private System.Windows.Forms.Button btnUpdateMain;
         private System.Windows.Forms.Button btnUpdateColumn;
-        private System.Windows.Forms.Panel pblFileInfo;
+        private System.Windows.Forms.Panel pnlFileInfo;
         private System.Windows.Forms.TextBox txtColumnNumberOfRows;
         private System.Windows.Forms.Label lblColumnNumberOfRows;
         private System.Windows.Forms.CheckBox ckbColumnDisplay;

@@ -594,7 +594,7 @@ namespace JsonEditorV2
             //Dictionary<string, string> fks = new Dictionary<string, string>();
             foreach (JTable jt in Var.Tables)
             {
-                fileNode = new TreeNode { Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
+                fileNode = new TreeNode { Name = jt.Name, Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
                 fileNode.ToolTipText = fileNode.Text;
                 Var.RootNode.Nodes.Add(fileNode);
 
@@ -606,7 +606,7 @@ namespace JsonEditorV2
 
                 foreach (JColumn jc in jt.Columns)
                 {
-                    tr = new TreeNode { Text = GetColumnNodeString(jc), Tag = jc.Name };
+                    tr = new TreeNode { Name = jc.Name, Text = GetColumnNodeString(jc), Tag = jc.Name };
                     if (jc.IsKey)
                         tr.ImageIndex = tr.SelectedImageIndex = 3;
                     else
