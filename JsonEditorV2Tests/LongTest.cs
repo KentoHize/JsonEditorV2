@@ -28,7 +28,8 @@ namespace JsonEditorV2Tests
         [TestMethod]
         public void SystemTest()
         {
-            JETS = new JsonEditorTestSystem();            
+            JETS = new JsonEditorTestSystem();
+            JETS.SetNewCulture("zh-TW");
             JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
             JETS.NewJsonFile("A");
             JETS.AddColumn("A", "DDD");

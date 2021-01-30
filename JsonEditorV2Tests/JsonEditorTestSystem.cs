@@ -263,6 +263,16 @@ namespace JsonEditorV2Tests
             EndInvokeAndThrowException(ar);
         }
 
+        public void ClearColumn()
+        {
+            MainFormInvoke(MainForm.btnClearColumn_Click);
+        }
+
+        public void ClearMain()
+        {
+            MainFormInvoke(MainForm.btnClearMain_Click);
+        }
+
         public void NewLine()
         {
             MainFormInvoke(MainForm.btnNewLine_Click);
@@ -332,6 +342,16 @@ namespace JsonEditorV2Tests
             MainFormInvoke(MainForm.tmiAddColumn_Click);
         }
 
+        public void SetNewCulture(string cultureName)
+        {
+            if (cultureName == "zh-TW")
+                MainFormInvoke(MainForm.tmiLanguageZHTW_Click);
+            else if (cultureName == "en-US")
+                MainFormInvoke(MainForm.tmiLanguageENUS_Click);
+        }
+
+        
+
         public void NewJsonFile(string fileName)
         {
             ClickOnTreeView(MouseButtons.Right);
@@ -361,6 +381,17 @@ namespace JsonEditorV2Tests
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
             MainFormInvoke(MainForm.tmiScanJsonFiles_Click);
+        }
+
+        public void SaveAsJsonFiles(string targetPath, ResponseOptions saveFile = ResponseOptions.Yes, ResponseOptions deleteFiles = ResponseOptions.OK)
+        {
+            Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
+            courier.AddResponse(deleteFiles, "JE_RUN_SAVE_AS_JSON_FILES_M_1");
+            Bard bard = new Bard("SelectedPath", targetPath);
+            bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
+            AdventurerAssociation.RegisterMember(bard);
+            AdventurerAssociation.RegisterMember(courier);
+            MainFormInvoke(MainForm.tmiSaveAsJsonFiles_Click);
         }
 
         public void LoadJsonFiles(string targetPath, ResponseOptions saveFile = ResponseOptions.Yes)
