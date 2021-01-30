@@ -27,8 +27,6 @@ namespace JsonEditorV2Tests
         public string CurrentColumnName { get; set; }
         public int SelectedLineIndex { get; set; }
 
-        private EventArgs ea = new EventArgs();
-
         public JsonEditorTestSystem()
         {
             FileStream fs = new FileStream(OutputOverview, FileMode.Create);
@@ -40,22 +38,20 @@ namespace JsonEditorV2Tests
             MainForm.Top = 30000;
             MainForm.Shown += MainForm_Shown;
             TestThread = new Task(() => Application.Run(MainForm));
-            TestThread.Start();
+            TestThread.Start(); 
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            MainForm.Visible = false;
             FormReady = true;
+            MainForm.Visible = false;
         }
  
         private void DoEventsUntilFormReadyAndResetFormReady()
         {
             while (!FormReady)
                 Application.DoEvents();
-
-            AdventurerAssociation.RegisterMember(new Bard());
-            AdventurerAssociation.RegisterMember(new Courier());
+           
             FormReady = false;
         }
 
@@ -68,6 +64,9 @@ namespace JsonEditorV2Tests
 
             if (Exception != null)
                 ExceptionDispatchInfo.Capture(Exception).Throw();
+
+            AdventurerAssociation.RegisterMember(new Bard());
+            AdventurerAssociation.RegisterMember(new Courier());
 
             FormReady = true;
         }
@@ -97,42 +96,48 @@ namespace JsonEditorV2Tests
             return newForm.DialogResult;
         }
 
+        private delegate void MainForm_Events(object sender, EventArgs args);
+
+        private void MainFormInvoke(MainForm_Events formEvent, EventArgs args = null, object sender = null)
+        {
+            //if (MainForm.Visible != false)
+            //    DoEventsUntilFormReadyAndResetFormReady();
+
+            DoEventsUntilFormReadyAndResetFormReady();
+            EndInvokeAndThrowException(MainFormBeginInvoke(formEvent, args, sender));
+        }
+
+        private IAsyncResult MainFormBeginInvoke(MainForm_Events formEvent, EventArgs args = null, object sender = null)
+        {
+            return MainForm.BeginInvoke((MethodInvoker)delegate
+            {
+                try
+                {
+                    formEvent(sender ?? MainForm, args ?? new EventArgs());
+                }
+                catch (Exception ex)
+                { Exception = ex; }
+            }
+            );
+        }
+
         public void OpenJsonFile(string fileName)
         {   
             ClickOnTreeView(MouseButtons.Right, fileName);
 
-            DoEventsUntilFormReadyAndResetFormReady();
-
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try { MainForm.tmiOpenJsonFile_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiOpenJsonFile_Click);
         }
 
         public void UpdateMainValue()
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try { MainForm.btnUpdateMain_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.btnUpdateMain_Click);
         }
 
         public Control SelectColumnPanelValueControl(ColumnAttributeNames attributeName)
         {
             Control valueControl = MainForm.Controls.Find("pnlFileInfo", false)[0].Controls.Find(TestConst.ColumnAttributesInfo[attributeName].ValueControlName, false)[0];
-
-            DoEventsUntilFormReadyAndResetFormReady();            
             
+            DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -141,7 +146,6 @@ namespace JsonEditorV2Tests
                 catch (Exception ex)
                 { Exception = ex; }
             });
-
             EndInvokeAndThrowException(ar);
             return valueControl;
         }
@@ -164,12 +168,11 @@ namespace JsonEditorV2Tests
                 }
                 catch (Exception ex)
                 { Exception = ex; }
-            });
-
+            });            
             EndInvokeAndThrowException(ar);
         }
 
-        //public void SetCurrentLineValue(string columnName, object value)
+        //public void SetLineValue(string columnName, object value)
         //{
         //    if (CurrentFileName != fileName || CurrentColumnName != columnName)
         //        ClickOnTreeView(fileName, columnName);
@@ -204,7 +207,6 @@ namespace JsonEditorV2Tests
                 catch (Exception ex)
                 { Exception = ex; }
             });
-
             EndInvokeAndThrowException(ar);
         }
 
@@ -221,10 +223,8 @@ namespace JsonEditorV2Tests
             if (ctls.Length == 0)
                 throw new ArgumentException();
 
-            Control valueControl = ctls[0];
-
             DoEventsUntilFormReadyAndResetFormReady();
-
+            Control valueControl = ctls[0];
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -235,7 +235,6 @@ namespace JsonEditorV2Tests
                 catch (Exception ex)
                 { Exception = ex; }
             });
-
             EndInvokeAndThrowException(ar);
             return valueControl;
         }
@@ -245,9 +244,8 @@ namespace JsonEditorV2Tests
             if (SelectedLineIndex == index)
                 return;
 
-            DoEventsUntilFormReadyAndResetFormReady();
-
             ListBox lsb = MainForm.Controls.Find("lsbLines", false)[0] as ListBox;
+            DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -255,64 +253,31 @@ namespace JsonEditorV2Tests
                 catch (Exception ex)
                 { Exception = ex; }
             });
-
             EndInvokeAndThrowException(ar);
         }
 
         public void NewLine()
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.btnNewLine_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.btnNewLine_Click);
         }
 
         public void CloseJsonFiles(ResponseOptions saveFile = ResponseOptions.Yes)
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             AdventurerAssociation.RegisterMember(courier);
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiCloseAllFiles_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiCloseAllFiles_Click);
         }
 
         public void UpdateCurrentColumn()
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.btnUpdateColumn_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.btnUpdateColumn_Click);
         }
 
         public void ClickOnTreeView(string fileName = "", string columnName = "")
             => ClickOnTreeView(MouseButtons.Left, fileName, columnName);
 
         public void ClickOnTreeView(MouseButtons button ,string fileName = "", string columnName = "")
-        {   
-            DoEventsUntilFormReadyAndResetFormReady();
-
+        {
             TreeNodeMouseClickEventArgs tea = null;
             TreeNode[] trs;
 
@@ -338,6 +303,7 @@ namespace JsonEditorV2Tests
             if (tea == null)
                 throw new ArgumentOutOfRangeException("TreeNode");
 
+            DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
                 try
@@ -345,140 +311,72 @@ namespace JsonEditorV2Tests
                 catch (Exception ex)
                 { Exception = ex; }
             });
+            EndInvokeAndThrowException(ar);
 
             CurrentFileName = fileName;
             CurrentColumnName = columnName;
-
-            EndInvokeAndThrowException(ar);
         }
 
         public void AddColumn(string filename, string columnName)
         {            
             ClickOnTreeView(MouseButtons.Right, filename);
 
-            DoEventsUntilFormReadyAndResetFormReady();
-
             InputText = columnName;
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiAddColumn_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiAddColumn_Click);
         }
 
         public void NewJsonFile(string fileName)
         {
             ClickOnTreeView(MouseButtons.Right);
 
-            DoEventsUntilFormReadyAndResetFormReady();
-
             InputText = fileName;
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiNewJsonFile_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiNewJsonFile_Click);          
         }
 
         public void SaveJsonFiles()
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiSaveJsonFiles_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiSaveJsonFiles_Click);
         }
 
         public void Exit(ResponseOptions saveFile = ResponseOptions.Yes)
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             AdventurerAssociation.RegisterMember(courier);
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiExit_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
 
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiExit_Click);
         }
 
         public void ScanJsonFiles(string targetPath, ResponseOptions haveJFIQuestion = ResponseOptions.OK, ResponseOptions saveFile = ResponseOptions.Yes)
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             courier.AddResponse(haveJFIQuestion, "JE_RUN_SCAN_JSON_FILES_M_1");
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiScanJsonFiles_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
 
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiScanJsonFiles_Click);
         }
 
         public void LoadJsonFiles(string targetPath, ResponseOptions saveFile = ResponseOptions.Yes)
-        {
-            DoEventsUntilFormReadyAndResetFormReady();
-
+        {   
             Courier courier = new Courier(saveFile, "JE_RUN_SAVE_FILES_CHECK");
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {
-                try
-                { MainForm.tmiLoadJsonFiles_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
 
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiLoadJsonFiles_Click);
         }
 
         public void NewJsonFiles(string targetPath, ResponseOptions deleteFile = ResponseOptions.Yes)
         {
-            DoEventsUntilFormReadyAndResetFormReady();
-
             Courier courier = new Courier(deleteFile, "JE_RUN_NEW_JSON_FILES_Q_1");
             Bard bard = new Bard("SelectedPath", targetPath);
             bard.InputInformation.Add("DialogResult", ResponseOptions.OK);
             AdventurerAssociation.RegisterMember(bard);
             AdventurerAssociation.RegisterMember(courier);
-            IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
-            {   
-                try
-                { MainForm.tmiNewJsonFiles_Click(MainForm, ea); }
-                catch (Exception ex)
-                { Exception = ex; }
-            });
-
-            EndInvokeAndThrowException(ar);
+            MainFormInvoke(MainForm.tmiNewJsonFiles_Click);
         }
 
         public void PrintMessage(TestContext testContext)
