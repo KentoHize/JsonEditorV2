@@ -3,6 +3,7 @@ using Aritiafel.Organizations;
 using JsonEditorV2;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace JsonEditorV2Tests
@@ -14,7 +15,7 @@ namespace JsonEditorV2Tests
 
         public JsonEditorTestSystem JETS { get; set; }
 
-        public string InputText { get; set; }
+        //public string InputText { get; set; }
 
         //[TestInitialize]
         //public void TestInitialize()
@@ -24,42 +25,47 @@ namespace JsonEditorV2Tests
         //    AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
         //}
 
-        private DialogResult AdventurerAssociation_Form_Start(Form newForm)
-        {
-            if (newForm is frmInputBox)
-            {
-                frmInputBox frmInputBox = newForm as frmInputBox;
+        //private DialogResult AdventurerAssociation_Form_Start(Form newForm)
+        //{
+        //    if (newForm is frmInputBox)
+        //    {
+        //        frmInputBox frmInputBox = newForm as frmInputBox;
 
-                switch (frmInputBox.InputBoxType)
-                {
-                    case InputBoxTypes.NewFile:
-                    case InputBoxTypes.RenameFile:
-                    case InputBoxTypes.AddColumn:
-                    case InputBoxTypes.RenameColumn:
-                        //輸入值
-                        string input = InputText;
-                        TestContext.WriteLine($"Text = {input}");
-                        (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
-                        //按下OK
-                        TestContext.WriteLine($"Confirm Button Clicked");
-                        frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
-                        break;
+        //        switch (frmInputBox.InputBoxType)
+        //        {
+        //            case InputBoxTypes.NewFile:
+        //            case InputBoxTypes.RenameFile:
+        //            case InputBoxTypes.AddColumn:
+        //            case InputBoxTypes.RenameColumn:
+        //                //輸入值
+        //                string input = InputText;
+        //                TestContext.WriteLine($"Text = {input}");
+        //                (frmInputBox.Controls.Find("txtInput", false)[0] as TextBox).Text = input;
+        //                //按下OK
+        //                TestContext.WriteLine($"Confirm Button Clicked");
+        //                frmInputBox.btnConfirm_Click(frmInputBox, new EventArgs());
+        //                break;
 
-                    default:
-                        break;
-                }
-            }
-            return newForm.DialogResult;
-        }
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //    return newForm.DialogResult;
+        //}
 
         [TestMethod]
         public void SysytemTest()
         {
             JETS = new JsonEditorTestSystem();
             JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
-            JETS.PrintMessage(TestContext);
-        }
+            JETS.NewJsonFile("A");
+            JETS.SaveJsonFiles();
+            JETS.Exit();
 
+            JETS.PrintMessage(TestContext);
+
+            Process.Start(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
+        }
         
         public void CreateData()
         {
@@ -73,17 +79,17 @@ namespace JsonEditorV2Tests
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
             //建立三個檔案
-            InputText = "SetA";
+            //InputText = "SetA";
             //AdventurerAssociation.Bard.InputInformation["DialogResult"] = DialogResult.OK; //跳過不測
             
             mf.tmiNewJsonFile_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
-            InputText = "SetB";
+            //InputText = "SetB";
             mf.tmiNewJsonFile_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
-            InputText = "SetC";
+            //InputText = "SetC";
             mf.tmiNewJsonFile_Click(mf, e);
             AdventurerAssociation.PrintMessageFromArchivist(TestContext);
 
@@ -93,15 +99,15 @@ namespace JsonEditorV2Tests
             mf.trvJsonFiles_NodeMouseClick(mf, tnmc);
 
             //Rename
-            InputText = "SetA1";
+            //InputText = "SetA1";
             mf.tmiRenameJsonFile_Click(mf, e);
 
             //Add Column
-            InputText = "AAAA_2";
+            //InputText = "AAAA_2";
             mf.tmiAddColumn_Click(mf, e);
 
             //Rename Column
-            InputText = "AAAA_3";
+            //InputText = "AAAA_3";
             mf.tmiRenameColumn_Click(mf, e);
 
 
