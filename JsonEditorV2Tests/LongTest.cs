@@ -12,15 +12,17 @@ namespace JsonEditorV2Tests
     {
         public TestContext TestContext { get; set; }
 
+        public JsonEditorTestSystem JETS { get; set; }
+
         public string InputText { get; set; }
 
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            if(!AdventurerAssociation.Registered)
-                AdventurerAssociation.RegisterMembers();
-            AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
-        }
+        //[TestInitialize]
+        //public void TestInitialize()
+        //{
+        //    if(!AdventurerAssociation.Registered)
+        //        AdventurerAssociation.RegisterMembers();
+        //    AdventurerAssociation.Form_Start += AdventurerAssociation_Form_Start;
+        //}
 
         private DialogResult AdventurerAssociation_Form_Start(Form newForm)
         {
@@ -51,6 +53,14 @@ namespace JsonEditorV2Tests
         }
 
         [TestMethod]
+        public void SysytemTest()
+        {
+            JETS = new JsonEditorTestSystem();
+            JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
+            JETS.PrintMessage(TestContext);
+        }
+
+        
         public void CreateData()
         {
             MainForm mf = new MainForm();
