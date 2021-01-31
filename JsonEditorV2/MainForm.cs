@@ -920,6 +920,8 @@ namespace JsonEditorV2
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
             }
+
+            cobColumnType_SelectedIndexChanged(this, EventArgs.Empty);
         }
 
         public void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -1035,6 +1037,7 @@ namespace JsonEditorV2
 
         public void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool autoGenerateKey = ckbAutoGenerateKey.Checked;
             if (cobColumnFKTable.SelectedIndex < 1)
                 cobColumnFKColumn.DataSource = null;
             else
@@ -1047,6 +1050,7 @@ namespace JsonEditorV2
                 cobColumnFKColumn.ValueMember = "Name";
                 cobColumnFKColumn.SelectedIndex = -1;
             }
+            ckbAutoGenerateKey.Checked = autoGenerateKey;
         }
 
         public void RefreshTmiLanguages()
@@ -1626,6 +1630,9 @@ namespace JsonEditorV2
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
             cobColumnType.Enabled =
             ckbAutoGenerateKey.Enabled = FKIsEmpty;
+            if (!FKIsEmpty)
+                ckbAutoGenerateKey.Checked = false;
+            cobColumnType_SelectedIndexChanged(sender, e);
         }
 
         public void tmiOpenFolder_Click(object sender, EventArgs e)
@@ -1740,14 +1747,18 @@ namespace JsonEditorV2
         {
             if (cobColumnType.SelectedIndex == -1)
                 return;
-            JType result = (JType)Enum.Parse(typeof(JType), cobColumnType.SelectedValue.ToString());
+            JType result = (JType)cobColumnType.SelectedItem;
+
+            ckbAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+            if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
+                ckbAutoGenerateKey.Checked = ckbAutoGenerateKey.Enabled = false;
             txtColumnRegex.Enabled =
             txtColumnMaxLength.Enabled = !ckbAutoGenerateKey.Checked && 
                 cobColumnFKColumn.SelectedIndex == -1 &&
                 result == JType.String || result == JType.Uri;
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = !ckbAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
-                (result.IsDateTime() || result.IsNumber());            
+                (result.IsDateTime() || result.IsNumber());
         }
 
         public void tmiRefreshFiles_Click(object sender, EventArgs e)
