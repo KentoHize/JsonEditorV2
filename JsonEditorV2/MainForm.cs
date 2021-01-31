@@ -722,7 +722,8 @@ namespace JsonEditorV2
             if (Var.SelectedTable == null)
                 return;
             Var.LockPnlMain = true;
-            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            if(Var.SelectedTable.Changed)
+                Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             DataTable dt = new DataTable();
             for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
@@ -770,8 +771,7 @@ namespace JsonEditorV2
 
             Var.LockPnlMain = false;
             btnNewLine.Enabled = true;
-            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
-            RefreshPnlMainValue();
+            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;            
             RefreshTrvSelectedFileChange();
         }
 
@@ -1575,7 +1575,7 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            RefreshPnlMain();
+            RefreshPnlMainValue();
             RefreshDgvLines();
         }
 
