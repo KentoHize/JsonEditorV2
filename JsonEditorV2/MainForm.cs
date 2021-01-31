@@ -744,20 +744,17 @@ namespace JsonEditorV2
                             continue;
 
                         string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
+                        if (r.Length > Setting.DgvLinesStringMaxLength)
+                            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
+                        else
+                            r = string.Format("{0} ", r);
                         dr[Var.SelectedTable.Columns[j].Name] = r;
-                        ////Can Improve to do(可改長度偵測)
-                        //if (r.Length > 12)
-                        //    displayString.AppendFormat("{0}.. ", r.Substring(0, 10));
-                        //else
-                        //    displayString.AppendFormat("{0} ", r);
                     }
                 }
 
                 if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
-                    dr[Const.HiddenColumnName] = "R";
-
+                    dr[Const.HiddenColumnName] = "N";
                 dt.Rows.Add(dr);
-                //lsbLines.Items.Add(displayString.ToString());
             }
 
             dgvLines.DataSource = dt;            
@@ -1695,6 +1692,14 @@ namespace JsonEditorV2
 
         public void MainForm_Load(object sender, EventArgs e)
         {
+            //預讀預設值
+            Setting.CI = new CultureInfo("en-US");
+            Setting.UseQuickCheck = false;
+            Setting.DontLoadFileBytesThreshold = 10000;
+            Setting.NumberOfRowsMaxValue = 30;
+            Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
+            Setting.DgvLinesStringMaxLength = 12;
+
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
             {
@@ -1722,15 +1727,7 @@ namespace JsonEditorV2
                     }
                 }
             }
-            else //讀取預設值
-            {
-                Setting.CI = new CultureInfo("en-US");
-                Setting.UseQuickCheck = false;
-                Setting.DontLoadFileBytesThreshold = 10000;
-                Setting.NumberOfRowsMaxValue = 30;
-                Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
-            }
-            
+
             ckbQuickCheck.Checked = Setting.UseQuickCheck;
             ChangeCulture();
             cobColumnType.DataSource =
@@ -2040,7 +2037,8 @@ namespace JsonEditorV2
         {
             int lastColumnIndex = dgvLines.Columns.GetLastColumn(DataGridViewElementStates.None, DataGridViewElementStates.None).Index;
             dgvLines.Columns[lastColumnIndex].Visible = false;
-            for (int i = 0; i < dgvLines.Rows.Count; i++)
+
+            for (int i = 0; i < dgvLines.Rows.Count; i++)            
                 if (dgvLines.Rows[i].Cells[lastColumnIndex].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
         }

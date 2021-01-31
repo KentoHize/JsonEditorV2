@@ -1091,7 +1091,7 @@
             this.dgvLines.AllowUserToOrderColumns = true;
             this.dgvLines.AllowUserToResizeColumns = false;
             this.dgvLines.AllowUserToResizeRows = false;
-            this.dgvLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLines.Location = new System.Drawing.Point(429, 109);
             this.dgvLines.MultiSelect = false;
