@@ -35,6 +35,8 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
+            this.ckbAutoGenerateKey = new System.Windows.Forms.CheckBox();
+            this.lblAutoGenerateKey = new System.Windows.Forms.Label();
             this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
             this.lblColumnIsUnique = new System.Windows.Forms.Label();
             this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
@@ -127,8 +129,6 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
-            this.lblAutoGenerateKey = new System.Windows.Forms.Label();
-            this.ckbAutoGenerateKey = new System.Windows.Forms.CheckBox();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -229,6 +229,28 @@
             this.pnlFileInfo.Name = "pnlFileInfo";
             this.pnlFileInfo.Size = new System.Drawing.Size(420, 324);
             this.pnlFileInfo.TabIndex = 15;
+            // 
+            // ckbAutoGenerateKey
+            // 
+            this.ckbAutoGenerateKey.AutoSize = true;
+            this.ckbAutoGenerateKey.Location = new System.Drawing.Point(371, 399);
+            this.ckbAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbAutoGenerateKey.Name = "ckbAutoGenerateKey";
+            this.ckbAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbAutoGenerateKey.TabIndex = 34;
+            this.ckbAutoGenerateKey.UseVisualStyleBackColor = true;
+            this.ckbAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
+            // 
+            // lblAutoGenerateKey
+            // 
+            this.lblAutoGenerateKey.AutoSize = true;
+            this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 397);
+            this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
+            this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
+            this.lblAutoGenerateKey.TabIndex = 33;
+            this.lblAutoGenerateKey.Text = "-";
             // 
             // ckbColumnIsUnique
             // 
@@ -1064,6 +1086,7 @@
             // ckbQuickCheck
             // 
             this.ckbQuickCheck.AutoSize = true;
+            this.ckbQuickCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckbQuickCheck.Location = new System.Drawing.Point(1258, 776);
             this.ckbQuickCheck.Name = "ckbQuickCheck";
             this.ckbQuickCheck.Size = new System.Drawing.Size(35, 21);
@@ -1071,28 +1094,6 @@
             this.ckbQuickCheck.Text = "-";
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
-            // 
-            // lblAutoGenerateKey
-            // 
-            this.lblAutoGenerateKey.AutoSize = true;
-            this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 397);
-            this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
-            this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
-            this.lblAutoGenerateKey.TabIndex = 33;
-            this.lblAutoGenerateKey.Text = "-";
-            // 
-            // ckbAutoGenerateKey
-            // 
-            this.ckbAutoGenerateKey.AutoSize = true;
-            this.ckbAutoGenerateKey.Location = new System.Drawing.Point(371, 399);
-            this.ckbAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbAutoGenerateKey.Name = "ckbAutoGenerateKey";
-            this.ckbAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
-            this.ckbAutoGenerateKey.TabIndex = 34;
-            this.ckbAutoGenerateKey.UseVisualStyleBackColor = true;
-            this.ckbAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
             // 
             // MainForm
             // 
