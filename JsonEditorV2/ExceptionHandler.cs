@@ -164,7 +164,7 @@ namespace JsonEditorV2
                     result.AppendFormat(Res.JE_VAL_GREATER_THEN_MAX_VALUE, jt[kvp1.Key][kvp2.Key].Value, jt.Columns[kvp2.Key].MaxValue ?? "");
                     break;
                 case JValueInvalidReasons.LongerThenMaxLength:
-                    result.AppendFormat(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, jt.Columns[kvp2.Key].TextMaxLength);
+                    result.AppendFormat(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, jt.Columns[kvp2.Key].MaxLength);
                     break;
                 case JValueInvalidReasons.RegularExpressionNotMatch:
                     result.AppendFormat(Res.JE_VAL_REGEX_IS_NOT_MATCH, jt[kvp1.Key][kvp2.Key].Value ?? "");

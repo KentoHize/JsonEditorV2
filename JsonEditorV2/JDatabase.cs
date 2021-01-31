@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace JsonEditor
 {
-    public class JDatabase
+    public class JDatabase : IList<JTable>
     {
+        public JTable this[int index] { get => ((IList<JTable>)Tables)[index]; set => ((IList<JTable>)Tables)[index] = value; }
+
         public string Name { get => JFI != null ? JFI.Name : null; }
 
         public List<JTable> Tables { get; set; } = new List<JTable>();
@@ -15,6 +18,15 @@ namespace JsonEditor
         public JFilesInfo JFI { get; set; }
 
         public bool Valid { get; set; }
+
+        public int Count => ((IList<JTable>)Tables).Count;
+
+        public bool IsReadOnly => ((IList<JTable>)Tables).IsReadOnly;
+
+        public void Add(JTable item)
+        {
+            ((IList<JTable>)Tables).Add(item);
+        }
 
         public bool CheckAllTablesValid()
         {
@@ -58,6 +70,51 @@ namespace JsonEditor
                 }
             }
             return Valid;
+        }
+
+        public void Clear()
+        {
+            ((IList<JTable>)Tables).Clear();
+        }
+
+        public bool Contains(JTable item)
+        {
+            return ((IList<JTable>)Tables).Contains(item);
+        }
+
+        public void CopyTo(JTable[] array, int arrayIndex)
+        {
+            ((IList<JTable>)Tables).CopyTo(array, arrayIndex);
+        }
+
+        public IEnumerator<JTable> GetEnumerator()
+        {
+            return ((IList<JTable>)Tables).GetEnumerator();
+        }
+
+        public int IndexOf(JTable item)
+        {
+            return ((IList<JTable>)Tables).IndexOf(item);
+        }
+
+        public void Insert(int index, JTable item)
+        {
+            ((IList<JTable>)Tables).Insert(index, item);
+        }
+
+        public bool Remove(JTable item)
+        {
+            return ((IList<JTable>)Tables).Remove(item);
+        }
+
+        public void RemoveAt(int index)
+        {
+            ((IList<JTable>)Tables).RemoveAt(index);
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IList<JTable>)Tables).GetEnumerator();
         }
     }
 }

@@ -449,8 +449,8 @@ namespace JsonEditor
                 }
 
                 //MaxLength
-                if (Columns[i].TextMaxLength != 0 &&
-                    jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].TextMaxLength)
+                if (Columns[i].MaxLength != 0 &&
+                    jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].MaxLength)
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LongerThenMaxLength);
                     return false;

@@ -17,7 +17,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -33,7 +33,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -49,7 +49,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -65,7 +65,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -81,7 +81,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 100,
+          "MaxLength": 100,
           "IsUnique": false
         }
       ]
@@ -102,7 +102,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -118,7 +118,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -134,7 +134,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -155,7 +155,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -171,7 +171,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -187,7 +187,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -203,7 +203,7 @@
           "Description": "4465",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -219,7 +219,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -235,7 +235,7 @@
           "Description": "",
           "MinValue": "789",
           "MaxValue": "99999",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -251,7 +251,7 @@
           "Description": "",
           "MinValue": "0:00:33",
           "MaxValue": "23:57:59",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -276,7 +276,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -292,7 +292,7 @@
           "Description": "Testljh",
           "MinValue": "0",
           "MaxValue": "6",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -308,7 +308,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": true
         },
         {
@@ -324,7 +324,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 15,
+          "MaxLength": 15,
           "IsUnique": false
         }
       ]
@@ -345,7 +345,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -366,7 +366,7 @@
           "Description": "",
           "MinValue": "-3",
           "MaxValue": "383.6",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -382,7 +382,7 @@
           "Description": "",
           "MinValue": "1600/05/01",
           "MaxValue": "1684/12/01",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -398,7 +398,7 @@
           "Description": "",
           "MinValue": "1:40:01",
           "MaxValue": "3:58:00",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -414,7 +414,7 @@
           "Description": "",
           "MinValue": "0002/05/28 20:00:00",
           "MaxValue": "2002/05/28 10:00:58",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -430,7 +430,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -451,7 +451,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -467,7 +467,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -488,7 +488,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -504,7 +504,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -520,7 +520,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -536,7 +536,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -552,7 +552,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -573,7 +573,7 @@
           "Description": "",
           "MinValue": "00:01:00",
           "MaxValue": "00:17:00",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -589,7 +589,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -605,7 +605,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -626,7 +626,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 6,
+          "MaxLength": 6,
           "IsUnique": false
         },
         {
@@ -642,7 +642,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -658,7 +658,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -674,7 +674,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -695,7 +695,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -711,7 +711,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -727,7 +727,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -743,7 +743,7 @@
           "Description": null,
           "MinValue": null,
           "MaxValue": null,
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]
@@ -764,7 +764,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": true
         },
         {
@@ -780,7 +780,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": true
         },
         {
@@ -796,7 +796,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 10,
+          "MaxLength": 10,
           "IsUnique": false
         },
         {
@@ -812,7 +812,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 20,
+          "MaxLength": 20,
           "IsUnique": true
         }
       ]
@@ -833,7 +833,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         },
         {
@@ -849,7 +849,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": true
         },
         {
@@ -865,7 +865,7 @@
           "Description": "",
           "MinValue": "",
           "MaxValue": "",
-          "TextMaxLength": 0,
+          "MaxLength": 0,
           "IsUnique": false
         }
       ]

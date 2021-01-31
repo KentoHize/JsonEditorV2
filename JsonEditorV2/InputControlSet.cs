@@ -171,11 +171,11 @@ namespace JsonEditorV2
             }
 
             //確認MaxLength正確
-            if(JColumn.TextMaxLength != 0)
+            if(JColumn.MaxLength != 0)
             {
-                if(parsedValue.ToString().Length > JColumn.TextMaxLength)
+                if(parsedValue.ToString().Length > JColumn.MaxLength)
                 {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, JColumn.TextMaxLength));
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, JColumn.MaxLength));
                     return false;
                 }
             }

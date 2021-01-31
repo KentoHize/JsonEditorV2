@@ -348,13 +348,13 @@ namespace JsonEditorV2
             if (Var.SelectedColumn.MinValue != txtColumnMinValue.Text ||
                Var.SelectedColumn.MaxValue != txtColumnMaxValue.Text ||
                Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
-               Var.SelectedColumn.TextMaxLength != long.Parse(txtColumnMaxLength.Text))
+               Var.SelectedColumn.MaxLength != long.Parse(txtColumnMaxLength.Text))
             {
                 
                 Var.SelectedColumn.MinValue = txtColumnMinValue.Text != "" ? (txtColumnMinValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
                 Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text != "" ? (txtColumnMaxValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
                 Var.SelectedColumn.RegularExpression = txtColumnRegex.Text;
-                Var.SelectedColumn.TextMaxLength = long.Parse(txtColumnMaxLength.Text);
+                Var.SelectedColumn.MaxLength = long.Parse(txtColumnMaxLength.Text);
                 recheckTable = true;
             }
 
@@ -902,8 +902,9 @@ namespace JsonEditorV2
                 txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
                 txtColumnMaxValue.Text = Var.SelectedColumn.MaxValue ?? "";
                 txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
-                txtColumnMaxLength.Text = Var.SelectedColumn.TextMaxLength.ToString();
+                txtColumnMaxLength.Text = Var.SelectedColumn.MaxLength.ToString();
                 ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
+                ckbAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
                 btnUpdateColumn.Enabled = true;
             }
             else
@@ -1891,14 +1892,24 @@ namespace JsonEditorV2
 
             //foreach (string pj in ProjectName)
             //    ChangeRegex(Path.Combine(ProjectPath, pj));
-            RabbitCouriers.SentInformation("OK");
+            //RabbitCouriers.SentInformation("OK");
         }
 
         private void ChangeRegex(string folderName)
         {
-            string[] files = Directory.GetFiles(folderName, "*.bak");
-            string s;
+            //string[] files = Directory.GetFiles(folderName, "JFilesInfo.json.bak");
+            //foreach (string file in files)
+            //    File.Delete(file);
 
+            //string[] folders = Directory.GetDirectories(folderName);
+
+            //foreach (string folder in folders)
+            //    ChangeRegex(folder);
+
+            //return;
+
+            string[] files = Directory.GetFiles(folderName, "JFilesInfo.json");
+            string s;
             foreach (string file in files)
             {
                 using (FileStream fs1 = new FileStream(file, FileMode.Open))
@@ -1913,7 +1924,7 @@ namespace JsonEditorV2
                 using (FileStream fs2 = new FileStream(file, FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs2);
-                    sw.Write(s.Replace("Regex", "RegularExpression"));
+                    sw.Write(s.Replace("TextMaxLength", "MaxLength"));
                     sw.Close();
                 }
             }
@@ -1942,6 +1953,12 @@ namespace JsonEditorV2
             catch { }
         }
 
-
+        private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)
+        {
+            txtColumnMinValue.Enabled =
+            txtColumnMaxValue.Enabled =
+            txtColumnRegex.Enabled =
+            txtColumnMaxLength.Enabled = !ckbAutoGenerateKey.Checked;
+        }
     }
 }

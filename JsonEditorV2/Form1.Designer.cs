@@ -87,8 +87,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguages = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiLanguageZHTW = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguageENUS = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiLanguageZHCN = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiLanguageZHTW = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiBackup = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiJsonEditorBackup = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,7 +127,8 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
-            this.tmiLanguageZHCN = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblAutoGenerateKey = new System.Windows.Forms.Label();
+            this.ckbAutoGenerateKey = new System.Windows.Forms.CheckBox();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -191,6 +193,8 @@
             // pnlFileInfo
             // 
             this.pnlFileInfo.AutoScroll = true;
+            this.pnlFileInfo.Controls.Add(this.ckbAutoGenerateKey);
+            this.pnlFileInfo.Controls.Add(this.lblAutoGenerateKey);
             this.pnlFileInfo.Controls.Add(this.ckbColumnIsUnique);
             this.pnlFileInfo.Controls.Add(this.lblColumnIsUnique);
             this.pnlFileInfo.Controls.Add(this.txtColumnMaxLength);
@@ -272,7 +276,7 @@
             // 
             this.lblColumnDescription.AutoSize = true;
             this.lblColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDescription.Location = new System.Drawing.Point(18, 467);
+            this.lblColumnDescription.Location = new System.Drawing.Point(18, 502);
             this.lblColumnDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDescription.Name = "lblColumnDescription";
             this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
@@ -282,7 +286,7 @@
             // txtColumnDescription
             // 
             this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnDescription.Location = new System.Drawing.Point(207, 464);
+            this.txtColumnDescription.Location = new System.Drawing.Point(207, 499);
             this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnDescription.Name = "txtColumnDescription";
             this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
@@ -378,7 +382,7 @@
             this.cobColumnFKColumn.DisplayMember = "Name";
             this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKColumn.FormattingEnabled = true;
-            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 428);
+            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 463);
             this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKColumn.Name = "cobColumnFKColumn";
             this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
@@ -390,7 +394,7 @@
             // 
             this.lblColumnFKColumn.AutoSize = true;
             this.lblColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 432);
+            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 467);
             this.lblColumnFKColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKColumn.Name = "lblColumnFKColumn";
             this.lblColumnFKColumn.Size = new System.Drawing.Size(15, 20);
@@ -402,7 +406,7 @@
             this.cobColumnFKTable.DisplayMember = "Name";
             this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKTable.FormattingEnabled = true;
-            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 393);
+            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 428);
             this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKTable.Name = "cobColumnFKTable";
             this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
@@ -477,7 +481,7 @@
             // 
             this.lblColumnFKTable.AutoSize = true;
             this.lblColumnFKTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 397);
+            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 432);
             this.lblColumnFKTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKTable.Name = "lblColumnFKTable";
             this.lblColumnFKTable.Size = new System.Drawing.Size(15, 20);
@@ -748,19 +752,26 @@
             this.tmiLanguages.Size = new System.Drawing.Size(30, 24);
             this.tmiLanguages.Text = "X";
             // 
-            // tmiLanguageZHTW
-            // 
-            this.tmiLanguageZHTW.Name = "tmiLanguageZHTW";
-            this.tmiLanguageZHTW.Size = new System.Drawing.Size(216, 26);
-            this.tmiLanguageZHTW.Text = "繁體中文(zh-TW)";
-            this.tmiLanguageZHTW.Click += new System.EventHandler(this.tmiLanguageZHTW_Click);
-            // 
             // tmiLanguageENUS
             // 
             this.tmiLanguageENUS.Name = "tmiLanguageENUS";
-            this.tmiLanguageENUS.Size = new System.Drawing.Size(216, 26);
+            this.tmiLanguageENUS.Size = new System.Drawing.Size(196, 26);
             this.tmiLanguageENUS.Text = "English(en-US)";
             this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
+            // 
+            // tmiLanguageZHCN
+            // 
+            this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
+            this.tmiLanguageZHCN.Size = new System.Drawing.Size(196, 26);
+            this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
+            this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
+            // 
+            // tmiLanguageZHTW
+            // 
+            this.tmiLanguageZHTW.Name = "tmiLanguageZHTW";
+            this.tmiLanguageZHTW.Size = new System.Drawing.Size(196, 26);
+            this.tmiLanguageZHTW.Text = "繁體中文(zh-TW)";
+            this.tmiLanguageZHTW.Click += new System.EventHandler(this.tmiLanguageZHTW_Click);
             // 
             // tmiAbout
             // 
@@ -1061,12 +1072,27 @@
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
             // 
-            // tmiLanguageZHCN
+            // lblAutoGenerateKey
             // 
-            this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
-            this.tmiLanguageZHCN.Size = new System.Drawing.Size(216, 26);
-            this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
-            this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
+            this.lblAutoGenerateKey.AutoSize = true;
+            this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 397);
+            this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
+            this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
+            this.lblAutoGenerateKey.TabIndex = 33;
+            this.lblAutoGenerateKey.Text = "-";
+            // 
+            // ckbAutoGenerateKey
+            // 
+            this.ckbAutoGenerateKey.AutoSize = true;
+            this.ckbAutoGenerateKey.Location = new System.Drawing.Point(371, 399);
+            this.ckbAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbAutoGenerateKey.Name = "ckbAutoGenerateKey";
+            this.ckbAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbAutoGenerateKey.TabIndex = 34;
+            this.ckbAutoGenerateKey.UseVisualStyleBackColor = true;
+            this.ckbAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
             // 
             // MainForm
             // 
@@ -1212,6 +1238,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem tmiRunSomething;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHCN;
+        private System.Windows.Forms.CheckBox ckbAutoGenerateKey;
+        private System.Windows.Forms.Label lblAutoGenerateKey;
     }
 }
 
