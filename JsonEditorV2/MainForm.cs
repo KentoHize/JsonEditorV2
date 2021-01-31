@@ -210,7 +210,14 @@ namespace JsonEditorV2
 
             JType newType = (JType)cobColumnType.SelectedValue;
 
-
+            //自動產生值時取消最大、最小、長度、正則表達式條件
+            if(ckbAutoGenerateKey.Checked)
+            {
+                txtColumnMaxLength.Text = "0";
+                txtColumnRegex.Text = "";
+                txtColumnMinValue.Text = "";
+                txtColumnMaxValue.Text = "";
+            }
 
             //確認最大、最小值正確
             if (!newType.IsNumber() && !newType.IsDateTime())
@@ -1397,12 +1404,9 @@ namespace JsonEditorV2
 
         public void btnNewLine_Click(object sender, EventArgs e)
         {
-            JLine jl = new JLine();
-            foreach (JColumn jc in Var.SelectedTable.Columns)
-                jl.Add(JValue.FromObject(jc.Type.InitialValue()));
+            Var.SelectedTable.GenerateNewLine();
 
-            Var.SelectedTable.Changed = true;
-            Var.SelectedTable.Lines.Add(jl);
+            Var.SelectedTable.Changed = true;            
             Var.SelectedLineIndex = lsbLines.Items.Count;
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
             RefreshLsbLines();
@@ -1620,11 +1624,8 @@ namespace JsonEditorV2
         public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
-            cobColumnType.Enabled =            
+            cobColumnType.Enabled =
             ckbAutoGenerateKey.Enabled = FKIsEmpty;
-            if (!FKIsEmpty)
-                ckbAutoGenerateKey.Checked = false;
-
         }
 
         public void tmiOpenFolder_Click(object sender, EventArgs e)
@@ -1746,7 +1747,7 @@ namespace JsonEditorV2
                 result == JType.String || result == JType.Uri;
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = !ckbAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
-                (result.IsDateTime() || result.IsNumber());
+                (result.IsDateTime() || result.IsNumber());            
         }
 
         public void tmiRefreshFiles_Click(object sender, EventArgs e)

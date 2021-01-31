@@ -1132,6 +1132,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 自動產生索引欄位適用在不正確的型別上(只有數字、字串或是Guid可以被自動產生).
+        /// </summary>
+        public static string JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 自動產生索引欄位附帶限制條件(最小值、最大值、文字長度或正則表達式).
+        /// </summary>
+        public static string JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 外部索引欄位名遺失.
         /// </summary>
         public static string JE_VAL_COLUMN_FK_COLUMN_MISSING {

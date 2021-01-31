@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -531,7 +532,7 @@ namespace JsonEditor
                     {
                         //Null Check
                         if (Lines[j][i].Value == null)
-                            if(nullObjectIndex == -1)
+                            if (nullObjectIndex == -1)
                                 nullObjectIndex = j;
                             else
                             {
@@ -540,7 +541,7 @@ namespace JsonEditor
                                 Valid = false;
                                 if (quickCheck)
                                     return false;
-                            }                            
+                            }
                         else if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
                         {
                             AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
@@ -555,6 +556,54 @@ namespace JsonEditor
                 }
             }
             return Valid;
+        }
+
+        private object GenerateKey(int index)
+        {
+            if (Columns[index].Type == JType.Guid)
+                return Guid.NewGuid();
+
+            if (!Columns[index].Type.IsNumber() && Columns[index].Type != JType.String)
+                return null;
+
+            if (Lines.Count == 0)
+                return "1".ParseJType(Columns[index].Type);
+
+            int startValue;
+            int uniqueKey;
+
+            try
+            {
+                startValue = Convert.ToInt16(Lines[Lines.Count - 1][index].Value);
+                startValue++;
+            }
+            catch
+            {
+                startValue = 1;
+            }
+
+            uniqueKey = startValue;
+            while(Lines.Exists(m => m.Values[index].Value.CompareTo(uniqueKey, Columns[index].Type) == 0))
+            {
+                uniqueKey++;
+                if(uniqueKey == startValue)
+                    return null;
+            }            
+            return uniqueKey.ParseJType(Columns[index].Type);
+        }
+
+        public void GenerateNewLine()
+        {
+            JLine jl = new JLine();
+
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (Columns[i].AutoGenerateKey)
+                    jl.Add(JValue.FromObject(GenerateKey(i)));
+                else
+                    jl.Add(JValue.FromObject(Columns[i].Type.InitialValue()));
+            }
+            Lines.Add(jl);
         }
 
         public int IndexOf(JLine item)

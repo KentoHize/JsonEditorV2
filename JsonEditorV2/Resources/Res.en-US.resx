@@ -474,6 +474,12 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
   </data>
+  <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
+    <value>Auto-generated key column with inappropriate column type. (only string, number and guid type can auto generate)</value>
+  </data>
+  <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT" xml:space="preserve">
+    <value>Auto-generated key column has other rules. (min value, max value, max length, or regular expression)</value>
+  </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
     <value>Foreign key column is missing.</value>
   </data>

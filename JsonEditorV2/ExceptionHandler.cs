@@ -75,8 +75,14 @@ namespace JsonEditorV2
                 case JColumnInvalidReasons.ForeignKeyColumnTypeNotMatch:
                     result.AppendFormat(Res.JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH);
                     break;
+                case JColumnInvalidReasons.AutoGenerateKeyWithRestrict:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT);
+                    break;
+                case JColumnInvalidReasons.AutoGenerateKeyWithInappropriateType:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE);
+                    break;
             }
-            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_LOAD_JSON_FILES);
+            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_LOAD_JSON_FILES, JFI.InvalidReason.ToString());
         }
 
         public static void OpenJFIFileFailed(string filePath, Exception ex)
@@ -182,7 +188,7 @@ namespace JsonEditorV2
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);
                     break;
             }
-            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES);
+            RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_SAVE_JSON_FILES, kvp2.Value.ToString());
         }
     }
 }

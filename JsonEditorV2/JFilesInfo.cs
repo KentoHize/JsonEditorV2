@@ -76,6 +76,10 @@ namespace JsonEditor
                 return JColumnInvalidReasons.MinValueGreaterThanMaxValue;
             else if (jc.MaxLength < 0)
                 return JColumnInvalidReasons.MaxLengthIsNegative;
+            else if (jc.AutoGenerateKey && (!string.IsNullOrEmpty(jc.MinValue) || !string.IsNullOrEmpty(jc.MaxValue) || !string.IsNullOrEmpty(jc.RegularExpression) || jc.MaxLength != 0))
+                return JColumnInvalidReasons.AutoGenerateKeyWithRestrict;
+            else if (jc.AutoGenerateKey && !jc.Type.IsNumber() && jc.Type != JType.String && jc.Type != JType.Guid)
+                return JColumnInvalidReasons.AutoGenerateKeyWithInappropriateType;
             return JColumnInvalidReasons.None;
         }
 
