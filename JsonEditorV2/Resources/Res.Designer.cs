@@ -511,7 +511,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 錯誤的欄位名稱，請用&apos;_&apos;或英文字母開頭，之後使用&apos;_&apos;、英文字母或是數字，長度不要超過50位.
+        ///   Looks up a localized string similar to 錯誤的欄位名稱，請用&apos;_&apos;或非特殊文字開頭，之後使用&apos;_&apos;、非特殊文字或是數字，長度不要超過50位.
         /// </summary>
         public static string JE_INPUTBOX_WRONG_COLUMN_NAME {
             get {

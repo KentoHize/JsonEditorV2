@@ -1148,7 +1148,7 @@ namespace JsonEditorV2
 
             try
             {
-                Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(jsonString);
+                Var.JFI = JsonConvert.DeserializeObject<JFilesInfo>(jsonString, new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error });
             }
             catch (Exception ex)
             {

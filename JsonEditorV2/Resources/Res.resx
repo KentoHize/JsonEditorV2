@@ -268,7 +268,7 @@
     <value>新增欄位</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
-    <value>錯誤的欄位名稱，請用'_'或英文字母開頭，之後使用'_'、英文字母或是數字，長度不要超過50位</value>
+    <value>錯誤的欄位名稱，請用'_'或非特殊文字開頭，之後使用'_'、非特殊文字或是數字，長度不要超過50位</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>不符合規則的檔案名稱</value>
