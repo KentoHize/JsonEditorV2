@@ -919,9 +919,7 @@ namespace JsonEditorV2
             {
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
-            }
-
-            cobColumnType_SelectedIndexChanged(this, EventArgs.Empty);
+            }           
         }
 
         public void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -1790,6 +1788,9 @@ namespace JsonEditorV2
 
         public void tmiRenameColumn_Click(object sender, EventArgs e)
         {
+            if (!Var.SelectedColumnParentTable.Loaded)
+                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
             if (string.IsNullOrEmpty(newName))
                 return;
