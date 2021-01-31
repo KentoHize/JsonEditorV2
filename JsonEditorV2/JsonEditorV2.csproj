@@ -160,6 +160,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Res.zh-CN.resx" />
     <None Include="ClassDiagram1.cd" />
     <None Include="JsonEditorV2_TemporaryKey.pfx" />
     <None Include="packages.config" />

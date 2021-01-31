@@ -1052,6 +1052,12 @@ namespace JsonEditorV2
             }
         }
 
+        private void tmiLanguageZHCN_Click(object sender, EventArgs e)
+        {
+            Setting.CI = new CultureInfo("zh-CN");
+            ChangeCulture();
+        }
+
         public void tmiLanguageZHTW_Click(object sender, EventArgs e)
         {
             Setting.CI = new CultureInfo("zh-TW");

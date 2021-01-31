@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
+    JSON 资料档案编辑器 0.3
+  </data>
+  <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
+    Created by KentKaze
+  </data>
+  <data name="JE_ABOUT_TITLE" xml:space="preserve">
+    关於
+  </data>
+  <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
+    清空
+  </data>
+  <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
+    清空
+  </data>
+  <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
+    删除资料
+  </data>
+  <data name="JE_BTN_NEW_GUID" xml:space="preserve">
+    新ID
+  </data>
+  <data name="JE_BTN_NEW_LINE" xml:space="preserve">
+    新增资料
+  </data>
+  <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
+    更新
+  </data>
+  <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
+    更新
+  </data>
+  <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
+    快速检查
+  </data>
+  <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
+    栏位描述
+  </data>
+  <data name="JE_COLUMN_DISPLAY" xml:space="preserve">
+    显示在清单上
+  </data>
+  <data name="JE_COLUMN_FK_COLUMN" xml:space="preserve">
+    外部索引栏位
+  </data>
+  <data name="JE_COLUMN_FK_TABLE" xml:space="preserve">
+    外部索引档案
+  </data>
+  <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
+    是索引
+  </data>
+  <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
+    可以为Null值
+  </data>
+  <data name="JE_COLUMN_IS_UNIQUE" xml:space="preserve">
+    唯一值
+  </data>
+  <data name="JE_COLUMN_MAX_LENGTH" xml:space="preserve">
+    文字最大长度
+  </data>
+  <data name="JE_COLUMN_MAX_VALUE" xml:space="preserve">
+    最大值
+  </data>
+  <data name="JE_COLUMN_MIN_VALUE" xml:space="preserve">
+    最小值
+  </data>
+  <data name="JE_COLUMN_NAME" xml:space="preserve">
+    栏位名称
+  </data>
+  <data name="JE_COLUMN_NUM_OF_ROWS" xml:space="preserve">
+    栏位行数
+  </data>
+  <data name="JE_COLUMN_REGEX" xml:space="preserve">
+    正则表达式
+  </data>
+  <data name="JE_COLUMN_TYPE" xml:space="preserve">
+    栏位型别
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
+    无效的JSON档案"{0}.json"，索引：{1}，栏位数量过多或过少
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_NAME_VARY" xml:space="preserve">
+    无效的JSON档案"{0}.json"，索引：{1}，栏位名称"{2}"，不正确
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_ORDER_VARY" xml:space="preserve">
+    无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"顺序不正确
+  </data>
+  <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
+    无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"型别种类太多
+  </data>
+  <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
+    无效的JSON档案"{0}.json"，索引：{1}，子元素非物件
+  </data>
+  <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
+    错误发生："{0}"
+  </data>
+  <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
+    错误
+  </data>
+  <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
+    JSON关联档案格式不正确：{0}
+  </data>
+  <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
+    档案"{0}.json"格式不正确：{1}
+  </data>
+  <data name="JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT" xml:space="preserve">
+    读取JSON关联档案"{0}"失败，请确认档案是否存在或损毁
+  </data>
+  <data name="JE_ERR_LOAD_JSON_FAILED_TITLE" xml:space="preserve">
+    读取档案失败
+  </data>
+  <data name="JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
+    读取档案"{0}"时发生错误，请确认档案是否存在或损毁
+  </data>
+  <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
+    发现需要复原的档案"{0}"建立於 {1}，是否复原到原来的资料夹
+  </data>
+  <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
+    无效的JSON档案"{0}.json"，根元素非阵列
+  </data>
+  <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
+    扫描档案失败
+  </data>
+  <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
+    档案"{0}.json"资料不合规则：行 {1}，栏位"{2}"，
+  </data>
+  <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
+    "{0}.json"档案资料与宣告格式不相容，资料载入失败
+  </data>
+  <data name="JE_ERR_UNKNOWN_ERROR" xml:space="preserve">
+    未知的错误
+  </data>
+  <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
+    取消
+  </data>
+  <data name="JE_INPUTBOX_BTN_CONFIRM" xml:space="preserve">
+    确定
+  </data>
+  <data name="JE_INPUTBOX_DESCRIPTION" xml:space="preserve">
+    档案名称
+  </data>
+  <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
+    栏位名称
+  </data>
+  <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
+    档案"{0}:已存在
+  </data>
+  <data name="JE_INPUTBOX_TITLE" xml:space="preserve">
+    开新JSON档案
+  </data>
+  <data name="JE_INPUTBOX_TITLE_2" xml:space="preserve">
+    新增栏位
+  </data>
+  <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
+    错误的栏位名称，请用'_'或英文字母开头，之後使用'_'、英文字母或是数字，长度不要超过50位
+  </data>
+  <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
+    不符合规则的档案名称
+  </data>
+  <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
+    栏位"{0}"已存在
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_DOWN_M_1" xml:space="preserve">
+    栏位"{0}"已移至底端
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_TITLE" xml:space="preserve">
+    移动栏位
+  </data>
+  <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
+    栏位"{0}"已移至顶端
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
+    档案内存在{0}笔资料，确定要一起删除栏位吗
+  </data>
+  <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
+    栏位"{0}"已删除
+  </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
+    确定删除档案"{0}.json"？
+  </data>
+  <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
+    档案"{0}.json"已删除
+  </data>
+  <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
+    "{0}"资料已删除
+  </data>
+  <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
+    资料行"{0}"已移至底端
+  </data>
+  <data name="JE_RUN_LINE_MOVE_TITLE" xml:space="preserve">
+    移动资料行
+  </data>
+  <data name="JE_RUN_LINE_MOVE_UP_M_1" xml:space="preserve">
+    资料行"{0}"已移至顶端
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
+    {0}档案已读入
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
+    JSON关联档案不存在，扫描JSON资料夹以建立新的关联档案
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_3" xml:space="preserve">
+    目标资料夹"{0}"没有Json档案存在
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_M_4" xml:space="preserve">
+    档案"{0}.json"未在JSON关联档案中出现，请确认JSON档案是否正确
+  </data>
+  <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
+    读取档案库
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
+    已在"{0}"新建档案库
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
+    资料夹已有现存 {0} JSON档案，是否要清空资料夹
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILES_TITLE" xml:space="preserve">
+    开新档案库
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILE_M_2" xml:space="preserve">
+    档案新建失败:"{0}"
+  </data>
+  <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
+    开新档案
+  </data>
+  <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
+    "{0}"已新增资料
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
+    栏位"{0}"已存在
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_M_2" xml:space="preserve">
+    栏位已重新命名为"{0}"
+  </data>
+  <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
+    重新命名
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
+    档案"{0}.json"已存在
+  </data>
+  <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
+    档案已重新命名为"{0}"
+  </data>
+  <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
+    这不是一个空的资料夹，将清空所有档案，你确定吗?
+  </data>
+  <data name="JE_RUN_SAVE_FILES_CHECK" xml:space="preserve">
+    档案库"{0}"尚未存档，是否存档？
+  </data>
+  <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
+    存档取消，档案"{0}.json"，资料不合规则
+  </data>
+  <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
+    "{0}"所有档案已存档
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
+    资料夹"{0}"已存在JSON关联档案，确定继续扫描目标资料夹？(之後存档後将覆盖旧的JSON关联档)
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
+    {0}档案扫描完毕
+  </data>
+  <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
+    扫描档案库
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
+    档案内存在{0}笔资料，确定要一起更改吗(型态不合的资料将设为初始值)
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
+    栏位"{0}"已更新
+  </data>
+  <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
+    更新栏位
+  </data>
+  <data name="JE_RUN_UPDATE_LINE_M_1" xml:space="preserve">
+    "{0}"资料已更新
+  </data>
+  <data name="JE_TMI_ABOUT" xml:space="preserve">
+    关於
+  </data>
+  <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
+    增加栏位
+  </data>
+  <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
+    关闭档案库
+  </data>
+  <data name="JE_TMI_CLOSE_JSON_FILE" xml:space="preserve">
+    关闭
+  </data>
+  <data name="JE_TMI_CLOSE_TAB" xml:space="preserve">
+    关闭档案
+  </data>
+  <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
+    收缩全部
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
+    下移
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
+    上移
+  </data>
+  <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
+    删除
+  </data>
+  <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
+    删除
+  </data>
+  <data name="JE_TMI_EXIT" xml:space="preserve">
+    离开
+  </data>
+  <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
+    展开全部
+  </data>
+  <data name="JE_TMI_FILE" xml:space="preserve">
+    档案
+  </data>
+  <data name="JE_TMI_LANGUAGES" xml:space="preserve">
+    语言
+  </data>
+  <data name="JE_TMI_LOAD_JSON_FILES" xml:space="preserve">
+    读取JSON档案库
+  </data>
+  <data name="JE_TMI_NEW_JSON_FILE" xml:space="preserve">
+    新增JSON档案
+  </data>
+  <data name="JE_TMI_NEW_JSON_FILES" xml:space="preserve">
+    新建JSON档案库
+  </data>
+  <data name="JE_TMI_OPEN_FOLDER" xml:space="preserve">
+    打开资料夹
+  </data>
+  <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
+    开启
+  </data>
+  <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
+    重新整理
+  </data>
+  <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
+    重新命名
+  </data>
+  <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
+    重新命名
+  </data>
+  <data name="JE_TMI_SAVE_AS_JSON_FILES" xml:space="preserve">
+    另存JSON档案库
+  </data>
+  <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
+    存取JSON档案库
+  </data>
+  <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
+    扫描JSON档案库
+  </data>
+  <data name="JE_TMI_VIEW_JFI_FILE" xml:space="preserve">
+    用记事本开启JSON关联档
+  </data>
+  <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
+    用记事本开启
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
+    外部索引栏位名遗失
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST" xml:space="preserve">
+    外部索引栏位不存在
+  </data>
+  <data name="JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH" xml:space="preserve">
+    外部索引栏位型别与此栏位型别不合
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_MISSING" xml:space="preserve">
+    外部索引档案名遗失
+  </data>
+  <data name="JE_VAL_COLUMN_FK_TABLE_NOT_EXIST" xml:space="preserve">
+    外部索引档案不存在
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
+    栏位名称不正确
+  </data>
+  <data name="JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION" xml:space="preserve">
+    正则表达式格式错误
+  </data>
+  <data name="JE_VAL_COLUMN_IS_KEY_AND_IS_NULL" xml:space="preserve">
+    Key栏位不能为Null值
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE" xml:space="preserve">
+    文字最大长度错误，合法值为0(不限)或正整数
+  </data>
+  <data name="JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED" xml:space="preserve">
+    "{0}"不是正确的最大值
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
+    "{0}"不是正确的最小值
+  </data>
+  <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE" xml:space="preserve">
+    最小值"{0}"高於最大值"{1}"
+  </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">
+    非数字或日期时间含有最大值
+  </data>
+  <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE" xml:space="preserve">
+    非数字或日期时间含有最小值
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
+    栏位行数过大或为负值
+  </data>
+  <data name="JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION" xml:space="preserve">
+    数字或日期时间含有正则表达式验证
+  </data>
+  <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
+    键值"{0}"重复
+  </data>
+  <data name="JE_VAL_FK_VALUE_NOT_FOUND" xml:space="preserve">
+    外部索引值"{0}"不存在
+  </data>
+  <data name="JE_VAL_GREATER_THEN_MAX_VALUE" xml:space="preserve">
+    "{0}"高於最大值"{1}"
+  </data>
+  <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
+    "{0}"不符合资料型态
+  </data>
+  <data name="JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
+    JSON关联档案不合规则：档案"{0}"，栏位"{1}"，
+  </data>
+  <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
+    "{0}"低於最小值"{1}"
+  </data>
+  <data name="JE_VAL_NOT_NULLABLE" xml:space="preserve">
+    不可以为Null值
+  </data>
+  <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
+    "{0}"规则检查失败
+  </data>
+  <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
+    文字超过最大长度{0}
+  </data>
+  <data name="JE_VAL_VALUE_IS_NOT_UNIQUE" xml:space="preserve">
+    值"{0}"已存在
+  </data>
+  <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
+    JSON 资料档案编辑器
+  </data>
+</root>

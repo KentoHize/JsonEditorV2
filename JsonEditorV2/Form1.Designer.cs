@@ -126,6 +126,7 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
+            this.tmiLanguageZHCN = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -740,8 +741,9 @@
             // tmiLanguages
             // 
             this.tmiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmiLanguageZHTW,
-            this.tmiLanguageENUS});
+            this.tmiLanguageENUS,
+            this.tmiLanguageZHCN,
+            this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
             this.tmiLanguages.Size = new System.Drawing.Size(30, 24);
             this.tmiLanguages.Text = "X";
@@ -1059,6 +1061,13 @@
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
             // 
+            // tmiLanguageZHCN
+            // 
+            this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
+            this.tmiLanguageZHCN.Size = new System.Drawing.Size(216, 26);
+            this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
+            this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1202,6 +1211,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiAritiafelBackup;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem tmiRunSomething;
+        private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHCN;
     }
 }
 
