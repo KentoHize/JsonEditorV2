@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace JsonEditorV2
         public static CultureInfo CI { get; set; }
         public static long DontLoadFileBytesThreshold { get; set; } //bytes
         public static int NumberOfRowsMaxValue { get; set; }
+        public static Color InvalidLineBackColor { get; set; }
     }
 }

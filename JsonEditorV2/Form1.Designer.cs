@@ -1091,6 +1091,7 @@
             this.dgvLines.AllowUserToOrderColumns = true;
             this.dgvLines.AllowUserToResizeColumns = false;
             this.dgvLines.AllowUserToResizeRows = false;
+            this.dgvLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLines.Location = new System.Drawing.Point(429, 109);
             this.dgvLines.MultiSelect = false;
@@ -1102,6 +1103,7 @@
             this.dgvLines.ShowEditingIcon = false;
             this.dgvLines.Size = new System.Drawing.Size(407, 649);
             this.dgvLines.TabIndex = 31;
+            this.dgvLines.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLines_DataBindingComplete);
             this.dgvLines.SelectionChanged += new System.EventHandler(this.dgvLines_SelectionChanged);
             // 
             // MainForm

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -730,6 +731,8 @@ namespace JsonEditorV2
                 if (Var.SelectedTable.Columns[j].Display)
                     dt.Columns.Add(Var.SelectedTable.Columns[j].Name);
 
+            dt.Columns.Add(Const.HiddenColumnName);
+
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();                
@@ -741,8 +744,6 @@ namespace JsonEditorV2
                             continue;
 
                         string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
-
-                        
                         dr[Var.SelectedTable.Columns[j].Name] = r;
                         ////Can Improve to do(可改長度偵測)
                         //if (r.Length > 12)
@@ -751,14 +752,15 @@ namespace JsonEditorV2
                         //    displayString.AppendFormat("{0} ", r);
                     }
                 }
-                //if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
-                //    displayString.Append("(Invalid)");
+
+                if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
+                    dr[Const.HiddenColumnName] = "R";
 
                 dt.Rows.Add(dr);
                 //lsbLines.Items.Add(displayString.ToString());
             }
 
-            dgvLines.DataSource = dt;
+            dgvLines.DataSource = dt;            
             if(dgvLines.Rows.Count != 0)
             {
                 if (Var.SelectedLineIndex == -1)
@@ -1707,6 +1709,13 @@ namespace JsonEditorV2
                             PropertyInfo pi = typeof(Setting).GetProperty(line.Split('=')[0]);
                             if (pi.PropertyType == typeof(CultureInfo))
                                 pi.SetValue(null, new CultureInfo(line.Split('=')[1]));
+                            else if (pi.PropertyType == typeof(Color))
+                            {
+                                string[] value = line.Split('=');
+                                pi.SetValue(null, Color.FromArgb(int.Parse(value[2].Split(',')[0]),
+                                    int.Parse(value[3].Split(',')[0]), int.Parse(value[4].Split(',')[0]),
+                                    int.Parse(value[5].Split(']')[0])));
+                            }   
                             else
                                 pi.SetValue(null, Convert.ChangeType(line.Split('=')[1], pi.PropertyType));
                         }
@@ -1719,8 +1728,9 @@ namespace JsonEditorV2
                 Setting.UseQuickCheck = false;
                 Setting.DontLoadFileBytesThreshold = 10000;
                 Setting.NumberOfRowsMaxValue = 30;
+                Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
             }
-
+            
             ckbQuickCheck.Checked = Setting.UseQuickCheck;
             ChangeCulture();
             cobColumnType.DataSource =
@@ -2007,9 +2017,11 @@ namespace JsonEditorV2
                         foreach (var pi in pis)
                             sw.WriteLine($"{pi.Name}={pi.GetValue(null)}");
                     }
+                    //Process.Start("Notepad.exe", fs.Name);
                 }
             }
             catch { }
+            
         }
 
         private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)
@@ -2022,6 +2034,15 @@ namespace JsonEditorV2
             if(dgvLines.SelectedRows.Count != 0 && !Var.LockPnlMain)
                 Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
             RefreshPnlMainValue();
+        }
+
+        private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            int lastColumnIndex = dgvLines.Columns.GetLastColumn(DataGridViewElementStates.None, DataGridViewElementStates.None).Index;
+            dgvLines.Columns[lastColumnIndex].Visible = false;
+            for (int i = 0; i < dgvLines.Rows.Count; i++)
+                if (dgvLines.Rows[i].Cells[lastColumnIndex].Value != DBNull.Value)
+                    dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
         }
     }
 }
