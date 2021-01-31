@@ -150,6 +150,9 @@
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     <value>Quick Check</value>
   </data>
+  <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
+    <value>Auto Generate Key</value>
+  </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
     <value>Description</value>
   </data>

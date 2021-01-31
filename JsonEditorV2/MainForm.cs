@@ -33,7 +33,6 @@ namespace JsonEditorV2
             PatchTextFromResource();
         }
 
-
         #region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource()
         {
@@ -52,6 +51,7 @@ namespace JsonEditorV2
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
+            lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -200,7 +200,7 @@ namespace JsonEditorV2
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
-            }
+            }            
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
@@ -289,6 +289,7 @@ namespace JsonEditorV2
             Var.SelectedColumn.Display = ckbColumnDisplay.Checked;
             Var.SelectedColumn.Description = txtColumnDescription.Text;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
+            Var.SelectedColumn.AutoGenerateKey = ckbAutoGenerateKey.Checked;
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
@@ -1619,7 +1620,11 @@ namespace JsonEditorV2
         public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
-            cobColumnType.Enabled = FKIsEmpty;
+            cobColumnType.Enabled =            
+            ckbAutoGenerateKey.Enabled = FKIsEmpty;
+            if (!FKIsEmpty)
+                ckbAutoGenerateKey.Checked = false;
+
         }
 
         public void tmiOpenFolder_Click(object sender, EventArgs e)
@@ -1677,7 +1682,7 @@ namespace JsonEditorV2
                 Enum.GetValues(typeof(JType)).OfType<JType>()
                 .Except(new List<JType> { JType.None })
                 .ToList();
-            cobColumnType.SelectedIndex = -1;
+            cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
             tmiBackup.Visible = false;
@@ -1735,12 +1740,12 @@ namespace JsonEditorV2
             if (cobColumnType.SelectedIndex == -1)
                 return;
             JType result = (JType)Enum.Parse(typeof(JType), cobColumnType.SelectedValue.ToString());
-            txtColumnRegex.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
-                 result == JType.String;
-            txtColumnMaxLength.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
-                (result == JType.String || result == JType.Uri);
+            txtColumnRegex.Enabled =
+            txtColumnMaxLength.Enabled = !ckbAutoGenerateKey.Checked && 
+                cobColumnFKColumn.SelectedIndex == -1 &&
+                result == JType.String || result == JType.Uri;
             txtColumnMinValue.Enabled =
-            txtColumnMaxValue.Enabled = cobColumnFKColumn.SelectedIndex == -1 &&
+            txtColumnMaxValue.Enabled = !ckbAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
                 (result.IsDateTime() || result.IsNumber());
         }
 
@@ -1954,11 +1959,8 @@ namespace JsonEditorV2
         }
 
         private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)
-        {
-            txtColumnMinValue.Enabled =
-            txtColumnMaxValue.Enabled =
-            txtColumnRegex.Enabled =
-            txtColumnMaxLength.Enabled = !ckbAutoGenerateKey.Checked;
+        {   
+            cobColumnType_SelectedIndexChanged(sender, e);            
         }
     }
 }

@@ -160,6 +160,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 自動產生索引值.
+        /// </summary>
+        public static string JE_COLUMN_AUTO_GENERATE_KEY {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_AUTO_GENERATE_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位描述.
         /// </summary>
         public static string JE_COLUMN_DESCRIPTION {
