@@ -20,8 +20,10 @@ namespace JsonEditorV2
         public static List<int> LineIndexes { get; set; } = new List<int>();
 
         public static int ClickedTabIndex { get; set; } //按下的TabIndex
+        public static bool LockDgvLines { get; set; } //鎖定控制項不更新
+        public static bool LockPnlMain { get; set; } //鎖定控制項不更新
         public static bool CheckFailedFlag { get; set; } //存檔失敗Flag        
-        public static bool AskSaveFlag { get; set; } //已問過是否存檔Falg
+        public static bool NotOnlyClose { get; set; } //不是只有關閉Flag
 
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }

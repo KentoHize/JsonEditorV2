@@ -410,6 +410,7 @@ namespace JsonEditorV2
                     }
                 }
 
+                Var.NotOnlyClose = true;
                 tmiCloseAllFiles_Click(this, e);
                 Var.Tables = new List<JTable>();
                 Var.JFI.DirectoryPath = fbdMain.SelectedPath;
@@ -420,7 +421,6 @@ namespace JsonEditorV2
 
         public DialogResult AskSaveFiles(string title)
         {
-            Var.AskSaveFlag = true;
             Var.CheckFailedFlag = false;
             if (Var.Changed)
             {
@@ -453,6 +453,7 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
+            Var.NotOnlyClose = true;
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
@@ -501,6 +502,7 @@ namespace JsonEditorV2
                 return;
 
             //關閉檔案
+            Var.NotOnlyClose = true;
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
@@ -645,6 +647,9 @@ namespace JsonEditorV2
 
         private void RefreshPnlMainValue()
         {
+            if (Var.LockPnlMain)
+                return;
+            
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
             btnDeleteLine.Enabled =
@@ -680,6 +685,8 @@ namespace JsonEditorV2
 
         private void RefreshPnlMain()
         {
+            if (Var.LockDgvLines)
+                return;
             int lines = 0;
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
@@ -702,16 +709,19 @@ namespace JsonEditorV2
             }
         }
 
-        private void RefreshLsbLines()
+        private void RefreshDgvLines()
         {
-            //lsbLines.Items.Clear();
-            dgvLines.DataSource = null;
+            if (Var.LockDgvLines)
+                return;
 
+            Var.LockPnlMain = true;
+            dgvLines.DataSource = null;
+            Var.LockPnlMain = false;
             btnNewLine.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-            
+            Var.LockPnlMain = true;
             Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             DataTable dt = new DataTable();
@@ -719,11 +729,9 @@ namespace JsonEditorV2
                 if (Var.SelectedTable.Columns[j].Display)
                     dt.Columns.Add(Var.SelectedTable.Columns[j].Name);
 
-                    StringBuilder displayString;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
-                DataRow dr = dt.NewRow();
-                displayString = new StringBuilder();
+                DataRow dr = dt.NewRow();                
                 for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
                 {
                     if (Var.SelectedTable.Columns[j].Display)
@@ -750,19 +758,29 @@ namespace JsonEditorV2
             }
 
             dgvLines.DataSource = dt;
-            if(Var.SelectedLineIndex != -1)
+            if(dgvLines.Rows.Count != 0)
+            {
+                if (Var.SelectedLineIndex == -1)
+                    Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
+
                 dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
-            //lsbLines.SelectedIndex = Var.SelectedLineIndex;
+                if (!dgvLines.Rows[Var.SelectedLineIndex].Displayed)
+                    dgvLines.FirstDisplayedScrollingRowIndex = Var.SelectedLineIndex;
+            }
+
+            Var.LockPnlMain = false;
             btnNewLine.Enabled = true;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
+            RefreshPnlMainValue();
             RefreshTrvSelectedFileChange();
         }
 
         private void RefreshTbcMain()
         {
+            Var.LockDgvLines = true;
             while (Var.OpenedTable.Count > tbcMain.TabPages.Count)
-                tbcMain.TabPages.Add(new TabPage());
-
+                tbcMain.TabPages.Add(new TabPage());            
+            
             tbcMain.SelectedIndex = Var.PageIndex;
 
             while (Var.OpenedTable.Count < tbcMain.TabPages.Count && tbcMain.TabPages.Count != 1)
@@ -774,13 +792,14 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
 
+            Var.LockDgvLines = false;
             RefreshPnlMain();
-            RefreshLsbLines();
+            RefreshDgvLines();
         }
 
         public void tmiCloseAllFiles_Click(object sender, EventArgs e)
         {
-            if (!Var.AskSaveFlag && AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
+            if (!Var.NotOnlyClose && AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
                 return;
             Var.Tables = null;
             Var.OpenedTable.Clear();
@@ -791,9 +810,13 @@ namespace JsonEditorV2
             Var.SelectedColumn = null;
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
-            Var.AskSaveFlag = false;
-            RefreshTrvJsonFiles();
-            RefreshTbcMain();
+            
+            if(!Var.NotOnlyClose)
+            {
+                RefreshTrvJsonFiles();
+                RefreshTbcMain();
+            }
+            Var.NotOnlyClose = false;
             sslMain.Text = "";
         }
 
@@ -1425,8 +1448,9 @@ namespace JsonEditorV2
 
             Var.SelectedTable.Changed = true;            
             Var.SelectedLineIndex = dgvLines.Rows.Count;
+
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
-            RefreshLsbLines();
+            RefreshDgvLines();
             RefreshPnlMainValue();
         }
 
@@ -1507,7 +1531,7 @@ namespace JsonEditorV2
         {
             Var.PageIndex = tbcMain.SelectedIndex;
             RefreshPnlMain();
-            RefreshLsbLines();
+            RefreshDgvLines();
         }
 
         public void btnClearMain_Click(object sender, EventArgs e)
@@ -1552,7 +1576,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
             RefreshPnlMain();
-            RefreshLsbLines();
+            RefreshDgvLines();
         }
 
         public void btnUpdateMain_Click(object sender, EventArgs e)
@@ -1573,8 +1597,8 @@ namespace JsonEditorV2
                 Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
-            Var.SelectedTable.Changed = true;
-            RefreshLsbLines();
+            Var.SelectedTable.Changed = true;            
+            RefreshDgvLines();
             RefreshPnlMainValue();
         }
 
@@ -1828,12 +1852,13 @@ namespace JsonEditorV2
                 return;
             }
 
+            Var.LockPnlMain = true;
             JLine jl = Var.SelectedTable[index - 1];
             Var.SelectedTable[index - 1] = Var.SelectedTable[index];
             Var.SelectedTable[index] = jl;
             Var.SelectedLineIndex--;
-            Var.SelectedTable.Changed = true;
-            RefreshLsbLines();
+            Var.SelectedTable.Changed = true;            
+            RefreshDgvLines();
         }
 
         public void btnLineMoveDown_Click(object sender, EventArgs e)
@@ -1847,12 +1872,13 @@ namespace JsonEditorV2
                 return;
             }
 
+            Var.LockPnlMain = true;
             JLine jl = Var.SelectedTable[index + 1];
             Var.SelectedTable[index + 1] = Var.SelectedTable[index];
             Var.SelectedTable[index] = jl;
             Var.SelectedLineIndex++;
             Var.SelectedTable.Changed = true;
-            RefreshLsbLines();
+            RefreshDgvLines();
         }
 
         private void ckbQuickCheck_CheckedChanged(object sender, EventArgs e)
@@ -1993,7 +2019,7 @@ namespace JsonEditorV2
 
         private void dgvLines_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvLines.SelectedRows.Count != 0)
+            if(dgvLines.SelectedRows.Count != 0 && !Var.LockPnlMain)
                 Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
             RefreshPnlMainValue();
         }
