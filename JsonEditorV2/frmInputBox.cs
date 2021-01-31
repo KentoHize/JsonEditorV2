@@ -72,7 +72,7 @@ namespace JsonEditorV2
         public void btnCancel_Click(object sender, EventArgs e)
         {
             ReturnValue = null;
-            Hide();
+            DialogResult = DialogResult.Cancel;
         }
 
         public void btnConfirm_Click(object sender, EventArgs e)
@@ -121,7 +121,7 @@ namespace JsonEditorV2
                     break;
             }
             ReturnValue = txtInput.Text;
-            Hide();
+            DialogResult = DialogResult.OK;
         }
 
         public void frmInputBox_KeyPress(object sender, KeyPressEventArgs e)
