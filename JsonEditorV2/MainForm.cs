@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -91,8 +92,7 @@ namespace JsonEditorV2
 
         public void lsbLines_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Var.SelectedLineIndex = lsbLines.SelectedIndex;
-            RefreshPnlMainValue();
+
         }
 
         //取消FK
@@ -704,7 +704,9 @@ namespace JsonEditorV2
 
         private void RefreshLsbLines()
         {
-            lsbLines.Items.Clear();
+            //lsbLines.Items.Clear();
+            dgvLines.DataSource = null;
+
             btnNewLine.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
@@ -712,9 +714,15 @@ namespace JsonEditorV2
             
             Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
-            StringBuilder displayString;
+            DataTable dt = new DataTable();
+            for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
+                if (Var.SelectedTable.Columns[j].Display)
+                    dt.Columns.Add(Var.SelectedTable.Columns[j].Name);
+
+                    StringBuilder displayString;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
+                DataRow dr = dt.NewRow();
                 displayString = new StringBuilder();
                 for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
                 {
@@ -725,19 +733,26 @@ namespace JsonEditorV2
 
                         string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
 
-                        //Can Improve to do(可改長度偵測)
-                        if (r.Length > 12)
-                            displayString.AppendFormat("{0}.. ", r.Substring(0, 10));
-                        else
-                            displayString.AppendFormat("{0} ", r);
+                        
+                        dr[Var.SelectedTable.Columns[j].Name] = r;
+                        ////Can Improve to do(可改長度偵測)
+                        //if (r.Length > 12)
+                        //    displayString.AppendFormat("{0}.. ", r.Substring(0, 10));
+                        //else
+                        //    displayString.AppendFormat("{0} ", r);
                     }
                 }
-                if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
-                    displayString.Append("(Invalid)");
-                lsbLines.Items.Add(displayString.ToString());
+                //if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
+                //    displayString.Append("(Invalid)");
+
+                dt.Rows.Add(dr);
+                //lsbLines.Items.Add(displayString.ToString());
             }
 
-            lsbLines.SelectedIndex = Var.SelectedLineIndex;
+            dgvLines.DataSource = dt;
+            if(Var.SelectedLineIndex != -1)
+                dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
+            //lsbLines.SelectedIndex = Var.SelectedLineIndex;
             btnNewLine.Enabled = true;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
@@ -1409,7 +1424,7 @@ namespace JsonEditorV2
             Var.SelectedTable.GenerateNewLine();
 
             Var.SelectedTable.Changed = true;            
-            Var.SelectedLineIndex = lsbLines.Items.Count;
+            Var.SelectedLineIndex = dgvLines.Rows.Count;
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
             RefreshLsbLines();
             RefreshPnlMainValue();
@@ -1809,7 +1824,7 @@ namespace JsonEditorV2
                 return;
             else if (index == 0)
             {
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_UP_M_1", Res.JE_RUN_LINE_MOVE_TITLE, lsbLines.Items[index].ToString());
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_UP_M_1", Res.JE_RUN_LINE_MOVE_TITLE, index);
                 return;
             }
 
@@ -1828,7 +1843,7 @@ namespace JsonEditorV2
                 return;
             else if (index == Var.SelectedTable.Count - 1)
             {
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_DOWN_M_1", Res.JE_RUN_LINE_MOVE_TITLE, lsbLines.Items[index].ToString());
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LINE_MOVE_DOWN_M_1", Res.JE_RUN_LINE_MOVE_TITLE, index);
                 return;
             }
 
@@ -1974,6 +1989,13 @@ namespace JsonEditorV2
         private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)
         {   
             cobColumnType_SelectedIndexChanged(sender, e);            
+        }
+
+        private void dgvLines_SelectionChanged(object sender, EventArgs e)
+        {
+            if(dgvLines.SelectedRows.Count != 0)
+                Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
+            RefreshPnlMainValue();
         }
     }
 }

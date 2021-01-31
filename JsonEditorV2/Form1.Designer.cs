@@ -65,7 +65,6 @@
             this.lblColumnIsKey = new System.Windows.Forms.Label();
             this.lblColumnType = new System.Windows.Forms.Label();
             this.lblColumnName = new System.Windows.Forms.Label();
-            this.lsbLines = new System.Windows.Forms.ListBox();
             this.trvJsonFiles = new System.Windows.Forms.TreeView();
             this.imlMain = new System.Windows.Forms.ImageList(this.components);
             this.stsMain = new System.Windows.Forms.StatusStrip();
@@ -129,6 +128,7 @@
             this.btnLineMoveUp = new System.Windows.Forms.Button();
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
+            this.dgvLines = new System.Windows.Forms.DataGridView();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -137,6 +137,7 @@
             this.cmsJsonFiles.SuspendLayout();
             this.cmsJsonFileSelected.SuspendLayout();
             this.cmsColumnSelected.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLines)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClearColumn
@@ -155,7 +156,7 @@
             // 
             this.btnClearMain.Enabled = false;
             this.btnClearMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearMain.Location = new System.Drawing.Point(818, 764);
+            this.btnClearMain.Location = new System.Drawing.Point(840, 764);
             this.btnClearMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearMain.Name = "btnClearMain";
             this.btnClearMain.Size = new System.Drawing.Size(122, 40);
@@ -554,18 +555,6 @@
             this.lblColumnName.TabIndex = 8;
             this.lblColumnName.Text = "-";
             // 
-            // lsbLines
-            // 
-            this.lsbLines.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lsbLines.FormattingEnabled = true;
-            this.lsbLines.ItemHeight = 20;
-            this.lsbLines.Location = new System.Drawing.Point(429, 64);
-            this.lsbLines.Margin = new System.Windows.Forms.Padding(4);
-            this.lsbLines.Name = "lsbLines";
-            this.lsbLines.Size = new System.Drawing.Size(384, 684);
-            this.lsbLines.TabIndex = 14;
-            this.lsbLines.SelectedIndexChanged += new System.EventHandler(this.lsbLines_SelectedIndexChanged);
-            // 
             // trvJsonFiles
             // 
             this.trvJsonFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -603,7 +592,7 @@
             this.sslMain});
             this.stsMain.Location = new System.Drawing.Point(0, 810);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1507, 22);
+            this.stsMain.Size = new System.Drawing.Size(1518, 22);
             this.stsMain.TabIndex = 11;
             this.stsMain.Text = "sspMain";
             // 
@@ -654,10 +643,10 @@
             // 
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(818, 66);
+            this.pnlMain.Location = new System.Drawing.Point(840, 66);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(682, 692);
+            this.pnlMain.Size = new System.Drawing.Size(676, 692);
             this.pnlMain.TabIndex = 21;
             // 
             // mnsMain
@@ -670,7 +659,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1507, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1518, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -1031,7 +1020,7 @@
             // 
             this.btnNewLine.Enabled = false;
             this.btnNewLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewLine.Location = new System.Drawing.Point(690, 764);
+            this.btnNewLine.Location = new System.Drawing.Point(714, 764);
             this.btnNewLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewLine.Name = "btnNewLine";
             this.btnNewLine.Size = new System.Drawing.Size(122, 40);
@@ -1059,7 +1048,7 @@
             this.btnLineMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLineMoveUp.ImageIndex = 4;
             this.btnLineMoveUp.ImageList = this.imlMain;
-            this.btnLineMoveUp.Location = new System.Drawing.Point(627, 764);
+            this.btnLineMoveUp.Location = new System.Drawing.Point(656, 764);
             this.btnLineMoveUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnLineMoveUp.Name = "btnLineMoveUp";
             this.btnLineMoveUp.Size = new System.Drawing.Size(50, 40);
@@ -1095,11 +1084,27 @@
             this.ckbQuickCheck.UseVisualStyleBackColor = true;
             this.ckbQuickCheck.CheckedChanged += new System.EventHandler(this.ckbQuickCheck_CheckedChanged);
             // 
+            // dgvLines
+            // 
+            this.dgvLines.AllowUserToAddRows = false;
+            this.dgvLines.AllowUserToDeleteRows = false;
+            this.dgvLines.AllowUserToOrderColumns = true;
+            this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLines.Location = new System.Drawing.Point(429, 109);
+            this.dgvLines.Name = "dgvLines";
+            this.dgvLines.ReadOnly = true;
+            this.dgvLines.RowTemplate.Height = 24;
+            this.dgvLines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvLines.Size = new System.Drawing.Size(407, 649);
+            this.dgvLines.TabIndex = 31;
+            this.dgvLines.SelectionChanged += new System.EventHandler(this.dgvLines_SelectionChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1507, 832);
+            this.ClientSize = new System.Drawing.Size(1518, 832);
+            this.Controls.Add(this.dgvLines);
             this.Controls.Add(this.ckbQuickCheck);
             this.Controls.Add(this.btnLineMoveDown);
             this.Controls.Add(this.btnLineMoveUp);
@@ -1107,7 +1112,6 @@
             this.Controls.Add(this.btnNewLine);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.mnsMain);
-            this.Controls.Add(this.lsbLines);
             this.Controls.Add(this.tbcMain);
             this.Controls.Add(this.btnClearColumn);
             this.Controls.Add(this.btnClearMain);
@@ -1135,6 +1139,7 @@
             this.cmsJsonFiles.ResumeLayout(false);
             this.cmsJsonFileSelected.ResumeLayout(false);
             this.cmsColumnSelected.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLines)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1158,7 +1163,6 @@
         private System.Windows.Forms.Label lblColumnIsKey;
         private System.Windows.Forms.Label lblColumnType;
         private System.Windows.Forms.Label lblColumnName;
-        private System.Windows.Forms.ListBox lsbLines;
         private System.Windows.Forms.TreeView trvJsonFiles;
         private System.Windows.Forms.StatusStrip stsMain;
         private System.Windows.Forms.ToolStripStatusLabel sslMain;
@@ -1241,6 +1245,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHCN;
         private System.Windows.Forms.CheckBox ckbAutoGenerateKey;
         private System.Windows.Forms.Label lblAutoGenerateKey;
+        private System.Windows.Forms.DataGridView dgvLines;
     }
 }
 
