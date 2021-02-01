@@ -115,7 +115,7 @@ namespace JsonEditorV2
         {
             if(e.Value != DBNull.Value)
                 e.Value = e.Value.ToString(fkTable.Columns[e.ColumnIndex].Type);
-            else if(e.Value == DBNull.Value)
+            else
             {
                 e.Value = "(null)";
                 e.CellStyle.Font = new Font(Font, FontStyle.Italic);
