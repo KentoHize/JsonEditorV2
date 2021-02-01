@@ -717,12 +717,10 @@ namespace JsonEditorV2
 
             Var.LockPnlMain = true;
             dgvLines.DataSource = null;
-            Var.LockPnlMain = false;
             btnNewLine.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-            Var.LockPnlMain = true;
             if(Var.SelectedTable.Changed)
                 Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
@@ -731,7 +729,8 @@ namespace JsonEditorV2
                 if (Var.SelectedTable.Columns[j].Display)
                     dt.Columns.Add(Var.SelectedTable.Columns[j].Name);
 
-            dt.Columns.Add(Const.HiddenColumnName);
+            dt.Columns.Add(Const.HiddenColumnItemIndex);
+            dt.Columns.Add(Const.HiddenColumnStat);
 
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
@@ -752,8 +751,10 @@ namespace JsonEditorV2
                     }
                 }
 
+                dr[Const.HiddenColumnItemIndex] = i;                
                 if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
-                    dr[Const.HiddenColumnName] = "N";
+                    dr[Const.HiddenColumnStat] = "R";
+
                 dt.Rows.Add(dr);
             }
 
@@ -1443,6 +1444,12 @@ namespace JsonEditorV2
 
         public void btnNewLine_Click(object sender, EventArgs e)
         {
+            if(Var.SelectedTable.Columns.Count == 0)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
+                return;
+            }
+
             Var.SelectedTable.GenerateNewLine();
 
             Var.SelectedTable.Changed = true;            
@@ -2028,19 +2035,35 @@ namespace JsonEditorV2
 
         private void dgvLines_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvLines.SelectedRows.Count != 0 && !Var.LockPnlMain)
-                Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
+            if(dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
+                Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
             RefreshPnlMainValue();
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            int lastColumnIndex = dgvLines.Columns.GetLastColumn(DataGridViewElementStates.None, DataGridViewElementStates.None).Index;
-            dgvLines.Columns[lastColumnIndex].Visible = false;
+            dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvLines.Columns[dgvLines.Columns.Count - 1].Visible =
+            dgvLines.Columns[dgvLines.Columns.Count - 2].Visible = false;
+
+            int totalColumnWidth = 0;
+            for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
+                totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
+            
+            if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
+                dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             for (int i = 0; i < dgvLines.Rows.Count; i++)            
-                if (dgvLines.Rows[i].Cells[lastColumnIndex].Value != DBNull.Value)
+                if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
+        }
+
+        private void dgvLines_Sorted(object sender, EventArgs e)
+        {
+            //var query = (from t in dgvLines.Rows.Cast<DataGridViewRow>()
+            //            where Convert.ToInt32(t.Cells[Const.HiddenColumnItemIndex].Value) == Var.SelectedLineIndex
+            //            select t.Index).First();
+            //dgvLines.Rows[query].Selected = true;
         }
     }
 }

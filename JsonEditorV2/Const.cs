@@ -14,7 +14,8 @@ namespace JsonEditorV2
         public const string ColumnNameRegex = @"^[\w][\w\-]{0,49}$";
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 
-        public const string HiddenColumnName = "{0D58183F-E5B5-4AF4-9A00-E3F56CB91142}";
+        public const string HiddenColumnItemIndex = "{0D58183F-E5B5-4AF4-9A00-E3F56CB91142}";
+        public const string HiddenColumnStat = "{72FF197D-4019-43F7-A3D7-D4E4C488DC22}";
 
         public static string BackupFolder { get => Path.Combine(Application.UserAppDataPath, "Backup"); }
         public static string ApplicationDataFolder { get => Path.Combine(Application.UserAppDataPath); }

@@ -745,6 +745,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 檔案沒有欄位不能新增資料.
+        /// </summary>
+        public static string JE_RUN_NEW_LINE_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_NEW_LINE_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已存在.
         /// </summary>
         public static string JE_RUN_RENAME_COLUMN_M_1 {

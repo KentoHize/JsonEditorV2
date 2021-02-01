@@ -37,12 +37,15 @@
             this.dgvMain.AllowUserToAddRows = false;
             this.dgvMain.AllowUserToDeleteRows = false;
             this.dgvMain.AllowUserToOrderColumns = true;
+            this.dgvMain.AllowUserToResizeRows = false;
+            this.dgvMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvMain.Location = new System.Drawing.Point(0, 0);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
-            this.dgvMain.RowTemplate.Height = 24;
+            this.dgvMain.RowHeadersVisible = false;
+            this.dgvMain.RowTemplate.Height = 18;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMain.Size = new System.Drawing.Size(1014, 430);
             this.dgvMain.TabIndex = 0;

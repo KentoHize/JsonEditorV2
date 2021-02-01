@@ -345,6 +345,9 @@
   <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
     <value>"{0}" New line added.</value>
   </data>
+  <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
+    <value>New line need at least 1 column in a file.</value>
+  </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
     <value>Column "{0}" already exists.</value>
   </data>

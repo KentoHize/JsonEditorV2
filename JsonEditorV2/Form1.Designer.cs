@@ -1105,6 +1105,7 @@
             this.dgvLines.TabIndex = 31;
             this.dgvLines.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLines_DataBindingComplete);
             this.dgvLines.SelectionChanged += new System.EventHandler(this.dgvLines_SelectionChanged);
+            this.dgvLines.Sorted += new System.EventHandler(this.dgvLines_Sorted);
             // 
             // MainForm
             // 
