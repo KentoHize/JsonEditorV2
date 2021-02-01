@@ -708,6 +708,9 @@ namespace JsonEditorV2
                     lines += Var.SelectedTable.Columns[i].NumberOfRows;
                 Var.InputControlSets.Add(ics);
             }
+
+            if(Var.SelectedLineIndex != -1)
+                RefreshPnlMainValue();
         }
 
         private void RefreshDgvLines()
@@ -792,9 +795,9 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
 
-            Var.LockDgvLines = false;
-            RefreshPnlMain();
+            Var.LockDgvLines = false;            
             RefreshDgvLines();
+            RefreshPnlMain();
         }
 
         public void tmiCloseAllFiles_Click(object sender, EventArgs e)
@@ -966,13 +969,11 @@ namespace JsonEditorV2
             {
                 //補足效果
                 Var.DblClick = false;
-                //if (e.Node.IsExpanded)
-                //    e.Node.Collapse();
-                //else
-                //    e.Node.Expand();
-
                 if (tmiOpenJsonFile.Enabled)
                     tmiOpenJsonFile_Click(this, new EventArgs());
+                else
+                    Var.PageIndex = Var.OpenedTable.FindIndex(m => m.Name == e.Node.Tag.ToString());
+                RefreshTbcMain();
             }
         }
 
@@ -1535,9 +1536,9 @@ namespace JsonEditorV2
 
         public void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Var.PageIndex = tbcMain.SelectedIndex;
-            RefreshPnlMain();
+            Var.PageIndex = tbcMain.SelectedIndex;            
             RefreshDgvLines();
+            RefreshPnlMain();
         }
 
         public void btnClearMain_Click(object sender, EventArgs e)

@@ -22,6 +22,7 @@ namespace JsonEditorV2
         public static int ClickedTabIndex { get; set; } //按下的TabIndex
         public static bool LockDgvLines { get; set; } //鎖定控制項不更新
         public static bool LockPnlMain { get; set; } //鎖定控制項不更新
+        public static bool LockDgvMain { get; set; }  //鎖定控制項不更新
         public static bool CheckFailedFlag { get; set; } //存檔失敗Flag        
         public static bool NotOnlyClose { get; set; } //不是只有關閉Flag
 

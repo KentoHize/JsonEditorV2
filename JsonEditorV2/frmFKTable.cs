@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Aritiafel.Organizations;
+using JsonEditor;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using JsonEditor;
-using Aritiafel.Organizations;
 
 namespace JsonEditorV2
 {
@@ -26,26 +21,28 @@ namespace JsonEditorV2
         }
 
         public static object Show(IWin32Window owner, string ColumnName, JTable FKTable, string FKColumnName, string currentValue)
-        {            
+        {
             frmFKTable frmFKTable = new frmFKTable();
 
             if (!FKTable.Loaded)
                 MainForm.LoadOrScanJsonFile(FKTable);
 
+            Var.LockDgvMain = true;
+
             frmFKTable.fkTable = FKTable;
             DataTable dt = FKTable.ToDataTable();
             frmFKTable.Text = ColumnName;
             frmFKTable.keyColumnName = FKColumnName;
-            frmFKTable.currentValue = currentValue;           
-            frmFKTable.dgvMain.Columns.Clear();            
+            frmFKTable.currentValue = currentValue;
+            frmFKTable.dgvMain.Columns.Clear();
             frmFKTable.dgvMain.DataSource = dt;
-            frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.Font = 
+            frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.Font =
                 new Font(frmFKTable.Font, FontStyle.Bold);
             frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.BackColor =
             frmFKTable.dgvMain.Columns[FKColumnName].DefaultCellStyle.BackColor = Color.Azure;
             frmFKTable.dgvMain.ClearSelection();
             frmFKTable.dgvMain.Columns[FKColumnName].DisplayIndex = 0;
-
+            Var.LockDgvMain = false;
             frmFKTable.ShowDialogOrCallEvent(owner);
             return frmFKTable.Value;
         }
@@ -57,7 +54,6 @@ namespace JsonEditorV2
 
             Value = dgvMain.Rows[e.RowIndex].Cells[keyColumnName].Value;
             DialogResult = DialogResult.OK;
-            Hide();
         }
 
         public void frmFKTable_KeyPress(object sender, KeyPressEventArgs e)
@@ -66,38 +62,42 @@ namespace JsonEditorV2
             {
                 Value = null;
                 DialogResult = DialogResult.Cancel;
-                Hide();
+            }
+            else if(e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                Value = dgvMain.SelectedRows[0].Cells[keyColumnName].Value;
+                DialogResult = DialogResult.OK;
             }
         }
 
         public void dgvMain_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {            
-            int i;
+        {
+            if (Var.LockDgvMain)
+                return;
+            int i;            
             for (i = 0; i < dgvMain.Rows.Count; i++)
             {
                 if (dgvMain.Rows[i].Cells[keyColumnName].Value.ToString() == currentValue)
                 {
-                    dgvMain.Rows[i].Selected = true;                    
+                    dgvMain.Rows[i].Selected = true;
                     break;
                 }
             }
 
             int autoHeight = dgvMain.ColumnHeadersHeight + 5;
-            int autoWidth = dgvMain.RowHeadersWidth + 3;
+            autoHeight += dgvMain.Rows.Count * (dgvMain.Rows[0].Height + dgvMain.Rows[0].DividerHeight);
 
-            if (dgvMain.Rows.Count != 0)
-            {
-                autoHeight += dgvMain.Rows.Count * (dgvMain.Rows[0].Height + dgvMain.Rows[0].DividerHeight);
-                autoWidth += dgvMain.Columns.Count * (dgvMain.Columns[0].Width + dgvMain.Columns[0].DividerWidth);
-            }
+            if (i != dgvMain.Rows.Count)
+                dgvMain.FirstDisplayedScrollingRowIndex = i;
+
+            int autoWidth = 3;
+            for (i = 0; i < dgvMain.Columns.Count; i++)
+                autoWidth += dgvMain.Columns[i].Width + dgvMain.Columns[i].DividerWidth;
 
             if (autoHeight < dgvMain.Height)
                 dgvMain.Height = autoHeight;
             if (autoWidth < dgvMain.Width)
                 dgvMain.Width = autoWidth;
-
-            if (i != dgvMain.Rows.Count)
-                dgvMain.FirstDisplayedScrollingRowIndex = i;
         }
 
         public void dgvMain_KeyPress(object sender, KeyPressEventArgs e)
