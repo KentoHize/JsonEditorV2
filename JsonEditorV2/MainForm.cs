@@ -38,7 +38,7 @@ namespace JsonEditorV2
         #region RESOURCES_TEXT_PATCH
         private void PatchTextFromResource()
         {
-            Text = Res.JSON_FILE_EDITOR_TITLE;
+            Text = $"{Res.JSON_FILE_EDITOR_TITLE} - {Const.VersionString}";
             lblColumnName.Text = Res.JE_COLUMN_NAME;
             lblColumnType.Text = Res.JE_COLUMN_TYPE;
             lblColumnIsKey.Text = Res.JE_COLUMN_IS_KEY;
@@ -749,10 +749,10 @@ namespace JsonEditorV2
                             continue;
 
                         string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
-                        if (r.Length > Setting.DgvLinesStringMaxLength)
-                            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
-                        else
-                            r = string.Format("{0} ", r);
+                        //if (r.Length > Setting.DgvLinesStringMaxLength)
+                        //    r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
+                        //else
+                        //    r = string.Format("{0} ", r);
                         dr[Var.SelectedTable.Columns[j].Name] = r;                        
                     }
                 }
@@ -2070,11 +2070,15 @@ namespace JsonEditorV2
             if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
                 dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            for (int i = 0; i < dgvLines.Rows.Count; i++)            
+            for (int i = 0; i < dgvLines.Rows.Count; i++)
+            {
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
 
-            
+                for (int j = 0; j < dgvLines.Columns.Count - 2; j++)
+                    if (dgvLines.Rows[i].Cells[j].Value == DBNull.Value)
+                        dgvLines.Rows[i].Cells[j].Value = "(null)";
+            }
                 
         }
 

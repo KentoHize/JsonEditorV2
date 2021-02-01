@@ -418,7 +418,7 @@ namespace JsonEditor
             {
                 //IsNull
                 if (jl[i].Value == null && Columns[i].IsNullable)
-                    return true;
+                    continue;
 
                 else if (jl[i].Value == null && !Columns[i].IsNullable)
                 {
