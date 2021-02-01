@@ -619,6 +619,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;，值&quot;{1}&quot;，搜尋失敗.
+        /// </summary>
+        public static string JE_RUN_FIND_NO_ITEM_FOUND {
+            get {
+                return ResourceManager.GetString("JE_RUN_FIND_NO_ITEM_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 尋找資料.
+        /// </summary>
+        public static string JE_RUN_FIND_TITLE {
+            get {
+                return ResourceManager.GetString("JE_RUN_FIND_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 資料行&quot;{0}&quot;已移至底端.
         /// </summary>
         public static string JE_RUN_LINE_MOVE_DOWN_M_1 {

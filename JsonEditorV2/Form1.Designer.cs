@@ -129,6 +129,9 @@
             this.btnLineMoveDown = new System.Windows.Forms.Button();
             this.ckbQuickCheck = new System.Windows.Forms.CheckBox();
             this.dgvLines = new System.Windows.Forms.DataGridView();
+            this.cobFindColumnName = new System.Windows.Forms.ComboBox();
+            this.txtFindValue = new System.Windows.Forms.TextBox();
+            this.btnFindConfirm = new System.Windows.Forms.Button();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -584,6 +587,7 @@
             this.imlMain.Images.SetKeyName(3, "Key.png");
             this.imlMain.Images.SetKeyName(4, "UpArrow.png");
             this.imlMain.Images.SetKeyName(5, "DownArrow.png");
+            this.imlMain.Images.SetKeyName(6, "Find.png");
             // 
             // stsMain
             // 
@@ -1093,7 +1097,7 @@
             this.dgvLines.AllowUserToResizeRows = false;
             this.dgvLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLines.Location = new System.Drawing.Point(429, 109);
+            this.dgvLines.Location = new System.Drawing.Point(429, 99);
             this.dgvLines.MultiSelect = false;
             this.dgvLines.Name = "dgvLines";
             this.dgvLines.ReadOnly = true;
@@ -1101,17 +1105,56 @@
             this.dgvLines.RowTemplate.Height = 18;
             this.dgvLines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLines.ShowEditingIcon = false;
-            this.dgvLines.Size = new System.Drawing.Size(407, 649);
+            this.dgvLines.Size = new System.Drawing.Size(407, 659);
             this.dgvLines.TabIndex = 31;
             this.dgvLines.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLines_DataBindingComplete);
             this.dgvLines.SelectionChanged += new System.EventHandler(this.dgvLines_SelectionChanged);
             this.dgvLines.Sorted += new System.EventHandler(this.dgvLines_Sorted);
+            // 
+            // cobFindColumnName
+            // 
+            this.cobFindColumnName.DisplayMember = "Name";
+            this.cobFindColumnName.FormattingEnabled = true;
+            this.cobFindColumnName.Location = new System.Drawing.Point(428, 69);
+            this.cobFindColumnName.Name = "cobFindColumnName";
+            this.cobFindColumnName.Size = new System.Drawing.Size(145, 24);
+            this.cobFindColumnName.TabIndex = 32;
+            this.cobFindColumnName.ValueMember = "Name";
+            this.cobFindColumnName.SelectedIndexChanged += new System.EventHandler(this.cobFindColumnName_SelectedIndexChanged);
+            // 
+            // txtFindValue
+            // 
+            this.txtFindValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFindValue.Location = new System.Drawing.Point(579, 68);
+            this.txtFindValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFindValue.Name = "txtFindValue";
+            this.txtFindValue.Size = new System.Drawing.Size(213, 27);
+            this.txtFindValue.TabIndex = 33;
+            this.txtFindValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFindValue.TextChanged += new System.EventHandler(this.txtFindValue_TextChanged);
+            // 
+            // btnFindConfirm
+            // 
+            this.btnFindConfirm.Enabled = false;
+            this.btnFindConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFindConfirm.ImageIndex = 6;
+            this.btnFindConfirm.ImageList = this.imlMain;
+            this.btnFindConfirm.Location = new System.Drawing.Point(796, 67);
+            this.btnFindConfirm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFindConfirm.Name = "btnFindConfirm";
+            this.btnFindConfirm.Size = new System.Drawing.Size(41, 29);
+            this.btnFindConfirm.TabIndex = 34;
+            this.btnFindConfirm.UseVisualStyleBackColor = true;
+            this.btnFindConfirm.Click += new System.EventHandler(this.btnFindConfirm_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1518, 832);
+            this.Controls.Add(this.btnFindConfirm);
+            this.Controls.Add(this.txtFindValue);
+            this.Controls.Add(this.cobFindColumnName);
             this.Controls.Add(this.dgvLines);
             this.Controls.Add(this.ckbQuickCheck);
             this.Controls.Add(this.btnLineMoveDown);
@@ -1254,6 +1297,9 @@
         private System.Windows.Forms.CheckBox ckbAutoGenerateKey;
         private System.Windows.Forms.Label lblAutoGenerateKey;
         private System.Windows.Forms.DataGridView dgvLines;
+        private System.Windows.Forms.ComboBox cobFindColumnName;
+        private System.Windows.Forms.TextBox txtFindValue;
+        private System.Windows.Forms.Button btnFindConfirm;
     }
 }
 

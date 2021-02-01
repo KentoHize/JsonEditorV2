@@ -721,6 +721,8 @@ namespace JsonEditorV2
             Var.LockPnlMain = true;
             dgvLines.DataSource = null;
             btnNewLine.Enabled =
+            cobFindColumnName.Enabled = false;
+            btnFindConfirm.Enabled = 
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
@@ -772,8 +774,12 @@ namespace JsonEditorV2
                     dgvLines.FirstDisplayedScrollingRowIndex = Var.SelectedLineIndex;
             }
 
+            cobFindColumnName.DataSource = Var.SelectedTable.Columns;
+
             Var.LockPnlMain = false;
             btnNewLine.Enabled = true;
+            cobFindColumnName.Enabled = true;
+            btnFindConfirm.Enabled = true;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;            
             RefreshTrvSelectedFileChange();
         }
@@ -1439,6 +1445,10 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Columns.Remove(Var.SelectedColumn);
             Var.SelectedColumn = null;
 
+            //如果欄位是空的，砍掉所有資料列
+            if (Var.SelectedColumnParentTable.Columns.Count == 0)
+                Var.SelectedColumnParentTable.Clear();
+
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_COLUMN_M_2, removedName);
         }
@@ -2037,8 +2047,11 @@ namespace JsonEditorV2
         private void dgvLines_SelectionChanged(object sender, EventArgs e)
         {
             if(dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
+            {
                 Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
-            RefreshPnlMainValue();
+                Var.ContinuousFindTimes = 0;
+                RefreshPnlMainValue();
+            }
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -2061,10 +2074,47 @@ namespace JsonEditorV2
 
         private void dgvLines_Sorted(object sender, EventArgs e)
         {
-            //var query = (from t in dgvLines.Rows.Cast<DataGridViewRow>()
-            //            where Convert.ToInt32(t.Cells[Const.HiddenColumnItemIndex].Value) == Var.SelectedLineIndex
-            //            select t.Index).First();
-            //dgvLines.Rows[query].Selected = true;
+            Var.ContinuousFindTimes = 0;
+        }
+
+        private void btnFindConfirm_Click(object sender, EventArgs e)
+        {
+            if (txtFindValue.Text == "" || Var.SelectedTable == null)
+                return;
+
+            int columnIndex = Var.SelectedTable.Columns.FindIndex(m => m.Name == cobFindColumnName.SelectedValue.ToString());
+            if (columnIndex == -1)
+                return;
+
+            int itemIndex;
+            if(Var.ContinuousFindTimes == 0)
+                itemIndex = Var.SelectedTable.Lines.FindIndex(m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+            else
+                itemIndex = Var.SelectedTable.Lines.FindIndex(Var.SelectedLineIndex + 1, m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+
+            if(itemIndex == -1 && Var.ContinuousFindTimes != 0)
+                itemIndex = Var.SelectedTable.Lines.FindIndex(m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+
+            Var.ContinuousFindTimes++;
+
+            if (itemIndex != -1)
+            {
+                Var.SelectedLineIndex = itemIndex;
+                RefreshDgvLines();
+                RefreshPnlMainValue();
+            }
+            else
+                RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
+        }
+
+        private void cobFindColumnName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Var.ContinuousFindTimes = 0;
+        }
+
+        private void txtFindValue_TextChanged(object sender, EventArgs e)
+        {
+            Var.ContinuousFindTimes = 0;
         }
     }
 }

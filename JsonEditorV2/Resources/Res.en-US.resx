@@ -303,6 +303,9 @@
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>Line "{0}" deleted.</value>
   </data>
+  <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
+    <value>Column "{0}", value "{1}", data not found.</value>
+  </data>
   <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
     <value>Data line "{0}" is a bottom line.</value>
   </data>
