@@ -41,7 +41,7 @@ namespace JsonEditor
                 case JType.Date:
                     return ((DateTime)instance).ToShortDateString();
                 case JType.Time:
-                    return ((DateTime)instance).ToLongTimeString();
+                    return ((DateTime)instance).Millisecond == 0 ? ((DateTime)instance).ToLongTimeString() : ((DateTime)instance).ToString("HH:mm:ss.ffff");
                 default:
                     return instance.ToString();
             }
@@ -436,13 +436,12 @@ namespace JsonEditor
                     if (Guid.TryParse(jt.ToString(), out Guid guid))
                         return JType.Guid;
                     else if (DateTime.TryParse(jt.ToString(), out DateTime datetime))
-                    {
-                        //To do 不嚴謹
+                    {   
                         if (jt.ToString().Length > 10)
                             return JType.DateTime;
-                        else if (jt.ToString() == DateTime.MinValue.ToLongTimeString())
+                        else if (datetime.Date == DateTime.Today  && datetime.TimeOfDay.Ticks != 0)
                             return JType.Time;
-                        else if (datetime.TimeOfDay.TotalSeconds == 0)
+                        else if (datetime.TimeOfDay.Ticks == 0)
                             return JType.Date;
                         else
                             return JType.Time;

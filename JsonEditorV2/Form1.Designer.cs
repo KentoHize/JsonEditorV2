@@ -35,7 +35,7 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
-            this.ckbAutoGenerateKey = new System.Windows.Forms.CheckBox();
+            this.ckbColumnAutoGenerateKey = new System.Windows.Forms.CheckBox();
             this.lblAutoGenerateKey = new System.Windows.Forms.Label();
             this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
             this.lblColumnIsUnique = new System.Windows.Forms.Label();
@@ -199,7 +199,7 @@
             // pnlFileInfo
             // 
             this.pnlFileInfo.AutoScroll = true;
-            this.pnlFileInfo.Controls.Add(this.ckbAutoGenerateKey);
+            this.pnlFileInfo.Controls.Add(this.ckbColumnAutoGenerateKey);
             this.pnlFileInfo.Controls.Add(this.lblAutoGenerateKey);
             this.pnlFileInfo.Controls.Add(this.ckbColumnIsUnique);
             this.pnlFileInfo.Controls.Add(this.lblColumnIsUnique);
@@ -236,16 +236,16 @@
             this.pnlFileInfo.Size = new System.Drawing.Size(420, 324);
             this.pnlFileInfo.TabIndex = 15;
             // 
-            // ckbAutoGenerateKey
+            // ckbColumnAutoGenerateKey
             // 
-            this.ckbAutoGenerateKey.AutoSize = true;
-            this.ckbAutoGenerateKey.Location = new System.Drawing.Point(371, 399);
-            this.ckbAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbAutoGenerateKey.Name = "ckbAutoGenerateKey";
-            this.ckbAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
-            this.ckbAutoGenerateKey.TabIndex = 34;
-            this.ckbAutoGenerateKey.UseVisualStyleBackColor = true;
-            this.ckbAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
+            this.ckbColumnAutoGenerateKey.AutoSize = true;
+            this.ckbColumnAutoGenerateKey.Location = new System.Drawing.Point(371, 399);
+            this.ckbColumnAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnAutoGenerateKey.Name = "ckbColumnAutoGenerateKey";
+            this.ckbColumnAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnAutoGenerateKey.TabIndex = 34;
+            this.ckbColumnAutoGenerateKey.UseVisualStyleBackColor = true;
+            this.ckbColumnAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
             // 
             // lblAutoGenerateKey
             // 
@@ -690,39 +690,39 @@
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiScanJsonFiles
             // 
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
             // tmiLoadJsonFiles
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -730,32 +730,32 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(93, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(90, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
-            this.tmiExit.Size = new System.Drawing.Size(93, 26);
+            this.tmiExit.Size = new System.Drawing.Size(216, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -1118,6 +1118,7 @@
             this.dgvLines.ShowEditingIcon = false;
             this.dgvLines.Size = new System.Drawing.Size(407, 659);
             this.dgvLines.TabIndex = 31;
+            this.dgvLines.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLines_CellFormatting);
             this.dgvLines.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLines_DataBindingComplete);
             this.dgvLines.SelectionChanged += new System.EventHandler(this.dgvLines_SelectionChanged);
             this.dgvLines.Sorted += new System.EventHandler(this.dgvLines_Sorted);
@@ -1310,7 +1311,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem tmiRunSomething;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHCN;
-        private System.Windows.Forms.CheckBox ckbAutoGenerateKey;
+        private System.Windows.Forms.CheckBox ckbColumnAutoGenerateKey;
         private System.Windows.Forms.Label lblAutoGenerateKey;
         private System.Windows.Forms.DataGridView dgvLines;
         private System.Windows.Forms.ComboBox cobFindColumnName;

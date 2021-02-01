@@ -19,7 +19,8 @@ namespace JsonEditorV2Tests
         ColumnIsUnique,
         ColumnFKTable,
         ColumnFKColumn,
-        ColumnDescription
+        ColumnDescription,
+        ColumnAutoGenerateKey
     }
 
     public class ColumnAttributeInfo
@@ -59,7 +60,8 @@ namespace JsonEditorV2Tests
               { ColumnAttributeNames.ColumnIsUnique, new ColumnAttributeInfo(ColumnAttributeNames.ColumnIsUnique, typeof(CheckBox)) },
               { ColumnAttributeNames.ColumnFKTable, new ColumnAttributeInfo(ColumnAttributeNames.ColumnFKTable, typeof(ComboBox)) },
               { ColumnAttributeNames.ColumnFKColumn, new ColumnAttributeInfo(ColumnAttributeNames.ColumnFKColumn, typeof(ComboBox)) },
-              { ColumnAttributeNames.ColumnDescription, new ColumnAttributeInfo(ColumnAttributeNames.ColumnDescription, typeof(TextBox)) }
+              { ColumnAttributeNames.ColumnDescription, new ColumnAttributeInfo(ColumnAttributeNames.ColumnDescription, typeof(TextBox)) },
+              { ColumnAttributeNames.ColumnAutoGenerateKey, new ColumnAttributeInfo(ColumnAttributeNames.ColumnAutoGenerateKey, typeof(CheckBox)) }
             };
     }
 

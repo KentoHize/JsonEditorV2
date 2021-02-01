@@ -65,10 +65,15 @@ namespace JsonEditor
 
             foreach (JLine jl in Lines)
             {
+                DataRow dr = dt.NewRow();
                 List<object> lo = new List<object>();
                 for (int i = 0; i < Columns.Count; i++)
-                    lo.Add(jl[i].Value);
-                dt.LoadDataRow(lo.ToArray(), true);
+                {
+                    if (jl[i].Value == null)
+                        continue;
+                    dr[i] = jl[i].Value;
+                }
+                dt.Rows.Add(dr);
             }
             return dt;
         }

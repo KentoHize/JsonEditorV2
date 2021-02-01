@@ -5,7 +5,6 @@ using JsonEditorV2.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -75,7 +74,7 @@ namespace JsonEditorV2
             tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
             tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
-            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;            
+            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
@@ -202,7 +201,7 @@ namespace JsonEditorV2
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
                 ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 return;
-            }            
+            }
             else if (cobColumnFKTable.SelectedIndex > 0 && cobColumnFKColumn.SelectedIndex == -1)
             {
                 //欄位FK檢查
@@ -213,7 +212,7 @@ namespace JsonEditorV2
             JType newType = (JType)cobColumnType.SelectedValue;
 
             //自動產生值時取消最大、最小、長度、正則表達式條件
-            if(ckbAutoGenerateKey.Checked)
+            if (ckbColumnAutoGenerateKey.Checked)
             {
                 txtColumnMaxLength.Text = "0";
                 txtColumnRegex.Text = "";
@@ -298,7 +297,7 @@ namespace JsonEditorV2
             Var.SelectedColumn.Display = ckbColumnDisplay.Checked;
             Var.SelectedColumn.Description = txtColumnDescription.Text;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
-            Var.SelectedColumn.AutoGenerateKey = ckbAutoGenerateKey.Checked;
+            Var.SelectedColumn.AutoGenerateKey = ckbColumnAutoGenerateKey.Checked;
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
@@ -360,7 +359,7 @@ namespace JsonEditorV2
                Var.SelectedColumn.RegularExpression != txtColumnRegex.Text ||
                Var.SelectedColumn.MaxLength != long.Parse(txtColumnMaxLength.Text))
             {
-                
+
                 Var.SelectedColumn.MinValue = txtColumnMinValue.Text != "" ? (txtColumnMinValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
                 Var.SelectedColumn.MaxValue = txtColumnMaxValue.Text != "" ? (txtColumnMaxValue.Text.ParseJType(newType) ?? "").ToString(newType) : "";
                 Var.SelectedColumn.RegularExpression = txtColumnRegex.Text;
@@ -437,9 +436,7 @@ namespace JsonEditorV2
         }
 
         public void tmiExit_Click(object sender, EventArgs e)
-        {
-            if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
-                return;
+        { 
             Close();
         }
 
@@ -459,7 +456,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
             string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();            
+            Var.Tables = new List<JTable>();
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -651,7 +648,7 @@ namespace JsonEditorV2
         {
             if (Var.LockPnlMain)
                 return;
-            
+
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
             btnDeleteLine.Enabled =
@@ -710,7 +707,7 @@ namespace JsonEditorV2
                 Var.InputControlSets.Add(ics);
             }
 
-            if(Var.SelectedLineIndex != -1)
+            if (Var.SelectedLineIndex != -1)
                 RefreshPnlMainValue();
         }
 
@@ -723,11 +720,11 @@ namespace JsonEditorV2
             dgvLines.DataSource = null;
             btnNewLine.Enabled =
             cobFindColumnName.Enabled = false;
-            btnFindConfirm.Enabled = 
+            btnFindConfirm.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-            if(Var.SelectedTable.Changed)
+            if (Var.SelectedTable.Changed)
                 Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             DataTable dt = new DataTable();
@@ -740,7 +737,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
-                DataRow dr = dt.NewRow();                
+                DataRow dr = dt.NewRow();
                 for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
                 {
                     if (Var.SelectedTable.Columns[j].Display)
@@ -764,8 +761,8 @@ namespace JsonEditorV2
                 dt.Rows.Add(dr);
             }
 
-            dgvLines.DataSource = dt;            
-            if(dgvLines.Rows.Count != 0)
+            dgvLines.DataSource = dt;
+            if (dgvLines.Rows.Count != 0)
             {
                 if (Var.SelectedLineIndex == -1)
                     Var.SelectedLineIndex = dgvLines.SelectedRows[0].Index;
@@ -781,7 +778,7 @@ namespace JsonEditorV2
             btnNewLine.Enabled = true;
             cobFindColumnName.Enabled = true;
             btnFindConfirm.Enabled = true;
-            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;            
+            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
         }
 
@@ -789,8 +786,8 @@ namespace JsonEditorV2
         {
             Var.LockDgvLines = true;
             while (Var.OpenedTable.Count > tbcMain.TabPages.Count)
-                tbcMain.TabPages.Add(new TabPage());            
-            
+                tbcMain.TabPages.Add(new TabPage());
+
             tbcMain.SelectedIndex = Var.PageIndex;
 
             while (Var.OpenedTable.Count < tbcMain.TabPages.Count && tbcMain.TabPages.Count != 1)
@@ -802,7 +799,7 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.OpenedTable.Count; i++)
                 tbcMain.TabPages[i].Text = Var.OpenedTable[i].Name;
 
-            Var.LockDgvLines = false;            
+            Var.LockDgvLines = false;
             RefreshDgvLines();
             RefreshPnlMain();
         }
@@ -820,8 +817,8 @@ namespace JsonEditorV2
             Var.SelectedColumn = null;
             Var.SelectedColumnParentTable = null;
             Var.PageIndex = -1;
-            
-            if(!Var.NotOnlyClose)
+
+            if (!Var.NotOnlyClose)
             {
                 RefreshTrvJsonFiles();
                 RefreshTbcMain();
@@ -837,12 +834,12 @@ namespace JsonEditorV2
             {
                 if (jt.Loaded)
                 {
-                    if(!Var.Database.CheckTableValid(jt))
+                    if (!Var.Database.CheckTableValid(jt))
                     {
                         ExceptionHandler.SentTableInvalidMessage(jt);
                         Var.CheckFailedFlag = true;
                         return;
-                    }                   
+                    }
                 }
             }
 
@@ -961,14 +958,14 @@ namespace JsonEditorV2
                 txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
                 txtColumnMaxLength.Text = Var.SelectedColumn.MaxLength.ToString();
                 ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
-                ckbAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
+                ckbColumnAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
                 btnUpdateColumn.Enabled = true;
             }
             else
             {
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
-            }           
+            }
         }
 
         public void trvJsonFiles_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -1082,7 +1079,7 @@ namespace JsonEditorV2
 
         public void cobColumnFKTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool autoGenerateKey = ckbAutoGenerateKey.Checked;
+            bool autoGenerateKey = ckbColumnAutoGenerateKey.Checked;
             if (cobColumnFKTable.SelectedIndex < 1)
                 cobColumnFKColumn.DataSource = null;
             else
@@ -1095,7 +1092,7 @@ namespace JsonEditorV2
                 cobColumnFKColumn.ValueMember = "Name";
                 cobColumnFKColumn.SelectedIndex = -1;
             }
-            ckbAutoGenerateKey.Checked = autoGenerateKey;
+            ckbColumnAutoGenerateKey.Checked = autoGenerateKey;
         }
 
         public void RefreshTmiLanguages()
@@ -1456,14 +1453,14 @@ namespace JsonEditorV2
 
         public void btnNewLine_Click(object sender, EventArgs e)
         {
-            if(Var.SelectedTable.Columns.Count == 0)
+            if (Var.SelectedTable.Columns.Count == 0)
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
                 return;
             }
 
             Var.SelectedTable.GenerateNewLine();
-            Var.SelectedTable.Changed = true;            
+            Var.SelectedTable.Changed = true;
             Var.SelectedLineIndex = dgvLines.Rows.Count;
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
@@ -1546,7 +1543,7 @@ namespace JsonEditorV2
 
         public void tbcMain_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Var.PageIndex = tbcMain.SelectedIndex;            
+            Var.PageIndex = tbcMain.SelectedIndex;
             RefreshDgvLines();
             RefreshPnlMain();
         }
@@ -1614,7 +1611,7 @@ namespace JsonEditorV2
                 Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
-            Var.SelectedTable.Changed = true;            
+            Var.SelectedTable.Changed = true;
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1683,9 +1680,9 @@ namespace JsonEditorV2
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
             cobColumnType.Enabled =
-            ckbAutoGenerateKey.Enabled = FKIsEmpty;
+            ckbColumnAutoGenerateKey.Enabled = FKIsEmpty;
             if (!FKIsEmpty)
-                ckbAutoGenerateKey.Checked = false;
+                ckbColumnAutoGenerateKey.Checked = false;
             cobColumnType_SelectedIndexChanged(sender, e);
         }
 
@@ -1738,14 +1735,14 @@ namespace JsonEditorV2
                                 pi.SetValue(null, Color.FromArgb(int.Parse(value[2].Split(',')[0]),
                                     int.Parse(value[3].Split(',')[0]), int.Parse(value[4].Split(',')[0]),
                                     int.Parse(value[5].Split(']')[0])));
-                            }   
+                            }
                             else
                                 pi.SetValue(null, Convert.ChangeType(line.Split('=')[1], pi.PropertyType));
                         }
                     }
                 }
             }
-            
+
             ckbQuickCheck.Checked = Setting.UseQuickCheck;
             ChangeCulture();
             cobColumnType.DataSource =
@@ -1788,7 +1785,7 @@ namespace JsonEditorV2
             }
 
             //Test Area
-            
+
             // Get secret click event key
             //FieldInfo eventClick = typeof(Control).GetField("EventClick", BindingFlags.NonPublic | BindingFlags.Static);
             //object secret = eventClick.GetValue(null);
@@ -1811,15 +1808,15 @@ namespace JsonEditorV2
                 return;
             JType result = (JType)cobColumnType.SelectedItem;
 
-            ckbAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+            ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
-                ckbAutoGenerateKey.Checked = ckbAutoGenerateKey.Enabled = false;
+                ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;
             txtColumnRegex.Enabled =
-            txtColumnMaxLength.Enabled = !ckbAutoGenerateKey.Checked && 
+            txtColumnMaxLength.Enabled = !ckbColumnAutoGenerateKey.Checked &&
                 cobColumnFKColumn.SelectedIndex == -1 &&
                 result == JType.String || result == JType.Uri;
             txtColumnMinValue.Enabled =
-            txtColumnMaxValue.Enabled = !ckbAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
+            txtColumnMaxValue.Enabled = !ckbColumnAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
                 (result.IsDateTime() || result.IsNumber());
         }
 
@@ -1882,7 +1879,7 @@ namespace JsonEditorV2
             Var.SelectedTable[index - 1] = Var.SelectedTable[index];
             Var.SelectedTable[index] = jl;
             Var.SelectedLineIndex--;
-            Var.SelectedTable.Changed = true;            
+            Var.SelectedTable.Changed = true;
             RefreshDgvLines();
         }
 
@@ -2021,6 +2018,12 @@ namespace JsonEditorV2
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (AskSaveFiles(Res.JE_TMI_EXIT) == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+                return;
+            }
+                
             //Setting.ini存取
             try
             {
@@ -2036,17 +2039,17 @@ namespace JsonEditorV2
                 }
             }
             catch { }
-            
+
         }
 
         private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)
-        {   
-            cobColumnType_SelectedIndexChanged(sender, e);            
+        {
+            cobColumnType_SelectedIndexChanged(sender, e);
         }
 
         private void dgvLines_SelectionChanged(object sender, EventArgs e)
         {
-            if(dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
+            if (dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
             {
                 Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
                 Var.ContinuousFindTimes = 0;
@@ -2055,7 +2058,7 @@ namespace JsonEditorV2
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {                       
+        {
             dgvLines.Columns[dgvLines.Columns.Count - 1].Visible = false;
             if (dgvLines.Columns.Count == 2)
             {
@@ -2069,20 +2072,13 @@ namespace JsonEditorV2
             int totalColumnWidth = 0;
             for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
                 totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
-            
+
             if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
                 dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             for (int i = 0; i < dgvLines.Rows.Count; i++)
-            {
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
-
-                for (int j = 0; j < dgvLines.Columns.Count - 2; j++)
-                    if (dgvLines.Rows[i].Cells[j].Value == DBNull.Value)
-                        dgvLines.Rows[i].Cells[j].Value = "(null)";
-            }
-                
         }
 
         private void dgvLines_Sorted(object sender, EventArgs e)
@@ -2100,12 +2096,12 @@ namespace JsonEditorV2
                 return;
 
             int itemIndex;
-            if(Var.ContinuousFindTimes == 0)
+            if (Var.ContinuousFindTimes == 0)
                 itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
             else
                 itemIndex = Var.SelectedTable.Lines.FindIndex(Var.SelectedLineIndex + 1, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
 
-            if(itemIndex == -1 && Var.ContinuousFindTimes != 0)
+            if (itemIndex == -1 && Var.ContinuousFindTimes != 0)
                 itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
 
             Var.ContinuousFindTimes++;
@@ -2132,10 +2128,20 @@ namespace JsonEditorV2
 
         private void tmiColumnShowOnList_Click(object sender, EventArgs e)
         {
-            Var.SelectedColumn.Display = !Var.SelectedColumn.Display;            
+            Var.SelectedColumn.Display = !Var.SelectedColumn.Display;
             Var.JFI.Changed = true;
             RefreshPnlFileInfo();
             RefreshTbcMain();
+        }
+
+        private void dgvLines_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value == DBNull.Value)
+            {
+                e.Value = "(null)";
+                e.CellStyle.Font = new Font(Font, FontStyle.Italic);
+            }
+
         }
     }
 }
