@@ -18,12 +18,14 @@ namespace JsonEditorV2Tests
         public JsonEditorTestSystem JETS { get; set; }
 
         //[TestMethod]
-        //public void TempTest()
-        //{
-        //    JETS = new JsonEditorTestSystem();
-        //    JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
-        //    JETS.Exit();
-        //}
+        public void ProduceSimplifiedChineseResourceFile()
+        {
+            WizardGuild.ProduceSimplifiedChineseResourceFile(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\Resources\Res.resx");
+
+            //JETS = new JsonEditorTestSystem();
+            //JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
+            //JETS.Exit();
+        }
 
         [TestMethod]
         public void SystemTest()

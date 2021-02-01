@@ -150,6 +150,9 @@
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     快速检查
   </data>
+  <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
+    自动产生索引值
+  </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
     栏位描述
   </data>
@@ -268,7 +271,7 @@
     新增栏位
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
-    错误的栏位名称，请用'_'或英文字母开头，之後使用'_'、英文字母或是数字，长度不要超过50位
+    错误的栏位名称，请用'_'或非特殊文字开头，之後使用'_'、非特殊文字或是数字，长度不要超过50位
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     不符合规则的档案名称
@@ -299,6 +302,12 @@
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     "{0}"资料已删除
+  </data>
+  <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
+    栏位"{0}"，值"{1}"，搜寻失败
+  </data>
+  <data name="JE_RUN_FIND_TITLE" xml:space="preserve">
+    寻找资料
   </data>
   <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
     资料行"{0}"已移至底端
@@ -341,6 +350,9 @@
   </data>
   <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
     "{0}"已新增资料
+  </data>
+  <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
+    档案没有栏位不能新增资料
   </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
     栏位"{0}"已存在
@@ -414,6 +426,9 @@
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     上移
   </data>
+  <data name="JE_TMI_COLUMN_SHOW_ON_LIST" xml:space="preserve">
+    显示栏位
+  </data>
   <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
     删除
   </data>
@@ -470,6 +485,12 @@
   </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     用记事本开启
+  </data>
+  <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
+    自动产生索引栏位适用在不正确的型别上(只有数字、字串或是Guid可以被自动产生)
+  </data>
+  <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT" xml:space="preserve">
+    自动产生索引栏位附带限制条件(最小值、最大值、文字长度或正则表达式)
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
     外部索引栏位名遗失
