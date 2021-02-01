@@ -749,11 +749,11 @@ namespace JsonEditorV2
                             continue;
 
                         string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
-                        //if (r.Length > Setting.DgvLinesStringMaxLength)
-                        //    r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
-                        //else
-                        //    r = string.Format("{0} ", r);
-                        dr[Var.SelectedTable.Columns[j].Name] = r;                        
+                        if (r.Length > Setting.DgvLinesStringMaxLength)
+                            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
+                        else
+                            r = string.Format("{0} ", r);
+                        dr[Var.SelectedTable.Columns[j].Name] = r;
                     }
                 }
 
@@ -1105,6 +1105,9 @@ namespace JsonEditorV2
                 ToolStripMenuItem tsmi = tsi as ToolStripMenuItem;
                 if (tsmi != null)
                     tsmi.Checked = false;
+                else
+                    continue;
+
                 if (tsmi.Name.Contains(Setting.CI.Name.Remove(2, 1).ToUpper()))
                     tsmi.Checked = true;
             }
@@ -1713,7 +1716,7 @@ namespace JsonEditorV2
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
             Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
-            Setting.DgvLinesStringMaxLength = 12;
+            Setting.DgvLinesStringMaxLength = 20;
 
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
@@ -1742,7 +1745,7 @@ namespace JsonEditorV2
                     }
                 }
             }
-
+            
             ckbQuickCheck.Checked = Setting.UseQuickCheck;
             ChangeCulture();
             cobColumnType.DataSource =

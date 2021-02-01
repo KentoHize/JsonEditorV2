@@ -133,6 +133,7 @@
             this.cobFindColumnName = new System.Windows.Forms.ComboBox();
             this.txtFindValue = new System.Windows.Forms.TextBox();
             this.btnFindConfirm = new System.Windows.Forms.Button();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -173,7 +174,7 @@
             // 
             this.btnUpdateMain.Enabled = false;
             this.btnUpdateMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMain.Location = new System.Drawing.Point(1378, 764);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1394, 764);
             this.btnUpdateMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
@@ -762,6 +763,7 @@
             // 
             this.tmiLanguages.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiLanguageENUS,
+            this.toolStripMenuItem10,
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
@@ -771,21 +773,21 @@
             // tmiLanguageENUS
             // 
             this.tmiLanguageENUS.Name = "tmiLanguageENUS";
-            this.tmiLanguageENUS.Size = new System.Drawing.Size(196, 26);
+            this.tmiLanguageENUS.Size = new System.Drawing.Size(216, 26);
             this.tmiLanguageENUS.Text = "English(en-US)";
             this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
             // 
             // tmiLanguageZHCN
             // 
             this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
-            this.tmiLanguageZHCN.Size = new System.Drawing.Size(196, 26);
+            this.tmiLanguageZHCN.Size = new System.Drawing.Size(216, 26);
             this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
             this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
             // 
             // tmiLanguageZHTW
             // 
             this.tmiLanguageZHTW.Name = "tmiLanguageZHTW";
-            this.tmiLanguageZHTW.Size = new System.Drawing.Size(196, 26);
+            this.tmiLanguageZHTW.Size = new System.Drawing.Size(216, 26);
             this.tmiLanguageZHTW.Text = "繁體中文(zh-TW)";
             this.tmiLanguageZHTW.Click += new System.EventHandler(this.tmiLanguageZHTW_Click);
             // 
@@ -1156,6 +1158,11 @@
             this.btnFindConfirm.UseVisualStyleBackColor = true;
             this.btnFindConfirm.Click += new System.EventHandler(this.btnFindConfirm_Click);
             // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(213, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1310,6 +1317,7 @@
         private System.Windows.Forms.TextBox txtFindValue;
         private System.Windows.Forms.Button btnFindConfirm;
         private System.Windows.Forms.ToolStripMenuItem tmiColumnShowOnList;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
     }
 }
 
