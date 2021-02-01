@@ -1460,7 +1460,6 @@ namespace JsonEditorV2
             }
 
             Var.SelectedTable.GenerateNewLine();
-
             Var.SelectedTable.Changed = true;            
             Var.SelectedLineIndex = dgvLines.Rows.Count;
 

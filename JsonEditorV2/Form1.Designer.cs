@@ -987,26 +987,26 @@
             this.tmiColumnMoveUp,
             this.tmiColumnMoveDown});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 140);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 130);
             // 
             // tmiRenameColumn
             // 
             this.tmiRenameColumn.Name = "tmiRenameColumn";
-            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 26);
+            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiRenameColumn.Text = "X";
             this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
             // 
             // tmiColumnShowOnList
             // 
             this.tmiColumnShowOnList.Name = "tmiColumnShowOnList";
-            this.tmiColumnShowOnList.Size = new System.Drawing.Size(87, 26);
+            this.tmiColumnShowOnList.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnShowOnList.Text = "X";
             this.tmiColumnShowOnList.Click += new System.EventHandler(this.tmiColumnShowOnList_Click);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 26);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
@@ -1018,14 +1018,14 @@
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
-            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 26);
+            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveUp.Text = "X";
             this.tmiColumnMoveUp.Click += new System.EventHandler(this.tmiColumnMoveUp_Click);
             // 
             // tmiColumnMoveDown
             // 
             this.tmiColumnMoveDown.Name = "tmiColumnMoveDown";
-            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 26);
+            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
             // 

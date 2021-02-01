@@ -111,6 +111,10 @@ namespace JsonEditorV2
                 if (newValue != null)
                     SetValueToString(newValue);
             }
+            else if (JColumn.Type == JType.Date)
+            {
+
+            }
         }
 
         private void ValueControl_TextChanged(object sender, EventArgs e)
