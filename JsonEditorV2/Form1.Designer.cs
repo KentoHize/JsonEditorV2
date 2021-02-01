@@ -119,6 +119,7 @@
             this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiRenameColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiColumnShowOnList = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDeleteColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiColumnMoveUp = new System.Windows.Forms.ToolStripMenuItem();
@@ -980,24 +981,32 @@
             this.cmsColumnSelected.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsColumnSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiRenameColumn,
+            this.tmiColumnShowOnList,
             this.tmiDeleteColumn,
             this.toolStripMenuItem7,
             this.tmiColumnMoveUp,
             this.tmiColumnMoveDown});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 106);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 140);
             // 
             // tmiRenameColumn
             // 
             this.tmiRenameColumn.Name = "tmiRenameColumn";
-            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 26);
             this.tmiRenameColumn.Text = "X";
             this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
+            // 
+            // tmiColumnShowOnList
+            // 
+            this.tmiColumnShowOnList.Name = "tmiColumnShowOnList";
+            this.tmiColumnShowOnList.Size = new System.Drawing.Size(87, 26);
+            this.tmiColumnShowOnList.Text = "X";
+            this.tmiColumnShowOnList.Click += new System.EventHandler(this.tmiColumnShowOnList_Click);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 26);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
@@ -1009,14 +1018,14 @@
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
-            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 26);
             this.tmiColumnMoveUp.Text = "X";
             this.tmiColumnMoveUp.Click += new System.EventHandler(this.tmiColumnMoveUp_Click);
             // 
             // tmiColumnMoveDown
             // 
             this.tmiColumnMoveDown.Name = "tmiColumnMoveDown";
-            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 26);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
             // 
@@ -1300,6 +1309,7 @@
         private System.Windows.Forms.ComboBox cobFindColumnName;
         private System.Windows.Forms.TextBox txtFindValue;
         private System.Windows.Forms.Button btnFindConfirm;
+        private System.Windows.Forms.ToolStripMenuItem tmiColumnShowOnList;
     }
 }
 

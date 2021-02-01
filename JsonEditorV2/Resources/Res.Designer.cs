@@ -988,6 +988,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 顯示欄位.
+        /// </summary>
+        public static string JE_TMI_COLUMN_SHOW_ON_LIST {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_SHOW_ON_LIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 刪除.
         /// </summary>
         public static string JE_TMI_DELETE_COLUMN {

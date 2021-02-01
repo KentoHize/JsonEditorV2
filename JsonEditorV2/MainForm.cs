@@ -75,8 +75,7 @@ namespace JsonEditorV2
             tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
             tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
-            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
-            tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
+            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;            
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
@@ -84,6 +83,8 @@ namespace JsonEditorV2
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
             tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
             tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
+            tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
+            tmiColumnShowOnList.Text = Res.JE_TMI_COLUMN_SHOW_ON_LIST;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
@@ -734,7 +735,7 @@ namespace JsonEditorV2
                 if (Var.SelectedTable.Columns[j].Display)
                     dt.Columns.Add(Var.SelectedTable.Columns[j].Name);
 
-            dt.Columns.Add(Const.HiddenColumnItemIndex);
+            dt.Columns.Add(new DataColumn { ColumnName = Const.HiddenColumnItemIndex, DataType = typeof(int) });
             dt.Columns.Add(Const.HiddenColumnStat);
 
             for (int i = 0; i < Var.SelectedTable.Count; i++)
@@ -752,11 +753,11 @@ namespace JsonEditorV2
                             r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
                         else
                             r = string.Format("{0} ", r);
-                        dr[Var.SelectedTable.Columns[j].Name] = r;
+                        dr[Var.SelectedTable.Columns[j].Name] = r;                        
                     }
                 }
 
-                dr[Const.HiddenColumnItemIndex] = i;                
+                dr[Const.HiddenColumnItemIndex] = i;
                 if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
                     dr[Const.HiddenColumnStat] = "R";
 
@@ -928,6 +929,7 @@ namespace JsonEditorV2
                 {
                     trvJsonFiles.SelectedNode = e.Node;
                     trvJsonFiles.ContextMenuStrip = cmsColumnSelected;
+                    tmiColumnShowOnList.Checked = Var.SelectedColumn.Display;
                 }
             }
         }
@@ -1436,10 +1438,6 @@ namespace JsonEditorV2
 
             //取消FK
             CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
-
-            //資料全部抓出來砍掉
-            foreach (JLine jl in Var.SelectedColumnParentTable)
-                jl.RemoveAt(Var.SelectedColumnParentTable.Columns.IndexOf(Var.SelectedColumn));
 
             string removedName = Var.SelectedColumn.Name;
             Var.SelectedColumnParentTable.Columns.Remove(Var.SelectedColumn);
@@ -2055,10 +2053,16 @@ namespace JsonEditorV2
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
+        {                       
+            dgvLines.Columns[dgvLines.Columns.Count - 1].Visible = false;
+            if (dgvLines.Columns.Count == 2)
+            {
+                dgvLines.Columns[0].HeaderText = "(Item Index)";
+                dgvLines.Columns[0].Visible = true;
+            }
+            else
+                dgvLines.Columns[dgvLines.Columns.Count - 2].Visible = false;
             dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvLines.Columns[dgvLines.Columns.Count - 1].Visible =
-            dgvLines.Columns[dgvLines.Columns.Count - 2].Visible = false;
 
             int totalColumnWidth = 0;
             for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
@@ -2070,6 +2074,9 @@ namespace JsonEditorV2
             for (int i = 0; i < dgvLines.Rows.Count; i++)            
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
+
+            
+                
         }
 
         private void dgvLines_Sorted(object sender, EventArgs e)
@@ -2088,12 +2095,12 @@ namespace JsonEditorV2
 
             int itemIndex;
             if(Var.ContinuousFindTimes == 0)
-                itemIndex = Var.SelectedTable.Lines.FindIndex(m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
             else
-                itemIndex = Var.SelectedTable.Lines.FindIndex(Var.SelectedLineIndex + 1, m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                itemIndex = Var.SelectedTable.Lines.FindIndex(Var.SelectedLineIndex + 1, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
 
             if(itemIndex == -1 && Var.ContinuousFindTimes != 0)
-                itemIndex = Var.SelectedTable.Lines.FindIndex(m => m.Values[columnIndex].Value.ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
 
             Var.ContinuousFindTimes++;
 
@@ -2115,6 +2122,14 @@ namespace JsonEditorV2
         private void txtFindValue_TextChanged(object sender, EventArgs e)
         {
             Var.ContinuousFindTimes = 0;
+        }
+
+        private void tmiColumnShowOnList_Click(object sender, EventArgs e)
+        {
+            Var.SelectedColumn.Display = !Var.SelectedColumn.Display;            
+            Var.JFI.Changed = true;
+            RefreshPnlFileInfo();
+            RefreshTbcMain();
         }
     }
 }

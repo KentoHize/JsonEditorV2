@@ -423,6 +423,9 @@
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     <value>Move Up</value>
   </data>
+  <data name="JE_TMI_COLUMN_SHOW_ON_LIST" xml:space="preserve">
+    <value>Show on List</value>
+  </data>
   <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
     <value>Delete</value>
   </data>

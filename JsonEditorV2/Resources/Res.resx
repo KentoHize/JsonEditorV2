@@ -426,6 +426,9 @@
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     <value>上移</value>
   </data>
+  <data name="JE_TMI_COLUMN_SHOW_ON_LIST" xml:space="preserve">
+    <value>顯示欄位</value>
+  </data>
   <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
     <value>刪除</value>
   </data>
