@@ -1899,8 +1899,10 @@ namespace JsonEditorV2
                 dic = Var.SelectedTable.InvalidRecords[index - 1];
             if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
                 Var.SelectedTable.InvalidRecords[index - 1] = Var.SelectedTable.InvalidRecords[index];
-            if(dic != null)
+            if (dic != null)
                 Var.SelectedTable.InvalidRecords[index] = dic;
+            else if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
+                Var.SelectedTable.InvalidRecords.Remove(index);
 
             RefreshDgvLines();
         }
@@ -1930,6 +1932,9 @@ namespace JsonEditorV2
                 Var.SelectedTable.InvalidRecords[index + 1] = Var.SelectedTable.InvalidRecords[index];
             if (dic != null)
                 Var.SelectedTable.InvalidRecords[index] = dic;
+            else if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
+                Var.SelectedTable.InvalidRecords.Remove(index);
+                
 
             RefreshDgvLines();
         }
