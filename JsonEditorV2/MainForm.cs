@@ -1486,7 +1486,7 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1605,7 +1605,7 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             RefreshDgvLines();
             RefreshPnlMainValue();
@@ -1632,7 +1632,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
             Var.SelectedTable.Changed = true;
-            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
