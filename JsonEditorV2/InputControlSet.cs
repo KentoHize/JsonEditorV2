@@ -54,15 +54,19 @@ namespace JsonEditorV2
 
             if (ValueControl is TextBox TextControl)
             {
-                ValueControl.Width = 200;
+                TextControl.Width = 200;                
                 if (JColumn.NumberOfRows == 0)
                 {
-                    ValueControl.Left += 100;
-                    ValueControl.Width = 100;
+                    TextControl.Left += 100;
+                    TextControl.Width = 100;
                 }
-                if (JColumn.NumberOfRows > 1)
-                    (ValueControl as TextBox).ScrollBars = ScrollBars.Vertical;
-                ValueControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
+                else if (JColumn.NumberOfRows > 1)
+                {
+                    TextControl.ScrollBars = ScrollBars.Vertical;
+                    TextControl.Multiline = true;
+                }
+                    
+                TextControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
                 NameLabel.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
                 TextControl.TextChanged += ValueControl_TextChanged;                
                 TextControl.GotFocus += TextControl_GotFocus;
@@ -290,7 +294,7 @@ namespace JsonEditorV2
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return new TextBox { Name = $"txt{name}", Multiline = true };
+                    return new TextBox { Name = $"txt{name}" };
                 //case JType.Date:
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
                 //case JType.Time:
