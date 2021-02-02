@@ -57,6 +57,10 @@ namespace JsonEditorV2
 
             switch(ValueControl)
             {
+                case Label LabelControl:
+                    LabelControl.Width = 200;
+                    LabelControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
+                    break;
                 case CheckBox CheckControl:
                     CheckControl.CheckedChanged += CheckControl_CheckedChanged;
                     CheckControl.GotFocus += CheckControl_GotFocus;
@@ -174,10 +178,12 @@ namespace JsonEditorV2
                 ValidControl.SetError(NullCheckBox, string.Format(Res.JE_VAL_NOT_NULLABLE));
                 return false;
             }
-   
+
             //確定型態符合
-            if (ValueControl is TextBox)
-            { 
+            if (ValueControl is Label)
+                return true;
+            else if (ValueControl is TextBox)
+            {
                 if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
@@ -185,21 +191,22 @@ namespace JsonEditorV2
                 }
             }
             else if (ValueControl is CheckBox)
-            { 
+            {
                 if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
                 }
             }
-            else if(ValueControl is ComboBox) //確認Choice 正確
-            { 
+            else if (ValueControl is ComboBox) //確認Choice 正確
+            {
                 if ((ValueControl as ComboBox).SelectedIndex == -1 || !(ValueControl as ComboBox).SelectedItem.TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? Const.NullString));
                     return false;
                 }
-            }
+            } 
+
             //確認Regex正確
             if (JColumn.Type == JType.String)
                 if (!string.IsNullOrEmpty(JColumn.RegularExpression))
@@ -278,6 +285,15 @@ namespace JsonEditorV2
             return parsedValue;
         }
 
+        public void ClearValue()
+        {   
+            ValueControl.Text = "";
+            if (ValueControl is ComboBox ComboControl)
+                ComboControl.SelectedIndex = -1;
+            else if (ValueControl is CheckBox CheckBox)
+                CheckBox.Checked = false;
+        }
+
         public void SetValueToString(object value)
         {
             NullCheckBox.Checked = value == null;
@@ -295,6 +311,9 @@ namespace JsonEditorV2
                     break;
                 case ComboBox ComboControl:
                     ComboControl.SelectedItem = value;
+                    break;
+                case Label LabelControl:
+                    LabelControl.Text = value.ToString().Replace("\n", "").Replace("\r","");
                     break;
             }
         }
@@ -350,6 +369,9 @@ namespace JsonEditorV2
                     return new TextBox { Name = $"txt{name}" };
                 case JType.Choice:
                     return new ComboBox { Name = $"cob{name}", DropDownStyle = ComboBoxStyle.DropDownList, DataSource = choices };
+                case JType.Object:
+                case JType.Array:
+                    return new Label { Name = $"txt{name}" };
                 //case JType.Date:
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
                 //case JType.Time:
@@ -357,8 +379,6 @@ namespace JsonEditorV2
                 //case JType.DateTime:                    
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long, ShowUpDown = true };
                 case JType.None:
-                case JType.Object:
-                case JType.Array:
                 default:
                     return new Label { Name = $"lbl{name}", Text = $"({type.ToString()})" };
 

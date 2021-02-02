@@ -659,9 +659,9 @@ namespace JsonEditorV2
             btnUpdateMain.Enabled =
             btnDeleteLine.Enabled =
             pnlMain.Enabled = false;
-            foreach (Control ctls in pnlMain.Controls)
-                if (ctls is TextBox)
-                    ((TextBox)ctls).Text = "";
+
+            for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
+                Var.InputControlSets[i].ClearValue();
 
             if (Var.SelectedTable == null)
                 return;
@@ -995,6 +995,7 @@ namespace JsonEditorV2
             if (e.Node.Parent == Var.RootNode)
             {
                 //補足效果
+                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString());
                 Var.DblClick = false;
                 if (tmiOpenJsonFile.Enabled)
                     tmiOpenJsonFile_Click(this, new EventArgs());
@@ -1625,7 +1626,8 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                Var.SelectedTable[Var.SelectedLineIndex][i] = Var.InputControlSets[i].GetValueValidated();
+                if(Var.SelectedColumn.Type != JType.Array && Var.SelectedColumn.Type != JType.Object)
+                    Var.SelectedTable[Var.SelectedLineIndex][i] = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
