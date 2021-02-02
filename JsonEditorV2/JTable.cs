@@ -438,6 +438,13 @@ namespace JsonEditor
                     return false;
                 }
 
+                //Choice
+                if(Columns[i].Type == JType.Choice && !Columns[i].Choices.Contains(jl[i].ToString()))
+                {
+                    AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.ChoiceValueNotExists);
+                    return false;
+                }
+
                 //MinMax
                 if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
                 {

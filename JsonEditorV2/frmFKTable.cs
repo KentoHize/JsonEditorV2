@@ -118,7 +118,7 @@ namespace JsonEditorV2
                 e.Value = e.Value.ToString(fkTable.Columns[e.ColumnIndex].Type);
             else
             {
-                e.Value = "(null)";
+                e.Value = Const.NullString;
                 e.CellStyle.Font = new Font(Font, FontStyle.Italic);
             }
         }

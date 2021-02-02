@@ -17,6 +17,8 @@ namespace JsonEditorV2
         public const string DatabaseRegex = @"^[\w][\w\-. ]{0,49}$";
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 
+        public const string NullString = "(null)";
+
         public const string HiddenColumnItemIndex = "{0D58183F-E5B5-4AF4-9A00-E3F56CB91142}";
         public const string HiddenColumnStat = "{72FF197D-4019-43F7-A3D7-D4E4C488DC22}";
 

@@ -1249,6 +1249,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 值&quot;{0}&quot;，選項不存在.
+        /// </summary>
+        public static string JE_VAL_CHOICE_VALUE_NOT_EXIST {
+            get {
+                return ResourceManager.GetString("JE_VAL_CHOICE_VALUE_NOT_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 自動產生索引欄位適用在不正確的型別上(只有數字、字串或是Guid可以被自動產生).
         /// </summary>
         public static string JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE {

@@ -2200,7 +2200,7 @@ namespace JsonEditorV2
         {
             if (e.Value == DBNull.Value)
             {
-                e.Value = "(null)";
+                e.Value = Const.NullString;
                 e.CellStyle.Font = new Font(Font, FontStyle.Italic);
             }
         }

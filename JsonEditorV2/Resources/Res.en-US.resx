@@ -510,6 +510,9 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     <value>Open File in Notepad</value>
   </data>
+  <data name="JE_VAL_CHOICE_VALUE_NOT_EXIST" xml:space="preserve">
+    <value>Choiced value "{0}" is invalid.</value>
+  </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
     <value>Auto-generated key column with inappropriate column type. (only string, number and guid type can auto generate)</value>
   </data>

@@ -1,6 +1,7 @@
 ﻿using JsonEditor;
 using JsonEditorV2.Resources;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -43,7 +44,7 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(NameLabel);
 
-            ValueControl = GetValueControlFromJType(JColumn.Type, JColumn.Name);
+            ValueControl = GetValueControlFromJType(JColumn.Type, JColumn.Name, JColumn.Choices);
             errPositionControl = ValueControl;
 
             if (ValueControl == null)
@@ -52,24 +53,32 @@ namespace JsonEditorV2
             ValueControl.Left = 200;
             ValueControl.Top = 30 * lineIndex + 5;
 
-            if (ValueControl is TextBox TextControl)
+            switch(ValueControl)
             {
-                TextControl.Width = 200;                
-                if (JColumn.NumberOfRows == 0)
-                {
-                    TextControl.Left += 100;
-                    TextControl.Width = 100;
-                }
-                else if (JColumn.NumberOfRows > 1)
-                {
-                    TextControl.ScrollBars = ScrollBars.Vertical;
-                    TextControl.Multiline = true;
-                }
-                    
-                TextControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
-                NameLabel.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
-                TextControl.TextChanged += ValueControl_TextChanged;                
-                TextControl.GotFocus += TextControl_GotFocus;
+                case CheckBox CheckControl:
+                    CheckControl.CheckedChanged += CheckControl_CheckedChanged;
+                    break;
+                case ComboBox ComboControl:
+                    ComboControl.SelectedIndexChanged += ComboControl_SelectedIndexChanged;
+                    break;
+                case TextBox TextControl:
+                    TextControl.Width = 200;
+                    if (JColumn.NumberOfRows == 0)
+                    {
+                        TextControl.Left += 100;
+                        TextControl.Width = 100;
+                    }
+                    else if (JColumn.NumberOfRows > 1)
+                    {
+                        TextControl.ScrollBars = ScrollBars.Vertical;
+                        TextControl.Multiline = true;
+                    }
+
+                    TextControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
+                    NameLabel.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
+                    TextControl.TextChanged += TextControl_TextChanged;
+                    TextControl.GotFocus += TextControl_GotFocus;
+                    break;
             }
 
             pnlMain.Controls.Add(ValueControl);
@@ -102,6 +111,16 @@ namespace JsonEditorV2
             pnlMain.Controls.Add(NullCheckBox);
         }
 
+        private void ComboControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValidControl.SetError(errPositionControl, "");
+        }
+
+        private void CheckControl_CheckedChanged(object sender, EventArgs e)
+        {
+            ValidControl.SetError(errPositionControl, "");
+        }
+
         private void TextControl_GotFocus(object sender, EventArgs e)
         {
             if (!JColumn.IsNullable)
@@ -117,11 +136,11 @@ namespace JsonEditorV2
             }
             else if (JColumn.Type == JType.Date)
             {
-
+                //TO DO
             }
         }
 
-        private void ValueControl_TextChanged(object sender, EventArgs e)
+        private void TextControl_TextChanged(object sender, EventArgs e)
         {
             ValidControl.SetError(errPositionControl, "");
         }
@@ -146,11 +165,16 @@ namespace JsonEditorV2
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
                 }
-
-            if (ValueControl is CheckBox)
+            else if (ValueControl is CheckBox)
                 if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
+                    return false;
+                }
+            else if(ValueControl is ComboBox) //確認Choice 正確
+                if ((ValueControl as ComboBox).SelectedIndex == -1 || !(ValueControl as ComboBox).SelectedItem.TryParseJType(JColumn.Type, out parsedValue))
+                {
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? ""));
                     return false;
                 }
 
@@ -239,10 +263,18 @@ namespace JsonEditorV2
             if (value == null)
                 return;
 
-            if (ValueControl is TextBox TextControl)
-                TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type));
-            else if (ValueControl is CheckBox CheckControl)
-                CheckControl.Checked = (bool)value;
+            switch(ValueControl)
+            {
+                case TextBox TextControl:
+                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type));
+                    break;
+                case CheckBox CheckControl:
+                    CheckControl.Checked = (bool)value;
+                    break;
+                case ComboBox ComboControl:
+                    ComboControl.SelectedItem = value;
+                    break;
+            }
         }
 
         public string ChangeTextToString(string text)
@@ -276,7 +308,7 @@ namespace JsonEditorV2
             ValueControl.Text = Guid.NewGuid().ToString();
         }
 
-        private Control GetValueControlFromJType(JType type, string name)
+        private Control GetValueControlFromJType(JType type, string name, List<string> choices)
         {
             switch (type)
             {
@@ -287,15 +319,15 @@ namespace JsonEditorV2
                 case JType.Guid:
                 case JType.Integer:
                 case JType.Long:
-                case JType.Decimal:
-                //case JType.TimeSpan:
+                case JType.Decimal:                
                 case JType.Uri:
                 case JType.String:
-
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
                     return new TextBox { Name = $"txt{name}" };
+                case JType.Choice:
+                    return new ComboBox { Name = $"cob{name}", DataSource = choices };
                 //case JType.Date:
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
                 //case JType.Time:
@@ -304,8 +336,9 @@ namespace JsonEditorV2
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long, ShowUpDown = true };
                 case JType.None:
                 case JType.Object:
+                case JType.Array:
                 default:
-                    return new Label { Name = $"lvl{name}" };
+                    return new Label { Name = $"lbl{name}", Text = $"({type.ToString()})" };
 
             }
         }
