@@ -368,7 +368,7 @@ namespace JsonEditorV2
             }
 
             if (recheckTable)
-                Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
+                Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -651,9 +651,7 @@ namespace JsonEditorV2
 
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
-            btnDeleteLine.Enabled =
-            btnLineMoveUp.Enabled =
-            btnLineMoveDown.Enabled =
+            btnDeleteLine.Enabled =            
             pnlMain.Enabled = false;
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
@@ -677,9 +675,7 @@ namespace JsonEditorV2
                 btnUpdateMain.Enabled =
                 pnlMain.Enabled = true;
             }
-            btnDeleteLine.Enabled = true;
-            btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
-            btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
+            btnDeleteLine.Enabled = true;            
         }
 
         private void RefreshPnlMain()
@@ -719,13 +715,13 @@ namespace JsonEditorV2
             Var.LockPnlMain = true;
             dgvLines.DataSource = null;
             btnNewLine.Enabled =
-            cobFindColumnName.Enabled = false;
+            cobFindColumnName.Enabled =
+            btnLineMoveUp.Enabled =
+            btnLineMoveDown.Enabled =
             btnFindConfirm.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-            //if (Var.SelectedTable.Changed)
-            //    Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             DataTable dt = new DataTable();
             for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
@@ -775,9 +771,12 @@ namespace JsonEditorV2
             cobFindColumnName.DataSource = Var.SelectedTable.Columns;
 
             Var.LockPnlMain = false;
-            btnNewLine.Enabled = true;
-            cobFindColumnName.Enabled = true;
+            
+            btnNewLine.Enabled =
+            cobFindColumnName.Enabled =
             btnFindConfirm.Enabled = true;
+            btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
+            btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
             btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
         }
@@ -843,13 +842,18 @@ namespace JsonEditorV2
                 }
             }
 
-
             Var.JFI.TablesInfo.Clear();
             foreach (JTable jt in Var.Tables)
                 Var.JFI.TablesInfo.Add(jt.GetJTableInfo());
 
             //存JSONFilesInfo檔
             SaveJFilesInfo();
+
+            //刪除需要刪除檔案
+            foreach (string file in Var.DeleteFiles)
+                if (File.Exists(file))
+                    File.Delete(file);
+            Var.DeleteFiles.Clear();
 
             //存JSONFiles(有讀出的)
             foreach (JTable jt in Var.Tables)
@@ -860,6 +864,7 @@ namespace JsonEditorV2
             foreach (string file in Var.RenamedFiles)
                 if (File.Exists(file))
                     File.Delete(file);
+            Var.RenamedFiles.Clear();
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_2, Var.JFI.DirectoryPath);
@@ -1470,7 +1475,7 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1516,15 +1521,9 @@ namespace JsonEditorV2
 
             CancelFK(Var.SelectedColumnParentTable);
             Var.JFI.Changed = true;
-            string fileName = Var.SelectedColumnParentTable.Name;
-            try
-            {
-                File.Delete(Path.Combine(Var.JFI.DirectoryPath, $"{fileName}.json"));
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(ex);
-            }
+
+            string fileName = Var.SelectedColumnParentTable.Name;            
+            Var.DeleteFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{fileName}.json"));
             Var.Tables.Remove(Var.SelectedColumnParentTable);
 
             RefreshTrvJsonFiles();
@@ -1598,7 +1597,7 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
 
             RefreshDgvLines();
             RefreshPnlMainValue();
@@ -1624,7 +1623,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
             Var.SelectedTable.Changed = true;
-            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -2091,9 +2090,13 @@ namespace JsonEditorV2
             if (dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
             {
                 Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
-                Var.ContinuousFindTimes = 0;
+                Var.ContinuousFindTimes = 0;                
+                btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
+                btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
                 RefreshPnlMainValue();
             }
+
+            
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
