@@ -271,7 +271,8 @@ namespace JsonEditorV2
 
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             //如果有資料，並且需要改資料則秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -377,7 +378,7 @@ namespace JsonEditorV2
 
         public void tmiAbout_Click(object sender, EventArgs e)
         {
-            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}  {Const.VersionString}", Res.JE_ABOUT_TITLE);
+            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}  {Const.VersionString}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE);
         }
 
         public void tmiNewJsonFiles_Click(object sender, EventArgs e)
@@ -480,6 +481,7 @@ namespace JsonEditorV2
                 if (file == Var.JFI.FileInfoPath)
                     continue;
 
+                //讀取失敗依然添加
                 JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
                 LoadOrScanJsonFile(table, true);
                 Var.Tables.Add(table);
@@ -542,13 +544,18 @@ namespace JsonEditorV2
                 {
                     //沒找到相關資料，錯誤訊息後跳過檔案
                     RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
-                    continue;
+                    return;
                 }
                 table.Columns = jti.Columns;
 
-                //小檔案直接讀取
+                //小檔案直接讀取 - 失敗時關閉
                 if (fi.Length < Setting.DontLoadFileBytesThreshold)
-                    LoadOrScanJsonFile(table);
+                    if(!LoadOrScanJsonFile(table))
+                    {
+                        tmiCloseAllFiles_Click(this, e);
+                        return;
+                    }
+                        
 
                 Var.Tables.Add(table);
             }
@@ -1025,10 +1032,10 @@ namespace JsonEditorV2
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_ADD_COLUMN, columnName);
                 return;
             }
-
-            //To DO ??
+            
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             if (Var.SelectedColumnParentTable.Count != 0)
                 foreach (JLine jl in Var.SelectedColumnParentTable)
@@ -1183,8 +1190,10 @@ namespace JsonEditorV2
                 return;
 
             if (!Var.SelectedColumnParentTable.Loaded)
-            {
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+            {   
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                   return;
+                
                 /* 特殊 */
                 trvJsonFiles.SelectedNode.Text = GetTableNodeString(Var.SelectedColumnParentTable);
                 trvJsonFiles.SelectedNode.ToolTipText = trvJsonFiles.SelectedNode.Text;
@@ -1435,7 +1444,8 @@ namespace JsonEditorV2
         {
             //讀檔            
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
@@ -1637,7 +1647,8 @@ namespace JsonEditorV2
             }
 
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {
@@ -1667,7 +1678,8 @@ namespace JsonEditorV2
             }
 
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {
@@ -1861,7 +1873,8 @@ namespace JsonEditorV2
         public void tmiRenameColumn_Click(object sender, EventArgs e)
         {
             if (!Var.SelectedColumnParentTable.Loaded)
-                LoadOrScanJsonFile(Var.SelectedColumnParentTable);
+                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
 
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
             if (string.IsNullOrEmpty(newName))
@@ -1952,7 +1965,6 @@ namespace JsonEditorV2
             string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
             string[] ProjectName = new string[] { "JsonEditorV2", "JsonEditorV2Tests" };
 
-
             foreach (string pj in ProjectName)
             {
                 if (!Directory.Exists(Path.Combine(BackupPath, pj)))
@@ -1962,7 +1974,6 @@ namespace JsonEditorV2
             }
 
             File.Copy(Path.Combine(ProjectPath, $"{ProjectName[0]}.sln"), Path.Combine(BackupPath, $"{ProjectName[0]}.sln"), true);
-
             RabbitCouriers.SentInformation("OK");
         }
 

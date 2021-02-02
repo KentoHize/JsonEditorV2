@@ -25,7 +25,8 @@ namespace JsonEditorV2
             frmFKTable frmFKTable = new frmFKTable();
 
             if (!FKTable.Loaded)
-                MainForm.LoadOrScanJsonFile(FKTable);
+                if(!MainForm.LoadOrScanJsonFile(FKTable))
+                    return null;
 
             Var.LockDgvMain = true;
 

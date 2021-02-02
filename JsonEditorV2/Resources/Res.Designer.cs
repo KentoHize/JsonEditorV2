@@ -70,7 +70,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created by KentKaze.
+        ///   Looks up a localized string similar to 作者：日瀨健人.
         /// </summary>
         public static string JE_ABOUT_MESSAGE_2 {
             get {
