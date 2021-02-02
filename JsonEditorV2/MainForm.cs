@@ -1441,16 +1441,16 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Changed = true;
             Var.JFI.Changed = true;
 
+            //資料全部抓出來砍掉
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+                jl.RemoveAt(Var.SelectedColumnParentTable.Columns.IndexOf(Var.SelectedColumn));
+
             //取消FK
             CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
 
             string removedName = Var.SelectedColumn.Name;
             Var.SelectedColumnParentTable.Columns.Remove(Var.SelectedColumn);
             Var.SelectedColumn = null;
-
-            //如果欄位是空的，砍掉所有資料列
-            if (Var.SelectedColumnParentTable.Columns.Count == 0)
-                Var.SelectedColumnParentTable.Clear();
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_COLUMN_M_2, removedName);
