@@ -1626,7 +1626,7 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                if(Var.SelectedColumn.Type != JType.Array && Var.SelectedColumn.Type != JType.Object)
+                if(Var.SelectedTable.Columns[i].Type != JType.Array && Var.SelectedTable.Columns[i].Type != JType.Object)
                     Var.SelectedTable[Var.SelectedLineIndex][i] = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);

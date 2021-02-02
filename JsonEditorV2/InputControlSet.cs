@@ -286,7 +286,9 @@ namespace JsonEditorV2
         }
 
         public void ClearValue()
-        {   
+        {
+            NullCheckBox.Checked = false;
+            ValidControl.SetError(errPositionControl, "");
             ValueControl.Text = "";
             if (ValueControl is ComboBox ComboControl)
                 ComboControl.SelectedIndex = -1;
