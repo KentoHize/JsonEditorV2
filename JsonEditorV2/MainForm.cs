@@ -2131,7 +2131,7 @@ namespace JsonEditorV2
 
         private void dgvLines_Sorted(object sender, EventArgs e)
         {
-            Var.ContinuousFindTimes = 0;
+
         }
 
         private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
@@ -2151,19 +2151,16 @@ namespace JsonEditorV2
             if (columnIndex == -1)
                 return;
 
-            int itemIndex;
-            if (Var.ContinuousFindTimes == 0)
+            int itemIndex = FindItemIndexFromSelectedTable(columnIndex, Var.SelectedLineIndex + 1);
+            if (itemIndex == -1)
                 itemIndex = FindItemIndexFromSelectedTable(columnIndex);
-            else
-                itemIndex = FindItemIndexFromSelectedTable(columnIndex, Var.SelectedLineIndex + 1);
-            if (itemIndex == -1 && Var.ContinuousFindTimes != 0)
-                itemIndex = FindItemIndexFromSelectedTable(columnIndex);
-            Var.ContinuousFindTimes++;
 
             if (itemIndex != -1)
             {                
                 Var.SelectedLineIndex = itemIndex;
                 dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
+                if (!dgvLines.SelectedRows[0].Displayed)
+                    dgvLines.FirstDisplayedScrollingRowIndex = dgvLines.SelectedRows[0].Index;
             }
             else
                 RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
@@ -2171,12 +2168,12 @@ namespace JsonEditorV2
 
         private void cobFindColumnName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Var.ContinuousFindTimes = 0;
+
         }
 
         private void txtFindValue_TextChanged(object sender, EventArgs e)
         {
-            Var.ContinuousFindTimes = 0;
+
         }
 
         private void tmiColumnShowOnList_Click(object sender, EventArgs e)
@@ -2223,14 +2220,17 @@ namespace JsonEditorV2
                 return;
             List<string> result = frmChoices.ShowDialog(this, Var.SelectedColumn.Choices);
             if (result != null)
+            { 
                 Var.SelectedColumn.Choices = result;
-
+                Var.JFI.Changed = true;
+                RefreshTbcMain();
+            }
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
         }
 
         private void dgvLines_Click(object sender, EventArgs e)
         {
-            Var.ContinuousFindTimes = 0;
+
         }
     }
 }

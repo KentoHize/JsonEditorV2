@@ -296,7 +296,7 @@
           "FKTable": null,
           "FKColumn": null,
           "NumberOfRows": 1,
-          "Display": true,
+          "Display": false,
           "RegularExpression": "",
           "Description": "",
           "MinValue": "",

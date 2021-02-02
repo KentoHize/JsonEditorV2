@@ -156,6 +156,9 @@
   <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
+    <value>Value "{0}" exists.</value>
+  </data>
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     <value>Quick Check</value>
   </data>

@@ -151,6 +151,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 值&quot;{0}&quot;已存在.
+        /// </summary>
+        public static string JE_CHOICE_DUPLICATE_ITEM {
+            get {
+                return ResourceManager.GetString("JE_CHOICE_DUPLICATE_ITEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新增.
         /// </summary>
         public static string JE_CHOICES_ADD_ITEM {

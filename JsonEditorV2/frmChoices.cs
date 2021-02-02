@@ -43,8 +43,11 @@ namespace JsonEditorV2
         public void btnAddItem_Click(object sender, EventArgs e)
         {
             if (ReturnValue.Contains(txtItemName.Text.Trim()))
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_CHOICE_DUPLICATE_ITEM", Res.JE_COLUMN_CHOICES, txtItemName.Text.Trim());
                 return;
-            
+            }
+
             ReturnValue.Add(txtItemName.Text.Trim());
             RefreshList();
             lsbItems.SelectedIndex = lsbItems.Items.Count - 1;

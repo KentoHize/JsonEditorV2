@@ -156,6 +156,9 @@
   <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
     <value>刪除</value>
   </data>
+  <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
+    <value>值"{0}"已存在</value>
+  </data>
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     <value>快速檢查</value>
   </data>
