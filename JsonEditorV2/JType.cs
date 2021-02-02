@@ -305,7 +305,6 @@ namespace JsonEditor
                         return r8;
                     break;
                 case JType.None:
-                case JType.Array:
                     return null;
                 case JType.Uri:
                     if (Uri.TryCreate(value.ToString(), UriKind.RelativeOrAbsolute, out Uri r10))
@@ -315,8 +314,9 @@ namespace JsonEditor
                     if (decimal.TryParse(value.ToString(), out decimal r11))
                         return r11;
                     break;
+                case JType.Array:
                 case JType.Object:
-                    return value.ToString();
+                    return value;
                 case JType.Choice:
                 case JType.String:
                     return value.ToString();

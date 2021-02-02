@@ -94,7 +94,7 @@ namespace JsonEditor
         /// <summary>
         /// 擷取存檔用的Data Object
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Json Object</returns>
         public object GetJsonObject()
         {
             List<object> result = new List<object>();
@@ -102,7 +102,10 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type));
+                    if (Columns[i].Type == JType.Object || Columns[i].Type == JType.Array)
+                        line.Add(Columns[i].Name, jl[i]);
+                    else
+                        line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type));
                 result.Add(line);
             }
             return result;
@@ -219,7 +222,7 @@ namespace JsonEditor
         }
         #endregion
 
-        private string ParseJToken(string key, JToken jToken)
+        private object ParseJToken(string key, JToken jToken)
         {
             JColumn jc = Columns.Find(m => m.Name == key);
 
@@ -239,7 +242,12 @@ namespace JsonEditor
                 JType jType = jToken.ToJType();
                 if (!ParseTypeToColumn(jType, jc))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildColumnTypeVary);
-                return jToken.ToString();
+                if (jType == JType.Object)
+                    return jToken.ToObject<object>();
+                else if (jType == JType.Array)
+                    return jToken.ToObject<object>();
+                else
+                    return jToken.ToString();
             }
         }
 
@@ -256,10 +264,10 @@ namespace JsonEditor
                 throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
             //掃描jArray
-            List<Dictionary<string, string>> scannedResult = new List<Dictionary<string, string>>();
+            List<Dictionary<string, object>> scannedResult = new List<Dictionary<string, object>>();
             for (int i = 0; i < jr.Count; i++)
             {
-                scannedResult.Add(new Dictionary<string, string>());
+                scannedResult.Add(new Dictionary<string, object>());
 
                 if (!(jr[i] is JObject jo))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
@@ -302,7 +310,7 @@ namespace JsonEditor
             }
 
             //放入Table
-            foreach (Dictionary<string, string> line in scannedResult)
+            foreach (Dictionary<string, object> line in scannedResult)
             {
                 JLine jl = new JLine();
                 for (int i = 0; i < Columns.Count; i++)
@@ -312,7 +320,7 @@ namespace JsonEditor
                         jl.Add(line[Columns[i].Name].ParseJType(Columns[i].Type));
                         if (Columns[i].Type == JType.String)
                             if (line[Columns[i].Name] != null)
-                                charsCountDivide10[i] += line[Columns[i].Name].Length / 10;
+                                charsCountDivide10[i] += line[Columns[i].Name].ToString().Length / 10;
                     }
                     else
                     {
@@ -380,7 +388,7 @@ namespace JsonEditor
                     }
                     else
                     {
-                        //資料損毀通知
+                        //資料損毀通知 TO DO
                         jl.Add(parsedObj);
                         Changed = true;
                     }
@@ -426,7 +434,8 @@ namespace JsonEditor
                 }
 
                 //Type
-                if (jl[i].GetType() != Columns[i].Type.ToType())
+                if (jl[i].GetType() != Columns[i].Type.ToType() && 
+                    Columns[i].Type != JType.Object && Columns[i].Type != JType.Array)
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);
                     return false;
