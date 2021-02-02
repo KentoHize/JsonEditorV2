@@ -26,6 +26,7 @@ namespace JsonEditorV2
         public static bool CheckFailedFlag { get; set; } //存檔失敗Flag        
         public static bool NotOnlyClose { get; set; } //非單純關閉檔案Flag
         public static int ContinuousFindTimes { get; set; } //連續按下尋找鍵的次數
+        public static List<string> RenamedFiles { get; set; } = new List<string>(); //被改名檔案
 
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }

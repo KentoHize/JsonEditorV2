@@ -367,8 +367,8 @@ namespace JsonEditorV2
                 recheckTable = true;
             }
 
-            //if (recheckTable)
-            //    Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
+            if (recheckTable)
+                Var.SelectedColumnParentTable.CehckValid(Setting.UseQuickCheck);
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -724,8 +724,8 @@ namespace JsonEditorV2
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
                 return;
-            if (Var.SelectedTable.Changed)
-                Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            //if (Var.SelectedTable.Changed)
+            //    Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
 
             DataTable dt = new DataTable();
             for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
@@ -855,6 +855,11 @@ namespace JsonEditorV2
             foreach (JTable jt in Var.Tables)
                 if (jt.Loaded) //&& jt.Changed)
                     SaveJsonFile(jt);
+
+            //刪除更名後的檔案
+            foreach (string file in Var.RenamedFiles)
+                if (File.Exists(file))
+                    File.Delete(file);
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_2, Var.JFI.DirectoryPath);
@@ -1464,6 +1469,8 @@ namespace JsonEditorV2
             Var.SelectedLineIndex = dgvLines.Rows.Count;
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
+
+            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1484,8 +1491,10 @@ namespace JsonEditorV2
             }
             try
             {
-                if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
-                    File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{newName}.json"));
+                Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+
+                //if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
+                //    File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{newName}.json"));
                 RenewFK(Var.SelectedColumnParentTable, newName);
                 Var.SelectedColumnParentTable.Name = newName;
                 Var.SelectedColumnParentTable.Changed = true;
@@ -1589,8 +1598,10 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            RefreshPnlMainValue();
+            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
+
             RefreshDgvLines();
+            RefreshPnlMainValue();
         }
 
         public void btnUpdateMain_Click(object sender, EventArgs e)
@@ -1611,7 +1622,9 @@ namespace JsonEditorV2
                 Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
+
             Var.SelectedTable.Changed = true;
+            Var.SelectedTable.CehckValid(Setting.UseQuickCheck);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1874,12 +1887,21 @@ namespace JsonEditorV2
                 return;
             }
 
-            Var.LockPnlMain = true;
             JLine jl = Var.SelectedTable[index - 1];
             Var.SelectedTable[index - 1] = Var.SelectedTable[index];
             Var.SelectedTable[index] = jl;
             Var.SelectedLineIndex--;
             Var.SelectedTable.Changed = true;
+
+            //更新Invalid Stats
+            Dictionary<int, JValueInvalidReasons> dic = null;
+            if (Var.SelectedTable.InvalidRecords.ContainsKey(index - 1))
+                dic = Var.SelectedTable.InvalidRecords[index - 1];
+            if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
+                Var.SelectedTable.InvalidRecords[index - 1] = Var.SelectedTable.InvalidRecords[index];
+            if(dic != null)
+                Var.SelectedTable.InvalidRecords[index] = dic;
+
             RefreshDgvLines();
         }
 
@@ -1894,12 +1916,21 @@ namespace JsonEditorV2
                 return;
             }
 
-            Var.LockPnlMain = true;
             JLine jl = Var.SelectedTable[index + 1];
             Var.SelectedTable[index + 1] = Var.SelectedTable[index];
             Var.SelectedTable[index] = jl;
             Var.SelectedLineIndex++;
             Var.SelectedTable.Changed = true;
+
+            //更新Invalid Stats
+            Dictionary<int, JValueInvalidReasons> dic = null;
+            if (Var.SelectedTable.InvalidRecords.ContainsKey(index + 1))
+                dic = Var.SelectedTable.InvalidRecords[index + 1];
+            if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
+                Var.SelectedTable.InvalidRecords[index + 1] = Var.SelectedTable.InvalidRecords[index];
+            if (dic != null)
+                Var.SelectedTable.InvalidRecords[index] = dic;
+
             RefreshDgvLines();
         }
 
