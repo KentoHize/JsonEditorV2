@@ -132,12 +132,11 @@ namespace JsonEditorV2
                     if (jt.Columns[i].FKTable == sourceTable.Name && jt.Columns[i].FKColumn == sourceColumn.Name)
                         columnIndexs.Add(i);
 
-                object result;
                 foreach (JLine jl in jt)
                 {
                     for (int i = 0; i < columnIndexs.Count; i++)
                     {
-                        jl[columnIndexs[i]].TryParseJType(newType, out result);
+                        jl[columnIndexs[i]].TryParseJType(newType, out object result);
                         jl[columnIndexs[i]] = result;
                     }
                 }
@@ -155,8 +154,7 @@ namespace JsonEditorV2
                     return content.TryParseJType(type, out object result);
             else if (type.IsDateTime())
             {
-                DateTime result;
-                if (!DateTime.TryParse(content, out result))
+                if (!DateTime.TryParse(content, out DateTime result))
                     return false;
                 else if (type == JType.Date)
                     return result.TimeOfDay.TotalSeconds == 0;
@@ -216,7 +214,7 @@ namespace JsonEditorV2
                 txtColumnRegex.Text = "";
                 txtColumnMinValue.Text = "";
                 txtColumnMaxValue.Text = "";
-            }
+            }   
 
             //確認最大、最小值正確
             if (!newType.IsNumber() && !newType.IsDateTime())
@@ -308,8 +306,12 @@ namespace JsonEditorV2
             else
                 Var.SelectedColumn.FKTable = Var.SelectedColumn.FKColumn = null;
 
-            //Key檢查，取消Key時同時取消所有相關FK            
-            if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
+            //不能選擇的型別，清除選擇值
+            if (newType == JType.Boolean || newType == JType.Array || newType == JType.Object)
+                Var.SelectedColumn.Choices.Clear();
+
+                //Key檢查，取消Key時同時取消所有相關FK            
+                if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
                 CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
 
             if (!Var.SelectedColumn.IsKey && ckbColumnIsKey.Checked)
@@ -323,10 +325,9 @@ namespace JsonEditorV2
                 Var.SelectedColumn.Type = newType;
                 int index = Var.SelectedColumnIndex;
                 //先檢查自己Table的值
-                object result;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                 {
-                    jl[index].TryParseJType(newType, out result);
+                    jl[index].TryParseJType(newType, out object result);
                     if (result == null && !Var.SelectedColumn.IsNullable)
                         result = newType.InitialValue();
                     jl[index] = result;
@@ -965,14 +966,13 @@ namespace JsonEditorV2
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
-                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
+                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;                
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKTable))
                     cobColumnFKTable.SelectedValue = Var.SelectedColumn.FKTable;
                 cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKColumn))
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
-
                 txtColumnRegex.Text = Var.SelectedColumn.RegularExpression ?? "";
                 txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
                 txtColumnMaxValue.Text = Var.SelectedColumn.MaxValue ?? "";
@@ -981,11 +981,12 @@ namespace JsonEditorV2
                 ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
                 ckbColumnAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
                 btnUpdateColumn.Enabled = true;
+                btnColumnEditChoices.Enabled = true;
             }
             else
             {
                 btnClearColumn_Click(this, new EventArgs());
-                btnUpdateColumn.Enabled = false;
+                btnUpdateColumn.Enabled = false;              
             }
         }
 
@@ -1828,8 +1829,7 @@ namespace JsonEditorV2
                 return;
             JType result = (JType)cobColumnType.SelectedItem;
 
-            lblColumnChoicesCount.Text = result != JType.Choice ? "-" : "0";
-            btnColumnEditChoices.Enabled = result == JType.Choice;
+            lblColumnChoicesCount.Text = result != JType.Choice ? "-" : "0";            
             ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
                 ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;

@@ -64,7 +64,6 @@
     <Compile Include="JsonEditorTestSystem.cs" />
     <Compile Include="JsonEditorTestSystemStatic.cs" />
     <Compile Include="LongTest.cs" />
-    <Compile Include="MainFormTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

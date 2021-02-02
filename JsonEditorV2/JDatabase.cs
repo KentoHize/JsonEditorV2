@@ -11,7 +11,7 @@ namespace JsonEditor
     {
         public JTable this[int index] { get => ((IList<JTable>)Tables)[index]; set => ((IList<JTable>)Tables)[index] = value; }
 
-        public string Name { get => JFI != null ? JFI.Name : null; }
+        public string Name { get => JFI?.Name; }
 
         public List<JTable> Tables { get; set; } = new List<JTable>();
 

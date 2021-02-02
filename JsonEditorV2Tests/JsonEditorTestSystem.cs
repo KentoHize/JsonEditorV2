@@ -43,10 +43,12 @@ namespace JsonEditorV2Tests
                 AdventurerAssociation.Archivist.WriteRecord("----------------------------------------------------");
                 AdventurerAssociation.Archivist.WriteRecord("----------------------------------------------------");
             }
-            MainForm = new MainForm();
-            MainForm.StartPosition = FormStartPosition.Manual;
-            MainForm.Left = 30000;
-            MainForm.Top = 30000;
+            MainForm = new MainForm
+            {
+                StartPosition = FormStartPosition.Manual,
+                Left = 30000,
+                Top = 30000
+            };
             MainForm.Shown += MainForm_Shown;
             TestThread = new Task(() => Application.Run(MainForm));
             TestThread.Start();

@@ -102,7 +102,7 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i] == null ? null : jl[i].ToString(Columns[i].Type));
+                    line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type));
                 result.Add(line);
             }
             return result;
@@ -252,19 +252,16 @@ namespace JsonEditor
             Lines.Clear();
             Columns.Clear();
 
-            JArray jr = jArray as JArray;
-
-            if (jr == null)
+            if (!(jArray is JArray jr))
                 throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
             //掃描jArray
             List<Dictionary<string, string>> scannedResult = new List<Dictionary<string, string>>();
             for (int i = 0; i < jr.Count; i++)
             {
-                JObject jo = jr[i] as JObject;
                 scannedResult.Add(new Dictionary<string, string>());
 
-                if (jo == null)
+                if (!(jr[i] is JObject jo))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
 
                 foreach (KeyValuePair<string, JToken> kvp in jo)
@@ -277,7 +274,7 @@ namespace JsonEditor
                     {
                         ex.LineIndex = i;
                         ex.ColumnName = kvp.Key;
-                        throw ex;
+                        throw;
                     }
                 }
             }
@@ -351,17 +348,14 @@ namespace JsonEditor
         {
             Lines.Clear();
 
-            JArray jr = jArray as JArray;
-
-            if (jr == null)
+            if (!(jArray is JArray jr))
                 throw new JFileInvalidException(JFileInvalidReasons.RootElementNotArray);
 
             for (int i = 0; i < jr.Count; i++)
             {
                 JLine jl = new JLine();
-                JObject jo = jr[i] as JObject;
 
-                if (jo == null)
+                if (!(jr[i] is JObject jo))
                     throw new JFileInvalidException(JFileInvalidReasons.ChildElementNotObject, i);
 
                 if (jo.Count != Columns.Count)

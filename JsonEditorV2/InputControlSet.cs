@@ -35,12 +35,14 @@ namespace JsonEditorV2
 
             ownerWindow = pnlMain.Parent;
 
-            NameLabel = new Label();
-            NameLabel.Name = $"lbl{JColumn.Name}";
-            NameLabel.Text = JColumn.Name;
-            NameLabel.Left = 10;
-            NameLabel.Top = 30 * lineIndex + 5;
-            NameLabel.Width = 190;
+            NameLabel = new Label
+            {
+                Name = $"lbl{JColumn.Name}",
+                Text = JColumn.Name,
+                Left = 10,
+                Top = 30 * lineIndex + 5,
+                Width = 190
+            };
 
             pnlMain.Controls.Add(NameLabel);
 
