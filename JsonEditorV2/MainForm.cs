@@ -436,7 +436,7 @@ namespace JsonEditorV2
         }
 
         public void tmiExit_Click(object sender, EventArgs e)
-        { 
+        {
             Close();
         }
 
@@ -651,7 +651,7 @@ namespace JsonEditorV2
 
             btnClearMain.Enabled =
             btnUpdateMain.Enabled =
-            btnDeleteLine.Enabled =            
+            btnDeleteLine.Enabled =
             pnlMain.Enabled = false;
             foreach (Control ctls in pnlMain.Controls)
                 if (ctls is TextBox)
@@ -675,7 +675,7 @@ namespace JsonEditorV2
                 btnUpdateMain.Enabled =
                 pnlMain.Enabled = true;
             }
-            btnDeleteLine.Enabled = true;            
+            btnDeleteLine.Enabled = true;
         }
 
         private void RefreshPnlMain()
@@ -771,7 +771,7 @@ namespace JsonEditorV2
             cobFindColumnName.DataSource = Var.SelectedTable.Columns;
 
             Var.LockPnlMain = false;
-            
+
             btnNewLine.Enabled =
             cobFindColumnName.Enabled =
             btnFindConfirm.Enabled = true;
@@ -997,18 +997,10 @@ namespace JsonEditorV2
             string fileName = frmInputBox.Show(this, InputBoxTypes.NewFile);
             if (string.IsNullOrEmpty(fileName))
                 return;
-            try
-            {
-                string newFile = Path.Combine(Var.JFI.DirectoryPath, $"{fileName}.json");
 
-                JTable jt = new JTable(fileName, true);
-                Var.Tables.Add(jt);
-                Var.JFI.Changed = true;
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
-            }
+            JTable jt = new JTable(fileName, true);
+            Var.Tables.Add(jt);
+            Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
         }
 
@@ -1497,9 +1489,6 @@ namespace JsonEditorV2
             try
             {
                 Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
-
-                //if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json")))
-                //    File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"), Path.Combine(Var.JFI.DirectoryPath, $"{newName}.json"));
                 RenewFK(Var.SelectedColumnParentTable, newName);
                 Var.SelectedColumnParentTable.Name = newName;
                 Var.SelectedColumnParentTable.Changed = true;
@@ -1522,7 +1511,7 @@ namespace JsonEditorV2
             CancelFK(Var.SelectedColumnParentTable);
             Var.JFI.Changed = true;
 
-            string fileName = Var.SelectedColumnParentTable.Name;            
+            string fileName = Var.SelectedColumnParentTable.Name;
             Var.DeleteFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{fileName}.json"));
             Var.Tables.Remove(Var.SelectedColumnParentTable);
 
@@ -1899,7 +1888,7 @@ namespace JsonEditorV2
             if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
                 Var.SelectedTable.InvalidRecords[index - 1] = Var.SelectedTable.InvalidRecords[index];
             else if (Var.SelectedTable.InvalidRecords.ContainsKey(index - 1))
-                Var.SelectedTable.InvalidRecords.Remove(index - 1);               
+                Var.SelectedTable.InvalidRecords.Remove(index - 1);
             if (dic != null)
                 Var.SelectedTable.InvalidRecords[index] = dic;
             else if (Var.SelectedTable.InvalidRecords.ContainsKey(index))
@@ -2061,7 +2050,7 @@ namespace JsonEditorV2
                 e.Cancel = true;
                 return;
             }
-                
+
             //Setting.ini存取
             try
             {
@@ -2090,13 +2079,13 @@ namespace JsonEditorV2
             if (dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
             {
                 Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
-                Var.ContinuousFindTimes = 0;                
+                Var.ContinuousFindTimes = 0;
                 btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
                 btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
                 RefreshPnlMainValue();
             }
 
-            
+
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

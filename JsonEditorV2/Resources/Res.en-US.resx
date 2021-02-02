@@ -295,7 +295,7 @@
     <value>Column"{0}" deleted.</value>
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
-    <value>Confirm to delete file "{0}.json"?</value>
+    <value>Confirm to delete file "{0}.json"?(Deleted file can't recover after save.)</value>
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
     <value>File"{0}.json" deleted.</value>

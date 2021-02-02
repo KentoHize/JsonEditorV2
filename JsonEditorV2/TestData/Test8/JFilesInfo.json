@@ -1,0 +1,195 @@
+{
+  "Name": "Test8",
+  "TablesInfo": [
+    {
+      "Name": "A中",
+      "Columns": [
+        {
+          "Name": "POPOP",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Integer",
+          "FKTable": "天使",
+          "FKColumn": "PPP",
+          "NumberOfRows": 3,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "-999",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": true
+        },
+        {
+          "Name": "PPPLL",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Object",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        },
+        {
+          "Name": "DSA",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Array",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        },
+        {
+          "Name": "GDSA",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "String",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        }
+      ]
+    },
+    {
+      "Name": "天使",
+      "Columns": [
+        {
+          "Name": "PPP",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Integer",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 3,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "0",
+          "MaxValue": null,
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        },
+        {
+          "Name": "POPOP",
+          "IsKey": false,
+          "IsNullable": false,
+          "Type": "Uri",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 2,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "|KIK",
+          "MinValue": null,
+          "MaxValue": null,
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": true
+        },
+        {
+          "Name": "DSADSA",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Time",
+          "FKTable": "POPOKOL",
+          "FKColumn": "Timu",
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        }
+      ]
+    },
+    {
+      "Name": "dsaddsadsadsa",
+      "Columns": [
+        {
+          "Name": "UniTest",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Double",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": null,
+          "MaxValue": null,
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": true
+        }
+      ]
+    },
+    {
+      "Name": "POPOKOL",
+      "Columns": [
+        {
+          "Name": "POPKUI",
+          "IsKey": false,
+          "IsNullable": true,
+          "Type": "Uri",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": true
+        },
+        {
+          "Name": "Timu",
+          "IsKey": true,
+          "IsNullable": false,
+          "Type": "Time",
+          "FKTable": null,
+          "FKColumn": null,
+          "NumberOfRows": 1,
+          "Display": true,
+          "RegularExpression": "",
+          "Description": "",
+          "MinValue": "",
+          "MaxValue": "",
+          "MaxLength": 0,
+          "AutoGenerateKey": false,
+          "IsUnique": false
+        }
+      ]
+    }
+  ]
+}

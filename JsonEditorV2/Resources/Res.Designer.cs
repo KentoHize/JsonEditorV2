@@ -592,7 +592,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 確定刪除檔案&quot;{0}.json&quot;？.
+        ///   Looks up a localized string similar to 確定刪除檔案&quot;{0}.json&quot;？(存檔後檔案將無法復原).
         /// </summary>
         public static string JE_RUN_DELETE_JSON_FILE_M_1 {
             get {
