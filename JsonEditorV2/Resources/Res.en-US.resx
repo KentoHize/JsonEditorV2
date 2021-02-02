@@ -147,11 +147,23 @@
   <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
     <value>Update</value>
   </data>
+  <data name="JE_CHOICES_ADD_ITEM" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="JE_CHOICES_CONFIRM" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     <value>Quick Check</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     <value>Auto Generate Key</value>
+  </data>
+  <data name="JE_COLUMN_CHOICES" xml:space="preserve">
+    <value>Choice Values</value>
   </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
     <value>Description</value>
@@ -281,6 +293,9 @@
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>Wrong file name.</value>
+  </data>
+  <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
+    <value>Choice(s)</value>
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     <value>Column"{0}" is exist.</value>

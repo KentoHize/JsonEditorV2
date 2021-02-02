@@ -151,6 +151,33 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 新增.
+        /// </summary>
+        public static string JE_CHOICES_ADD_ITEM {
+            get {
+                return ResourceManager.GetString("JE_CHOICES_ADD_ITEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確認.
+        /// </summary>
+        public static string JE_CHOICES_CONFIRM {
+            get {
+                return ResourceManager.GetString("JE_CHOICES_CONFIRM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 刪除.
+        /// </summary>
+        public static string JE_CHOICES_DELETE_ITEM {
+            get {
+                return ResourceManager.GetString("JE_CHOICES_DELETE_ITEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 快速檢查.
         /// </summary>
         public static string JE_CKB_QUICK_CEHCK {
@@ -165,6 +192,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_COLUMN_AUTO_GENERATE_KEY {
             get {
                 return ResourceManager.GetString("JE_COLUMN_AUTO_GENERATE_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位可選值.
+        /// </summary>
+        public static string JE_COLUMN_CHOICES {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_CHOICES", resourceCulture);
             }
         }
         
@@ -552,6 +588,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_INPUTBOX_WRONG_FILE_NAME {
             get {
                 return ResourceManager.GetString("JE_INPUTBOX_WRONG_FILE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 選項.
+        /// </summary>
+        public static string JE_LBL_CHOICE_NAME {
+            get {
+                return ResourceManager.GetString("JE_LBL_CHOICE_NAME", resourceCulture);
             }
         }
         

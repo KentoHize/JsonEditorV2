@@ -40,6 +40,8 @@ namespace JsonEditorV2
             Text = $"{Res.JSON_FILE_EDITOR_TITLE} - {Const.VersionString}";
             lblColumnName.Text = Res.JE_COLUMN_NAME;
             lblColumnType.Text = Res.JE_COLUMN_TYPE;
+            lblColumnChoices.Text = Res.JE_COLUMN_CHOICES;
+            lblColumnChoiceName.Text = Res.JE_LBL_CHOICE_NAME;
             lblColumnIsKey.Text = Res.JE_COLUMN_IS_KEY;
             lblColumnDisplay.Text = Res.JE_COLUMN_DISPLAY;
             lblColumnFKTable.Text = Res.JE_COLUMN_FK_TABLE;
@@ -51,7 +53,7 @@ namespace JsonEditorV2
             lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
-            lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
+            lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;            
             lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
@@ -964,6 +966,7 @@ namespace JsonEditorV2
             if (Var.SelectedColumn != null)
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
+                lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
@@ -1090,7 +1093,8 @@ namespace JsonEditorV2
             cobColumnType.SelectedIndex = 0;
             ckbColumnDisplay.Checked = false;
             ckbColumnIsKey.Checked = false;
-            cobColumnFKTable.SelectedIndex = -1; //聯動            
+            ckbColumnAutoGenerateKey.Checked = false;            
+            cobColumnFKTable.SelectedIndex = -1; //聯動
             txtColumnNumberOfRows.Text = "0";
         }
 
@@ -1829,6 +1833,8 @@ namespace JsonEditorV2
                 return;
             JType result = (JType)cobColumnType.SelectedItem;
 
+            lblColumnChoicesCount.Text = result != JType.Choice ? "-" : "0";
+            btnColumnEditChoices.Enabled = result == JType.Choice;
             ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
                 ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;
@@ -2219,5 +2225,22 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_DATABASE_M_1, newName);
         }
+
+        private void btnColumnEditChoices_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumn == null)
+                return;
+            List<string> result = frmChoices.ShowDialog(this, Var.SelectedColumn.Choices);
+            if (result != null)
+                Var.SelectedColumn.Choices = result;
+
+            lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
+        }
+
+        private void lblColumnChoices_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+ 

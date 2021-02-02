@@ -147,11 +147,23 @@
   <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
     <value>更新</value>
   </data>
+  <data name="JE_CHOICES_ADD_ITEM" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="JE_CHOICES_CONFIRM" xml:space="preserve">
+    <value>確認</value>
+  </data>
+  <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
+    <value>刪除</value>
+  </data>
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     <value>快速檢查</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     <value>自動產生索引值</value>
+  </data>
+  <data name="JE_COLUMN_CHOICES" xml:space="preserve">
+    <value>欄位可選值</value>
   </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
     <value>欄位描述</value>
@@ -281,6 +293,9 @@
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>不符合規則的檔案名稱</value>
+  </data>
+  <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
+    <value>選項</value>
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     <value>欄位"{0}"已存在</value>
