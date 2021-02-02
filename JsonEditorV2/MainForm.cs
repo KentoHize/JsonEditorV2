@@ -1830,8 +1830,7 @@ namespace JsonEditorV2
             if (cobColumnType.SelectedIndex == -1)
                 return;
             JType result = (JType)cobColumnType.SelectedItem;
-
-            lblColumnChoicesCount.Text = result != JType.Choice ? "-" : "0";            
+            
             ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
                 ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;
