@@ -2166,16 +2166,6 @@ namespace JsonEditorV2
                 RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
         }
 
-        private void cobFindColumnName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtFindValue_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tmiColumnShowOnList_Click(object sender, EventArgs e)
         {
             Var.SelectedColumn.Display = !Var.SelectedColumn.Display;
@@ -2226,11 +2216,6 @@ namespace JsonEditorV2
                 RefreshTbcMain();
             }
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
-        }
-
-        private void dgvLines_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
