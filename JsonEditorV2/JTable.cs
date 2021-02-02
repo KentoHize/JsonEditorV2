@@ -612,6 +612,8 @@ namespace JsonEditor
             {
                 if (Columns[i].AutoGenerateKey)
                     jl.Add(GenerateKey(i));
+                else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)
+                    jl.Add(Columns[i].Choices[0]);
                 else
                     jl.Add(Columns[i].Type.InitialValue());
             }

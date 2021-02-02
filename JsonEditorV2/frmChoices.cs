@@ -41,10 +41,7 @@ namespace JsonEditorV2
         }
 
         public void btnAddItem_Click(object sender, EventArgs e)
-        {   
-            if (string.IsNullOrEmpty(txtItemName.Text))
-                return;
-
+        {
             if (ReturnValue.Contains(txtItemName.Text.Trim()))
                 return;
             
@@ -60,6 +57,7 @@ namespace JsonEditorV2
             string s = ReturnValue[lsbItems.SelectedIndex - 1];
             ReturnValue[lsbItems.SelectedIndex - 1] = ReturnValue[lsbItems.SelectedIndex];
             ReturnValue[lsbItems.SelectedIndex] = s;
+            lsbItems.SelectedIndex--;
             RefreshList();
         }
 
@@ -70,6 +68,7 @@ namespace JsonEditorV2
             string s = ReturnValue[lsbItems.SelectedIndex + 1];
             ReturnValue[lsbItems.SelectedIndex + 1] = ReturnValue[lsbItems.SelectedIndex];
             ReturnValue[lsbItems.SelectedIndex] = s;
+            lsbItems.SelectedIndex++;
             RefreshList();
         }
 
@@ -101,12 +100,15 @@ namespace JsonEditorV2
         private void frmChoices_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
+            {
+                ReturnValue = null;
                 DialogResult = DialogResult.Cancel;
+            }   
         }
 
         private void txtItemName_TextChanged(object sender, EventArgs e)
         {
-            btnAddItem.Enabled = txtItemName.Text != "";
+            
         }
     }
 }

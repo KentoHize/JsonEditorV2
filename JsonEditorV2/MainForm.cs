@@ -94,11 +94,6 @@ namespace JsonEditorV2
         }
         #endregion
 
-        public void lsbLines_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //取消FK
         private void CancelFK(JTable sourceTable, JColumn sourceColumn = null)
         {
@@ -342,7 +337,7 @@ namespace JsonEditorV2
             }
 
             //改Unique
-            if (!Var.SelectedColumn.IsUnique && ckbColumnIsUnique.Checked)
+            if (Var.SelectedColumn.IsUnique != ckbColumnIsUnique.Checked)
                 recheckTable = true;
 
             Var.SelectedColumn.IsUnique = ckbColumnIsUnique.Checked;
@@ -2103,14 +2098,11 @@ namespace JsonEditorV2
         {
             if (dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
             {
-                Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
-                Var.ContinuousFindTimes = 0;
+                Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);                
                 btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
                 btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
                 RefreshPnlMainValue();
             }
-
-
         }
 
         private void dgvLines_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -2169,10 +2161,9 @@ namespace JsonEditorV2
             Var.ContinuousFindTimes++;
 
             if (itemIndex != -1)
-            {
+            {                
                 Var.SelectedLineIndex = itemIndex;
-                RefreshDgvLines();
-                RefreshPnlMainValue();
+                dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
             }
             else
                 RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
@@ -2237,9 +2228,9 @@ namespace JsonEditorV2
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
         }
 
-        private void lblColumnChoices_Click(object sender, EventArgs e)
+        private void dgvLines_Click(object sender, EventArgs e)
         {
-
+            Var.ContinuousFindTimes = 0;
         }
     }
 }

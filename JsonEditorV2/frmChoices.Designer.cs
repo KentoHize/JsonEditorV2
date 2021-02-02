@@ -43,8 +43,9 @@
             // lsbItems
             // 
             this.lsbItems.DisplayMember = "Name";
+            this.lsbItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsbItems.FormattingEnabled = true;
-            this.lsbItems.ItemHeight = 16;
+            this.lsbItems.ItemHeight = 20;
             this.lsbItems.Location = new System.Drawing.Point(12, 47);
             this.lsbItems.Name = "lsbItems";
             this.lsbItems.Size = new System.Drawing.Size(370, 244);
@@ -53,17 +54,17 @@
             // 
             // txtItemName
             // 
-            this.txtItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemName.Location = new System.Drawing.Point(12, 16);
+            this.txtItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtItemName.Location = new System.Drawing.Point(12, 14);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(274, 22);
+            this.txtItemName.Size = new System.Drawing.Size(274, 27);
             this.txtItemName.TabIndex = 1;
             this.txtItemName.Click += new System.EventHandler(this.txtItemName_Click);
             this.txtItemName.TextChanged += new System.EventHandler(this.txtItemName_TextChanged);
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Enabled = false;
+            this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddItem.Location = new System.Drawing.Point(305, 12);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(77, 30);
@@ -74,6 +75,8 @@
             // 
             // btnDeleteItem
             // 
+            this.btnDeleteItem.Enabled = false;
+            this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteItem.Location = new System.Drawing.Point(109, 299);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(77, 30);
@@ -117,6 +120,7 @@
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.Location = new System.Drawing.Point(303, 299);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(77, 30);
@@ -127,8 +131,7 @@
             // 
             // frmChoices
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(394, 336);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnItemMoveDown);

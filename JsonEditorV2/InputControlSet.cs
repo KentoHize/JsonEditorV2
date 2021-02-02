@@ -59,6 +59,7 @@ namespace JsonEditorV2
                     CheckControl.CheckedChanged += CheckControl_CheckedChanged;
                     break;
                 case ComboBox ComboControl:
+                    ComboControl.Width = 200;
                     ComboControl.SelectedIndexChanged += ComboControl_SelectedIndexChanged;
                     break;
                 case TextBox TextControl:
@@ -160,24 +161,29 @@ namespace JsonEditorV2
    
             //確定型態符合
             if (ValueControl is TextBox)
+            { 
                 if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
                 }
+            }
             else if (ValueControl is CheckBox)
+            { 
                 if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
                 }
+            }
             else if(ValueControl is ComboBox) //確認Choice 正確
+            { 
                 if ((ValueControl as ComboBox).SelectedIndex == -1 || !(ValueControl as ComboBox).SelectedItem.TryParseJType(JColumn.Type, out parsedValue))
                 {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? ""));
+                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? Const.NullString));
                     return false;
                 }
-
+            }
             //確認Regex正確
             if (JColumn.Type == JType.String)
                 if (!string.IsNullOrEmpty(JColumn.RegularExpression))
@@ -327,7 +333,7 @@ namespace JsonEditorV2
                 case JType.DateTime:
                     return new TextBox { Name = $"txt{name}" };
                 case JType.Choice:
-                    return new ComboBox { Name = $"cob{name}", DataSource = choices };
+                    return new ComboBox { Name = $"cob{name}", DropDownStyle = ComboBoxStyle.DropDownList, DataSource = choices };
                 //case JType.Date:
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
                 //case JType.Time:
