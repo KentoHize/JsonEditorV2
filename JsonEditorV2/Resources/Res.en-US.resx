@@ -522,6 +522,9 @@
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT" xml:space="preserve">
     <value>Auto-generated key column has other rules. (min value, max value, max length, or regular expression)</value>
   </data>
+  <data name="JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS" xml:space="preserve">
+    <value>Choice type column without any choice.</value>
+  </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
     <value>Foreign key column is missing.</value>
   </data>

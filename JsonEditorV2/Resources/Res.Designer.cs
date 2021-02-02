@@ -1285,6 +1285,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 選擇欄位沒有可選值.
+        /// </summary>
+        public static string JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS {
+            get {
+                return ResourceManager.GetString("JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 外部索引欄位名遺失.
         /// </summary>
         public static string JE_VAL_COLUMN_FK_COLUMN_MISSING {

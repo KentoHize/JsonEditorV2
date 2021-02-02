@@ -57,10 +57,12 @@ namespace JsonEditorV2
             {
                 case CheckBox CheckControl:
                     CheckControl.CheckedChanged += CheckControl_CheckedChanged;
+                    CheckControl.GotFocus += CheckControl_GotFocus;
                     break;
                 case ComboBox ComboControl:
                     ComboControl.Width = 200;
                     ComboControl.SelectedIndexChanged += ComboControl_SelectedIndexChanged;
+                    ComboControl.GotFocus += ComboControl_GotFocus;
                     break;
                 case TextBox TextControl:
                     TextControl.Width = 200;
@@ -112,9 +114,21 @@ namespace JsonEditorV2
             pnlMain.Controls.Add(NullCheckBox);
         }
 
+        private void CheckControl_GotFocus(object sender, EventArgs e)
+        {
+            if (!JColumn.IsNullable)
+                NullCheckBox.Checked = false;
+        }
+
+        private void ComboControl_GotFocus(object sender, EventArgs e)
+        {
+            if (!JColumn.IsNullable)
+                NullCheckBox.Checked = false;
+        }
+
         private void ComboControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValidControl.SetError(errPositionControl, "");
+            ValidControl.SetError(errPositionControl, "");            
         }
 
         private void CheckControl_CheckedChanged(object sender, EventArgs e)

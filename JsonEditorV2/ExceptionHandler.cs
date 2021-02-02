@@ -81,6 +81,9 @@ namespace JsonEditorV2
                 case JColumnInvalidReasons.AutoGenerateKeyWithInappropriateType:
                     result.AppendFormat(Res.JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE);
                     break;
+                case JColumnInvalidReasons.ChoiceTypeChoicesNotExist:
+                    result.AppendFormat(Res.JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS);
+                    break;
             }
             RabbitCouriers.SentErrorMessage(result.ToString(), Res.JE_TMI_LOAD_JSON_FILES, JFI.InvalidReason.ToString());
         }

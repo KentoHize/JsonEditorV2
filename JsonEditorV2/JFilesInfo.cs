@@ -80,6 +80,8 @@ namespace JsonEditor
                 return JColumnInvalidReasons.AutoGenerateKeyWithRestrict;
             else if (jc.AutoGenerateKey && !jc.Type.IsNumber() && jc.Type != JType.String && jc.Type != JType.Guid)
                 return JColumnInvalidReasons.AutoGenerateKeyWithInappropriateType;
+            else if (jc.Type == JType.Choice && (jc.Choices == null || jc.Choices.Count == 0))
+                return JColumnInvalidReasons.ChoiceTypeChoicesNotExist;
             return JColumnInvalidReasons.None;
         }
 

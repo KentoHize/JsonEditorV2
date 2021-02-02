@@ -28,6 +28,7 @@ namespace JsonEditor
         MinValueGreaterThanMaxValue,
         IllegalRegularExpression,
         AutoGenerateKeyWithRestrict,
-        AutoGenerateKeyWithInappropriateType
+        AutoGenerateKeyWithInappropriateType,
+        ChoiceTypeChoicesNotExist
     }
 }
