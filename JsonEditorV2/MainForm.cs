@@ -140,8 +140,8 @@ namespace JsonEditorV2
                 {
                     for (int i = 0; i < columnIndexs.Count; i++)
                     {
-                        jl[columnIndexs[i]].Value.TryParseJType(newType, out result);
-                        jl[columnIndexs[i]].Value = result;
+                        jl[columnIndexs[i]].TryParseJType(newType, out result);
+                        jl[columnIndexs[i]] = result;
                     }
                 }
             }
@@ -329,10 +329,10 @@ namespace JsonEditorV2
                 object result;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                 {
-                    jl[index].Value.TryParseJType(newType, out result);
+                    jl[index].TryParseJType(newType, out result);
                     if (result == null && !Var.SelectedColumn.IsNullable)
                         result = newType.InitialValue();
-                    jl[index].Value = result;
+                    jl[index] = result;
                 }
 
                 //檢查FK的值                
@@ -350,8 +350,8 @@ namespace JsonEditorV2
             {
                 int index = Var.SelectedColumnIndex;
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                    if (jl[index].Value == null)
-                        jl[index].Value = newType.InitialValue();
+                    if (jl[index] == null)
+                        jl[index] = newType.InitialValue();
             }
             Var.SelectedColumn.IsNullable = ckbColumnIsNullable.Checked;
 
@@ -675,7 +675,7 @@ namespace JsonEditorV2
 
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
-                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i].Value);
+                Var.InputControlSets[i].SetValueToString(Var.SelectedTable[Var.SelectedLineIndex][i]);
                 Var.InputControlSets[i].CheckValid(Var.SelectedLineIndex);
             }
 
@@ -748,10 +748,10 @@ namespace JsonEditorV2
                 {
                     if (Var.SelectedTable.Columns[j].Display)
                     {
-                        if (Var.SelectedTable[i][j].Value == null)
+                        if (Var.SelectedTable[i][j] == null)
                             continue;
 
-                        string r = Var.SelectedTable[i][j].Value.ToString(Var.SelectedTable.Columns[j].Type);
+                        string r = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
                         if (r.Length > Setting.DgvLinesStringMaxLength)
                             r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
                         else
@@ -1039,7 +1039,7 @@ namespace JsonEditorV2
 
             if (Var.SelectedColumnParentTable.Count != 0)
                 foreach (JLine jl in Var.SelectedColumnParentTable)
-                    jl.Add(JValue.FromObject(""));
+                    jl.Add("");
 
             JColumn jc = new JColumn(columnName);
             Var.SelectedColumnParentTable.Columns.Add(jc);
@@ -1338,7 +1338,7 @@ namespace JsonEditorV2
                                 {
                                     if (i == 0)
                                         jt.Columns.Add(new JColumn(value.ToString(), JTypeExtentions.ToJType(reader.TokenType)));
-                                    jl.Add(JValue.FromObject(reader.Value));
+                                    jl.Add(reader.Value);
                                 }
                                 pflag = 0;
                             }
@@ -1627,7 +1627,7 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                Var.SelectedTable[Var.SelectedLineIndex][i].Value = Var.InputControlSets[i].GetValueValidated();
+                Var.SelectedTable[Var.SelectedLineIndex][i] = Var.InputControlSets[i].GetValueValidated();
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
@@ -1652,7 +1652,7 @@ namespace JsonEditorV2
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {
-                JValue jv = jl[index - 1];
+                object jv = jl[index - 1];
                 jl[index - 1] = jl[index];
                 jl[index] = jv;
             }
@@ -1683,7 +1683,7 @@ namespace JsonEditorV2
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
             {
-                JValue jv = jl[index + 1];
+                object jv = jl[index + 1];
                 jl[index + 1] = jl[index];
                 jl[index] = jv;
             }
@@ -2141,9 +2141,9 @@ namespace JsonEditorV2
         private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
         {
             if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri)
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
             else
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text.ToString(Var.SelectedTable.Columns[columnIndex].Type));
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text.ToString(Var.SelectedTable.Columns[columnIndex].Type));
         }
 
         public void btnFindConfirm_Click(object sender, EventArgs e)

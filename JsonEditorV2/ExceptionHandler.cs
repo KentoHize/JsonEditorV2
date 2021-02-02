@@ -161,28 +161,28 @@ namespace JsonEditorV2
                     result.AppendFormat(Res.JE_VAL_NOT_NULLABLE);
                     break;
                 case JValueInvalidReasons.WrongType:
-                    result.AppendFormat(Res.JE_VAL_INVALID_CAST, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_INVALID_CAST, jt[kvp1.Key][kvp2.Key] ?? "");
                     break;
                 case JValueInvalidReasons.LessThenMinValue:
-                    result.AppendFormat(Res.JE_VAL_LESS_THEN_MIN_VALUE, jt[kvp1.Key][kvp2.Key].Value, jt.Columns[kvp2.Key].MinValue ?? "");
+                    result.AppendFormat(Res.JE_VAL_LESS_THEN_MIN_VALUE, jt[kvp1.Key][kvp2.Key], jt.Columns[kvp2.Key].MinValue ?? "");
                     break;
                 case JValueInvalidReasons.GreaterThenMaxValue:
-                    result.AppendFormat(Res.JE_VAL_GREATER_THEN_MAX_VALUE, jt[kvp1.Key][kvp2.Key].Value, jt.Columns[kvp2.Key].MaxValue ?? "");
+                    result.AppendFormat(Res.JE_VAL_GREATER_THEN_MAX_VALUE, jt[kvp1.Key][kvp2.Key], jt.Columns[kvp2.Key].MaxValue ?? "");
                     break;
                 case JValueInvalidReasons.LongerThenMaxLength:
                     result.AppendFormat(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, jt.Columns[kvp2.Key].MaxLength);
                     break;
                 case JValueInvalidReasons.RegularExpressionNotMatch:
-                    result.AppendFormat(Res.JE_VAL_REGEX_IS_NOT_MATCH, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_REGEX_IS_NOT_MATCH, jt[kvp1.Key][kvp2.Key] ?? "");
                     break;
                 case JValueInvalidReasons.NotUnique:
-                    result.AppendFormat(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, jt[kvp1.Key][kvp2.Key] ?? "");
                     break;
                 case JValueInvalidReasons.DuplicateKey:
-                    result.AppendFormat(Res.JE_VAL_DUPLICATE_KEY, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_DUPLICATE_KEY, jt[kvp1.Key][kvp2.Key] ?? "");
                     break;
                 case JValueInvalidReasons.FoeignKeyValueNotExists:
-                    result.AppendFormat(Res.JE_VAL_FK_VALUE_NOT_FOUND, jt[kvp1.Key][kvp2.Key].Value ?? "");
+                    result.AppendFormat(Res.JE_VAL_FK_VALUE_NOT_FOUND, jt[kvp1.Key][kvp2.Key] ?? "");
                     break;
                 default:
                     result.Append(Res.JE_ERR_UNKNOWN_ERROR);

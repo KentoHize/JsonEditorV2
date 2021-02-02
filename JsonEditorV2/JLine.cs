@@ -7,64 +7,64 @@ using System.Threading.Tasks;
 
 namespace JsonEditor
 {
-    public class JLine : IList<JValue>
+    public class JLine : IList<object>
     {
-        public JValue this[int index] { get => ((IList<JValue>)Values)[index]; set => ((IList<JValue>)Values)[index] = value; }        
+        public object this[int index] { get => ((IList<object>)Values)[index]; set => ((IList<object>)Values)[index] = value; }
 
-        public List<JValue> Values { get; set; } = new List<JValue>();
+        public List<object> Values { get; set; } = new List<object>();
 
-        public int Count => ((IList<JValue>)Values).Count;
+        public int Count => ((IList<object>)Values).Count;
 
-        public bool IsReadOnly => ((IList<JValue>)Values).IsReadOnly;
+        public bool IsReadOnly => ((IList<object>)Values).IsReadOnly;
 
-        public void Add(JValue item)
+        public void Add(object item)
         {
-            ((IList<JValue>)Values).Add(item);
+            ((IList<object>)Values).Add(item);
         }
 
         public void Clear()
         {
-            ((IList<JValue>)Values).Clear();
+            ((IList<object>)Values).Clear();
         }
 
-        public bool Contains(JValue item)
+        public bool Contains(object item)
         {
-            return ((IList<JValue>)Values).Contains(item);
+            return ((IList<object>)Values).Contains(item);
         }
 
-        public void CopyTo(JValue[] array, int arrayIndex)
+        public void CopyTo(object[] array, int arrayIndex)
         {
-            ((IList<JValue>)Values).CopyTo(array, arrayIndex);
+            ((IList<object>)Values).CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<JValue> GetEnumerator()
+        public IEnumerator<object> GetEnumerator()
         {
-            return ((IList<JValue>)Values).GetEnumerator();
+            return ((IList<object>)Values).GetEnumerator();
         }
 
-        public int IndexOf(JValue item)
+        public int IndexOf(object item)
         {
-            return ((IList<JValue>)Values).IndexOf(item);
+            return ((IList<object>)Values).IndexOf(item);
         }
 
-        public void Insert(int index, JValue item)
+        public void Insert(int index, object item)
         {
-            ((IList<JValue>)Values).Insert(index, item);
+            ((IList<object>)Values).Insert(index, item);
         }
 
-        public bool Remove(JValue item)
+        public bool Remove(object item)
         {
-            return ((IList<JValue>)Values).Remove(item);
+            return ((IList<object>)Values).Remove(item);
         }
 
         public void RemoveAt(int index)
         {
-            ((IList<JValue>)Values).RemoveAt(index);
+            ((IList<object>)Values).RemoveAt(index);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IList<JValue>)Values).GetEnumerator();
+            return ((IList<object>)Values).GetEnumerator();
         }
     }
 }

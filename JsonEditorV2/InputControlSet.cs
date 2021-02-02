@@ -194,7 +194,7 @@ namespace JsonEditorV2
                 int columnIndex = JTable.Columns.IndexOf(JColumn);
                 for(int i = 0; i < JTable.Count; i++)
                 {
-                    if(i != lineIndex && parsedValue == JTable[i][columnIndex].Value)
+                    if(i != lineIndex && parsedValue == JTable[i][columnIndex])
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, parsedValue));
                         return false;
@@ -216,7 +216,7 @@ namespace JsonEditorV2
                     if(!MainForm.LoadOrScanJsonFile(jt))
                         return false;
                 
-                if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].Value.ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
+                if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_VALUE_NOT_FOUND, ValueControl.Text));
                     return false;

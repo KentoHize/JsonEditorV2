@@ -46,7 +46,7 @@ namespace JsonEditor
                 var l = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
                 {
-                    l.Add(Columns[i].Name, jl[i].Value);
+                    l.Add(Columns[i].Name, jl[i]);
                 }
                 result.Add(l);
             }
@@ -69,9 +69,9 @@ namespace JsonEditor
                 List<object> lo = new List<object>();
                 for (int i = 0; i < Columns.Count; i++)
                 {
-                    if (jl[i].Value == null)
+                    if (jl[i] == null)
                         continue;
-                    dr[i] = jl[i].Value;
+                    dr[i] = jl[i];
                 }
                 dt.Rows.Add(dr);
             }
@@ -102,7 +102,7 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    line.Add(Columns[i].Name, jl[i].Value == null ? null : jl[i].Value.ToString(Columns[i].Type));
+                    line.Add(Columns[i].Name, jl[i] == null ? null : jl[i].ToString(Columns[i].Type));
                 result.Add(line);
             }
             return result;
@@ -312,7 +312,7 @@ namespace JsonEditor
                 {
                     if (line.ContainsKey(Columns[i].Name))
                     {
-                        jl.Add(JValue.FromObject(line[Columns[i].Name].ParseJType(Columns[i].Type)));
+                        jl.Add(line[Columns[i].Name].ParseJType(Columns[i].Type));
                         if (Columns[i].Type == JType.String)
                             if (line[Columns[i].Name] != null)
                                 charsCountDivide10[i] += line[Columns[i].Name].Length / 10;
@@ -320,7 +320,7 @@ namespace JsonEditor
                     else
                     {
                         Columns[i].IsNullable = true;
-                        jl.Add(JValue.FromObject(null));
+                        jl.Add(null);
                     }
                 }
                 Lines.Add(jl);
@@ -377,17 +377,17 @@ namespace JsonEditor
                             throw new JFileInvalidException(JFileInvalidReasons.ChildColumnNameVary, i, kvp.Key);
 
                     if (kvp.Value.Type == JTokenType.Null)
-                        jl.Add(JValue.FromObject(null));
+                        jl.Add(null);
                     else if (kvp.Value.ToString().TryParseJType(Columns[j].Type, out object parsedObj))
                     {
-                        jl.Add(JValue.FromObject(parsedObj));
+                        jl.Add(parsedObj);
                         if (!Changed)
                             Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type);
                     }
                     else
                     {
                         //資料損毀通知
-                        jl.Add(JValue.FromObject(parsedObj));
+                        jl.Add(parsedObj);
                         Changed = true;
                     }
                     j++;
@@ -422,17 +422,17 @@ namespace JsonEditor
             for (int i = 0; i < Columns.Count; i++)
             {
                 //IsNull
-                if (jl[i].Value == null && Columns[i].IsNullable)
+                if (jl[i] == null && Columns[i].IsNullable)
                     continue;
 
-                else if (jl[i].Value == null && !Columns[i].IsNullable)
+                else if (jl[i] == null && !Columns[i].IsNullable)
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.NullValue);
                     return false;
                 }
 
                 //Type
-                if (jl[i].Value.GetType() != Columns[i].Type.ToType())
+                if (jl[i].GetType() != Columns[i].Type.ToType())
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);
                     return false;
@@ -441,13 +441,13 @@ namespace JsonEditor
                 //MinMax
                 if (Columns[i].Type.IsNumber() || Columns[i].Type.IsDateTime())
                 {
-                    if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].Value.CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
+                    if (!string.IsNullOrEmpty(Columns[i].MinValue) && jl[i].CompareTo(Columns[i].MinValue, Columns[i].Type) == -1)
                     {
                         AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LessThenMinValue);
                         return false;
                     }
 
-                    if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].Value.CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
+                    if (!string.IsNullOrEmpty(Columns[i].MaxValue) && jl[i].CompareTo(Columns[i].MaxValue, Columns[i].Type) == 1)
                     {
                         AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.GreaterThenMaxValue);
                         return false;
@@ -456,7 +456,7 @@ namespace JsonEditor
 
                 //MaxLength
                 if (Columns[i].MaxLength != 0 &&
-                    jl[i].Value.ToString(Columns[i].Type).Length > Columns[i].MaxLength)
+                    jl[i].ToString(Columns[i].Type).Length > Columns[i].MaxLength)
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.LongerThenMaxLength);
                     return false;
@@ -464,7 +464,7 @@ namespace JsonEditor
 
                 //Regex
                 if (!string.IsNullOrEmpty(Columns[i].RegularExpression) &&
-                    !Regex.IsMatch(jl[i].Value.ToString(Columns[i].Type), Columns[i].RegularExpression))
+                    !Regex.IsMatch(jl[i].ToString(Columns[i].Type), Columns[i].RegularExpression))
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.RegularExpressionNotMatch);
                     return false;
@@ -508,8 +508,8 @@ namespace JsonEditor
                 {
                     checkString = "";
                     for (int j = 0; j < keyIndex.Count; j++)
-                        if (Lines[i][keyIndex[j]].Value != null)
-                            checkString = string.Concat(checkString, Lines[i][keyIndex[j]].Value.ToString(Columns[keyIndex[j]].Type));
+                        if (Lines[i][keyIndex[j]] != null)
+                            checkString = string.Concat(checkString, Lines[i][keyIndex[j]].ToString(Columns[keyIndex[j]].Type));
                     if (keyCheckSet.ContainsKey(checkString))
                     {
                         for (int j = 0; j < keyIndex.Count; j++)
@@ -536,7 +536,7 @@ namespace JsonEditor
                     for (int j = Lines.Count - 1; j > -1; j--)
                     {
                         //Null Check
-                        if (Lines[j][i].Value == null)
+                        if (Lines[j][i] == null)
                             if (nullObjectIndex == -1)
                                 nullObjectIndex = j;
                             else
@@ -547,16 +547,16 @@ namespace JsonEditor
                                 if (quickCheck)
                                     return false;
                             }
-                        else if (uniqueCheckDictionary.ContainsKey(Lines[j][i].Value))
+                        else if (uniqueCheckDictionary.ContainsKey(Lines[j][i]))
                         {
                             AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
-                            AddInvalidRecord(uniqueCheckDictionary[Lines[j][i].Value], i, JValueInvalidReasons.NotUnique);
+                            AddInvalidRecord(uniqueCheckDictionary[Lines[j][i]], i, JValueInvalidReasons.NotUnique);
                             Valid = false;
                             if (quickCheck)
                                 return false;
                         }
                         else
-                            uniqueCheckDictionary.Add(Lines[j][i].Value, j);
+                            uniqueCheckDictionary.Add(Lines[j][i], j);
                     }
                 }
             }
@@ -579,7 +579,7 @@ namespace JsonEditor
 
             try
             {
-                startValue = Convert.ToInt16(Lines[Lines.Count - 1][index].Value);
+                startValue = Convert.ToInt16(Lines[Lines.Count - 1][index]);
                 startValue++;
             }
             catch
@@ -588,7 +588,7 @@ namespace JsonEditor
             }
 
             uniqueKey = startValue;
-            while(Lines.Exists(m => m.Values[index].Value.CompareTo(uniqueKey, Columns[index].Type) == 0))
+            while(Lines.Exists(m => m.Values[index].CompareTo(uniqueKey, Columns[index].Type) == 0))
             {
                 uniqueKey++;
                 if(uniqueKey == startValue)
@@ -604,9 +604,9 @@ namespace JsonEditor
             for (int i = 0; i < Columns.Count; i++)
             {
                 if (Columns[i].AutoGenerateKey)
-                    jl.Add(JValue.FromObject(GenerateKey(i)));
+                    jl.Add(GenerateKey(i));
                 else
-                    jl.Add(JValue.FromObject(Columns[i].Type.InitialValue()));
+                    jl.Add(Columns[i].Type.InitialValue());
             }
             Lines.Add(jl);
         }

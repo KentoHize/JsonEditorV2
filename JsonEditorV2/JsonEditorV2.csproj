@@ -112,7 +112,6 @@
     <Compile Include="JLine.cs" />
     <Compile Include="JTable.cs" />
     <Compile Include="JType.cs" />
-    <Compile Include="JValue.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

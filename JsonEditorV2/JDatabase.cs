@@ -58,7 +58,7 @@ namespace JsonEditor
 
                     for (int j = 0; j < jt.Count; j++)
                     {
-                        if (jt[j][i].Value != null && !fkTable.Lines.Exists(m => m.Values[fkColumnIndex].Value.CompareTo(jt[j][i].Value, jt.Columns[i].Type) == 0))
+                        if (jt[j][i] != null && !fkTable.Lines.Exists(m => m.Values[fkColumnIndex].CompareTo(jt[j][i], jt.Columns[i].Type) == 0))
                         {
                             jt.AddInvalidRecord(j, i, JValueInvalidReasons.FoeignKeyValueNotExists);
                             jt.Valid = Valid = false;
