@@ -77,6 +77,7 @@ namespace JsonEditorV2
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
+            tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
@@ -376,7 +377,7 @@ namespace JsonEditorV2
 
         public void tmiAbout_Click(object sender, EventArgs e)
         {
-            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE);
+            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}\n\n{Res.JE_ABOUT_MESSAGE_2}  {Const.VersionString}", Res.JE_ABOUT_TITLE);
         }
 
         public void tmiNewJsonFiles_Click(object sender, EventArgs e)
@@ -551,6 +552,8 @@ namespace JsonEditorV2
 
                 Var.Tables.Add(table);
             }
+
+            Var.Database.CheckAllTablesValid();
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_LOAD_JSON_FILES_M_1, Var.Tables.Count);
@@ -767,9 +770,12 @@ namespace JsonEditorV2
                 if (!dgvLines.Rows[Var.SelectedLineIndex].Displayed)
                     dgvLines.FirstDisplayedScrollingRowIndex = Var.SelectedLineIndex;
             }
-
+            
+            cobFindColumnName.DataSource = null;
+            cobFindColumnName.ValueMember = "Name";
+            cobFindColumnName.DisplayMember = "Name";
             cobFindColumnName.DataSource = Var.SelectedTable.Columns;
-
+            
             Var.LockPnlMain = false;
 
             btnNewLine.Enabled =
@@ -807,6 +813,8 @@ namespace JsonEditorV2
         {
             if (!Var.NotOnlyClose && AskSaveFiles(Res.JE_TMI_CLOSE_ALL_FILES) == DialogResult.Cancel)
                 return;
+
+            btnClearColumn_Click(this, e);
             Var.Tables = null;
             Var.OpenedTable.Clear();
             Var.LineIndexes.Clear();
@@ -987,8 +995,10 @@ namespace JsonEditorV2
                 if (tmiOpenJsonFile.Enabled)
                     tmiOpenJsonFile_Click(this, new EventArgs());
                 else
+                {
                     Var.PageIndex = Var.OpenedTable.FindIndex(m => m.Name == e.Node.Tag.ToString());
-                RefreshTbcMain();
+                    RefreshTbcMain();
+                }   
             }
         }
 
@@ -2183,6 +2193,22 @@ namespace JsonEditorV2
         private void txtFindValue_Click(object sender, EventArgs e)
         {
             txtFindValue.SelectAll();
+        }
+
+        private void tmiRenameDatabase_Click(object sender, EventArgs e)
+        {
+            string newName = frmInputBox.Show(this, InputBoxTypes.RenameDataBase);
+            if (string.IsNullOrEmpty(newName))
+                return;
+
+            if (newName == Var.JFI.Name)
+                return;
+
+            Var.JFI.Name = newName;
+            Var.JFI.Changed = true;
+           
+            RefreshTrvJsonFiles();
+            sslMain.Text = string.Format(Res.JE_RUN_RENAME_DATABASE_M_1, newName);
         }
     }
 }

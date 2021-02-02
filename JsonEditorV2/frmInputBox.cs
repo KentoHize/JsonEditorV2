@@ -20,6 +20,7 @@ namespace JsonEditorV2
         RenameFile,
         AddColumn,
         RenameColumn,
+        RenameDataBase
     }
 
     public partial class frmInputBox : Form
@@ -62,6 +63,11 @@ namespace JsonEditorV2
                     lblExtensionName.Visible = false;
                     lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION_2;
                     Text = Res.JE_TMI_RENAME_COLUMN;
+                    break;
+                case InputBoxTypes.RenameDataBase:
+                    lblExtensionName.Visible = false;
+                    lblDescirption.Text = Res.JE_INPUTBOX_DESCRIPTION_3;
+                    Text = Res.JE_TMI_RENAME_DATABASE;
                     break;
                 default:
                     lblExtensionName.Visible = false;
@@ -114,6 +120,13 @@ namespace JsonEditorV2
                     if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_COLUMN_NAME", Res.JE_TMI_RENAME_COLUMN);
+                        return;
+                    }
+                    break;
+                case InputBoxTypes.RenameDataBase:
+                    if (!Regex.IsMatch(txtInput.Text, Const.DatabaseRegex))
+                    {
+                        RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_DATABASE_NAME", Res.JE_TMI_RENAME_DATABASE);
                         return;
                     }
                     break;

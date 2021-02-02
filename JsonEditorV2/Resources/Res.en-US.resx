@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
-    <value>JSON Files Editor V0.3</value>
+    <value>JSON Files Editor</value>
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
     <value>Author: KentKaze</value>
@@ -261,6 +261,9 @@
   <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
     <value>Column Name</value>
   </data>
+  <data name="JE_INPUTBOX_DESCRIPTION_3" xml:space="preserve">
+    <value>Folder's Title</value>
+  </data>
   <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
     <value>File "{0}" exist.</value>
   </data>
@@ -272,6 +275,9 @@
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
     <value>Wrong column name, use a '_' or an alphabet at the head and  '_', alphabets or numbers at the body to complete a name, text length must less than 50.</value>
+  </data>
+  <data name="JE_INPUTBOX_WRONG_DATABASE_NAME" xml:space="preserve">
+    <value>Wrong folder's title.</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>Wrong file name.</value>
@@ -359,6 +365,9 @@
   </data>
   <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
     <value>Rename</value>
+  </data>
+  <data name="JE_RUN_RENAME_DATABASE_M_1" xml:space="preserve">
+    <value>Folder's title has rename to "{0}".</value>
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     <value>File "{0}.json" exist.</value>
@@ -463,6 +472,9 @@
     <value>Refresh</value>
   </data>
   <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="JE_TMI_RENAME_DATABASE" xml:space="preserve">
     <value>Rename</value>
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">

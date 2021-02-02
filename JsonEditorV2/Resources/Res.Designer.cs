@@ -61,7 +61,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JSON 資料檔案編輯器 0.3.
+        ///   Looks up a localized string similar to JSON 資料檔案編輯器.
         /// </summary>
         public static string JE_ABOUT_MESSAGE {
             get {
@@ -493,6 +493,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 檔案庫名稱.
+        /// </summary>
+        public static string JE_INPUTBOX_DESCRIPTION_3 {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_DESCRIPTION_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案&quot;{0}:已存在.
         /// </summary>
         public static string JE_INPUTBOX_FILE_EXISTS {
@@ -525,6 +534,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_INPUTBOX_WRONG_COLUMN_NAME {
             get {
                 return ResourceManager.GetString("JE_INPUTBOX_WRONG_COLUMN_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不符合規則的檔案庫名稱.
+        /// </summary>
+        public static string JE_INPUTBOX_WRONG_DATABASE_NAME {
+            get {
+                return ResourceManager.GetString("JE_INPUTBOX_WRONG_DATABASE_NAME", resourceCulture);
             }
         }
         
@@ -795,6 +813,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_RENAME_COLUMN_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_RENAME_COLUMN_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 檔案庫已重新命名為&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_RENAME_DATABASE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_RENAME_DATABASE_M_1", resourceCulture);
             }
         }
         
@@ -1110,6 +1137,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_RENAME_COLUMN {
             get {
                 return ResourceManager.GetString("JE_TMI_RENAME_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 重新命名.
+        /// </summary>
+        public static string JE_TMI_RENAME_DATABASE {
+            get {
+                return ResourceManager.GetString("JE_TMI_RENAME_DATABASE", resourceCulture);
             }
         }
         

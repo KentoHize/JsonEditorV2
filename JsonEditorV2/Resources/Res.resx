@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
-    <value>JSON 資料檔案編輯器 0.3</value>
+    <value>JSON 資料檔案編輯器</value>
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
     <value>Created by KentKaze</value>
@@ -261,6 +261,9 @@
   <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
     <value>欄位名稱</value>
   </data>
+  <data name="JE_INPUTBOX_DESCRIPTION_3" xml:space="preserve">
+    <value>檔案庫名稱</value>
+  </data>
   <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
     <value>檔案"{0}:已存在</value>
   </data>
@@ -272,6 +275,9 @@
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
     <value>錯誤的欄位名稱，請用'_'或非特殊文字開頭，之後使用'_'、非特殊文字或是數字，長度不要超過50位</value>
+  </data>
+  <data name="JE_INPUTBOX_WRONG_DATABASE_NAME" xml:space="preserve">
+    <value>不符合規則的檔案庫名稱</value>
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     <value>不符合規則的檔案名稱</value>
@@ -362,6 +368,9 @@
   </data>
   <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
     <value>重新命名</value>
+  </data>
+  <data name="JE_RUN_RENAME_DATABASE_M_1" xml:space="preserve">
+    <value>檔案庫已重新命名為"{0}"</value>
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     <value>檔案"{0}.json"已存在</value>
@@ -466,6 +475,9 @@
     <value>重新整理</value>
   </data>
   <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
+    <value>重新命名</value>
+  </data>
+  <data name="JE_TMI_RENAME_DATABASE" xml:space="preserve">
     <value>重新命名</value>
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
