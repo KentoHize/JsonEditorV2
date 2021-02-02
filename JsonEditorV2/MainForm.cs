@@ -555,11 +555,9 @@ namespace JsonEditorV2
                         tmiCloseAllFiles_Click(this, e);
                         return;
                     }
-                        
-
                 Var.Tables.Add(table);
             }
-
+            
             Var.Database.CheckAllTablesValid();
 
             RefreshTrvJsonFiles();

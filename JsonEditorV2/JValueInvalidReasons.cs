@@ -17,6 +17,7 @@ namespace JsonEditor
         RegularExpressionNotMatch,
         DuplicateKey,
         NotUnique,
-        FoeignKeyValueNotExists
+        FoeignKeyValueNotExists,
+        ChoiceValueNotExists
     }
 }

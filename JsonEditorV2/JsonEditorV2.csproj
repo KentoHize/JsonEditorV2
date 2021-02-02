@@ -89,6 +89,12 @@
   <ItemGroup>
     <Compile Include="Const.cs" />
     <Compile Include="ExceptionHandler.cs" />
+    <Compile Include="frmChoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChoices.Designer.cs">
+      <DependentUpon>frmChoices.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFKTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </Compile>
     <Compile Include="Setting.cs" />
     <Compile Include="Var.cs" />
+    <EmbeddedResource Include="frmChoices.resx">
+      <DependentUpon>frmChoices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFKTable.resx">
       <DependentUpon>frmFKTable.cs</DependentUpon>
     </EmbeddedResource>

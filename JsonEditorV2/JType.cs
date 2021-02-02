@@ -20,7 +20,7 @@ namespace JsonEditor
         DateTime,
         Guid,
         Uri,
-        //TimeSpan,
+        Choice,
         Decimal,
         Object,
         Array
@@ -73,9 +73,8 @@ namespace JsonEditor
                     return Convert.ToInt64(instance).CompareTo(Convert.ToInt64(value));
                 case JType.Decimal:
                     return Convert.ToDecimal(instance).CompareTo(Convert.ToDecimal(value));
-                //case JType.TimeSpan:
-                //
                 case JType.String:
+                case JType.Choice:
                 case JType.Uri:
                 case JType.Guid:
                     if(value != null)
@@ -114,9 +113,8 @@ namespace JsonEditor
                     return long.MinValue;
                 case JType.Decimal:
                     return decimal.MinValue;
-                //case JType.TimeSpan:
-                //    return TimeSpan.MinValue;
                 case JType.String:
+                case JType.Choice:
                 case JType.Uri:
                 case JType.Guid:
                 case JType.None:
@@ -155,9 +153,8 @@ namespace JsonEditor
                     return long.MaxValue;
                 case JType.Decimal:
                     return decimal.MaxValue;
-                //case JType.TimeSpan:
-                //    return TimeSpan.MaxValue;
                 case JType.String:
+                case JType.Choice:
                 case JType.Uri:
                 case JType.Guid:
                 case JType.None:
@@ -194,7 +191,7 @@ namespace JsonEditor
         /// <param name="type">JType</param>
         /// <returns>結果</returns>
         public static bool IsStringFamily(this JType type)
-            => IsDateTime(type) || type == JType.Guid || type == JType.Uri || type == JType.String;
+            => IsDateTime(type) || type == JType.Guid || type == JType.Uri || type == JType.String || type== JType.Choice;
 
         /// <summary>
         /// 回傳JType的初始值
@@ -225,10 +222,9 @@ namespace JsonEditor
                     return (decimal)0;
                 case JType.None:
                 case JType.Object:
+                case JType.Choice:
                 case JType.Array:
                     return null;
-                //case JType.TimeSpan:
-                //    return new TimeSpan();
                 case JType.Uri:
                     return null;
                 case JType.String:
@@ -310,11 +306,7 @@ namespace JsonEditor
                     break;
                 case JType.None:
                 case JType.Array:
-                    return null;                    
-                //case JType.TimeSpan:
-                //    if (TimeSpan.TryParse(value.ToString(), out TimeSpan r9))
-                //        return r9;
-                //    break;
+                    return null;
                 case JType.Uri:
                     if (Uri.TryCreate(value.ToString(), UriKind.RelativeOrAbsolute, out Uri r10))
                         return r10;
@@ -325,6 +317,7 @@ namespace JsonEditor
                     break;
                 case JType.Object:
                     return value.ToString();
+                case JType.Choice:
                 case JType.String:
                     return value.ToString();
                 default:
@@ -400,11 +393,10 @@ namespace JsonEditor
                 case JType.Object:
                 case JType.Array:
                     return typeof(object);
-                //case JType.TimeSpan:
-                //    return new TimeSpan();
                 case JType.Uri:
                     return typeof(Uri);
                 case JType.String:
+                case JType.Choice:
                     return typeof(string);
                 default:
                     return null;
@@ -453,8 +445,6 @@ namespace JsonEditor
                     return JType.Guid;
                 case JTokenType.Date:
                     return JType.DateTime;
-                //case JTokenType.TimeSpan:
-                //    return JType.TimeSpan;
                 case JTokenType.Uri:
                     return JType.Uri;
                 case JTokenType.Object:

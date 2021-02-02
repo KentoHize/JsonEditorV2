@@ -13,6 +13,7 @@ namespace JsonEditor
         public bool IsKey { get; set; }
         public bool IsNullable { get; set; }
         public JType Type { get; set; }
+        public List<object> Choices { get; set; }
         public string FKTable { get; set; }
         public string FKColumn { get; set; }
         public int NumberOfRows { get; set; }
