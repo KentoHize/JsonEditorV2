@@ -2117,7 +2117,15 @@ namespace JsonEditorV2
             Var.ContinuousFindTimes = 0;
         }
 
-        private void btnFindConfirm_Click(object sender, EventArgs e)
+        private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
+        {
+            if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri)
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+            else
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text.ToString(Var.SelectedTable.Columns[columnIndex].Type));
+        }
+
+        public void btnFindConfirm_Click(object sender, EventArgs e)
         {
             if (txtFindValue.Text == "" || Var.SelectedTable == null)
                 return;
@@ -2128,13 +2136,11 @@ namespace JsonEditorV2
 
             int itemIndex;
             if (Var.ContinuousFindTimes == 0)
-                itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                itemIndex = FindItemIndexFromSelectedTable(columnIndex);
             else
-                itemIndex = Var.SelectedTable.Lines.FindIndex(Var.SelectedLineIndex + 1, m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
-
+                itemIndex = FindItemIndexFromSelectedTable(columnIndex, Var.SelectedLineIndex + 1);
             if (itemIndex == -1 && Var.ContinuousFindTimes != 0)
-                itemIndex = Var.SelectedTable.Lines.FindIndex(m => (m.Values[columnIndex].Value ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
-
+                itemIndex = FindItemIndexFromSelectedTable(columnIndex);
             Var.ContinuousFindTimes++;
 
             if (itemIndex != -1)
@@ -2172,7 +2178,11 @@ namespace JsonEditorV2
                 e.Value = "(null)";
                 e.CellStyle.Font = new Font(Font, FontStyle.Italic);
             }
+        }
 
+        private void txtFindValue_Click(object sender, EventArgs e)
+        {
+            txtFindValue.SelectAll();
         }
     }
 }

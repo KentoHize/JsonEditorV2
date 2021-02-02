@@ -114,8 +114,8 @@
             this.tmiOpenJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiViewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiRenameJsonFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiCloseJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDeleteJsonFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiCloseJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -933,53 +933,53 @@
             this.toolStripMenuItem5,
             this.tmiAddColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 182);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(88, 154);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
+            // 
+            // tmiDeleteJsonFile
+            // 
+            this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteJsonFile.Text = "X";
+            this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
             // tmiCloseJsonFile
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(87, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
-            // 
-            // tmiDeleteJsonFile
-            // 
-            this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
-            this.tmiDeleteJsonFile.Text = "X";
-            this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(84, 6);
             // 
             // tmiAddColumn
             // 
             this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiAddColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiAddColumn.Text = "X";
             this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
@@ -1148,6 +1148,7 @@
             this.txtFindValue.Size = new System.Drawing.Size(213, 27);
             this.txtFindValue.TabIndex = 33;
             this.txtFindValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFindValue.Click += new System.EventHandler(this.txtFindValue_Click);
             this.txtFindValue.TextChanged += new System.EventHandler(this.txtFindValue_TextChanged);
             // 
             // btnFindConfirm
