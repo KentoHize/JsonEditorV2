@@ -1,1 +1,1 @@
-A Database-Like JSON Files Editor
+A Database-like JSON Files Editor
