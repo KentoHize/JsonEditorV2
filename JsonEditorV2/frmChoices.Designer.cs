@@ -55,7 +55,7 @@
             // txtItemName
             // 
             this.txtItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtItemName.Location = new System.Drawing.Point(12, 14);
+            this.txtItemName.Location = new System.Drawing.Point(12, 16);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(274, 27);
             this.txtItemName.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             this.btnDeleteItem.Enabled = false;
             this.btnDeleteItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteItem.Location = new System.Drawing.Point(109, 299);
+            this.btnDeleteItem.Location = new System.Drawing.Point(110, 299);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(77, 30);
             this.btnDeleteItem.TabIndex = 2;
@@ -110,7 +110,7 @@
             this.btnItemMoveDown.Enabled = false;
             this.btnItemMoveDown.ImageIndex = 1;
             this.btnItemMoveDown.ImageList = this.imlChoices;
-            this.btnItemMoveDown.Location = new System.Drawing.Point(206, 299);
+            this.btnItemMoveDown.Location = new System.Drawing.Point(208, 299);
             this.btnItemMoveDown.Name = "btnItemMoveDown";
             this.btnItemMoveDown.Size = new System.Drawing.Size(77, 30);
             this.btnItemMoveDown.TabIndex = 4;
@@ -121,7 +121,7 @@
             // btnConfirm
             // 
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.Location = new System.Drawing.Point(303, 299);
+            this.btnConfirm.Location = new System.Drawing.Point(305, 299);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(77, 30);
             this.btnConfirm.TabIndex = 5;
