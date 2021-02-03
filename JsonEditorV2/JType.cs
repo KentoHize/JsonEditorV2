@@ -41,7 +41,7 @@ namespace JsonEditor
                 case JType.Date:
                     return ((DateTime)instance).ToShortDateString();
                 case JType.Time:
-                    return ((DateTime)instance).Millisecond == 0 ? ((DateTime)instance).ToLongTimeString() : ((DateTime)instance).ToString("HH:mm:ss.ffff");
+                    return ((DateTime)instance).Millisecond == 0 ? ((DateTime)instance).ToLongTimeString() : ((DateTime)instance).ToString("HH:mm:ss.fff");
                 default:
                     return instance.ToString();
             }

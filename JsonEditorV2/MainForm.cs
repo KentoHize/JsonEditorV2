@@ -22,8 +22,26 @@ namespace JsonEditorV2
     {
         public MainForm()
         {
-            InitializeComponent();
+            InitializeComponent();            
             Var.Database = new JDatabase();
+            dtpMain.Leave += DtpMain_Leave;
+            dtpMain.ValueChanged += DtpMain_ValueChanged;
+        }
+
+        private void DtpMain_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpMain.Style == DateTimePickerStyle.Date)
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date);
+            else if (dtpMain.Style == DateTimePickerStyle.Time)
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Time);
+            else
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.DateTime);
+        }
+
+        private void DtpMain_Leave(object sender, EventArgs e)
+        {
+            if (pnlDateTimePicker.Visible)
+                pnlDateTimePicker.Hide();
         }
 
         private void ChangeCulture()
@@ -32,7 +50,7 @@ namespace JsonEditorV2
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
-            dtpMain.PatchTextFromResource();
+            dtpMain.PatchTextFromResource();            
         }
 
         #region RESOURCES_TEXT_PATCH
@@ -2024,11 +2042,19 @@ namespace JsonEditorV2
 
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
-            dtpMain.Value = DateTime.Now;
-            //string r = "";
-            //for (int i = 99; i >= 0; i--)
-            //     r += $"{i}, ";
-            //Console.WriteLine(r);            
+            //dtpMain.Value = DateTime.Now;
+            string r = "";
+            for (int i = 1; i < 100; i++)
+            {
+                r += $"{i}, ";
+                if(i % 10 == 0)
+                { 
+                    Console.WriteLine(r);
+                    r = "";
+                }
+            }
+            Console.WriteLine(r);
+            
             //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             //string[] ProjectName = new string[] { "TestArea", "TestData" };
 
@@ -2232,18 +2258,19 @@ namespace JsonEditorV2
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
         }
 
-        public void ShowDateTimePicker(TextBox valueControl)
+        public void ShowDateTimePicker(TextBox valueControl, DateTimePickerStyle style)
         {   
             if (!DateTime.TryParse(valueControl.Text, out DateTime r1))
-                r1 = DateTime.Now;            
-            dtpMain.Value = r1;
-            pnlDateTimePicker.Show();           
-        }
-
-        private void dtpMain_Leave(object sender, EventArgs e)
-        {
-            pnlDateTimePicker.Hide();
-
+                r1 = DateTime.Now;
+            Var.BindingTextbox = valueControl;            
+            pnlMain.Controls.Add(pnlDateTimePicker);
+            dtpMain.SetType(style);
+            dtpMain.SetValue(r1);            
+            pnlDateTimePicker.Top = valueControl.Top + valueControl.Height;
+            pnlDateTimePicker.Left = 10;            
+            pnlDateTimePicker.BringToFront();
+            pnlDateTimePicker.Show();
+            dtpMain.Focus();            
         }
     }
 }

@@ -38,8 +38,8 @@ namespace JsonEditorV2
         public static JColumn SelectedColumn { get; set; }
         public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }        
 
-        public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();       
-
+        public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();
+        public static TextBox BindingTextbox { get; set; }
         
         public static TreeNode RootNode { get; set; }
         public static bool DblClick { get; set; }

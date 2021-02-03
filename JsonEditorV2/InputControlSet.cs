@@ -166,17 +166,17 @@ namespace JsonEditorV2
             }
             else if (JColumn.Type == JType.Date || JColumn.Type == JType.Time || JColumn.Type == JType.DateTime)
             {
-                NameLabel.Focus();
-                ownerWindow.ShowDateTimePicker(ValueControl as TextBox);
-                //DateTimeBoxTypes dtbt = JColumn.Type == JType.Date ? DateTimeBoxTypes.Date :
-                //    JColumn.Type == JType.Time ? DateTimeBoxTypes.Time : DateTimeBoxTypes.DateTime;
-
-                //if (!DateTime.TryParse(ValueControl.Text, out DateTime r1))
-                //    r1 = DateTime.Now;
-                //SetValueToString(frmDateTime.Show(ownerWindow, r1, dtbt,
-                //    ValueControl.Left + ValueControl.Parent.Left + ownerWindow.Left,
-                //    ValueControl.Top + ValueControl.Parent.Top + ownerWindow.Top + ValueControl.Height));
-
+                DateTimePickerStyle style = DateTimePickerStyle.DateTime;
+                switch (JColumn.Type)
+                {
+                    case JType.Date:
+                        style = DateTimePickerStyle.Date;
+                        break;
+                    case JType.Time:
+                        style = DateTimePickerStyle.Time;
+                        break;
+                }
+                ownerWindow.ShowDateTimePicker(ValueControl as TextBox, style);
             }
         }
 
@@ -349,7 +349,6 @@ namespace JsonEditorV2
         {
             ValueControl.Enabled = !NullCheckBox.Checked || !JColumn.IsNullable;
             ValidControl.SetError(errPositionControl, "");
-            //ValidControl.SetError(NullCheckBox, "");
         }
 
         private Button GetButtonControlFromJType(JType type, string name)

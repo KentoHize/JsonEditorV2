@@ -145,6 +145,7 @@
             this.cobDay.Name = "cobDay";
             this.cobDay.Size = new System.Drawing.Size(45, 24);
             this.cobDay.TabIndex = 10;
+            this.cobDay.SelectedIndexChanged += new System.EventHandler(this.cobDay_SelectedIndexChanged);
             // 
             // cobHour
             // 
@@ -155,6 +156,7 @@
             this.cobHour.Name = "cobHour";
             this.cobHour.Size = new System.Drawing.Size(45, 24);
             this.cobHour.TabIndex = 5;
+            this.cobHour.SelectedIndexChanged += new System.EventHandler(this.cobHour_SelectedIndexChanged);
             // 
             // lblYear
             // 
@@ -174,15 +176,17 @@
             this.cobMinute.Name = "cobMinute";
             this.cobMinute.Size = new System.Drawing.Size(45, 24);
             this.cobMinute.TabIndex = 6;
+            this.cobMinute.SelectedIndexChanged += new System.EventHandler(this.cobMinute_SelectedIndexChanged);
             // 
             // txtMillisecond
             // 
             this.txtMillisecond.Enabled = false;
             this.txtMillisecond.Location = new System.Drawing.Point(306, 48);
-            this.txtMillisecond.MaxLength = 6;
+            this.txtMillisecond.MaxLength = 3;
             this.txtMillisecond.Name = "txtMillisecond";
             this.txtMillisecond.Size = new System.Drawing.Size(60, 22);
             this.txtMillisecond.TabIndex = 8;
+            this.txtMillisecond.TextChanged += new System.EventHandler(this.txtMillisecond_TextChanged);            
             // 
             // cobSecond
             // 
@@ -193,10 +197,12 @@
             this.cobSecond.Name = "cobSecond";
             this.cobSecond.Size = new System.Drawing.Size(45, 24);
             this.cobSecond.TabIndex = 7;
+            this.cobSecond.SelectedIndexChanged += new System.EventHandler(this.cobSecond_SelectedIndexChanged);
             // 
             // SimpleDateTimePicker
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this.lblDot);
             this.Controls.Add(this.lblSecond);
             this.Controls.Add(this.lblDay);
@@ -214,7 +220,6 @@
             this.Controls.Add(this.cobDay);
             this.Name = "SimpleDateTimePicker";
             this.Size = new System.Drawing.Size(529, 90);
-            this.Load += new System.EventHandler(this.SimpleDateTimePicker_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
