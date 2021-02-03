@@ -340,6 +340,69 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 日.
+        /// </summary>
+        public static string JE_DATETIME_DAY {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_DAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 時.
+        /// </summary>
+        public static string JE_DATETIME_HOUR {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_HOUR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 分.
+        /// </summary>
+        public static string JE_DATETIME_MINUTE {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_MINUTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 月.
+        /// </summary>
+        public static string JE_DATETIME_MONTH {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_MONTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確認.
+        /// </summary>
+        public static string JE_DATETIME_OK {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 秒.
+        /// </summary>
+        public static string JE_DATETIME_SECOND {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_SECOND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 年.
+        /// </summary>
+        public static string JE_DATETIME_YEAR {
+            get {
+                return ResourceManager.GetString("JE_DATETIME_YEAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位數量過多或過少.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_COUNT_VARY {

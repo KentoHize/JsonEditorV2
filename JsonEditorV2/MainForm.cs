@@ -32,6 +32,7 @@ namespace JsonEditorV2
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
+            dtpMain.PatchTextFromResource();
         }
 
         #region RESOURCES_TEXT_PATCH
@@ -54,7 +55,7 @@ namespace JsonEditorV2
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;            
-            lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
+            lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;            
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
@@ -1728,6 +1729,13 @@ namespace JsonEditorV2
                     Process.Start("notepad.exe", Var.JFI.FileInfoPath);
         }
 
+        private void SetFont(Font font)
+        {
+            Font = font;
+            pnlMain.Font = Font;
+            pnlFileInfo.Font = Font;
+        }
+
         public void MainForm_Load(object sender, EventArgs e)
         {
             //預讀預設值
@@ -1766,8 +1774,8 @@ namespace JsonEditorV2
                 }
             }
 
-            ckbQuickCheck.Checked = Setting.UseQuickCheck;
             ChangeCulture();
+            ckbQuickCheck.Checked = Setting.UseQuickCheck;
             cobColumnType.DataSource =
                 Enum.GetValues(typeof(JType)).OfType<JType>()
                 .Except(new List<JType> { JType.None })
@@ -2016,6 +2024,11 @@ namespace JsonEditorV2
 
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
+            dtpMain.Value = DateTime.Now;
+            //string r = "";
+            //for (int i = 99; i >= 0; i--)
+            //     r += $"{i}, ";
+            //Console.WriteLine(r);            
             //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             //string[] ProjectName = new string[] { "TestArea", "TestData" };
 
@@ -2217,6 +2230,20 @@ namespace JsonEditorV2
                 RefreshTbcMain();
             }
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
+        }
+
+        public void ShowDateTimePicker(TextBox valueControl)
+        {   
+            if (!DateTime.TryParse(valueControl.Text, out DateTime r1))
+                r1 = DateTime.Now;            
+            dtpMain.Value = r1;
+            pnlDateTimePicker.Show();           
+        }
+
+        private void dtpMain_Leave(object sender, EventArgs e)
+        {
+            pnlDateTimePicker.Hide();
+
         }
     }
 }

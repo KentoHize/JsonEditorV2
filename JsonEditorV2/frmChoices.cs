@@ -108,10 +108,5 @@ namespace JsonEditorV2
                 DialogResult = DialogResult.Cancel;
             }   
         }
-
-        private void txtItemName_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

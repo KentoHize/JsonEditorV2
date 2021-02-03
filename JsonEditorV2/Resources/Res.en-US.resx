@@ -210,6 +210,27 @@
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>Column Type</value>
   </data>
+  <data name="JE_DATETIME_DAY" xml:space="preserve">
+    <value>Day(s)</value>
+  </data>
+  <data name="JE_DATETIME_HOUR" xml:space="preserve">
+    <value>Hour(s)</value>
+  </data>
+  <data name="JE_DATETIME_MINUTE" xml:space="preserve">
+    <value>Mintue(s)</value>
+  </data>
+  <data name="JE_DATETIME_MONTH" xml:space="preserve">
+    <value>Month(s)</value>
+  </data>
+  <data name="JE_DATETIME_OK" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="JE_DATETIME_SECOND" xml:space="preserve">
+    <value>Second(s)</value>
+  </data>
+  <data name="JE_DATETIME_YEAR" xml:space="preserve">
+    <value>Year(s)</value>
+  </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
     <value>Invalid Json data file "{0}.json": Index {1}, column count not match.</value>
   </data>

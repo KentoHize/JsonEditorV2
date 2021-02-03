@@ -140,6 +140,12 @@
       <DependentUpon>Res.resx</DependentUpon>
     </Compile>
     <Compile Include="Setting.cs" />
+    <Compile Include="SimpleDateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SimpleDateTimePicker.Designer.cs">
+      <DependentUpon>SimpleDateTimePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Var.cs" />
     <EmbeddedResource Include="frmChoices.resx">
       <DependentUpon>frmChoices.cs</DependentUpon>
@@ -172,6 +178,9 @@
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Res.zh-CN.resx" />
+    <EmbeddedResource Include="SimpleDateTimePicker.resx">
+      <DependentUpon>SimpleDateTimePicker.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="JsonEditorV2_TemporaryKey.pfx" />
     <None Include="packages.config" />

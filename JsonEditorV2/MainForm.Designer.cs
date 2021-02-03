@@ -139,15 +139,19 @@
             this.cobFindColumnName = new System.Windows.Forms.ComboBox();
             this.txtFindValue = new System.Windows.Forms.TextBox();
             this.btnFindConfirm = new System.Windows.Forms.Button();
+            this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
             this.cmsTabSelected.SuspendLayout();
+            this.pnlMain.SuspendLayout();
             this.mnsMain.SuspendLayout();
             this.cmsJsonFiles.SuspendLayout();
             this.cmsJsonFileSelected.SuspendLayout();
             this.cmsColumnSelected.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLines)).BeginInit();
+            this.pnlDateTimePicker.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClearColumn
@@ -179,7 +183,7 @@
             // 
             this.btnUpdateMain.Enabled = false;
             this.btnUpdateMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMain.Location = new System.Drawing.Point(1394, 764);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1383, 764);
             this.btnUpdateMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMain.Name = "btnUpdateMain";
             this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
@@ -239,7 +243,7 @@
             this.pnlFileInfo.Controls.Add(this.lblColumnType);
             this.pnlFileInfo.Controls.Add(this.lblColumnName);
             this.pnlFileInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlFileInfo.Location = new System.Drawing.Point(1, 434);
+            this.pnlFileInfo.Location = new System.Drawing.Point(1, 433);
             this.pnlFileInfo.Margin = new System.Windows.Forms.Padding(4);
             this.pnlFileInfo.Name = "pnlFileInfo";
             this.pnlFileInfo.Size = new System.Drawing.Size(420, 324);
@@ -621,7 +625,7 @@
             this.trvJsonFiles.HideSelection = false;
             this.trvJsonFiles.ImageIndex = 0;
             this.trvJsonFiles.ImageList = this.imlMain;
-            this.trvJsonFiles.Location = new System.Drawing.Point(1, 32);
+            this.trvJsonFiles.Location = new System.Drawing.Point(1, 31);
             this.trvJsonFiles.Margin = new System.Windows.Forms.Padding(4);
             this.trvJsonFiles.Name = "trvJsonFiles";
             this.trvJsonFiles.SelectedImageIndex = 0;
@@ -653,7 +657,7 @@
             this.sslMain});
             this.stsMain.Location = new System.Drawing.Point(0, 810);
             this.stsMain.Name = "stsMain";
-            this.stsMain.Size = new System.Drawing.Size(1518, 22);
+            this.stsMain.Size = new System.Drawing.Size(1509, 22);
             this.stsMain.TabIndex = 11;
             this.stsMain.Text = "sspMain";
             // 
@@ -667,7 +671,7 @@
             this.tbcMain.ContextMenuStrip = this.cmsTabSelected;
             this.tbcMain.Controls.Add(this.tbpStart);
             this.tbcMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbcMain.Location = new System.Drawing.Point(429, 32);
+            this.tbcMain.Location = new System.Drawing.Point(429, 31);
             this.tbcMain.Margin = new System.Windows.Forms.Padding(4);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
@@ -703,11 +707,12 @@
             // pnlMain
             // 
             this.pnlMain.AutoScroll = true;
+            this.pnlMain.Controls.Add(this.pnlDateTimePicker);
             this.pnlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(840, 66);
+            this.pnlMain.Location = new System.Drawing.Point(840, 65);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(676, 692);
+            this.pnlMain.Size = new System.Drawing.Size(665, 692);
             this.pnlMain.TabIndex = 21;
             // 
             // mnsMain
@@ -720,7 +725,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1518, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -746,20 +751,20 @@
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
             this.tmiNewJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(143, 6);
             // 
             // tmiScanJsonFiles
             // 
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
             this.tmiScanJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
@@ -767,21 +772,21 @@
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
             this.tmiLoadJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(143, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
             this.tmiSaveJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -789,33 +794,33 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(143, 6);
             // 
             // tmiCloseAllFiles
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(146, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(213, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(143, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
             this.tmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tmiExit.Size = new System.Drawing.Size(216, 26);
+            this.tmiExit.Size = new System.Drawing.Size(146, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -878,33 +883,33 @@
             // tmiJsonEditorBackup
             // 
             this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiJsonEditorBackup.Text = "Json Editor";
             this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
             // 
             // tmiTestDataBackup
             // 
             this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiTestDataBackup.Text = "Test Data";
             this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
             // 
             // tmiAritiafelBackup
             // 
             this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiAritiafelBackup.Text = "Aritiafel";
             this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiRunSomething
             // 
             this.tmiRunSomething.Name = "tmiRunSomething";
-            this.tmiRunSomething.Size = new System.Drawing.Size(183, 26);
+            this.tmiRunSomething.Size = new System.Drawing.Size(216, 26);
             this.tmiRunSomething.Text = "Run something";
             this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
             // 
@@ -1181,7 +1186,7 @@
             this.dgvLines.AllowUserToResizeRows = false;
             this.dgvLines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLines.Location = new System.Drawing.Point(429, 99);
+            this.dgvLines.Location = new System.Drawing.Point(429, 98);
             this.dgvLines.MultiSelect = false;
             this.dgvLines.Name = "dgvLines";
             this.dgvLines.ReadOnly = true;
@@ -1200,7 +1205,7 @@
             // 
             this.cobFindColumnName.DisplayMember = "Name";
             this.cobFindColumnName.FormattingEnabled = true;
-            this.cobFindColumnName.Location = new System.Drawing.Point(428, 69);
+            this.cobFindColumnName.Location = new System.Drawing.Point(428, 68);
             this.cobFindColumnName.Name = "cobFindColumnName";
             this.cobFindColumnName.Size = new System.Drawing.Size(145, 24);
             this.cobFindColumnName.TabIndex = 32;
@@ -1209,7 +1214,7 @@
             // txtFindValue
             // 
             this.txtFindValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFindValue.Location = new System.Drawing.Point(579, 68);
+            this.txtFindValue.Location = new System.Drawing.Point(579, 67);
             this.txtFindValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtFindValue.Name = "txtFindValue";
             this.txtFindValue.Size = new System.Drawing.Size(213, 27);
@@ -1223,7 +1228,7 @@
             this.btnFindConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindConfirm.ImageIndex = 6;
             this.btnFindConfirm.ImageList = this.imlMain;
-            this.btnFindConfirm.Location = new System.Drawing.Point(796, 67);
+            this.btnFindConfirm.Location = new System.Drawing.Point(796, 66);
             this.btnFindConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnFindConfirm.Name = "btnFindConfirm";
             this.btnFindConfirm.Size = new System.Drawing.Size(41, 29);
@@ -1231,11 +1236,30 @@
             this.btnFindConfirm.UseVisualStyleBackColor = true;
             this.btnFindConfirm.Click += new System.EventHandler(this.btnFindConfirm_Click);
             // 
+            // pnlDateTimePicker
+            // 
+            this.pnlDateTimePicker.Controls.Add(this.dtpMain);
+            this.pnlDateTimePicker.Location = new System.Drawing.Point(21, 324);
+            this.pnlDateTimePicker.Name = "pnlDateTimePicker";
+            this.pnlDateTimePicker.Size = new System.Drawing.Size(613, 129);
+            this.pnlDateTimePicker.TabIndex = 0;
+            this.pnlDateTimePicker.Visible = false;
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(559, 112);
+            this.dtpMain.TabIndex = 0;
+            this.dtpMain.Leave += new System.EventHandler(this.dtpMain_Leave);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 832);
+            this.ClientSize = new System.Drawing.Size(1509, 832);
             this.Controls.Add(this.btnFindConfirm);
             this.Controls.Add(this.txtFindValue);
             this.Controls.Add(this.cobFindColumnName);
@@ -1269,12 +1293,15 @@
             this.stsMain.PerformLayout();
             this.tbcMain.ResumeLayout(false);
             this.cmsTabSelected.ResumeLayout(false);
+            this.pnlMain.ResumeLayout(false);
             this.mnsMain.ResumeLayout(false);
             this.mnsMain.PerformLayout();
             this.cmsJsonFiles.ResumeLayout(false);
             this.cmsJsonFileSelected.ResumeLayout(false);
             this.cmsColumnSelected.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLines)).EndInit();
+            this.pnlDateTimePicker.ResumeLayout(false);
+            this.pnlDateTimePicker.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1391,6 +1418,8 @@
         private System.Windows.Forms.Button btnColumnEditChoices;
         private System.Windows.Forms.Label lblColumnChoices;
         private System.Windows.Forms.Label lblColumnChoiceName;
+        private System.Windows.Forms.Panel pnlDateTimePicker;
+        private SimpleDateTimePicker dtpMain;
     }
 }
 

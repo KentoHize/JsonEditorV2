@@ -16,10 +16,10 @@ namespace JsonEditorV2
         public Button ButtonControl { get; set; }
         public ErrorProvider ValidControl { get; set; }
         public CheckBox NullCheckBox { get; set; }
-        public Label NameLabel { get; set; }
+        public Label NameLabel { get; set; }        
 
         private Control errPositionControl;
-        private Control ownerWindow;
+        private MainForm ownerWindow;        
         private object parsedValue;
 
         public InputControlSet(JTable sourceTable, JColumn sourceColumn)
@@ -33,7 +33,7 @@ namespace JsonEditorV2
             if (string.IsNullOrEmpty(JColumn.Name))
                 throw new MissingMemberException();
 
-            ownerWindow = pnlMain.Parent;
+            ownerWindow = pnlMain.Parent as MainForm;
 
             NameLabel = new Label
             {
@@ -41,13 +41,14 @@ namespace JsonEditorV2
                 Text = JColumn.Name,
                 Left = 10,
                 Top = 30 * lineIndex + 5,
-                Width = 190
+                Width = 190,
+                Font = pnlMain.Font
             };
 
             pnlMain.Controls.Add(NameLabel);
 
             ValueControl = GetValueControlFromJType(JColumn.Type, JColumn.Name, JColumn.Choices);
-            errPositionControl = ValueControl;
+            ValueControl.Font = pnlMain.Font;
 
             if (ValueControl == null)
                 return;
@@ -55,7 +56,7 @@ namespace JsonEditorV2
             ValueControl.Left = 200;
             ValueControl.Top = 30 * lineIndex + 5;
 
-            switch(ValueControl)
+            switch (ValueControl)
             {
                 case Label LabelControl:
                     LabelControl.Width = 200;
@@ -93,8 +94,11 @@ namespace JsonEditorV2
             pnlMain.Controls.Add(ValueControl);
 
             ButtonControl = GetButtonControlFromJType(JColumn.Type, JColumn.Name);
+            if (ButtonControl != null)
+                ButtonControl.Font = pnlMain.Font;
 
-            if (ButtonControl != null && 
+
+            if (ButtonControl != null &&
                 (JColumn.FKTable == null || JColumn.FKColumn == null))
             {
                 ValueControl.Width = 150;
@@ -102,17 +106,22 @@ namespace JsonEditorV2
                 ButtonControl.Width = 50;
                 ButtonControl.Top = 30 * lineIndex + 5;
                 pnlMain.Controls.Add(ButtonControl);
-                errPositionControl = ButtonControl;
+                //errPositionControl = ButtonControl;
             }
 
             ValidControl = new ErrorProvider();
 
-            NullCheckBox = new CheckBox { Name = $"ckbNull{JColumn.Name}" };
-            NullCheckBox.Text = "Null";
-            NullCheckBox.Left = 430;
-            NullCheckBox.Top = 30 * lineIndex + 5;
-            NullCheckBox.Width = 60;
+            NullCheckBox = new CheckBox
+            {
+                Name = $"ckbNull{JColumn.Name}",
+                Text = "Null",
+                Left = 410,
+                Top = 30 * lineIndex + 5,
+                Width = 60,
+                Font = pnlMain.Font
+            };
             NullCheckBox.CheckedChanged += NullCheckBox_CheckedChanged;
+            errPositionControl = NullCheckBox;
 
             if (!JColumn.IsNullable)
                 NullCheckBox.Enabled = false;
@@ -134,7 +143,7 @@ namespace JsonEditorV2
 
         private void ComboControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValidControl.SetError(errPositionControl, "");            
+            ValidControl.SetError(errPositionControl, "");
         }
 
         private void CheckControl_CheckedChanged(object sender, EventArgs e)
@@ -155,9 +164,19 @@ namespace JsonEditorV2
                 if (newValue != null)
                     SetValueToString(newValue);
             }
-            else if (JColumn.Type == JType.Date)
+            else if (JColumn.Type == JType.Date || JColumn.Type == JType.Time || JColumn.Type == JType.DateTime)
             {
-                //TO DO
+                NameLabel.Focus();
+                ownerWindow.ShowDateTimePicker(ValueControl as TextBox);
+                //DateTimeBoxTypes dtbt = JColumn.Type == JType.Date ? DateTimeBoxTypes.Date :
+                //    JColumn.Type == JType.Time ? DateTimeBoxTypes.Time : DateTimeBoxTypes.DateTime;
+
+                //if (!DateTime.TryParse(ValueControl.Text, out DateTime r1))
+                //    r1 = DateTime.Now;
+                //SetValueToString(frmDateTime.Show(ownerWindow, r1, dtbt,
+                //    ValueControl.Left + ValueControl.Parent.Left + ownerWindow.Left,
+                //    ValueControl.Top + ValueControl.Parent.Top + ownerWindow.Top + ValueControl.Height));
+
             }
         }
 
@@ -205,7 +224,7 @@ namespace JsonEditorV2
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? Const.NullString));
                     return false;
                 }
-            } 
+            }
 
             //確認Regex正確
             if (JColumn.Type == JType.String)
@@ -232,9 +251,9 @@ namespace JsonEditorV2
             }
 
             //確認MaxLength正確
-            if(JColumn.MaxLength != 0)
+            if (JColumn.MaxLength != 0)
             {
-                if(parsedValue.ToString().Length > JColumn.MaxLength)
+                if (parsedValue.ToString().Length > JColumn.MaxLength)
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_TEXT_MAXIMUM_LENGTH_OVER, JColumn.MaxLength));
                     return false;
@@ -242,12 +261,12 @@ namespace JsonEditorV2
             }
 
             //確認唯一值
-            if(JColumn.IsUnique)
+            if (JColumn.IsUnique)
             {
                 int columnIndex = JTable.Columns.IndexOf(JColumn);
-                for(int i = 0; i < JTable.Count; i++)
+                for (int i = 0; i < JTable.Count; i++)
                 {
-                    if(i != lineIndex && parsedValue == JTable[i][columnIndex])
+                    if (i != lineIndex && parsedValue == JTable[i][columnIndex])
                     {
                         ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_VALUE_IS_NOT_UNIQUE, parsedValue));
                         return false;
@@ -258,18 +277,18 @@ namespace JsonEditorV2
             //跳過Key檢查
 
             //外部驗證 - FK驗證
-            if(JColumn.FKTable != null && JColumn.FKColumn != null)
-            {   
+            if (JColumn.FKTable != null && JColumn.FKColumn != null)
+            {
                 //有錯表示有欄位錯誤
                 JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
                 int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
                 //結束
 
                 if (!jt.Loaded)
-                    if(!MainForm.LoadOrScanJsonFile(jt))
+                    if (!MainForm.LoadOrScanJsonFile(jt))
                         return false;
-                
-                if(!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
+
+                if (!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_VALUE_NOT_FOUND, ValueControl.Text));
                     return false;
@@ -303,7 +322,7 @@ namespace JsonEditorV2
             if (value == null)
                 return;
 
-            switch(ValueControl)
+            switch (ValueControl)
             {
                 case TextBox TextControl:
                     TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type));
@@ -315,7 +334,7 @@ namespace JsonEditorV2
                     ComboControl.SelectedItem = value;
                     break;
                 case Label LabelControl:
-                    LabelControl.Text = value.ToString().Replace("\n", "").Replace("\r","");
+                    LabelControl.Text = value.ToString().Replace("\n", "").Replace("\r", "");
                     break;
             }
         }
@@ -330,7 +349,7 @@ namespace JsonEditorV2
         {
             ValueControl.Enabled = !NullCheckBox.Checked || !JColumn.IsNullable;
             ValidControl.SetError(errPositionControl, "");
-            ValidControl.SetError(NullCheckBox, "");
+            //ValidControl.SetError(NullCheckBox, "");
         }
 
         private Button GetButtonControlFromJType(JType type, string name)
@@ -362,7 +381,7 @@ namespace JsonEditorV2
                 case JType.Guid:
                 case JType.Integer:
                 case JType.Long:
-                case JType.Decimal:                
+                case JType.Decimal:
                 case JType.Uri:
                 case JType.String:
                 case JType.Date:
