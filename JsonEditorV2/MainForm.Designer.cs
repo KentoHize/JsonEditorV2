@@ -723,7 +723,7 @@
             this.pnlDateTimePicker.Controls.Add(this.dtpMain);
             this.pnlDateTimePicker.Location = new System.Drawing.Point(21, 324);
             this.pnlDateTimePicker.Name = "pnlDateTimePicker";
-            this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 122);
+            this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 111);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
@@ -895,33 +895,33 @@
             // tmiJsonEditorBackup
             // 
             this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiJsonEditorBackup.Text = "Json Editor";
             this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
             // 
             // tmiTestDataBackup
             // 
             this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiTestDataBackup.Text = "Test Data";
             this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
             // 
             // tmiAritiafelBackup
             // 
             this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(183, 26);
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(216, 26);
             this.tmiAritiafelBackup.Text = "Aritiafel";
             this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(213, 6);
             // 
             // tmiRunSomething
             // 
             this.tmiRunSomething.Name = "tmiRunSomething";
-            this.tmiRunSomething.Size = new System.Drawing.Size(183, 26);
+            this.tmiRunSomething.Size = new System.Drawing.Size(216, 26);
             this.tmiRunSomething.Text = "Run something";
             this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
             // 
@@ -1252,10 +1252,11 @@
             // 
             this.dtpMain.AutoSize = true;
             this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
             this.dtpMain.Location = new System.Drawing.Point(4, 4);
             this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(559, 112);
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
             this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
             this.dtpMain.TabIndex = 0;
             // 

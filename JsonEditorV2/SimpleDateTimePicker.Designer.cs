@@ -186,7 +186,7 @@
             this.txtMillisecond.Name = "txtMillisecond";
             this.txtMillisecond.Size = new System.Drawing.Size(60, 22);
             this.txtMillisecond.TabIndex = 8;
-            this.txtMillisecond.TextChanged += new System.EventHandler(this.txtMillisecond_TextChanged);            
+            this.txtMillisecond.TextChanged += new System.EventHandler(this.txtMillisecond_TextChanged);
             // 
             // cobSecond
             // 
@@ -219,7 +219,7 @@
             this.Controls.Add(this.cobHour);
             this.Controls.Add(this.cobDay);
             this.Name = "SimpleDateTimePicker";
-            this.Size = new System.Drawing.Size(529, 90);
+            this.Size = new System.Drawing.Size(529, 85);
             this.ResumeLayout(false);
             this.PerformLayout();
 

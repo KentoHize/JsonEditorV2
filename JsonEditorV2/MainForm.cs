@@ -999,8 +999,8 @@ namespace JsonEditorV2
                 txtColumnMaxLength.Text = Var.SelectedColumn.MaxLength.ToString();
                 ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
                 ckbColumnAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
+                btnColumnEditChoices.Enabled = string.IsNullOrEmpty(Var.SelectedColumn.FKColumn);
                 btnUpdateColumn.Enabled = true;
-                btnColumnEditChoices.Enabled = true;
             }
             else
             {
@@ -1584,14 +1584,21 @@ namespace JsonEditorV2
         }
 
         public void btnClearMain_Click(object sender, EventArgs e)
-        {
-            TextBox tb;
+        {   
             foreach (Control c in pnlMain.Controls)
             {
-                if (c as TextBox == null)
-                    continue;
-                tb = c as TextBox;
-                tb.Text = "";
+                switch(c)
+                {
+                    case TextBox tb:
+                        tb.Text = "";
+                        break;
+                    case ComboBox cb:                        
+                        cb.SelectedIndex = cb.Items.Count != 0 ? 0 : -1;
+                        break;
+                    case CheckBox ck:
+                        ck.Checked = false;
+                        break;
+                }
             }
         }
 
@@ -1722,7 +1729,8 @@ namespace JsonEditorV2
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
             cobColumnType.Enabled =
-            ckbColumnAutoGenerateKey.Enabled = FKIsEmpty;
+            ckbColumnAutoGenerateKey.Enabled =
+            btnColumnEditChoices.Enabled = FKIsEmpty;
             if (!FKIsEmpty)
                 ckbColumnAutoGenerateKey.Checked = false;
             cobColumnType_SelectedIndexChanged(sender, e);
