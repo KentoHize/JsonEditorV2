@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
-    JSON 资料档案编辑器 0.3
+    JSON 资料档案编辑器
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
-    Created by KentKaze
+    作者：日濑健人
   </data>
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
     关於
@@ -147,11 +147,26 @@
   <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
     更新
   </data>
+  <data name="JE_CHOICES_ADD_ITEM" xml:space="preserve">
+    新增
+  </data>
+  <data name="JE_CHOICES_CONFIRM" xml:space="preserve">
+    确认
+  </data>
+  <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
+    删除
+  </data>
+  <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
+    值"{0}"已存在
+  </data>
   <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
     快速检查
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     自动产生索引值
+  </data>
+  <data name="JE_COLUMN_CHOICES" xml:space="preserve">
+    栏位可选值
   </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
     栏位描述
@@ -194,6 +209,27 @@
   </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     栏位型别
+  </data>
+  <data name="JE_DATETIME_DAY" xml:space="preserve">
+    日
+  </data>
+  <data name="JE_DATETIME_HOUR" xml:space="preserve">
+    时
+  </data>
+  <data name="JE_DATETIME_MINUTE" xml:space="preserve">
+    分
+  </data>
+  <data name="JE_DATETIME_MONTH" xml:space="preserve">
+    月
+  </data>
+  <data name="JE_DATETIME_OK" xml:space="preserve">
+    确认
+  </data>
+  <data name="JE_DATETIME_SECOND" xml:space="preserve">
+    秒
+  </data>
+  <data name="JE_DATETIME_YEAR" xml:space="preserve">
+    年
   </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
     无效的JSON档案"{0}.json"，索引：{1}，栏位数量过多或过少
@@ -261,6 +297,9 @@
   <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
     栏位名称
   </data>
+  <data name="JE_INPUTBOX_DESCRIPTION_3" xml:space="preserve">
+    档案库名称
+  </data>
   <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
     档案"{0}:已存在
   </data>
@@ -273,8 +312,14 @@
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
     错误的栏位名称，请用'_'或非特殊文字开头，之後使用'_'、非特殊文字或是数字，长度不要超过50位
   </data>
+  <data name="JE_INPUTBOX_WRONG_DATABASE_NAME" xml:space="preserve">
+    不符合规则的档案库名称
+  </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
     不符合规则的档案名称
+  </data>
+  <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
+    选项
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     栏位"{0}"已存在
@@ -295,7 +340,7 @@
     栏位"{0}"已删除
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
-    确定删除档案"{0}.json"？
+    确定删除档案"{0}.json"？(存档後档案将无法复原)
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
     档案"{0}.json"已删除
@@ -362,6 +407,9 @@
   </data>
   <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
     重新命名
+  </data>
+  <data name="JE_RUN_RENAME_DATABASE_M_1" xml:space="preserve">
+    档案库已重新命名为"{0}"
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
     档案"{0}.json"已存在
@@ -468,6 +516,9 @@
   <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
     重新命名
   </data>
+  <data name="JE_TMI_RENAME_DATABASE" xml:space="preserve">
+    重新命名
+  </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
     重新命名
   </data>
@@ -486,11 +537,17 @@
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
     用记事本开启
   </data>
+  <data name="JE_VAL_CHOICE_VALUE_NOT_EXIST" xml:space="preserve">
+    值"{0}"，选项不存在
+  </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
     自动产生索引栏位适用在不正确的型别上(只有数字、字串或是Guid可以被自动产生)
   </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT" xml:space="preserve">
     自动产生索引栏位附带限制条件(最小值、最大值、文字长度或正则表达式)
+  </data>
+  <data name="JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS" xml:space="preserve">
+    选择栏位没有可选值
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
     外部索引栏位名遗失
