@@ -273,5 +273,10 @@ namespace JsonEditorV2
         {
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
+
+        private void txtMillisecond_Click(object sender, EventArgs e)
+        {
+            txtMillisecond.SelectAll();
+        }
     }
 }

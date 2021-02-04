@@ -132,11 +132,17 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="JE_BTN_COPY" xml:space="preserve">
+    <value>複製</value>
+  </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
     <value>複製資料行</value>
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     <value>刪除資料</value>
+  </data>
+  <data name="JE_BTN_EDIT_CHOICES" xml:space="preserve">
+    <value>編輯選項</value>
   </data>
   <data name="JE_BTN_FIND_LINE" xml:space="preserve">
     <value>尋找資料行</value>
@@ -369,7 +375,7 @@
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>存在不符合規則的資料，確定輸出？</value>
   </data>
-  <data name="JE_RUN_EXPORT_TO_CSV_M_2" xml:space="preserve">
+  <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>已使用CSV格式輸出至"{0}"</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">

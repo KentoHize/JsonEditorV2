@@ -106,6 +106,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 複製.
+        /// </summary>
+        public static string JE_BTN_COPY {
+            get {
+                return ResourceManager.GetString("JE_BTN_COPY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 複製資料行.
         /// </summary>
         public static string JE_BTN_COPY_LINE {
@@ -120,6 +129,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_BTN_DELETE_LINE {
             get {
                 return ResourceManager.GetString("JE_BTN_DELETE_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 編輯選項.
+        /// </summary>
+        public static string JE_BTN_EDIT_CHOICES {
+            get {
+                return ResourceManager.GetString("JE_BTN_EDIT_CHOICES", resourceCulture);
             }
         }
         
@@ -819,9 +837,9 @@ namespace JsonEditorV2.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 已使用CSV格式輸出至&quot;{0}&quot;.
         /// </summary>
-        public static string JE_RUN_EXPORT_TO_CSV_M_2 {
+        public static string JE_RUN_EXPORT_TO_CSV_M_1 {
             get {
-                return ResourceManager.GetString("JE_RUN_EXPORT_TO_CSV_M_2", resourceCulture);
+                return ResourceManager.GetString("JE_RUN_EXPORT_TO_CSV_M_1", resourceCulture);
             }
         }
         

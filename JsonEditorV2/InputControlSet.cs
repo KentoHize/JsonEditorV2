@@ -28,7 +28,7 @@ namespace JsonEditorV2
             JColumn = sourceColumn;
         }
 
-        public void DrawControl(Panel pnlMain, int lineIndex)
+        public void DrawControl(Panel pnlMain, ToolTip toolTipComponent, int lineIndex)
         {
             if (string.IsNullOrEmpty(JColumn.Name))
                 throw new MissingMemberException();
@@ -94,7 +94,7 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(ValueControl);
 
-            ButtonControl = GetButtonControl(JColumn.Type, JColumn.Name, JColumn.FKTable != null && JColumn.FKColumn != null);
+            ButtonControl = GetButtonControl(JColumn.Type, toolTipComponent, JColumn.Name, JColumn.FKTable != null && JColumn.FKColumn != null);
             if (ButtonControl != null)
             {
                 ButtonControl.Font = pnlMain.Font;
@@ -351,7 +351,7 @@ namespace JsonEditorV2
             ValidControl.SetError(errPositionControl, "");
         }
 
-        private Button GetButtonControl(JType type, string name, bool isFK = false)
+        private Button GetButtonControl(JType type, ToolTip toolTip, string name, bool isFK = false)
         {
             Button btn;
             if (isFK)
@@ -359,6 +359,7 @@ namespace JsonEditorV2
                 btn = new Button { Name = $"btn{name}", Width = 40 };
                 btn.ImageList = (ownerWindow.Controls.Find("btnCopyLine", false)[0] as Button).ImageList;
                 btn.ImageIndex = 7;
+                toolTip.SetToolTip(btn, Res.JE_BTN_COPY);
                 btn.Click += BtnCopyText_Click; ;
                 return btn;
             }
@@ -374,7 +375,8 @@ namespace JsonEditorV2
                     btn = new Button { Name = $"btn{name}", Width = 40 };
                     btn.ImageList = (ownerWindow.Controls.Find("btnCopyLine", false)[0] as Button).ImageList;
                     btn.ImageIndex = 7;
-                    btn.Click += BtnCopyText_Click; ;
+                    toolTip.SetToolTip(btn, Res.JE_BTN_COPY);
+                    btn.Click += BtnCopyText_Click;
                     return btn;
                 default:
                     return null;

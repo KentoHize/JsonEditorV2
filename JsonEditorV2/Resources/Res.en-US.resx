@@ -132,11 +132,17 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="JE_BTN_COPY" xml:space="preserve">
+    <value>Copy</value>
+  </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
     <value>Copy Line</value>
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     <value>Delete Line</value>
+  </data>
+  <data name="JE_BTN_EDIT_CHOICES" xml:space="preserve">
+    <value>Edit Choices</value>
   </data>
   <data name="JE_BTN_FIND_LINE" xml:space="preserve">
     <value>Find Line</value>
@@ -369,7 +375,7 @@
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>Invalid data exist, continue export?</value>
   </data>
-  <data name="JE_RUN_EXPORT_TO_CSV_M_2" xml:space="preserve">
+  <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>CSV files have exported to "{0}"</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">

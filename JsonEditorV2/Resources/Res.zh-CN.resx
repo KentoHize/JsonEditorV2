@@ -132,8 +132,26 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     清空
   </data>
+  <data name="JE_BTN_COPY" xml:space="preserve">
+    复制
+  </data>
+  <data name="JE_BTN_COPY_LINE" xml:space="preserve">
+    复制资料行
+  </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     删除资料
+  </data>
+  <data name="JE_BTN_EDIT_CHOICES" xml:space="preserve">
+    编辑选项
+  </data>
+  <data name="JE_BTN_FIND_LINE" xml:space="preserve">
+    寻找资料行
+  </data>
+  <data name="JE_BTN_LINE_MOVE_DOWN" xml:space="preserve">
+    下移资料行
+  </data>
+  <data name="JE_BTN_LINE_MOVE_UP" xml:space="preserve">
+    上移资料行
   </data>
   <data name="JE_BTN_NEW_GUID" xml:space="preserve">
     新ID
@@ -252,6 +270,9 @@
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     错误
   </data>
+  <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
+    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     JSON关联档案格式不正确：{0}
   </data>
@@ -333,6 +354,9 @@
   <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
     栏位"{0}"已移至顶端
   </data>
+  <data name="JE_RUN_COPY_LINE_M_1" xml:space="preserve">
+    "{0}"已新增资料行，第{1}行资料已复制
+  </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
     档案内存在{0}笔资料，确定要一起删除栏位吗
   </data>
@@ -346,7 +370,13 @@
     档案"{0}.json"已删除
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
-    "{0}"资料已删除
+    "{0}"资料行已删除
+  </data>
+  <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
+    存在不符合规则的资料，确定输出？
+  </data>
+  <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
+    已使用CSV格式输出至"{0}"
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     栏位"{0}"，值"{1}"，搜寻失败
@@ -488,6 +518,15 @@
   </data>
   <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
     展开全部
+  </data>
+  <data name="JE_TMI_EXPORT" xml:space="preserve">
+    输出
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
+    输出为CSV档案
+  </data>
+  <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
+    输出为XML档案
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     档案

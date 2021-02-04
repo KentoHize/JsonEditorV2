@@ -50,15 +50,22 @@ namespace JsonEditorV2
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
             lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
+            tltMain.SetToolTip(btnClearMain, Res.JE_BTN_CLEAR_MAIN);
             btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
+            tltMain.SetToolTip(btnUpdateMain, Res.JE_BTN_UPDATE_MAIN);
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
+            tltMain.SetToolTip(btnUpdateColumn, Res.JE_BTN_UPDATE_COLUMN);
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
+            tltMain.SetToolTip(btnClearColumn, Res.JE_BTN_CLEAR_COLUMN);
             btnNewLine.Text = Res.JE_BTN_NEW_LINE;
+            tltMain.SetToolTip(btnNewLine, Res.JE_BTN_NEW_LINE);
+            btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
+            tltMain.SetToolTip(btnDeleteLine, Res.JE_BTN_DELETE_LINE);
             tltMain.SetToolTip(btnCopyLine, Res.JE_BTN_COPY_LINE);
             tltMain.SetToolTip(btnFindConfirm, Res.JE_BTN_FIND_LINE);
             tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
-            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_DOWN);
-            btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
+            tltMain.SetToolTip(btnLineMoveDown, Res.JE_BTN_LINE_MOVE_DOWN);
+            tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);            
             ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
             tmiFile.Text = Res.JE_TMI_FILE;
             tmiAbout.Text = Res.JE_TMI_ABOUT;
@@ -724,7 +731,7 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.SelectedTable.Columns.Count; i++)
             {
                 InputControlSet ics = new InputControlSet(Var.SelectedTable, Var.SelectedTable.Columns[i]);
-                ics.DrawControl(pnlMain, lines);
+                ics.DrawControl(pnlMain, tltMain, lines);
                 if (Var.SelectedTable.Columns[i].NumberOfRows < 1)
                     lines++;
                 else
@@ -2054,20 +2061,25 @@ namespace JsonEditorV2
             RabbitCouriers.SentInformation("OK");
         }
 
+        //FileStream fsx;
+
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
+
+           //fsx = new FileStream(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Articles.csv", FileMode.Open);
+            
             //dtpMain.Value = DateTime.Now;
-            string r = "";
-            for (int i = 1; i < 100; i++)
-            {
-                r += $"{i}, ";
-                if(i % 10 == 0)
-                { 
-                    Console.WriteLine(r);
-                    r = "";
-                }
-            }
-            Console.WriteLine(r);
+            //string r = "";
+            //for (int i = 1; i < 100; i++)
+            //{
+            //    r += $"{i}, ";
+            //    if(i % 10 == 0)
+            //    { 
+            //        Console.WriteLine(r);
+            //        r = "";
+            //    }
+            //}
+            //Console.WriteLine(r);
             
             //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             //string[] ProjectName = new string[] { "TestArea", "TestData" };
@@ -2344,8 +2356,8 @@ namespace JsonEditorV2
                 }
             }
 
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();
-            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_2, fbdMain.SelectedPath);
         }
     }
 }

@@ -186,6 +186,7 @@
             this.txtMillisecond.Name = "txtMillisecond";
             this.txtMillisecond.Size = new System.Drawing.Size(60, 22);
             this.txtMillisecond.TabIndex = 8;
+            this.txtMillisecond.Click += new System.EventHandler(this.txtMillisecond_Click);
             this.txtMillisecond.TextChanged += new System.EventHandler(this.txtMillisecond_TextChanged);
             // 
             // cobSecond
