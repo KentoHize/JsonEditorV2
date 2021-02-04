@@ -201,6 +201,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\Copy.png" />
     <Content Include="Images\Directory.png" />
     <Content Include="Images\DownArrow.png" />
     <Content Include="Images\Find.png" />

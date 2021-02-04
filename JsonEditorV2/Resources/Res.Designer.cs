@@ -106,11 +106,47 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 複製資料列.
+        /// </summary>
+        public static string JE_BTN_COPY_LINE {
+            get {
+                return ResourceManager.GetString("JE_BTN_COPY_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 刪除資料.
         /// </summary>
         public static string JE_BTN_DELETE_LINE {
             get {
                 return ResourceManager.GetString("JE_BTN_DELETE_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 尋找資料列.
+        /// </summary>
+        public static string JE_BTN_FIND_LINE {
+            get {
+                return ResourceManager.GetString("JE_BTN_FIND_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 下移資料列.
+        /// </summary>
+        public static string JE_BTN_LINE_MOVE_DOWN {
+            get {
+                return ResourceManager.GetString("JE_BTN_LINE_MOVE_DOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 上移資料列.
+        /// </summary>
+        public static string JE_BTN_LINE_MOVE_UP {
+            get {
+                return ResourceManager.GetString("JE_BTN_LINE_MOVE_UP", resourceCulture);
             }
         }
         

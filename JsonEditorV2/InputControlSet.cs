@@ -16,10 +16,10 @@ namespace JsonEditorV2
         public Button ButtonControl { get; set; }
         public ErrorProvider ValidControl { get; set; }
         public CheckBox NullCheckBox { get; set; }
-        public Label NameLabel { get; set; }        
+        public Label NameLabel { get; set; }
 
         private Control errPositionControl;
-        private MainForm ownerWindow;        
+        private MainForm ownerWindow;
         private object parsedValue;
 
         public InputControlSet(JTable sourceTable, JColumn sourceColumn)
@@ -93,20 +93,14 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(ValueControl);
 
-            ButtonControl = GetButtonControlFromJType(JColumn.Type, JColumn.Name);
+            ButtonControl = GetButtonControl(JColumn.Type, JColumn.Name, JColumn.FKTable != null && JColumn.FKColumn != null);
             if (ButtonControl != null)
-                ButtonControl.Font = pnlMain.Font;
-
-
-            if (ButtonControl != null &&
-                (JColumn.FKTable == null || JColumn.FKColumn == null))
             {
-                ValueControl.Width = 150;
-                ButtonControl.Left = 350;
-                ButtonControl.Width = 50;
+                ButtonControl.Font = pnlMain.Font;
+                ValueControl.Width = ValueControl.Width - ButtonControl.Width;
+                ButtonControl.Left = 400 - ButtonControl.Width; 
                 ButtonControl.Top = 30 * lineIndex + 5;
                 pnlMain.Controls.Add(ButtonControl);
-                //errPositionControl = ButtonControl;
             }
 
             ValidControl = new ErrorProvider();
@@ -351,17 +345,39 @@ namespace JsonEditorV2
             ValidControl.SetError(errPositionControl, "");
         }
 
-        private Button GetButtonControlFromJType(JType type, string name)
+        private Button GetButtonControl(JType type, string name, bool isFK = false)
         {
+            Button btn;
+            if (isFK)
+            {
+                btn = new Button { Name = $"btn{name}", Width = 40 };
+                btn.ImageList = (ownerWindow.Controls.Find("btnCopyLine", false)[0] as Button).ImageList;
+                btn.ImageIndex = 7;
+                btn.Click += BtnCopyText_Click; ;
+                return btn;
+            }
             switch (type)
             {
                 case JType.Guid:
-                    Button btn = new Button { Name = $"btn{name}", Text = Res.JE_BTN_NEW_GUID }; ;
+                    btn = new Button { Name = $"btn{name}", Width = 50, Text = Res.JE_BTN_NEW_GUID };
                     btn.Click += BtnNewGUID_Click;
+                    return btn;
+                case JType.Date:
+                case JType.Time:
+                case JType.DateTime:
+                    btn = new Button { Name = $"btn{name}", Width = 40 };
+                    btn.ImageList = (ownerWindow.Controls.Find("btnCopyLine", false)[0] as Button).ImageList;
+                    btn.ImageIndex = 7;
+                    btn.Click += BtnCopyText_Click; ;
                     return btn;
                 default:
                     return null;
             }
+        }
+
+        private void BtnCopyText_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(ValueControl.Text);
         }
 
         public void BtnNewGUID_Click(object sender, EventArgs e)
@@ -371,8 +387,7 @@ namespace JsonEditorV2
 
         private Control GetValueControlFromJType(JType type, string name, List<string> choices)
         {
-            switch (type)
-            {
+            switch (type) {
                 case JType.Boolean:
                     return new CheckBox { Name = $"ckb{name}" };
                 case JType.Byte:

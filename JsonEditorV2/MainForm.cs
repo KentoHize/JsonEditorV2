@@ -79,6 +79,10 @@ namespace JsonEditorV2
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
             btnNewLine.Text = Res.JE_BTN_NEW_LINE;
+            tltMain.SetToolTip(btnCopyLine, Res.JE_BTN_COPY_LINE);
+            tltMain.SetToolTip(btnFindConfirm, Res.JE_BTN_FIND_LINE);
+            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
+            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_DOWN);
             btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
             ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
             tmiFile.Text = Res.JE_TMI_FILE;
@@ -109,7 +113,7 @@ namespace JsonEditorV2
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
-            tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
+            tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;            
         }
         #endregion
 
@@ -743,6 +747,7 @@ namespace JsonEditorV2
             cobFindColumnName.Enabled =
             btnLineMoveUp.Enabled =
             btnLineMoveDown.Enabled =
+            btnCopyLine.Enabled =
             btnFindConfirm.Enabled =
             btnDeleteLine.Enabled = false;
             if (Var.SelectedTable == null)
@@ -803,9 +808,10 @@ namespace JsonEditorV2
             btnNewLine.Enabled =
             cobFindColumnName.Enabled =
             btnFindConfirm.Enabled = true;
-            btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
-            btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
-            btnDeleteLine.Enabled = Var.SelectedLineIndex != -1;
+            btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1 && Var.SelectedLineIndex != -1;
+            btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0 && Var.SelectedLineIndex != -1;
+            btnDeleteLine.Enabled =
+            btnCopyLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
         }
 

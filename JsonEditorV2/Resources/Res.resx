@@ -132,8 +132,20 @@
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>清空</value>
   </data>
+  <data name="JE_BTN_COPY_LINE" xml:space="preserve">
+    <value>複製資料列</value>
+  </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     <value>刪除資料</value>
+  </data>
+  <data name="JE_BTN_FIND_LINE" xml:space="preserve">
+    <value>尋找資料列</value>
+  </data>
+  <data name="JE_BTN_LINE_MOVE_DOWN" xml:space="preserve">
+    <value>下移資料列</value>
+  </data>
+  <data name="JE_BTN_LINE_MOVE_UP" xml:space="preserve">
+    <value>上移資料列</value>
   </data>
   <data name="JE_BTN_NEW_GUID" xml:space="preserve">
     <value>新ID</value>
