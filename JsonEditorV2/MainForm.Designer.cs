@@ -79,6 +79,7 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -141,7 +142,6 @@
             this.btnFindConfirm = new System.Windows.Forms.Button();
             this.btnCopyLine = new System.Windows.Forms.Button();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -716,6 +716,7 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(665, 692);
             this.pnlMain.TabIndex = 21;
+            this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
             // 
             // pnlDateTimePicker
             // 
@@ -728,6 +729,18 @@
             this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 111);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
             // 
             // mnsMain
             // 
@@ -1259,18 +1272,6 @@
             this.btnCopyLine.TabIndex = 35;
             this.btnCopyLine.UseVisualStyleBackColor = true;
             this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
             // 
             // MainForm
             // 

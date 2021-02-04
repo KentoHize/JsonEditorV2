@@ -87,6 +87,7 @@ namespace JsonEditorV2
                     TextControl.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows) - 4;
                     NameLabel.Height = 30 * (JColumn.NumberOfRows == 0 ? 1 : JColumn.NumberOfRows);
                     TextControl.TextChanged += TextControl_TextChanged;
+                    TextControl.Click += TextControl_Click;
                     TextControl.GotFocus += TextControl_GotFocus;
                     break;
             }
@@ -121,6 +122,11 @@ namespace JsonEditorV2
                 NullCheckBox.Enabled = false;
 
             pnlMain.Controls.Add(NullCheckBox);
+        }
+
+        private void TextControl_Click(object sender, EventArgs e)
+        {
+            (ValueControl as TextBox).SelectAll();
         }
 
         private void CheckControl_GotFocus(object sender, EventArgs e)

@@ -346,7 +346,7 @@
     <value>Column"{0}" is a top column.</value>
   </data>
   <data name="JE_RUN_COPY_LINE_M_1" xml:space="preserve">
-    <value>"{0}"New Line added, data of line index:{1} copied.</value>
+    <value>"{0}"New Line added, data copied from line {1}.</value>
   </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
     <value>This file has {0} line(s) of data, confirm to drop same column data synchronously?</value>

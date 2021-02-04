@@ -2298,6 +2298,12 @@ namespace JsonEditorV2
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
+
+        private void pnlMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (pnlDateTimePicker.Visible)
+                pnlDateTimePicker.Hide();
+        }
     }
 }
  
