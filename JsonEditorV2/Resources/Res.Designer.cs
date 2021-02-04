@@ -106,7 +106,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 複製資料列.
+        ///   Looks up a localized string similar to 複製資料行.
         /// </summary>
         public static string JE_BTN_COPY_LINE {
             get {
@@ -124,7 +124,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 尋找資料列.
+        ///   Looks up a localized string similar to 尋找資料行.
         /// </summary>
         public static string JE_BTN_FIND_LINE {
             get {
@@ -133,7 +133,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 下移資料列.
+        ///   Looks up a localized string similar to 下移資料行.
         /// </summary>
         public static string JE_BTN_LINE_MOVE_DOWN {
             get {
@@ -142,7 +142,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 上移資料列.
+        ///   Looks up a localized string similar to 上移資料行.
         /// </summary>
         public static string JE_BTN_LINE_MOVE_UP {
             get {
@@ -745,6 +745,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;已新增資料行，第{1}行資料已複製.
+        /// </summary>
+        public static string JE_RUN_COPY_LINE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_COPY_LINE_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案內存在{0}筆資料，確定要一起刪除欄位嗎.
         /// </summary>
         public static string JE_RUN_DELETE_COLUMN_M_1 {
@@ -781,7 +790,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;{0}&quot;資料已刪除.
+        ///   Looks up a localized string similar to &quot;{0}&quot;資料行已刪除.
         /// </summary>
         public static string JE_RUN_DELETE_LINE_M_1 {
             get {

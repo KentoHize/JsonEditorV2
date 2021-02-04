@@ -1258,6 +1258,7 @@
             this.btnCopyLine.Size = new System.Drawing.Size(50, 40);
             this.btnCopyLine.TabIndex = 35;
             this.btnCopyLine.UseVisualStyleBackColor = true;
+            this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
             // 
             // dtpMain
             // 

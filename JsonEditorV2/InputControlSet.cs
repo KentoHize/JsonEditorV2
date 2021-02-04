@@ -377,7 +377,8 @@ namespace JsonEditorV2
 
         private void BtnCopyText_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(ValueControl.Text);
+            if (ValueControl.Text != "")
+                Clipboard.SetText(ValueControl.Text);
         }
 
         public void BtnNewGUID_Click(object sender, EventArgs e)

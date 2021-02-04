@@ -607,10 +607,22 @@ namespace JsonEditor
             return uniqueKey.ParseJType(Columns[index].Type);
         }
 
+        public void CopyLine(int index)
+        {
+            JLine jl = new JLine();
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (Columns[i].AutoGenerateKey)
+                    jl.Add(GenerateKey(i));
+                else
+                    jl.Add(Lines[index][i]);
+            }
+            Lines.Add(jl);
+        }
+
         public void GenerateNewLine()
         {
             JLine jl = new JLine();
-
             for (int i = 0; i < Columns.Count; i++)
             {
                 if (Columns[i].AutoGenerateKey)

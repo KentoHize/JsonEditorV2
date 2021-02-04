@@ -133,19 +133,19 @@
     <value>清空</value>
   </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
-    <value>複製資料列</value>
+    <value>複製資料行</value>
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     <value>刪除資料</value>
   </data>
   <data name="JE_BTN_FIND_LINE" xml:space="preserve">
-    <value>尋找資料列</value>
+    <value>尋找資料行</value>
   </data>
   <data name="JE_BTN_LINE_MOVE_DOWN" xml:space="preserve">
-    <value>下移資料列</value>
+    <value>下移資料行</value>
   </data>
   <data name="JE_BTN_LINE_MOVE_UP" xml:space="preserve">
-    <value>上移資料列</value>
+    <value>上移資料行</value>
   </data>
   <data name="JE_BTN_NEW_GUID" xml:space="preserve">
     <value>新ID</value>
@@ -345,6 +345,9 @@
   <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
     <value>欄位"{0}"已移至頂端</value>
   </data>
+  <data name="JE_RUN_COPY_LINE_M_1" xml:space="preserve">
+    <value>"{0}"已新增資料行，第{1}行資料已複製</value>
+  </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
     <value>檔案內存在{0}筆資料，確定要一起刪除欄位嗎</value>
   </data>
@@ -358,7 +361,7 @@
     <value>檔案"{0}.json"已刪除</value>
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
-    <value>"{0}"資料已刪除</value>
+    <value>"{0}"資料行已刪除</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     <value>欄位"{0}"，值"{1}"，搜尋失敗</value>

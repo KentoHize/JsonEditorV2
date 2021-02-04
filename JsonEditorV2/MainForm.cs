@@ -2286,6 +2286,18 @@ namespace JsonEditorV2
             pnlDateTimePicker.Show();
             dtpMain.Focus();            
         }
+
+        public void btnCopyLine_Click(object sender, EventArgs e)
+        {
+            Var.SelectedTable.CopyLine(Var.SelectedLineIndex);
+            Var.SelectedTable.Changed = true;
+
+            sslMain.Text = string.Format(Res.JE_RUN_COPY_LINE_M_1, Var.SelectedTable.Name, Var.SelectedLineIndex);
+            Var.SelectedLineIndex = dgvLines.Rows.Count;
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            RefreshDgvLines();
+            RefreshPnlMainValue();
+        }
     }
 }
  
