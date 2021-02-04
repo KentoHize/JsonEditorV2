@@ -264,6 +264,9 @@
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>錯誤</value>
   </data>
+  <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
+    <value>輸出CSV檔案"{0}"失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權</value>
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     <value>JSON關聯檔案格式不正確：{0}</value>
   </data>
@@ -362,6 +365,12 @@
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>"{0}"資料行已刪除</value>
+  </data>
+  <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
+    <value>存在不符合規則的資料，確定輸出？</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_CSV_M_2" xml:space="preserve">
+    <value>已使用CSV格式輸出至"{0}"</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     <value>欄位"{0}"，值"{1}"，搜尋失敗</value>
@@ -503,6 +512,15 @@
   </data>
   <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
     <value>展開全部</value>
+  </data>
+  <data name="JE_TMI_EXPORT" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
+    <value>輸出為CSV檔案</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
+    <value>輸出為XML檔案</value>
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>檔案</value>

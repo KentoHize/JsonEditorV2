@@ -264,6 +264,9 @@
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
+    <value>Export file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     <value>JFI Files is not a valid Json file or format wrong: {0}</value>
   </data>
@@ -362,6 +365,12 @@
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>"{0}" Line deleted.</value>
+  </data>
+  <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
+    <value>Invalid data exist, continue export?</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_CSV_M_2" xml:space="preserve">
+    <value>CSV files have exported to "{0}"</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     <value>Column "{0}", value "{1}", data not found.</value>
@@ -501,6 +510,15 @@
   <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
     <value>Expand All</value>
   </data>
+  <data name="JE_TMI_EXPORT" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
+    <value>Export to CSV File</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
+    <value>Export to XML File</value>
+  </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>File</value>
   </data>
@@ -616,13 +634,13 @@
     <value>Foreign key value "{0}" not exist.</value>
   </data>
   <data name="JE_VAL_GREATER_THEN_MAX_VALUE" xml:space="preserve">
-    <value>"{0}" is greater than the max value"{1}".</value>
+    <value>"{0}" is greater than the max value "{1}".</value>
   </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
     <value>"{0}" Invalid data.</value>
   </data>
   <data name="JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
-    <value>JFI File is invalid, File name:"{0}", Column name: "{1}", </value>
+    <value>JFI File is invalid, File name: "{0}", Column name: "{1}", </value>
   </data>
   <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
     <value>"{0}" is less than the min value "{1}".</value>

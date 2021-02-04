@@ -502,6 +502,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輸出CSV檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
+        /// </summary>
+        public static string JE_ERR_EXPORT_TO_CSV_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_EXPORT_TO_CSV_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON關聯檔案格式不正確：{0}.
         /// </summary>
         public static string JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT {
@@ -795,6 +804,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_DELETE_LINE_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_DELETE_LINE_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 存在不符合規則的資料，確定輸出？.
+        /// </summary>
+        public static string JE_RUN_EXPORT_INVALID_FILE {
+            get {
+                return ResourceManager.GetString("JE_RUN_EXPORT_INVALID_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已使用CSV格式輸出至&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_EXPORT_TO_CSV_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_EXPORT_TO_CSV_M_2", resourceCulture);
             }
         }
         
@@ -1218,6 +1245,33 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_EXPAND_ALL {
             get {
                 return ResourceManager.GetString("JE_TMI_EXPAND_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出.
+        /// </summary>
+        public static string JE_TMI_EXPORT {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出為CSV檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_CSV {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出為XML檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_XML {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_XML", resourceCulture);
             }
         }
         

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace JsonEditor
@@ -51,6 +52,45 @@ namespace JsonEditor
                 result.Add(l);
             }
             return result;
+        }
+
+        /// <summary>
+        /// 轉換成CSV
+        /// </summary>
+        /// <returns>CSV字串</returns>
+        public string ToCSV()
+        {
+            StringBuilder sb = new StringBuilder();
+            string value;
+
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (Columns[i].Name.StartsWith(" ") || Columns[i].Name.EndsWith(" ") || Columns[i].Name.Contains(",") || Columns[i].Name.Contains("\""))
+                    sb.AppendFormat("\"{0}\"", Columns[i].Name.Replace("\"", "\"\""));
+                else
+                    sb.Append(Columns[i].Name);
+                if (i != Columns.Count - 1)
+                    sb.Append(',');
+            }
+            sb.AppendLine();
+
+            for (int i = 0; i < Lines.Count; i++)
+            {   
+                for(int j = 0; j < Columns.Count; j++)
+                {
+                    value = Lines[i][j]?.ToString(Columns[j].Type);
+                    if (value == null)
+                        ;
+                    else if (value.StartsWith(" ") || value.EndsWith(" ") || value.Contains(",") || value.Contains("\""))
+                        sb.AppendFormat("\"{0}\"", value.Replace("\"", "\"\""));
+                    else
+                        sb.Append(value);
+                    if (j != Columns.Count - 1)
+                        sb.Append(',');
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
 
         /// <summary>

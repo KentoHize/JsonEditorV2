@@ -28,10 +28,10 @@ namespace JsonEditor
             ((IList<JTable>)Tables).Add(item);
         }
 
-        public bool CheckAllTablesValid()
+        public bool CheckAllTablesValid(bool quickCheck = false)
         {
             foreach (JTable jt in Tables)
-                if (!CheckTableValid(jt))
+                if (!CheckTableValid(jt, quickCheck))
                     return false;
             return true;
         }

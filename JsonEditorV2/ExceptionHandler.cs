@@ -138,6 +138,11 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);
         }
 
+        public static void ExportToCSVFailed(Exception ex, string file)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
+        }
+
         public static bool HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))

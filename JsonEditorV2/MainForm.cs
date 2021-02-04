@@ -28,6 +28,73 @@ namespace JsonEditorV2
             dtpMain.ValueChanged += DtpMain_ValueChanged;
         }
 
+        #region RESOURCES_TEXT_PATCH
+        private void PatchTextFromResource()
+        {
+            Text = $"{Res.JSON_FILE_EDITOR_TITLE} - {Const.VersionString}";
+            lblColumnName.Text = Res.JE_COLUMN_NAME;
+            lblColumnType.Text = Res.JE_COLUMN_TYPE;
+            lblColumnChoices.Text = Res.JE_COLUMN_CHOICES;
+            lblColumnChoiceName.Text = Res.JE_LBL_CHOICE_NAME;
+            lblColumnIsKey.Text = Res.JE_COLUMN_IS_KEY;
+            lblColumnDisplay.Text = Res.JE_COLUMN_DISPLAY;
+            lblColumnFKTable.Text = Res.JE_COLUMN_FK_TABLE;
+            lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
+            lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
+            lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
+            lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
+            lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
+            lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
+            lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
+            lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
+            lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
+            lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
+            btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
+            btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
+            btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
+            btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
+            btnNewLine.Text = Res.JE_BTN_NEW_LINE;
+            tltMain.SetToolTip(btnCopyLine, Res.JE_BTN_COPY_LINE);
+            tltMain.SetToolTip(btnFindConfirm, Res.JE_BTN_FIND_LINE);
+            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
+            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_DOWN);
+            btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
+            ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
+            tmiFile.Text = Res.JE_TMI_FILE;
+            tmiAbout.Text = Res.JE_TMI_ABOUT;
+            tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
+            tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
+            tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
+            tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
+            tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
+            tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
+            tmiExport.Text = Res.JE_TMI_EXPORT;
+            tmiExportToCsv.Text = Res.JE_TMI_EXPORT_TO_CSV;
+            tmiExportToXml.Text = Res.JE_TMI_EXPORT_TO_XML;
+            tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
+            tmiExit.Text = Res.JE_TMI_EXIT;
+            tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
+            tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
+            tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
+            tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
+            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
+            tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
+            tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
+            tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
+            tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
+            tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
+            tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
+            tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
+            tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
+            tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
+            tmiColumnShowOnList.Text = Res.JE_TMI_COLUMN_SHOW_ON_LIST;
+            tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
+            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
+            tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
+            tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
+        }
+        #endregion
+
         private void DtpMain_ValueChanged(object sender, EventArgs e)
         {
             if (dtpMain.Style == DateTimePickerStyle.Date)
@@ -52,70 +119,6 @@ namespace JsonEditorV2
             PatchTextFromResource();
             dtpMain.PatchTextFromResource();            
         }
-
-        #region RESOURCES_TEXT_PATCH
-        private void PatchTextFromResource()
-        {
-            Text = $"{Res.JSON_FILE_EDITOR_TITLE} - {Const.VersionString}";
-            lblColumnName.Text = Res.JE_COLUMN_NAME;
-            lblColumnType.Text = Res.JE_COLUMN_TYPE;
-            lblColumnChoices.Text = Res.JE_COLUMN_CHOICES;
-            lblColumnChoiceName.Text = Res.JE_LBL_CHOICE_NAME;
-            lblColumnIsKey.Text = Res.JE_COLUMN_IS_KEY;
-            lblColumnDisplay.Text = Res.JE_COLUMN_DISPLAY;
-            lblColumnFKTable.Text = Res.JE_COLUMN_FK_TABLE;
-            lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
-            lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
-            lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
-            lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
-            lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
-            lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
-            lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
-            lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
-            lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;            
-            lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;            
-            btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
-            btnUpdateMain.Text = Res.JE_BTN_UPDATE_MAIN;
-            btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
-            btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
-            btnNewLine.Text = Res.JE_BTN_NEW_LINE;
-            tltMain.SetToolTip(btnCopyLine, Res.JE_BTN_COPY_LINE);
-            tltMain.SetToolTip(btnFindConfirm, Res.JE_BTN_FIND_LINE);
-            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
-            tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_DOWN);
-            btnDeleteLine.Text = Res.JE_BTN_DELETE_LINE;
-            ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
-            tmiFile.Text = Res.JE_TMI_FILE;
-            tmiAbout.Text = Res.JE_TMI_ABOUT;
-            tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
-            tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
-            tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
-            tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
-            tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
-            tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
-            tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
-            tmiExit.Text = Res.JE_TMI_EXIT;
-            tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
-            tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
-            tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
-            tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
-            tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
-            tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
-            tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
-            tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
-            tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
-            tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
-            tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
-            tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
-            tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
-            tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
-            tmiColumnShowOnList.Text = Res.JE_TMI_COLUMN_SHOW_ON_LIST;
-            tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
-            tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
-            tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
-            tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;            
-        }
-        #endregion
 
         //取消FK
         private void CancelFK(JTable sourceTable, JColumn sourceColumn = null)
@@ -613,9 +616,10 @@ namespace JsonEditorV2
         private void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
-            tmiCloseAllFiles.Enabled = false;
-            tmiNewJsonFile.Enabled = false;
-            tmiSaveJsonFiles.Enabled = false;
+            tmiCloseAllFiles.Enabled =
+            tmiExport.Enabled =
+            tmiNewJsonFile.Enabled = 
+            tmiSaveJsonFiles.Enabled = 
             tmiSaveAsJsonFiles.Enabled = false;
             Var.DblClick = false;
             if (Var.Tables == null)
@@ -629,8 +633,7 @@ namespace JsonEditorV2
             Var.RootNode.Expand();
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
-
-            //Dictionary<string, string> fks = new Dictionary<string, string>();
+            
             foreach (JTable jt in Var.Tables)
             {
                 fileNode = new TreeNode { Name = jt.Name, Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
@@ -655,16 +658,13 @@ namespace JsonEditorV2
                     if (Var.SelectedColumn == jc)
                         trvJsonFiles.SelectedNode = tr;
                 }
-
-                //foreach (KeyValuePair<string, string> kvp in fks)
-                //    fileNode.Nodes.Add(new TreeNode { Name = $"FK:{kvp.Key} -> {kvp.Value}", ImageIndex = 3, SelectedImageIndex = 3, ));
-
             }
 
             if (trvJsonFiles.SelectedNode == null || trvJsonFiles.SelectedNode == Var.RootNode)
                 Var.RootNode.Expand();
 
             tmiCloseAllFiles.Enabled =
+            tmiExport.Enabled =
             tmiNewJsonFile.Enabled =
             tmiOpenFolder.Enabled =
             tmiSaveAsJsonFiles.Enabled =
@@ -2303,6 +2303,49 @@ namespace JsonEditorV2
         {
             if (pnlDateTimePicker.Visible)
                 pnlDateTimePicker.Hide();
+        }
+
+        private void tmiExportToCsv_Click(object sender, EventArgs e)
+        {
+            foreach (JTable jt in Var.Tables)
+                if (!jt.Loaded)
+                    if (!LoadOrScanJsonFile(jt))
+                        return;
+            
+            DialogResult dr;
+            if(!Var.Database.CheckAllTablesValid(Setting.UseQuickCheck))
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            fbdMain.SelectedPath = Var.JFI.DirectoryPath;
+            dr = fbdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            //讀檔、輸出
+            foreach (JTable jt in Var.Tables)
+            {
+                try
+                {
+                    using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"), FileMode.Create))
+                    {
+                        using (StreamWriter sw = new StreamWriter(fs))
+                        {
+                            sw.Write(jt.ToCSV());
+                        }   
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ExceptionHandler.ExportToCSVFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"));
+                }
+            }
+
+            RefreshTrvJsonFiles();
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_2, fbdMain.SelectedPath);
         }
     }
 }
