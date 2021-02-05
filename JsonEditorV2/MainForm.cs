@@ -1281,6 +1281,19 @@ namespace JsonEditorV2
             return true;
         }
 
+        public static bool ScanCsvFile(JTable jt, string fileName)
+        {
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            {
+                using (StreamReader sr = new StreamReader(fs))
+                {
+                    jt.ScanCSV(sr.ReadToEnd());
+                    // To DO
+                }
+            }
+            return true;
+        }
+
         public static bool LoadOrScanJsonFile(JTable jt, bool scan = false)
         {
             string jsonString = "";
@@ -2464,6 +2477,45 @@ namespace JsonEditorV2
         }
 
         private void tmiScanCSVFile_Click(object sender, EventArgs e)
+        {
+            if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
+                return;
+#if DEBUG
+            fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Test1";
+#endif
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            Var.NotOnlyClose = true;
+            tmiCloseAllFiles_Click(this, e);
+            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+            string[] csvFiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.csv");
+            Var.Tables = new List<JTable>();
+
+            //檔案數為0，丟出訊息後離開
+            if (csvFiles.Length == 0)
+            {
+                // To do
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
+                return;
+            }
+
+            //全部讀取
+            foreach (string file in csvFiles)
+            {
+                //讀取失敗放棄
+                JTable table = new JTable(Path.GetFileNameWithoutExtension(file));                
+                if(ScanCsvFile(table, file))
+                    Var.Tables.Add(table);
+            }
+
+            Var.JFI.Changed = true;
+            RefreshTrvJsonFiles();
+            //sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
+        }
+
+        private void tmiScan_Click(object sender, EventArgs e)
         {
 
         }

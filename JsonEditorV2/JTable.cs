@@ -296,9 +296,167 @@ namespace JsonEditor
         }
 
         /// <summary>
+        /// 掃描CSV檔案
+        /// </summary>
+        /// <param name="csv">CSV字串</param>
+        /// <param name="numberOfRowsMaxValue">欄位最大行數</param>
+        public void ScanCSV(string csv, int numberOfRowsMaxValue = 20)
+        {
+            Lines.Clear();
+            Columns.Clear();
+            csv = csv.Trim();
+
+            if (string.IsNullOrEmpty(csv))
+                return;
+
+            int postion = 0;
+            int columnCount = 0;
+            int columnIndex = 0;
+            StringBuilder value = new StringBuilder();
+            bool firstLine = true;
+            bool inDoubleQuotes = false;
+            bool foundDoubleQuotes = false;
+            while(postion != csv.Length)
+            {
+                if (Lines.Count == 7844)
+                {
+                    Console.WriteLine("in");
+                }
+                switch (csv[postion])
+                {   
+                    case ',':
+                        if (inDoubleQuotes)
+                        {
+                            postion++;                           
+                        }   
+                        else
+                        {
+                            if (firstLine)
+                            {
+                                if (value.ToString() != "")
+                                    Columns.Add(new JColumn(value.ToString()));
+                                else
+                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                value = new StringBuilder();
+                                columnCount++;
+                            }
+                            else
+                            {
+                                Lines[Lines.Count - 1].Add(value.ToString());
+                                value = new StringBuilder();
+                            }                                
+                            columnIndex++;
+                            if (columnIndex > columnCount)
+                                throw new ArgumentOutOfRangeException("Column Index Out of Range");
+                        }   
+                        break;
+                    case '"':
+                        if (foundDoubleQuotes)
+                        {
+                            foundDoubleQuotes = false;
+                            value.Append('\"');
+                        }
+                        else if (!inDoubleQuotes)
+                            inDoubleQuotes = true;
+                        else if (postion == csv.Length - 1)
+                        {
+                            inDoubleQuotes = false;
+                            if (firstLine)
+                            {
+                                if (value.ToString() != "")
+                                    Columns.Add(new JColumn(value.ToString()));
+                                else
+                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                value = new StringBuilder();
+                            }   
+                            else
+                            {   
+                                Lines[Lines.Count - 1].Add(value.ToString());
+                                columnIndex++;
+                                while (columnIndex < columnCount)
+                                {
+                                    Lines[Lines.Count - 1].Add("");
+                                    columnIndex++;
+                                }
+                                value = new StringBuilder();
+                            }                                
+                        }
+                        else if (csv[postion + 1] != '"')
+                            inDoubleQuotes = false;
+                        else
+                            foundDoubleQuotes = true;
+                        break;
+                    case '\n':
+                        if (inDoubleQuotes)
+                            value.Append('\n');
+                        else
+                        {
+                            if (firstLine)
+                            {
+                                if (value.ToString() != "")
+                                    Columns.Add(new JColumn(value.ToString()));
+                                else
+                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                value = new StringBuilder();
+                                columnCount++;
+                            }
+                            else
+                            {
+                                Lines[Lines.Count - 1].Add(value.ToString());
+                                columnIndex++;
+                                while (columnIndex < columnCount)
+                                {
+                                    Lines[Lines.Count - 1].Add("");
+                                    columnIndex++;
+                                }
+                                value = new StringBuilder();
+                            }
+                            if (firstLine)
+                                firstLine = false;
+                            if(postion != csv.Length - 1)
+                                Lines.Add(new JLine());
+                            columnIndex = 0;
+                        }
+                        break;
+                    case ' ':
+                        if (inDoubleQuotes)
+                            value.Append(' ');                        
+                        break;
+                    case '\r':
+                        break;
+                    default:
+                        value.Append(csv[postion]);
+                        break;
+                }
+                postion++;
+            }
+            while (columnIndex < columnCount)
+            {
+                Lines[Lines.Count - 1].Add("");
+                columnIndex++;
+            }
+
+
+            for (int i = 0; i < Columns.Count; i++)
+            {
+                if (Columns[i].Type == JType.None)
+                    Columns[i].Type = JType.String;
+                if (Columns[i].Name == "ID" && !Columns[i].IsNullable)
+                {
+                    Columns[i].IsKey = true;
+                    Columns[i].Display = true;
+                    Valid = false;
+                }
+                Columns[i].Display = i == 0;
+            }
+            Loaded = true;
+        }
+
+        /// <summary>
         /// 掃描Json物件
         /// </summary>
         /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
+        /// <param name="numberOfRowsMaxValue">欄位最大行數</param>
         public void ScanJson(object jArray, int numberOfRowsMaxValue = 20)
         {
             Lines.Clear();

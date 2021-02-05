@@ -1465,7 +1465,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掃描CSV檔案.
+        ///   Looks up a localized string similar to 掃描CSV檔案資料夾.
         /// </summary>
         public static string JE_TMI_SCAN_CSV_FILES {
             get {
@@ -1474,7 +1474,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掃描JSON檔案庫.
+        ///   Looks up a localized string similar to 掃描JSON檔案資料夾.
         /// </summary>
         public static string JE_TMI_SCAN_JSON_FILES {
             get {

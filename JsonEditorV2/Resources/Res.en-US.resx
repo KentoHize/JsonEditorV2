@@ -583,7 +583,7 @@
     <value>Scan</value>
   </data>
   <data name="JE_TMI_SCAN_CSV_FILES" xml:space="preserve">
-    <value>Scan CSV Files</value>
+    <value>Scan CSV Folder</value>
   </data>
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
     <value>Scan Json Folder</value>
