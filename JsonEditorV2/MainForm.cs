@@ -75,6 +75,8 @@ namespace JsonEditorV2
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
             tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
             tmiScanJsonFiles.Text = Res.JE_TMI_SCAN_JSON_FILES;
+            tmiScan.Text = Res.JE_TMI_SCAN;
+            tmiScanCSVFiles.Text = Res.JE_TMI_SCAN_CSV_FILES;
             tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
             tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
@@ -1670,8 +1672,11 @@ namespace JsonEditorV2
                 return;
 
             for (int i = 0; i < Var.InputControlSets.Count; i++)
-                if(Var.SelectedTable.Columns[i].Type != JType.Array && Var.SelectedTable.Columns[i].Type != JType.Object)
+                if (Var.SelectedTable.Columns[i].Type != JType.Array && Var.SelectedTable.Columns[i].Type != JType.Object)
                     Var.SelectedTable[Var.SelectedLineIndex][i] = Var.InputControlSets[i].GetValueValidated();
+                else if (Var.InputControlSets[i].NullCheckBox.Checked)
+                    Var.SelectedTable[Var.SelectedLineIndex][i] = null;
+
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
@@ -2437,7 +2442,10 @@ namespace JsonEditorV2
             if (Var.SelectedColumn == null)
                 return;
 
-            //錯誤欄位不能Generate Key
+            //錯誤欄位不能Generate Key 正常不進，可加LOG
+            if (!Var.SelectedColumn.Type.IsNumber() && Var.SelectedColumn.Type != JType.Guid &&
+                Var.SelectedColumn.Type == JType.String)
+                return;
 
             DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
             if (dr != DialogResult.OK)
@@ -2453,6 +2461,11 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_REGENERATE_KEY_M_2, Var.SelectedColumn.Name);
             Var.Database.CheckAllTablesValid(Setting.UseQuickCheck);
             RefreshTrvJsonFiles();
+        }
+
+        private void tmiScanCSVFile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

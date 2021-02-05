@@ -1456,6 +1456,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 掃描.
+        /// </summary>
+        public static string JE_TMI_SCAN {
+            get {
+                return ResourceManager.GetString("JE_TMI_SCAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 掃描CSV檔案.
+        /// </summary>
+        public static string JE_TMI_SCAN_CSV_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_SCAN_CSV_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 掃描JSON檔案庫.
         /// </summary>
         public static string JE_TMI_SCAN_JSON_FILES {

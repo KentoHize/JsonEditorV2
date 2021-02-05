@@ -10,7 +10,7 @@ namespace JsonEditorV2
 {
     public static class Const
     {
-        public const string VersionString = "Version 0.31";
+        public const string VersionString = "Version 0.32";
 
         public const string FileNameRegex = @"^[\w\-. ]+$";
         public const string ColumnNameRegex = @"^[\w][\w\-]{0,49}$";

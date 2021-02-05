@@ -582,6 +582,12 @@
   <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
     <value>存取JSON檔案庫</value>
   </data>
+  <data name="JE_TMI_SCAN" xml:space="preserve">
+    <value>掃描</value>
+  </data>
+  <data name="JE_TMI_SCAN_CSV_FILES" xml:space="preserve">
+    <value>掃描CSV檔案</value>
+  </data>
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
     <value>掃描JSON檔案庫</value>
   </data>

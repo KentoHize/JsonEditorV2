@@ -79,12 +79,15 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiScanJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLoadJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiScan = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiScanCSVFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiSaveJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSaveAsJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,7 +148,6 @@
             this.btnCopyLine = new System.Windows.Forms.Button();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
             this.sfdMain = new System.Windows.Forms.SaveFileDialog();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.btnRegenerateKey = new System.Windows.Forms.Button();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
@@ -735,6 +737,18 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -755,6 +769,7 @@
             this.tmiNewJsonFiles,
             this.toolStripMenuItem3,
             this.tmiScanJsonFiles,
+            this.tmiScan,
             this.tmiLoadJsonFiles,
             this.toolStripMenuItem4,
             this.tmiSaveJsonFiles,
@@ -796,6 +811,21 @@
             this.tmiLoadJsonFiles.Size = new System.Drawing.Size(216, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
+            // 
+            // tmiScan
+            // 
+            this.tmiScan.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmiScanCSVFiles});
+            this.tmiScan.Name = "tmiScan";
+            this.tmiScan.Size = new System.Drawing.Size(216, 26);
+            this.tmiScan.Text = "X";
+            // 
+            // tmiScanCSVFiles
+            // 
+            this.tmiScanCSVFiles.Name = "tmiScanCSVFiles";
+            this.tmiScanCSVFiles.Size = new System.Drawing.Size(216, 26);
+            this.tmiScanCSVFiles.Text = "X";
+            this.tmiScanCSVFiles.Click += new System.EventHandler(this.tmiScanCSVFile_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -845,14 +875,14 @@
             // tmiExportToXml
             // 
             this.tmiExportToXml.Name = "tmiExportToXml";
-            this.tmiExportToXml.Size = new System.Drawing.Size(216, 26);
+            this.tmiExportToXml.Size = new System.Drawing.Size(93, 26);
             this.tmiExportToXml.Text = "X";
             this.tmiExportToXml.Click += new System.EventHandler(this.tmiExportToXml_Click);
             // 
             // tmiExportToCsv
             // 
             this.tmiExportToCsv.Name = "tmiExportToCsv";
-            this.tmiExportToCsv.Size = new System.Drawing.Size(216, 26);
+            this.tmiExportToCsv.Size = new System.Drawing.Size(93, 26);
             this.tmiExportToCsv.Text = "X";
             this.tmiExportToCsv.Click += new System.EventHandler(this.tmiExportToCsv_Click);
             // 
@@ -1291,18 +1321,6 @@
             this.btnCopyLine.UseVisualStyleBackColor = true;
             this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
             // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
             // btnRegenerateKey
             // 
             this.btnRegenerateKey.Enabled = false;
@@ -1490,6 +1508,8 @@
         private System.Windows.Forms.ToolStripMenuItem tmiExportToXml;
         private System.Windows.Forms.ToolStripMenuItem tmiExportToCsv;
         private System.Windows.Forms.Button btnRegenerateKey;
+        private System.Windows.Forms.ToolStripMenuItem tmiScan;
+        private System.Windows.Forms.ToolStripMenuItem tmiScanCSVFiles;
     }
 }
 
