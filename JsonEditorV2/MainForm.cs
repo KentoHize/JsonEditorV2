@@ -91,6 +91,7 @@ namespace JsonEditorV2
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
+            tmiDisplayAllColumn.Text = Res.JE_TMI_DISPLAY_ALL_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
@@ -966,8 +967,9 @@ namespace JsonEditorV2
                     tmiCloseJsonFile.Enabled = false;
                 }
 
-                //更新View
+                //更新選單
                 tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+                tmiDisplayAllColumn.Checked = !Var.SelectedColumnParentTable.Columns.Exists(m => !m.Display);
 
                 if (e.Button == MouseButtons.Right)
                 {
@@ -1283,14 +1285,23 @@ namespace JsonEditorV2
 
         public static bool ScanCsvFile(JTable jt, string fileName)
         {
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
+            try
             {
-                using (StreamReader sr = new StreamReader(fs))
+                using (FileStream fs = new FileStream(fileName, FileMode.Open))
                 {
-                    jt.ScanCSV(sr.ReadToEnd());
-                    // To DO
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        jt.ScanCSV(sr.ReadToEnd());
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                ExceptionHandler.ScanCSVFilesFailed(jt, ex);
+                return false;
+            }
+            if (!jt.Valid)
+                Var.Database.CheckTableValid(jt, Setting.UseQuickCheck);
             return true;
         }
 
@@ -2495,9 +2506,8 @@ namespace JsonEditorV2
 
             //檔案數為0，丟出訊息後離開
             if (csvFiles.Length == 0)
-            {
-                // To do
-                RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_3", Res.JE_TMI_LOAD_JSON_FILES, fbdMain.SelectedPath);
+            {   
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_SCAN_CSV_FILES_M_1", Res.JE_TMI_SCAN_CSV_FILES, fbdMain.SelectedPath);
                 return;
             }
 
@@ -2512,12 +2522,31 @@ namespace JsonEditorV2
 
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
-            //sslMain.Text = string.Format(Res.JE_RUN_SCAN_JSON_FILES_M_2, Var.Tables.Count);
+            sslMain.Text = string.Format(Res.JE_RUN_SCAN_CSV_FILES_M_2, Var.Tables.Count);
         }
 
         private void tmiScan_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void pnlFileInfo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tmiFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tmiDisplayAllColumn_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Var.SelectedColumnParentTable.Columns.Count; i++)
+                Var.SelectedColumnParentTable.Columns[i].Display = true;
+            Var.JFI.Changed = true;
+            RefreshPnlFileInfo();
+            RefreshTbcMain();
         }
     }
 }

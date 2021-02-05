@@ -103,6 +103,11 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
         }
 
+        public static void ScanCSVFilesFailed(JTable jt, Exception ex)
+        {
+            RabbitCouriers.SentErrorMessageByResource("JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name, ex.Message);
+        }
+
         public static void JTableLoadOrScanJsonFailed(JTable jt, JFileInvalidException ex, bool isScan)
         {
             string title = isScan ? Res.JE_ERR_SCAN_JSON_FAILED_TITLE : Res.JE_ERR_LOAD_JSON_FAILED_TITLE;
