@@ -56,6 +56,8 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnUpdateMain, Res.JE_BTN_UPDATE_MAIN);
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
             tltMain.SetToolTip(btnUpdateColumn, Res.JE_BTN_UPDATE_COLUMN);
+            btnRegenerateKey.Text = Res.JE_BTN_REGENERATE_KEY;
+            tltMain.SetToolTip(btnRegenerateKey, Res.JE_BTN_REGENERATE_KEY);
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
             tltMain.SetToolTip(btnClearColumn, Res.JE_BTN_CLEAR_COLUMN);
             btnNewLine.Text = Res.JE_BTN_NEW_LINE;
@@ -1012,6 +1014,7 @@ namespace JsonEditorV2
                 txtColumnDescription.Text = Var.SelectedColumn.Description ?? "";
                 txtColumnMaxLength.Text = Var.SelectedColumn.MaxLength.ToString();
                 ckbColumnIsUnique.Checked = Var.SelectedColumn.IsUnique;
+                btnRegenerateKey.Enabled =
                 ckbColumnAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
                 btnColumnEditChoices.Enabled = string.IsNullOrEmpty(Var.SelectedColumn.FKColumn);
                 btnUpdateColumn.Enabled = true;
@@ -1019,7 +1022,8 @@ namespace JsonEditorV2
             else
             {
                 btnClearColumn_Click(this, new EventArgs());
-                btnUpdateColumn.Enabled = false;              
+                btnUpdateColumn.Enabled = false;
+                btnRegenerateKey.Enabled = false;
             }
         }
 
@@ -1880,8 +1884,10 @@ namespace JsonEditorV2
             JType result = (JType)cobColumnType.SelectedItem;
             
             ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
+            
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
                 ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;
+            //btnRegenerateKey.Enabled = ckbColumnAutoGenerateKey.Checked;
             txtColumnRegex.Enabled =
             txtColumnMaxLength.Enabled = !ckbColumnAutoGenerateKey.Checked &&
                 cobColumnFKColumn.SelectedIndex == -1 &&
@@ -2365,13 +2371,16 @@ namespace JsonEditorV2
         {
             XmlDocument xdoc = new XmlDocument();
             XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = xdoc.CreateElement("Data");
+            XmlElement root = xdoc.CreateElement("DataSet");
             xdoc.AppendChild(root);
             xdoc.InsertBefore(xmlDeclaration, root);            
             
             for (int i = 0; i < jt.Lines.Count; i++)
             {
-                XmlNode xn = xdoc.CreateElement(i.ToString());
+                XmlNode xn = xdoc.CreateElement("Data");
+                XmlAttribute xa = xdoc.CreateAttribute("id");
+                xa.Value = i.ToString();
+                xn.Attributes.Append(xa);
                 for(int j = 0; j < jt.Columns.Count; j++)
                 {
                     XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);                    
@@ -2406,20 +2415,43 @@ namespace JsonEditorV2
             //讀檔、輸出
             foreach (JTable jt in Var.Tables)
             {
-                //try
-                //{
+                try
+                {
                     using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"), FileMode.Create))
                     {   
                          JTableToXml(jt).Save(fs);
                     }
-                //}
-                //catch (Exception ex)
-                //{
-                //    ExceptionHandler.ExportToXMLFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"));
-                //}
+                }
+                catch (Exception ex)
+                {
+                    ExceptionHandler.ExportToXMLFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"));
+                }
             }
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, fbdMain.SelectedPath);
+            RefreshTrvJsonFiles();
+        }
+
+        private void btnRegenerateKey_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumn == null)
+                return;
+
+            //錯誤欄位不能Generate Key
+
+            DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
+            if (dr != DialogResult.OK)
+                return;
+
+            for (int i = 0; i < Var.SelectedColumnParentTable.Count; i++)
+                if (Var.SelectedColumn.Type == JType.Guid)
+                    Var.SelectedColumnParentTable[i][Var.SelectedColumnIndex] = Guid.NewGuid();
+                else
+                    Var.SelectedColumnParentTable[i][Var.SelectedColumnIndex] = i.ParseJType(Var.SelectedColumn.Type);
+
+            Var.SelectedTable.Changed = true;
+            sslMain.Text = string.Format(Res.JE_RUN_REGENERATE_KEY_M_2, Var.SelectedColumn.Name);
+            Var.Database.CheckAllTablesValid(Setting.UseQuickCheck);
             RefreshTrvJsonFiles();
         }
     }

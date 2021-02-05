@@ -187,6 +187,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 重設索引.
+        /// </summary>
+        public static string JE_BTN_REGENERATE_KEY {
+            get {
+                return ResourceManager.GetString("JE_BTN_REGENERATE_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 更新.
         /// </summary>
         public static string JE_BTN_UPDATE_COLUMN {
@@ -1011,6 +1020,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_NEW_LINE_M_2 {
             get {
                 return ResourceManager.GetString("JE_RUN_NEW_LINE_M_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 重新產生資料中欄位&quot;{0}&quot;的索引值，確定(覆蓋原值)？.
+        /// </summary>
+        public static string JE_RUN_REGENERATE_KEY_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_REGENERATE_KEY_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 欄位&quot;{0}&quot;索引值已重設.
+        /// </summary>
+        public static string JE_RUN_REGENERATE_KEY_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_REGENERATE_KEY_M_2", resourceCulture);
             }
         }
         

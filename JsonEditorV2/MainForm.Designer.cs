@@ -79,7 +79,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,6 +145,8 @@
             this.btnCopyLine = new System.Windows.Forms.Button();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
             this.sfdMain = new System.Windows.Forms.SaveFileDialog();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
+            this.btnRegenerateKey = new System.Windows.Forms.Button();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -734,18 +735,6 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1302,11 +1291,37 @@
             this.btnCopyLine.UseVisualStyleBackColor = true;
             this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
+            // btnRegenerateKey
+            // 
+            this.btnRegenerateKey.Enabled = false;
+            this.btnRegenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegenerateKey.Location = new System.Drawing.Point(150, 764);
+            this.btnRegenerateKey.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRegenerateKey.Name = "btnRegenerateKey";
+            this.btnRegenerateKey.Size = new System.Drawing.Size(122, 40);
+            this.btnRegenerateKey.TabIndex = 36;
+            this.btnRegenerateKey.Text = "-";
+            this.btnRegenerateKey.UseVisualStyleBackColor = true;
+            this.btnRegenerateKey.Click += new System.EventHandler(this.btnRegenerateKey_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1509, 832);
+            this.Controls.Add(this.btnRegenerateKey);
             this.Controls.Add(this.btnCopyLine);
             this.Controls.Add(this.btnFindConfirm);
             this.Controls.Add(this.txtFindValue);
@@ -1474,6 +1489,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiExport;
         private System.Windows.Forms.ToolStripMenuItem tmiExportToXml;
         private System.Windows.Forms.ToolStripMenuItem tmiExportToCsv;
+        private System.Windows.Forms.Button btnRegenerateKey;
     }
 }
 

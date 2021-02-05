@@ -159,6 +159,9 @@
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     <value>新增資料</value>
   </data>
+  <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
+    <value>重設索引</value>
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -434,6 +437,12 @@
   </data>
   <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
     <value>檔案沒有欄位不能新增資料</value>
+  </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_1" xml:space="preserve">
+    <value>重新產生資料中欄位"{0}"的索引值，確定(覆蓋原值)？</value>
+  </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_2" xml:space="preserve">
+    <value>欄位"{0}"索引值已重設</value>
   </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
     <value>欄位"{0}"已存在</value>

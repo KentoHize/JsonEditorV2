@@ -159,6 +159,9 @@
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     <value>New Line</value>
   </data>
+  <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
+    <value>Reset Keys</value>
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>Update</value>
   </data>
@@ -431,6 +434,12 @@
   </data>
   <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
     <value>New line need at least 1 column in a file.</value>
+  </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_1" xml:space="preserve">
+    <value>Regenerate keys in column "{0}", confirm? (will replace original value)</value>
+  </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_2" xml:space="preserve">
+    <value>Column "{0}" keys regenerated.</value>
   </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
     <value>Column "{0}" already exists.</value>
