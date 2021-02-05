@@ -159,6 +159,9 @@
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     新增资料
   </data>
+  <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
+    重设索引
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     更新
   </data>
@@ -273,6 +276,9 @@
   <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
     输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
+  <data name="JE_ERR_EXPORT_TO_XML_FAILED" xml:space="preserve">
+    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     JSON关联档案格式不正确：{0}
   </data>
@@ -293,6 +299,9 @@
   </data>
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
     无效的JSON档案"{0}.json"，根元素非阵列
+  </data>
+  <data name="JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT" xml:space="preserve">
+    扫描档案"{0}.csv"时发生错误:{1}
   </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     扫描档案失败
@@ -378,6 +387,9 @@
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     已使用CSV格式输出至"{0}"
   </data>
+  <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
+    已使用XML格式输出至"{0}"
+  </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     栏位"{0}"，值"{1}"，搜寻失败
   </data>
@@ -429,6 +441,12 @@
   <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
     档案没有栏位不能新增资料
   </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_1" xml:space="preserve">
+    重新产生资料中栏位"{0}"的索引值，确定(覆盖原值)？
+  </data>
+  <data name="JE_RUN_REGENERATE_KEY_M_2" xml:space="preserve">
+    栏位"{0}"索引值已重设
+  </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
     栏位"{0}"已存在
   </data>
@@ -458,6 +476,12 @@
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
     "{0}"所有档案已存档
+  </data>
+  <data name="JE_RUN_SCAN_CSV_FILES_M_1" xml:space="preserve">
+    目标资料夹"{0}"没有csv档案存在
+  </data>
+  <data name="JE_RUN_SCAN_CSV_FILES_M_2" xml:space="preserve">
+    {0}档案扫描完毕
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
     资料夹"{0}"已存在JSON关联档案，确定继续扫描目标资料夹？(之後存档後将覆盖旧的JSON关联档)
@@ -513,6 +537,9 @@
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
     删除
   </data>
+  <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
+    显示所有栏位
+  </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     离开
   </data>
@@ -567,8 +594,14 @@
   <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
     存取JSON档案库
   </data>
+  <data name="JE_TMI_SCAN" xml:space="preserve">
+    扫描
+  </data>
+  <data name="JE_TMI_SCAN_CSV_FILES" xml:space="preserve">
+    扫描CSV档案资料夹
+  </data>
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
-    扫描JSON档案库
+    扫描JSON档案资料夹
   </data>
   <data name="JE_TMI_VIEW_JFI_FILE" xml:space="preserve">
     用记事本开启JSON关联档
