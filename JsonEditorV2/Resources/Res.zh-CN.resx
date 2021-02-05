@@ -351,6 +351,18 @@
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
     选项
   </data>
+  <data name="JE_LIST_FK" xml:space="preserve">
+    外部索引
+  </data>
+  <data name="JE_LIST_INVALID" xml:space="preserve">
+    无效
+  </data>
+  <data name="JE_LIST_ITEMS" xml:space="preserve">
+    行资料
+  </data>
+  <data name="JE_LIST_UNLOAD" xml:space="preserve">
+    未读取
+  </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     栏位"{0}"已存在
   </data>
