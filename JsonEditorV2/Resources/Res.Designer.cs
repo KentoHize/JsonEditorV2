@@ -610,15 +610,6 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 掃描檔案&quot;{0}.csv&quot;時發生錯誤:{1}.
-        /// </summary>
-        public static string JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT {
-            get {
-                return ResourceManager.GetString("JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 掃描檔案失敗.
         /// </summary>
         public static string JE_ERR_SCAN_JSON_FAILED_TITLE {
@@ -1141,24 +1132,6 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 目標資料夾&quot;{0}&quot;沒有csv檔案存在.
-        /// </summary>
-        public static string JE_RUN_SCAN_CSV_FILES_M_1 {
-            get {
-                return ResourceManager.GetString("JE_RUN_SCAN_CSV_FILES_M_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}檔案掃描完畢.
-        /// </summary>
-        public static string JE_RUN_SCAN_CSV_FILES_M_2 {
-            get {
-                return ResourceManager.GetString("JE_RUN_SCAN_CSV_FILES_M_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 資料夾&quot;{0}&quot;已存在JSON關聯檔案，確定繼續掃描目標資料夾？(之後存檔後將覆蓋舊的JSON關聯檔).
         /// </summary>
         public static string JE_RUN_SCAN_JSON_FILES_M_1 {
@@ -1317,15 +1290,6 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_DELETE_JSON_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_DELETE_JSON_FILE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 顯示所有欄位.
-        /// </summary>
-        public static string JE_TMI_DISPLAY_ALL_COLUMN {
-            get {
-                return ResourceManager.GetString("JE_TMI_DISPLAY_ALL_COLUMN", resourceCulture);
             }
         }
         

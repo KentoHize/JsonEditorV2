@@ -300,9 +300,6 @@
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
     <value>無效的JSON檔案"{0}.json"，根元素非陣列</value>
   </data>
-  <data name="JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>掃描檔案"{0}.csv"時發生錯誤:{1}</value>
-  </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     <value>掃描檔案失敗</value>
   </data>
@@ -477,12 +474,6 @@
   <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
     <value>"{0}"所有檔案已存檔</value>
   </data>
-  <data name="JE_RUN_SCAN_CSV_FILES_M_1" xml:space="preserve">
-    <value>目標資料夾"{0}"沒有csv檔案存在</value>
-  </data>
-  <data name="JE_RUN_SCAN_CSV_FILES_M_2" xml:space="preserve">
-    <value>{0}檔案掃描完畢</value>
-  </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
     <value>資料夾"{0}"已存在JSON關聯檔案，確定繼續掃描目標資料夾？(之後存檔後將覆蓋舊的JSON關聯檔)</value>
   </data>
@@ -536,9 +527,6 @@
   </data>
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
     <value>刪除</value>
-  </data>
-  <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
-    <value>顯示所有欄位</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>離開</value>

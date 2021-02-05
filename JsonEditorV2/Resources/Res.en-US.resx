@@ -300,9 +300,6 @@
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
     <value>Invalid Json data file "{0}.json": Root element must be an array.</value>
   </data>
-  <data name="JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>Scan file "{0}.csv" failed, error message: "{1}"</value>
-  </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     <value>Scan File Failed</value>
   </data>
@@ -474,12 +471,6 @@
   <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
     <value>"{0}" All Files saved.</value>
   </data>
-  <data name="JE_RUN_SCAN_CSV_FILES_M_1" xml:space="preserve">
-    <value>There is no csv file in the target folder "{0}".</value>
-  </data>
-  <data name="JE_RUN_SCAN_CSV_FILES_M_2" xml:space="preserve">
-    <value>{0} File(s) scan complete.</value>
-  </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
     <value>Folder "{0}" already has a JFI file, confirm to continue scan target folder? (new JFI file will replace the old one when a save command has committed.)</value>
   </data>
@@ -534,9 +525,6 @@
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
-    <value>Show All Columns on List</value>
-  </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>Exit</value>
   </data>
@@ -547,10 +535,10 @@
     <value>Export</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
-    <value>Export to CSV Files</value>
+    <value>Export to CSV File</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
-    <value>Export to XML Files</value>
+    <value>Export to XML File</value>
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>File</value>
