@@ -65,7 +65,9 @@ namespace JsonEditor
 
             for (int i = 0; i < Columns.Count; i++)
             {
-                if (Columns[i].Name.StartsWith(" ") || Columns[i].Name.EndsWith(" ") || Columns[i].Name.Contains(",") || Columns[i].Name.Contains("\""))
+                if (Columns[i].Name.StartsWith(" ") || Columns[i].Name.EndsWith(" ") || 
+                    Columns[i].Name.Contains(",") || Columns[i].Name.Contains("\"") ||
+                    Columns[i].Name.Contains("\n"))
                     sb.AppendFormat("\"{0}\"", Columns[i].Name.Replace("\"", "\"\""));
                 else
                     sb.Append(Columns[i].Name);
@@ -81,7 +83,9 @@ namespace JsonEditor
                     value = Lines[i][j]?.ToString(Columns[j].Type);
                     if (value == null)
                         ;
-                    else if (value.StartsWith(" ") || value.EndsWith(" ") || value.Contains(",") || value.Contains("\""))
+                    else if (value.StartsWith(" ") || value.EndsWith(" ") || 
+                        value.Contains(",") || value.Contains("\"") ||
+                        value.Contains("\n"))
                         sb.AppendFormat("\"{0}\"", value.Replace("\"", "\"\""));
                     else
                         sb.Append(value);
