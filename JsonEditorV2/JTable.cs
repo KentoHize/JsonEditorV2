@@ -142,10 +142,10 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    if (Columns[i].Type == JType.Object || Columns[i].Type == JType.Array)
-                        line.Add(Columns[i].Name, jl[i]);
-                    else
+                    if(Columns[i].Type.IsDateTime())
                         line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type));
+                    else
+                        line.Add(Columns[i].Name, jl[i]);
                 result.Add(line);
             }
             return result;

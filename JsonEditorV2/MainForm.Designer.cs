@@ -79,6 +79,7 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,7 +146,6 @@
             this.btnCopyLine = new System.Windows.Forms.Button();
             this.tltMain = new System.Windows.Forms.ToolTip(this.components);
             this.sfdMain = new System.Windows.Forms.SaveFileDialog();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -734,6 +734,18 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -846,6 +858,7 @@
             this.tmiExportToXml.Name = "tmiExportToXml";
             this.tmiExportToXml.Size = new System.Drawing.Size(216, 26);
             this.tmiExportToXml.Text = "X";
+            this.tmiExportToXml.Click += new System.EventHandler(this.tmiExportToXml_Click);
             // 
             // tmiExportToCsv
             // 
@@ -1288,18 +1301,6 @@
             this.btnCopyLine.TabIndex = 35;
             this.btnCopyLine.UseVisualStyleBackColor = true;
             this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
             // 
             // MainForm
             // 

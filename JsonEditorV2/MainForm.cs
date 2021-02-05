@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace JsonEditorV2
 {
@@ -1197,7 +1198,7 @@ namespace JsonEditorV2
                 }
                 catch (Exception ex)
                 {
-                    ExceptionHandler.HandleException(ex);
+                    ExceptionHandler.HandleException(ex); //TO DO
                 }
             }
 
@@ -1209,7 +1210,7 @@ namespace JsonEditorV2
             }
             catch (Exception ex)
             {
-                ExceptionHandler.HandleException(ex);
+                ExceptionHandler.HandleException(ex); //TO DO
             }
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;
             tmiSaveJsonFiles_Click(this, e);
@@ -1403,7 +1404,7 @@ namespace JsonEditorV2
             using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
             {
                 StreamWriter sw = new StreamWriter(fs);
-                sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Formatting.Indented));
+                sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Newtonsoft.Json.Formatting.Indented));
                 sw.Close();
 
             }
@@ -1442,7 +1443,7 @@ namespace JsonEditorV2
                 using (FileStream fs = new FileStream(Var.JFI.FileInfoPath, FileMode.Create))
                 {
                     StreamWriter sw = new StreamWriter(fs);
-                    sw.Write(JsonConvert.SerializeObject(Var.JFI, Formatting.Indented));
+                    sw.Write(JsonConvert.SerializeObject(Var.JFI, Newtonsoft.Json.Formatting.Indented));
                     sw.Close();
                 }
 
@@ -2357,6 +2358,68 @@ namespace JsonEditorV2
             }
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_1, fbdMain.SelectedPath);
+            RefreshTrvJsonFiles();
+        }
+
+        private XmlDocument JTableToXml(JTable jt)
+        {
+            XmlDocument xdoc = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
+            XmlElement root = xdoc.CreateElement("Data");
+            xdoc.AppendChild(root);
+            xdoc.InsertBefore(xmlDeclaration, root);            
+            
+            for (int i = 0; i < jt.Lines.Count; i++)
+            {
+                XmlNode xn = xdoc.CreateElement(i.ToString());
+                for(int j = 0; j < jt.Columns.Count; j++)
+                {
+                    XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);                    
+                    xn2.InnerText = jt.Lines[i][j]?.ToString(jt.Columns[j].Type);
+                    xn.AppendChild(xn2);
+                }
+                xdoc.DocumentElement.AppendChild(xn);
+            }
+            return xdoc;
+        }
+
+        public void tmiExportToXml_Click(object sender, EventArgs e)
+        {
+            foreach (JTable jt in Var.Tables)
+                if (!jt.Loaded)
+                    if (!LoadOrScanJsonFile(jt))
+                        return;
+
+            DialogResult dr;
+            if (!Var.Database.CheckAllTablesValid(Setting.UseQuickCheck))
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            fbdMain.SelectedPath = Var.JFI.DirectoryPath;
+            dr = fbdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            //讀檔、輸出
+            foreach (JTable jt in Var.Tables)
+            {
+                //try
+                //{
+                    using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"), FileMode.Create))
+                    {   
+                         JTableToXml(jt).Save(fs);
+                    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    ExceptionHandler.ExportToXMLFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"));
+                //}
+            }
+
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();
         }
     }

@@ -271,7 +271,10 @@
     <value>Error</value>
   </data>
   <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
-    <value>Export file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
+    <value>Export CSV file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
+  </data>
+  <data name="JE_ERR_EXPORT_TO_XML_FAILED" xml:space="preserve">
+    <value>Export XML file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     <value>JFI Files is not a valid Json file or format wrong: {0}</value>
@@ -377,6 +380,9 @@
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>CSV files have exported to "{0}"</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
+    <value>XML files have exported to "{0}"</value>
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     <value>Column "{0}", value "{1}", data not found.</value>
