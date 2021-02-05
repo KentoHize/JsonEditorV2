@@ -763,6 +763,42 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 外部索引.
+        /// </summary>
+        public static string JE_LIST_FK {
+            get {
+                return ResourceManager.GetString("JE_LIST_FK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 無效.
+        /// </summary>
+        public static string JE_LIST_INVALID {
+            get {
+                return ResourceManager.GetString("JE_LIST_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 行資料.
+        /// </summary>
+        public static string JE_LIST_ITEMS {
+            get {
+                return ResourceManager.GetString("JE_LIST_ITEMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 未讀取.
+        /// </summary>
+        public static string JE_LIST_UNLOAD {
+            get {
+                return ResourceManager.GetString("JE_LIST_UNLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 欄位&quot;{0}&quot;已存在.
         /// </summary>
         public static string JE_RUN_ADD_COLUMN_M_1 {

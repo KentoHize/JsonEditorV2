@@ -606,14 +606,14 @@ namespace JsonEditorV2
             StringBuilder sb = new StringBuilder();
             sb.Append(jc.Name);
             if (!string.IsNullOrEmpty(jc.FKTable))
-                sb.AppendFormat("[FK:{0}->{1}]", jc.FKTable, jc.FKColumn);
+                sb.AppendFormat("[{0}:{1}->{2}]", Res.JE_LIST_FK, jc.FKTable, jc.FKColumn);
             sb.Append(":");
             sb.Append(jc.Type);
             return sb.ToString();
         }
 
         public string GetTableNodeString(JTable jt)
-            => $"{jt.Name}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : "(Unload)")}{(jt.Valid ? "" : "(Invalid)")}";
+            => $"{jt.Name}{(jt.Count == 0 ? "" : $": {jt.Count} {Res.JE_LIST_ITEMS}")}{(jt.Changed ? "*" : "")}{(jt.Loaded ? "" : $"({Res.JE_LIST_UNLOAD})")}{(jt.Valid ? "" : $"({Res.JE_LIST_INVALID})")}";
 
 
         private void RefreshTrvSelectedFileChange()

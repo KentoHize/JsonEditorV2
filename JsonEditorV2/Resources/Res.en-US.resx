@@ -351,6 +351,18 @@
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
     <value>Choice(s)</value>
   </data>
+  <data name="JE_LIST_FK" xml:space="preserve">
+    <value>FK</value>
+  </data>
+  <data name="JE_LIST_INVALID" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="JE_LIST_ITEMS" xml:space="preserve">
+    <value>Line(s)</value>
+  </data>
+  <data name="JE_LIST_UNLOAD" xml:space="preserve">
+    <value>Unload</value>
+  </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
     <value>Column"{0}" is exist.</value>
   </data>
