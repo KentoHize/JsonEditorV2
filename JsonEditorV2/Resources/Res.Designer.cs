@@ -574,15 +574,6 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 輸出CSV檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
-        /// </summary>
-        public static string JE_ERR_EXPORT_TO_XML_FAILED {
-            get {
-                return ResourceManager.GetString("JE_ERR_EXPORT_TO_XML_FAILED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to JSON關聯檔案格式不正確：{0}.
         /// </summary>
         public static string JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT {
@@ -642,6 +633,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_ERR_ROOT_ELEMENT_NOT_ARRAY {
             get {
                 return ResourceManager.GetString("JE_ERR_ROOT_ELEMENT_NOT_ARRAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出XML檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
+        /// </summary>
+        public static string JE_ERR_SAVE_XML_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_SAVE_XML_FAILED", resourceCulture);
             }
         }
         

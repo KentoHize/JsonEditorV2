@@ -148,7 +148,12 @@ namespace JsonEditorV2
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
         }
 
-        public static void ExportToXMLFailed(Exception ex, string file)
+        public static void TableConvertToXMLFailed(Exception ex, JTable jt)
+        {
+            
+        }
+
+        public static void SaveXMLFileFailed(Exception ex, string file)
         {
             RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, file);
         }

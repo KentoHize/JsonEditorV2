@@ -83,7 +83,7 @@ namespace JsonEditorV2
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
             tmiExportFiles.Text = Res.JE_TMI_EXPORT;
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
-            tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;            
+            tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
@@ -1287,6 +1287,39 @@ namespace JsonEditorV2
             return true;
         }
 
+        public static bool SaveXmlFile(JTable jt, string fileName)
+        {
+            XmlDocument XD = null;
+            try
+            {
+                XD = JTableToXml(jt);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.TableConvertToXMLFailed(ex, Var.SelectedColumnParentTable);
+                return false;
+            }
+
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    XD.Save(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.SaveXMLFileFailed(ex, fileName);
+                return false;
+            }
+            return true;
+        }
+
+        public static bool SaveCsvFile(JTable jt, string fileName)
+        {
+            return true;
+        }
+
         public static bool ScanCsvFile(JTable jt, string fileName)
         {
             try
@@ -2400,7 +2433,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private XmlDocument JTableToXml(JTable jt)
+        private static XmlDocument JTableToXml(JTable jt)
         {
             XmlDocument xdoc = new XmlDocument();
             XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
@@ -2417,7 +2450,8 @@ namespace JsonEditorV2
                 for (int j = 0; j < jt.Columns.Count; j++)
                 {
                     XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);
-                    xn2.InnerText = jt.Lines[i][j]?.ToString(jt.Columns[j].Type);
+                    if (jt.Lines[i][j] != null)
+                        xn2.InnerText = jt.Lines[i][j].ToString(jt.Columns[j].Type);
                     xn.AppendChild(xn2);
                 }
                 xdoc.DocumentElement.AppendChild(xn);
@@ -2435,7 +2469,7 @@ namespace JsonEditorV2
             DialogResult dr;
             if (!Var.Database.Valid)
             {
-                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_XML);
                 if (dr != DialogResult.OK)
                     return;
             }
@@ -2445,21 +2479,8 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
-            //讀檔、輸出
             foreach (JTable jt in Var.Tables)
-            {
-                try
-                {
-                    using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"), FileMode.Create))
-                    {
-                        JTableToXml(jt).Save(fs);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ExceptionHandler.ExportToXMLFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"));
-                }
-            }
+                SaveXmlFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"));
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();
@@ -2550,19 +2571,18 @@ namespace JsonEditorV2
             DialogResult dr;
             if (!Var.SelectedColumnParentTable.Valid)
             {
-                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV_FILE);
                 if (dr != DialogResult.OK)
                     return;
             }
 
             sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
             sfdMain.FileName = $"{Var.SelectedColumnParentTable.Name}.csv";
-            //sfdMain.FileName = Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.csv");
             sfdMain.Filter = $"{Res.JE_DIALOG_CSV_FILE_FULL_NAME}|*.csv|{Res.JE_DIALOG_ALL_FILES}|*.*";
             dr = sfdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-            
+
             try
             {
                 using (FileStream fs = new FileStream(sfdMain.FileName, FileMode.Create))
@@ -2582,9 +2602,35 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void tmiFile_Click_1(object sender, EventArgs e)
+        public void tmiExportXmlFile_Click(object sender, EventArgs e)
         {
+            if (Var.SelectedColumnParentTable == null)
+                return;
 
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            DialogResult dr;
+            if (!Var.SelectedColumnParentTable.Valid)
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_XML_FILE);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
+            sfdMain.FileName = $"{Var.SelectedColumnParentTable.Name}.xml";
+            sfdMain.Filter = $"{Res.JE_DIALOG_XML_FILE_FULL_NAME}|*.xml|{Res.JE_DIALOG_ALL_FILES}|*.*";
+            dr = sfdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            //存檔
+            SaveXmlFile(Var.SelectedColumnParentTable, sfdMain.FileName); 
+
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, sfdMain.FileName);
+            RefreshTrvJsonFiles();
         }
     }
 }

@@ -28,6 +28,11 @@ namespace JsonEditor
             ((IList<JTable>)Tables).Add(item);
         }
 
+        public JDatabase()
+        {
+            Valid = true;
+        }   
+
         public bool CheckAllTablesValid(bool quickCheck = false)
         {
             foreach (JTable jt in Tables)
