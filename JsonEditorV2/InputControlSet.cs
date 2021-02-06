@@ -276,24 +276,24 @@ namespace JsonEditorV2
 
             //跳過Key檢查
 
-            //外部驗證 - FK驗證
-            if (JColumn.FKTable != null && JColumn.FKColumn != null)
-            {
-                //有錯表示有欄位錯誤
-                JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
-                int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
-                //結束
+            //外部驗證 - FK驗證 跳過
+            //if (JColumn.FKTable != null && JColumn.FKColumn != null)
+            //{
+            //    //有錯表示有欄位錯誤
+            //    JTable jt = Var.Tables.Find(m => m.Name == JColumn.FKTable);
+            //    int columnIndex = jt.Columns.FindIndex(m => m.Name == JColumn.FKColumn);
+            //    //結束
 
-                if (!jt.Loaded)
-                    if (!MainForm.LoadOrScanJsonFile(jt))
-                        return false;
+            //    if (!jt.Loaded)
+            //        if (!MainForm.LoadOrScanJsonFile(jt))
+            //            return false;
 
-                if (!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
-                {
-                    ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_VALUE_NOT_FOUND, ValueControl.Text));
-                    return false;
-                }
-            }
+            //    if (!jt.Lines.Exists(m => ChangeStringToText(m.Values[columnIndex].ToString(jt.Columns[columnIndex].Type)) == ValueControl.Text))
+            //    {
+            //        ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_FK_VALUE_NOT_FOUND, ValueControl.Text));
+            //        return false;
+            //    }
+            //}
             return true;
         }
 

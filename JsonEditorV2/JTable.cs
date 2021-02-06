@@ -696,6 +696,8 @@ namespace JsonEditor
         /// <returns></returns>
         public bool CehckValid(ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
+            if (vcm == ValueCheckMethod.NoCheck)
+                return Valid;
             Valid = true;
 
             //刪除Valid資料

@@ -109,6 +109,15 @@ namespace JsonEditorV2
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
+
+            Var.LockCobCheckMethod = true;
+            Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
+            tableCheckMethodList.Add(ValueCheckMethod.NoCheck, Res.JE_COB_CHECK_METHOD_NO_CHECK);
+            tableCheckMethodList.Add(ValueCheckMethod.OneInvalidCheck, Res.JE_COB_CHECK_METHOD_ONE_INVALID_CHECK);
+            tableCheckMethodList.Add(ValueCheckMethod.FullCheck, Res.JE_COB_CHECK_METHOD_FULL_CHECK);
+            cobCheckMethod.DataSource = tableCheckMethodList.ToList();
+            Var.LockCobCheckMethod = false;
+            cobCheckMethod.SelectedValue = Setting.TableCheckMethod;
         }
         #endregion
 
@@ -913,9 +922,9 @@ namespace JsonEditorV2
                     File.Delete(file);
             Var.DeleteFiles.Clear();
 
-            //存JSONFiles(有讀出的)
+            //存JSONFiles(有讀出並且改過的)
             foreach (JTable jt in Var.Tables)
-                if (jt.Loaded) //&& jt.Changed)
+                if (jt.Loaded && jt.Changed)
                     SaveJsonFile(jt);
 
             //刪除更名後的檔案
@@ -1879,9 +1888,6 @@ namespace JsonEditorV2
 
         public void MainForm_Load(object sender, EventArgs e)
         {
-            //設定選項
-            cobCheckMethod.DataSource = Enum.GetValues(typeof(ValueCheckMethod))
-    .OfType<ValueCheckMethod>().ToList();
             cobColumnType.DataSource =
               Enum.GetValues(typeof(JType)).OfType<JType>()
               .Except(new List<JType> { JType.None })
@@ -1926,10 +1932,8 @@ namespace JsonEditorV2
                     }
                 }
             }
-
-            ChangeCulture();
-
-            cobCheckMethod.SelectedItem = Setting.TableCheckMethod;          
+            
+            ChangeCulture();            
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -1964,7 +1968,6 @@ namespace JsonEditorV2
                 foreach (string file in files)
                     File.Delete(file);
             }
-
             //Test Area
 
             // Get secret click event key
@@ -2256,7 +2259,7 @@ namespace JsonEditorV2
                         foreach (var pi in pis)
                             sw.WriteLine($"{pi.Name}={pi.GetValue(null)}");
                     }
-                    Process.Start("Notepad.exe", fs.Name);
+                    //Process.Start("Notepad.exe", fs.Name);
                 }
             }
             catch { }
@@ -2644,7 +2647,8 @@ namespace JsonEditorV2
 
         private void cobCheckMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Setting.TableCheckMethod = (ValueCheckMethod)cobCheckMethod.SelectedItem;
+            if(cobCheckMethod.SelectedValue != null && !Var.LockCobCheckMethod)
+                Setting.TableCheckMethod = (ValueCheckMethod)cobCheckMethod.SelectedValue;
         }
     }
 }

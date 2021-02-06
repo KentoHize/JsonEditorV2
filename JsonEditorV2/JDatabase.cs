@@ -43,6 +43,8 @@ namespace JsonEditor
 
         public bool CheckTableValid(JTable jt, ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
+            if (vcm == ValueCheckMethod.NoCheck)
+                return Valid;
             Valid = true;
             if(!jt.CehckValid(vcm))
             { 

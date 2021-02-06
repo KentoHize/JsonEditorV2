@@ -23,7 +23,8 @@ namespace JsonEditorV2
         public static bool LockDgvLines { get; set; } //鎖定控制項不更新
         public static bool LockPnlMain { get; set; } //鎖定控制項不更新
         public static bool LockDgvMain { get; set; }  //鎖定控制項不更新
-        public static bool CheckFailedFlag { get; set; } //存檔失敗Flag        
+        public static bool LockCobCheckMethod { get; set; } //鎖定控制項不更新
+        public static bool CheckFailedFlag { get; set; } //存檔失敗Flag
         public static bool NotOnlyClose { get; set; } //非單純關閉檔案Flag
 
         public static List<string> RenamedFiles { get; set; } = new List<string>(); //被改名檔案

@@ -193,7 +193,7 @@
     <value>No Check</value>
   </data>
   <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
-    <value>One Invalid Check</value>
+    <value>One Invalid</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     <value>Auto Generate Key</value>

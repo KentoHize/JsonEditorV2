@@ -79,7 +79,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,6 +154,7 @@
             this.btnRegenerateKey = new System.Windows.Forms.Button();
             this.cobCheckMethod = new System.Windows.Forms.ComboBox();
             this.lblCheckMethod = new System.Windows.Forms.Label();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -742,18 +742,6 @@
             this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 111);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
             // 
             // mnsMain
             // 
@@ -1370,24 +1358,39 @@
             // 
             // cobCheckMethod
             // 
+            this.cobCheckMethod.DisplayMember = "Value";
             this.cobCheckMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobCheckMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cobCheckMethod.FormattingEnabled = true;
-            this.cobCheckMethod.Location = new System.Drawing.Point(1172, 770);
+            this.cobCheckMethod.Location = new System.Drawing.Point(1189, 769);
             this.cobCheckMethod.Margin = new System.Windows.Forms.Padding(4);
             this.cobCheckMethod.Name = "cobCheckMethod";
-            this.cobCheckMethod.Size = new System.Drawing.Size(184, 28);
+            this.cobCheckMethod.Size = new System.Drawing.Size(167, 28);
             this.cobCheckMethod.TabIndex = 37;
+            this.cobCheckMethod.ValueMember = "Key";
             this.cobCheckMethod.SelectedIndexChanged += new System.EventHandler(this.cobCheckMethod_SelectedIndexChanged);
             // 
             // lblCheckMethod
             // 
             this.lblCheckMethod.AutoSize = true;
-            this.lblCheckMethod.Location = new System.Drawing.Point(1069, 776);
+            this.lblCheckMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCheckMethod.Location = new System.Drawing.Point(1055, 774);
             this.lblCheckMethod.Name = "lblCheckMethod";
-            this.lblCheckMethod.Size = new System.Drawing.Size(17, 17);
+            this.lblCheckMethod.Size = new System.Drawing.Size(20, 20);
             this.lblCheckMethod.TabIndex = 38;
             this.lblCheckMethod.Text = "X";
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
             // 
             // MainForm
             // 

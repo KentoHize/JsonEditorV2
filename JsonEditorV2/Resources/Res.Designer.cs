@@ -288,9 +288,9 @@ namespace JsonEditorV2.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 單項無效.
         /// </summary>
-        public static string JE_COB_CHECK_METHOD_ONE_LINE_CHECK {
+        public static string JE_COB_CHECK_METHOD_ONE_INVALID_CHECK {
             get {
-                return ResourceManager.GetString("JE_COB_CHECK_METHOD_ONE_LINE_CHECK", resourceCulture);
+                return ResourceManager.GetString("JE_COB_CHECK_METHOD_ONE_INVALID_CHECK", resourceCulture);
             }
         }
         

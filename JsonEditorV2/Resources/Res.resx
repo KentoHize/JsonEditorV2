@@ -192,7 +192,7 @@
   <data name="JE_COB_CHECK_METHOD_NO_CHECK" xml:space="preserve">
     <value>不檢查</value>
   </data>
-  <data name="JE_COB_CHECK_METHOD_ONE_LINE_CHECK" xml:space="preserve">
+  <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
     <value>單項無效</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
