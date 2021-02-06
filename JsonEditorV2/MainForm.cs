@@ -2450,17 +2450,20 @@ namespace JsonEditorV2
             xdoc.AppendChild(root);
             xdoc.InsertBefore(xmlDeclaration, root);
 
-            for (int i = 0; i < jt.Lines.Count; i++)
+            for (int i = 0; i < jt.Count; i++)
             {
                 XmlNode xn = xdoc.CreateElement("Data");
                 XmlAttribute xa = xdoc.CreateAttribute("id");
                 xa.Value = i.ToString();
                 xn.Attributes.Append(xa);
                 for (int j = 0; j < jt.Columns.Count; j++)
-                {
-                    XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);
-                    if (jt.Lines[i][j] != null)
-                        xn2.InnerText = jt.Lines[i][j].ToString(jt.Columns[j].Type);
+                {   
+                    XmlNode xn2 = xdoc.CreateElement("Column");
+                    XmlAttribute xa2 = xdoc.CreateAttribute("name");
+                    xa2.Value = jt.Columns[j].Name;
+                    xn2.Attributes.Append(xa2);
+                    if (jt[i][j] != null)
+                        xn2.InnerText = jt[i][j].ToString(jt.Columns[j].Type);
                     xn.AppendChild(xn2);
                 }
                 xdoc.DocumentElement.AppendChild(xn);
