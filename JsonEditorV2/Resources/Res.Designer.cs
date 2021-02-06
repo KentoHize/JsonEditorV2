@@ -61,6 +61,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 錯誤回報：KentKaze@hotmail.com.
+        /// </summary>
+        public static string JE_ABOUT_CONTACT_US {
+            get {
+                return ResourceManager.GetString("JE_ABOUT_CONTACT_US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JSON 資料檔案編輯器.
         /// </summary>
         public static string JE_ABOUT_MESSAGE {
@@ -1393,11 +1402,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輸出.
+        /// </summary>
+        public static string JE_TMI_EXPORT_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輸出為CSV檔案.
         /// </summary>
         public static string JE_TMI_EXPORT_TO_CSV {
             get {
                 return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出為CSV檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_CSV_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSV_FILE", resourceCulture);
             }
         }
         
@@ -1411,11 +1438,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輸出為XML檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_XML_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_XML_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案.
         /// </summary>
         public static string JE_TMI_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 說明.
+        /// </summary>
+        public static string JE_TMI_HELP {
+            get {
+                return ResourceManager.GetString("JE_TMI_HELP", resourceCulture);
             }
         }
         

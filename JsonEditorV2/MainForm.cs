@@ -23,7 +23,7 @@ namespace JsonEditorV2
     {
         public MainForm()
         {
-            InitializeComponent();            
+            InitializeComponent();
             Var.Database = new JDatabase();
             dtpMain.Leave += DtpMain_Leave;
             dtpMain.ValueChanged += DtpMain_ValueChanged;
@@ -68,9 +68,10 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnFindConfirm, Res.JE_BTN_FIND_LINE);
             tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
             tltMain.SetToolTip(btnLineMoveDown, Res.JE_BTN_LINE_MOVE_DOWN);
-            tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);            
+            tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);
             ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
             tmiFile.Text = Res.JE_TMI_FILE;
+            tmiHelp.Text = Res.JE_TMI_HELP;
             tmiAbout.Text = Res.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
             tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
@@ -80,14 +81,17 @@ namespace JsonEditorV2
             tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
             tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
-            tmiExport.Text = Res.JE_TMI_EXPORT;
+            tmiExportFiles.Text = Res.JE_TMI_EXPORT;
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
-            tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
+            tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;            
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
             tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
             tmiDeleteJsonFile.Text = Res.JE_TMI_DELETE_JSON_FILE;
+            tmiExportFile.Text = Res.JE_TMI_EXPORT_FILE;
+            tmiExportCsvFile.Text = Res.JE_TMI_EXPORT_TO_CSV_FILE;
+            tmiExportXmlFile.Text = Res.JE_TMI_EXPORT_TO_XML_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
@@ -130,7 +134,7 @@ namespace JsonEditorV2
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
-            dtpMain.PatchTextFromResource();            
+            dtpMain.PatchTextFromResource();
         }
 
         //取消FK
@@ -253,7 +257,7 @@ namespace JsonEditorV2
                 txtColumnRegex.Text = "";
                 txtColumnMinValue.Text = "";
                 txtColumnMaxValue.Text = "";
-            }   
+            }
 
             //確認最大、最小值正確
             if (!newType.IsNumber() && !newType.IsDateTime())
@@ -305,7 +309,7 @@ namespace JsonEditorV2
 
             //讀檔
             if (!Var.SelectedColumnParentTable.Loaded)
-                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
 
             //如果有資料，並且需要改資料則秀出訊息視窗
@@ -349,8 +353,8 @@ namespace JsonEditorV2
             if (newType == JType.Boolean || newType == JType.Array || newType == JType.Object)
                 Var.SelectedColumn.Choices.Clear();
 
-                //Key檢查，取消Key時同時取消所有相關FK            
-                if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
+            //Key檢查，取消Key時同時取消所有相關FK            
+            if (Var.SelectedColumn.IsKey && !ckbColumnIsKey.Checked)
                 CancelFK(Var.SelectedColumnParentTable, Var.SelectedColumn);
 
             if (!Var.SelectedColumn.IsKey && ckbColumnIsKey.Checked)
@@ -415,7 +419,7 @@ namespace JsonEditorV2
 
         public void tmiAbout_Click(object sender, EventArgs e)
         {
-            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}  {Const.VersionString}\n\n{Res.JE_ABOUT_MESSAGE_2}", Res.JE_ABOUT_TITLE);
+            RabbitCouriers.SentInformation($"{Res.JE_ABOUT_MESSAGE}  {Const.VersionString}\n\n{Res.JE_ABOUT_MESSAGE_2}\n\n{Res.JE_ABOUT_CONTACT_US}", Res.JE_ABOUT_TITLE);
         }
 
         public void tmiNewJsonFiles_Click(object sender, EventArgs e)
@@ -587,14 +591,14 @@ namespace JsonEditorV2
 
                 //小檔案直接讀取 - 失敗時關閉
                 if (fi.Length < Setting.DontLoadFileBytesThreshold)
-                    if(!LoadOrScanJsonFile(table))
+                    if (!LoadOrScanJsonFile(table))
                     {
                         tmiCloseAllFiles_Click(this, e);
                         return;
                     }
                 Var.Tables.Add(table);
             }
-            
+
             Var.Database.CheckAllTablesValid();
 
             RefreshTrvJsonFiles();
@@ -630,9 +634,9 @@ namespace JsonEditorV2
         {
             trvJsonFiles.Nodes.Clear();
             tmiCloseAllFiles.Enabled =
-            tmiExport.Enabled =
-            tmiNewJsonFile.Enabled = 
-            tmiSaveJsonFiles.Enabled = 
+            tmiExportFiles.Enabled =
+            tmiNewJsonFile.Enabled =
+            tmiSaveJsonFiles.Enabled =
             tmiSaveAsJsonFiles.Enabled = false;
             Var.DblClick = false;
             if (Var.Tables == null)
@@ -646,7 +650,7 @@ namespace JsonEditorV2
             Var.RootNode.Expand();
             trvJsonFiles.Nodes.Add(Var.RootNode);
             TreeNode fileNode, tr;
-            
+
             foreach (JTable jt in Var.Tables)
             {
                 fileNode = new TreeNode { Name = jt.Name, Text = GetTableNodeString(jt), Tag = jt.Name, ImageIndex = 1, SelectedImageIndex = 1 };
@@ -677,7 +681,7 @@ namespace JsonEditorV2
                 Var.RootNode.Expand();
 
             tmiCloseAllFiles.Enabled =
-            tmiExport.Enabled =
+            tmiExportFiles.Enabled =
             tmiNewJsonFile.Enabled =
             tmiOpenFolder.Enabled =
             tmiSaveAsJsonFiles.Enabled =
@@ -810,12 +814,12 @@ namespace JsonEditorV2
                 if (!dgvLines.Rows[Var.SelectedLineIndex].Displayed)
                     dgvLines.FirstDisplayedScrollingRowIndex = Var.SelectedLineIndex;
             }
-            
+
             cobFindColumnName.DataSource = null;
             cobFindColumnName.ValueMember = "Name";
             cobFindColumnName.DisplayMember = "Name";
             cobFindColumnName.DataSource = Var.SelectedTable.Columns;
-            
+
             Var.LockPnlMain = false;
 
             btnNewLine.Enabled =
@@ -1005,7 +1009,7 @@ namespace JsonEditorV2
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
-                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;                
+                ckbColumnIsNullable.Checked = Var.SelectedColumn.IsNullable;
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKTable))
                     cobColumnFKTable.SelectedValue = Var.SelectedColumn.FKTable;
                 cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
@@ -1044,7 +1048,7 @@ namespace JsonEditorV2
                 {
                     Var.PageIndex = Var.OpenedTable.FindIndex(m => m.Name == e.Node.Tag.ToString());
                     RefreshTbcMain();
-                }   
+                }
             }
         }
 
@@ -1071,7 +1075,7 @@ namespace JsonEditorV2
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_ADD_COLUMN, columnName);
                 return;
             }
-            
+
             if (!Var.SelectedColumnParentTable.Loaded)
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
@@ -1131,7 +1135,7 @@ namespace JsonEditorV2
             cobColumnType.SelectedIndex = 0;
             ckbColumnDisplay.Checked = false;
             ckbColumnIsKey.Checked = false;
-            ckbColumnAutoGenerateKey.Checked = false;            
+            ckbColumnAutoGenerateKey.Checked = false;
             cobColumnFKTable.SelectedIndex = -1; //聯動
             txtColumnNumberOfRows.Text = "0";
         }
@@ -1230,10 +1234,10 @@ namespace JsonEditorV2
                 return;
 
             if (!Var.SelectedColumnParentTable.Loaded)
-            {   
+            {
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
-                   return;
-                
+                    return;
+
                 /* 特殊 */
                 trvJsonFiles.SelectedNode.Text = GetTableNodeString(Var.SelectedColumnParentTable);
                 trvJsonFiles.SelectedNode.ToolTipText = trvJsonFiles.SelectedNode.Text;
@@ -1295,7 +1299,7 @@ namespace JsonEditorV2
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandler.ScanCSVFilesFailed(jt, ex);
                 return false;
@@ -1628,15 +1632,15 @@ namespace JsonEditorV2
         }
 
         public void btnClearMain_Click(object sender, EventArgs e)
-        {   
+        {
             foreach (Control c in pnlMain.Controls)
             {
-                switch(c)
+                switch (c)
                 {
                     case TextBox tb:
                         tb.Text = "";
                         break;
-                    case ComboBox cb:                        
+                    case ComboBox cb:
                         cb.SelectedIndex = cb.Items.Count != 0 ? 0 : -1;
                         break;
                     case CheckBox ck:
@@ -1751,7 +1755,7 @@ namespace JsonEditorV2
             }
 
             if (!Var.SelectedColumnParentTable.Loaded)
-                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
 
             foreach (JLine jl in Var.SelectedColumnParentTable)
@@ -1911,9 +1915,9 @@ namespace JsonEditorV2
             if (cobColumnType.SelectedIndex == -1)
                 return;
             JType result = (JType)cobColumnType.SelectedItem;
-            
+
             ckbColumnAutoGenerateKey.Enabled = cobColumnFKColumn.SelectedIndex == -1;
-            
+
             if (!(result.IsNumber() || result == JType.Guid || result == JType.String))
                 ckbColumnAutoGenerateKey.Checked = ckbColumnAutoGenerateKey.Enabled = false;
             //btnRegenerateKey.Enabled = ckbColumnAutoGenerateKey.Checked;
@@ -1956,7 +1960,7 @@ namespace JsonEditorV2
         public void tmiRenameColumn_Click(object sender, EventArgs e)
         {
             if (!Var.SelectedColumnParentTable.Loaded)
-                if(!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
 
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
@@ -2102,8 +2106,8 @@ namespace JsonEditorV2
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
 
-           //fsx = new FileStream(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Articles.csv", FileMode.Open);
-            
+            //fsx = new FileStream(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Articles.csv", FileMode.Open);
+
             //dtpMain.Value = DateTime.Now;
             //string r = "";
             //for (int i = 1; i < 100; i++)
@@ -2116,7 +2120,7 @@ namespace JsonEditorV2
             //    }
             //}
             //Console.WriteLine(r);
-            
+
             //string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2";
             //string[] ProjectName = new string[] { "TestArea", "TestData" };
 
@@ -2200,7 +2204,7 @@ namespace JsonEditorV2
         {
             if (dgvLines.Rows.Count != 0 && !Var.LockPnlMain)
             {
-                Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);                
+                Var.SelectedLineIndex = Convert.ToInt32(dgvLines.SelectedRows[0].Cells[Const.HiddenColumnItemIndex].Value);
                 btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1;
                 btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0;
                 RefreshPnlMainValue();
@@ -2258,7 +2262,7 @@ namespace JsonEditorV2
                 itemIndex = FindItemIndexFromSelectedTable(columnIndex);
 
             if (itemIndex != -1)
-            {                
+            {
                 Var.SelectedLineIndex = itemIndex;
                 dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
                 if (!dgvLines.SelectedRows[0].Displayed)
@@ -2301,7 +2305,7 @@ namespace JsonEditorV2
 
             Var.JFI.Name = newName;
             Var.JFI.Changed = true;
-           
+
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_RENAME_DATABASE_M_1, newName);
         }
@@ -2312,7 +2316,7 @@ namespace JsonEditorV2
                 return;
             List<string> result = frmChoices.ShowDialog(this, Var.SelectedColumn.Choices);
             if (result != null)
-            { 
+            {
                 Var.SelectedColumn.Choices = result;
                 Var.JFI.Changed = true;
                 RefreshTbcMain();
@@ -2321,18 +2325,18 @@ namespace JsonEditorV2
         }
 
         public void ShowDateTimePicker(TextBox valueControl, DateTimePickerStyle style)
-        {   
+        {
             if (!DateTime.TryParse(valueControl.Text, out DateTime r1))
                 r1 = DateTime.Now;
-            Var.BindingTextbox = valueControl;            
+            Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
             dtpMain.SetType(style);
-            dtpMain.SetValue(r1);            
+            dtpMain.SetValue(r1);
             pnlDateTimePicker.Top = valueControl.Top + valueControl.Height;
-            pnlDateTimePicker.Left = 10;            
+            pnlDateTimePicker.Left = 10;
             pnlDateTimePicker.BringToFront();
             pnlDateTimePicker.Show();
-            dtpMain.Focus();            
+            dtpMain.Focus();
         }
 
         public void btnCopyLine_Click(object sender, EventArgs e)
@@ -2353,15 +2357,15 @@ namespace JsonEditorV2
                 pnlDateTimePicker.Hide();
         }
 
-        private void tmiExportToCsv_Click(object sender, EventArgs e)
+        private void tmiExportToCsvFiles_Click(object sender, EventArgs e)
         {
             foreach (JTable jt in Var.Tables)
                 if (!jt.Loaded)
                     if (!LoadOrScanJsonFile(jt))
                         return;
-            
+
             DialogResult dr;
-            if(!Var.Database.CheckAllTablesValid(Setting.UseQuickCheck))
+            if (!Var.Database.Valid)
             {
                 dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
                 if (dr != DialogResult.OK)
@@ -2383,10 +2387,10 @@ namespace JsonEditorV2
                         using (StreamWriter sw = new StreamWriter(fs))
                         {
                             sw.Write(jt.ToCSV());
-                        }   
+                        }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     ExceptionHandler.ExportToCSVFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"));
                 }
@@ -2402,17 +2406,17 @@ namespace JsonEditorV2
             XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlElement root = xdoc.CreateElement("DataSet");
             xdoc.AppendChild(root);
-            xdoc.InsertBefore(xmlDeclaration, root);            
-            
+            xdoc.InsertBefore(xmlDeclaration, root);
+
             for (int i = 0; i < jt.Lines.Count; i++)
             {
                 XmlNode xn = xdoc.CreateElement("Data");
                 XmlAttribute xa = xdoc.CreateAttribute("id");
                 xa.Value = i.ToString();
                 xn.Attributes.Append(xa);
-                for(int j = 0; j < jt.Columns.Count; j++)
+                for (int j = 0; j < jt.Columns.Count; j++)
                 {
-                    XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);                    
+                    XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);
                     xn2.InnerText = jt.Lines[i][j]?.ToString(jt.Columns[j].Type);
                     xn.AppendChild(xn2);
                 }
@@ -2421,7 +2425,7 @@ namespace JsonEditorV2
             return xdoc;
         }
 
-        public void tmiExportToXml_Click(object sender, EventArgs e)
+        public void tmiExportToXmlFiles_Click(object sender, EventArgs e)
         {
             foreach (JTable jt in Var.Tables)
                 if (!jt.Loaded)
@@ -2429,7 +2433,7 @@ namespace JsonEditorV2
                         return;
 
             DialogResult dr;
-            if (!Var.Database.CheckAllTablesValid(Setting.UseQuickCheck))
+            if (!Var.Database.Valid)
             {
                 dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
                 if (dr != DialogResult.OK)
@@ -2447,8 +2451,8 @@ namespace JsonEditorV2
                 try
                 {
                     using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.xml"), FileMode.Create))
-                    {   
-                         JTableToXml(jt).Save(fs);
+                    {
+                        JTableToXml(jt).Save(fs);
                     }
                 }
                 catch (Exception ex)
@@ -2506,7 +2510,7 @@ namespace JsonEditorV2
 
             //檔案數為0，丟出訊息後離開
             if (csvFiles.Length == 0)
-            {   
+            {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_SCAN_CSV_FILES_M_1", Res.JE_TMI_SCAN_CSV_FILES, fbdMain.SelectedPath);
                 return;
             }
@@ -2515,29 +2519,14 @@ namespace JsonEditorV2
             foreach (string file in csvFiles)
             {
                 //讀取失敗放棄
-                JTable table = new JTable(Path.GetFileNameWithoutExtension(file));                
-                if(ScanCsvFile(table, file))
+                JTable table = new JTable(Path.GetFileNameWithoutExtension(file));
+                if (ScanCsvFile(table, file))
                     Var.Tables.Add(table);
             }
 
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SCAN_CSV_FILES_M_2, Var.Tables.Count);
-        }
-
-        private void tmiScan_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlFileInfo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tmiFile_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void tmiDisplayAllColumn_Click(object sender, EventArgs e)
@@ -2549,10 +2538,50 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
-        private void pnlMain_Paint(object sender, PaintEventArgs e)
+        private void tmiExportCsvFile_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumnParentTable == null)
+                return;
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            DialogResult dr;
+            if (!Var.SelectedColumnParentTable.Valid)
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_CSV);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
+            dr = sfdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+            
+            try
+            {
+                using (FileStream fs = new FileStream(sfdMain.FileName, FileMode.Create))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.Write(Var.SelectedColumnParentTable.ToCSV());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.ExportToCSVFailed(ex, sfdMain.FileName);
+            }
+
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_1, sfdMain.FileName);
+            RefreshTrvJsonFiles();
+        }
+
+        private void tmiFile_Click_1(object sender, EventArgs e)
         {
 
         }
     }
 }
- 
