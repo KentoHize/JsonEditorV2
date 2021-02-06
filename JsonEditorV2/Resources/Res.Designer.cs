@@ -664,6 +664,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;轉換至XML檔案失敗，詳細訊息：&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_ERR_TABLE_CONVERT_TO_XML_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_TABLE_CONVERT_TO_XML_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 檔案&quot;{0}.json&quot;資料不合規則：行 {1}，欄位&quot;{2}&quot;，.
         /// </summary>
         public static string JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL {

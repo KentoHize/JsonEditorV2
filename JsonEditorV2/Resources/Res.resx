@@ -318,6 +318,9 @@
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     <value>掃描檔案失敗</value>
   </data>
+  <data name="JE_ERR_TABLE_CONVERT_TO_XML_FAILED" xml:space="preserve">
+    <value>"{0}"轉換至XML檔案失敗，詳細訊息："{1}"</value>
+  </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
     <value>檔案"{0}.json"資料不合規則：行 {1}，欄位"{2}"，</value>
   </data>

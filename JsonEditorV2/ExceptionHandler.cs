@@ -89,24 +89,16 @@ namespace JsonEditorV2
         }
 
         public static void OpenJFIFileFailed(string filePath, Exception ex)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
 
         public static void OpenJsonFileFailed(string filePath, Exception ex)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, filePath);
 
         public static void JsonConvertDeserializeObjectFailed(string fileName, Exception ex)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, fileName, ex.Message);
 
         public static void ScanCSVFilesFailed(JTable jt, Exception ex)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name, ex.Message);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, jt.Name, ex.Message);
 
         public static void JTableLoadOrScanJsonFailed(JTable jt, JFileInvalidException ex, bool isScan)
         {
@@ -139,24 +131,17 @@ namespace JsonEditorV2
         }
 
         public static void JsonConvertDeserializeJFIFailed(Exception ex)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);        
 
         public static void ExportToCSVFailed(Exception ex, string file)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
 
         public static void TableConvertToXMLFailed(Exception ex, JTable jt)
-        {
-            
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_CONVERT_TO_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, jt.Name, ex.Message);
 
         public static void SaveXMLFileFailed(Exception ex, string file)
-        {
-            RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, file);
-        }
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, file);
+        
 
         public static bool HandleException(Exception ex, string content = null, string title = null)
         {
