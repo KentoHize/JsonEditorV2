@@ -352,8 +352,14 @@ namespace JsonEditorV2
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
                 Var.SelectedColumn.FKColumn = cobColumnFKColumn.SelectedValue.ToString();
                 //設定FK為目前型態
-                newType = Var.Tables.Find(m => m.Name == Var.SelectedColumn.FKTable)
-                    .Columns.Find(m => m.Name == Var.SelectedColumn.FKColumn).Type;
+
+                JColumn fkColumn = Var.Tables.Find(m => m.Name == Var.SelectedColumn.FKTable)
+                    .Columns.Find(m => m.Name == Var.SelectedColumn.FKColumn);
+                newType = fkColumn.Type;
+
+                //帶入選擇值
+                if (newType == JType.Choice)
+                    Var.SelectedColumn.Choices = fkColumn.Choices;
             }
             else
                 Var.SelectedColumn.FKTable = Var.SelectedColumn.FKColumn = null;
@@ -1019,7 +1025,7 @@ namespace JsonEditorV2
             if (Var.SelectedColumn != null)
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
-                lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
+                
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
@@ -1029,6 +1035,7 @@ namespace JsonEditorV2
                 cobColumnFKTable_SelectedIndexChanged(this, new EventArgs());
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.FKColumn))
                     cobColumnFKColumn.SelectedValue = Var.SelectedColumn.FKColumn;
+                lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
                 txtColumnNumberOfRows.Text = Var.SelectedColumn.NumberOfRows.ToString();
                 txtColumnRegex.Text = Var.SelectedColumn.RegularExpression ?? "";
                 txtColumnMinValue.Text = Var.SelectedColumn.MinValue ?? "";
@@ -2518,7 +2525,7 @@ namespace JsonEditorV2
 
             //錯誤欄位不能Generate Key 正常不進，可加LOG
             if (!Var.SelectedColumn.Type.IsNumber() && Var.SelectedColumn.Type != JType.Guid &&
-                Var.SelectedColumn.Type == JType.String)
+                Var.SelectedColumn.Type != JType.String)
                 return;
 
             DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);

@@ -42,6 +42,8 @@ namespace JsonEditorV2
             frmFKTable.dgvMain.Columns[FKColumnName].HeaderCell.Style.BackColor =
             frmFKTable.dgvMain.Columns[FKColumnName].DefaultCellStyle.BackColor = Color.Azure;
             frmFKTable.dgvMain.ClearSelection();
+            for (int i = 0; i < FKTable.Columns.Count; i++)
+                frmFKTable.dgvMain.Columns[i].Visible = FKTable.Columns[i].Display || FKTable.Columns[i].IsKey;
             frmFKTable.dgvMain.Columns[FKColumnName].DisplayIndex = 0;
             Var.LockDgvMain = false;
             frmFKTable.ShowDialogOrCallEvent(owner);
@@ -93,7 +95,8 @@ namespace JsonEditorV2
 
             int autoWidth = 3;
             for (i = 0; i < dgvMain.Columns.Count; i++)
-                autoWidth += dgvMain.Columns[i].Width + dgvMain.Columns[i].DividerWidth;
+                if(dgvMain.Columns[i].Displayed)
+                    autoWidth += dgvMain.Columns[i].Width + dgvMain.Columns[i].DividerWidth;
 
             if (autoHeight < dgvMain.Height)
                 dgvMain.Height = autoHeight;
