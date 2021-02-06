@@ -521,7 +521,7 @@ namespace JsonEditorV2
             //JFI檔案存在，詢問是否繼續
             if (jsonfiles.Contains(Path.Combine(fbdMain.SelectedPath, JFilesInfo.FilesInfoName)))
             {
-                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE, Var.JFI.DirectoryPath);
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE, fbdMain.SelectedPath);
                 if (dr != DialogResult.OK)
                     return;
             }
