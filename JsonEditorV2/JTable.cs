@@ -322,11 +322,7 @@ namespace JsonEditor
             bool inDoubleQuotes = false;
             bool foundDoubleQuotes = false;
             while(postion != csv.Length)
-            {
-                if (Lines.Count == 7844)
-                {
-                    Console.WriteLine("in");
-                }
+            {               
                 switch (csv[postion])
                 {   
                     case ',':
@@ -341,7 +337,7 @@ namespace JsonEditor
                                 if (value.ToString() != "")
                                     Columns.Add(new JColumn(value.ToString()));
                                 else
-                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                    Columns.Add(new JColumn($"Column-{Guid.NewGuid().ToString()}"));
                                 value = new StringBuilder();
                                 columnCount++;
                             }
@@ -371,7 +367,7 @@ namespace JsonEditor
                                 if (value.ToString() != "")                                    
                                     Columns.Add(new JColumn(value.ToString()));
                                 else
-                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                    Columns.Add(new JColumn($"Column-{Guid.NewGuid().ToString()}"));
                                 value = new StringBuilder();
                             }   
                             else
@@ -401,7 +397,7 @@ namespace JsonEditor
                                 if (value.ToString() != "")
                                     Columns.Add(new JColumn(value.ToString()));
                                 else
-                                    Columns.Add(new JColumn(Guid.NewGuid().ToString()));
+                                    Columns.Add(new JColumn($"Column-{Guid.NewGuid().ToString()}"));
                                 value = new StringBuilder();
                                 columnCount++;
                             }

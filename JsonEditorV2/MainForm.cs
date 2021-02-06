@@ -490,16 +490,11 @@ namespace JsonEditorV2
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestData\";
 #endif
-
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-
-            Var.NotOnlyClose = true;
-            tmiCloseAllFiles_Click(this, e);
-            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
-            string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();
+            
+            string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");            
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -509,12 +504,17 @@ namespace JsonEditorV2
             }
 
             //JFI檔案存在，詢問是否繼續
-            if (jsonfiles.Contains(Var.JFI.FileInfoPath))
+            if (jsonfiles.Contains(Path.Combine(fbdMain.SelectedPath, JFilesInfo.FilesInfoName)))
             {
                 dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_SCAN_JSON_FILES_M_1", Res.JE_RUN_SCAN_JSON_FILES_TITLE, Var.JFI.DirectoryPath);
                 if (dr != DialogResult.OK)
                     return;
             }
+
+            Var.NotOnlyClose = true;
+            tmiCloseAllFiles_Click(this, e);
+            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+            Var.Tables = new List<JTable>();
 
             //全部讀取
             foreach (string file in jsonfiles)
@@ -544,12 +544,7 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
-            //關閉檔案
-            Var.NotOnlyClose = true;
-            tmiCloseAllFiles_Click(this, e);
-            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
-            string[] jsonfiles = Directory.GetFiles(Var.JFI.DirectoryPath, "*.json");
-            Var.Tables = new List<JTable>();
+            string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -559,15 +554,24 @@ namespace JsonEditorV2
             }
 
             //JFI檔案不存在，離開
-            if (!jsonfiles.Contains(Var.JFI.FileInfoPath))
+            if (!jsonfiles.Contains(Path.Combine(fbdMain.SelectedPath, JFilesInfo.FilesInfoName)))
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_2", Res.JE_TMI_LOAD_JSON_FILES);
                 return;
             }
 
+            //關閉檔案
+            Var.NotOnlyClose = true;
+            tmiCloseAllFiles_Click(this, e);
+            Var.Tables = new List<JTable>();
+            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+
             //讀取JFI失敗跳出
             if (!LoadJFilesInfo(Var.JFI.FileInfoPath))
+            {
+                tmiCloseAllFiles_Click(this, e);                
                 return;
+            }
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;
 
             //開始讀檔
@@ -583,8 +587,9 @@ namespace JsonEditorV2
                 JTableInfo jti = Var.JFI.TablesInfo.Find(m => m.Name == table.Name);
                 if (jti == null)
                 {
-                    //沒找到相關資料，錯誤訊息後跳過檔案
+                    //沒找到相關資料，錯誤訊息後關閉
                     RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
+                    tmiCloseAllFiles_Click(this, e);
                     return;
                 }
                 table.Columns = jti.Columns;
@@ -2416,7 +2421,7 @@ namespace JsonEditorV2
                 pnlDateTimePicker.Hide();
         }
 
-        private void tmiExportToCsvFiles_Click(object sender, EventArgs e)
+        public void tmiExportToCsvFiles_Click(object sender, EventArgs e)
         {
             foreach (JTable jt in Var.Tables)
                 if (!jt.Loaded)
