@@ -255,6 +255,15 @@
   <data name="JE_DATETIME_YEAR" xml:space="preserve">
     <value>Year(s)</value>
   </data>
+  <data name="JE_DIALOG_ALL_FILES" xml:space="preserve">
+    <value>All Files(*.*)</value>
+  </data>
+  <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
+    <value>Comma-Separated Values File(*.csv)</value>
+  </data>
+  <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
+    <value>Extensible Markup Language File(*.xml)</value>
+  </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
     <value>Invalid Json data file "{0}.json": Index {1}, column count not match.</value>
   </data>

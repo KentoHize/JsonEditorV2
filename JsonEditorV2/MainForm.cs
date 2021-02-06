@@ -2556,6 +2556,9 @@ namespace JsonEditorV2
             }
 
             sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
+            sfdMain.FileName = $"{Var.SelectedColumnParentTable.Name}.csv";
+            //sfdMain.FileName = Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.csv");
+            sfdMain.Filter = $"{Res.JE_DIALOG_CSV_FILE_FULL_NAME}|*.csv|{Res.JE_DIALOG_ALL_FILES}|*.*";
             dr = sfdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;

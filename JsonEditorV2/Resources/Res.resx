@@ -255,6 +255,15 @@
   <data name="JE_DATETIME_YEAR" xml:space="preserve">
     <value>年</value>
   </data>
+  <data name="JE_DIALOG_ALL_FILES" xml:space="preserve">
+    <value>所有檔案(*.*)</value>
+  </data>
+  <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
+    <value>CSV檔案(*.csv)</value>
+  </data>
+  <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
+    <value>XML檔案(*.xml)</value>
+  </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
     <value>無效的JSON檔案"{0}.json"，索引：{1}，欄位數量過多或過少</value>
   </data>

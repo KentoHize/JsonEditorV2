@@ -475,6 +475,33 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 所有檔案(*.*).
+        /// </summary>
+        public static string JE_DIALOG_ALL_FILES {
+            get {
+                return ResourceManager.GetString("JE_DIALOG_ALL_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CSV檔案(*.csv).
+        /// </summary>
+        public static string JE_DIALOG_CSV_FILE_FULL_NAME {
+            get {
+                return ResourceManager.GetString("JE_DIALOG_CSV_FILE_FULL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XML檔案(*.xml).
+        /// </summary>
+        public static string JE_DIALOG_XML_FILE_FULL_NAME {
+            get {
+                return ResourceManager.GetString("JE_DIALOG_XML_FILE_FULL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 無效的JSON檔案&quot;{0}.json&quot;，索引：{1}，欄位數量過多或過少.
         /// </summary>
         public static string JE_ERR_CHILD_COLUMN_COUNT_VARY {
