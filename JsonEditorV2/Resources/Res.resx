@@ -184,7 +184,7 @@
     <value>值"{0}"已存在</value>
   </data>
   <data name="JE_COB_CHECK_METHOD" xml:space="preserve">
-    <value>檢查方式</value>
+    <value>檔案庫檢查方式</value>
   </data>
   <data name="JE_COB_CHECK_METHOD_FULL_CHECK" xml:space="preserve">
     <value>全部檢查</value>

@@ -696,12 +696,11 @@ namespace JsonEditor
         /// <returns></returns>
         public bool CehckValid(ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
-            if (vcm == ValueCheckMethod.NoCheck)
-                return Valid;
             Valid = true;
-
             //刪除Valid資料
             InvalidRecords.Clear();
+            if (vcm == ValueCheckMethod.NoCheck)
+                return Valid;
 
             //Key
             List<int> keyIndex = new List<int>();

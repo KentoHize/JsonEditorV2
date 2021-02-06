@@ -42,16 +42,17 @@ namespace JsonEditor
         }
 
         public bool CheckTableValid(JTable jt, ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
-        {
-            if (vcm == ValueCheckMethod.NoCheck)
-                return Valid;
-            Valid = true;
-            if(!jt.CehckValid(vcm))
+        {            
+            Valid = true;            
+            if (!jt.CehckValid(vcm))
             { 
                 Valid = false;
                 if (vcm == ValueCheckMethod.OneInvalidCheck)
                     return false;
             }
+
+            if (vcm == ValueCheckMethod.NoCheck)
+                return Valid;
 
             //FK Value Check
             for (int i = 0; i < jt.Columns.Count; i++)

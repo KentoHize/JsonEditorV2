@@ -184,7 +184,7 @@
     <value>Value "{0}" exists.</value>
   </data>
   <data name="JE_COB_CHECK_METHOD" xml:space="preserve">
-    <value>Check Method</value>
+    <value>Files Check Method</value>
   </data>
   <data name="JE_COB_CHECK_METHOD_FULL_CHECK" xml:space="preserve">
     <value>Full Check</value>

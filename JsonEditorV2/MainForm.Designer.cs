@@ -1374,7 +1374,7 @@
             // 
             this.lblCheckMethod.AutoSize = true;
             this.lblCheckMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheckMethod.Location = new System.Drawing.Point(1055, 774);
+            this.lblCheckMethod.Location = new System.Drawing.Point(1007, 773);
             this.lblCheckMethod.Name = "lblCheckMethod";
             this.lblCheckMethod.Size = new System.Drawing.Size(20, 20);
             this.lblCheckMethod.TabIndex = 38;

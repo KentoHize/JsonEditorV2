@@ -47,7 +47,7 @@ namespace JsonEditorV2
 
             pnlMain.Controls.Add(NameLabel);
 
-            ValueControl = GetValueControlFromJType(JColumn.Type, JColumn.Name, JColumn.Choices);
+            ValueControl = GetValueControlFromJType(JColumn);
             ValueControl.Font = pnlMain.Font;
 
             if (ValueControl == null)
@@ -367,7 +367,9 @@ namespace JsonEditorV2
             {
                 case JType.Guid:
                     btn = new Button { Name = $"btn{name}", Width = 50, Text = Res.JE_BTN_NEW_GUID };
+                    toolTip.SetToolTip(btn, Res.JE_BTN_NEW_GUID);
                     btn.Click += BtnNewGUID_Click;
+                    
                     return btn;
                 case JType.Date:
                 case JType.Time:
@@ -394,11 +396,12 @@ namespace JsonEditorV2
             ValueControl.Text = Guid.NewGuid().ToString();
         }
 
-        private Control GetValueControlFromJType(JType type, string name, List<string> choices)
+        private Control GetValueControlFromJType(JColumn column)// JType type, string name, List<string> choices)
         {
-            switch (type) {
+            switch (column.Type)
+            {
                 case JType.Boolean:
-                    return new CheckBox { Name = $"ckb{name}" };
+                    return new CheckBox { Name = $"ckb{column.Name}" };
                 case JType.Byte:
                 case JType.Double:
                 case JType.Guid:
@@ -410,12 +413,15 @@ namespace JsonEditorV2
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return new TextBox { Name = $"txt{name}" };
+                    return new TextBox { Name = $"txt{column.Name}" };
                 case JType.Choice:
-                    return new ComboBox { Name = $"cob{name}", DropDownStyle = ComboBoxStyle.DropDownList, DataSource = choices };
+                    if(string.IsNullOrEmpty(column.FKTable) || string.IsNullOrEmpty(column.FKColumn))
+                        return new ComboBox { Name = $"cob{column.Name}", DropDownStyle = ComboBoxStyle.DropDownList, DataSource = column.Choices };
+                    else
+                        return new TextBox { Name = $"txt{column.Name}" };
                 case JType.Object:
                 case JType.Array:
-                    return new Label { Name = $"txt{name}" };
+                    return new Label { Name = $"txt{column.Name}" };
                 //case JType.Date:
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
                 //case JType.Time:
@@ -424,7 +430,7 @@ namespace JsonEditorV2
                 //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long, ShowUpDown = true };
                 case JType.None:
                 default:
-                    return new Label { Name = $"lbl{name}", Text = $"({type.ToString()})" };
+                    return new Label { Name = $"lbl{column.Name}", Text = $"({column.Type.ToString()})" };
 
             }
         }

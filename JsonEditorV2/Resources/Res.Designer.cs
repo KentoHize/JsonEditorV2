@@ -259,7 +259,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 檢查方式.
+        ///   Looks up a localized string similar to 檔案庫檢查方式.
         /// </summary>
         public static string JE_COB_CHECK_METHOD {
             get {
