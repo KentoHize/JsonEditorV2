@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using JsonEditorV2.Resources;
 using System.Text.RegularExpressions;
 using Aritiafel.Organizations;
+using JsonEditor;
 
 namespace JsonEditorV2
 {
@@ -86,7 +87,7 @@ namespace JsonEditorV2
             switch (InputBoxType)
             {
                 case InputBoxTypes.NewFile:                
-                    if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
+                    if (!Regex.IsMatch(txtInput.Text, JValidate.FileNameRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_FILE_NAME", Res.JE_TMI_NEW_JSON_FILE);
                         return;
@@ -98,7 +99,7 @@ namespace JsonEditorV2
                     }                    
                     break;
                 case InputBoxTypes.RenameFile:
-                    if (!Regex.IsMatch(txtInput.Text, Const.FileNameRegex))
+                    if (!Regex.IsMatch(txtInput.Text, JValidate.FileNameRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_FILE_NAME", Res.JE_TMI_RENAME_JSON_FILE);
                         return;
@@ -110,21 +111,21 @@ namespace JsonEditorV2
                     }
                     break;
                 case InputBoxTypes.AddColumn:                    
-                    if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
+                    if (!Regex.IsMatch(txtInput.Text, JValidate.ColumnNameRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_COLUMN_NAME", Res.JE_TMI_ADD_COLUMN);
                         return;
                     }
                     break;
                 case InputBoxTypes.RenameColumn:
-                    if (!Regex.IsMatch(txtInput.Text, Const.ColumnNameRegex))
+                    if (!Regex.IsMatch(txtInput.Text, JValidate.ColumnNameRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_COLUMN_NAME", Res.JE_TMI_RENAME_COLUMN);
                         return;
                     }
                     break;
                 case InputBoxTypes.RenameDataBase:
-                    if (!Regex.IsMatch(txtInput.Text, Const.DatabaseRegex))
+                    if (!Regex.IsMatch(txtInput.Text, JValidate.DatabaseRegex))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_DATABASE_NAME", Res.JE_TMI_RENAME_DATABASE);
                         return;

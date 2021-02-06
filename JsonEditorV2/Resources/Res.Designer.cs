@@ -565,15 +565,6 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 輸出CSV檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
-        /// </summary>
-        public static string JE_ERR_EXPORT_TO_CSV_FAILED {
-            get {
-                return ResourceManager.GetString("JE_ERR_EXPORT_TO_CSV_FAILED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to JSON關聯檔案格式不正確：{0}.
         /// </summary>
         public static string JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT {
@@ -637,6 +628,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輸出CSV檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
+        /// </summary>
+        public static string JE_ERR_SAVE_CSV_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_SAVE_CSV_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輸出XML檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
         /// </summary>
         public static string JE_ERR_SAVE_XML_FAILED {
@@ -660,6 +660,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_ERR_SCAN_JSON_FAILED_TITLE {
             get {
                 return ResourceManager.GetString("JE_ERR_SCAN_JSON_FAILED_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;{0}&quot;轉換至CSV檔案失敗，詳細訊息：&quot;{1}&quot;.
+        /// </summary>
+        public static string JE_ERR_TABLE_CONVERT_TO_CSV_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_TABLE_CONVERT_TO_CSV_FAILED", resourceCulture);
             }
         }
         

@@ -132,10 +132,13 @@ namespace JsonEditorV2
 
         public static void JsonConvertDeserializeJFIFailed(Exception ex)
             => RabbitCouriers.SentErrorMessageByResource("JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT", Res.JE_ERR_DEFAULT_TITLE, ex.Message);        
+        
+        public static void TableConvertToCSVFailed(Exception ex, JTable jt)
+           => RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_CONVERT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, jt.Name, ex.Message);
 
-        public static void ExportToCSVFailed(Exception ex, string file)
-            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_EXPORT_TO_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
-
+        public static void SaveCSVFileFailed(Exception ex, string file)
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
+        
         public static void TableConvertToXMLFailed(Exception ex, JTable jt)
             => RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_CONVERT_TO_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, jt.Name, ex.Message);
 

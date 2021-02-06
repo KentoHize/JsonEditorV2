@@ -10,11 +10,8 @@ namespace JsonEditorV2
 {
     public static class Const
     {
-        public const string VersionString = "Version 0.32";
+        public const string VersionString = "Version 0.33";
 
-        public const string FileNameRegex = @"^[\w\-. ]+$";
-        public const string ColumnNameRegex = @"^[\w][\w\-]{0,49}$";
-        public const string DatabaseRegex = @"^[\w][\w\-. ]{0,49}$";
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 
         public const string NullString = "(null)";

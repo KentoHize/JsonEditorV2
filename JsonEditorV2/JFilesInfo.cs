@@ -52,7 +52,7 @@ namespace JsonEditor
             }
             catch { return JColumnInvalidReasons.IllegalRegularExpression; }
 
-            if (!Regex.IsMatch(jc.Name, Const.ColumnNameRegex))
+            if (!Regex.IsMatch(jc.Name, JValidate.ColumnNameRegex))
                 return JColumnInvalidReasons.IllegalName;
             else if (jc.IsKey && jc.IsNullable)
                 return JColumnInvalidReasons.IsKeyAndIsNullable;

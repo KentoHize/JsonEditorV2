@@ -334,7 +334,10 @@ namespace JsonEditor
                             if (firstLine)
                             {
                                 if (value.ToString() != "")
-                                    Columns.Add(new JColumn(value.ToString()));
+                                    if (Regex.IsMatch(value.ToString(), JValidate.ColumnNameRegex))
+                                        Columns.Add(new JColumn(value.ToString()));
+                                    else
+                                        throw new FormatException($"Column Name {value.ToString()} is Invalid.");
                                 else
                                     Columns.Add(new JColumn(Guid.NewGuid().ToString()));
                                 value = new StringBuilder();
@@ -364,7 +367,10 @@ namespace JsonEditor
                             if (firstLine)
                             {
                                 if (value.ToString() != "")
-                                    Columns.Add(new JColumn(value.ToString()));
+                                    if (Regex.IsMatch(value.ToString(), JValidate.ColumnNameRegex))
+                                        Columns.Add(new JColumn(value.ToString()));
+                                    else
+                                        throw new FormatException($"Column Name {value.ToString()} is Invalid.");
                                 else
                                     Columns.Add(new JColumn(Guid.NewGuid().ToString()));
                                 value = new StringBuilder();
@@ -394,7 +400,10 @@ namespace JsonEditor
                             if (firstLine)
                             {
                                 if (value.ToString() != "")
-                                    Columns.Add(new JColumn(value.ToString()));
+                                    if (Regex.IsMatch(value.ToString(), JValidate.ColumnNameRegex))
+                                        Columns.Add(new JColumn(value.ToString()));
+                                    else
+                                        throw new FormatException($"Column Name {value.ToString()} is Invalid.");
                                 else
                                     Columns.Add(new JColumn(Guid.NewGuid().ToString()));
                                 value = new StringBuilder();
@@ -423,6 +432,8 @@ namespace JsonEditor
                             value.Append(' ');                        
                         break;
                     case '\r':
+                        if (inDoubleQuotes)
+                            value.Append('\r');
                         break;
                     default:
                         value.Append(csv[postion]);
@@ -453,7 +464,7 @@ namespace JsonEditor
         }
 
         /// <summary>
-        /// 掃描Json物件
+        /// 掃Json物件
         /// </summary>
         /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
         /// <param name="numberOfRowsMaxValue">欄位最大行數</param>

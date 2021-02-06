@@ -209,7 +209,7 @@ namespace JsonEditorV2
 
         public void btnUpdateColumn_Click(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txtColumnName.Text, Const.ColumnNameRegex))
+            if (!Regex.IsMatch(txtColumnName.Text, JValidate.ColumnNameRegex))
             {
                 //欄位名檢查
                 RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_ILLEGAL_NAME", Res.JE_RUN_UPDATE_COLUMN_TITLE);
@@ -1317,6 +1317,32 @@ namespace JsonEditorV2
 
         public static bool SaveCsvFile(JTable jt, string fileName)
         {
+            string csvString = "";
+            try
+            {
+                csvString = jt.ToCSV();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.TableConvertToCSVFailed(ex, jt);
+                return false;
+            }
+
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.Write(csvString);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.SaveCSVFileFailed(ex, fileName);
+                return false;
+            }
             return true;
         }
 
@@ -2409,25 +2435,8 @@ namespace JsonEditorV2
             dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-
-            //讀檔、輸出
             foreach (JTable jt in Var.Tables)
-            {
-                try
-                {
-                    using (FileStream fs = new FileStream(Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"), FileMode.Create))
-                    {
-                        using (StreamWriter sw = new StreamWriter(fs))
-                        {
-                            sw.Write(jt.ToCSV());
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ExceptionHandler.ExportToCSVFailed(ex, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"));
-                }
-            }
+                SaveCsvFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.csv"));
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();
@@ -2583,20 +2592,7 @@ namespace JsonEditorV2
             if (dr != DialogResult.OK)
                 return;
 
-            try
-            {
-                using (FileStream fs = new FileStream(sfdMain.FileName, FileMode.Create))
-                {
-                    using (StreamWriter sw = new StreamWriter(fs))
-                    {
-                        sw.Write(Var.SelectedColumnParentTable.ToCSV());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.ExportToCSVFailed(ex, sfdMain.FileName);
-            }
+            SaveCsvFile(Var.SelectedColumnParentTable, sfdMain.FileName);
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSV_M_1, sfdMain.FileName);
             RefreshTrvJsonFiles();
@@ -2627,7 +2623,7 @@ namespace JsonEditorV2
                 return;
 
             //存檔
-            SaveXmlFile(Var.SelectedColumnParentTable, sfdMain.FileName); 
+            SaveXmlFile(Var.SelectedColumnParentTable, sfdMain.FileName);
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, sfdMain.FileName);
             RefreshTrvJsonFiles();
