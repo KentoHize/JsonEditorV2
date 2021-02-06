@@ -24,6 +24,6 @@ namespace JsonEditorV2
 
         public static string BackupFolder { get => Path.Combine(Application.UserAppDataPath, "Backup"); }
         public static string ApplicationDataFolder { get => Path.Combine(Application.UserAppDataPath); }
-        public static string BackupRecoverFile { get => Path.Combine(Const.BackupFolder, "Recover.ini"); }
+        public static string BackupRecoverFile { get => Path.Combine(BackupFolder, "Recover.ini"); }
     }
 }

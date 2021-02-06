@@ -81,8 +81,8 @@ namespace JsonEditorV2
             tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
             tmiExport.Text = Res.JE_TMI_EXPORT;
-            tmiExportToCsv.Text = Res.JE_TMI_EXPORT_TO_CSV;
-            tmiExportToXml.Text = Res.JE_TMI_EXPORT_TO_XML;
+            tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
+            tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
@@ -2547,6 +2547,11 @@ namespace JsonEditorV2
             Var.JFI.Changed = true;
             RefreshPnlFileInfo();
             RefreshTbcMain();
+        }
+
+        private void pnlMain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
