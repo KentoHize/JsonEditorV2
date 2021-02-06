@@ -694,7 +694,7 @@ namespace JsonEditor
         /// </summary>
         /// <param name="quickCheck">快速檢查(遇到單欄錯誤即跳出)</param>
         /// <returns></returns>
-        public bool CehckValid(bool quickCheck = false)
+        public bool CehckValid(ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
             Valid = true;
 
@@ -715,7 +715,7 @@ namespace JsonEditor
                 if (!CheckLineValid(i))
                 {
                     Valid = false;
-                    if (quickCheck)
+                    if (vcm == ValueCheckMethod.OneInvalidCheck)
                         return false;
                 }
 
@@ -733,7 +733,7 @@ namespace JsonEditor
                             AddInvalidRecord(keyCheckSet[checkString], keyIndex[j], JValueInvalidReasons.DuplicateKey);
                         }
                         Valid = false;
-                        if (quickCheck)
+                        if (vcm == ValueCheckMethod.OneInvalidCheck)
                             return false;
                     }
                     else
@@ -759,7 +759,7 @@ namespace JsonEditor
                                 AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
                                 AddInvalidRecord(nullObjectIndex, i, JValueInvalidReasons.NotUnique);
                                 Valid = false;
-                                if (quickCheck)
+                                if (vcm == ValueCheckMethod.OneInvalidCheck)
                                     return false;
                             }
                         else if (uniqueCheckDictionary.ContainsKey(Lines[j][i]))
@@ -767,7 +767,7 @@ namespace JsonEditor
                             AddInvalidRecord(j, i, JValueInvalidReasons.NotUnique);
                             AddInvalidRecord(uniqueCheckDictionary[Lines[j][i]], i, JValueInvalidReasons.NotUnique);
                             Valid = false;
-                            if (quickCheck)
+                            if (vcm == ValueCheckMethod.OneInvalidCheck)
                                 return false;
                         }
                         else

@@ -33,21 +33,21 @@ namespace JsonEditor
             Valid = true;
         }   
 
-        public bool CheckAllTablesValid(bool quickCheck = false)
+        public bool CheckAllTablesValid(ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
             foreach (JTable jt in Tables)
-                if (!CheckTableValid(jt, quickCheck))
+                if (!CheckTableValid(jt, vcm))
                     return false;
             return true;
         }
 
-        public bool CheckTableValid(JTable jt, bool quickCheck = false)
+        public bool CheckTableValid(JTable jt, ValueCheckMethod vcm = ValueCheckMethod.OneInvalidCheck)
         {
             Valid = true;
-            if(!jt.CehckValid(quickCheck))
+            if(!jt.CehckValid(vcm))
             { 
                 Valid = false;
-                if (quickCheck)
+                if (vcm == ValueCheckMethod.OneInvalidCheck)
                     return false;
             }
 
@@ -67,7 +67,7 @@ namespace JsonEditor
                         {
                             jt.AddInvalidRecord(j, i, JValueInvalidReasons.FoeignKeyValueNotExists);
                             jt.Valid = Valid = false;                            
-                            if(quickCheck)
+                            if(vcm == ValueCheckMethod.OneInvalidCheck)
                                 return false;
                         }
                     }

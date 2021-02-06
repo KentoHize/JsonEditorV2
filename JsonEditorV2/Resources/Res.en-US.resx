@@ -183,8 +183,17 @@
   <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
     <value>Value "{0}" exists.</value>
   </data>
-  <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
-    <value>Quick Check</value>
+  <data name="JE_COB_CHECK_METHOD" xml:space="preserve">
+    <value>Check Method</value>
+  </data>
+  <data name="JE_COB_CHECK_METHOD_FULL_CHECK" xml:space="preserve">
+    <value>Full Check</value>
+  </data>
+  <data name="JE_COB_CHECK_METHOD_NO_CHECK" xml:space="preserve">
+    <value>No Check</value>
+  </data>
+  <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
+    <value>One Invalid Check</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     <value>Auto Generate Key</value>

@@ -259,11 +259,38 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 快速檢查.
+        ///   Looks up a localized string similar to 檢查方式.
         /// </summary>
-        public static string JE_CKB_QUICK_CEHCK {
+        public static string JE_COB_CHECK_METHOD {
             get {
-                return ResourceManager.GetString("JE_CKB_QUICK_CEHCK", resourceCulture);
+                return ResourceManager.GetString("JE_COB_CHECK_METHOD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 全部檢查.
+        /// </summary>
+        public static string JE_COB_CHECK_METHOD_FULL_CHECK {
+            get {
+                return ResourceManager.GetString("JE_COB_CHECK_METHOD_FULL_CHECK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不檢查.
+        /// </summary>
+        public static string JE_COB_CHECK_METHOD_NO_CHECK {
+            get {
+                return ResourceManager.GetString("JE_COB_CHECK_METHOD_NO_CHECK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 單項無效.
+        /// </summary>
+        public static string JE_COB_CHECK_METHOD_ONE_LINE_CHECK {
+            get {
+                return ResourceManager.GetString("JE_COB_CHECK_METHOD_ONE_LINE_CHECK", resourceCulture);
             }
         }
         

@@ -69,7 +69,7 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnLineMoveUp, Res.JE_BTN_LINE_MOVE_UP);
             tltMain.SetToolTip(btnLineMoveDown, Res.JE_BTN_LINE_MOVE_DOWN);
             tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);
-            ckbQuickCheck.Text = Res.JE_CKB_QUICK_CEHCK;
+            lblCheckMethod.Text = Res.JE_COB_CHECK_METHOD;
             tmiFile.Text = Res.JE_TMI_FILE;
             tmiHelp.Text = Res.JE_TMI_HELP;
             tmiAbout.Text = Res.JE_TMI_ABOUT;
@@ -411,7 +411,7 @@ namespace JsonEditorV2
             }
 
             if (recheckTable)
-                Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.UseQuickCheck);
+                Var.Database.CheckTableValid(Var.SelectedColumnParentTable, Setting.TableCheckMethod);
 
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_COLUMN_M_6, Var.SelectedColumn.Name);
             RefreshTrvJsonFiles();
@@ -1369,7 +1369,7 @@ namespace JsonEditorV2
                 return false;
             }
             if (!jt.Valid)
-                Var.Database.CheckTableValid(jt, Setting.UseQuickCheck);
+                Var.Database.CheckTableValid(jt, Setting.TableCheckMethod);
             return true;
         }
 
@@ -1416,7 +1416,7 @@ namespace JsonEditorV2
             }
 
             if (!jt.Valid)
-                Var.Database.CheckTableValid(jt, Setting.UseQuickCheck);
+                Var.Database.CheckTableValid(jt, Setting.TableCheckMethod);
             return true;
         }
 
@@ -1617,7 +1617,7 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.TableCheckMethod);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1743,7 +1743,7 @@ namespace JsonEditorV2
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_DELETE_LINE_M_1, Var.SelectedTable.Name);
 
-            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.TableCheckMethod);
 
             RefreshDgvLines();
             RefreshPnlMainValue();
@@ -1773,7 +1773,7 @@ namespace JsonEditorV2
             sslMain.Text = string.Format(Res.JE_RUN_UPDATE_LINE_M_1, Var.SelectedTable.Name);
 
             Var.SelectedTable.Changed = true;
-            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.TableCheckMethod);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -1879,9 +1879,17 @@ namespace JsonEditorV2
 
         public void MainForm_Load(object sender, EventArgs e)
         {
+            //設定選項
+            cobCheckMethod.DataSource = Enum.GetValues(typeof(ValueCheckMethod))
+    .OfType<ValueCheckMethod>().ToList();
+            cobColumnType.DataSource =
+              Enum.GetValues(typeof(JType)).OfType<JType>()
+              .Except(new List<JType> { JType.None })
+              .ToList();
+
             //預讀預設值
             Setting.CI = new CultureInfo("en-US");
-            Setting.UseQuickCheck = false;
+            Setting.TableCheckMethod = ValueCheckMethod.OneInvalidCheck;
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
             Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
@@ -1889,7 +1897,7 @@ namespace JsonEditorV2
 
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
-            {
+            {   
                 using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Open))
                 {
                     using (StreamReader sr = new StreamReader(fs))
@@ -1899,7 +1907,9 @@ namespace JsonEditorV2
                         {
                             string line = sr.ReadLine();
                             PropertyInfo pi = typeof(Setting).GetProperty(line.Split('=')[0]);
-                            if (pi.PropertyType == typeof(CultureInfo))
+                            if (pi == null)
+                                continue;
+                            else if (pi.PropertyType == typeof(CultureInfo))
                                 pi.SetValue(null, new CultureInfo(line.Split('=')[1]));
                             else if (pi.PropertyType == typeof(Color))
                             {
@@ -1908,6 +1918,8 @@ namespace JsonEditorV2
                                     int.Parse(value[3].Split(',')[0]), int.Parse(value[4].Split(',')[0]),
                                     int.Parse(value[5].Split(']')[0])));
                             }
+                            else if (pi.PropertyType == typeof(ValueCheckMethod))
+                                pi.SetValue(null, Enum.Parse(typeof(ValueCheckMethod), line.Split('=')[1]));
                             else
                                 pi.SetValue(null, Convert.ChangeType(line.Split('=')[1], pi.PropertyType));
                         }
@@ -1916,11 +1928,8 @@ namespace JsonEditorV2
             }
 
             ChangeCulture();
-            ckbQuickCheck.Checked = Setting.UseQuickCheck;
-            cobColumnType.DataSource =
-                Enum.GetValues(typeof(JType)).OfType<JType>()
-                .Except(new List<JType> { JType.None })
-                .ToList();
+
+            cobCheckMethod.SelectedItem = Setting.TableCheckMethod;          
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -2104,11 +2113,6 @@ namespace JsonEditorV2
             RefreshDgvLines();
         }
 
-        private void ckbQuickCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            Setting.UseQuickCheck = ckbQuickCheck.Checked;
-        }
-
         private void tmiJsonEditorBackup_Click(object sender, EventArgs e)
         {
             string BackupPath = @"E:\Backup\JsonEditorV2";
@@ -2252,7 +2256,7 @@ namespace JsonEditorV2
                         foreach (var pi in pis)
                             sw.WriteLine($"{pi.Name}={pi.GetValue(null)}");
                     }
-                    //Process.Start("Notepad.exe", fs.Name);
+                    Process.Start("Notepad.exe", fs.Name);
                 }
             }
             catch { }
@@ -2410,7 +2414,7 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_COPY_LINE_M_1, Var.SelectedTable.Name, Var.SelectedLineIndex);
             Var.SelectedLineIndex = dgvLines.Rows.Count;
-            Var.Database.CheckTableValid(Var.SelectedTable, Setting.UseQuickCheck);
+            Var.Database.CheckTableValid(Var.SelectedTable, Setting.TableCheckMethod);
             RefreshDgvLines();
             RefreshPnlMainValue();
         }
@@ -2449,7 +2453,7 @@ namespace JsonEditorV2
 
         private static XmlDocument JTableToXml(JTable jt)
         {
-            XmlDocument xdoc = new XmlDocument();
+            XmlDocument xdoc = new XmlDocument();            
             XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlElement root = xdoc.CreateElement("DataSet");
             xdoc.AppendChild(root);
@@ -2462,7 +2466,8 @@ namespace JsonEditorV2
                 xa.Value = i.ToString();
                 xn.Attributes.Append(xa);
                 for (int j = 0; j < jt.Columns.Count; j++)
-                {   
+                {
+                    //XmlNode xn2 = xdoc.CreateElement(jt.Columns[j].Name);                    
                     XmlNode xn2 = xdoc.CreateElement("Column");
                     XmlAttribute xa2 = xdoc.CreateAttribute("name");
                     xa2.Value = jt.Columns[j].Name;
@@ -2525,7 +2530,7 @@ namespace JsonEditorV2
 
             Var.SelectedTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_REGENERATE_KEY_M_2, Var.SelectedColumn.Name);
-            Var.Database.CheckAllTablesValid(Setting.UseQuickCheck);
+            Var.Database.CheckAllTablesValid(Setting.TableCheckMethod);
             RefreshTrvJsonFiles();
         }
 
@@ -2570,7 +2575,7 @@ namespace JsonEditorV2
         private void tmiDisplayAllColumn_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < Var.SelectedColumnParentTable.Columns.Count; i++)
-                Var.SelectedColumnParentTable.Columns[i].Display = true;
+                Var.SelectedColumnParentTable.Columns[i].Display = !tmiDisplayAllColumn.Checked;
             Var.JFI.Changed = true;
             RefreshPnlFileInfo();
             RefreshTbcMain();
@@ -2635,6 +2640,11 @@ namespace JsonEditorV2
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_XML_M_1, sfdMain.FileName);
             RefreshTrvJsonFiles();
+        }
+
+        private void cobCheckMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Setting.TableCheckMethod = (ValueCheckMethod)cobCheckMethod.SelectedItem;
         }
     }
 }

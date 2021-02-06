@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace JsonEditor
 {
+    public enum ValueCheckMethod
+    {
+        NoCheck = 0,
+        OneInvalidCheck,
+        FullCheck
+    }
+
     public static class JValidate
     {
         public const string FileNameRegex = @"^[\w\-. ]+$";
