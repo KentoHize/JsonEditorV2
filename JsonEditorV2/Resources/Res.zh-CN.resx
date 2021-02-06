@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="JE_ABOUT_CONTACT_US" xml:space="preserve">
+    错误回报：KentKaze@hotmail.com
+  </data>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
     JSON 资料档案编辑器
   </data>
@@ -180,8 +183,17 @@
   <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
     值"{0}"已存在
   </data>
-  <data name="JE_CKB_QUICK_CEHCK" xml:space="preserve">
-    快速检查
+  <data name="JE_COB_CHECK_METHOD" xml:space="preserve">
+    档案库检查方式
+  </data>
+  <data name="JE_COB_CHECK_METHOD_FULL_CHECK" xml:space="preserve">
+    全部检查
+  </data>
+  <data name="JE_COB_CHECK_METHOD_NO_CHECK" xml:space="preserve">
+    不检查
+  </data>
+  <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
+    单项无效
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     自动产生索引值
@@ -252,6 +264,15 @@
   <data name="JE_DATETIME_YEAR" xml:space="preserve">
     年
   </data>
+  <data name="JE_DIALOG_ALL_FILES" xml:space="preserve">
+    所有档案(*.*)
+  </data>
+  <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
+    CSV档案(*.csv)
+  </data>
+  <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
+    XML档案(*.xml)
+  </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
     无效的JSON档案"{0}.json"，索引：{1}，栏位数量过多或过少
   </data>
@@ -272,12 +293,6 @@
   </data>
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     错误
-  </data>
-  <data name="JE_ERR_EXPORT_TO_CSV_FAILED" xml:space="preserve">
-    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
-  </data>
-  <data name="JE_ERR_EXPORT_TO_XML_FAILED" xml:space="preserve">
-    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     JSON关联档案格式不正确：{0}
@@ -300,11 +315,23 @@
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
     无效的JSON档案"{0}.json"，根元素非阵列
   </data>
+  <data name="JE_ERR_SAVE_CSV_FAILED" xml:space="preserve">
+    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
+  </data>
+  <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
+    输出XML档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
+  </data>
   <data name="JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT" xml:space="preserve">
     扫描档案"{0}.csv"时发生错误:{1}
   </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
     扫描档案失败
+  </data>
+  <data name="JE_ERR_TABLE_CONVERT_TO_CSV_FAILED" xml:space="preserve">
+    "{0}"转换至CSV档案失败，详细讯息："{1}"
+  </data>
+  <data name="JE_ERR_TABLE_CONVERT_TO_XML_FAILED" xml:space="preserve">
+    "{0}"转换至XML档案失败，详细讯息："{1}"
   </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
     档案"{0}.json"资料不合规则：行 {1}，栏位"{2}"，
@@ -561,14 +588,26 @@
   <data name="JE_TMI_EXPORT" xml:space="preserve">
     输出
   </data>
+  <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
+    输出
+  </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
+    输出为CSV档案
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CSV_FILE" xml:space="preserve">
     输出为CSV档案
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     输出为XML档案
   </data>
+  <data name="JE_TMI_EXPORT_TO_XML_FILE" xml:space="preserve">
+    输出为XML档案
+  </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     档案
+  </data>
+  <data name="JE_TMI_HELP" xml:space="preserve">
+    说明
   </data>
   <data name="JE_TMI_LANGUAGES" xml:space="preserve">
     语言
