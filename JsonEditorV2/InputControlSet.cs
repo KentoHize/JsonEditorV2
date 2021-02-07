@@ -396,7 +396,7 @@ namespace JsonEditorV2
             ValueControl.Text = Guid.NewGuid().ToString();
         }
 
-        private Control GetValueControlFromJType(JColumn column)// JType type, string name, List<string> choices)
+        private Control GetValueControlFromJType(JColumn column)
         {
             switch (column.Type)
             {
@@ -422,16 +422,9 @@ namespace JsonEditorV2
                 case JType.Object:
                 case JType.Array:
                     return new Label { Name = $"txt{column.Name}" };
-                //case JType.Date:
-                //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Short };
-                //case JType.Time:
-                //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Time, ShowUpDown = true };
-                //case JType.DateTime:                    
-                //    return new DateTimePicker { Name = $"dtp{name}", Format = DateTimePickerFormat.Long, ShowUpDown = true };
                 case JType.None:
                 default:
-                    return new Label { Name = $"lbl{column.Name}", Text = $"({column.Type.ToString()})" };
-
+                    return new Label { Name = $"txt{column.Name}", Text = $"({column.Type.ToString()})" };
             }
         }
     }
