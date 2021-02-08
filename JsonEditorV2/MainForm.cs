@@ -2303,23 +2303,18 @@ namespace JsonEditorV2
             }
             else
                 dgvLines.Columns[dgvLines.Columns.Count - 2].Visible = false;
-            dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvLines.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);            
 
             int totalColumnWidth = 0;
             for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
                 totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
 
             if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
-                dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvLines.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill);
 
             for (int i = 0; i < dgvLines.Rows.Count; i++)
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
-        }
-
-        private void dgvLines_Sorted(object sender, EventArgs e)
-        {
-
         }
 
         private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
@@ -2692,18 +2687,15 @@ namespace JsonEditorV2
                 {
                     if (!dgvLines.Columns[j].Visible)
                         continue;
-                    dr2[j] = Var.SelectedTable[(int)dgvLines.Rows[i].Cells[Const.HiddenColumnItemIndex].Value][j].ToString(Var.SelectedTable.Columns[j].Type);
+                    int columnIndex = Var.SelectedTable.Columns.FindIndex(m => m.Name == dgvLines.Columns[j].Name);
+                    dr2[j] = Var.SelectedTable[(int)dgvLines.Rows[i].Cells[Const.HiddenColumnItemIndex].Value][columnIndex]?.ToString(Var.SelectedTable.Columns[columnIndex].Type) ?? "";
                 }
                 Var.PrintTable.Rows.Add(dr2);
             }
-            Var.PrintLineIndex = 0;
+            Var.PrintLineIndex = Var.PrintPageIndex = 0;
+            Var.PrintFittedList.Clear();
             pd.Print();
         }
-
-        //private bool printText(PrintPageEventArgs e, string s, int lineIndex, int x, int width, int y)
-        //{
-
-        //}
 
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -2711,92 +2703,110 @@ namespace JsonEditorV2
             if (Var.PrintTable.Rows.Count == 0)
                 return;
 
-            e.Graphics.DrawString(Var.PrintTable.TableName, Font, Brushes.Black, e.MarginBounds.Width / 2, 10);
+            int y, x, lineCount = 0, lineSpaceing = 5;
+            float width,fontHeight = Font.GetHeight(e.Graphics);
+            int linesPerPage = Convert.ToInt32(Math.Ceiling((double)e.MarginBounds.Height / (double)(fontHeight + lineSpaceing)));
 
-            int lineCount = 0;
-            int lineSpaceing = 5;
-            float fontHeight = Font.GetHeight(e.Graphics);
-            int linesPerPage = Convert.ToInt32(Math.Ceiling((double)e.MarginBounds.Height / (fontHeight + lineSpaceing)));
-            int y, x;
-
-            List<int> fittedList = new List<int>();
+            e.Graphics.DrawString(Var.PrintTable.TableName, Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, (e.MarginBounds.Top - fontHeight) / 2);
+            
+            List<int> fittedList2 = new List<int>();            
             do
             {
-                y = 30 + (int)(lineCount * (Font.GetHeight(e.Graphics) + lineSpaceing) + 30);
-                x = 30;
+                y = e.MarginBounds.Top + (int)(lineCount * (fontHeight + lineSpaceing));
+                x = e.MarginBounds.Left;
                 for (int i = 0; i < Var.PrintTable.Columns.Count; i++)
                 {
-                    if (fittedList.Count == i)
+                    if (x > e.MarginBounds.Left + e.MarginBounds.Width)
+                        continue;
+
+                    width = float.Parse(Var.PrintTable.Columns[i].DefaultValue.ToString());
+                    if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
+                        width = e.MarginBounds.Left + e.MarginBounds.Width - x;
+                    
+                    if (fittedList2.Count == i)
                     {
+                        
                         e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName, Font,
-                        new SizeF(float.Parse(Var.PrintTable.Columns[i].DefaultValue.ToString()), fontHeight),
+                        new SizeF(width, fontHeight),
                         null, out int fitted, out int linesFilled);
 
                         e.Graphics.DrawString(Var.PrintTable.Columns[i].ColumnName.Substring(0, fitted), Font, Brushes.Black, x, y);
                         if (fitted == Var.PrintTable.Columns[i].ColumnName.Length)
-                            fittedList.Add(-1);
+                            fittedList2.Add(-1);
                         else
-                            fittedList.Add(fitted);
+                            fittedList2.Add(fitted);
                     }
-                    else if (fittedList[i] != -1)
+                    else if (fittedList2[i] != -1)
                     {
-                        e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList[i]), Font,
-                        new SizeF(float.Parse(Var.PrintTable.Columns[i].DefaultValue.ToString()), fontHeight),
+                        e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList2[i]), Font,
+                        new SizeF(width, fontHeight),
                         null, out int fitted, out int linesFilled);
 
-                        e.Graphics.DrawString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList[i], fitted), Font, Brushes.Black, x, y);
-                        if (fitted == Var.PrintTable.Columns[i].ColumnName.Substring(fittedList[i]).Length)
-                            fittedList[i] = -1;
+                        e.Graphics.DrawString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList2[i], fitted), Font, Brushes.Black, x, y);
+                        if (fitted == Var.PrintTable.Columns[i].ColumnName.Substring(fittedList2[i]).Length)
+                            fittedList2[i] = -1;
                         else
-                            fittedList[i] += fitted;
+                            fittedList2[i] += fitted;
                     }
                     x += Convert.ToInt32(Var.PrintTable.Columns[i].DefaultValue);
                 }
                 lineCount++;
             }
-            while (!fittedList.TrueForAll(m => m == -1));
+            while (!fittedList2.TrueForAll(m => m == -1));
 
             while (lineCount < linesPerPage && Var.PrintLineIndex < Var.PrintTable.Rows.Count)
-            {
-                fittedList.Clear();
+            {   
                 do
                 {
-                    y = 30 + (int)(lineCount * (Font.GetHeight(e.Graphics) + lineSpaceing) + 30);
-                    x = 30;
+                    y = e.MarginBounds.Top + (int)(lineCount * (fontHeight + lineSpaceing));
+                    x = e.MarginBounds.Left;                    
                     for (int j = 0; j < Var.PrintTable.Columns.Count; j++)
-                    {
-                        if (fittedList.Count == j)
-                        {
+                    {   
+                        if (x > e.MarginBounds.Left + e.MarginBounds.Width)
+                            continue;
+
+                        width = float.Parse(Var.PrintTable.Columns[j].DefaultValue.ToString());
+                        if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
+                            width = e.MarginBounds.Left + e.MarginBounds.Width - x;
+                        if (Var.PrintFittedList.Count == j)
+                        {                            
                             e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString(), Font,
-                            new SizeF(float.Parse(Var.PrintTable.Columns[j].DefaultValue.ToString()), fontHeight),
+                            new SizeF(width, fontHeight),
                             null, out int fitted, out int linesFilled);
 
                             e.Graphics.DrawString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(0, fitted), Font, Brushes.Black, x, y);
                             if (fitted == Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Length)
-                                fittedList.Add(-1);
+                                Var.PrintFittedList.Add(-1);
                             else
-                                fittedList.Add(fitted);
+                                Var.PrintFittedList.Add(fitted);
                         }
-                        else if (fittedList[j] != -1)
+                        else if (Var.PrintFittedList[j] != -1)
                         {
-                            e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(fittedList[j]), Font,
-                            new SizeF(float.Parse(Var.PrintTable.Columns[j].DefaultValue.ToString()), fontHeight),
+                            e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(Var.PrintFittedList[j]), Font,
+                            new SizeF(width, fontHeight),
                             null, out int fitted, out int linesFilled);
 
-                            e.Graphics.DrawString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(fittedList[j], fitted), Font, Brushes.Black, x, y);
-                            if (fitted == Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(fittedList[j]).Length)
-                                fittedList[j] = -1;
+                            e.Graphics.DrawString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(Var.PrintFittedList[j], fitted), Font, Brushes.Black, x, y);
+                            if (fitted == Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(Var.PrintFittedList[j]).Length)
+                                Var.PrintFittedList[j] = -1;
                             else
-                                fittedList[j] += fitted;
+                                Var.PrintFittedList[j] += fitted;
                         }
                         x += Convert.ToInt32(Var.PrintTable.Columns[j].DefaultValue);
                     }
                     lineCount++;
+                    if (Var.PrintFittedList.TrueForAll(m => m == -1))
+                    {
+                        Var.PrintFittedList.Clear();
+                        Var.PrintLineIndex++;
+                        break;
+                    }
                 }
-                while (!fittedList.TrueForAll(m => m == -1));
-                Var.PrintLineIndex++;
+                while (y <= e.MarginBounds.Top + e.MarginBounds.Height);
             }
 
+            Var.PrintPageIndex++;
+            e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Top + e.MarginBounds.Height + (e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
         }
     }

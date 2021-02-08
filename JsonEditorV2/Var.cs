@@ -31,7 +31,9 @@ namespace JsonEditorV2
         public static List<string> RenamedFiles { get; set; } = new List<string>(); //被改名檔案
         public static List<string> DeleteFiles { get; set; } = new List<string>(); //被刪除檔案
         public static DataTable PrintTable { get; set; } //待列印字串
-        public static int PrintLineIndex;
+        public static List<int> PrintFittedList { get; set; } = new List<int>(); //已印多少字
+        public static int PrintLineIndex { get; set; } //列印中的索引
+        public static int PrintPageIndex { get; set; } //列印中的頁數
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }
         public static JLine SelectedLine { get => SelectedTable[SelectedLineIndex]; }
