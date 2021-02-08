@@ -2310,7 +2310,7 @@ namespace JsonEditorV2
                 totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
 
             if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
-                dgvLines.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.Fill);
+                dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             for (int i = 0; i < dgvLines.Rows.Count; i++)
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
@@ -2707,7 +2707,11 @@ namespace JsonEditorV2
             float width,fontHeight = Font.GetHeight(e.Graphics);
             int linesPerPage = Convert.ToInt32(Math.Ceiling((double)e.MarginBounds.Height / (double)(fontHeight + lineSpaceing)));
 
-            e.Graphics.DrawString(Var.PrintTable.TableName, Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, (e.MarginBounds.Top - fontHeight) / 2);
+            SizeF nameSize = e.Graphics.MeasureString(Var.PrintTable.TableName, Font,
+                        new SizeF(e.MarginBounds.Width, fontHeight),
+                        null, out _, out _);
+
+            e.Graphics.DrawString(Var.PrintTable.TableName, Font, Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width - nameSize.Width) / 2, (e.MarginBounds.Top - fontHeight) / 2);
             
             List<int> fittedList2 = new List<int>();            
             do
@@ -2716,27 +2720,20 @@ namespace JsonEditorV2
                 x = e.MarginBounds.Left;
                 for (int i = 0; i < Var.PrintTable.Columns.Count; i++)
                 {
+                    if (fittedList2.Count == i)
+                        fittedList2.Add(0);
+
                     if (x > e.MarginBounds.Left + e.MarginBounds.Width)
+                    {
+                        fittedList2[i] = -1;
                         continue;
+                    }   
 
                     width = float.Parse(Var.PrintTable.Columns[i].DefaultValue.ToString());
                     if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
                         width = e.MarginBounds.Left + e.MarginBounds.Width - x;
-                    
-                    if (fittedList2.Count == i)
-                    {
-                        
-                        e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName, Font,
-                        new SizeF(width, fontHeight),
-                        null, out int fitted, out int linesFilled);
-
-                        e.Graphics.DrawString(Var.PrintTable.Columns[i].ColumnName.Substring(0, fitted), Font, Brushes.Black, x, y);
-                        if (fitted == Var.PrintTable.Columns[i].ColumnName.Length)
-                            fittedList2.Add(-1);
-                        else
-                            fittedList2.Add(fitted);
-                    }
-                    else if (fittedList2[i] != -1)
+                   
+                    if (fittedList2[i] != -1)
                     {
                         e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList2[i]), Font,
                         new SizeF(width, fontHeight),
@@ -2761,26 +2758,22 @@ namespace JsonEditorV2
                     y = e.MarginBounds.Top + (int)(lineCount * (fontHeight + lineSpaceing));
                     x = e.MarginBounds.Left;                    
                     for (int j = 0; j < Var.PrintTable.Columns.Count; j++)
-                    {   
+                    {
+                        if (Var.PrintFittedList.Count == j)
+                            Var.PrintFittedList.Add(0);
+
                         if (x > e.MarginBounds.Left + e.MarginBounds.Width)
+                        {
+                            Var.PrintFittedList[j] = -1;
                             continue;
+                        }
+                            
 
                         width = float.Parse(Var.PrintTable.Columns[j].DefaultValue.ToString());
                         if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
                             width = e.MarginBounds.Left + e.MarginBounds.Width - x;
-                        if (Var.PrintFittedList.Count == j)
-                        {                            
-                            e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString(), Font,
-                            new SizeF(width, fontHeight),
-                            null, out int fitted, out int linesFilled);
-
-                            e.Graphics.DrawString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(0, fitted), Font, Brushes.Black, x, y);
-                            if (fitted == Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Length)
-                                Var.PrintFittedList.Add(-1);
-                            else
-                                Var.PrintFittedList.Add(fitted);
-                        }
-                        else if (Var.PrintFittedList[j] != -1)
+                       
+                        if (Var.PrintFittedList[j] != -1)
                         {
                             e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(Var.PrintFittedList[j]), Font,
                             new SizeF(width, fontHeight),
@@ -2806,7 +2799,7 @@ namespace JsonEditorV2
             }
 
             Var.PrintPageIndex++;
-            e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Top + e.MarginBounds.Height + (e.MarginBounds.Bottom - fontHeight) / 2);
+            e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
         }
     }
