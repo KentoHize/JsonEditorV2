@@ -627,6 +627,9 @@
   <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
     开启
   </data>
+  <data name="JE_TMI_PRINT_LIST" xml:space="preserve">
+    列印清单
+  </data>
   <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
     重新整理
   </data>
