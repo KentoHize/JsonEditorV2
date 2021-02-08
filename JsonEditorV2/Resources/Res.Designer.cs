@@ -1591,6 +1591,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   列印清單 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string JE_TMI_PRINT_LIST {
+            get {
+                return ResourceManager.GetString("JE_TMI_PRINT_LIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   重新整理 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string JE_TMI_REFRESH_FILES {

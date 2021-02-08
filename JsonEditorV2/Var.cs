@@ -29,6 +29,9 @@ namespace JsonEditorV2
 
         public static List<string> RenamedFiles { get; set; } = new List<string>(); //被改名檔案
         public static List<string> DeleteFiles { get; set; } = new List<string>(); //被刪除檔案
+        public static List<string> PrintStrings { get; set; } = new List<string>(); //待列印字串
+        public static int PrintLineIndex;
+        public static int PrintPageIndex;
 
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }

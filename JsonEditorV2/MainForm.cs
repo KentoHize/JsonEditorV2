@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -81,6 +82,7 @@ namespace JsonEditorV2
             tmiSaveJsonFiles.Text = Res.JE_TMI_SAVE_JSON_FILES;
             tmiSaveAsJsonFiles.Text = Res.JE_TMI_SAVE_AS_JSON_FILES;
             tmiCloseAllFiles.Text = Res.JE_TMI_CLOSE_ALL_FILES;
+            tmiPrintList.Text = Res.JE_TMI_PRINT_LIST;
             tmiExportFiles.Text = Res.JE_TMI_EXPORT;
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
@@ -508,8 +510,8 @@ namespace JsonEditorV2
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-            
-            string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");            
+
+            string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -584,7 +586,7 @@ namespace JsonEditorV2
             //讀取JFI失敗跳出
             if (!LoadJFilesInfo(Var.JFI.FileInfoPath))
             {
-                tmiCloseAllFiles_Click(this, e);                
+                tmiCloseAllFiles_Click(this, e);
                 return;
             }
             Var.JFI.DirectoryPath = fbdMain.SelectedPath;
@@ -781,6 +783,7 @@ namespace JsonEditorV2
             Var.LockPnlMain = true;
             dgvLines.DataSource = null;
             btnNewLine.Enabled =
+            tmiPrintList.Enabled =
             cobFindColumnName.Enabled =
             btnLineMoveUp.Enabled =
             btnLineMoveDown.Enabled =
@@ -844,6 +847,7 @@ namespace JsonEditorV2
 
             btnNewLine.Enabled =
             cobFindColumnName.Enabled =
+            tmiPrintList.Enabled =
             btnFindConfirm.Enabled = true;
             btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1 && Var.SelectedLineIndex != -1;
             btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0 && Var.SelectedLineIndex != -1;
@@ -1025,7 +1029,7 @@ namespace JsonEditorV2
             if (Var.SelectedColumn != null)
             {
                 cobColumnType.SelectedIndex = cobColumnType.Items.IndexOf(Var.SelectedColumn.Type);
-                
+
                 txtColumnName.Text = Var.SelectedColumn.Name;
                 ckbColumnDisplay.Checked = Var.SelectedColumn.Display;
                 ckbColumnIsKey.Checked = Var.SelectedColumn.IsKey;
@@ -1910,7 +1914,7 @@ namespace JsonEditorV2
 
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
-            {   
+            {
                 using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Open))
                 {
                     using (StreamReader sr = new StreamReader(fs))
@@ -1939,8 +1943,8 @@ namespace JsonEditorV2
                     }
                 }
             }
-            
-            ChangeCulture();            
+
+            ChangeCulture();
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -2463,7 +2467,7 @@ namespace JsonEditorV2
 
         private static XmlDocument JTableToXml(JTable jt)
         {
-            XmlDocument xdoc = new XmlDocument();            
+            XmlDocument xdoc = new XmlDocument();
             XmlDeclaration xmlDeclaration = xdoc.CreateXmlDeclaration("1.0", "UTF-8", null);
             XmlElement root = xdoc.CreateElement("DataSet");
             xdoc.AppendChild(root);
@@ -2654,8 +2658,73 @@ namespace JsonEditorV2
 
         private void cobCheckMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cobCheckMethod.SelectedValue != null && !Var.LockCobCheckMethod)
+            if (cobCheckMethod.SelectedValue != null && !Var.LockCobCheckMethod)
                 Setting.TableCheckMethod = (ValueCheckMethod)cobCheckMethod.SelectedValue;
+        }
+
+        private void tmiPrintList_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedTable == null)
+                return;
+
+            DialogResult dr = prdMain.ShowDialogOrSetResult();
+            if (dr != DialogResult.OK)
+                return;
+            PrintDocument pd = new PrintDocument();
+            pd.PrinterSettings = prdMain.PrinterSettings;
+            pd.PrintPage += Pd_PrintPage;
+
+            Var.PrintStrings.Clear();
+            Var.PrintStrings.Add(Var.SelectedTable.Name.Replace("\n", " "));
+
+            StringBuilder s = new StringBuilder();
+            for (int i = 0; i < dgvLines.Columns.Count; i++)
+                if (dgvLines.Columns[i].Visible)
+                    s.AppendFormat("{0},", dgvLines.Columns[i].HeaderText.Replace("\n", " "));
+
+            Var.PrintStrings.Add(s.ToString());
+            for (int i = 0; i < dgvLines.Rows.Count; i++)
+            {
+                s = new StringBuilder();
+                for (int j = 0; j < dgvLines.Columns.Count; j++)
+                {
+                    if (!dgvLines.Columns[j].Visible)
+                        continue;
+                    s.Append(dgvLines[j, i].Value).Replace("\n", " ");
+                    s.Append(",");
+                }
+                Var.PrintStrings.Add(s.ToString());
+            }
+            Var.PrintLineIndex = 0;
+            pd.Print();
+        }
+
+        private void Pd_PrintPage(object sender, PrintPageEventArgs e)
+        {            
+            e.HasMorePages = false;
+            if (Var.PrintStrings.Count == 0)
+                return;
+
+            e.Graphics.DrawString(Var.PrintStrings[0], Font, Brushes.Black, 2, 2);
+            Var.PrintLineIndex++;
+
+            int linesPerPage = Convert.ToInt32(Math.Ceiling((double)e.MarginBounds.Height / (double)Font.GetHeight(e.Graphics)));
+            int lineSpaceing = 2;
+            int startX = 10;
+            int startY = 10;
+            int columnWidth;
+            int lineCount = 0;
+
+            while (lineCount < linesPerPage && Var.PrintLineIndex < Var.PrintStrings.Count)
+            {
+                e.Graphics.DrawString(Var.PrintStrings[Var.PrintLineIndex], Font, Brushes.Black, startX, lineCount * (Font.GetHeight(e.Graphics) + lineSpaceing) + 30);
+                Var.PrintLineIndex++;
+                lineCount++;
+            }
+
+
+            if (Var.PrintLineIndex < Var.PrintStrings.Count)
+                e.HasMorePages = true;
         }
     }
 }

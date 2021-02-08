@@ -624,6 +624,9 @@
   <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
     <value>Open</value>
   </data>
+  <data name="JE_TMI_PRINT_LIST" xml:space="preserve">
+    <value>Print List</value>
+  </data>
   <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
     <value>Refresh</value>
   </data>
