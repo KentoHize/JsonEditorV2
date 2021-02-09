@@ -2310,7 +2310,18 @@ namespace JsonEditorV2
                 totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
 
             if (dgvLines.Columns.Count > 2 && dgvLines.Width - totalColumnWidth > 0)
-                dgvLines.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            {
+                int addWidth = (dgvLines.Width - totalColumnWidth) / (dgvLines.Columns.Count - 2) - 1;
+                totalColumnWidth = 0;
+                for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
+                {
+                    dgvLines.Columns[i].Width += addWidth;
+                    if (i == dgvLines.Columns.Count - 3)
+                        dgvLines.Columns[i].Width = dgvLines.Width - totalColumnWidth - 3;
+                    else
+                        totalColumnWidth += dgvLines.Columns[i].Width + dgvLines.Columns[i].DividerWidth;
+                }
+            }
 
             for (int i = 0; i < dgvLines.Rows.Count; i++)
                 if (dgvLines.Rows[i].Cells[dgvLines.Columns.Count - 1].Value != DBNull.Value)
