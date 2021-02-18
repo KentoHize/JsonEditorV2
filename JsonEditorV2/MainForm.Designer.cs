@@ -79,7 +79,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,6 +156,7 @@
             this.cobCheckMethod = new System.Windows.Forms.ComboBox();
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -745,18 +745,6 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -820,12 +808,11 @@
             this.tmiScan.Name = "tmiScan";
             this.tmiScan.Size = new System.Drawing.Size(224, 26);
             this.tmiScan.Text = "X";
-            this.tmiScan.Click += new System.EventHandler(this.tmiScan_Click);
             // 
             // tmiScanCSVFiles
             // 
             this.tmiScanCSVFiles.Name = "tmiScanCSVFiles";
-            this.tmiScanCSVFiles.Size = new System.Drawing.Size(224, 26);
+            this.tmiScanCSVFiles.Size = new System.Drawing.Size(101, 26);
             this.tmiScanCSVFiles.Text = "X";
             this.tmiScanCSVFiles.Click += new System.EventHandler(this.tmiScanCSVFile_Click);
             // 
@@ -885,14 +872,14 @@
             // tmiExportToCsvFiles
             // 
             this.tmiExportToCsvFiles.Name = "tmiExportToCsvFiles";
-            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToCsvFiles.Text = "X";
             this.tmiExportToCsvFiles.Click += new System.EventHandler(this.tmiExportToCsvFiles_Click);
             // 
             // tmiExportToXmlFiles
             // 
             this.tmiExportToXmlFiles.Name = "tmiExportToXmlFiles";
-            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToXmlFiles.Text = "X";
             this.tmiExportToXmlFiles.Click += new System.EventHandler(this.tmiExportToXmlFiles_Click);
             // 
@@ -1405,6 +1392,18 @@
             // prdMain
             // 
             this.prdMain.UseEXDialog = true;
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
             // 
             // MainForm
             // 

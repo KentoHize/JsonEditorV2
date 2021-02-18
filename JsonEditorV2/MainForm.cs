@@ -2818,10 +2818,5 @@ namespace JsonEditorV2
             e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
         }
-
-        private void tmiScan_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
