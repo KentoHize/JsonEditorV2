@@ -443,6 +443,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_NEW_JSON_FILE) == DialogResult.Cancel)
                 return;
+            fbdMain.SelectedPath = Application.StartupPath;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\";
 #endif
@@ -504,6 +505,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
                 return;
+            fbdMain.SelectedPath = Application.StartupPath;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestData\";
 #endif
@@ -554,6 +556,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_LOAD_JSON_FILES) == DialogResult.Cancel)
                 return;
+            fbdMain.SelectedPath = Application.StartupPath;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
@@ -1218,6 +1221,7 @@ namespace JsonEditorV2
 
         public void tmiSaveAsJsonFiles_Click(object sender, EventArgs e)
         {
+            fbdMain.SelectedPath = Var.JFI.DirectoryPath;
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
@@ -2558,6 +2562,7 @@ namespace JsonEditorV2
         {
             if (AskSaveFiles(Res.JE_TMI_SCAN_JSON_FILES) == DialogResult.Cancel)
                 return;
+            fbdMain.SelectedPath = Application.StartupPath;
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Test1";
 #endif
@@ -2812,6 +2817,11 @@ namespace JsonEditorV2
             Var.PrintPageIndex++;
             e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
+        }
+
+        private void tmiScan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
