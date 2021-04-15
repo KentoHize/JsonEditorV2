@@ -607,20 +607,23 @@ namespace JsonEditorV2
                 JTableInfo jti = Var.JFI.TablesInfo.Find(m => m.Name == table.Name);
                 if (jti == null)
                 {
-                    //沒找到相關資料，錯誤訊息後關閉
-                    RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
-                    tmiCloseAllFiles_Click(this, e);
-                    return;
+                    //改用Scan                    
+                    LoadOrScanJsonFile(table, true);
+                    //RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_4", Res.JE_TMI_LOAD_JSON_FILES, table.Name);
+                    //tmiCloseAllFiles_Click(this, e);
+                    //return;
                 }
-                table.Columns = jti.Columns;
-
-                //小檔案直接讀取 - 失敗時關閉
-                if (fi.Length < Setting.DontLoadFileBytesThreshold)
-                    if (!LoadOrScanJsonFile(table))
-                    {
-                        tmiCloseAllFiles_Click(this, e);
-                        return;
-                    }
+                else
+                {
+                    table.Columns = jti.Columns;
+                    //小檔案直接讀取 - 失敗時關閉
+                    if (fi.Length < Setting.DontLoadFileBytesThreshold)
+                        if (!LoadOrScanJsonFile(table))
+                        {
+                            tmiCloseAllFiles_Click(this, e);
+                            return;
+                        }
+                }
                 Var.Tables.Add(table);
             }
 
@@ -2307,7 +2310,7 @@ namespace JsonEditorV2
             }
             else
                 dgvLines.Columns[dgvLines.Columns.Count - 2].Visible = false;
-            dgvLines.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);            
+            dgvLines.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
             int totalColumnWidth = 0;
             for (int i = 0; i < dgvLines.Columns.Count - 2; i++)
@@ -2720,7 +2723,7 @@ namespace JsonEditorV2
                 return;
 
             int y, x, lineCount = 0, lineSpaceing = 5;
-            float width,fontHeight = Font.GetHeight(e.Graphics);
+            float width, fontHeight = Font.GetHeight(e.Graphics);
             int linesPerPage = Convert.ToInt32(Math.Ceiling((double)e.MarginBounds.Height / (double)(fontHeight + lineSpaceing)));
 
             SizeF nameSize = e.Graphics.MeasureString(Var.PrintTable.TableName, Font,
@@ -2728,8 +2731,8 @@ namespace JsonEditorV2
                         null, out _, out _);
 
             e.Graphics.DrawString(Var.PrintTable.TableName, Font, Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width - nameSize.Width) / 2, (e.MarginBounds.Top - fontHeight) / 2);
-            
-            List<int> fittedList2 = new List<int>();            
+
+            List<int> fittedList2 = new List<int>();
             do
             {
                 y = e.MarginBounds.Top + (int)(lineCount * (fontHeight + lineSpaceing));
@@ -2743,12 +2746,12 @@ namespace JsonEditorV2
                     {
                         fittedList2[i] = -1;
                         continue;
-                    }   
+                    }
 
                     width = float.Parse(Var.PrintTable.Columns[i].DefaultValue.ToString());
                     if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
                         width = e.MarginBounds.Left + e.MarginBounds.Width - x;
-                   
+
                     if (fittedList2[i] != -1)
                     {
                         e.Graphics.MeasureString(Var.PrintTable.Columns[i].ColumnName.Substring(fittedList2[i]), Font,
@@ -2768,11 +2771,11 @@ namespace JsonEditorV2
             while (!fittedList2.TrueForAll(m => m == -1));
 
             while (lineCount < linesPerPage && Var.PrintLineIndex < Var.PrintTable.Rows.Count)
-            {   
+            {
                 do
                 {
                     y = e.MarginBounds.Top + (int)(lineCount * (fontHeight + lineSpaceing));
-                    x = e.MarginBounds.Left;                    
+                    x = e.MarginBounds.Left;
                     for (int j = 0; j < Var.PrintTable.Columns.Count; j++)
                     {
                         if (Var.PrintFittedList.Count == j)
@@ -2783,12 +2786,12 @@ namespace JsonEditorV2
                             Var.PrintFittedList[j] = -1;
                             continue;
                         }
-                            
+
 
                         width = float.Parse(Var.PrintTable.Columns[j].DefaultValue.ToString());
                         if (x + width > e.MarginBounds.Left + e.MarginBounds.Width)
                             width = e.MarginBounds.Left + e.MarginBounds.Width - x;
-                       
+
                         if (Var.PrintFittedList[j] != -1)
                         {
                             e.Graphics.MeasureString(Var.PrintTable.Rows[Var.PrintLineIndex].ItemArray[j].ToString().Substring(Var.PrintFittedList[j]), Font,
