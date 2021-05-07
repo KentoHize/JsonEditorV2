@@ -433,6 +433,9 @@ namespace JsonEditor
                 }
                 postion++;
             }
+            if(value.Length != 0)
+                Lines[Lines.Count - 1].Add(value.ToString());
+
             while (columnIndex < columnCount)
             {
                 Lines[Lines.Count - 1].Add("");
@@ -453,6 +456,7 @@ namespace JsonEditor
                 Columns[i].Display = i == 0;
             }
             Loaded = true;
+            Changed = true;
         }
 
         /// <summary>
