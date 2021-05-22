@@ -1651,7 +1651,7 @@ namespace JsonEditorV2
 
         public void tmiRenameJsonFile_Click(object sender, EventArgs e)
         {
-            string newName = frmInputBox.Show(this, InputBoxTypes.RenameFile);
+            string newName = frmInputBox.Show(this, InputBoxTypes.RenameFile, Var.SelectedColumnParentTable.Name);
             if (string.IsNullOrEmpty(newName))
                 return;
 
@@ -2056,8 +2056,8 @@ namespace JsonEditorV2
             if (!Var.SelectedColumnParentTable.Loaded)
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
-
-            string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
+            
+            string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn, Var.SelectedColumn.Name);
             if (string.IsNullOrEmpty(newName))
                 return;
 
@@ -2391,7 +2391,7 @@ namespace JsonEditorV2
 
         private void tmiRenameDatabase_Click(object sender, EventArgs e)
         {
-            string newName = frmInputBox.Show(this, InputBoxTypes.RenameDataBase);
+            string newName = frmInputBox.Show(this, InputBoxTypes.RenameDataBase, Var.JFI.Name);
             if (string.IsNullOrEmpty(newName))
                 return;
 

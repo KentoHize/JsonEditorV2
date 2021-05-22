@@ -29,9 +29,10 @@ namespace JsonEditorV2
         public InputBoxTypes InputBoxType { get; set; }
         public string ReturnValue { get; set; }
 
-        public static string Show(IWin32Window owner, InputBoxTypes type)
+        public static string Show(IWin32Window owner, InputBoxTypes type, string defaultText = "")
         {            
-            frmInputBox frmInputBox = new frmInputBox(type);            
+            frmInputBox frmInputBox = new frmInputBox(type);
+            frmInputBox.txtInput.Text = defaultText;
             frmInputBox.ShowDialogOrCallEvent(owner);
             return frmInputBox.ReturnValue;
         }
