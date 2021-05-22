@@ -294,6 +294,9 @@
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
     <value>錯誤</value>
   </data>
+  <data name="JE_ERR_EMPTY_FK_TABLE" xml:space="preserve">
+    <value>"{0}"資料數為0</value>
+  </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
     <value>JSON關聯檔案格式不正確：{0}</value>
   </data>

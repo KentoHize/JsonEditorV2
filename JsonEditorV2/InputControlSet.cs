@@ -1,4 +1,5 @@
-﻿using JsonEditor;
+﻿using Aritiafel.Organizations;
+using JsonEditor;
 using JsonEditorV2.Resources;
 using System;
 using System.Collections.Generic;
@@ -156,9 +157,15 @@ namespace JsonEditorV2
             if (!JColumn.IsNullable)
                 NullCheckBox.Checked = false;
             if (!string.IsNullOrEmpty(JColumn.FKTable) && !string.IsNullOrEmpty(JColumn.FKColumn))
-            {
+            {                
                 NameLabel.Focus();
                 JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
+                
+                if (fkTable.Lines.Count == 0)
+                {
+                    RabbitCouriers.SentWarningMessageByResource("JE_ERR_EMPTY_FK_TABLE", Res.JE_ERR_DEFAULT_TITLE, fkTable.Name);
+                    return;
+                }                    
 
                 object newValue = frmFKTable.Show(ownerWindow, JColumn.Name, fkTable, JColumn.FKColumn, ValueControl.Text);
                 if (newValue != null)
