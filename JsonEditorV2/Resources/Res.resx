@@ -564,8 +564,14 @@
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     <value>收縮全部</value>
   </data>
+  <data name="JE_TMI_COLUMN_MOVE_BOTTOM" xml:space="preserve">
+    <value>置底</value>
+  </data>
   <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
     <value>下移</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_TOP" xml:space="preserve">
+    <value>置頂</value>
   </data>
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     <value>上移</value>

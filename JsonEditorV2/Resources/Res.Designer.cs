@@ -1402,11 +1402,29 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 置底.
+        /// </summary>
+        public static string JE_TMI_COLUMN_MOVE_BOTTOM {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_MOVE_BOTTOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 下移.
         /// </summary>
         public static string JE_TMI_COLUMN_MOVE_DOWN {
             get {
                 return ResourceManager.GetString("JE_TMI_COLUMN_MOVE_DOWN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 置頂.
+        /// </summary>
+        public static string JE_TMI_COLUMN_MOVE_TOP {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_MOVE_TOP", resourceCulture);
             }
         }
         

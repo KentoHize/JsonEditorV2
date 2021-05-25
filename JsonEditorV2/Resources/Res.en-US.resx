@@ -561,8 +561,14 @@
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     <value>Collapse All</value>
   </data>
+  <data name="JE_TMI_COLUMN_MOVE_BOTTOM" xml:space="preserve">
+    <value>Set To Bottom</value>
+  </data>
   <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
     <value>Move Down</value>
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_TOP" xml:space="preserve">
+    <value>Set To Top</value>
   </data>
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     <value>Move Up</value>

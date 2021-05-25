@@ -107,8 +107,10 @@ namespace JsonEditorV2
             tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
             tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
             tmiColumnShowOnList.Text = Res.JE_TMI_COLUMN_SHOW_ON_LIST;
+            tmiColumnMoveTop.Text = Res.JE_TMI_COLUMN_MOVE_TOP;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
             tmiColumnMoveDown.Text = Res.JE_TMI_COLUMN_MOVE_DOWN;
+            tmiColumnMoveBottom.Text = Res.JE_TMI_COLUMN_MOVE_BOTTOM;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
 
@@ -1805,6 +1807,34 @@ namespace JsonEditorV2
             RefreshPnlMainValue();
         }
 
+        public void tmiColumnMoveTop_Click(object sender, EventArgs e)
+        {
+            int index = Var.SelectedColumnIndex;
+            if (index == 0)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_COLUMN_MOVE_UP_M_1", Res.JE_RUN_COLUMN_MOVE_TITLE, Var.SelectedColumn.Name);
+                return;
+            }
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+            {
+                object jv = jl[index];
+                for (int i = index; i > 0; i--)
+                    jl[i] = jl[i - 1];
+                jl[0] = jv;
+            }
+
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+
+            RefreshTrvJsonFiles();
+            RefreshTbcMain();
+        }
+
         public void tmiColumnMoveUp_Click(object sender, EventArgs e)
         {
             int index = Var.SelectedColumnIndex;
@@ -1867,6 +1897,10 @@ namespace JsonEditorV2
             RefreshTbcMain();
         }
 
+        public void tmiColumnMoveBottom_Click(object sender, EventArgs e)
+        {
+
+        }
         public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool FKIsEmpty = cobColumnFKColumn.SelectedIndex == -1;
@@ -2821,5 +2855,7 @@ namespace JsonEditorV2
             e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
         }
+
+        
     }
 }
