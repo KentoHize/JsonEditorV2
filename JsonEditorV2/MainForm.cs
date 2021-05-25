@@ -1828,6 +1828,11 @@ namespace JsonEditorV2
                 jl[0] = jv;
             }
 
+            JColumn jc = Var.SelectedColumnParentTable.Columns[index];
+            for (int i = index; i > 0; i--)
+                Var.SelectedColumnParentTable.Columns[i] = Var.SelectedColumnParentTable.Columns[i - 1];
+            Var.SelectedColumnParentTable.Columns[0] = jc;
+
             Var.SelectedColumnParentTable.Changed = true;
             Var.JFI.Changed = true;
 
@@ -1899,7 +1904,35 @@ namespace JsonEditorV2
 
         public void tmiColumnMoveBottom_Click(object sender, EventArgs e)
         {
+            int index = Var.SelectedColumnIndex;
+            if (index == Var.SelectedColumnParentTable.Columns.Count - 1)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_COLUMN_MOVE_DOWN_M_1", Res.JE_RUN_COLUMN_MOVE_TITLE, Var.SelectedColumn.Name);
+                return;
+            }
 
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+            {
+                object jv = jl[index];
+                for (int i = index; i < jl.Count - 1; i++)
+                    jl[i] = jl[i + 1];
+                jl[jl.Count - 1] = jv;
+            }
+
+            JColumn jc = Var.SelectedColumnParentTable.Columns[index];
+            for (int i = index; i < Var.SelectedColumnParentTable.Columns.Count - 1; i++)
+                Var.SelectedColumnParentTable.Columns[i] = Var.SelectedColumnParentTable.Columns[i + 1];
+            Var.SelectedColumnParentTable.Columns[Var.SelectedColumnParentTable.Columns.Count - 1] = jc;
+
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+
+            RefreshTrvJsonFiles();
+            RefreshTbcMain();
         }
         public void cobColumnFKColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
