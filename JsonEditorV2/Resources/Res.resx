@@ -270,6 +270,9 @@
   <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
     <value>CSV檔案(*.csv)</value>
   </data>
+  <data name="JE_DIALOG_CS_FILE_FULL_NAME" xml:space="preserve">
+    <value>CS檔案(*.cs)</value>
+  </data>
   <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
     <value>XML檔案(*.xml)</value>
   </data>
@@ -606,7 +609,7 @@
   <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
     <value>輸出</value>
   </data>
-  <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
+  <data name="JE_TMI_EXPORT_TO_CS" xml:space="preserve">
     <value>輸出為C# Class檔案</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
@@ -614,6 +617,9 @@
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV_FILE" xml:space="preserve">
     <value>輸出為CSV檔案</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
+    <value>輸出為C# Class檔案</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     <value>輸出為XML檔案</value>

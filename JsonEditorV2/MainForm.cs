@@ -86,7 +86,7 @@ namespace JsonEditorV2
             tmiExportFiles.Text = Res.JE_TMI_EXPORT;
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
-            tmiExportToCSFile.Text = Res.JE_TMI_EXPORT_TO_CSHARP_CLASS;
+            tmiExportToCSFiles.Text = Res.JE_TMI_EXPORT_TO_CS;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
@@ -95,6 +95,7 @@ namespace JsonEditorV2
             tmiExportFile.Text = Res.JE_TMI_EXPORT_FILE;
             tmiExportCsvFile.Text = Res.JE_TMI_EXPORT_TO_CSV_FILE;
             tmiExportXmlFile.Text = Res.JE_TMI_EXPORT_TO_XML_FILE;
+            tmiExportCSFile.Text = Res.JE_TMI_EXPORT_TO_CS_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
@@ -2238,7 +2239,7 @@ namespace JsonEditorV2
         }
 
         private void tmiJsonEditorBackup_Click(object sender, EventArgs e)
-        {
+        {            
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
             string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
@@ -2638,7 +2639,7 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        public void tmiExportToCSFile_Click(object sender, EventArgs e)
+        public void tmiExportToCSFiles_Click(object sender, EventArgs e)
         {
             fbdMain.SelectedPath = Var.JFI.DirectoryPath;
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
@@ -2787,6 +2788,23 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
+        public void tmiExportCSFile_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumnParentTable == null)
+                return;
+
+            sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
+            sfdMain.FileName = $"{Var.SelectedColumnParentTable.Name}.cs";
+            sfdMain.Filter = $"{Res.JE_DIALOG_CS_FILE_FULL_NAME}|*.cs|{Res.JE_DIALOG_ALL_FILES}|*.*";
+            DialogResult dr = sfdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            SaveCSFile(Var.SelectedColumnParentTable, sfdMain.FileName, Var.Database.Name);
+
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1, sfdMain.FileName);
+            RefreshTrvJsonFiles();
+        }
         private void cobCheckMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cobCheckMethod.SelectedValue != null && !Var.LockCobCheckMethod)

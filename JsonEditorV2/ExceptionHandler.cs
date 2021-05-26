@@ -140,7 +140,7 @@ namespace JsonEditorV2
             => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_CSV_FAILED", Res.JE_TMI_EXPORT_TO_CSV, file);
         
         public static void SaveCSFileFailed(Exception ex, string file)
-            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_CS_FAILED", Res.JE_TMI_EXPORT_TO_CSHARP_CLASS, file);
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_CS_FAILED", Res.JE_TMI_EXPORT_TO_CS, file);
 
         public static void TableConvertToXMLFailed(Exception ex, JTable jt)
             => RabbitCouriers.SentErrorMessageByResource("JE_ERR_TABLE_CONVERT_TO_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, jt.Name, ex.Message);

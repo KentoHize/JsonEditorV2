@@ -234,108 +234,6 @@
   <metadata name="lblColumnName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="lblColumnChoiceName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnChoicesCount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="btnColumnEditChoices.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnChoices.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ckbColumnAutoGenerateKey.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblAutoGenerateKey.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ckbColumnIsUnique.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnIsUnique.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnMaxLength.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnMaxLength.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnDescription.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnDescription.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnMaxValue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnMinValue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnMaxValue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnMinValue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ckbColumnIsNullable.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnlIsNullable.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnRegex.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnRegex.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cobColumnFKColumn.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnFKColumn.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cobColumnFKTable.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnNumberOfRows.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnNumberOfRows.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ckbColumnDisplay.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ckbColumnIsKey.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="cobColumnType.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="txtColumnName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnFKTable.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnDisplay.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnIsKey.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnType.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="lblColumnName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="trvJsonFiles.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -346,65 +244,65 @@
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABm
-        DQAAAk1TRnQBSQFMAgEBCAEAAfgBBAH4AQQBEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
-        AwABMAMAAQEBAAEQBgABGP8A/wD/AP8A/wD/AP8A/wCmAAH/AX8B/wF/Af8BfwH/AX8uAAH/AX8B9wFe
-        Ad4Be0IAAd4BewgAAd4BexYAAf8BfwExAUYBUgFKAf8Bfw4AAfcBXgIAAWMBDAG9AXdAAAHeAXsIAAHe
-        AXsUAAH/AX8BMQFGBAABUgFKAf8BfwwAAd4BewFjAQwCAAFjAQwBvQF3PgAB3gF7CAAB3gF7EgAB/wF/
-        ATEBRggAAVIBSgH/AX8MAAG9AXcBYwEMAgABYwEMAb0BdwG9AXcB1gFaAVIBSgHWAVoBvQF3MgAB3gF7
-        CAAB3gF7EAAB/wF/ATEBRgwAAVIBSgH/AX8MAAG9AXcBYwEMAgABQgEIAgABQgIIASEBQgEIAgABcwFO
-        Af8Bfy4AAd4BewgAAd4Bew4AAf8BfwExAUYQAAFSAUoB/wF/DAABvQF3AUIBCAEhAQQBGAFjAf8BfwIA
-        Af8BfwH3AV4CAAFzAU4uAAHeAXsIAAHeAXsOAAH/AX8BMQFGATEBRgHvAT0IAAHvAT0BMQFGATEBRgH/
-        AX8MAAG9AXcCAAEYAWMKAAHWAVoCAAHeAXsmAAH/AX8BMQFGATEBRgHvAT0IAAHvAT0BMQFGATEBRgH/
-        AX8OAAHeAXsIAAHeAXsSAAHWAVoBQgEIAf8BfwoAAf8BfwEhAQQB9wFeJgAB/wF/AVIBShAAATEBRgH/
-        AX8OAAHeAXsIAAHeAXsSAAFSAUoBCAEhCgABtQFWAf8BfwGlARQBtQFWKAAB/wF/AVIBSgwAATEBRgH/
-        AX8QAAHeAXsIAAHeAXsSAAHWAVoBQgEIAf8BfwYAAVoBawFCAQgB3gF7AgABGAFjKgAB/wF/AVIBSggA
-        ATEBRgH/AX8SAAHeAXsIAAHeAXsSAAG9AXcCAAH3AV4EAAGUAVIBQgEIAXsBbwG1AVYCAAHeAXssAAH/
-        AX8BUgFKBAABMQFGAf8BfxQAAd4BewgAAd4BexQAAXMBTgIAAdYBWgH/AX8B/wF/Ad4BewG1AVYCAAG1
-        AVYwAAH/AX8BUgFKATEBRgH/AX8WAAHeAXsIAAHeAXsUAAH/AX8BcwFOAgABIQEEAaUBFAQAAbUBVgH/
-        AX9QAAH/AX8B/wF/Af8BfwH/AX8aAAHeAXsB9wFeAbUBVgEYAWMB3gF7HgAB/wF/iAAB3gF7Ad4BewGc
-        AXMBnAFzAZwBcwGcAXMBnAFzAZwBcwGcAXMBnAFzAZwBcwGcAXMBnAFzAb0BdwHeAXsB3gF7CgABGAFj
-        ARgBYwEYAWMBGAFjARgBYwEYAWMBOQFnKAAB/wF/Af8BfwH/AX8B/wF/AgAB/wF/Af8BfwH/AX8B/wF/
-        Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwHeAXsBjAExAYwBMQGMATEBjAExAYwBMQGMATEBjAEx
-        AYwBMQGMATEBjAExAYwBMQGMATEBCAEhATkBZwHeAXsGAAGcAXMmAAFjAQwGAAHOATkIAAH/AX8B/wF/
-        CAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Ad4BewEpASUB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4BcwFOAd4BeyYAAf8BfxgAAf8BfwH/
-        AX8GAAH/AX8CAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwHeAXsBxgEYAb0BdwHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsBnAFzAc4BOQHeAXtAAAH/AX8B/wF/
-        Ab0BdwoAAf8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7AaUBFAEYAWMB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewGMATEB3gF7QAAB/wF/Af8BfwH/AX8BvQF3
-        BgAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7AcYBGAFzAU4B3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewGMATEB3gF7CgABQgEIAfcBXgIAATEBRi4A
-        Af8BfwH/AX8B/wF/Af8BfwGcAXMEAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwHe
-        AXsBawEtAc4BOQHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Aa0BNQG9
-        AXcMAAH3AV4BCAEhAUIBCC4AAf8BfwH/AX8B/wF/Af8BfwH/AX8BewFvBAAB/wF/Af8BfwH/AX8B/wF/
-        Af8BfwH/AX8B/wF/Af8BfwHeAXsBjAExAYwBMQHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7AVIBSgEYAWMuAAHnARwCAAEYAWMMAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwF7
-        AW8EAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7AYwBMQGMATEB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewH3AV4BcwFOKgAB/wF/FAAB/wF/Af8BfwH/AX8B/wF/
-        Af8BfwH/AX8B/wF/AXsBbwwAAf8BfwH/AX8B3gF7AYwBMQGtATUBvQF3Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewGcAXMBzgE5QAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/
-        Af8BfwF7AW8MAAH/AX8B3gF7AYwBMQFSAUoBGAFjAd4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
-        AXsB3gF7Ad4BewHeAXsBjAExKAABvQF3DgABtQFWBgAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/
-        Af8BfwH/AX8EAAH/AX8B/wF/BAAB/wF/Ad4BewGMATEBewFvAWsBLQFKASkBSgEpAUoBKQFKASkBSgEp
-        AUoBKQFKASkBSgEpAUoBKQFKASkBhAEQAbUBVkAAAf8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/
-        AX8BEAFCAgABcwFOAf8BfwH/AX8BSgEpAgABGAFjAd4BewGMATEB3gF7Ad4BewHeAXsB3gF7Ab0BdwG9
-        AXcBvQF3Ab0BdwG9AXcBvQF3Ab0BdwG9AXcBjAExAd4BeyYAARgBYxIAAd4BewQAAf8BfwH/AX8B/wF/
-        Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/BAAB/wF/Af8BfwQAAf8BfwHeAXsBjAExAd4BewHeAXsB3gF7
-        AfcBXgEpASUBawEtAWsBLQFrAS0BawEtAWsBLQFrAS0BawEtAXMBTgHeAXsGAAExAUYmAAG9AXcCAAEx
-        AUYMAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwwAAf8BfwHeAXsBzgE5AUoBKQFK
-        ASkBSgEpAUoBKQG9AXcB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsKAAFjAQwBQgEI
-        AUIBCAFCAQgBjAExLAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/CAAB/wF/
-        Af8BfwHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
-        Ad4BewHeAXtAAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/
-        AX8B/wF/Af8BfwH/AX8BQgFNAT4HAAE+AwABKAMAAUADAAEwAwABAQEAAQEFAAGAAQEWAAP/gQAG/wH8
-        AQMB/AE/Av8BjwH/AfgBAQH4AR8B/AE/AYcB/wH7Af0B+AEfAfgBHwGDAf8B+wH9AfgBHwHwAQ8BwAEP
-        AcMB/QH4AR8B4AEHAeABAwHbAf0B+AEfAcABAwHwAUMB2wH9AfgBHwHAAQMC8QHbAf0BwAEDAfgBHwLx
-        AdsB/QHAAQMB+AEfAfMB4QHbAf0B4AEHAfgBHwHxAcEB2wH9AfABDwH4AR8B8QGBAdgBAQH4AR8B+AEf
-        AfgBAwHfAe8B/AE/AfgBHwH4AQMB3wHvAv8B/AE/Af4BDwHAAQ8I/wIAAfgBDwH+AT8EAAHgAQcB+AEP
-        BAAB7wH7AeMBZwQAAe8B+wHPAXkEAAHvAfsB3wF9BAAB6AELAd8BfQQAAewBCwHfAX0EAAHvAfsB3gE9
-        BAAB7wH7AdgBnQQAAe8B+wHTAeUEAAHvAYMBxwHxBAAB7wGnAc8B+QQAAe8BjwLjBAAB4AEfAfgBjwQA
-        AfgBPwH+AT8EAAT/AgAL
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABk
+        DQAAAk1TRnQBSQFMAgEBCAIAAQUBAAEFARABAAEQAQAE/wERAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ATADAAEBAQABEAYAARj/AP8A/wD/AP8A/wD/AP8ApgAB/wF/Af8BfwH/AX8B/wF/LgAB/wF/AfcBXgHe
+        AXtCAAHeAXsIAAHeAXsWAAH/AX8BMQFGAVIBSgH/AX8OAAH3AV4CAAFjAQwBvQF3QAAB3gF7CAAB3gF7
+        FAAB/wF/ATEBRgQAAVIBSgH/AX8MAAHeAXsBYwEMAgABYwEMAb0Bdz4AAd4BewgAAd4BexIAAf8BfwEx
+        AUYIAAFSAUoB/wF/DAABvQF3AWMBDAIAAWMBDAG9AXcBvQF3AdYBWgFSAUoB1gFaAb0BdzIAAd4BewgA
+        Ad4BexAAAf8BfwExAUYMAAFSAUoB/wF/DAABvQF3AWMBDAIAAUIBCAIAAUICCAEhAUIBCAIAAXMBTgH/
+        AX8uAAHeAXsIAAHeAXsOAAH/AX8BMQFGEAABUgFKAf8BfwwAAb0BdwFCAQgBIQEEARgBYwH/AX8CAAH/
+        AX8B9wFeAgABcwFOLgAB3gF7CAAB3gF7DgAB/wF/ATEBRgExAUYB7wE9CAAB7wE9ATEBRgExAUYB/wF/
+        DAABvQF3AgABGAFjCgAB1gFaAgAB3gF7JgAB/wF/ATEBRgExAUYB7wE9CAAB7wE9ATEBRgExAUYB/wF/
+        DgAB3gF7CAAB3gF7EgAB1gFaAUIBCAH/AX8KAAH/AX8BIQEEAfcBXiYAAf8BfwFSAUoQAAExAUYB/wF/
+        DgAB3gF7CAAB3gF7EgABUgFKAQgBIQoAAbUBVgH/AX8BpQEUAbUBVigAAf8BfwFSAUoMAAExAUYB/wF/
+        EAAB3gF7CAAB3gF7EgAB1gFaAUIBCAH/AX8GAAFaAWsBQgEIAd4BewIAARgBYyoAAf8BfwFSAUoIAAEx
+        AUYB/wF/EgAB3gF7CAAB3gF7EgABvQF3AgAB9wFeBAABlAFSAUIBCAF7AW8BtQFWAgAB3gF7LAAB/wF/
+        AVIBSgQAATEBRgH/AX8UAAHeAXsIAAHeAXsUAAFzAU4CAAHWAVoB/wF/Af8BfwHeAXsBtQFWAgABtQFW
+        MAAB/wF/AVIBSgExAUYB/wF/FgAB3gF7CAAB3gF7FAAB/wF/AXMBTgIAASEBBAGlARQEAAG1AVYB/wF/
+        UAAB/wF/Af8BfwH/AX8B/wF/GgAB3gF7AfcBXgG1AVYBGAFjAd4Bex4AAf8Bf4gAAd4BewHeAXsBnAFz
+        AZwBcwGcAXMBnAFzAZwBcwGcAXMBnAFzAZwBcwGcAXMBnAFzAZwBcwG9AXcB3gF7Ad4BewoAARgBYwEY
+        AWMBGAFjARgBYwEYAWMBGAFjATkBZygAAf8BfwH/AX8B/wF/Af8BfwIAAf8BfwH/AX8B/wF/Af8BfwH/
+        AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7AYwBMQGMATEBjAExAYwBMQGMATEBjAExAYwBMQGM
+        ATEBjAExAYwBMQGMATEBjAExAQgBIQE5AWcB3gF7BgABnAFzJgABYwEMBgABzgE5CAAB/wF/Af8BfwgA
+        Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwHeAXsBKQElAd4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAXMBTgHeAXsmAAH/AX8YAAH/AX8B/wF/
+        BgAB/wF/AgAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7AcYBGAG9AXcB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7AZwBcwHOATkB3gF7QAAB/wF/Af8BfwG9
+        AXcKAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Ad4BewGlARQBGAFjAd4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsBjAExAd4Be0AAAf8BfwH/AX8B/wF/Ab0BdwYA
+        Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Ad4BewHGARgBcwFOAd4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsBjAExAd4BewoAAUIBCAH3AV4CAAExAUYuAAH/
+        AX8B/wF/Af8BfwH/AX8BnAFzBAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B3gF7
+        AWsBLQHOATkB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewGtATUBvQF3
+        DAAB9wFeAQgBIQFCAQguAAH/AX8B/wF/Af8BfwH/AX8B/wF/AXsBbwQAAf8BfwH/AX8B/wF/Af8BfwH/
+        AX8B/wF/Af8BfwH/AX8B3gF7AYwBMQGMATEB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewFSAUoBGAFjLgAB5wEcAgABGAFjDAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8BewFv
+        BAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Ad4BewGMATEBjAExAd4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB9wFeAXMBTioAAf8BfxQAAf8BfwH/AX8B/wF/Af8BfwH/
+        AX8B/wF/Af8BfwF7AW8MAAH/AX8B/wF/Ad4BewGMATEBrQE1Ab0BdwHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7Ad4BewHeAXsBnAFzAc4BOUAAAf8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/
+        AX8BewFvDAAB/wF/Ad4BewGMATEBUgFKARgBYwHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7
+        Ad4BewHeAXsB3gF7AYwBMSgAAb0Bdw4AAbUBVgYAAf8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/
+        AX8B/wF/BAAB/wF/Af8BfwQAAf8BfwHeAXsBjAExAXsBbwFrAS0BSgEpAUoBKQFKASkBSgEpAUoBKQFK
+        ASkBSgEpAUoBKQFKASkBSgEpAYQBEAG1AVZAAAH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/
+        ARABQgIAAXMBTgH/AX8B/wF/AUoBKQIAARgBYwHeAXsBjAExAd4BewHeAXsB3gF7Ad4BewG9AXcBvQF3
+        Ab0BdwG9AXcBvQF3Ab0BdwG9AXcBvQF3AYwBMQHeAXsmAAEYAWMSAAHeAXsEAAH/AX8B/wF/Af8BfwH/
+        AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwQAAf8BfwH/AX8EAAH/AX8B3gF7AYwBMQHeAXsB3gF7Ad4BewH3
+        AV4BKQElAWsBLQFrAS0BawEtAWsBLQFrAS0BawEtAWsBLQFzAU4B3gF7BgABMQFGJgABvQF3AgABMQFG
+        DAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8MAAH/AX8B3gF7Ac4BOQFKASkBSgEp
+        AUoBKQFKASkBvQF3Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7CgABYwEMAUIBCAFC
+        AQgBQgEIAYwBMSwAAf8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwgAAf8BfwH/
+        AX8B3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHeAXsB3gF7Ad4BewHe
+        AXsB3gF7QAAB/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/Af8BfwH/AX8B/wF/
+        Af8BfwH/AX8B/wF/AUIBTQE+BwABPgMAASgDAAFAAwABMAMAAQEBAAEBBQABgAEBFgAD/4EABv8B/AED
+        AfwBPwL/AY8B/wH4AQEB+AEfAfwBPwGHAf8B+wH9AfgBHwH4AR8BgwH/AfsB/QH4AR8B8AEPAcABDwHD
+        Af0B+AEfAeABBwHgAQMB2wH9AfgBHwHAAQMB8AFDAdsB/QH4AR8BwAEDAvEB2wH9AcABAwH4AR8C8QHb
+        Af0BwAEDAfgBHwHzAeEB2wH9AeABBwH4AR8B8QHBAdsB/QHwAQ8B+AEfAfEBgQHYAQEB+AEfAfgBHwH4
+        AQMB3wHvAfwBPwH4AR8B+AEDAd8B7wL/AfwBPwH+AQ8BwAEPCP8CAAH4AQ8B/gE/BAAB4AEHAfgBDwQA
+        Ae8B+wHjAWcEAAHvAfsBzwF5BAAB7wH7Ad8BfQQAAegBCwHfAX0EAAHsAQsB3wF9BAAB7wH7Ad4BPQQA
+        Ae8B+wHYAZ0EAAHvAfsB0wHlBAAB7wGDAccB8QQAAe8BpwHPAfkEAAHvAY8C4wQAAeABHwH4AY8EAAH4
+        AT8B/gE/BAAE/wIACw==
 </value>
   </data>
   <metadata name="stsMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -426,12 +324,6 @@
     <value>True</value>
   </metadata>
   <metadata name="pnlDateTimePicker.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="pnlDateTimePicker.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="dtpMain.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="dtpMain.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

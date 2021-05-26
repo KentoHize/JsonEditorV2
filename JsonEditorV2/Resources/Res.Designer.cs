@@ -511,6 +511,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CS檔案(*.cs).
+        /// </summary>
+        public static string JE_DIALOG_CS_FILE_FULL_NAME {
+            get {
+                return ResourceManager.GetString("JE_DIALOG_CS_FILE_FULL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CSV檔案(*.csv).
         /// </summary>
         public static string JE_DIALOG_CSV_FILE_FULL_NAME {
@@ -1530,9 +1539,18 @@ namespace JsonEditorV2.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 輸出為C# Class檔案.
         /// </summary>
-        public static string JE_TMI_EXPORT_TO_CSHARP_CLASS {
+        public static string JE_TMI_EXPORT_TO_CS {
             get {
-                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSHARP_CLASS", resourceCulture);
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 輸出為C# Class檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_CS_FILE {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CS_FILE", resourceCulture);
             }
         }
         

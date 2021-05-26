@@ -270,6 +270,9 @@
   <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
     <value>Comma-Separated Values File(*.csv)</value>
   </data>
+  <data name="JE_DIALOG_CS_FILE_FULL_NAME" xml:space="preserve">
+    <value>C# File(*.cs)</value>
+  </data>
   <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
     <value>Extensible Markup Language File(*.xml)</value>
   </data>
@@ -429,11 +432,11 @@
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>Invalid data exist, continue export?</value>
   </data>
-  <data name="JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1" xml:space="preserve">
-    <value>CS files have exported to "{0}".</value>
-  </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>CSV files have exported to "{0}".</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_CS_FILE_M_1" xml:space="preserve">
+    <value>CS files have exported to "{0}".</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
     <value>XML files have exported to "{0}".</value>
@@ -603,14 +606,17 @@
   <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
     <value>Export</value>
   </data>
-  <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
-    <value>Export to C# Class File</value>
+  <data name="JE_TMI_EXPORT_TO_CS" xml:space="preserve">
+    <value>Export to C# Class</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
     <value>Export to CSV Files</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV_FILE" xml:space="preserve">
     <value>Export to CSV</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
+    <value>Export to C# Class Files</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     <value>Export to XML Files</value>

@@ -270,6 +270,9 @@
   <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
     CSV档案(*.csv)
   </data>
+  <data name="JE_DIALOG_CS_FILE_FULL_NAME" xml:space="preserve">
+    CS档案(*.cs)
+  </data>
   <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
     XML档案(*.xml)
   </data>
@@ -606,7 +609,7 @@
   <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
     输出
   </data>
-  <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
+  <data name="JE_TMI_EXPORT_TO_CS" xml:space="preserve">
     输出为C# Class档案
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
@@ -614,6 +617,9 @@
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV_FILE" xml:space="preserve">
     输出为CSV档案
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
+    输出为C# Class档案
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     输出为XML档案
