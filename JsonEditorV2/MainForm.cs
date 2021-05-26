@@ -86,6 +86,7 @@ namespace JsonEditorV2
             tmiExportFiles.Text = Res.JE_TMI_EXPORT;
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
+            tmiExportToCSFile.Text = Res.JE_TMI_EXPORT_TO_CSHARP_CLASS;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
@@ -1380,6 +1381,40 @@ namespace JsonEditorV2
             return true;
         }
 
+        public static bool SaveCSFile(JTable jt, string fileName)
+        {
+            StringBuilder csString = new StringBuilder();
+
+
+            try
+            {
+                csString = jt.ToCSV();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.TableConvertToCSVFailed(ex, jt);
+                return false;
+            }
+
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        sw.Write(csString.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.SaveCSFileFailed(ex, fileName);
+                return false;
+            }
+            return true;
+        }
+
+
         public static bool ScanCsvFile(JTable jt, string fileName)
         {
             try
@@ -2602,6 +2637,20 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
+        public void tmiExportToCSFile_Click(object sender, EventArgs e)
+        {
+            fbdMain.SelectedPath = Var.JFI.DirectoryPath;
+            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+            
+            foreach (JTable jt in Var.Tables)
+                SaveCSFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.cs"));
+
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1, fbdMain.SelectedPath);
+            RefreshTrvJsonFiles();
+        }
+
         private void btnRegenerateKey_Click(object sender, EventArgs e)
         {
             if (Var.SelectedColumn == null)
@@ -2887,8 +2936,6 @@ namespace JsonEditorV2
             Var.PrintPageIndex++;
             e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
-        }
-
-        
+        }        
     }
 }

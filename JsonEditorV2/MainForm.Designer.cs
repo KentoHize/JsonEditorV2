@@ -96,6 +96,8 @@
             this.tmiExportFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiExportToCsvFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiExportToXmlFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiExportToCSFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiPrintList = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
@@ -877,7 +879,9 @@
             // 
             this.tmiExportFiles.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiExportToCsvFiles,
-            this.tmiExportToXmlFiles});
+            this.tmiExportToXmlFiles,
+            this.toolStripMenuItem11,
+            this.tmiExportToCSFile});
             this.tmiExportFiles.Enabled = false;
             this.tmiExportFiles.Name = "tmiExportFiles";
             this.tmiExportFiles.Size = new System.Drawing.Size(224, 26);
@@ -886,16 +890,28 @@
             // tmiExportToCsvFiles
             // 
             this.tmiExportToCsvFiles.Name = "tmiExportToCsvFiles";
-            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToCsvFiles.Text = "X";
             this.tmiExportToCsvFiles.Click += new System.EventHandler(this.tmiExportToCsvFiles_Click);
             // 
             // tmiExportToXmlFiles
             // 
             this.tmiExportToXmlFiles.Name = "tmiExportToXmlFiles";
-            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToXmlFiles.Text = "X";
             this.tmiExportToXmlFiles.Click += new System.EventHandler(this.tmiExportToXmlFiles_Click);
+            // 
+            // toolStripMenuItem11
+            // 
+            this.toolStripMenuItem11.Name = "toolStripMenuItem11";
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(221, 6);
+            // 
+            // tmiExportToCSFile
+            // 
+            this.tmiExportToCSFile.Name = "tmiExportToCSFile";
+            this.tmiExportToCSFile.Size = new System.Drawing.Size(224, 26);
+            this.tmiExportToCSFile.Text = "X";
+            this.tmiExportToCSFile.Click += new System.EventHandler(this.tmiExportToCSFile_Click);
             // 
             // tmiPrintList
             // 
@@ -1199,59 +1215,59 @@
             this.tmiColumnMoveDown,
             this.tmiColumnMoveBottom});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(211, 206);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 178);
             // 
             // tmiRenameColumn
             // 
             this.tmiRenameColumn.Name = "tmiRenameColumn";
-            this.tmiRenameColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiRenameColumn.Text = "X";
             this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
             // 
             // tmiColumnShowOnList
             // 
             this.tmiColumnShowOnList.Name = "tmiColumnShowOnList";
-            this.tmiColumnShowOnList.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnShowOnList.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnShowOnList.Text = "X";
             this.tmiColumnShowOnList.Click += new System.EventHandler(this.tmiColumnShowOnList_Click);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(84, 6);
             // 
             // tmiColumnMoveTop
             // 
             this.tmiColumnMoveTop.Name = "tmiColumnMoveTop";
-            this.tmiColumnMoveTop.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveTop.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveTop.Text = "X";
             this.tmiColumnMoveTop.Click += new System.EventHandler(this.tmiColumnMoveTop_Click);
             // 
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
-            this.tmiColumnMoveUp.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveUp.Text = "X";
             this.tmiColumnMoveUp.Click += new System.EventHandler(this.tmiColumnMoveUp_Click);
             // 
             // tmiColumnMoveDown
             // 
             this.tmiColumnMoveDown.Name = "tmiColumnMoveDown";
-            this.tmiColumnMoveDown.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
             // 
             // tmiColumnMoveBottom
             // 
             this.tmiColumnMoveBottom.Name = "tmiColumnMoveBottom";
-            this.tmiColumnMoveBottom.Size = new System.Drawing.Size(210, 24);
+            this.tmiColumnMoveBottom.Size = new System.Drawing.Size(87, 24);
             this.tmiColumnMoveBottom.Text = "X";
             this.tmiColumnMoveBottom.Click += new System.EventHandler(this.tmiColumnMoveBottom_Click);
             // 
@@ -1610,5 +1626,7 @@
         private System.Windows.Forms.PrintDialog prdMain;
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveTop;
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveBottom;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem11;
+        private System.Windows.Forms.ToolStripMenuItem tmiExportToCSFile;
     }
 }

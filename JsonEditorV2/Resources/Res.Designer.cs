@@ -664,6 +664,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 輸出CS檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
+        /// </summary>
+        public static string JE_ERR_SAVE_CS_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_SAVE_CS_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 輸出CSV檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權.
         /// </summary>
         public static string JE_ERR_SAVE_CSV_FAILED {
@@ -984,6 +993,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_EXPORT_INVALID_FILE {
             get {
                 return ResourceManager.GetString("JE_RUN_EXPORT_INVALID_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 已轉換成C# Class檔案至&quot;{0}&quot;.
+        /// </summary>
+        public static string JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1", resourceCulture);
             }
         }
         
@@ -1506,6 +1524,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_EXPORT_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_EXPORT_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 轉換成C# Class檔案.
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_CSHARP_CLASS {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSHARP_CLASS", resourceCulture);
             }
         }
         
