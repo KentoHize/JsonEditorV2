@@ -1386,16 +1386,16 @@ namespace JsonEditorV2
             StringBuilder csString = new StringBuilder();
             string typeString;
             csString.Append("using System;\r\n\r\n");
-            csString.AppendFormat("namespace {0}\r\n{{\r\n\tpublic class {1}\r\n\t{{\r\n", nameSpace.Replace(" ", "_"), jt.Name.Replace(" ", "_"));
+            csString.AppendFormat("namespace {0}\r\n{{\r\n    public class {1}\r\n    {{\r\n", nameSpace.Replace(" ", "_"), jt.Name.Replace(" ", "_"));
             foreach(JColumn jc in jt.Columns)
             {
                 if (jc.Type != JType.None)
                     typeString = jc.Type.ToTypeString();
                 else
                     continue;              
-                csString.AppendFormat("\t\tpublic {0} {1} {{ get; set; }}\r\n", typeString, jc.Name.Replace(" ", "_"));
+                csString.AppendFormat("        public {0} {1} {{ get; set; }}\r\n", typeString, jc.Name.Replace(" ", "_"));
             }            
-            csString.Append("\t}\r\n}");
+            csString.Append("    }\r\n}");
 
             try
             {

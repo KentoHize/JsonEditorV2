@@ -321,6 +321,9 @@
   <data name="JE_ERR_SAVE_CSV_FAILED" xml:space="preserve">
     输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
+  <data name="JE_ERR_SAVE_CS_FAILED" xml:space="preserve">
+    输出CS档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
+  </data>
   <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
     输出XML档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
@@ -425,6 +428,9 @@
   </data>
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     存在不符合规则的资料，确定输出？
+  </data>
+  <data name="JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1" xml:space="preserve">
+    已输出C# Class档案至"{0}"
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     已使用CSV格式输出至"{0}"
@@ -564,8 +570,14 @@
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
     收缩全部
   </data>
+  <data name="JE_TMI_COLUMN_MOVE_BOTTOM" xml:space="preserve">
+    置底
+  </data>
   <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
     下移
+  </data>
+  <data name="JE_TMI_COLUMN_MOVE_TOP" xml:space="preserve">
+    置顶
   </data>
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
     上移
@@ -593,6 +605,9 @@
   </data>
   <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
     输出
+  </data>
+  <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
+    输出为C# Class档案
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
     输出为CSV档案

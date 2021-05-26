@@ -607,7 +607,7 @@
     <value>輸出</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
-    <value>輸出成C# Class檔案</value>
+    <value>輸出為C# Class檔案</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
     <value>輸出為CSV檔案</value>
