@@ -36,7 +36,7 @@ namespace JsonEditor
         /// <returns>字串</returns>
         public static string ToString(this object instance, JType type)
         {
-            switch(type)
+            switch (type)
             {
                 case JType.Date:
                     return ((DateTime)instance).ToShortDateString();
@@ -59,7 +59,7 @@ namespace JsonEditor
             {
                 case JType.Boolean:
                 case JType.Byte:
-                    return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));                                    
+                    return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));
                 case JType.Time:
                     return Convert.ToDateTime(instance).TimeOfDay.CompareTo(Convert.ToDateTime(value).TimeOfDay);
                 case JType.Date:
@@ -77,7 +77,7 @@ namespace JsonEditor
                 case JType.Choice:
                 case JType.Uri:
                 case JType.Guid:
-                    if(value != null)
+                    if (value != null)
                         return instance.ToString().CompareTo(value.ToString());
                     return 1;
                 case JType.None:
@@ -191,7 +191,7 @@ namespace JsonEditor
         /// <param name="type">JType</param>
         /// <returns>結果</returns>
         public static bool IsStringFamily(this JType type)
-            => IsDateTime(type) || type == JType.Guid || type == JType.Uri || type == JType.String || type== JType.Choice;
+            => IsDateTime(type) || type == JType.Guid || type == JType.Uri || type == JType.String || type == JType.Choice;
 
         /// <summary>
         /// 回傳JType的初始值
@@ -199,7 +199,7 @@ namespace JsonEditor
         /// <param name="type">jtype</param>
         /// <returns>初始值</returns>
         public static object InitialValue(this JType type)
-        {   
+        {
             switch (type)
             {
                 case JType.Boolean:
@@ -327,7 +327,7 @@ namespace JsonEditor
             throw new InvalidCastException();
         }
 
-#region TempClosed
+        #region TempClosed
         public static JType ToJType(this JsonToken jtn)
         {
             switch (jtn)
@@ -359,12 +359,49 @@ namespace JsonEditor
                     return JType.String;
                 case JsonToken.Float:
                     return JType.Double;
-                
+
                 default:
                     return JType.None;
             }
         }
         #endregion
+
+        public static string ToTypeString(this JType type)
+        {
+            switch (type)
+            {
+                case JType.Boolean:
+                    return "bool";
+                case JType.Byte:
+                    return "byte";
+                case JType.Date:
+                case JType.Time:
+                case JType.DateTime:
+                    return "DateTime";
+                case JType.Double:
+                    return "double";
+                case JType.Guid:
+                    return "Guid";
+                case JType.Integer:
+                    return "int";
+                case JType.Long:
+                    return "long";
+                case JType.Decimal:
+                    return "decimal";
+                case JType.None:
+                    return null;
+                case JType.Object:
+                case JType.Array:
+                    return "object";
+                case JType.Uri:
+                    return "Uri";
+                case JType.String:
+                case JType.Choice:
+                    return "string";
+                default:
+                    return null;
+            }
+        }
 
         public static Type ToType(this JType type)
         {

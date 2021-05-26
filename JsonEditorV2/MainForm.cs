@@ -1381,20 +1381,21 @@ namespace JsonEditorV2
             return true;
         }
 
-        public static bool SaveCSFile(JTable jt, string fileName)
+        public static bool SaveCSFile(JTable jt, string fileName, string nameSpace)
         {
             StringBuilder csString = new StringBuilder();
-
-
-            try
+            string typeString;
+            csString.Append("using System;\r\n\r\n");
+            csString.AppendFormat("namespace {0}\r\n{{\r\n\tpublic class {1}\r\n\t{{\r\n", nameSpace.Replace(" ", "_"), jt.Name.Replace(" ", "_"));
+            foreach(JColumn jc in jt.Columns)
             {
-                csString = jt.ToCSV();
-            }
-            catch (Exception ex)
-            {
-                ExceptionHandler.TableConvertToCSVFailed(ex, jt);
-                return false;
-            }
+                if (jc.Type != JType.None)
+                    typeString = jc.Type.ToTypeString();
+                else
+                    continue;              
+                csString.AppendFormat("\t\tpublic {0} {1} {{ get; set; }}\r\n", typeString, jc.Name.Replace(" ", "_"));
+            }            
+            csString.Append("\t}\r\n}");
 
             try
             {
@@ -2645,7 +2646,7 @@ namespace JsonEditorV2
                 return;
             
             foreach (JTable jt in Var.Tables)
-                SaveCSFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.cs"));
+                SaveCSFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.cs"), Var.Database.Name);
 
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();

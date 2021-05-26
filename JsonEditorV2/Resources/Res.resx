@@ -430,7 +430,7 @@
     <value>存在不符合規則的資料，確定輸出？</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1" xml:space="preserve">
-    <value>已轉換成C# Class檔案至"{0}"</value>
+    <value>已輸出C# Class檔案至"{0}"</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>已使用CSV格式輸出至"{0}"</value>
@@ -607,7 +607,7 @@
     <value>輸出</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSHARP_CLASS" xml:space="preserve">
-    <value>轉換成C# Class檔案</value>
+    <value>輸出成C# Class檔案</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
     <value>輸出為CSV檔案</value>

@@ -997,7 +997,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 已轉換成C# Class檔案至&quot;{0}&quot;.
+        ///   Looks up a localized string similar to 已輸出C# Class檔案至&quot;{0}&quot;.
         /// </summary>
         public static string JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1 {
             get {
@@ -1528,7 +1528,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 轉換成C# Class檔案.
+        ///   Looks up a localized string similar to 輸出成C# Class檔案.
         /// </summary>
         public static string JE_TMI_EXPORT_TO_CSHARP_CLASS {
             get {
