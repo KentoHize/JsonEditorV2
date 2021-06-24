@@ -99,6 +99,7 @@ namespace JsonEditorV2
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
+            tmiAddIDColumn.Text = Res.JE_TMI_ADD_ID_COLUMN;
             tmiDisplayAllColumn.Text = Res.JE_TMI_DISPLAY_ALL_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
@@ -392,7 +393,17 @@ namespace JsonEditorV2
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                 {
                     jl[index].TryParseJType(newType, out object result);
-                    if (result == null && !Var.SelectedColumn.IsNullable)
+                    if (newType == JType.Choice)
+                    {
+                        int indexOfChoice = Var.SelectedColumn.Choices.IndexOf(result.ToString());                        
+                        if (indexOfChoice != -1)
+                            result = Var.SelectedColumn.Choices[indexOfChoice];
+                        else if(Var.SelectedColumn.Choices.Count != 0)
+                            result = Var.SelectedColumn.Choices[0];
+                        else
+                            result = null;
+                    }   
+                    else if (result == null && !Var.SelectedColumn.IsNullable)
                         result = newType.InitialValue();
                     jl[index] = result;
                 }
@@ -2955,6 +2966,34 @@ namespace JsonEditorV2
             Var.PrintPageIndex++;
             e.Graphics.DrawString((Var.PrintPageIndex).ToString(), Font, Brushes.Black, e.MarginBounds.Left + e.MarginBounds.Width / 2, e.MarginBounds.Bottom + (e.PageBounds.Bottom - e.MarginBounds.Bottom - fontHeight) / 2);
             e.HasMorePages = Var.PrintLineIndex < Var.PrintTable.Rows.Count;
-        }        
+        }
+
+        private void tmiAddIDColumn_Click(object sender, EventArgs e)
+        {   
+            if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == "ID"))
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_ADD_ID_COLUMN, "ID");
+                return;
+            }
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            if (Var.SelectedColumnParentTable.Count != 0)
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    jl.Add("");
+
+            JColumn jc = new JColumn("ID");
+            jc.IsKey = true;
+            jc.Type = JType.Integer;
+            jc.Display = true;
+            jc.AutoGenerateKey = true;
+            Var.SelectedColumnParentTable.Columns.Add(jc);
+            Var.SelectedColumn = jc;
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+            RefreshTrvJsonFiles();
+        }
     }
 }

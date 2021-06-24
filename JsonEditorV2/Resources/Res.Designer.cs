@@ -1393,6 +1393,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 增加ID欄位.
+        /// </summary>
+        public static string JE_TMI_ADD_ID_COLUMN {
+            get {
+                return ResourceManager.GetString("JE_TMI_ADD_ID_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 關閉檔案庫.
         /// </summary>
         public static string JE_TMI_CLOSE_ALL_FILES {

@@ -558,6 +558,9 @@
   <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
     <value>Add Column</value>
   </data>
+  <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
+    <value>Add ID Column</value>
+  </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     <value>Close Json Folder</value>
   </data>

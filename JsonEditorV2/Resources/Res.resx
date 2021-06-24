@@ -561,6 +561,9 @@
   <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
     <value>增加欄位</value>
   </data>
+  <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
+    <value>增加ID欄位</value>
+  </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     <value>關閉檔案庫</value>
   </data>
