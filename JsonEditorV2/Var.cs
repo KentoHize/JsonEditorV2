@@ -27,6 +27,7 @@ namespace JsonEditorV2
         public static bool LockCobCheckMethod { get; set; } //鎖定控制項不更新
         public static bool CheckFailedFlag { get; set; } //存檔失敗Flag
         public static bool NotOnlyClose { get; set; } //非單純關閉檔案Flag
+        public static bool AutoFlag { get; set; } //自動執行Flag
 
         public static List<string> RenamedFiles { get; set; } = new List<string>(); //被改名檔案
         public static List<string> DeleteFiles { get; set; } = new List<string>(); //被刪除檔案

@@ -2529,6 +2529,25 @@ namespace JsonEditorV2
             {
                 Var.SelectedColumn.Choices = result;
                 Var.JFI.Changed = true;
+
+                //Choice的情況，直接刷新更新Json檔案
+                if(Var.SelectedColumn.Type == JType.Choice)
+                {
+                    if (!Var.SelectedColumnParentTable.Loaded)
+                        if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                            return;
+
+                    foreach(JLine jl in Var.SelectedColumnParentTable)
+                    {
+                        int indeOfChoice = Var.SelectedColumn.Choices.IndexOf(jl[Var.SelectedColumnIndex]?.ToString());
+                        if (indeOfChoice != -1)
+                            jl[Var.SelectedColumnIndex] = Var.SelectedColumn.Choices[indeOfChoice];
+                        else if (result.Count != 0)
+                            jl[Var.SelectedColumnIndex] = Var.SelectedColumn.Choices[0];
+                        else
+                            jl[Var.SelectedColumnIndex] = null;
+                    }                    
+                }
                 RefreshTbcMain();
             }
             lblColumnChoicesCount.Text = Var.SelectedColumn.Choices.Count.ToString();
@@ -2673,8 +2692,13 @@ namespace JsonEditorV2
             if (!Var.SelectedColumn.Type.IsNumber() && Var.SelectedColumn.Type != JType.Guid &&
                 Var.SelectedColumn.Type != JType.String)
                 return;
+            DialogResult dr;
+            if (Var.AutoFlag)
+                dr = DialogResult.OK;
+            else
+                dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
 
-            DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
+            Var.AutoFlag = false;
             if (dr != DialogResult.OK)
                 return;
 
@@ -2991,9 +3015,11 @@ namespace JsonEditorV2
             jc.AutoGenerateKey = true;
             Var.SelectedColumnParentTable.Columns.Add(jc);
             Var.SelectedColumn = jc;
-            Var.SelectedColumnParentTable.Changed = true;
+            Var.AutoFlag = true;
+            Var.SelectedColumnParentTable.Changed = true;            
             Var.JFI.Changed = true;
-            RefreshTrvJsonFiles();
+            tmiColumnMoveTop_Click(sender, e);
+            btnRegenerateKey_Click(sender, e);
         }
     }
 }
