@@ -101,6 +101,12 @@
     <Compile Include="frmChoices.Designer.cs">
       <DependentUpon>frmChoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDescription.Designer.cs">
+      <DependentUpon>frmDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFKTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     <Compile Include="Var.cs" />
     <EmbeddedResource Include="frmChoices.resx">
       <DependentUpon>frmChoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDescription.resx">
+      <DependentUpon>frmDescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFKTable.resx">
       <DependentUpon>frmFKTable.cs</DependentUpon>

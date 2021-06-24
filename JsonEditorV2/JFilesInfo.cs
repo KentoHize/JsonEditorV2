@@ -15,6 +15,7 @@ namespace JsonEditor
         public const string FilesInfoName = "JFilesInfo.json";
 
         public string Name { get; set; }
+        public string Description { get; set; }
         public List<JTableInfo> TablesInfo { get; set; }
 
         [JsonIgnore]

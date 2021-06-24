@@ -103,6 +103,7 @@ namespace JsonEditorV2
             tmiDisplayAllColumn.Text = Res.JE_TMI_DISPLAY_ALL_COLUMN;
             tmiNewJsonFile.Text = Res.JE_TMI_NEW_JSON_FILE;
             tmiRenameDatabase.Text = Res.JE_TMI_RENAME_DATABASE;
+            tmiEditDatabaseDescription.Text = Res.JE_TMI_EDIT_DATABASE_DESCRIPTION;
             tmiExpandAll.Text = Res.JE_TMI_EXPAND_ALL;
             tmiCollapseAll.Text = Res.JE_TMI_COLLAPSE_ALL;
             tmiOpenFolder.Text = Res.JE_TMI_OPEN_FOLDER;
@@ -3020,6 +3021,17 @@ namespace JsonEditorV2
             Var.JFI.Changed = true;
             tmiColumnMoveTop_Click(sender, e);
             btnRegenerateKey_Click(sender, e);
+        }
+
+        private void tmiEditDatabaseDescription_Click(object sender, EventArgs e)
+        {
+            string description = frmDescription.ShowDialog(this, Var.JFI.Description);
+            if (description == null)
+                return;
+
+            Var.JFI.Description = description;
+            Var.JFI.Changed = true;
+            sslMain.Text = string.Format(Res.JE_RUN_EDIT_DATABASE_DESC_M_1);
         }
     }
 }

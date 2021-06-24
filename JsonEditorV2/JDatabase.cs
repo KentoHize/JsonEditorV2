@@ -13,6 +13,8 @@ namespace JsonEditor
 
         public string Name { get => JFI?.Name; }
 
+        public string Description { get => JFI?.Description; }
+
         public List<JTable> Tables { get; set; } = new List<JTable>();
 
         public JFilesInfo JFI { get; set; }

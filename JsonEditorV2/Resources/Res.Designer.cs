@@ -997,6 +997,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 說明已編輯.
+        /// </summary>
+        public static string JE_RUN_EDIT_DATABASE_DESC_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_EDIT_DATABASE_DESC_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 存在不符合規則的資料，確定輸出？.
         /// </summary>
         public static string JE_RUN_EXPORT_INVALID_FILE {
@@ -1506,6 +1515,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_DISPLAY_ALL_COLUMN {
             get {
                 return ResourceManager.GetString("JE_TMI_DISPLAY_ALL_COLUMN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 編輯說明.
+        /// </summary>
+        public static string JE_TMI_EDIT_DATABASE_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("JE_TMI_EDIT_DATABASE_DESCRIPTION", resourceCulture);
             }
         }
         

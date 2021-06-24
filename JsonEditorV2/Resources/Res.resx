@@ -429,6 +429,9 @@
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>"{0}"資料行已刪除</value>
   </data>
+  <data name="JE_RUN_EDIT_DATABASE_DESC_M_1" xml:space="preserve">
+    <value>說明已編輯</value>
+  </data>
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>存在不符合規則的資料，確定輸出？</value>
   </data>
@@ -599,6 +602,9 @@
   </data>
   <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
     <value>顯示所有欄位</value>
+  </data>
+  <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
+    <value>編輯說明</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>離開</value>

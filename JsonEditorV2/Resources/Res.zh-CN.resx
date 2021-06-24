@@ -429,6 +429,9 @@
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     "{0}"资料行已删除
   </data>
+  <data name="JE_RUN_EDIT_DATABASE_DESC_M_1" xml:space="preserve">
+    说明已编辑
+  </data>
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     存在不符合规则的资料，确定输出？
   </data>
@@ -561,6 +564,9 @@
   <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
     增加栏位
   </data>
+  <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
+    增加ID栏位
+  </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     关闭档案库
   </data>
@@ -596,6 +602,9 @@
   </data>
   <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
     显示所有栏位
+  </data>
+  <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
+    编辑说明
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     离开

@@ -429,6 +429,9 @@
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
     <value>"{0}" Line deleted.</value>
   </data>
+  <data name="JE_RUN_EDIT_DATABASE_DESC_M_1" xml:space="preserve">
+    <value>Description edited.</value>
+  </data>
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>Invalid data exist, continue export?</value>
   </data>
@@ -596,6 +599,9 @@
   </data>
   <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
     <value>Show All Columns on List</value>
+  </data>
+  <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
+    <value>Edit Description</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>Exit</value>
