@@ -2709,7 +2709,7 @@ namespace JsonEditorV2
                 else
                     Var.SelectedColumnParentTable[i][Var.SelectedColumnIndex] = i.ParseJType(Var.SelectedColumn.Type);
 
-            Var.SelectedTable.Changed = true;
+            Var.SelectedColumnParentTable.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_REGENERATE_KEY_M_2, Var.SelectedColumn.Name);
             Var.Database.CheckAllTablesValid(Setting.TableCheckMethod);
             RefreshTrvJsonFiles();
@@ -3019,7 +3019,8 @@ namespace JsonEditorV2
             Var.AutoFlag = true;
             Var.SelectedColumnParentTable.Changed = true;            
             Var.JFI.Changed = true;
-            tmiColumnMoveTop_Click(sender, e);
+            if(Var.SelectedColumnIndex != 0)
+                tmiColumnMoveTop_Click(sender, e);
             btnRegenerateKey_Click(sender, e);
         }
 
