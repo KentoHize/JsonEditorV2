@@ -61,7 +61,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 錯誤回報：KentKaze@hotmail.com.
+        ///   Looks up a localized string similar to 錯誤回報：KentoHize@gmail.com.
         /// </summary>
         public static string JE_ABOUT_CONTACT_US {
             get {
