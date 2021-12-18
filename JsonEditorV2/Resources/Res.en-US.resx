@@ -163,7 +163,7 @@
     <value>New Line</value>
   </data>
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
-    <value>Reset Keys</value>
+    <value>Reset Key</value>
   </data>
   <data name="JE_BTN_RESET_VALUE" xml:space="preserve">
     <value>Reset Value</value>

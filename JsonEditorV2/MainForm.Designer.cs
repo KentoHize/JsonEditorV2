@@ -185,7 +185,7 @@
             this.btnClearColumn.Location = new System.Drawing.Point(1, 716);
             this.btnClearColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearColumn.Name = "btnClearColumn";
-            this.btnClearColumn.Size = new System.Drawing.Size(100, 38);
+            this.btnClearColumn.Size = new System.Drawing.Size(75, 38);
             this.btnClearColumn.TabIndex = 19;
             this.btnClearColumn.Text = "-";
             this.btnClearColumn.UseVisualStyleBackColor = true;
@@ -221,10 +221,10 @@
             // 
             this.btnUpdateColumn.Enabled = false;
             this.btnUpdateColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateColumn.Location = new System.Drawing.Point(319, 716);
+            this.btnUpdateColumn.Location = new System.Drawing.Point(329, 716);
             this.btnUpdateColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateColumn.Name = "btnUpdateColumn";
-            this.btnUpdateColumn.Size = new System.Drawing.Size(100, 38);
+            this.btnUpdateColumn.Size = new System.Drawing.Size(90, 38);
             this.btnUpdateColumn.TabIndex = 16;
             this.btnUpdateColumn.Text = "-";
             this.btnUpdateColumn.UseVisualStyleBackColor = true;
@@ -764,7 +764,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 27);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 30);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -786,7 +786,7 @@
             this.toolStripMenuItem1,
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
-            this.tmiFile.Size = new System.Drawing.Size(33, 23);
+            this.tmiFile.Size = new System.Drawing.Size(33, 26);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
@@ -935,7 +935,7 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(33, 23);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 26);
             this.tmiLanguages.Text = "X";
             // 
             // tmiLanguageENUS
@@ -969,7 +969,7 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(33, 23);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 26);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
@@ -988,7 +988,7 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(73, 23);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 26);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
@@ -1425,10 +1425,10 @@
             // 
             this.btnRegenerateKey.Enabled = false;
             this.btnRegenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegenerateKey.Location = new System.Drawing.Point(213, 716);
+            this.btnRegenerateKey.Location = new System.Drawing.Point(208, 716);
             this.btnRegenerateKey.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegenerateKey.Name = "btnRegenerateKey";
-            this.btnRegenerateKey.Size = new System.Drawing.Size(100, 38);
+            this.btnRegenerateKey.Size = new System.Drawing.Size(120, 38);
             this.btnRegenerateKey.TabIndex = 36;
             this.btnRegenerateKey.Text = "-";
             this.btnRegenerateKey.UseVisualStyleBackColor = true;
@@ -1466,10 +1466,10 @@
             // 
             this.btnResetValue.Enabled = false;
             this.btnResetValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetValue.Location = new System.Drawing.Point(107, 716);
+            this.btnResetValue.Location = new System.Drawing.Point(77, 716);
             this.btnResetValue.Margin = new System.Windows.Forms.Padding(4);
             this.btnResetValue.Name = "btnResetValue";
-            this.btnResetValue.Size = new System.Drawing.Size(100, 38);
+            this.btnResetValue.Size = new System.Drawing.Size(130, 38);
             this.btnResetValue.TabIndex = 39;
             this.btnResetValue.Text = "-";
             this.btnResetValue.UseVisualStyleBackColor = true;
