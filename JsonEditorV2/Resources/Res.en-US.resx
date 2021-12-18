@@ -165,6 +165,9 @@
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
     <value>Reset Keys</value>
   </data>
+  <data name="JE_BTN_RESET_VALUE" xml:space="preserve">
+    <value>Reset Value</value>
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>Update</value>
   </data>
@@ -515,6 +518,12 @@
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
     <value>File has renamed as "{0}".</value>
+  </data>
+  <data name="JE_RUN_RESET_VALUE_M_1" xml:space="preserve">
+    <value>Confirm to reset all value of column "{0}"?</value>
+  </data>
+  <data name="JE_RUN_RESET_VALUE_M_2" xml:space="preserve">
+    <value>All value in column "{0}" is reset.</value>
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     <value>This is not a empty folder, Confirm to delete all files in the folder.</value>

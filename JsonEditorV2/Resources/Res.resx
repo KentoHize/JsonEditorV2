@@ -165,6 +165,9 @@
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
     <value>重設索引</value>
   </data>
+  <data name="JE_BTN_RESET_VALUE" xml:space="preserve">
+    <value>重設值</value>
+  </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     <value>更新</value>
   </data>
@@ -518,6 +521,12 @@
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
     <value>檔案已重新命名為"{0}"</value>
+  </data>
+  <data name="JE_RUN_RESET_VALUE_M_1" xml:space="preserve">
+    <value>確定重設所有欄位"{0}"的值</value>
+  </data>
+  <data name="JE_RUN_RESET_VALUE_M_2" xml:space="preserve">
+    <value>欄位"{0}"所有值已重設</value>
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     <value>這不是一個空的資料夾，將清空所有檔案，你確定嗎?</value>

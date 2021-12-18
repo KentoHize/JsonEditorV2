@@ -57,6 +57,8 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnUpdateMain, Res.JE_BTN_UPDATE_MAIN);
             btnUpdateColumn.Text = Res.JE_BTN_UPDATE_COLUMN;
             tltMain.SetToolTip(btnUpdateColumn, Res.JE_BTN_UPDATE_COLUMN);
+            btnResetValue.Text = Res.JE_BTN_RESET_VALUE;
+            tltMain.SetToolTip(btnResetValue, Res.JE_BTN_RESET_VALUE);
             btnRegenerateKey.Text = Res.JE_BTN_REGENERATE_KEY;
             tltMain.SetToolTip(btnRegenerateKey, Res.JE_BTN_REGENERATE_KEY);
             btnClearColumn.Text = Res.JE_BTN_CLEAR_COLUMN;
@@ -337,7 +339,7 @@ namespace JsonEditorV2
                    Var.SelectedColumn.Type != newType ||
                    (Var.SelectedColumn.IsNullable && !ckbColumnIsNullable.Checked))
                 {
-                    DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_UPDATE_COLUMN_M_5", Res.JE_RUN_UPDATE_COLUMN_TITLE, Var.SelectedColumnParentTable.Count.ToString());
+                    DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_UPDATE_COLUMN_M_5", Res.JE_RUN_UPDATE_COLUMN_TITLE, Var.SelectedColumnParentTable.Count.ToString());
                     if (dr == DialogResult.Cancel)
                         return;
                 }
@@ -1073,11 +1075,13 @@ namespace JsonEditorV2
                 ckbColumnAutoGenerateKey.Checked = Var.SelectedColumn.AutoGenerateKey;
                 btnColumnEditChoices.Enabled = string.IsNullOrEmpty(Var.SelectedColumn.FKColumn);
                 btnUpdateColumn.Enabled = true;
+                btnResetValue.Enabled = true;
             }
             else
             {
                 btnClearColumn_Click(this, new EventArgs());
                 btnUpdateColumn.Enabled = false;
+                btnResetValue.Enabled = false;
                 btnRegenerateKey.Enabled = false;
             }
         }
@@ -1658,7 +1662,7 @@ namespace JsonEditorV2
             //如果有資料秀出訊息視窗
             if (Var.SelectedColumnParentTable.Count != 0)
             {
-                DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_DELETE_COLUMN_M_1", Res.JE_TMI_DELETE_COLUMN, Var.SelectedColumnParentTable.Count.ToString());
+                DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_DELETE_COLUMN_M_1", Res.JE_TMI_DELETE_COLUMN, Var.SelectedColumnParentTable.Count.ToString());
                 if (dr == DialogResult.Cancel)
                     return;
             }
@@ -1732,7 +1736,7 @@ namespace JsonEditorV2
 
         public void tmiDeleteJsonFile_Click(object sender, EventArgs e)
         {
-            DialogResult dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_DELETE_JSON_FILE_M_1", Res.JE_TMI_DELETE_JSON_FILE, ChoiceOptions.YesNo, Var.SelectedColumnParentTable.Name);
+            DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_DELETE_JSON_FILE_M_1", Res.JE_TMI_DELETE_JSON_FILE, ChoiceOptions.YesNo, Var.SelectedColumnParentTable.Name);
             if (dr == DialogResult.No)
                 return;
 
@@ -2697,7 +2701,7 @@ namespace JsonEditorV2
             if (Var.AutoFlag)
                 dr = DialogResult.OK;
             else
-                dr = RabbitCouriers.SentNoramlQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
+                dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_REGENERATE_KEY_M_1", Res.JE_BTN_REGENERATE_KEY, Var.SelectedColumn.Name);
 
             Var.AutoFlag = false;
             if (dr != DialogResult.OK)
@@ -3033,6 +3037,28 @@ namespace JsonEditorV2
             Var.JFI.Description = description;
             Var.JFI.Changed = true;
             sslMain.Text = string.Format(Res.JE_RUN_EDIT_DATABASE_DESC_M_1);
+        }
+
+        private void btnResetValue_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumn == null)
+                return;
+
+            DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_RESET_VALUE_M_1", Res.JE_BTN_RESET_VALUE, Var.SelectedColumn.Name);
+            if(dr != DialogResult.OK)
+                return;
+
+            int index = Var.SelectedColumnIndex;
+            foreach (JLine jl in Var.SelectedColumnParentTable)
+                if (Var.SelectedColumn.IsNullable)
+                    jl[index] = null;
+                else
+                    jl[index] = Var.SelectedColumn.Type.InitialValue();
+
+            Var.SelectedColumnParentTable.Changed = true;
+            sslMain.Text = string.Format(Res.JE_RUN_RESET_VALUE_M_2, Var.SelectedColumn.Name);
+            Var.Database.CheckAllTablesValid(Setting.TableCheckMethod);
+            RefreshTrvJsonFiles();
         }
     }
 }

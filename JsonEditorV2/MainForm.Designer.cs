@@ -79,7 +79,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,6 +117,7 @@
             this.cmsJsonFiles = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiNewJsonFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiRenameDatabase = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiEditDatabaseDescription = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiOpenFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiViewJFIFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -164,7 +164,8 @@
             this.cobCheckMethod = new System.Windows.Forms.ComboBox();
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
-            this.tmiEditDatabaseDescription = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnResetValue = new System.Windows.Forms.Button();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -181,10 +182,10 @@
             // btnClearColumn
             // 
             this.btnClearColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearColumn.Location = new System.Drawing.Point(1, 764);
+            this.btnClearColumn.Location = new System.Drawing.Point(1, 716);
             this.btnClearColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearColumn.Name = "btnClearColumn";
-            this.btnClearColumn.Size = new System.Drawing.Size(122, 40);
+            this.btnClearColumn.Size = new System.Drawing.Size(100, 38);
             this.btnClearColumn.TabIndex = 19;
             this.btnClearColumn.Text = "-";
             this.btnClearColumn.UseVisualStyleBackColor = true;
@@ -194,10 +195,10 @@
             // 
             this.btnClearMain.Enabled = false;
             this.btnClearMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearMain.Location = new System.Drawing.Point(840, 764);
+            this.btnClearMain.Location = new System.Drawing.Point(840, 716);
             this.btnClearMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnClearMain.Name = "btnClearMain";
-            this.btnClearMain.Size = new System.Drawing.Size(122, 40);
+            this.btnClearMain.Size = new System.Drawing.Size(122, 38);
             this.btnClearMain.TabIndex = 18;
             this.btnClearMain.Text = "-";
             this.btnClearMain.UseVisualStyleBackColor = true;
@@ -207,10 +208,10 @@
             // 
             this.btnUpdateMain.Enabled = false;
             this.btnUpdateMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMain.Location = new System.Drawing.Point(1383, 764);
+            this.btnUpdateMain.Location = new System.Drawing.Point(1383, 716);
             this.btnUpdateMain.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateMain.Name = "btnUpdateMain";
-            this.btnUpdateMain.Size = new System.Drawing.Size(122, 40);
+            this.btnUpdateMain.Size = new System.Drawing.Size(122, 38);
             this.btnUpdateMain.TabIndex = 17;
             this.btnUpdateMain.Text = "-";
             this.btnUpdateMain.UseVisualStyleBackColor = true;
@@ -220,10 +221,10 @@
             // 
             this.btnUpdateColumn.Enabled = false;
             this.btnUpdateColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateColumn.Location = new System.Drawing.Point(299, 764);
+            this.btnUpdateColumn.Location = new System.Drawing.Point(319, 716);
             this.btnUpdateColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateColumn.Name = "btnUpdateColumn";
-            this.btnUpdateColumn.Size = new System.Drawing.Size(122, 40);
+            this.btnUpdateColumn.Size = new System.Drawing.Size(100, 38);
             this.btnUpdateColumn.TabIndex = 16;
             this.btnUpdateColumn.Text = "-";
             this.btnUpdateColumn.UseVisualStyleBackColor = true;
@@ -267,17 +268,17 @@
             this.pnlFileInfo.Controls.Add(this.lblColumnType);
             this.pnlFileInfo.Controls.Add(this.lblColumnName);
             this.pnlFileInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlFileInfo.Location = new System.Drawing.Point(1, 433);
+            this.pnlFileInfo.Location = new System.Drawing.Point(1, 406);
             this.pnlFileInfo.Margin = new System.Windows.Forms.Padding(4);
             this.pnlFileInfo.Name = "pnlFileInfo";
-            this.pnlFileInfo.Size = new System.Drawing.Size(420, 324);
+            this.pnlFileInfo.Size = new System.Drawing.Size(420, 304);
             this.pnlFileInfo.TabIndex = 15;
             // 
             // lblColumnChoiceName
             // 
             this.lblColumnChoiceName.AutoSize = true;
             this.lblColumnChoiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoiceName.Location = new System.Drawing.Point(247, 82);
+            this.lblColumnChoiceName.Location = new System.Drawing.Point(247, 77);
             this.lblColumnChoiceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnChoiceName.Name = "lblColumnChoiceName";
             this.lblColumnChoiceName.Size = new System.Drawing.Size(15, 20);
@@ -288,7 +289,7 @@
             // 
             this.lblColumnChoicesCount.AutoSize = true;
             this.lblColumnChoicesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoicesCount.Location = new System.Drawing.Point(209, 82);
+            this.lblColumnChoicesCount.Location = new System.Drawing.Point(209, 77);
             this.lblColumnChoicesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnChoicesCount.Name = "lblColumnChoicesCount";
             this.lblColumnChoicesCount.Size = new System.Drawing.Size(15, 20);
@@ -299,10 +300,10 @@
             // 
             this.btnColumnEditChoices.Enabled = false;
             this.btnColumnEditChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnEditChoices.Location = new System.Drawing.Point(343, 77);
+            this.btnColumnEditChoices.Location = new System.Drawing.Point(343, 72);
             this.btnColumnEditChoices.Margin = new System.Windows.Forms.Padding(4);
             this.btnColumnEditChoices.Name = "btnColumnEditChoices";
-            this.btnColumnEditChoices.Size = new System.Drawing.Size(50, 35);
+            this.btnColumnEditChoices.Size = new System.Drawing.Size(50, 33);
             this.btnColumnEditChoices.TabIndex = 36;
             this.btnColumnEditChoices.Text = "...";
             this.btnColumnEditChoices.UseVisualStyleBackColor = true;
@@ -312,7 +313,7 @@
             // 
             this.lblColumnChoices.AutoSize = true;
             this.lblColumnChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoices.Location = new System.Drawing.Point(18, 82);
+            this.lblColumnChoices.Location = new System.Drawing.Point(18, 77);
             this.lblColumnChoices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnChoices.Name = "lblColumnChoices";
             this.lblColumnChoices.Size = new System.Drawing.Size(15, 20);
@@ -322,7 +323,7 @@
             // ckbColumnAutoGenerateKey
             // 
             this.ckbColumnAutoGenerateKey.AutoSize = true;
-            this.ckbColumnAutoGenerateKey.Location = new System.Drawing.Point(371, 434);
+            this.ckbColumnAutoGenerateKey.Location = new System.Drawing.Point(371, 407);
             this.ckbColumnAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnAutoGenerateKey.Name = "ckbColumnAutoGenerateKey";
             this.ckbColumnAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
@@ -334,7 +335,7 @@
             // 
             this.lblAutoGenerateKey.AutoSize = true;
             this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 432);
+            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 405);
             this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
             this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
@@ -344,7 +345,7 @@
             // ckbColumnIsUnique
             // 
             this.ckbColumnIsUnique.AutoSize = true;
-            this.ckbColumnIsUnique.Location = new System.Drawing.Point(371, 399);
+            this.ckbColumnIsUnique.Location = new System.Drawing.Point(371, 374);
             this.ckbColumnIsUnique.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnIsUnique.Name = "ckbColumnIsUnique";
             this.ckbColumnIsUnique.Size = new System.Drawing.Size(18, 17);
@@ -355,7 +356,7 @@
             // 
             this.lblColumnIsUnique.AutoSize = true;
             this.lblColumnIsUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnIsUnique.Location = new System.Drawing.Point(18, 397);
+            this.lblColumnIsUnique.Location = new System.Drawing.Point(18, 372);
             this.lblColumnIsUnique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnIsUnique.Name = "lblColumnIsUnique";
             this.lblColumnIsUnique.Size = new System.Drawing.Size(15, 20);
@@ -365,7 +366,7 @@
             // txtColumnMaxLength
             // 
             this.txtColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMaxLength.Location = new System.Drawing.Point(207, 359);
+            this.txtColumnMaxLength.Location = new System.Drawing.Point(207, 337);
             this.txtColumnMaxLength.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnMaxLength.Name = "txtColumnMaxLength";
             this.txtColumnMaxLength.Size = new System.Drawing.Size(184, 27);
@@ -376,7 +377,7 @@
             // 
             this.lblColumnMaxLength.AutoSize = true;
             this.lblColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMaxLength.Location = new System.Drawing.Point(18, 362);
+            this.lblColumnMaxLength.Location = new System.Drawing.Point(18, 339);
             this.lblColumnMaxLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnMaxLength.Name = "lblColumnMaxLength";
             this.lblColumnMaxLength.Size = new System.Drawing.Size(15, 20);
@@ -387,7 +388,7 @@
             // 
             this.lblColumnDescription.AutoSize = true;
             this.lblColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDescription.Location = new System.Drawing.Point(18, 537);
+            this.lblColumnDescription.Location = new System.Drawing.Point(18, 503);
             this.lblColumnDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDescription.Name = "lblColumnDescription";
             this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
@@ -397,7 +398,7 @@
             // txtColumnDescription
             // 
             this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnDescription.Location = new System.Drawing.Point(207, 534);
+            this.txtColumnDescription.Location = new System.Drawing.Point(207, 501);
             this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnDescription.Name = "txtColumnDescription";
             this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
@@ -407,7 +408,7 @@
             // txtColumnMaxValue
             // 
             this.txtColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMaxValue.Location = new System.Drawing.Point(207, 289);
+            this.txtColumnMaxValue.Location = new System.Drawing.Point(207, 271);
             this.txtColumnMaxValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnMaxValue.Name = "txtColumnMaxValue";
             this.txtColumnMaxValue.Size = new System.Drawing.Size(184, 27);
@@ -417,7 +418,7 @@
             // txtColumnMinValue
             // 
             this.txtColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMinValue.Location = new System.Drawing.Point(207, 254);
+            this.txtColumnMinValue.Location = new System.Drawing.Point(207, 238);
             this.txtColumnMinValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnMinValue.Name = "txtColumnMinValue";
             this.txtColumnMinValue.Size = new System.Drawing.Size(184, 27);
@@ -428,7 +429,7 @@
             // 
             this.lblColumnMaxValue.AutoSize = true;
             this.lblColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMaxValue.Location = new System.Drawing.Point(18, 292);
+            this.lblColumnMaxValue.Location = new System.Drawing.Point(18, 274);
             this.lblColumnMaxValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnMaxValue.Name = "lblColumnMaxValue";
             this.lblColumnMaxValue.Size = new System.Drawing.Size(15, 20);
@@ -439,7 +440,7 @@
             // 
             this.lblColumnMinValue.AutoSize = true;
             this.lblColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMinValue.Location = new System.Drawing.Point(18, 257);
+            this.lblColumnMinValue.Location = new System.Drawing.Point(18, 241);
             this.lblColumnMinValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnMinValue.Name = "lblColumnMinValue";
             this.lblColumnMinValue.Size = new System.Drawing.Size(15, 20);
@@ -449,7 +450,7 @@
             // ckbColumnIsNullable
             // 
             this.ckbColumnIsNullable.AutoSize = true;
-            this.ckbColumnIsNullable.Location = new System.Drawing.Point(371, 154);
+            this.ckbColumnIsNullable.Location = new System.Drawing.Point(371, 144);
             this.ckbColumnIsNullable.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnIsNullable.Name = "ckbColumnIsNullable";
             this.ckbColumnIsNullable.Size = new System.Drawing.Size(18, 17);
@@ -460,7 +461,7 @@
             // 
             this.lblColumnlIsNullable.AutoSize = true;
             this.lblColumnlIsNullable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnlIsNullable.Location = new System.Drawing.Point(18, 152);
+            this.lblColumnlIsNullable.Location = new System.Drawing.Point(18, 142);
             this.lblColumnlIsNullable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnlIsNullable.Name = "lblColumnlIsNullable";
             this.lblColumnlIsNullable.Size = new System.Drawing.Size(15, 20);
@@ -470,7 +471,7 @@
             // txtColumnRegex
             // 
             this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnRegex.Location = new System.Drawing.Point(207, 324);
+            this.txtColumnRegex.Location = new System.Drawing.Point(207, 304);
             this.txtColumnRegex.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnRegex.Name = "txtColumnRegex";
             this.txtColumnRegex.Size = new System.Drawing.Size(184, 27);
@@ -481,7 +482,7 @@
             // 
             this.lblColumnRegex.AutoSize = true;
             this.lblColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnRegex.Location = new System.Drawing.Point(18, 327);
+            this.lblColumnRegex.Location = new System.Drawing.Point(18, 307);
             this.lblColumnRegex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnRegex.Name = "lblColumnRegex";
             this.lblColumnRegex.Size = new System.Drawing.Size(15, 20);
@@ -493,7 +494,7 @@
             this.cobColumnFKColumn.DisplayMember = "Name";
             this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKColumn.FormattingEnabled = true;
-            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 498);
+            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 467);
             this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKColumn.Name = "cobColumnFKColumn";
             this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
@@ -505,7 +506,7 @@
             // 
             this.lblColumnFKColumn.AutoSize = true;
             this.lblColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 502);
+            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 471);
             this.lblColumnFKColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKColumn.Name = "lblColumnFKColumn";
             this.lblColumnFKColumn.Size = new System.Drawing.Size(15, 20);
@@ -517,7 +518,7 @@
             this.cobColumnFKTable.DisplayMember = "Name";
             this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnFKTable.FormattingEnabled = true;
-            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 463);
+            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 434);
             this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnFKTable.Name = "cobColumnFKTable";
             this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
@@ -528,7 +529,7 @@
             // txtColumnNumberOfRows
             // 
             this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(353, 219);
+            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(353, 205);
             this.txtColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
             this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
@@ -540,7 +541,7 @@
             // 
             this.lblColumnNumberOfRows.AutoSize = true;
             this.lblColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnNumberOfRows.Location = new System.Drawing.Point(18, 222);
+            this.lblColumnNumberOfRows.Location = new System.Drawing.Point(18, 208);
             this.lblColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnNumberOfRows.Name = "lblColumnNumberOfRows";
             this.lblColumnNumberOfRows.Size = new System.Drawing.Size(15, 20);
@@ -550,7 +551,7 @@
             // ckbColumnDisplay
             // 
             this.ckbColumnDisplay.AutoSize = true;
-            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 189);
+            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 177);
             this.ckbColumnDisplay.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnDisplay.Name = "ckbColumnDisplay";
             this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
@@ -560,7 +561,7 @@
             // ckbColumnIsKey
             // 
             this.ckbColumnIsKey.AutoSize = true;
-            this.ckbColumnIsKey.Location = new System.Drawing.Point(371, 119);
+            this.ckbColumnIsKey.Location = new System.Drawing.Point(371, 112);
             this.ckbColumnIsKey.Margin = new System.Windows.Forms.Padding(4);
             this.ckbColumnIsKey.Name = "ckbColumnIsKey";
             this.ckbColumnIsKey.Size = new System.Drawing.Size(18, 17);
@@ -571,7 +572,7 @@
             // 
             this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobColumnType.FormattingEnabled = true;
-            this.cobColumnType.Location = new System.Drawing.Point(207, 44);
+            this.cobColumnType.Location = new System.Drawing.Point(207, 41);
             this.cobColumnType.Margin = new System.Windows.Forms.Padding(4);
             this.cobColumnType.Name = "cobColumnType";
             this.cobColumnType.Size = new System.Drawing.Size(184, 28);
@@ -581,7 +582,7 @@
             // txtColumnName
             // 
             this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnName.Location = new System.Drawing.Point(207, 9);
+            this.txtColumnName.Location = new System.Drawing.Point(207, 8);
             this.txtColumnName.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnName.Name = "txtColumnName";
             this.txtColumnName.Size = new System.Drawing.Size(184, 27);
@@ -592,7 +593,7 @@
             // 
             this.lblColumnFKTable.AutoSize = true;
             this.lblColumnFKTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 467);
+            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 438);
             this.lblColumnFKTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnFKTable.Name = "lblColumnFKTable";
             this.lblColumnFKTable.Size = new System.Drawing.Size(15, 20);
@@ -603,7 +604,7 @@
             // 
             this.lblColumnDisplay.AutoSize = true;
             this.lblColumnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 187);
+            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 175);
             this.lblColumnDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDisplay.Name = "lblColumnDisplay";
             this.lblColumnDisplay.Size = new System.Drawing.Size(15, 20);
@@ -614,7 +615,7 @@
             // 
             this.lblColumnIsKey.AutoSize = true;
             this.lblColumnIsKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnIsKey.Location = new System.Drawing.Point(18, 117);
+            this.lblColumnIsKey.Location = new System.Drawing.Point(18, 110);
             this.lblColumnIsKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnIsKey.Name = "lblColumnIsKey";
             this.lblColumnIsKey.Size = new System.Drawing.Size(15, 20);
@@ -625,7 +626,7 @@
             // 
             this.lblColumnType.AutoSize = true;
             this.lblColumnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnType.Location = new System.Drawing.Point(18, 47);
+            this.lblColumnType.Location = new System.Drawing.Point(18, 44);
             this.lblColumnType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnType.Name = "lblColumnType";
             this.lblColumnType.Size = new System.Drawing.Size(15, 20);
@@ -636,7 +637,7 @@
             // 
             this.lblColumnName.AutoSize = true;
             this.lblColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnName.Location = new System.Drawing.Point(18, 12);
+            this.lblColumnName.Location = new System.Drawing.Point(18, 11);
             this.lblColumnName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnName.Name = "lblColumnName";
             this.lblColumnName.Size = new System.Drawing.Size(15, 20);
@@ -649,12 +650,12 @@
             this.trvJsonFiles.HideSelection = false;
             this.trvJsonFiles.ImageIndex = 0;
             this.trvJsonFiles.ImageList = this.imlMain;
-            this.trvJsonFiles.Location = new System.Drawing.Point(1, 31);
+            this.trvJsonFiles.Location = new System.Drawing.Point(1, 29);
             this.trvJsonFiles.Margin = new System.Windows.Forms.Padding(4);
             this.trvJsonFiles.Name = "trvJsonFiles";
             this.trvJsonFiles.SelectedImageIndex = 0;
             this.trvJsonFiles.ShowNodeToolTips = true;
-            this.trvJsonFiles.Size = new System.Drawing.Size(420, 396);
+            this.trvJsonFiles.Size = new System.Drawing.Size(420, 372);
             this.trvJsonFiles.TabIndex = 12;
             this.trvJsonFiles.BeforeCollapse += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeCollapse);
             this.trvJsonFiles.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.trvJsonFiles_BeforeExpand);
@@ -680,7 +681,7 @@
             this.stsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.stsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sslMain});
-            this.stsMain.Location = new System.Drawing.Point(0, 810);
+            this.stsMain.Location = new System.Drawing.Point(0, 758);
             this.stsMain.Name = "stsMain";
             this.stsMain.Size = new System.Drawing.Size(1509, 22);
             this.stsMain.TabIndex = 11;
@@ -696,11 +697,11 @@
             this.tbcMain.ContextMenuStrip = this.cmsTabSelected;
             this.tbcMain.Controls.Add(this.tbpStart);
             this.tbcMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbcMain.Location = new System.Drawing.Point(429, 31);
+            this.tbcMain.Location = new System.Drawing.Point(429, 29);
             this.tbcMain.Margin = new System.Windows.Forms.Padding(4);
             this.tbcMain.Name = "tbcMain";
             this.tbcMain.SelectedIndex = 0;
-            this.tbcMain.Size = new System.Drawing.Size(1071, 31);
+            this.tbcMain.Size = new System.Drawing.Size(1071, 29);
             this.tbcMain.TabIndex = 20;
             this.tbcMain.SelectedIndexChanged += new System.EventHandler(this.tbcMain_SelectedIndexChanged);
             this.tbcMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbcMain_MouseDown);
@@ -711,12 +712,12 @@
             this.cmsTabSelected.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiCloseTab});
             this.cmsTabSelected.Name = "cmsMain";
-            this.cmsTabSelected.Size = new System.Drawing.Size(88, 28);
+            this.cmsTabSelected.Size = new System.Drawing.Size(89, 28);
             // 
             // tmiCloseTab
             // 
             this.tmiCloseTab.Name = "tmiCloseTab";
-            this.tmiCloseTab.Size = new System.Drawing.Size(87, 24);
+            this.tmiCloseTab.Size = new System.Drawing.Size(88, 24);
             this.tmiCloseTab.Text = "X";
             this.tmiCloseTab.Click += new System.EventHandler(this.tmiCloseTab_Click);
             // 
@@ -734,10 +735,10 @@
             this.pnlMain.AutoScroll = true;
             this.pnlMain.Controls.Add(this.pnlDateTimePicker);
             this.pnlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlMain.Location = new System.Drawing.Point(840, 65);
+            this.pnlMain.Location = new System.Drawing.Point(840, 61);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(665, 692);
+            this.pnlMain.Size = new System.Drawing.Size(665, 649);
             this.pnlMain.TabIndex = 21;
             this.pnlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMain_MouseDown);
             // 
@@ -747,23 +748,11 @@
             this.pnlDateTimePicker.BackColor = System.Drawing.Color.White;
             this.pnlDateTimePicker.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDateTimePicker.Controls.Add(this.dtpMain);
-            this.pnlDateTimePicker.Location = new System.Drawing.Point(21, 324);
+            this.pnlDateTimePicker.Location = new System.Drawing.Point(21, 304);
             this.pnlDateTimePicker.Name = "pnlDateTimePicker";
-            this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 111);
+            this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 104);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
             // 
             // mnsMain
             // 
@@ -775,7 +764,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 27);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -797,27 +786,27 @@
             this.toolStripMenuItem1,
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
-            this.tmiFile.Size = new System.Drawing.Size(32, 24);
+            this.tmiFile.Size = new System.Drawing.Size(33, 23);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
             this.tmiNewJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(156, 6);
             // 
             // tmiScanJsonFiles
             // 
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
             this.tmiScanJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
@@ -826,13 +815,13 @@
             this.tmiScan.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiScanCSVFiles});
             this.tmiScan.Name = "tmiScan";
-            this.tmiScan.Size = new System.Drawing.Size(154, 26);
+            this.tmiScan.Size = new System.Drawing.Size(159, 26);
             this.tmiScan.Text = "X";
             // 
             // tmiScanCSVFiles
             // 
             this.tmiScanCSVFiles.Name = "tmiScanCSVFiles";
-            this.tmiScanCSVFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiScanCSVFiles.Size = new System.Drawing.Size(102, 26);
             this.tmiScanCSVFiles.Text = "X";
             this.tmiScanCSVFiles.Click += new System.EventHandler(this.tmiScanCSVFile_Click);
             // 
@@ -840,21 +829,21 @@
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
             this.tmiLoadJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(156, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
             this.tmiSaveJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -862,7 +851,7 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
@@ -870,14 +859,14 @@
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 6);
             // 
             // tmiExportFiles
             // 
@@ -888,32 +877,32 @@
             this.tmiExportToCSFiles});
             this.tmiExportFiles.Enabled = false;
             this.tmiExportFiles.Name = "tmiExportFiles";
-            this.tmiExportFiles.Size = new System.Drawing.Size(154, 26);
+            this.tmiExportFiles.Size = new System.Drawing.Size(159, 26);
             this.tmiExportFiles.Text = "X";
             // 
             // tmiExportToCsvFiles
             // 
             this.tmiExportToCsvFiles.Name = "tmiExportToCsvFiles";
-            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(102, 26);
             this.tmiExportToCsvFiles.Text = "X";
             this.tmiExportToCsvFiles.Click += new System.EventHandler(this.tmiExportToCsvFiles_Click);
             // 
             // tmiExportToXmlFiles
             // 
             this.tmiExportToXmlFiles.Name = "tmiExportToXmlFiles";
-            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(102, 26);
             this.tmiExportToXmlFiles.Text = "X";
             this.tmiExportToXmlFiles.Click += new System.EventHandler(this.tmiExportToXmlFiles_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(98, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(99, 6);
             // 
             // tmiExportToCSFiles
             // 
             this.tmiExportToCSFiles.Name = "tmiExportToCSFiles";
-            this.tmiExportToCSFiles.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportToCSFiles.Size = new System.Drawing.Size(102, 26);
             this.tmiExportToCSFiles.Text = "X";
             this.tmiExportToCSFiles.Click += new System.EventHandler(this.tmiExportToCSFiles_Click);
             // 
@@ -921,20 +910,20 @@
             // 
             this.tmiPrintList.Enabled = false;
             this.tmiPrintList.Name = "tmiPrintList";
-            this.tmiPrintList.Size = new System.Drawing.Size(154, 26);
+            this.tmiPrintList.Size = new System.Drawing.Size(159, 26);
             this.tmiPrintList.Text = "X";
             this.tmiPrintList.Click += new System.EventHandler(this.tmiPrintList_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(151, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
             this.tmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tmiExit.Size = new System.Drawing.Size(154, 26);
+            this.tmiExit.Size = new System.Drawing.Size(159, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -946,32 +935,32 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(32, 24);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 23);
             this.tmiLanguages.Text = "X";
             // 
             // tmiLanguageENUS
             // 
             this.tmiLanguageENUS.Name = "tmiLanguageENUS";
-            this.tmiLanguageENUS.Size = new System.Drawing.Size(204, 26);
+            this.tmiLanguageENUS.Size = new System.Drawing.Size(207, 26);
             this.tmiLanguageENUS.Text = "English(en-US)";
             this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(201, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(204, 6);
             // 
             // tmiLanguageZHCN
             // 
             this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
-            this.tmiLanguageZHCN.Size = new System.Drawing.Size(204, 26);
+            this.tmiLanguageZHCN.Size = new System.Drawing.Size(207, 26);
             this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
             this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
             // 
             // tmiLanguageZHTW
             // 
             this.tmiLanguageZHTW.Name = "tmiLanguageZHTW";
-            this.tmiLanguageZHTW.Size = new System.Drawing.Size(204, 26);
+            this.tmiLanguageZHTW.Size = new System.Drawing.Size(207, 26);
             this.tmiLanguageZHTW.Text = "繁體中文(zh-TW)";
             this.tmiLanguageZHTW.Click += new System.EventHandler(this.tmiLanguageZHTW_Click);
             // 
@@ -980,13 +969,13 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(32, 24);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 23);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
             // 
             this.tmiAbout.Name = "tmiAbout";
-            this.tmiAbout.Size = new System.Drawing.Size(101, 26);
+            this.tmiAbout.Size = new System.Drawing.Size(102, 26);
             this.tmiAbout.Text = "X";
             this.tmiAbout.Click += new System.EventHandler(this.tmiAbout_Click);
             // 
@@ -999,39 +988,39 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(71, 24);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 23);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
             // 
             this.tmiJsonEditorBackup.Name = "tmiJsonEditorBackup";
-            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(191, 26);
+            this.tmiJsonEditorBackup.Size = new System.Drawing.Size(199, 26);
             this.tmiJsonEditorBackup.Text = "Json Editor";
             this.tmiJsonEditorBackup.Click += new System.EventHandler(this.tmiJsonEditorBackup_Click);
             // 
             // tmiTestDataBackup
             // 
             this.tmiTestDataBackup.Name = "tmiTestDataBackup";
-            this.tmiTestDataBackup.Size = new System.Drawing.Size(191, 26);
+            this.tmiTestDataBackup.Size = new System.Drawing.Size(199, 26);
             this.tmiTestDataBackup.Text = "Test Data";
             this.tmiTestDataBackup.Click += new System.EventHandler(this.tmiTestDataBackup_Click);
             // 
             // tmiAritiafelBackup
             // 
             this.tmiAritiafelBackup.Name = "tmiAritiafelBackup";
-            this.tmiAritiafelBackup.Size = new System.Drawing.Size(191, 26);
+            this.tmiAritiafelBackup.Size = new System.Drawing.Size(199, 26);
             this.tmiAritiafelBackup.Text = "Aritiafel";
             this.tmiAritiafelBackup.Click += new System.EventHandler(this.tmiAritiafelBackup_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(188, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(196, 6);
             // 
             // tmiRunSomething
             // 
             this.tmiRunSomething.Name = "tmiRunSomething";
-            this.tmiRunSomething.Size = new System.Drawing.Size(191, 26);
+            this.tmiRunSomething.Size = new System.Drawing.Size(199, 26);
             this.tmiRunSomething.Text = "Run something";
             this.tmiRunSomething.Click += new System.EventHandler(this.tmiRunSomething_Click);
             // 
@@ -1050,66 +1039,73 @@
             this.tmiExpandAll,
             this.tmiCollapseAll});
             this.cmsJsonFiles.Name = "cmsMain";
-            this.cmsJsonFiles.Size = new System.Drawing.Size(211, 236);
+            this.cmsJsonFiles.Size = new System.Drawing.Size(89, 208);
             // 
             // tmiNewJsonFile
             // 
             this.tmiNewJsonFile.Enabled = false;
             this.tmiNewJsonFile.Name = "tmiNewJsonFile";
-            this.tmiNewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiNewJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiNewJsonFile.Text = "X";
             this.tmiNewJsonFile.Click += new System.EventHandler(this.tmiNewJsonFile_Click);
             // 
             // tmiRenameDatabase
             // 
             this.tmiRenameDatabase.Name = "tmiRenameDatabase";
-            this.tmiRenameDatabase.Size = new System.Drawing.Size(210, 24);
+            this.tmiRenameDatabase.Size = new System.Drawing.Size(88, 24);
             this.tmiRenameDatabase.Text = "X";
             this.tmiRenameDatabase.Click += new System.EventHandler(this.tmiRenameDatabase_Click);
+            // 
+            // tmiEditDatabaseDescription
+            // 
+            this.tmiEditDatabaseDescription.Name = "tmiEditDatabaseDescription";
+            this.tmiEditDatabaseDescription.Size = new System.Drawing.Size(88, 24);
+            this.tmiEditDatabaseDescription.Text = "X";
+            this.tmiEditDatabaseDescription.Click += new System.EventHandler(this.tmiEditDatabaseDescription_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiOpenFolder
             // 
             this.tmiOpenFolder.Enabled = false;
             this.tmiOpenFolder.Name = "tmiOpenFolder";
-            this.tmiOpenFolder.Size = new System.Drawing.Size(210, 24);
+            this.tmiOpenFolder.Size = new System.Drawing.Size(88, 24);
             this.tmiOpenFolder.Text = "X";
             this.tmiOpenFolder.Click += new System.EventHandler(this.tmiOpenFolder_Click);
             // 
             // tmiViewJFIFile
             // 
             this.tmiViewJFIFile.Name = "tmiViewJFIFile";
-            this.tmiViewJFIFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiViewJFIFile.Size = new System.Drawing.Size(88, 24);
             this.tmiViewJFIFile.Text = "X";
             this.tmiViewJFIFile.Click += new System.EventHandler(this.tmiViewJFIFile_Click);
             // 
             // tmiRefreshFiles
             // 
             this.tmiRefreshFiles.Name = "tmiRefreshFiles";
-            this.tmiRefreshFiles.Size = new System.Drawing.Size(210, 24);
+            this.tmiRefreshFiles.Size = new System.Drawing.Size(88, 24);
             this.tmiRefreshFiles.Text = "X";
             this.tmiRefreshFiles.Click += new System.EventHandler(this.tmiRefreshFiles_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiExpandAll
             // 
             this.tmiExpandAll.Name = "tmiExpandAll";
-            this.tmiExpandAll.Size = new System.Drawing.Size(210, 24);
+            this.tmiExpandAll.Size = new System.Drawing.Size(88, 24);
             this.tmiExpandAll.Text = "X";
             this.tmiExpandAll.Click += new System.EventHandler(this.tmiExpandAll_Click);
             // 
             // tmiCollapseAll
             // 
             this.tmiCollapseAll.Name = "tmiCollapseAll";
-            this.tmiCollapseAll.Size = new System.Drawing.Size(210, 24);
+            this.tmiCollapseAll.Size = new System.Drawing.Size(88, 24);
             this.tmiCollapseAll.Text = "X";
             this.tmiCollapseAll.Click += new System.EventHandler(this.tmiCollapseAll_Click);
             // 
@@ -1128,33 +1124,33 @@
             this.tmiAddIDColumn,
             this.tmiDisplayAllColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(88, 226);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(89, 226);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiDeleteJsonFile.Text = "X";
             this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
@@ -1166,32 +1162,32 @@
             this.toolStripMenuItem12,
             this.tmiExportCSFile});
             this.tmiExportFile.Name = "tmiExportFile";
-            this.tmiExportFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiExportFile.Size = new System.Drawing.Size(88, 24);
             this.tmiExportFile.Text = "X";
             // 
             // tmiExportCsvFile
             // 
             this.tmiExportCsvFile.Name = "tmiExportCsvFile";
-            this.tmiExportCsvFile.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportCsvFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportCsvFile.Text = "X";
             this.tmiExportCsvFile.Click += new System.EventHandler(this.tmiExportCsvFile_Click);
             // 
             // tmiExportXmlFile
             // 
             this.tmiExportXmlFile.Name = "tmiExportXmlFile";
-            this.tmiExportXmlFile.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportXmlFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportXmlFile.Text = "X";
             this.tmiExportXmlFile.Click += new System.EventHandler(this.tmiExportXmlFile_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(98, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(99, 6);
             // 
             // tmiExportCSFile
             // 
             this.tmiExportCSFile.Name = "tmiExportCSFile";
-            this.tmiExportCSFile.Size = new System.Drawing.Size(101, 26);
+            this.tmiExportCSFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportCSFile.Text = "X";
             this.tmiExportCSFile.Click += new System.EventHandler(this.tmiExportCSFile_Click);
             // 
@@ -1199,33 +1195,33 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(87, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(84, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiAddColumn
             // 
             this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiAddColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiAddColumn.Text = "X";
             this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
             // tmiAddIDColumn
             // 
             this.tmiAddIDColumn.Name = "tmiAddIDColumn";
-            this.tmiAddIDColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiAddIDColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiAddIDColumn.Text = "X";
             this.tmiAddIDColumn.Click += new System.EventHandler(this.tmiAddIDColumn_Click);
             // 
             // tmiDisplayAllColumn
             // 
             this.tmiDisplayAllColumn.Name = "tmiDisplayAllColumn";
-            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiDisplayAllColumn.Text = "X";
             this.tmiDisplayAllColumn.Click += new System.EventHandler(this.tmiDisplayAllColumn_Click);
             // 
@@ -1242,59 +1238,59 @@
             this.tmiColumnMoveDown,
             this.tmiColumnMoveBottom});
             this.cmsColumnSelected.Name = "cmsMain";
-            this.cmsColumnSelected.Size = new System.Drawing.Size(88, 178);
+            this.cmsColumnSelected.Size = new System.Drawing.Size(89, 178);
             // 
             // tmiRenameColumn
             // 
             this.tmiRenameColumn.Name = "tmiRenameColumn";
-            this.tmiRenameColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiRenameColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiRenameColumn.Text = "X";
             this.tmiRenameColumn.Click += new System.EventHandler(this.tmiRenameColumn_Click);
             // 
             // tmiColumnShowOnList
             // 
             this.tmiColumnShowOnList.Name = "tmiColumnShowOnList";
-            this.tmiColumnShowOnList.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnShowOnList.Size = new System.Drawing.Size(88, 24);
             this.tmiColumnShowOnList.Text = "X";
             this.tmiColumnShowOnList.Click += new System.EventHandler(this.tmiColumnShowOnList_Click);
             // 
             // tmiDeleteColumn
             // 
             this.tmiDeleteColumn.Name = "tmiDeleteColumn";
-            this.tmiDeleteColumn.Size = new System.Drawing.Size(87, 24);
+            this.tmiDeleteColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiDeleteColumn.Text = "X";
             this.tmiDeleteColumn.Click += new System.EventHandler(this.tmiDeleteColumn_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(84, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiColumnMoveTop
             // 
             this.tmiColumnMoveTop.Name = "tmiColumnMoveTop";
-            this.tmiColumnMoveTop.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveTop.Size = new System.Drawing.Size(88, 24);
             this.tmiColumnMoveTop.Text = "X";
             this.tmiColumnMoveTop.Click += new System.EventHandler(this.tmiColumnMoveTop_Click);
             // 
             // tmiColumnMoveUp
             // 
             this.tmiColumnMoveUp.Name = "tmiColumnMoveUp";
-            this.tmiColumnMoveUp.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveUp.Size = new System.Drawing.Size(88, 24);
             this.tmiColumnMoveUp.Text = "X";
             this.tmiColumnMoveUp.Click += new System.EventHandler(this.tmiColumnMoveUp_Click);
             // 
             // tmiColumnMoveDown
             // 
             this.tmiColumnMoveDown.Name = "tmiColumnMoveDown";
-            this.tmiColumnMoveDown.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveDown.Size = new System.Drawing.Size(88, 24);
             this.tmiColumnMoveDown.Text = "X";
             this.tmiColumnMoveDown.Click += new System.EventHandler(this.tmiColumnMoveDown_Click);
             // 
             // tmiColumnMoveBottom
             // 
             this.tmiColumnMoveBottom.Name = "tmiColumnMoveBottom";
-            this.tmiColumnMoveBottom.Size = new System.Drawing.Size(87, 24);
+            this.tmiColumnMoveBottom.Size = new System.Drawing.Size(88, 24);
             this.tmiColumnMoveBottom.Text = "X";
             this.tmiColumnMoveBottom.Click += new System.EventHandler(this.tmiColumnMoveBottom_Click);
             // 
@@ -1302,10 +1298,10 @@
             // 
             this.btnNewLine.Enabled = false;
             this.btnNewLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewLine.Location = new System.Drawing.Point(714, 764);
+            this.btnNewLine.Location = new System.Drawing.Point(714, 716);
             this.btnNewLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnNewLine.Name = "btnNewLine";
-            this.btnNewLine.Size = new System.Drawing.Size(122, 40);
+            this.btnNewLine.Size = new System.Drawing.Size(122, 38);
             this.btnNewLine.TabIndex = 26;
             this.btnNewLine.Text = "-";
             this.btnNewLine.UseVisualStyleBackColor = true;
@@ -1315,10 +1311,10 @@
             // 
             this.btnDeleteLine.Enabled = false;
             this.btnDeleteLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteLine.Location = new System.Drawing.Point(429, 764);
+            this.btnDeleteLine.Location = new System.Drawing.Point(429, 716);
             this.btnDeleteLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteLine.Name = "btnDeleteLine";
-            this.btnDeleteLine.Size = new System.Drawing.Size(122, 40);
+            this.btnDeleteLine.Size = new System.Drawing.Size(122, 38);
             this.btnDeleteLine.TabIndex = 27;
             this.btnDeleteLine.Text = "-";
             this.btnDeleteLine.UseVisualStyleBackColor = true;
@@ -1330,10 +1326,10 @@
             this.btnLineMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLineMoveUp.ImageIndex = 4;
             this.btnLineMoveUp.ImageList = this.imlMain;
-            this.btnLineMoveUp.Location = new System.Drawing.Point(662, 764);
+            this.btnLineMoveUp.Location = new System.Drawing.Point(662, 716);
             this.btnLineMoveUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnLineMoveUp.Name = "btnLineMoveUp";
-            this.btnLineMoveUp.Size = new System.Drawing.Size(50, 40);
+            this.btnLineMoveUp.Size = new System.Drawing.Size(50, 38);
             this.btnLineMoveUp.TabIndex = 28;
             this.btnLineMoveUp.Text = "-";
             this.btnLineMoveUp.UseVisualStyleBackColor = true;
@@ -1345,10 +1341,10 @@
             this.btnLineMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLineMoveDown.ImageIndex = 5;
             this.btnLineMoveDown.ImageList = this.imlMain;
-            this.btnLineMoveDown.Location = new System.Drawing.Point(556, 764);
+            this.btnLineMoveDown.Location = new System.Drawing.Point(556, 716);
             this.btnLineMoveDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnLineMoveDown.Name = "btnLineMoveDown";
-            this.btnLineMoveDown.Size = new System.Drawing.Size(50, 40);
+            this.btnLineMoveDown.Size = new System.Drawing.Size(50, 38);
             this.btnLineMoveDown.TabIndex = 29;
             this.btnLineMoveDown.Text = "-";
             this.btnLineMoveDown.UseVisualStyleBackColor = true;
@@ -1361,7 +1357,7 @@
             this.dgvLines.AllowUserToOrderColumns = true;
             this.dgvLines.AllowUserToResizeRows = false;
             this.dgvLines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLines.Location = new System.Drawing.Point(429, 98);
+            this.dgvLines.Location = new System.Drawing.Point(429, 92);
             this.dgvLines.MultiSelect = false;
             this.dgvLines.Name = "dgvLines";
             this.dgvLines.ReadOnly = true;
@@ -1370,7 +1366,7 @@
             this.dgvLines.RowTemplate.Height = 18;
             this.dgvLines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLines.ShowEditingIcon = false;
-            this.dgvLines.Size = new System.Drawing.Size(407, 659);
+            this.dgvLines.Size = new System.Drawing.Size(407, 618);
             this.dgvLines.TabIndex = 31;
             this.dgvLines.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvLines_CellFormatting);
             this.dgvLines.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvLines_DataBindingComplete);
@@ -1380,16 +1376,16 @@
             // 
             this.cobFindColumnName.DisplayMember = "Name";
             this.cobFindColumnName.FormattingEnabled = true;
-            this.cobFindColumnName.Location = new System.Drawing.Point(428, 68);
+            this.cobFindColumnName.Location = new System.Drawing.Point(428, 64);
             this.cobFindColumnName.Name = "cobFindColumnName";
-            this.cobFindColumnName.Size = new System.Drawing.Size(145, 24);
+            this.cobFindColumnName.Size = new System.Drawing.Size(145, 23);
             this.cobFindColumnName.TabIndex = 32;
             this.cobFindColumnName.ValueMember = "Name";
             // 
             // txtFindValue
             // 
             this.txtFindValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFindValue.Location = new System.Drawing.Point(579, 67);
+            this.txtFindValue.Location = new System.Drawing.Point(579, 63);
             this.txtFindValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtFindValue.Name = "txtFindValue";
             this.txtFindValue.Size = new System.Drawing.Size(213, 27);
@@ -1403,10 +1399,10 @@
             this.btnFindConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFindConfirm.ImageIndex = 6;
             this.btnFindConfirm.ImageList = this.imlMain;
-            this.btnFindConfirm.Location = new System.Drawing.Point(796, 66);
+            this.btnFindConfirm.Location = new System.Drawing.Point(796, 62);
             this.btnFindConfirm.Margin = new System.Windows.Forms.Padding(4);
             this.btnFindConfirm.Name = "btnFindConfirm";
-            this.btnFindConfirm.Size = new System.Drawing.Size(41, 29);
+            this.btnFindConfirm.Size = new System.Drawing.Size(41, 27);
             this.btnFindConfirm.TabIndex = 34;
             this.btnFindConfirm.UseVisualStyleBackColor = true;
             this.btnFindConfirm.Click += new System.EventHandler(this.btnFindConfirm_Click);
@@ -1417,10 +1413,10 @@
             this.btnCopyLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopyLine.ImageIndex = 7;
             this.btnCopyLine.ImageList = this.imlMain;
-            this.btnCopyLine.Location = new System.Drawing.Point(609, 764);
+            this.btnCopyLine.Location = new System.Drawing.Point(609, 716);
             this.btnCopyLine.Margin = new System.Windows.Forms.Padding(4);
             this.btnCopyLine.Name = "btnCopyLine";
-            this.btnCopyLine.Size = new System.Drawing.Size(50, 40);
+            this.btnCopyLine.Size = new System.Drawing.Size(50, 38);
             this.btnCopyLine.TabIndex = 35;
             this.btnCopyLine.UseVisualStyleBackColor = true;
             this.btnCopyLine.Click += new System.EventHandler(this.btnCopyLine_Click);
@@ -1429,10 +1425,10 @@
             // 
             this.btnRegenerateKey.Enabled = false;
             this.btnRegenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegenerateKey.Location = new System.Drawing.Point(150, 764);
+            this.btnRegenerateKey.Location = new System.Drawing.Point(213, 716);
             this.btnRegenerateKey.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegenerateKey.Name = "btnRegenerateKey";
-            this.btnRegenerateKey.Size = new System.Drawing.Size(122, 40);
+            this.btnRegenerateKey.Size = new System.Drawing.Size(100, 38);
             this.btnRegenerateKey.TabIndex = 36;
             this.btnRegenerateKey.Text = "-";
             this.btnRegenerateKey.UseVisualStyleBackColor = true;
@@ -1444,7 +1440,7 @@
             this.cobCheckMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobCheckMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cobCheckMethod.FormattingEnabled = true;
-            this.cobCheckMethod.Location = new System.Drawing.Point(1189, 769);
+            this.cobCheckMethod.Location = new System.Drawing.Point(1189, 721);
             this.cobCheckMethod.Margin = new System.Windows.Forms.Padding(4);
             this.cobCheckMethod.Name = "cobCheckMethod";
             this.cobCheckMethod.Size = new System.Drawing.Size(167, 28);
@@ -1456,7 +1452,7 @@
             // 
             this.lblCheckMethod.AutoSize = true;
             this.lblCheckMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCheckMethod.Location = new System.Drawing.Point(1007, 773);
+            this.lblCheckMethod.Location = new System.Drawing.Point(1007, 725);
             this.lblCheckMethod.Name = "lblCheckMethod";
             this.lblCheckMethod.Size = new System.Drawing.Size(20, 20);
             this.lblCheckMethod.TabIndex = 38;
@@ -1466,18 +1462,37 @@
             // 
             this.prdMain.UseEXDialog = true;
             // 
-            // tmiEditDatabaseDescription
+            // btnResetValue
             // 
-            this.tmiEditDatabaseDescription.Name = "tmiEditDatabaseDescription";
-            this.tmiEditDatabaseDescription.Size = new System.Drawing.Size(210, 24);
-            this.tmiEditDatabaseDescription.Text = "X";
-            this.tmiEditDatabaseDescription.Click += new System.EventHandler(this.tmiEditDatabaseDescription_Click);
+            this.btnResetValue.Enabled = false;
+            this.btnResetValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetValue.Location = new System.Drawing.Point(107, 716);
+            this.btnResetValue.Margin = new System.Windows.Forms.Padding(4);
+            this.btnResetValue.Name = "btnResetValue";
+            this.btnResetValue.Size = new System.Drawing.Size(100, 38);
+            this.btnResetValue.TabIndex = 39;
+            this.btnResetValue.Text = "-";
+            this.btnResetValue.UseVisualStyleBackColor = true;
+            this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1509, 832);
+            this.ClientSize = new System.Drawing.Size(1509, 780);
+            this.Controls.Add(this.btnResetValue);
             this.Controls.Add(this.lblCheckMethod);
             this.Controls.Add(this.cobCheckMethod);
             this.Controls.Add(this.btnRegenerateKey);
@@ -1666,5 +1681,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiExportCSFile;
         private System.Windows.Forms.ToolStripMenuItem tmiAddIDColumn;
         private System.Windows.Forms.ToolStripMenuItem tmiEditDatabaseDescription;
+        private System.Windows.Forms.Button btnResetValue;
     }
 }
