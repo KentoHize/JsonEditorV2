@@ -834,11 +834,6 @@ namespace JsonEditorV2
                     {
                         if (Var.SelectedTable[i][j] == null)
                             continue;
-                        //        string r = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
-                        //        if (r.Length > Setting.DgvLinesStringMaxLength)
-                        //            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
-                        //        else
-                        //            r = string.Format("{0} ", r);
                         dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
                     }
                 }
@@ -2067,7 +2062,6 @@ namespace JsonEditorV2
             Setting.NumberOfRowsMaxValue = 30;
             Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
             Setting.DgvLinesColumnStandardWidth = 100;
-            //Setting.DgvLinesStringMaxLength = 20;
 
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
