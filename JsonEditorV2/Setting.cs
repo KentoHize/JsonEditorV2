@@ -16,6 +16,6 @@ namespace JsonEditorV2
         public static long DontLoadFileBytesThreshold { get; set; } //bytes
         public static int NumberOfRowsMaxValue { get; set; }
         public static Color InvalidLineBackColor { get; set; }
-        public static int DgvLinesStringMaxLength { get; set; }
+        public static int DgvLinesColumnStandardWidth { get; set; }
     }
 }

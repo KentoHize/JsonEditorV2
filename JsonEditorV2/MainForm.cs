@@ -834,13 +834,12 @@ namespace JsonEditorV2
                     {
                         if (Var.SelectedTable[i][j] == null)
                             continue;
-
-                        string r = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
-                        if (r.Length > Setting.DgvLinesStringMaxLength)
-                            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
-                        else
-                            r = string.Format("{0} ", r);
-                        dr[Var.SelectedTable.Columns[j].Name] = r;
+                        //        string r = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
+                        //        if (r.Length > Setting.DgvLinesStringMaxLength)
+                        //            r = string.Format("{0}.. ", r.Substring(0, Setting.DgvLinesStringMaxLength - 2));
+                        //        else
+                        //            r = string.Format("{0} ", r);
+                        dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
                     }
                 }
 
@@ -860,6 +859,36 @@ namespace JsonEditorV2
                 dgvLines.Rows[Var.SelectedLineIndex].Selected = true;
                 if (!dgvLines.Rows[Var.SelectedLineIndex].Displayed)
                     dgvLines.FirstDisplayedScrollingRowIndex = Var.SelectedLineIndex;
+            }
+
+            if (dgvLines.Columns.GetColumnsWidth(DataGridViewElementStates.Displayed) + 2 > dgvLines.Width)
+            {
+                int widthLeft = dgvLines.Width;
+                List<int> bigColumnIndexes = new List<int>();
+                foreach(DataGridViewColumn dgvc in dgvLines.Columns)
+                {
+                    if (dgvc.Name == Const.HiddenColumnItemIndex || dgvc.Name == Const.HiddenColumnStat)
+                        continue;
+                    if (dgvc.Width > Setting.DgvLinesColumnStandardWidth)
+                        bigColumnIndexes.Add(dgvc.Index);
+                    else
+                        widthLeft -= dgvc.Width;
+                }
+                if (widthLeft < 0)
+                    for (int i = 0; i < bigColumnIndexes.Count; i++)
+                        dgvLines.Columns[bigColumnIndexes[i]].Width = Setting.DgvLinesColumnStandardWidth;
+                else
+                {
+                    int totalBigColumnWidth = 0;
+                    for (int i = 0; i < bigColumnIndexes.Count; i++)
+                        totalBigColumnWidth += dgvLines.Columns[bigColumnIndexes[i]].Width;
+
+                    for (int i = 0; i < bigColumnIndexes.Count; i++)
+                    {
+                        int calculatedWidth = dgvLines.Columns[bigColumnIndexes[i]].Width * widthLeft / totalBigColumnWidth;
+                        dgvLines.Columns[bigColumnIndexes[i]].Width = calculatedWidth > Setting.DgvLinesColumnStandardWidth ? calculatedWidth : Setting.DgvLinesColumnStandardWidth;
+                    }                        
+                }   
             }
 
             cobFindColumnName.DataSource = null;
@@ -2037,7 +2066,8 @@ namespace JsonEditorV2
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
             Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
-            Setting.DgvLinesStringMaxLength = 20;
+            Setting.DgvLinesColumnStandardWidth = 100;
+            //Setting.DgvLinesStringMaxLength = 20;
 
             //讀取Setting
             if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
