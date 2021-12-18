@@ -676,7 +676,7 @@ namespace JsonEditorV2
                     tr.Text = GetTableNodeString(Var.SelectedTable);
         }
 
-        private void RefreshTrvJsonFiles()
+        public void RefreshTrvJsonFiles()
         {
             trvJsonFiles.Nodes.Clear();
             tmiCloseAllFiles.Enabled =

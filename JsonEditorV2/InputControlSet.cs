@@ -160,7 +160,13 @@ namespace JsonEditorV2
             {                
                 NameLabel.Focus();
                 JTable fkTable = Var.Tables.Find(m => m.Name == JColumn.FKTable);
-                
+
+                if (!fkTable.Loaded)
+                    if (!MainForm.LoadOrScanJsonFile(fkTable))
+                        return;
+                    else
+                        ownerWindow.RefreshTrvJsonFiles();
+
                 if (fkTable.Lines.Count == 0)
                 {
                     RabbitCouriers.SentWarningMessageByResource("JE_ERR_EMPTY_FK_TABLE", Res.JE_ERR_DEFAULT_TITLE, fkTable.Name);
