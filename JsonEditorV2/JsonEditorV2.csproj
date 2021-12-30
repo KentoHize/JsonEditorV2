@@ -119,6 +119,12 @@
     <Compile Include="frmInputBox.Designer.cs">
       <DependentUpon>frmInputBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSortList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSortList.Designer.cs">
+      <DependentUpon>frmSortList.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputControlSet.cs" />
     <Compile Include="JColumn.cs" />
     <Compile Include="JColumnInvalidReasons.cs" />
@@ -157,6 +163,8 @@
     <Compile Include="SimpleDateTimePicker.Designer.cs">
       <DependentUpon>SimpleDateTimePicker.cs</DependentUpon>
     </Compile>
+    <Compile Include="SortListInputControlSet.cs" />
+    <Compile Include="SortListVar.cs" />
     <Compile Include="Var.cs" />
     <EmbeddedResource Include="frmChoices.resx">
       <DependentUpon>frmChoices.cs</DependentUpon>
@@ -169,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmInputBox.resx">
       <DependentUpon>frmInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSortList.resx">
+      <DependentUpon>frmSortList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

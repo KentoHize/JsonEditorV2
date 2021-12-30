@@ -3084,5 +3084,33 @@ namespace JsonEditorV2
             Var.Database.CheckAllTablesValid(Setting.TableCheckMethod);
             RefreshTrvJsonFiles();
         }
+
+        private void tmiSortList_Click(object sender, EventArgs e)
+        {
+            var a = frmSortList.Show(this, Var.SelectedTable);
+            if (a == null)
+                return;
+
+            //if (Var.Tables.Exists(m => m.Name == newName))
+            //{
+            //    RabbitCouriers.SentErrorMessageByResource("JE_RUN_RENAME_JSON_FILE_M_1", Res.JE_TMI_RENAME_JSON_FILE, newName);
+            //    return;
+            //}
+            //try
+            //{
+            //    Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+            //    RenewFK(Var.SelectedColumnParentTable, newName);
+            //    Var.SelectedColumnParentTable.Name = newName;
+            //    Var.SelectedColumnParentTable.Changed = true;
+            //    Var.JFI.Changed = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
+            //}
+            //RefreshTrvJsonFiles();
+            RefreshDgvLines();
+            //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
+        }
     }
 }
