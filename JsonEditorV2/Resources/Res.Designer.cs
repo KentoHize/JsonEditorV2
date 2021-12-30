@@ -439,6 +439,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 排序 的當地語系化字串。
+        /// </summary>
+        public static string JE_COLUMN_SORT_INFO {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_SORT_INFO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 欄位型別 的當地語系化字串。
         /// </summary>
         public static string JE_COLUMN_TYPE {
@@ -876,6 +885,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_LBL_CHOICE_NAME {
             get {
                 return ResourceManager.GetString("JE_LBL_CHOICE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 無 的當地語系化字串。
+        /// </summary>
+        public static string JE_LBL_NO {
+            get {
+                return ResourceManager.GetString("JE_LBL_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 有 的當地語系化字串。
+        /// </summary>
+        public static string JE_LBL_YES {
+            get {
+                return ResourceManager.GetString("JE_LBL_YES", resourceCulture);
             }
         }
         

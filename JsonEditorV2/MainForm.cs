@@ -45,11 +45,14 @@ namespace JsonEditorV2
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
             lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
             lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
+            lblColumnSortInfo.Text = Res.JE_COLUMN_SORT_INFO;
+            lblSorted.Text = Res.JE_LBL_NO;
             lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
             lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
+            
             lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             tltMain.SetToolTip(btnClearMain, Res.JE_BTN_CLEAR_MAIN);
@@ -3087,9 +3090,7 @@ namespace JsonEditorV2
 
         private void tmiSortList_Click(object sender, EventArgs e)
         {
-            var a = frmSortList.Show(this, Var.SelectedTable);
-            if (a == null)
-                return;
+            
 
             //if (Var.Tables.Exists(m => m.Name == newName))
             //{
@@ -3109,13 +3110,16 @@ namespace JsonEditorV2
             //    ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
             //}
             //RefreshTrvJsonFiles();
-            RefreshDgvLines();
-            //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
+            
         }
 
         private void btnColumnEditSortInfo_Click(object sender, EventArgs e)
         {
-
+            var a = frmSortList.Show(this, Var.SelectedTable);
+            if (a == null)
+                return;
+            RefreshDgvLines();
+            //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
         }
     }
 }

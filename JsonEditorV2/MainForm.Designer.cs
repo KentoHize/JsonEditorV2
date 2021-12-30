@@ -36,7 +36,7 @@
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
             this.btnColumnClearSortInfo = new System.Windows.Forms.Button();
-            this.lblSortEnabled = new System.Windows.Forms.Label();
+            this.lblSorted = new System.Windows.Forms.Label();
             this.btnColumnEditSortInfo = new System.Windows.Forms.Button();
             this.lblColumnSortInfo = new System.Windows.Forms.Label();
             this.lblColumnChoiceName = new System.Windows.Forms.Label();
@@ -83,6 +83,7 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,7 +172,6 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -240,7 +240,7 @@
             // 
             this.pnlFileInfo.AutoScroll = true;
             this.pnlFileInfo.Controls.Add(this.btnColumnClearSortInfo);
-            this.pnlFileInfo.Controls.Add(this.lblSortEnabled);
+            this.pnlFileInfo.Controls.Add(this.lblSorted);
             this.pnlFileInfo.Controls.Add(this.btnColumnEditSortInfo);
             this.pnlFileInfo.Controls.Add(this.lblColumnSortInfo);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoiceName);
@@ -297,16 +297,16 @@
             this.btnColumnClearSortInfo.Text = "-";
             this.btnColumnClearSortInfo.UseVisualStyleBackColor = true;
             // 
-            // lblSortEnabled
+            // lblSorted
             // 
-            this.lblSortEnabled.AutoSize = true;
-            this.lblSortEnabled.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSortEnabled.Location = new System.Drawing.Point(209, 506);
-            this.lblSortEnabled.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSortEnabled.Name = "lblSortEnabled";
-            this.lblSortEnabled.Size = new System.Drawing.Size(15, 20);
-            this.lblSortEnabled.TabIndex = 41;
-            this.lblSortEnabled.Text = "-";
+            this.lblSorted.AutoSize = true;
+            this.lblSorted.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSorted.Location = new System.Drawing.Point(209, 506);
+            this.lblSorted.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSorted.Name = "lblSorted";
+            this.lblSorted.Size = new System.Drawing.Size(15, 20);
+            this.lblSorted.TabIndex = 41;
+            this.lblSorted.Text = "-";
             // 
             // btnColumnEditSortInfo
             // 
@@ -812,6 +812,18 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -823,7 +835,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 30);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 27);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -845,7 +857,7 @@
             this.toolStripMenuItem1,
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
-            this.tmiFile.Size = new System.Drawing.Size(33, 26);
+            this.tmiFile.Size = new System.Drawing.Size(33, 23);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
@@ -991,13 +1003,14 @@
             this.tmiFunction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiSortList});
             this.tmiFunction.Name = "tmiFunction";
-            this.tmiFunction.Size = new System.Drawing.Size(33, 26);
+            this.tmiFunction.Size = new System.Drawing.Size(33, 23);
             this.tmiFunction.Text = "X";
+            this.tmiFunction.Visible = false;
             // 
             // tmiSortList
             // 
             this.tmiSortList.Name = "tmiSortList";
-            this.tmiSortList.Size = new System.Drawing.Size(102, 26);
+            this.tmiSortList.Size = new System.Drawing.Size(224, 26);
             this.tmiSortList.Text = "X";
             this.tmiSortList.Click += new System.EventHandler(this.tmiSortList_Click);
             // 
@@ -1009,7 +1022,7 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(33, 26);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 23);
             this.tmiLanguages.Text = "X";
             // 
             // tmiLanguageENUS
@@ -1043,7 +1056,7 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(33, 26);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 23);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
@@ -1062,7 +1075,7 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(73, 26);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 23);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
@@ -1549,18 +1562,6 @@
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
             // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1758,7 +1759,7 @@
         private System.Windows.Forms.Button btnResetValue;
         private System.Windows.Forms.ToolStripMenuItem tmiFunction;
         private System.Windows.Forms.ToolStripMenuItem tmiSortList;
-        private System.Windows.Forms.Label lblSortEnabled;
+        private System.Windows.Forms.Label lblSorted;
         private System.Windows.Forms.Button btnColumnEditSortInfo;
         private System.Windows.Forms.Label lblColumnSortInfo;
         private System.Windows.Forms.Button btnColumnClearSortInfo;

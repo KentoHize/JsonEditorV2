@@ -243,6 +243,9 @@
   <data name="JE_COLUMN_REGEX" xml:space="preserve">
     <value>Regular Expression</value>
   </data>
+  <data name="JE_COLUMN_SORT_INFO" xml:space="preserve">
+    <value>Sorted</value>
+  </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>Column Type</value>
   </data>
@@ -389,6 +392,12 @@
   </data>
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
     <value>Choice(s)</value>
+  </data>
+  <data name="JE_LBL_NO" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="JE_LBL_YES" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="JE_LIST_FK" xml:space="preserve">
     <value>FK</value>
