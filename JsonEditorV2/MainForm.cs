@@ -3112,5 +3112,10 @@ namespace JsonEditorV2
             RefreshDgvLines();
             //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
         }
+
+        private void btnColumnEditSortInfo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

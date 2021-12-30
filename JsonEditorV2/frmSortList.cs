@@ -15,7 +15,7 @@ namespace JsonEditorV2
     public partial class frmSortList : Form
     {
         public JTable Table;
-        public List<SortListVar> ReturnValue { get; private set; }
+        public List<SortInfo> ReturnValue { get; private set; }
         public List<SortListInputControlSet> SLControlList { get; set; }
         public frmSortList(JTable table)
         {
@@ -23,7 +23,7 @@ namespace JsonEditorV2
             Table = table;
         }
 
-        public static List<SortListVar> Show(IWin32Window owner, JTable table)
+        public static List<SortInfo> Show(IWin32Window owner, JTable table)
         {
             frmSortList frmSortList = new frmSortList(table);
             //frmInputBox.txtInput.Text = defaultText;
@@ -45,7 +45,7 @@ namespace JsonEditorV2
             Button btnNewSLI = new Button
             {
                 Name = "btnNewSLI",
-                Left = 200,
+                Left = 5,
                 Top = i * 30,
                 Text = "New"
             };
@@ -80,14 +80,22 @@ namespace JsonEditorV2
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            ReturnValue = new List<SortListVar>();
+            ReturnValue = new List<SortInfo>();
             for(int i = 0; i < SLControlList.Count; i++)
             {
-                SortListVar slv = new SortListVar(
+                SortInfo slv = new SortInfo(
                     SLControlList[i].ColumnComboBox.SelectedItem as JColumn,
                     SLControlList[i].DesendingComboBox.SelectedIndex == 1);
                 ReturnValue.Add(slv);
             }
+
+            string msgConfirm = Resources.Res.JE_ABOUT_CONTACT_US;
+                
+            //確認            
+            //DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_RESET_VALUE_M_1", Res.JE_BTN_RESET_VALUE, Var.SelectedColumn.Name);
+            //if (dr != DialogResult.OK)
+            //    return;
+            //
             DialogResult = DialogResult.OK;
         }
     }

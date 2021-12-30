@@ -645,6 +645,9 @@
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="JE_TMI_FUNCTION" xml:space="preserve">
+    <value>Function</value>
+  </data>
   <data name="JE_TMI_HELP" xml:space="preserve">
     <value>Help</value>
   </data>

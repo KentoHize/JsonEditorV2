@@ -1654,6 +1654,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 功能 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_FUNCTION {
+            get {
+                return ResourceManager.GetString("JE_TMI_FUNCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 說明 的當地語系化字串。
         /// </summary>
         public static string JE_TMI_HELP {

@@ -164,7 +164,7 @@
       <DependentUpon>SimpleDateTimePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="SortListInputControlSet.cs" />
-    <Compile Include="SortListVar.cs" />
+    <Compile Include="SortInfo.cs" />
     <Compile Include="Var.cs" />
     <EmbeddedResource Include="frmChoices.resx">
       <DependentUpon>frmChoices.cs</DependentUpon>

@@ -648,6 +648,9 @@
   <data name="JE_TMI_FILE" xml:space="preserve">
     <value>檔案</value>
   </data>
+  <data name="JE_TMI_FUNCTION" xml:space="preserve">
+    <value>功能</value>
+  </data>
   <data name="JE_TMI_HELP" xml:space="preserve">
     <value>說明</value>
   </data>

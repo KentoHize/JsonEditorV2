@@ -14,6 +14,7 @@ namespace JsonEditor
         public string Name { get; set; }
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
+        public List<SortInfo> SortInfoList { get; set; } //待開發 To Do
 
         public bool HasKey { get => Columns.Exists(m => m.IsKey); }
         public bool Loaded { get; set; }
