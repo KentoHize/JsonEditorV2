@@ -243,9 +243,6 @@
   <data name="JE_COLUMN_REGEX" xml:space="preserve">
     <value>正則表達式</value>
   </data>
-  <data name="JE_COLUMN_SORT_INFO" xml:space="preserve">
-    <value>排序</value>
-  </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>欄位型別</value>
   </data>
@@ -392,12 +389,6 @@
   </data>
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
     <value>選項</value>
-  </data>
-  <data name="JE_LBL_NO" xml:space="preserve">
-    <value>無</value>
-  </data>
-  <data name="JE_LBL_YES" xml:space="preserve">
-    <value>有</value>
   </data>
   <data name="JE_LIST_FK" xml:space="preserve">
     <value>外部索引</value>
@@ -585,6 +576,9 @@
   <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
     <value>增加ID欄位</value>
   </data>
+  <data name="JE_TMI_CLEAR_SORT_INFO" xml:space="preserve">
+    <value>清除排序</value>
+  </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     <value>關閉檔案庫</value>
   </data>
@@ -623,6 +617,9 @@
   </data>
   <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
     <value>編輯說明</value>
+  </data>
+  <data name="JE_TMI_EDIT_SORT_INFO" xml:space="preserve">
+    <value>排序</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>離開</value>

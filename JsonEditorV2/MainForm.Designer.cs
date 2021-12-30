@@ -35,10 +35,6 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
-            this.btnColumnClearSortInfo = new System.Windows.Forms.Button();
-            this.lblSorted = new System.Windows.Forms.Label();
-            this.btnColumnEditSortInfo = new System.Windows.Forms.Button();
-            this.lblColumnSortInfo = new System.Windows.Forms.Label();
             this.lblColumnChoiceName = new System.Windows.Forms.Label();
             this.lblColumnChoicesCount = new System.Windows.Forms.Label();
             this.btnColumnEditChoices = new System.Windows.Forms.Button();
@@ -83,7 +79,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,6 +167,10 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiEditSortInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiClearSortInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -239,10 +238,6 @@
             // pnlFileInfo
             // 
             this.pnlFileInfo.AutoScroll = true;
-            this.pnlFileInfo.Controls.Add(this.btnColumnClearSortInfo);
-            this.pnlFileInfo.Controls.Add(this.lblSorted);
-            this.pnlFileInfo.Controls.Add(this.btnColumnEditSortInfo);
-            this.pnlFileInfo.Controls.Add(this.lblColumnSortInfo);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoiceName);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoicesCount);
             this.pnlFileInfo.Controls.Add(this.btnColumnEditChoices);
@@ -283,54 +278,6 @@
             this.pnlFileInfo.Name = "pnlFileInfo";
             this.pnlFileInfo.Size = new System.Drawing.Size(420, 304);
             this.pnlFileInfo.TabIndex = 15;
-            // 
-            // btnColumnClearSortInfo
-            // 
-            this.btnColumnClearSortInfo.Enabled = false;
-            this.btnColumnClearSortInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnClearSortInfo.Location = new System.Drawing.Point(281, 500);
-            this.btnColumnClearSortInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.btnColumnClearSortInfo.Name = "btnColumnClearSortInfo";
-            this.btnColumnClearSortInfo.Size = new System.Drawing.Size(58, 33);
-            this.btnColumnClearSortInfo.TabIndex = 42;
-            this.btnColumnClearSortInfo.Tag = "";
-            this.btnColumnClearSortInfo.Text = "-";
-            this.btnColumnClearSortInfo.UseVisualStyleBackColor = true;
-            // 
-            // lblSorted
-            // 
-            this.lblSorted.AutoSize = true;
-            this.lblSorted.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSorted.Location = new System.Drawing.Point(209, 506);
-            this.lblSorted.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSorted.Name = "lblSorted";
-            this.lblSorted.Size = new System.Drawing.Size(15, 20);
-            this.lblSorted.TabIndex = 41;
-            this.lblSorted.Text = "-";
-            // 
-            // btnColumnEditSortInfo
-            // 
-            this.btnColumnEditSortInfo.Enabled = false;
-            this.btnColumnEditSortInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnEditSortInfo.Location = new System.Drawing.Point(343, 500);
-            this.btnColumnEditSortInfo.Margin = new System.Windows.Forms.Padding(4);
-            this.btnColumnEditSortInfo.Name = "btnColumnEditSortInfo";
-            this.btnColumnEditSortInfo.Size = new System.Drawing.Size(50, 33);
-            this.btnColumnEditSortInfo.TabIndex = 40;
-            this.btnColumnEditSortInfo.Text = "...";
-            this.btnColumnEditSortInfo.UseVisualStyleBackColor = true;
-            this.btnColumnEditSortInfo.Click += new System.EventHandler(this.btnColumnEditSortInfo_Click);
-            // 
-            // lblColumnSortInfo
-            // 
-            this.lblColumnSortInfo.AutoSize = true;
-            this.lblColumnSortInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnSortInfo.Location = new System.Drawing.Point(18, 506);
-            this.lblColumnSortInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnSortInfo.Name = "lblColumnSortInfo";
-            this.lblColumnSortInfo.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnSortInfo.TabIndex = 39;
-            this.lblColumnSortInfo.Text = "-";
             // 
             // lblColumnChoiceName
             // 
@@ -446,7 +393,7 @@
             // 
             this.lblColumnDescription.AutoSize = true;
             this.lblColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDescription.Location = new System.Drawing.Point(18, 539);
+            this.lblColumnDescription.Location = new System.Drawing.Point(18, 506);
             this.lblColumnDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDescription.Name = "lblColumnDescription";
             this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
@@ -456,7 +403,7 @@
             // txtColumnDescription
             // 
             this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnDescription.Location = new System.Drawing.Point(207, 536);
+            this.txtColumnDescription.Location = new System.Drawing.Point(207, 503);
             this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtColumnDescription.Name = "txtColumnDescription";
             this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
@@ -812,18 +759,6 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -835,7 +770,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 27);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 30);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -857,7 +792,7 @@
             this.toolStripMenuItem1,
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
-            this.tmiFile.Size = new System.Drawing.Size(33, 23);
+            this.tmiFile.Size = new System.Drawing.Size(33, 26);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
@@ -1010,7 +945,7 @@
             // tmiSortList
             // 
             this.tmiSortList.Name = "tmiSortList";
-            this.tmiSortList.Size = new System.Drawing.Size(224, 26);
+            this.tmiSortList.Size = new System.Drawing.Size(102, 26);
             this.tmiSortList.Text = "X";
             this.tmiSortList.Click += new System.EventHandler(this.tmiSortList_Click);
             // 
@@ -1022,7 +957,7 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(33, 23);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 26);
             this.tmiLanguages.Text = "X";
             // 
             // tmiLanguageENUS
@@ -1056,7 +991,7 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(33, 23);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 26);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
@@ -1075,7 +1010,7 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(73, 23);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 26);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
@@ -1207,37 +1142,40 @@
             this.tmiExportFile,
             this.tmiCloseJsonFile,
             this.toolStripMenuItem5,
+            this.tmiEditSortInfo,
+            this.tmiClearSortInfo,
+            this.toolStripSeparator1,
             this.tmiAddColumn,
             this.tmiAddIDColumn,
             this.tmiDisplayAllColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(89, 226);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 308);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiDeleteJsonFile.Text = "X";
             this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
@@ -1249,7 +1187,7 @@
             this.toolStripMenuItem12,
             this.tmiExportCSFile});
             this.tmiExportFile.Name = "tmiExportFile";
-            this.tmiExportFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiExportFile.Size = new System.Drawing.Size(210, 24);
             this.tmiExportFile.Text = "X";
             // 
             // tmiExportCsvFile
@@ -1282,33 +1220,33 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(85, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
             // 
             // tmiAddColumn
             // 
             this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiAddColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiAddColumn.Text = "X";
             this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
             // tmiAddIDColumn
             // 
             this.tmiAddIDColumn.Name = "tmiAddIDColumn";
-            this.tmiAddIDColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiAddIDColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiAddIDColumn.Text = "X";
             this.tmiAddIDColumn.Click += new System.EventHandler(this.tmiAddIDColumn_Click);
             // 
             // tmiDisplayAllColumn
             // 
             this.tmiDisplayAllColumn.Name = "tmiDisplayAllColumn";
-            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiDisplayAllColumn.Text = "X";
             this.tmiDisplayAllColumn.Click += new System.EventHandler(this.tmiDisplayAllColumn_Click);
             // 
@@ -1562,6 +1500,37 @@
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            // 
+            // tmiEditSortInfo
+            // 
+            this.tmiEditSortInfo.Name = "tmiEditSortInfo";
+            this.tmiEditSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiEditSortInfo.Text = "X";
+            this.tmiEditSortInfo.Click += new System.EventHandler(this.tmiEditSortInfo_Click);
+            // 
+            // tmiClearSortInfo
+            // 
+            this.tmiClearSortInfo.Name = "tmiClearSortInfo";
+            this.tmiClearSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiClearSortInfo.Text = "X";
+            this.tmiClearSortInfo.Click += new System.EventHandler(this.tmiClearSortInfo_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1759,9 +1728,8 @@
         private System.Windows.Forms.Button btnResetValue;
         private System.Windows.Forms.ToolStripMenuItem tmiFunction;
         private System.Windows.Forms.ToolStripMenuItem tmiSortList;
-        private System.Windows.Forms.Label lblSorted;
-        private System.Windows.Forms.Button btnColumnEditSortInfo;
-        private System.Windows.Forms.Label lblColumnSortInfo;
-        private System.Windows.Forms.Button btnColumnClearSortInfo;
+        private System.Windows.Forms.ToolStripMenuItem tmiEditSortInfo;
+        private System.Windows.Forms.ToolStripMenuItem tmiClearSortInfo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

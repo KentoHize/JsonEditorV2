@@ -243,9 +243,6 @@
   <data name="JE_COLUMN_REGEX" xml:space="preserve">
     <value>Regular Expression</value>
   </data>
-  <data name="JE_COLUMN_SORT_INFO" xml:space="preserve">
-    <value>Sorted</value>
-  </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
     <value>Column Type</value>
   </data>
@@ -392,12 +389,6 @@
   </data>
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
     <value>Choice(s)</value>
-  </data>
-  <data name="JE_LBL_NO" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="JE_LBL_YES" xml:space="preserve">
-    <value>Yes</value>
   </data>
   <data name="JE_LIST_FK" xml:space="preserve">
     <value>FK</value>
@@ -582,6 +573,9 @@
   <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
     <value>Add ID Column</value>
   </data>
+  <data name="JE_TMI_CLEAR_SORT_INFO" xml:space="preserve">
+    <value>Remove Sorting</value>
+  </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     <value>Close Json Folder</value>
   </data>
@@ -620,6 +614,9 @@
   </data>
   <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
     <value>Edit Description</value>
+  </data>
+  <data name="JE_TMI_EDIT_SORT_INFO" xml:space="preserve">
+    <value>Sorting</value>
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     <value>Exit</value>

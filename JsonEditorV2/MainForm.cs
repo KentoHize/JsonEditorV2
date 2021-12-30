@@ -45,8 +45,6 @@ namespace JsonEditorV2
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
             lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
             lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
-            lblColumnSortInfo.Text = Res.JE_COLUMN_SORT_INFO;
-            lblSorted.Text = Res.JE_LBL_NO;
             lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
             lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
@@ -103,6 +101,8 @@ namespace JsonEditorV2
             tmiExportCSFile.Text = Res.JE_TMI_EXPORT_TO_CS_FILE;
             tmiCloseJsonFile.Text = Res.JE_TMI_CLOSE_JSON_FILE;
             tmiRenameJsonFile.Text = Res.JE_TMI_RENAME_JSON_FILE;
+            tmiEditSortInfo.Text = Res.JE_TMI_EDIT_SORT_INFO;
+            tmiClearSortInfo.Text = Res.JE_TMI_CLEAR_SORT_INFO;
             tmiAddColumn.Text = Res.JE_TMI_ADD_COLUMN;
             tmiAddIDColumn.Text = Res.JE_TMI_ADD_ID_COLUMN;
             tmiDisplayAllColumn.Text = Res.JE_TMI_DISPLAY_ALL_COLUMN;
@@ -1110,6 +1110,11 @@ namespace JsonEditorV2
                 btnUpdateColumn.Enabled = false;
                 btnResetValue.Enabled = false;
                 btnRegenerateKey.Enabled = false;
+            }
+
+            if(Var.SelectedColumnParentTable != null)
+            {
+
             }
         }
 
@@ -3113,13 +3118,35 @@ namespace JsonEditorV2
             
         }
 
-        private void btnColumnEditSortInfo_Click(object sender, EventArgs e)
+        private void tmiEditSortInfo_Click(object sender, EventArgs e)
         {
-            var a = frmSortList.Show(this, Var.SelectedTable);
-            if (a == null)
+            List<SortInfo> lsi = frmSortList.Show(this, Var.SelectedColumnParentTable);
+            if (lsi == null)
                 return;
+
+            int CompareLines(JLine a, JLine b)
+            {
+                if(a == b)
+                    return 0;                
+                for (int i = 0; i < lsi.Count; i++)
+                {
+                    int columnIndex = Var.SelectedColumnParentTable.Columns.IndexOf(lsi[i].Column);
+                    int result = a.Values[columnIndex].CompareTo(b.Values[columnIndex], lsi[i].Column.Type);
+                    if (result != 0)
+                        return lsi[i].Desending ? result * -1 : result;
+                }
+                return 0;
+            }
+
+            Var.SelectedColumnParentTable.Lines.Sort(CompareLines);          
+
             RefreshDgvLines();
             //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
+        }
+
+        private void tmiClearSortInfo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
