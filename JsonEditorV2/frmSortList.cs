@@ -14,22 +14,22 @@ namespace JsonEditorV2
 {
     public partial class frmSortList : Form
     {
-
-        private JTable table;
+        public JTable Table;
         public List<SortListVar> ReturnValue { get; private set; }
         public List<SortListInputControlSet> SLControlList { get; set; }
-        public frmSortList()
+        public frmSortList(JTable table)
         {
             InitializeComponent();
+            Table = table;
         }
 
         public static List<SortListVar> Show(IWin32Window owner, JTable table)
         {
-            frmSortList frmSortList = new frmSortList();
+            frmSortList frmSortList = new frmSortList(table);
             //frmInputBox.txtInput.Text = defaultText;
             frmSortList.SLControlList = new List<SortListInputControlSet>();
 
-            //設定第一個
+            frmSortList.AddNewSLI();
             frmSortList.RefreshPnlSortMain();
             frmSortList.ShowDialogOrCallEvent(owner);
             return frmSortList.ReturnValue;
@@ -38,21 +38,57 @@ namespace JsonEditorV2
         public void RefreshPnlSortMain()
         {
             pnlSortMain.Controls.Clear();
-            for(int i = 0; i < SLControlList.Count; i++)
+            int i;
+            for (i = 0; i < SLControlList.Count; i++)
+                SLControlList[i].DrawControl(pnlSortMain, i);
+
+            Button btnNewSLI = new Button
             {
-                SLControlList[i].DrawControl(pnlSortMain, i * 10);
-            }
+                Name = "btnNewSLI",
+                Left = 200,
+                Top = i * 30,
+                Text = "New"
+            };
+
+            btnNewSLI.Click += BtnNewSLI_Click;
+            pnlSortMain.Controls.Add(btnNewSLI);
+        }
+
+        private void BtnNewSLI_Click(object sender, EventArgs e)
+        {
+            AddNewSLI();
+            RefreshPnlSortMain();
         }
 
         private void AddNewSLI()
         {
+            SortListInputControlSet sli = new SortListInputControlSet(Table);
+            SLControlList.Add(sli);
+        }
 
+        public void DeleteSLI(int index)
+        {
+            SLControlList.RemoveAt(index);
+            RefreshPnlSortMain();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            ReturnValue = null;            
+            ReturnValue = null;
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            ReturnValue = new List<SortListVar>();
+            for(int i = 0; i < SLControlList.Count; i++)
+            {
+                SortListVar slv = new SortListVar(
+                    SLControlList[i].ColumnComboBox.SelectedItem as JColumn,
+                    SLControlList[i].DesendingComboBox.SelectedIndex == 1);
+                ReturnValue.Add(slv);
+            }
+            DialogResult = DialogResult.OK;
         }
     }
 }

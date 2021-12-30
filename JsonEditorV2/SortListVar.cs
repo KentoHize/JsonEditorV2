@@ -11,6 +11,8 @@ namespace JsonEditorV2
     {
         public JColumn Column { get; set; }
         public bool Desending { get; set; }
+        public SortListVar()
+        { }
         public SortListVar(JColumn column, bool desending = false)
         {
             Column = column;

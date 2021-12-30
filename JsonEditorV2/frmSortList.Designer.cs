@@ -36,23 +36,25 @@
             // 
             // pnlSortMain
             // 
-            this.pnlSortMain.Location = new System.Drawing.Point(27, 81);
+            this.pnlSortMain.AutoScroll = true;
+            this.pnlSortMain.Location = new System.Drawing.Point(27, 61);
             this.pnlSortMain.Name = "pnlSortMain";
-            this.pnlSortMain.Size = new System.Drawing.Size(737, 462);
+            this.pnlSortMain.Size = new System.Drawing.Size(737, 535);
             this.pnlSortMain.TabIndex = 0;
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(172, 560);
+            this.btnConfirm.Location = new System.Drawing.Point(173, 619);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(102, 35);
             this.btnConfirm.TabIndex = 3;
             this.btnConfirm.Text = "-";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(442, 560);
+            this.btnCancel.Location = new System.Drawing.Point(443, 619);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 35);
             this.btnCancel.TabIndex = 4;
@@ -63,7 +65,7 @@
             // lblSort_M_1
             // 
             this.lblSort_M_1.AutoSize = true;
-            this.lblSort_M_1.Location = new System.Drawing.Point(24, 43);
+            this.lblSort_M_1.Location = new System.Drawing.Point(24, 21);
             this.lblSort_M_1.Name = "lblSort_M_1";
             this.lblSort_M_1.Size = new System.Drawing.Size(17, 15);
             this.lblSort_M_1.TabIndex = 3;
@@ -73,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 617);
+            this.ClientSize = new System.Drawing.Size(793, 676);
             this.Controls.Add(this.lblSort_M_1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
