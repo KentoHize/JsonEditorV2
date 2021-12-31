@@ -23,8 +23,9 @@ namespace JsonEditorV2
             ColumnComboBox = new ComboBox
             {
                 Left = 10,
-                Width = 300,
-                Height = 30,                
+                Width = 320,
+                Height = 30,
+                DropDownStyle = ComboBoxStyle.DropDownList,
             };
 
             for (int i = 0; i < ParentTable.Columns.Count; i++)
@@ -34,9 +35,10 @@ namespace JsonEditorV2
 
             DesendingComboBox = new ComboBox
             {
-                Left = 320,
-                Width = 100,
+                Left = 340,
+                Width = 120,
                 Height = 30,
+                DropDownStyle = ComboBoxStyle.DropDownList,
             };
 
             DesendingComboBox.Items.Add(Resources.Res.JE_COB_SORT_ASCENDING);
@@ -45,7 +47,7 @@ namespace JsonEditorV2
 
             DeleteButton = new Button
             {
-                Left = 430,
+                Left = 470,
                 Width = 80,
                 Height = 30,
                 Text = Resources.Res.JE_BTN_DELETE,                
