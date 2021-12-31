@@ -24,7 +24,7 @@ namespace JsonEditorV2
             {
                 Left = 10,
                 Width = 300,
-                Height = 20,                
+                Height = 30,                
             };
 
             for (int i = 0; i < ParentTable.Columns.Count; i++)
@@ -36,7 +36,7 @@ namespace JsonEditorV2
             {
                 Left = 320,
                 Width = 100,
-                Height = 20,                
+                Height = 30,
             };
 
             DesendingComboBox.Items.Add(Resources.Res.JE_COB_SORT_ASCENDING);
@@ -46,8 +46,8 @@ namespace JsonEditorV2
             DeleteButton = new Button
             {
                 Left = 430,
-                Width = 50,
-                Height = 20,
+                Width = 80,
+                Height = 30,
                 Text = Resources.Res.JE_BTN_DELETE,                
             };
             DeleteButton.Click += DeleteButton_Click;
@@ -67,10 +67,11 @@ namespace JsonEditorV2
         public void DrawControl(Panel pnlSortMain, int index)
         {
             ownerWindow = pnlSortMain.Parent as frmSortList;
+
             ColumnComboBox.Font = DesendingComboBox.Font =
             DeleteButton.Font = pnlSortMain.Font;
-            ColumnComboBox.Top = DesendingComboBox.Top =
-            DeleteButton.Top = 30 * index + 5;
+            ColumnComboBox.Top = DesendingComboBox.Top = 30 * index + 3;
+            DeleteButton.Top = 30 * index;
             DeleteButton.Tag = index;
 
             pnlSortMain.Controls.Add(ColumnComboBox);

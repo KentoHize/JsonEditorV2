@@ -36,13 +36,15 @@
             // pnlSortMain
             // 
             this.pnlSortMain.AutoScroll = true;
-            this.pnlSortMain.Location = new System.Drawing.Point(27, 61);
+            this.pnlSortMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlSortMain.Location = new System.Drawing.Point(27, 26);
             this.pnlSortMain.Name = "pnlSortMain";
-            this.pnlSortMain.Size = new System.Drawing.Size(737, 535);
+            this.pnlSortMain.Size = new System.Drawing.Size(737, 571);
             this.pnlSortMain.TabIndex = 0;
             // 
             // btnConfirm
             // 
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.btnConfirm.Location = new System.Drawing.Point(205, 619);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(102, 35);
@@ -53,6 +55,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.btnCancel.Location = new System.Drawing.Point(475, 619);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 35);

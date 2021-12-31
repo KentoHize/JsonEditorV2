@@ -1429,7 +1429,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 確認以以下欄位和方式進行排序(無法還原){0} 的當地語系化字串。
+        ///   查詢類似 確認以以下欄位和方式進行排序(無法還原)：{0} 的當地語系化字串。
         /// </summary>
         public static string JE_RUN_SORT_M_1 {
             get {
@@ -2172,6 +2172,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_VAL_REGEX_IS_NOT_MATCH {
             get {
                 return ResourceManager.GetString("JE_VAL_REGEX_IS_NOT_MATCH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 以下欄位發生重複：{0} 的當地語系化字串。
+        /// </summary>
+        public static string JE_VAL_SORT_DUPLICATE_COLUMN {
+            get {
+                return ResourceManager.GetString("JE_VAL_SORT_DUPLICATE_COLUMN", resourceCulture);
             }
         }
         

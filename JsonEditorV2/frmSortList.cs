@@ -47,8 +47,10 @@ namespace JsonEditorV2
             Button btnNewSLI = new Button
             {
                 Name = "btnNewSLI",
-                Left = 5,
-                Top = i * 30,
+                Left = pnlSortMain.Width / 2 - 100,
+                Width = 200,
+                Height = 30,
+                Top = i * 30 + 7,
                 Text = Res.JE_BTN_NEW_SORT_INFO
             };
 
@@ -92,12 +94,25 @@ namespace JsonEditorV2
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            StringBuilder msgConfirm = new StringBuilder();
-            msgConfirm.AppendLine();
-            for (int i = 0; i < SLControlList.Count; i++)
-                msgConfirm.AppendFormat("{0}, {1}\n", (SLControlList[i].ColumnComboBox.SelectedItem as JColumn).Name, SLControlList[i].DesendingComboBox.SelectedItem);
+            //確認重複欄位
+            HashSet<JColumn> columnSet = new HashSet<JColumn>();            
+            for(int i = 0; i < SLControlList.Count; i++)
+            {
+                if (!columnSet.Add(SLControlList[i].ColumnComboBox.SelectedItem as JColumn))
+                {   
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_SORT_DUPLICATE_COLUMN",
+                        Res.JE_TMI_EDIT_SORT_INFO, $"\n{(SLControlList[i].ColumnComboBox.SelectedItem as JColumn).Name}");
+                    return;
+                }   
+            }
 
-            DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_SORT_M_1", Resources.Res.JE_TMI_EDIT_SORT_INFO, msgConfirm.ToString());
+            //確認執行
+            StringBuilder msg = new StringBuilder();            
+            msg.AppendLine();
+            for (int i = 0; i < SLControlList.Count; i++)
+                msg.AppendFormat("{0}, {1}\n", (SLControlList[i].ColumnComboBox.SelectedItem as JColumn).Name, SLControlList[i].DesendingComboBox.SelectedItem);
+
+            DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_SORT_M_1", Res.JE_TMI_EDIT_SORT_INFO, msg.ToString());
             if (dr != DialogResult.OK)
                 return;
 

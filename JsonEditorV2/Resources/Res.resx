@@ -574,7 +574,7 @@
     <value>掃描檔案庫</value>
   </data>
   <data name="JE_RUN_SORT_M_1" xml:space="preserve">
-    <value>確認以以下欄位和方式進行排序(無法還原){0}</value>
+    <value>確認以以下欄位和方式進行排序(無法還原)：{0}</value>
   </data>
   <data name="JE_RUN_SORT_M_2" xml:space="preserve">
     <value>{0}已排序</value>
@@ -821,6 +821,9 @@
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}"規則檢查失敗</value>
+  </data>
+  <data name="JE_VAL_SORT_DUPLICATE_COLUMN" xml:space="preserve">
+    <value>以下欄位發生重複：{0}</value>
   </data>
   <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
     <value>文字超過最大長度{0}</value>

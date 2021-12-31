@@ -172,7 +172,7 @@
     <value>New Line</value>
   </data>
   <data name="JE_BTN_NEW_SORT_INFO" xml:space="preserve">
-    <value>New Sort By...</value>
+    <value>New Sort Rule</value>
   </data>
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
     <value>Reset Key</value>
@@ -818,6 +818,9 @@
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     <value>"{0}" Regular expression check failed.</value>
+  </data>
+  <data name="JE_VAL_SORT_DUPLICATE_COLUMN" xml:space="preserve">
+    <value>Column Duplicated:{0}</value>
   </data>
   <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
     <value>Text over maximum length: {0}.</value>

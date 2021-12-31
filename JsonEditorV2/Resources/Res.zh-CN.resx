@@ -129,17 +129,26 @@
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
     关於
   </data>
+  <data name="JE_BTN_CANCEL" xml:space="preserve">
+    取消
+  </data>
   <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
     清空
   </data>
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     清空
   </data>
+  <data name="JE_BTN_CONFIRM" xml:space="preserve">
+    确认
+  </data>
   <data name="JE_BTN_COPY" xml:space="preserve">
     复制
   </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
     复制资料行
+  </data>
+  <data name="JE_BTN_DELETE" xml:space="preserve">
+    删除
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     删除资料
@@ -162,8 +171,14 @@
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     新增资料
   </data>
+  <data name="JE_BTN_NEW_SORT_INFO" xml:space="preserve">
+    新增排列规则
+  </data>
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
     重设索引
+  </data>
+  <data name="JE_BTN_RESET_VALUE" xml:space="preserve">
+    重设值
   </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
     更新
@@ -194,6 +209,12 @@
   </data>
   <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
     单项无效
+  </data>
+  <data name="JE_COB_SORT_ASCENDING" xml:space="preserve">
+    升序
+  </data>
+  <data name="JE_COB_SORT_DESCENDING" xml:space="preserve">
+    降序
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     自动产生索引值
@@ -519,6 +540,12 @@
   <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
     档案已重新命名为"{0}"
   </data>
+  <data name="JE_RUN_RESET_VALUE_M_1" xml:space="preserve">
+    确定重设所有栏位"{0}"的值
+  </data>
+  <data name="JE_RUN_RESET_VALUE_M_2" xml:space="preserve">
+    栏位"{0}"所有值已重设
+  </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
     这不是一个空的资料夹，将清空所有档案，你确定吗?
   </data>
@@ -546,6 +573,12 @@
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     扫描档案库
   </data>
+  <data name="JE_RUN_SORT_M_1" xml:space="preserve">
+    确认以以下栏位和方式进行排序(无法还原)：{0}
+  </data>
+  <data name="JE_RUN_SORT_M_2" xml:space="preserve">
+    {0}已排序
+  </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
     档案内存在{0}笔资料，确定要一起更改吗(型态不合的资料将设为初始值)
   </data>
@@ -566,6 +599,9 @@
   </data>
   <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
     增加ID栏位
+  </data>
+  <data name="JE_TMI_CLEAR_SORT_INFO" xml:space="preserve">
+    清除排序
   </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
     关闭档案库
@@ -606,6 +642,9 @@
   <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
     编辑说明
   </data>
+  <data name="JE_TMI_EDIT_SORT_INFO" xml:space="preserve">
+    排序
+  </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
     离开
   </data>
@@ -638,6 +677,9 @@
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
     档案
+  </data>
+  <data name="JE_TMI_FUNCTION" xml:space="preserve">
+    功能
   </data>
   <data name="JE_TMI_HELP" xml:space="preserve">
     说明
@@ -779,6 +821,9 @@
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
     "{0}"规则检查失败
+  </data>
+  <data name="JE_VAL_SORT_DUPLICATE_COLUMN" xml:space="preserve">
+    以下栏位发生重复：{0}
   </data>
   <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
     文字超过最大长度{0}
