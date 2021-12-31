@@ -9,13 +9,13 @@ namespace JsonEditor
     public class SortInfo
     {
         public JColumn Column { get; set; }
-        public bool Desending { get; set; }
+        public bool Descending { get; set; }
         public SortInfo()
         { }
         public SortInfo(JColumn column, bool desending = false)
         {
             Column = column;
-            Desending = desending;
+            Descending = desending;
         }
     }
 }

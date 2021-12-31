@@ -31,7 +31,6 @@
             this.pnlSortMain = new System.Windows.Forms.Panel();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblSort_M_1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pnlSortMain
@@ -62,21 +61,11 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lblSort_M_1
-            // 
-            this.lblSort_M_1.AutoSize = true;
-            this.lblSort_M_1.Location = new System.Drawing.Point(24, 21);
-            this.lblSort_M_1.Name = "lblSort_M_1";
-            this.lblSort_M_1.Size = new System.Drawing.Size(17, 15);
-            this.lblSort_M_1.TabIndex = 3;
-            this.lblSort_M_1.Text = "X";
-            // 
             // frmSortList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 676);
-            this.Controls.Add(this.lblSort_M_1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.pnlSortMain);
@@ -87,7 +76,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmSortList";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -96,6 +84,5 @@
         private System.Windows.Forms.Panel pnlSortMain;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label lblSort_M_1;
     }
 }

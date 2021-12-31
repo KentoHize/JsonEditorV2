@@ -3093,31 +3093,6 @@ namespace JsonEditorV2
             RefreshTrvJsonFiles();
         }
 
-        private void tmiSortList_Click(object sender, EventArgs e)
-        {
-            
-
-            //if (Var.Tables.Exists(m => m.Name == newName))
-            //{
-            //    RabbitCouriers.SentErrorMessageByResource("JE_RUN_RENAME_JSON_FILE_M_1", Res.JE_TMI_RENAME_JSON_FILE, newName);
-            //    return;
-            //}
-            //try
-            //{
-            //    Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
-            //    RenewFK(Var.SelectedColumnParentTable, newName);
-            //    Var.SelectedColumnParentTable.Name = newName;
-            //    Var.SelectedColumnParentTable.Changed = true;
-            //    Var.JFI.Changed = true;
-            //}
-            //catch (Exception ex)
-            //{
-            //    ExceptionHandler.HandleException(ex, Res.JE_RUN_NEW_JSON_FILE_M_2, Res.JE_RUN_NEW_JSON_FILE_TITLE);
-            //}
-            //RefreshTrvJsonFiles();
-            
-        }
-
         private void tmiEditSortInfo_Click(object sender, EventArgs e)
         {
             List<SortInfo> lsi = frmSortList.Show(this, Var.SelectedColumnParentTable);
@@ -3133,20 +3108,20 @@ namespace JsonEditorV2
                     int columnIndex = Var.SelectedColumnParentTable.Columns.IndexOf(lsi[i].Column);
                     int result = a.Values[columnIndex].CompareTo(b.Values[columnIndex], lsi[i].Column.Type);
                     if (result != 0)
-                        return lsi[i].Desending ? result * -1 : result;
+                        return lsi[i].Descending ? result * -1 : result;
                 }
                 return 0;
             }
 
-            Var.SelectedColumnParentTable.Lines.Sort(CompareLines);          
-
-            RefreshDgvLines();
-            //sslMain.Text = string.Format(Res.JE_RUN_RENAME_JSON_FILE_M_2, newName);
+            Var.SelectedColumnParentTable.Lines.Sort(CompareLines);
+            Var.SelectedColumnParentTable.Changed = true;
+            RefreshTrvJsonFiles();            
+            sslMain.Text = string.Format(Res.JE_RUN_SORT_M_2, Var.SelectedColumnParentTable.Name);
         }
 
         private void tmiClearSortInfo_Click(object sender, EventArgs e)
         {
-
+            //尚未設定
         }
     }
 }

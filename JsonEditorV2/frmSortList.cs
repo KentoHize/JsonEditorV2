@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aritiafel.Organizations;
 using JsonEditor;
+using JsonEditorV2.Resources;
 
 namespace JsonEditorV2
 {
@@ -21,16 +22,17 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             Table = table;
+
+            btnConfirm.Text = Res.JE_BTN_CONFIRM;
+            btnCancel.Text = Res.JE_BTN_CANCEL;            
+            Text = Res.JE_TMI_EDIT_SORT_INFO;
         }
 
         public static List<SortInfo> Show(IWin32Window owner, JTable table)
         {
             frmSortList frmSortList = new frmSortList(table);
             //frmInputBox.txtInput.Text = defaultText;
-            frmSortList.SLControlList = new List<SortListInputControlSet>();
-
-            frmSortList.AddNewSLI();
-            frmSortList.RefreshPnlSortMain();
+            frmSortList.LoadSortInfoList();            
             frmSortList.ShowDialogOrCallEvent(owner);
             return frmSortList.ReturnValue;
         }
@@ -47,7 +49,7 @@ namespace JsonEditorV2
                 Name = "btnNewSLI",
                 Left = 5,
                 Top = i * 30,
-                Text = "New"
+                Text = Res.JE_BTN_NEW_SORT_INFO
             };
 
             btnNewSLI.Click += BtnNewSLI_Click;
@@ -60,10 +62,20 @@ namespace JsonEditorV2
             RefreshPnlSortMain();
         }
 
-        private void AddNewSLI()
+        private void LoadSortInfoList()
         {
-            SortListInputControlSet sli = new SortListInputControlSet(Table);
-            SLControlList.Add(sli);
+            SLControlList = new List<SortListInputControlSet>();
+            if (Table.SortInfoList == null)
+                AddNewSLI();
+            else
+                for(int i = 0; i < Table.SortInfoList.Count; i++)
+                    SLControlList.Add(new SortListInputControlSet(Table, Table.SortInfoList[i]));                        
+            RefreshPnlSortMain();
+        }
+
+        private void AddNewSLI()
+        {   
+            SLControlList.Add(new SortListInputControlSet(Table));
         }
 
         public void DeleteSLI(int index)
@@ -80,6 +92,15 @@ namespace JsonEditorV2
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            StringBuilder msgConfirm = new StringBuilder();
+            msgConfirm.AppendLine();
+            for (int i = 0; i < SLControlList.Count; i++)
+                msgConfirm.AppendFormat("{0}, {1}\n", (SLControlList[i].ColumnComboBox.SelectedItem as JColumn).Name, SLControlList[i].DesendingComboBox.SelectedItem);
+
+            DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_SORT_M_1", Resources.Res.JE_TMI_EDIT_SORT_INFO, msgConfirm.ToString());
+            if (dr != DialogResult.OK)
+                return;
+
             ReturnValue = new List<SortInfo>();
             for(int i = 0; i < SLControlList.Count; i++)
             {
@@ -87,15 +108,7 @@ namespace JsonEditorV2
                     SLControlList[i].ColumnComboBox.SelectedItem as JColumn,
                     SLControlList[i].DesendingComboBox.SelectedIndex == 1);
                 ReturnValue.Add(slv);
-            }
-
-            string msgConfirm = Resources.Res.JE_ABOUT_CONTACT_US;
-                
-            //確認            
-            //DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_RESET_VALUE_M_1", Res.JE_BTN_RESET_VALUE, Var.SelectedColumn.Name);
-            //if (dr != DialogResult.OK)
-            //    return;
-            //
+            }            
             DialogResult = DialogResult.OK;
         }
     }

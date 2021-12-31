@@ -129,17 +129,26 @@
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="JE_BTN_CANCEL" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="JE_BTN_CONFIRM" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="JE_BTN_COPY" xml:space="preserve">
     <value>Copy</value>
   </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
     <value>Copy Line</value>
+  </data>
+  <data name="JE_BTN_DELETE" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
     <value>Delete Line</value>
@@ -161,6 +170,9 @@
   </data>
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
     <value>New Line</value>
+  </data>
+  <data name="JE_BTN_NEW_SORT_INFO" xml:space="preserve">
+    <value>New Sort By...</value>
   </data>
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
     <value>Reset Key</value>
@@ -197,6 +209,12 @@
   </data>
   <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
     <value>One Invalid</value>
+  </data>
+  <data name="JE_COB_SORT_ASCENDING" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="JE_COB_SORT_DESCENDING" xml:space="preserve">
+    <value>Descending</value>
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
     <value>Auto Generate Key</value>
@@ -551,6 +569,12 @@
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
     <value>Scan Json Folder</value>
+  </data>
+  <data name="JE_RUN_SORT_M_1" xml:space="preserve">
+    <value>Confirm to sort by columns and method below(can't undo):{0}</value>
+  </data>
+  <data name="JE_RUN_SORT_M_2" xml:space="preserve">
+    <value>{0} has sorted.</value>
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
     <value>This file has {0} lines of data, confirm to update synchronously? (If type didn't match will change to an initial value)</value>

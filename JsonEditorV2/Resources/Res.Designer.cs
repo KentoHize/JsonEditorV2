@@ -97,6 +97,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 取消 的當地語系化字串。
+        /// </summary>
+        public static string JE_BTN_CANCEL {
+            get {
+                return ResourceManager.GetString("JE_BTN_CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 清空 的當地語系化字串。
         /// </summary>
         public static string JE_BTN_CLEAR_COLUMN {
@@ -115,6 +124,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 確認 的當地語系化字串。
+        /// </summary>
+        public static string JE_BTN_CONFIRM {
+            get {
+                return ResourceManager.GetString("JE_BTN_CONFIRM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 複製 的當地語系化字串。
         /// </summary>
         public static string JE_BTN_COPY {
@@ -129,6 +147,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_BTN_COPY_LINE {
             get {
                 return ResourceManager.GetString("JE_BTN_COPY_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 刪除 的當地語系化字串。
+        /// </summary>
+        public static string JE_BTN_DELETE {
+            get {
+                return ResourceManager.GetString("JE_BTN_DELETE", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_BTN_NEW_LINE {
             get {
                 return ResourceManager.GetString("JE_BTN_NEW_LINE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 新增排列規則 的當地語系化字串。
+        /// </summary>
+        public static string JE_BTN_NEW_SORT_INFO {
+            get {
+                return ResourceManager.GetString("JE_BTN_NEW_SORT_INFO", resourceCulture);
             }
         }
         
@@ -300,6 +336,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_COB_CHECK_METHOD_ONE_INVALID_CHECK {
             get {
                 return ResourceManager.GetString("JE_COB_CHECK_METHOD_ONE_INVALID_CHECK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 升序 的當地語系化字串。
+        /// </summary>
+        public static string JE_COB_SORT_ASCENDING {
+            get {
+                return ResourceManager.GetString("JE_COB_SORT_ASCENDING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 降序 的當地語系化字串。
+        /// </summary>
+        public static string JE_COB_SORT_DESCENDING {
+            get {
+                return ResourceManager.GetString("JE_COB_SORT_DESCENDING", resourceCulture);
             }
         }
         
@@ -1371,6 +1425,24 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_SCAN_JSON_FILES_TITLE {
             get {
                 return ResourceManager.GetString("JE_RUN_SCAN_JSON_FILES_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 確認以以下欄位和方式進行排序(無法還原){0} 的當地語系化字串。
+        /// </summary>
+        public static string JE_RUN_SORT_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SORT_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 {0}已排序 的當地語系化字串。
+        /// </summary>
+        public static string JE_RUN_SORT_M_2 {
+            get {
+                return ResourceManager.GetString("JE_RUN_SORT_M_2", resourceCulture);
             }
         }
         

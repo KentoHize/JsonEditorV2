@@ -10,62 +10,65 @@ namespace JsonEditorV2
 {
     public class SortListInputControlSet
     {
-        public SortListInputControlSet(JTable parentTable)
-        {
-            ParentTable = parentTable ?? throw new ArgumentNullException(nameof(parentTable));
-        }
-
         public ComboBox ColumnComboBox { get; set; }
         public ComboBox DesendingComboBox { get; set; }
-        public Button DeleteButton { get; set; }
-        //public JColumn JColumn { get; set; }
+        public Button DeleteButton { get; set; }        
         public JTable ParentTable { get; set; }
 
         private frmSortList ownerWindow;
+        public SortListInputControlSet(JTable parentTable, SortInfo sortInfo)
+        {
+            ParentTable = parentTable ?? throw new ArgumentNullException(nameof(parentTable));
+
+            ColumnComboBox = new ComboBox
+            {
+                Left = 10,
+                Width = 300,
+                Height = 20,                
+            };
+
+            for (int i = 0; i < ParentTable.Columns.Count; i++)
+                ColumnComboBox.Items.Add(ParentTable.Columns[i]);
+            ColumnComboBox.ValueMember = "Name";
+            ColumnComboBox.SelectedIndex = 0;            
+
+            DesendingComboBox = new ComboBox
+            {
+                Left = 320,
+                Width = 100,
+                Height = 20,                
+            };
+
+            DesendingComboBox.Items.Add(Resources.Res.JE_COB_SORT_ASCENDING);
+            DesendingComboBox.Items.Add(Resources.Res.JE_COB_SORT_DESCENDING);
+            DesendingComboBox.SelectedIndex = 0;
+
+            DeleteButton = new Button
+            {
+                Left = 430,
+                Width = 50,
+                Height = 20,
+                Text = Resources.Res.JE_BTN_DELETE,                
+            };
+            DeleteButton.Click += DeleteButton_Click;
+
+            if (sortInfo != null)
+            {
+                ColumnComboBox.SelectedItem = sortInfo.Column;
+                DesendingComboBox.SelectedIndex = sortInfo.Descending ? 1 : 0;
+            }   
+        }
+
+        public SortListInputControlSet(JTable parentTable)
+            : this(parentTable, null)
+        { }
+
 
         public void DrawControl(Panel pnlSortMain, int index)
         {
             ownerWindow = pnlSortMain.Parent as frmSortList;
-            if (ColumnComboBox == null)
-            {
-                ColumnComboBox = new ComboBox
-                {
-                    //Name = $"cobColumn{index}",
-                    Left = 10,
-                    Width = 300,
-                    Height = 20,
-                    Font = pnlSortMain.Font
-                };
-
-                for (int i = 0; i < ParentTable.Columns.Count; i++)
-                    ColumnComboBox.Items.Add(ParentTable.Columns[i]);
-                ColumnComboBox.ValueMember = "Name";
-                ColumnComboBox.SelectedIndex = 0;
-
-                DesendingComboBox = new ComboBox
-                {
-                    //Name = $"cobDesnding{index}",
-                    Left = 320,
-                    Width = 100,
-                    Height = 20,
-                    Font = pnlSortMain.Font
-                };
-
-                DesendingComboBox.Items.Add("Ascsending");
-                DesendingComboBox.Items.Add("Desending");
-                DesendingComboBox.SelectedIndex = 0;
-
-                DeleteButton = new Button
-                {
-                    //Name = $"btnDelete{index}",
-                    Left = 430,
-                    Width = 50,
-                    Height = 20,                    
-                    Font = pnlSortMain.Font
-                };
-
-                DeleteButton.Click += DeleteButton_Click;
-            }
+            ColumnComboBox.Font = DesendingComboBox.Font =
+            DeleteButton.Font = pnlSortMain.Font;
             ColumnComboBox.Top = DesendingComboBox.Top =
             DeleteButton.Top = 30 * index + 5;
             DeleteButton.Tag = index;
