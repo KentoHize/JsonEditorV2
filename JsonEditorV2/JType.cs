@@ -77,14 +77,17 @@ namespace JsonEditor
                 case JType.Choice:
                 case JType.Uri:
                 case JType.Guid:
-                    if (value != null)
+                    if (value != null && instance != null)
                         return instance.ToString().CompareTo(value.ToString());
-                    return 1;
+                    else if(value == null)
+                        return 1;
+                    return -1;
                 case JType.None:
                 case JType.Object:
                 case JType.Array:
                 default:
-                    throw new InvalidCastException();
+                    return 0;
+                    //throw new InvalidCastException();
             }
         }
 
