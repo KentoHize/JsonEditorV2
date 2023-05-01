@@ -51,7 +51,7 @@ namespace JsonEditorV2
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
-            
+
             lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
             tltMain.SetToolTip(btnClearMain, Res.JE_BTN_CLEAR_MAIN);
@@ -402,14 +402,14 @@ namespace JsonEditorV2
                     jl[index].TryParseJType(newType, out object result);
                     if (newType == JType.Choice)
                     {
-                        int indexOfChoice = Var.SelectedColumn.Choices.IndexOf(result.ToString());                        
+                        int indexOfChoice = Var.SelectedColumn.Choices.IndexOf(result.ToString());
                         if (indexOfChoice != -1)
                             result = Var.SelectedColumn.Choices[indexOfChoice];
-                        else if(Var.SelectedColumn.Choices.Count != 0)
+                        else if (Var.SelectedColumn.Choices.Count != 0)
                             result = Var.SelectedColumn.Choices[0];
                         else
                             result = null;
-                    }   
+                    }
                     else if (result == null && !Var.SelectedColumn.IsNullable)
                         result = newType.InitialValue();
                     jl[index] = result;
@@ -582,11 +582,21 @@ namespace JsonEditorV2
 #if DEBUG
             fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Test1";
 #endif
-            DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
-            if (dr != DialogResult.OK)
-                return;
-
-            string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");
+            string[] jsonfiles;
+            string path;
+            if (Var.DirectLoadFolder == null)
+            {
+                DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
+                if (dr != DialogResult.OK)
+                    return;
+                path = fbdMain.SelectedPath;
+            }
+            else
+            {
+                path = Var.DirectLoadFolder;
+                Var.DirectLoadFolder = null;
+            }
+            jsonfiles = Directory.GetFiles(path, "*.json");
 
             //檔案數為0，丟出訊息後離開
             if (jsonfiles.Length == 0)
@@ -596,7 +606,7 @@ namespace JsonEditorV2
             }
 
             //JFI檔案不存在，離開
-            if (!jsonfiles.Contains(Path.Combine(fbdMain.SelectedPath, JFilesInfo.FilesInfoName)))
+            if (!jsonfiles.Contains(Path.Combine(path, JFilesInfo.FilesInfoName)))
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_LOAD_JSON_FILES_M_2", Res.JE_TMI_LOAD_JSON_FILES);
                 return;
@@ -606,7 +616,7 @@ namespace JsonEditorV2
             Var.NotOnlyClose = true;
             tmiCloseAllFiles_Click(this, e);
             Var.Tables = new List<JTable>();
-            Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+            Var.JFI = new JFilesInfo(path);
 
             //讀取JFI失敗跳出
             if (!LoadJFilesInfo(Var.JFI.FileInfoPath))
@@ -614,7 +624,7 @@ namespace JsonEditorV2
                 tmiCloseAllFiles_Click(this, e);
                 return;
             }
-            Var.JFI.DirectoryPath = fbdMain.SelectedPath;
+            Var.JFI.DirectoryPath = path;
 
             //開始讀檔
             foreach (string file in jsonfiles)
@@ -864,7 +874,7 @@ namespace JsonEditorV2
             {
                 int widthLeft = dgvLines.Width;
                 List<int> bigColumnIndexes = new List<int>();
-                foreach(DataGridViewColumn dgvc in dgvLines.Columns)
+                foreach (DataGridViewColumn dgvc in dgvLines.Columns)
                 {
                     if (dgvc.Name == Const.HiddenColumnItemIndex || dgvc.Name == Const.HiddenColumnStat)
                         continue;
@@ -886,8 +896,8 @@ namespace JsonEditorV2
                     {
                         int calculatedWidth = dgvLines.Columns[bigColumnIndexes[i]].Width * widthLeft / totalBigColumnWidth;
                         dgvLines.Columns[bigColumnIndexes[i]].Width = calculatedWidth > Setting.DgvLinesColumnStandardWidth ? calculatedWidth : Setting.DgvLinesColumnStandardWidth;
-                    }                        
-                }   
+                    }
+                }
             }
 
             cobFindColumnName.DataSource = null;
@@ -997,14 +1007,14 @@ namespace JsonEditorV2
 
             //紀錄存過的Json File
             string lf = Var.JFI.DirectoryPath;
-            if(Setting.LatestFolder1 != lf)
+            if (Setting.LatestFolder1 != lf)
             {
-                if(Setting.LatestFolder2 == lf)
+                if (Setting.LatestFolder2 == lf)
                 {
                     Setting.LatestFolder2 = Setting.LatestFolder1;
                     Setting.LatestFolder1 = lf;
                 }
-                else if(Setting.LatestFolder3 == lf)
+                else if (Setting.LatestFolder3 == lf)
                 {
                     Setting.LatestFolder3 = Setting.LatestFolder2;
                     Setting.LatestFolder2 = Setting.LatestFolder1;
@@ -1137,7 +1147,7 @@ namespace JsonEditorV2
                 btnRegenerateKey.Enabled = false;
             }
 
-            if(Var.SelectedColumnParentTable != null)
+            if (Var.SelectedColumnParentTable != null)
             {
 
             }
@@ -1461,14 +1471,14 @@ namespace JsonEditorV2
             string typeString;
             csString.Append("using System;\r\n\r\n");
             csString.AppendFormat("namespace {0}\r\n{{\r\n    public class {1}\r\n    {{\r\n", nameSpace.Replace(" ", "_"), jt.Name.Replace(" ", "_"));
-            foreach(JColumn jc in jt.Columns)
+            foreach (JColumn jc in jt.Columns)
             {
                 if (jc.Type != JType.None)
                     typeString = jc.Type.ToTypeString();
                 else
-                    continue;              
+                    continue;
                 csString.AppendFormat("        public {0} {1} {{ get; set; }}\r\n", typeString, jc.Name.Replace(" ", "_"));
-            }            
+            }
             csString.Append("    }\r\n}");
 
             try
@@ -2103,6 +2113,37 @@ namespace JsonEditorV2
             //讀取Setting
             SettingShop.LoadIniFile(typeof(Setting));
 
+            //最新資料庫位置更新
+            if (Setting.LatestFolder1 != null)
+            {
+                ToolStripMenuItem tsmi = new ToolStripMenuItem();
+                tsmi.Text = Setting.LatestFolder1;
+                tsmi.Click += tmiLatestFolder_Click;
+                tmiFile.DropDownItems.Insert(tmiFile.DropDownItems.Count - 1, tsmi);
+                if (Setting.LatestFolder2 != null)
+                {
+                    tsmi = new ToolStripMenuItem();
+                    tsmi.Text = Setting.LatestFolder2;
+                    tsmi.Click += tmiLatestFolder_Click;
+                    tmiFile.DropDownItems.Insert(tmiFile.DropDownItems.Count - 1, tsmi);
+                }
+                if (Setting.LatestFolder3 != null)
+                {
+                    tsmi = new ToolStripMenuItem();
+                    tsmi.Text = Setting.LatestFolder3;
+                    tsmi.Click += tmiLatestFolder_Click;
+                    tmiFile.DropDownItems.Insert(tmiFile.DropDownItems.Count - 1, tsmi);
+                }
+                if (Setting.LatestFolder4 != null)
+                {
+                    tsmi = new ToolStripMenuItem();
+                    tsmi.Text = Setting.LatestFolder4;
+                    tsmi.Click += tmiLatestFolder_Click;
+                    tmiFile.DropDownItems.Insert(tmiFile.DropDownItems.Count - 1, tsmi);
+                }
+                tmiFile.DropDownItems.Insert(tmiFile.DropDownItems.Count - 1, new ToolStripSeparator());
+            }
+
             ChangeCulture();
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
@@ -2154,7 +2195,11 @@ namespace JsonEditorV2
 
         }
 
-
+        private void tmiLatestFolder_Click(object sender, EventArgs e)
+        {   
+            Var.DirectLoadFolder = ((ToolStripMenuItem)sender).Text;
+            tmiLoadJsonFiles_Click(sender, e);
+        }
 
         public void cobColumnType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2208,7 +2253,7 @@ namespace JsonEditorV2
             if (!Var.SelectedColumnParentTable.Loaded)
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
-            
+
             string newName = frmInputBox.Show(this, InputBoxTypes.RenameColumn, Var.SelectedColumn.Name);
             if (string.IsNullOrEmpty(newName))
                 return;
@@ -2287,7 +2332,7 @@ namespace JsonEditorV2
         }
 
         private void tmiJsonEditorBackup_Click(object sender, EventArgs e)
-        {            
+        {
             string BackupPath = @"E:\Backup\JsonEditorV2";
             string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
             string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
@@ -2558,13 +2603,13 @@ namespace JsonEditorV2
                 Var.JFI.Changed = true;
 
                 //Choice的情況，直接刷新更新Json檔案
-                if(Var.SelectedColumn.Type == JType.Choice)
+                if (Var.SelectedColumn.Type == JType.Choice)
                 {
                     if (!Var.SelectedColumnParentTable.Loaded)
                         if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                             return;
 
-                    foreach(JLine jl in Var.SelectedColumnParentTable)
+                    foreach (JLine jl in Var.SelectedColumnParentTable)
                     {
                         int indeOfChoice = Var.SelectedColumn.Choices.IndexOf(jl[Var.SelectedColumnIndex]?.ToString());
                         if (indeOfChoice != -1)
@@ -2573,7 +2618,7 @@ namespace JsonEditorV2
                             jl[Var.SelectedColumnIndex] = Var.SelectedColumn.Choices[0];
                         else
                             jl[Var.SelectedColumnIndex] = null;
-                    }                    
+                    }
                 }
                 RefreshTbcMain();
             }
@@ -2702,7 +2747,7 @@ namespace JsonEditorV2
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr != DialogResult.OK)
                 return;
-            
+
             foreach (JTable jt in Var.Tables)
                 SaveCSFile(jt, Path.Combine(fbdMain.SelectedPath, $"{jt.Name}.cs"), Var.Database.Name);
 
@@ -3020,7 +3065,7 @@ namespace JsonEditorV2
         }
 
         private void tmiAddIDColumn_Click(object sender, EventArgs e)
-        {   
+        {
             if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == "ID"))
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_ADD_ID_COLUMN, "ID");
@@ -3043,9 +3088,9 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Columns.Add(jc);
             Var.SelectedColumn = jc;
             Var.AutoFlag = true;
-            Var.SelectedColumnParentTable.Changed = true;            
+            Var.SelectedColumnParentTable.Changed = true;
             Var.JFI.Changed = true;
-            if(Var.SelectedColumnIndex != 0)
+            if (Var.SelectedColumnIndex != 0)
                 tmiColumnMoveTop_Click(sender, e);
             btnRegenerateKey_Click(sender, e);
         }
@@ -3067,7 +3112,7 @@ namespace JsonEditorV2
                 return;
 
             DialogResult dr = RabbitCouriers.SentNormalQuestionByResource("JE_RUN_RESET_VALUE_M_1", Res.JE_BTN_RESET_VALUE, Var.SelectedColumn.Name);
-            if(dr != DialogResult.OK)
+            if (dr != DialogResult.OK)
                 return;
 
             int index = Var.SelectedColumnIndex;
@@ -3091,8 +3136,8 @@ namespace JsonEditorV2
 
             int CompareLines(JLine a, JLine b)
             {
-                if(a == b)
-                    return 0;                
+                if (a == b)
+                    return 0;
                 for (int i = 0; i < lsi.Count; i++)
                 {
                     int columnIndex = Var.SelectedColumnParentTable.Columns.IndexOf(lsi[i].Column);
@@ -3105,7 +3150,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumnParentTable.Lines.Sort(CompareLines);
             Var.SelectedColumnParentTable.Changed = true;
-            RefreshTrvJsonFiles();            
+            RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SORT_M_2, Var.SelectedColumnParentTable.Name);
         }
 
