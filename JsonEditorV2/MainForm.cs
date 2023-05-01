@@ -586,7 +586,9 @@ namespace JsonEditorV2
             string path;
             if (Var.DirectLoadFolder == null)
             {
-                DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
+                if (Setting.LatestFolder1 != null)
+                    fbdMain.SelectedPath = Setting.LatestFolder1;
+                DialogResult dr = fbdMain.ShowDialogOrSetResult(this);                
                 if (dr != DialogResult.OK)
                     return;
                 path = fbdMain.SelectedPath;
