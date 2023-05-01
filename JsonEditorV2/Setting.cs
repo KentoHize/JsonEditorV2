@@ -17,5 +17,9 @@ namespace JsonEditorV2
         public static int NumberOfRowsMaxValue { get; set; }
         public static Color InvalidLineBackColor { get; set; }
         public static int DgvLinesColumnStandardWidth { get; set; }
+        public static string LatestFolder1 { get; set; }
+        public static string LatestFolder2 { get; set; }
+        public static string LatestFolder3 { get; set; }
+        public static string LatestFolder4 { get; set; }
     }
 }

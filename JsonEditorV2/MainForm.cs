@@ -1,4 +1,5 @@
 ﻿using Aritiafel.Items;
+using Aritiafel.Locations;
 using Aritiafel.Organizations;
 using JsonEditor;
 using JsonEditorV2.Resources;
@@ -993,6 +994,30 @@ namespace JsonEditorV2
                 if (File.Exists(file))
                     File.Delete(file);
             Var.RenamedFiles.Clear();
+
+            //紀錄存過的Json File
+            string lf = Var.JFI.DirectoryPath;
+            if(Setting.LatestFolder1 != lf)
+            {
+                if(Setting.LatestFolder2 == lf)
+                {
+                    Setting.LatestFolder2 = Setting.LatestFolder1;
+                    Setting.LatestFolder1 = lf;
+                }
+                else if(Setting.LatestFolder3 == lf)
+                {
+                    Setting.LatestFolder3 = Setting.LatestFolder2;
+                    Setting.LatestFolder2 = Setting.LatestFolder1;
+                    Setting.LatestFolder1 = lf;
+                }
+                else
+                {
+                    Setting.LatestFolder4 = Setting.LatestFolder3;
+                    Setting.LatestFolder3 = Setting.LatestFolder2;
+                    Setting.LatestFolder2 = Setting.LatestFolder1;
+                    Setting.LatestFolder1 = lf;
+                }
+            }
 
             RefreshTrvJsonFiles();
             sslMain.Text = string.Format(Res.JE_RUN_SAVE_JSON_FILES_M_2, Var.JFI.DirectoryPath);
@@ -2070,38 +2095,13 @@ namespace JsonEditorV2
             Setting.NumberOfRowsMaxValue = 30;
             Setting.InvalidLineBackColor = Color.FromArgb(255, 211, 211);
             Setting.DgvLinesColumnStandardWidth = 100;
+            Setting.LatestFolder1 = null;
+            Setting.LatestFolder2 = null;
+            Setting.LatestFolder3 = null;
+            Setting.LatestFolder4 = null;
 
             //讀取Setting
-            if (File.Exists(Path.Combine(Const.ApplicationDataFolder, "Setting.ini")))
-            {
-                using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Open))
-                {
-                    using (StreamReader sr = new StreamReader(fs))
-                    {
-                        PropertyInfo[] pis = typeof(Setting).GetProperties();
-                        while (!sr.EndOfStream)
-                        {
-                            string line = sr.ReadLine();
-                            PropertyInfo pi = typeof(Setting).GetProperty(line.Split('=')[0]);
-                            if (pi == null)
-                                continue;
-                            else if (pi.PropertyType == typeof(CultureInfo))
-                                pi.SetValue(null, new CultureInfo(line.Split('=')[1]));
-                            else if (pi.PropertyType == typeof(Color))
-                            {
-                                string[] value = line.Split('=');
-                                pi.SetValue(null, Color.FromArgb(int.Parse(value[2].Split(',')[0]),
-                                    int.Parse(value[3].Split(',')[0]), int.Parse(value[4].Split(',')[0]),
-                                    int.Parse(value[5].Split(']')[0])));
-                            }
-                            else if (pi.PropertyType == typeof(ValueCheckMethod))
-                                pi.SetValue(null, Enum.Parse(typeof(ValueCheckMethod), line.Split('=')[1]));
-                            else
-                                pi.SetValue(null, Convert.ChangeType(line.Split('=')[1], pi.PropertyType));
-                        }
-                    }
-                }
-            }
+            SettingShop.LoadIniFile(typeof(Setting));
 
             ChangeCulture();
             cobColumnType.SelectedIndex = 0;
@@ -2421,19 +2421,9 @@ namespace JsonEditorV2
             //Setting.ini存取
             try
             {
-                using (FileStream fs = new FileStream(Path.Combine(Const.ApplicationDataFolder, "Setting.ini"), FileMode.Create))
-                {
-                    using (StreamWriter sw = new StreamWriter(fs))
-                    {
-                        PropertyInfo[] pis = typeof(Setting).GetProperties();
-                        foreach (var pi in pis)
-                            sw.WriteLine($"{pi.Name}={pi.GetValue(null)}");
-                    }
-                    //Process.Start("Notepad.exe", fs.Name);
-                }
+                SettingShop.SaveIniFile(typeof(Setting));
             }
             catch { }
-
         }
 
         private void ckbAutoGenerateKey_CheckedChanged(object sender, EventArgs e)

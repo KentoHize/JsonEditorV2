@@ -99,7 +99,7 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExportToCSFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiPrintList = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmLatestFolderStart = new System.Windows.Forms.ToolStripSeparator();
             this.tmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiFunction = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSortList = new System.Windows.Forms.ToolStripMenuItem();
@@ -782,7 +782,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 27);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 28);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -801,30 +801,30 @@
             this.toolStripMenuItem2,
             this.tmiExportFiles,
             this.tmiPrintList,
-            this.toolStripMenuItem1,
+            this.tsmLatestFolderStart,
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
-            this.tmiFile.Size = new System.Drawing.Size(33, 23);
+            this.tmiFile.Size = new System.Drawing.Size(33, 24);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
             // 
             this.tmiNewJsonFiles.Name = "tmiNewJsonFiles";
             this.tmiNewJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.tmiNewJsonFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiNewJsonFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiNewJsonFiles.Text = "X";
             this.tmiNewJsonFiles.Click += new System.EventHandler(this.tmiNewJsonFiles_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(156, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(221, 6);
             // 
             // tmiScanJsonFiles
             // 
             this.tmiScanJsonFiles.Name = "tmiScanJsonFiles";
             this.tmiScanJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.tmiScanJsonFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiScanJsonFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiScanJsonFiles.Text = "X";
             this.tmiScanJsonFiles.Click += new System.EventHandler(this.tmiScanJsonFiles_Click);
             // 
@@ -833,7 +833,7 @@
             this.tmiScan.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiScanCSVFiles});
             this.tmiScan.Name = "tmiScan";
-            this.tmiScan.Size = new System.Drawing.Size(159, 26);
+            this.tmiScan.Size = new System.Drawing.Size(224, 26);
             this.tmiScan.Text = "X";
             // 
             // tmiScanCSVFiles
@@ -847,21 +847,21 @@
             // 
             this.tmiLoadJsonFiles.Name = "tmiLoadJsonFiles";
             this.tmiLoadJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiLoadJsonFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiLoadJsonFiles.Text = "X";
             this.tmiLoadJsonFiles.Click += new System.EventHandler(this.tmiLoadJsonFiles_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(156, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(221, 6);
             // 
             // tmiSaveJsonFiles
             // 
             this.tmiSaveJsonFiles.Enabled = false;
             this.tmiSaveJsonFiles.Name = "tmiSaveJsonFiles";
             this.tmiSaveJsonFiles.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiSaveJsonFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiSaveJsonFiles.Text = "X";
             this.tmiSaveJsonFiles.Click += new System.EventHandler(this.tmiSaveJsonFiles_Click);
             // 
@@ -869,7 +869,7 @@
             // 
             this.tmiSaveAsJsonFiles.Enabled = false;
             this.tmiSaveAsJsonFiles.Name = "tmiSaveAsJsonFiles";
-            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiSaveAsJsonFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiSaveAsJsonFiles.Text = "X";
             this.tmiSaveAsJsonFiles.Click += new System.EventHandler(this.tmiSaveAsJsonFiles_Click);
             // 
@@ -877,14 +877,14 @@
             // 
             this.tmiCloseAllFiles.Enabled = false;
             this.tmiCloseAllFiles.Name = "tmiCloseAllFiles";
-            this.tmiCloseAllFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiCloseAllFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiCloseAllFiles.Text = "X";
             this.tmiCloseAllFiles.Click += new System.EventHandler(this.tmiCloseAllFiles_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(221, 6);
             // 
             // tmiExportFiles
             // 
@@ -895,32 +895,32 @@
             this.tmiExportToCSFiles});
             this.tmiExportFiles.Enabled = false;
             this.tmiExportFiles.Name = "tmiExportFiles";
-            this.tmiExportFiles.Size = new System.Drawing.Size(159, 26);
+            this.tmiExportFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportFiles.Text = "X";
             // 
             // tmiExportToCsvFiles
             // 
             this.tmiExportToCsvFiles.Name = "tmiExportToCsvFiles";
-            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(102, 26);
+            this.tmiExportToCsvFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToCsvFiles.Text = "X";
             this.tmiExportToCsvFiles.Click += new System.EventHandler(this.tmiExportToCsvFiles_Click);
             // 
             // tmiExportToXmlFiles
             // 
             this.tmiExportToXmlFiles.Name = "tmiExportToXmlFiles";
-            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(102, 26);
+            this.tmiExportToXmlFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToXmlFiles.Text = "X";
             this.tmiExportToXmlFiles.Click += new System.EventHandler(this.tmiExportToXmlFiles_Click);
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(99, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(221, 6);
             // 
             // tmiExportToCSFiles
             // 
             this.tmiExportToCSFiles.Name = "tmiExportToCSFiles";
-            this.tmiExportToCSFiles.Size = new System.Drawing.Size(102, 26);
+            this.tmiExportToCSFiles.Size = new System.Drawing.Size(224, 26);
             this.tmiExportToCSFiles.Text = "X";
             this.tmiExportToCSFiles.Click += new System.EventHandler(this.tmiExportToCSFiles_Click);
             // 
@@ -928,20 +928,20 @@
             // 
             this.tmiPrintList.Enabled = false;
             this.tmiPrintList.Name = "tmiPrintList";
-            this.tmiPrintList.Size = new System.Drawing.Size(159, 26);
+            this.tmiPrintList.Size = new System.Drawing.Size(224, 26);
             this.tmiPrintList.Text = "X";
             this.tmiPrintList.Click += new System.EventHandler(this.tmiPrintList_Click);
             // 
-            // toolStripMenuItem1
+            // tsmLatestFolderStart
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(156, 6);
+            this.tsmLatestFolderStart.Name = "tsmLatestFolderStart";
+            this.tsmLatestFolderStart.Size = new System.Drawing.Size(221, 6);
             // 
             // tmiExit
             // 
             this.tmiExit.Name = "tmiExit";
             this.tmiExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tmiExit.Size = new System.Drawing.Size(159, 26);
+            this.tmiExit.Size = new System.Drawing.Size(224, 26);
             this.tmiExit.Text = "X";
             this.tmiExit.Click += new System.EventHandler(this.tmiExit_Click);
             // 
@@ -950,7 +950,7 @@
             this.tmiFunction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiSortList});
             this.tmiFunction.Name = "tmiFunction";
-            this.tmiFunction.Size = new System.Drawing.Size(33, 23);
+            this.tmiFunction.Size = new System.Drawing.Size(33, 24);
             this.tmiFunction.Text = "X";
             this.tmiFunction.Visible = false;
             // 
@@ -968,7 +968,7 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(33, 23);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 24);
             this.tmiLanguages.Text = "X";
             // 
             // tmiLanguageENUS
@@ -1002,7 +1002,7 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(33, 23);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 24);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
@@ -1021,7 +1021,7 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(73, 23);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 24);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
@@ -1160,33 +1160,33 @@
             this.tmiAddIDColumn,
             this.tmiDisplayAllColumn});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 308);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(89, 280);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiDeleteJsonFile.Text = "X";
             this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
@@ -1198,7 +1198,7 @@
             this.toolStripMenuItem12,
             this.tmiExportCSFile});
             this.tmiExportFile.Name = "tmiExportFile";
-            this.tmiExportFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiExportFile.Size = new System.Drawing.Size(88, 24);
             this.tmiExportFile.Text = "X";
             // 
             // tmiExportCsvFile
@@ -1231,19 +1231,19 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiEditSortInfo
             // 
             this.tmiEditSortInfo.Name = "tmiEditSortInfo";
-            this.tmiEditSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiEditSortInfo.Size = new System.Drawing.Size(88, 24);
             this.tmiEditSortInfo.Text = "X";
             this.tmiEditSortInfo.Click += new System.EventHandler(this.tmiEditSortInfo_Click);
             // 
@@ -1251,33 +1251,33 @@
             // 
             this.tmiClearSortInfo.Enabled = false;
             this.tmiClearSortInfo.Name = "tmiClearSortInfo";
-            this.tmiClearSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiClearSortInfo.Size = new System.Drawing.Size(88, 24);
             this.tmiClearSortInfo.Text = "X";
             this.tmiClearSortInfo.Click += new System.EventHandler(this.tmiClearSortInfo_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiAddColumn
             // 
             this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiAddColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiAddColumn.Text = "X";
             this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
             // tmiAddIDColumn
             // 
             this.tmiAddIDColumn.Name = "tmiAddIDColumn";
-            this.tmiAddIDColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiAddIDColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiAddIDColumn.Text = "X";
             this.tmiAddIDColumn.Click += new System.EventHandler(this.tmiAddIDColumn_Click);
             // 
             // tmiDisplayAllColumn
             // 
             this.tmiDisplayAllColumn.Name = "tmiDisplayAllColumn";
-            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiDisplayAllColumn.Text = "X";
             this.tmiDisplayAllColumn.Click += new System.EventHandler(this.tmiDisplayAllColumn_Click);
             // 
@@ -1619,7 +1619,7 @@
         private System.Windows.Forms.ToolStripMenuItem tmiSaveJsonFiles;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tmiCloseAllFiles;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator tsmLatestFolderStart;
         private System.Windows.Forms.ToolStripMenuItem tmiExit;
         private System.Windows.Forms.ToolStripMenuItem tmiHelp;
         private System.Windows.Forms.FolderBrowserDialog fbdMain;
