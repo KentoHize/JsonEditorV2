@@ -1424,8 +1424,8 @@ namespace JsonEditorV2
                     foreach (JLine jl in jt.Lines)
                     {
                         var line = new ExpandoObject() as IDictionary<string, object>;
-                        line.Add(jt.Columns[keyColumnIndex].Name, jl[keyColumnIndex]);
-                        line.Add(jt.Columns[i].Name, jl[i]);
+                        line.Add("Key", jl[keyColumnIndex]);
+                        line.Add("Value", jl[i]);
                         result.Add(line);
                     }
                     

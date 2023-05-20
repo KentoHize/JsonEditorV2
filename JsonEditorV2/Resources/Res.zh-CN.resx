@@ -348,6 +348,12 @@
   <data name="JE_ERR_SAVE_CS_FAILED" xml:space="preserve">
     输出CS档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_FAILED" xml:space="preserve">
+    输出语言档案集"{0}"失败，请确认目标资料夹存在，并且对资料夹有存取权
+  </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_INVALID" xml:space="preserve">
+    目标档案"{0}.json"不能输出成为语言档案，合法档案必须存在资料型态为String的唯一Key
+  </data>
   <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
     输出XML档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
@@ -461,6 +467,9 @@
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     已使用CSV格式输出至"{0}"
+  </data>
+  <data name="JE_RUN_EXPORT_TO_LANG_FILES_M_1" xml:space="preserve">
+    已输出语言档案集至"{0}"
   </data>
   <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
     已使用XML格式输出至"{0}"
@@ -668,6 +677,9 @@
   </data>
   <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
     输出为C# Class档案
+  </data>
+  <data name="JE_TMI_EXPORT_TO_LANG_FILES" xml:space="preserve">
+    输出为语言档案集
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     输出为XML档案

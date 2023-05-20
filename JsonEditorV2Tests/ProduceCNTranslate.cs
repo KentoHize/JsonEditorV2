@@ -11,7 +11,7 @@ namespace JsonEditorV2Tests
         [TestMethod]
         public void ProduceSimplifiedChineseResourceFile()
         {
-            WizardGuild.ProduceSimplifiedChineseResourceFile(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\Resources\Res.resx");
+            WizardGuild.ProduceSimplifiedChineseResourceFile(@"C:\Programs\JsonEditorV2\JsonEditorV2\Resources\Res.resx");
 
             //JETS = new JsonEditorTestSystem();
             //JETS.NewJsonFiles(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\AutoTest");
