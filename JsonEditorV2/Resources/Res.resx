@@ -348,6 +348,12 @@
   <data name="JE_ERR_SAVE_CS_FAILED" xml:space="preserve">
     <value>輸出CS檔案"{0}"失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權</value>
   </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_FAILED" xml:space="preserve">
+    <value>輸出語言檔案集"{0}"失敗，請確認目標資料夾存在，並且對資料夾有存取權</value>
+  </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_INVALID" xml:space="preserve">
+    <value>目標檔案"{0}.json"不能輸出成為語言檔案，合法檔案必須存在資料型態為String的唯一Key</value>
+  </data>
   <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
     <value>輸出XML檔案"{0}"失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權</value>
   </data>
@@ -461,6 +467,9 @@
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>已使用CSV格式輸出至"{0}"</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_LANG_FILES_M_1" xml:space="preserve">
+    <value>已輸出語言檔案集至"{0}"</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
     <value>已使用XML格式輸出至"{0}"</value>
@@ -668,6 +677,9 @@
   </data>
   <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
     <value>輸出為C# Class檔案</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_LANG_FILES" xml:space="preserve">
+    <value>輸出為語言檔案集</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     <value>輸出為XML檔案</value>

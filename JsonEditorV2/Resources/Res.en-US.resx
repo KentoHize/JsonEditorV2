@@ -348,6 +348,12 @@
   <data name="JE_ERR_SAVE_CS_FAILED" xml:space="preserve">
     <value>Export CS file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
   </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_FAILED" xml:space="preserve">
+    <value>Export language files "{0}" failed, confirm the folder exist and the application has authorized to save files in the target folder.</value>
+  </data>
+  <data name="JE_ERR_SAVE_LANG_FILES_INVALID" xml:space="preserve">
+    <value>File "{0}.json"' is not a valid file can export to language files. A valid file can export to language files must have an only string type key column.</value>
+  </data>
   <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
     <value>Export XML file "{0}" failed, confirm file name has not been used in the target folder and the application has authorized to save files in the target folder.</value>
   </data>
@@ -461,6 +467,9 @@
   </data>
   <data name="JE_RUN_EXPORT_TO_CS_FILE_M_1" xml:space="preserve">
     <value>CS files have exported to "{0}".</value>
+  </data>
+  <data name="JE_RUN_EXPORT_TO_LANG_FILES_M_1" xml:space="preserve">
+    <value>Language files have exported to "{0}".</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
     <value>XML files have exported to "{0}".</value>
@@ -665,6 +674,9 @@
   </data>
   <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
     <value>Export to C# Class Files</value>
+  </data>
+  <data name="JE_TMI_EXPORT_TO_LANG_FILES" xml:space="preserve">
+    <value>Export to Language Files</value>
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
     <value>Export to XML Files</value>

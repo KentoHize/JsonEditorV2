@@ -754,6 +754,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 輸出語言檔案集&quot;{0}&quot;失敗，請確認目標資料夾存在，並且對資料夾有存取權 的當地語系化字串。
+        /// </summary>
+        public static string JE_ERR_SAVE_LANG_FILES_FAILED {
+            get {
+                return ResourceManager.GetString("JE_ERR_SAVE_LANG_FILES_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 目標檔案&quot;{0}.json&quot;不能輸出成為語言檔案，合法檔案必須存在資料型態為String的唯一Key 的當地語系化字串。
+        /// </summary>
+        public static string JE_ERR_SAVE_LANG_FILES_INVALID {
+            get {
+                return ResourceManager.GetString("JE_ERR_SAVE_LANG_FILES_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 輸出XML檔案&quot;{0}&quot;失敗，請確認目標資料夾不存在此檔案，並且對資料夾有存取權 的當地語系化字串。
         /// </summary>
         public static string JE_ERR_SAVE_XML_FAILED {
@@ -1092,6 +1110,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_EXPORT_TO_CSV_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_EXPORT_TO_CSV_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 已輸出語言檔案集至&quot;{0}&quot; 的當地語系化字串。
+        /// </summary>
+        public static string JE_RUN_EXPORT_TO_LANG_FILES_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_EXPORT_TO_LANG_FILES_M_1", resourceCulture);
             }
         }
         
@@ -1713,6 +1740,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_EXPORT_TO_CSV_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_EXPORT_TO_CSV_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 輸出為語言檔案集 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_EXPORT_TO_LANG_FILES {
+            get {
+                return ResourceManager.GetString("JE_TMI_EXPORT_TO_LANG_FILES", resourceCulture);
             }
         }
         

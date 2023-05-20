@@ -147,8 +147,10 @@ namespace JsonEditorV2
 
         public static void SaveXMLFileFailed(Exception ex, string file)
             => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_XML_FAILED", Res.JE_TMI_EXPORT_TO_XML, file);
-        
 
+        public static void ExportLanguageFileFailed(Exception ex, string folder)
+            => RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_LANG_FILES_FAILED", Res.JE_TMI_EXPORT_TO_LANG_FILES, folder);
+      
         public static bool HandleException(Exception ex, string content = null, string title = null)
         {
             if (string.IsNullOrEmpty(content))

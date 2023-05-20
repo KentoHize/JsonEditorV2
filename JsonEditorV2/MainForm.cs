@@ -91,6 +91,7 @@ namespace JsonEditorV2
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
             tmiExportToCSFiles.Text = Res.JE_TMI_EXPORT_TO_CS;
+            tmiExportToLangaugeFiles.Text = Res.JE_TMI_EXPORT_TO_LANG_FILES;
             tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
@@ -1408,6 +1409,36 @@ namespace JsonEditorV2
             return true;
         }
 
+        public static bool SaveLanguageFiles(JTable jt, string folderName)
+        {   
+            JColumn keyColumn = null;
+            List<JColumn> otherColumns = new List<JColumn>();
+            foreach(JColumn jc in jt.Columns)
+            {
+                if (jc.IsKey)
+                {
+                    if (keyColumn != null || jc.Type != JType.String)
+                    {
+                        RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_LANG_FILES_INVALID", Res.JE_TMI_EXPORT_TO_LANG_FILES, jt.Name);
+                        return false;
+                    }
+                    keyColumn = jc;
+                }
+                else
+                    otherColumns.Add(jc);
+            }
+            
+            try
+            {
+
+            }
+            catch(Exception ex)
+            {
+                ExceptionHandler.ExportLanguageFileFailed(ex, folderName);
+            }
+            return true;
+        }
+
         public static bool SaveXmlFile(JTable jt, string fileName)
         {
             XmlDocument XD = null;
@@ -2335,8 +2366,8 @@ namespace JsonEditorV2
 
         private void tmiJsonEditorBackup_Click(object sender, EventArgs e)
         {
-            string BackupPath = @"E:\Backup\JsonEditorV2";
-            string ProjectPath = @"C:\Programs\WinForm\JsonEditorV2";
+            string BackupPath = @"D:\Backup\JsonEditorV2";
+            string ProjectPath = @"C:\Programs\JsonEditorV2";
             string[] IgnoreDirName = new string[] { "TestArea", "TestData", "bin", "obj" };
             string[] ProjectName = new string[] { "JsonEditorV2", "JsonEditorV2Tests" };
 
@@ -3159,6 +3190,34 @@ namespace JsonEditorV2
         private void tmiClearSortInfo_Click(object sender, EventArgs e)
         {
             //尚未設定
+        }
+
+        private void tmiExportLangaugeFiles_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumnParentTable == null)
+                return;
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            DialogResult dr;
+            if (!Var.SelectedColumnParentTable.Valid)
+            {
+                dr = RabbitCouriers.SentWarningQuestionByResource("JE_RUN_EXPORT_INVALID_FILE", Res.JE_TMI_EXPORT_TO_LANG_FILES);
+                if (dr != DialogResult.OK)
+                    return;
+            }
+
+            fbdMain.SelectedPath = Var.JFI.DirectoryPath;
+            dr = fbdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
+
+            //存檔
+            SaveLanguageFiles(Var.SelectedColumnParentTable, fbdMain.SelectedPath);
+            sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_LANG_FILES_M_1, fbdMain.SelectedPath);
+            RefreshTrvJsonFiles();
         }
     }
 }
