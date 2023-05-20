@@ -10,6 +10,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -1411,28 +1412,32 @@ namespace JsonEditorV2
 
         public static bool SaveLanguageFiles(JTable jt, string folderName)
         {   
-            JColumn keyColumn = null;
-            List<JColumn> otherColumns = new List<JColumn>();
-            foreach(JColumn jc in jt.Columns)
-            {
-                if (jc.IsKey)
-                {
-                    if (keyColumn != null || jc.Type != JType.String)
-                    {
-                        RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_LANG_FILES_INVALID", Res.JE_TMI_EXPORT_TO_LANG_FILES, jt.Name);
-                        return false;
-                    }
-                    keyColumn = jc;
-                }
-                else
-                    otherColumns.Add(jc);
-            }
-            
+            int keyColumnIndex = jt.Columns.FindIndex(m => m.IsKey);
             try
             {
+                for (int i = 0; i < jt.Columns.Count; i++)
+                {
+                    if (i == keyColumnIndex)
+                        continue;
 
+                    List<object> result = new List<object>();
+                    foreach (JLine jl in jt.Lines)
+                    {
+                        var line = new ExpandoObject() as IDictionary<string, object>;
+                        line.Add(jt.Columns[keyColumnIndex].Name, jl[keyColumnIndex]);
+                        line.Add(jt.Columns[i].Name, jl[i]);
+                        result.Add(line);
+                    }
+                    
+                    using (FileStream fs = new FileStream(Path.Combine(folderName, $"{jt.Columns[i].Name}.json"), FileMode.Create))
+                    {
+                        StreamWriter sw = new StreamWriter(fs);
+                        sw.Write(JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));
+                        sw.Close();
+                    }
+                }              
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandler.ExportLanguageFileFailed(ex, folderName);
             }
@@ -3200,6 +3205,27 @@ namespace JsonEditorV2
             if (!Var.SelectedColumnParentTable.Loaded)
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
+
+            //確認合法
+            if (!Var.SelectedColumnParentTable.HasKey)
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_LANG_FILES_INVALID", Res.JE_TMI_EXPORT_TO_LANG_FILES, Var.SelectedColumnParentTable.Name);
+                return;
+            }
+
+            int keyColumnIndex = -1;
+            for (int i = 0; i < Var.SelectedColumnParentTable.Columns.Count; i++)
+            {
+                if (Var.SelectedColumnParentTable.Columns[i].IsKey)
+                {
+                    if (keyColumnIndex != -1 || Var.SelectedColumnParentTable.Columns[i].Type != JType.String)
+                    {
+                        RabbitCouriers.SentErrorMessageByResource("JE_ERR_SAVE_LANG_FILES_INVALID", Res.JE_TMI_EXPORT_TO_LANG_FILES, Var.SelectedColumnParentTable.Name);
+                        return;
+                    }
+                }
+                keyColumnIndex = i;
+            }
 
             DialogResult dr;
             if (!Var.SelectedColumnParentTable.Valid)
