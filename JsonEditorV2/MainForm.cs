@@ -918,7 +918,7 @@ namespace JsonEditorV2
             btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1 && Var.SelectedLineIndex != -1;
             btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0 && Var.SelectedLineIndex != -1;
             btnDeleteLine.Enabled =
-            btnCopyLine.Enabled = Var.SelectedLineIndex != -1;
+            btnCopyLine.Enabled = Var.SelectedLineIndex != -1;            
             RefreshTrvSelectedFileChange();
         }
 
