@@ -1,4 +1,5 @@
-﻿using Aritiafel.Items;
+﻿using Aritiafel;
+using Aritiafel.Items;
 using Aritiafel.Locations;
 using Aritiafel.Organizations;
 using JsonEditor;
@@ -404,13 +405,21 @@ namespace JsonEditorV2
                     jl[index].TryParseJType(newType, out object result);
                     if (newType == JType.Choice)
                     {
-                        int indexOfChoice = Var.SelectedColumn.Choices.IndexOf(result.ToString());
-                        if (indexOfChoice != -1)
-                            result = Var.SelectedColumn.Choices[indexOfChoice];
-                        else if (Var.SelectedColumn.Choices.Count != 0)
-                            result = Var.SelectedColumn.Choices[0];
+                        if (result == null)
+                        {                            
+                            if(!Var.SelectedColumn.IsNullable && Var.SelectedColumn.Choices.Count != 0)                            
+                                result = Var.SelectedColumn.Choices[0];
+                        }
                         else
-                            result = null;
+                        {
+                            int indexOfChoice = Var.SelectedColumn.Choices.IndexOf(result.ToString());
+                            if (indexOfChoice != -1)
+                                result = Var.SelectedColumn.Choices[indexOfChoice];
+                            else if (Var.SelectedColumn.Choices.Count != 0)
+                                result = Var.SelectedColumn.Choices[0];
+                            else
+                                result = null;
+                        }
                     }
                     else if (result == null && !Var.SelectedColumn.IsNullable)
                         result = newType.InitialValue();
