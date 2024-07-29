@@ -42,17 +42,19 @@ namespace JsonEditorV2
 
         public static JTable SelectedColumnParentTable { get; set; }
         public static JColumn SelectedColumn { get; set; }
-        public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }        
+        public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
 
         public static List<InputControlSet> InputControlSets { get; set; } = new List<InputControlSet>();
         public static TextBox BindingTextbox { get; set; }
-        
+
         public static TreeNode RootNode { get; set; }
         public static bool DblClick { get; set; }
 
         //To Do
         public static bool Locked { get; set; }
 
-        public static bool Changed { get { if ( Database.Tables == null || Database.JFI == null) return false; return Database.Tables.Exists(m => m.Changed) || Database.JFI.Changed; } }
+        public static bool Changed { get { if (Database.Tables == null || Database.JFI == null) return false; return Database.Tables.Exists(m => m.Changed) || Database.JFI.Changed; } }
+
+        public static string PreloadDatabase { get; set; }
     }
 }

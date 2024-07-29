@@ -2226,6 +2226,18 @@ namespace JsonEditorV2
                 foreach (string file in files)
                     File.Delete(file);
             }
+
+            //預先讀取
+            if(Var.PreloadDatabase != null)
+            {
+                if(Directory.Exists(Var.PreloadDatabase) &&
+                   File.Exists(Path.Combine(Var.PreloadDatabase, JFilesInfo.FilesInfoName)))
+                {
+                    Var.DirectLoadFolder = Var.PreloadDatabase;
+                    tmiLoadJsonFiles_Click(sender, e);
+                }
+            }
+
             //Test Area
 
             // Get secret click event key
@@ -2475,7 +2487,7 @@ namespace JsonEditorV2
 
             //return;
 
-            string[] files = Directory.GetFiles(folderName, "JFilesInfo.json");
+            string[] files = Directory.GetFiles(folderName, JFilesInfo.FilesInfoName);
             string s;
             foreach (string file in files)
             {

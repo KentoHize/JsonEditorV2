@@ -14,6 +14,9 @@ namespace JsonEditorV2
         [STAThread]
         static void Main()
         {
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length != 0)
+                Var.PreloadDatabase = args[0];
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
