@@ -204,12 +204,12 @@ namespace JsonEditorV2
                 txtMillisecond.Enabled = true;
         }
 
-        public void SetDays(int year, int month)
-        {
+        public void SetDays(int year, int month, byte? day = 1)
+        {   
             switch (DateTime.DaysInMonth(year, month))
             {
                 case 31:
-                    cobDay.DataSource = days31;
+                    cobDay.DataSource = days31;                   
                     break;
                 case 30:
                     cobDay.DataSource = days30;
@@ -221,6 +221,13 @@ namespace JsonEditorV2
                     cobDay.DataSource = days29;
                     break;
             }
+
+            if (day == null)
+                return;
+
+            int i = cobDay.Items.IndexOf((byte)day);
+            if (i != -1)
+                cobDay.SelectedIndex = i;
         }
 
         private void dud100Year_SelectedItemChanged(object sender, EventArgs e)
@@ -236,7 +243,7 @@ namespace JsonEditorV2
         {
             if (cobYear.DataSource == null || cobMonth.DataSource == null)
                 return;
-            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem);
+            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
 
         }
@@ -245,7 +252,7 @@ namespace JsonEditorV2
         {
             if (cobYear.DataSource == null || cobMonth.DataSource == null)
                 return;
-            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem);
+            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
 
