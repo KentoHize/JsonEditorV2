@@ -234,6 +234,9 @@
   <data name="JE_COLUMN_FK_TABLE" xml:space="preserve">
     <value>FK File</value>
   </data>
+  <data name="JE_COLUMN_DEFAULT_VALUE" xml:space="preserve">
+    <value>Default Value</value>
+  </data>
   <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
     <value>Is Key</value>
   </data>
@@ -462,11 +465,11 @@
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
     <value>Invalid data exist, continue export?</value>
   </data>
+  <data name="JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1" xml:space="preserve">
+    <value>CS files have exported to "{0}".</value>
+  </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
     <value>CSV files have exported to "{0}".</value>
-  </data>
-  <data name="JE_RUN_EXPORT_TO_CS_FILE_M_1" xml:space="preserve">
-    <value>CS files have exported to "{0}".</value>
   </data>
   <data name="JE_RUN_EXPORT_TO_LANG_FILES_M_1" xml:space="preserve">
     <value>Language files have exported to "{0}".</value>
@@ -476,6 +479,9 @@
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
     <value>Column "{0}", value "{1}", data not found.</value>
+  </data>
+  <data name="JE_RUN_FIND_TITLE" xml:space="preserve">
+    <value>Find</value>
   </data>
   <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
     <value>Data line "{0}" is a bottom line.</value>
@@ -842,5 +848,8 @@
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON Files Editor</value>
+  </data>
+  <data name="JE_TMI_INSERT_FIRST" xml:space="preserve">
+    <value>Insert Data from First Row</value>
   </data>
 </root>

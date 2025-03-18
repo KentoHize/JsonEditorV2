@@ -53,6 +53,7 @@ namespace JsonEditorV2
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
             lblColumnMaxLength.Text = Res.JE_COLUMN_MAX_LENGTH;
             lblColumnIsUnique.Text = Res.JE_COLUMN_IS_UNIQUE;
+            lblDefalutValue.Text = Res.JE_COLUMN_DEFAULT_VALUE;
 
             lblAutoGenerateKey.Text = Res.JE_COLUMN_AUTO_GENERATE_KEY;
             btnClearMain.Text = Res.JE_BTN_CLEAR_MAIN;
@@ -126,6 +127,7 @@ namespace JsonEditorV2
             tmiColumnMoveBottom.Text = Res.JE_TMI_COLUMN_MOVE_BOTTOM;
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
+            tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -3265,6 +3267,15 @@ namespace JsonEditorV2
             SaveLanguageFiles(Var.SelectedColumnParentTable, fbdMain.SelectedPath);
             sslMain.Text = string.Format(Res.JE_RUN_EXPORT_TO_LANG_FILES_M_1, fbdMain.SelectedPath);
             RefreshTrvJsonFiles();
+        }
+
+        private void tmiInsertFirst_Click(object sender, EventArgs e)
+        {
+            if (Var.SelectedColumnParentTable == null)
+                return;            
+            tmiInsertFirst.Checked = !tmiInsertFirst.Checked;
+            Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
+            Var.JFI.Changed = true;
         }
     }
 }

@@ -35,40 +35,6 @@
             this.btnUpdateMain = new System.Windows.Forms.Button();
             this.btnUpdateColumn = new System.Windows.Forms.Button();
             this.pnlFileInfo = new System.Windows.Forms.Panel();
-            this.lblColumnChoiceName = new System.Windows.Forms.Label();
-            this.lblColumnChoicesCount = new System.Windows.Forms.Label();
-            this.btnColumnEditChoices = new System.Windows.Forms.Button();
-            this.lblColumnChoices = new System.Windows.Forms.Label();
-            this.ckbColumnAutoGenerateKey = new System.Windows.Forms.CheckBox();
-            this.lblAutoGenerateKey = new System.Windows.Forms.Label();
-            this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
-            this.lblColumnIsUnique = new System.Windows.Forms.Label();
-            this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
-            this.lblColumnMaxLength = new System.Windows.Forms.Label();
-            this.lblColumnDescription = new System.Windows.Forms.Label();
-            this.txtColumnDescription = new System.Windows.Forms.TextBox();
-            this.txtColumnMaxValue = new System.Windows.Forms.TextBox();
-            this.txtColumnMinValue = new System.Windows.Forms.TextBox();
-            this.lblColumnMaxValue = new System.Windows.Forms.Label();
-            this.lblColumnMinValue = new System.Windows.Forms.Label();
-            this.ckbColumnIsNullable = new System.Windows.Forms.CheckBox();
-            this.lblColumnlIsNullable = new System.Windows.Forms.Label();
-            this.txtColumnRegex = new System.Windows.Forms.TextBox();
-            this.lblColumnRegex = new System.Windows.Forms.Label();
-            this.cobColumnFKColumn = new System.Windows.Forms.ComboBox();
-            this.lblColumnFKColumn = new System.Windows.Forms.Label();
-            this.cobColumnFKTable = new System.Windows.Forms.ComboBox();
-            this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
-            this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
-            this.ckbColumnDisplay = new System.Windows.Forms.CheckBox();
-            this.ckbColumnIsKey = new System.Windows.Forms.CheckBox();
-            this.cobColumnType = new System.Windows.Forms.ComboBox();
-            this.txtColumnName = new System.Windows.Forms.TextBox();
-            this.lblColumnFKTable = new System.Windows.Forms.Label();
-            this.lblColumnDisplay = new System.Windows.Forms.Label();
-            this.lblColumnIsKey = new System.Windows.Forms.Label();
-            this.lblColumnType = new System.Windows.Forms.Label();
-            this.lblColumnName = new System.Windows.Forms.Label();
             this.trvJsonFiles = new System.Windows.Forms.TreeView();
             this.imlMain = new System.Windows.Forms.ImageList(this.components);
             this.stsMain = new System.Windows.Forms.StatusStrip();
@@ -79,7 +45,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,6 +113,7 @@
             this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAddIDColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiDisplayAllColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiInsertFirst = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tmiRenameColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiColumnShowOnList = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,6 +139,43 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
+            this.txtDefaultValue = new System.Windows.Forms.TextBox();
+            this.lblDefalutValue = new System.Windows.Forms.Label();
+            this.lblColumnChoiceName = new System.Windows.Forms.Label();
+            this.lblColumnChoicesCount = new System.Windows.Forms.Label();
+            this.btnColumnEditChoices = new System.Windows.Forms.Button();
+            this.lblColumnChoices = new System.Windows.Forms.Label();
+            this.ckbColumnAutoGenerateKey = new System.Windows.Forms.CheckBox();
+            this.lblAutoGenerateKey = new System.Windows.Forms.Label();
+            this.ckbColumnIsUnique = new System.Windows.Forms.CheckBox();
+            this.lblColumnIsUnique = new System.Windows.Forms.Label();
+            this.txtColumnMaxLength = new System.Windows.Forms.TextBox();
+            this.lblColumnMaxLength = new System.Windows.Forms.Label();
+            this.lblColumnDescription = new System.Windows.Forms.Label();
+            this.txtColumnDescription = new System.Windows.Forms.TextBox();
+            this.txtColumnMaxValue = new System.Windows.Forms.TextBox();
+            this.txtColumnMinValue = new System.Windows.Forms.TextBox();
+            this.lblColumnMaxValue = new System.Windows.Forms.Label();
+            this.lblColumnMinValue = new System.Windows.Forms.Label();
+            this.ckbColumnIsNullable = new System.Windows.Forms.CheckBox();
+            this.lblColumnlIsNullable = new System.Windows.Forms.Label();
+            this.txtColumnRegex = new System.Windows.Forms.TextBox();
+            this.lblColumnRegex = new System.Windows.Forms.Label();
+            this.cobColumnFKColumn = new System.Windows.Forms.ComboBox();
+            this.lblColumnFKColumn = new System.Windows.Forms.Label();
+            this.cobColumnFKTable = new System.Windows.Forms.ComboBox();
+            this.txtColumnNumberOfRows = new System.Windows.Forms.TextBox();
+            this.lblColumnNumberOfRows = new System.Windows.Forms.Label();
+            this.ckbColumnDisplay = new System.Windows.Forms.CheckBox();
+            this.ckbColumnIsKey = new System.Windows.Forms.CheckBox();
+            this.cobColumnType = new System.Windows.Forms.ComboBox();
+            this.txtColumnName = new System.Windows.Forms.TextBox();
+            this.lblColumnFKTable = new System.Windows.Forms.Label();
+            this.lblColumnDisplay = new System.Windows.Forms.Label();
+            this.lblColumnIsKey = new System.Windows.Forms.Label();
+            this.lblColumnType = new System.Windows.Forms.Label();
+            this.lblColumnName = new System.Windows.Forms.Label();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -240,6 +243,8 @@
             // pnlFileInfo
             // 
             this.pnlFileInfo.AutoScroll = true;
+            this.pnlFileInfo.Controls.Add(this.txtDefaultValue);
+            this.pnlFileInfo.Controls.Add(this.lblDefalutValue);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoiceName);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoicesCount);
             this.pnlFileInfo.Controls.Add(this.btnColumnEditChoices);
@@ -280,376 +285,6 @@
             this.pnlFileInfo.Name = "pnlFileInfo";
             this.pnlFileInfo.Size = new System.Drawing.Size(420, 304);
             this.pnlFileInfo.TabIndex = 15;
-            // 
-            // lblColumnChoiceName
-            // 
-            this.lblColumnChoiceName.AutoSize = true;
-            this.lblColumnChoiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoiceName.Location = new System.Drawing.Point(247, 77);
-            this.lblColumnChoiceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnChoiceName.Name = "lblColumnChoiceName";
-            this.lblColumnChoiceName.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnChoiceName.TabIndex = 38;
-            this.lblColumnChoiceName.Text = "-";
-            // 
-            // lblColumnChoicesCount
-            // 
-            this.lblColumnChoicesCount.AutoSize = true;
-            this.lblColumnChoicesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoicesCount.Location = new System.Drawing.Point(209, 77);
-            this.lblColumnChoicesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnChoicesCount.Name = "lblColumnChoicesCount";
-            this.lblColumnChoicesCount.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnChoicesCount.TabIndex = 37;
-            this.lblColumnChoicesCount.Text = "-";
-            // 
-            // btnColumnEditChoices
-            // 
-            this.btnColumnEditChoices.Enabled = false;
-            this.btnColumnEditChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnColumnEditChoices.Location = new System.Drawing.Point(343, 74);
-            this.btnColumnEditChoices.Margin = new System.Windows.Forms.Padding(4);
-            this.btnColumnEditChoices.Name = "btnColumnEditChoices";
-            this.btnColumnEditChoices.Size = new System.Drawing.Size(50, 33);
-            this.btnColumnEditChoices.TabIndex = 36;
-            this.btnColumnEditChoices.Text = "...";
-            this.btnColumnEditChoices.UseVisualStyleBackColor = true;
-            this.btnColumnEditChoices.Click += new System.EventHandler(this.btnColumnEditChoices_Click);
-            // 
-            // lblColumnChoices
-            // 
-            this.lblColumnChoices.AutoSize = true;
-            this.lblColumnChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnChoices.Location = new System.Drawing.Point(18, 77);
-            this.lblColumnChoices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnChoices.Name = "lblColumnChoices";
-            this.lblColumnChoices.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnChoices.TabIndex = 35;
-            this.lblColumnChoices.Text = "-";
-            // 
-            // ckbColumnAutoGenerateKey
-            // 
-            this.ckbColumnAutoGenerateKey.AutoSize = true;
-            this.ckbColumnAutoGenerateKey.Location = new System.Drawing.Point(371, 409);
-            this.ckbColumnAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnAutoGenerateKey.Name = "ckbColumnAutoGenerateKey";
-            this.ckbColumnAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnAutoGenerateKey.TabIndex = 34;
-            this.ckbColumnAutoGenerateKey.UseVisualStyleBackColor = true;
-            this.ckbColumnAutoGenerateKey.CheckedChanged += new System.EventHandler(this.ckbAutoGenerateKey_CheckedChanged);
-            // 
-            // lblAutoGenerateKey
-            // 
-            this.lblAutoGenerateKey.AutoSize = true;
-            this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutoGenerateKey.Location = new System.Drawing.Point(18, 407);
-            this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
-            this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
-            this.lblAutoGenerateKey.TabIndex = 33;
-            this.lblAutoGenerateKey.Text = "-";
-            // 
-            // ckbColumnIsUnique
-            // 
-            this.ckbColumnIsUnique.AutoSize = true;
-            this.ckbColumnIsUnique.Location = new System.Drawing.Point(371, 376);
-            this.ckbColumnIsUnique.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnIsUnique.Name = "ckbColumnIsUnique";
-            this.ckbColumnIsUnique.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnIsUnique.TabIndex = 32;
-            this.ckbColumnIsUnique.UseVisualStyleBackColor = true;
-            // 
-            // lblColumnIsUnique
-            // 
-            this.lblColumnIsUnique.AutoSize = true;
-            this.lblColumnIsUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnIsUnique.Location = new System.Drawing.Point(18, 374);
-            this.lblColumnIsUnique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnIsUnique.Name = "lblColumnIsUnique";
-            this.lblColumnIsUnique.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnIsUnique.TabIndex = 31;
-            this.lblColumnIsUnique.Text = "-";
-            // 
-            // txtColumnMaxLength
-            // 
-            this.txtColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMaxLength.Location = new System.Drawing.Point(207, 338);
-            this.txtColumnMaxLength.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnMaxLength.Name = "txtColumnMaxLength";
-            this.txtColumnMaxLength.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnMaxLength.TabIndex = 30;
-            this.txtColumnMaxLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnMaxLength
-            // 
-            this.lblColumnMaxLength.AutoSize = true;
-            this.lblColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMaxLength.Location = new System.Drawing.Point(18, 341);
-            this.lblColumnMaxLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnMaxLength.Name = "lblColumnMaxLength";
-            this.lblColumnMaxLength.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnMaxLength.TabIndex = 29;
-            this.lblColumnMaxLength.Text = "-";
-            // 
-            // lblColumnDescription
-            // 
-            this.lblColumnDescription.AutoSize = true;
-            this.lblColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDescription.Location = new System.Drawing.Point(18, 506);
-            this.lblColumnDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnDescription.Name = "lblColumnDescription";
-            this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnDescription.TabIndex = 28;
-            this.lblColumnDescription.Text = "-";
-            // 
-            // txtColumnDescription
-            // 
-            this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnDescription.Location = new System.Drawing.Point(207, 503);
-            this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnDescription.Name = "txtColumnDescription";
-            this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnDescription.TabIndex = 27;
-            this.txtColumnDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtColumnMaxValue
-            // 
-            this.txtColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMaxValue.Location = new System.Drawing.Point(207, 272);
-            this.txtColumnMaxValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnMaxValue.Name = "txtColumnMaxValue";
-            this.txtColumnMaxValue.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnMaxValue.TabIndex = 26;
-            this.txtColumnMaxValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtColumnMinValue
-            // 
-            this.txtColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnMinValue.Location = new System.Drawing.Point(207, 239);
-            this.txtColumnMinValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnMinValue.Name = "txtColumnMinValue";
-            this.txtColumnMinValue.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnMinValue.TabIndex = 25;
-            this.txtColumnMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnMaxValue
-            // 
-            this.lblColumnMaxValue.AutoSize = true;
-            this.lblColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMaxValue.Location = new System.Drawing.Point(18, 275);
-            this.lblColumnMaxValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnMaxValue.Name = "lblColumnMaxValue";
-            this.lblColumnMaxValue.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnMaxValue.TabIndex = 24;
-            this.lblColumnMaxValue.Text = "-";
-            // 
-            // lblColumnMinValue
-            // 
-            this.lblColumnMinValue.AutoSize = true;
-            this.lblColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnMinValue.Location = new System.Drawing.Point(18, 242);
-            this.lblColumnMinValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnMinValue.Name = "lblColumnMinValue";
-            this.lblColumnMinValue.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnMinValue.TabIndex = 23;
-            this.lblColumnMinValue.Text = "-";
-            // 
-            // ckbColumnIsNullable
-            // 
-            this.ckbColumnIsNullable.AutoSize = true;
-            this.ckbColumnIsNullable.Location = new System.Drawing.Point(371, 145);
-            this.ckbColumnIsNullable.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnIsNullable.Name = "ckbColumnIsNullable";
-            this.ckbColumnIsNullable.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnIsNullable.TabIndex = 22;
-            this.ckbColumnIsNullable.UseVisualStyleBackColor = true;
-            // 
-            // lblColumnlIsNullable
-            // 
-            this.lblColumnlIsNullable.AutoSize = true;
-            this.lblColumnlIsNullable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnlIsNullable.Location = new System.Drawing.Point(18, 143);
-            this.lblColumnlIsNullable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnlIsNullable.Name = "lblColumnlIsNullable";
-            this.lblColumnlIsNullable.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnlIsNullable.TabIndex = 21;
-            this.lblColumnlIsNullable.Text = "-";
-            // 
-            // txtColumnRegex
-            // 
-            this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnRegex.Location = new System.Drawing.Point(207, 305);
-            this.txtColumnRegex.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnRegex.Name = "txtColumnRegex";
-            this.txtColumnRegex.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnRegex.TabIndex = 20;
-            this.txtColumnRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnRegex
-            // 
-            this.lblColumnRegex.AutoSize = true;
-            this.lblColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnRegex.Location = new System.Drawing.Point(18, 308);
-            this.lblColumnRegex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnRegex.Name = "lblColumnRegex";
-            this.lblColumnRegex.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnRegex.TabIndex = 19;
-            this.lblColumnRegex.Text = "-";
-            // 
-            // cobColumnFKColumn
-            // 
-            this.cobColumnFKColumn.DisplayMember = "Name";
-            this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobColumnFKColumn.FormattingEnabled = true;
-            this.cobColumnFKColumn.Location = new System.Drawing.Point(207, 469);
-            this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
-            this.cobColumnFKColumn.Name = "cobColumnFKColumn";
-            this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
-            this.cobColumnFKColumn.TabIndex = 18;
-            this.cobColumnFKColumn.ValueMember = "Name";
-            this.cobColumnFKColumn.SelectedIndexChanged += new System.EventHandler(this.cobColumnFKColumn_SelectedIndexChanged);
-            // 
-            // lblColumnFKColumn
-            // 
-            this.lblColumnFKColumn.AutoSize = true;
-            this.lblColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKColumn.Location = new System.Drawing.Point(18, 473);
-            this.lblColumnFKColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnFKColumn.Name = "lblColumnFKColumn";
-            this.lblColumnFKColumn.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnFKColumn.TabIndex = 17;
-            this.lblColumnFKColumn.Text = "-";
-            // 
-            // cobColumnFKTable
-            // 
-            this.cobColumnFKTable.DisplayMember = "Name";
-            this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobColumnFKTable.FormattingEnabled = true;
-            this.cobColumnFKTable.Location = new System.Drawing.Point(207, 436);
-            this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
-            this.cobColumnFKTable.Name = "cobColumnFKTable";
-            this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
-            this.cobColumnFKTable.TabIndex = 16;
-            this.cobColumnFKTable.ValueMember = "Name";
-            this.cobColumnFKTable.SelectedIndexChanged += new System.EventHandler(this.cobColumnFKTable_SelectedIndexChanged);
-            // 
-            // txtColumnNumberOfRows
-            // 
-            this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(353, 206);
-            this.txtColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
-            this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
-            this.txtColumnNumberOfRows.TabIndex = 15;
-            this.txtColumnNumberOfRows.Text = "0";
-            this.txtColumnNumberOfRows.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnNumberOfRows
-            // 
-            this.lblColumnNumberOfRows.AutoSize = true;
-            this.lblColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnNumberOfRows.Location = new System.Drawing.Point(18, 209);
-            this.lblColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnNumberOfRows.Name = "lblColumnNumberOfRows";
-            this.lblColumnNumberOfRows.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnNumberOfRows.TabIndex = 14;
-            this.lblColumnNumberOfRows.Text = "-";
-            // 
-            // ckbColumnDisplay
-            // 
-            this.ckbColumnDisplay.AutoSize = true;
-            this.ckbColumnDisplay.Location = new System.Drawing.Point(371, 178);
-            this.ckbColumnDisplay.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnDisplay.Name = "ckbColumnDisplay";
-            this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnDisplay.TabIndex = 13;
-            this.ckbColumnDisplay.UseVisualStyleBackColor = true;
-            // 
-            // ckbColumnIsKey
-            // 
-            this.ckbColumnIsKey.AutoSize = true;
-            this.ckbColumnIsKey.Location = new System.Drawing.Point(371, 112);
-            this.ckbColumnIsKey.Margin = new System.Windows.Forms.Padding(4);
-            this.ckbColumnIsKey.Name = "ckbColumnIsKey";
-            this.ckbColumnIsKey.Size = new System.Drawing.Size(18, 17);
-            this.ckbColumnIsKey.TabIndex = 8;
-            this.ckbColumnIsKey.UseVisualStyleBackColor = true;
-            // 
-            // cobColumnType
-            // 
-            this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobColumnType.FormattingEnabled = true;
-            this.cobColumnType.Location = new System.Drawing.Point(207, 40);
-            this.cobColumnType.Margin = new System.Windows.Forms.Padding(4);
-            this.cobColumnType.Name = "cobColumnType";
-            this.cobColumnType.Size = new System.Drawing.Size(184, 28);
-            this.cobColumnType.TabIndex = 8;
-            this.cobColumnType.SelectedIndexChanged += new System.EventHandler(this.cobColumnType_SelectedIndexChanged);
-            // 
-            // txtColumnName
-            // 
-            this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtColumnName.Location = new System.Drawing.Point(207, 8);
-            this.txtColumnName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtColumnName.Name = "txtColumnName";
-            this.txtColumnName.Size = new System.Drawing.Size(184, 27);
-            this.txtColumnName.TabIndex = 0;
-            this.txtColumnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblColumnFKTable
-            // 
-            this.lblColumnFKTable.AutoSize = true;
-            this.lblColumnFKTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnFKTable.Location = new System.Drawing.Point(18, 440);
-            this.lblColumnFKTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnFKTable.Name = "lblColumnFKTable";
-            this.lblColumnFKTable.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnFKTable.TabIndex = 12;
-            this.lblColumnFKTable.Text = "-";
-            // 
-            // lblColumnDisplay
-            // 
-            this.lblColumnDisplay.AutoSize = true;
-            this.lblColumnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDisplay.Location = new System.Drawing.Point(18, 176);
-            this.lblColumnDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnDisplay.Name = "lblColumnDisplay";
-            this.lblColumnDisplay.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnDisplay.TabIndex = 11;
-            this.lblColumnDisplay.Text = "-";
-            // 
-            // lblColumnIsKey
-            // 
-            this.lblColumnIsKey.AutoSize = true;
-            this.lblColumnIsKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnIsKey.Location = new System.Drawing.Point(18, 110);
-            this.lblColumnIsKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnIsKey.Name = "lblColumnIsKey";
-            this.lblColumnIsKey.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnIsKey.TabIndex = 10;
-            this.lblColumnIsKey.Text = "-";
-            // 
-            // lblColumnType
-            // 
-            this.lblColumnType.AutoSize = true;
-            this.lblColumnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnType.Location = new System.Drawing.Point(18, 44);
-            this.lblColumnType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnType.Name = "lblColumnType";
-            this.lblColumnType.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnType.TabIndex = 9;
-            this.lblColumnType.Text = "-";
-            // 
-            // lblColumnName
-            // 
-            this.lblColumnName.AutoSize = true;
-            this.lblColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnName.Location = new System.Drawing.Point(18, 11);
-            this.lblColumnName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblColumnName.Name = "lblColumnName";
-            this.lblColumnName.Size = new System.Drawing.Size(15, 20);
-            this.lblColumnName.TabIndex = 8;
-            this.lblColumnName.Text = "-";
             // 
             // trvJsonFiles
             // 
@@ -760,18 +395,6 @@
             this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 104);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
             // 
             // mnsMain
             // 
@@ -1160,35 +783,36 @@
             this.toolStripSeparator1,
             this.tmiAddColumn,
             this.tmiAddIDColumn,
-            this.tmiDisplayAllColumn});
+            this.tmiDisplayAllColumn,
+            this.tmiInsertFirst});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(89, 280);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 332);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiDeleteJsonFile.Text = "X";
             this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
@@ -1202,44 +826,44 @@
             this.toolStripMenuItem1,
             this.tmiExportToLangaugeFiles});
             this.tmiExportFile.Name = "tmiExportFile";
-            this.tmiExportFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiExportFile.Size = new System.Drawing.Size(210, 24);
             this.tmiExportFile.Text = "X";
             // 
             // tmiExportCsvFile
             // 
             this.tmiExportCsvFile.Name = "tmiExportCsvFile";
-            this.tmiExportCsvFile.Size = new System.Drawing.Size(224, 26);
+            this.tmiExportCsvFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportCsvFile.Text = "X";
             this.tmiExportCsvFile.Click += new System.EventHandler(this.tmiExportCsvFile_Click);
             // 
             // tmiExportXmlFile
             // 
             this.tmiExportXmlFile.Name = "tmiExportXmlFile";
-            this.tmiExportXmlFile.Size = new System.Drawing.Size(224, 26);
+            this.tmiExportXmlFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportXmlFile.Text = "X";
             this.tmiExportXmlFile.Click += new System.EventHandler(this.tmiExportXmlFile_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(99, 6);
             // 
             // tmiExportCSFile
             // 
             this.tmiExportCSFile.Name = "tmiExportCSFile";
-            this.tmiExportCSFile.Size = new System.Drawing.Size(224, 26);
+            this.tmiExportCSFile.Size = new System.Drawing.Size(102, 26);
             this.tmiExportCSFile.Text = "X";
             this.tmiExportCSFile.Click += new System.EventHandler(this.tmiExportCSFile_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(99, 6);
             // 
             // tmiExportToLangaugeFiles
             // 
             this.tmiExportToLangaugeFiles.Name = "tmiExportToLangaugeFiles";
-            this.tmiExportToLangaugeFiles.Size = new System.Drawing.Size(224, 26);
+            this.tmiExportToLangaugeFiles.Size = new System.Drawing.Size(102, 26);
             this.tmiExportToLangaugeFiles.Text = "X";
             this.tmiExportToLangaugeFiles.Click += new System.EventHandler(this.tmiExportLangaugeFiles_Click);
             // 
@@ -1247,19 +871,19 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(88, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(85, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
             // 
             // tmiEditSortInfo
             // 
             this.tmiEditSortInfo.Name = "tmiEditSortInfo";
-            this.tmiEditSortInfo.Size = new System.Drawing.Size(88, 24);
+            this.tmiEditSortInfo.Size = new System.Drawing.Size(210, 24);
             this.tmiEditSortInfo.Text = "X";
             this.tmiEditSortInfo.Click += new System.EventHandler(this.tmiEditSortInfo_Click);
             // 
@@ -1267,35 +891,42 @@
             // 
             this.tmiClearSortInfo.Enabled = false;
             this.tmiClearSortInfo.Name = "tmiClearSortInfo";
-            this.tmiClearSortInfo.Size = new System.Drawing.Size(88, 24);
+            this.tmiClearSortInfo.Size = new System.Drawing.Size(210, 24);
             this.tmiClearSortInfo.Text = "X";
             this.tmiClearSortInfo.Click += new System.EventHandler(this.tmiClearSortInfo_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(85, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // tmiAddColumn
             // 
             this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiAddColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiAddColumn.Text = "X";
             this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
             // 
             // tmiAddIDColumn
             // 
             this.tmiAddIDColumn.Name = "tmiAddIDColumn";
-            this.tmiAddIDColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiAddIDColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiAddIDColumn.Text = "X";
             this.tmiAddIDColumn.Click += new System.EventHandler(this.tmiAddIDColumn_Click);
             // 
             // tmiDisplayAllColumn
             // 
             this.tmiDisplayAllColumn.Name = "tmiDisplayAllColumn";
-            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(210, 24);
             this.tmiDisplayAllColumn.Text = "X";
             this.tmiDisplayAllColumn.Click += new System.EventHandler(this.tmiDisplayAllColumn_Click);
+            // 
+            // tmiInsertFirst
+            // 
+            this.tmiInsertFirst.Name = "tmiInsertFirst";
+            this.tmiInsertFirst.Size = new System.Drawing.Size(210, 24);
+            this.tmiInsertFirst.Text = "X";
+            this.tmiInsertFirst.Click += new System.EventHandler(this.tmiInsertFirst_Click);
             // 
             // cmsColumnSelected
             // 
@@ -1547,6 +1178,404 @@
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
             // 
+            // txtDefaultValue
+            // 
+            this.txtDefaultValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDefaultValue.Location = new System.Drawing.Point(204, 503);
+            this.txtDefaultValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDefaultValue.Name = "txtDefaultValue";
+            this.txtDefaultValue.Size = new System.Drawing.Size(184, 27);
+            this.txtDefaultValue.TabIndex = 76;
+            this.txtDefaultValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblDefalutValue
+            // 
+            this.lblDefalutValue.AutoSize = true;
+            this.lblDefalutValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDefalutValue.Location = new System.Drawing.Point(15, 506);
+            this.lblDefalutValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDefalutValue.Name = "lblDefalutValue";
+            this.lblDefalutValue.Size = new System.Drawing.Size(15, 20);
+            this.lblDefalutValue.TabIndex = 75;
+            this.lblDefalutValue.Text = "-";
+            // 
+            // lblColumnChoiceName
+            // 
+            this.lblColumnChoiceName.AutoSize = true;
+            this.lblColumnChoiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnChoiceName.Location = new System.Drawing.Point(244, 77);
+            this.lblColumnChoiceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnChoiceName.Name = "lblColumnChoiceName";
+            this.lblColumnChoiceName.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnChoiceName.TabIndex = 74;
+            this.lblColumnChoiceName.Text = "-";
+            // 
+            // lblColumnChoicesCount
+            // 
+            this.lblColumnChoicesCount.AutoSize = true;
+            this.lblColumnChoicesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnChoicesCount.Location = new System.Drawing.Point(206, 77);
+            this.lblColumnChoicesCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnChoicesCount.Name = "lblColumnChoicesCount";
+            this.lblColumnChoicesCount.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnChoicesCount.TabIndex = 73;
+            this.lblColumnChoicesCount.Text = "-";
+            // 
+            // btnColumnEditChoices
+            // 
+            this.btnColumnEditChoices.Enabled = false;
+            this.btnColumnEditChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnColumnEditChoices.Location = new System.Drawing.Point(340, 74);
+            this.btnColumnEditChoices.Margin = new System.Windows.Forms.Padding(4);
+            this.btnColumnEditChoices.Name = "btnColumnEditChoices";
+            this.btnColumnEditChoices.Size = new System.Drawing.Size(50, 33);
+            this.btnColumnEditChoices.TabIndex = 72;
+            this.btnColumnEditChoices.Text = "...";
+            this.btnColumnEditChoices.UseVisualStyleBackColor = true;
+            // 
+            // lblColumnChoices
+            // 
+            this.lblColumnChoices.AutoSize = true;
+            this.lblColumnChoices.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnChoices.Location = new System.Drawing.Point(15, 77);
+            this.lblColumnChoices.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnChoices.Name = "lblColumnChoices";
+            this.lblColumnChoices.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnChoices.TabIndex = 71;
+            this.lblColumnChoices.Text = "-";
+            // 
+            // ckbColumnAutoGenerateKey
+            // 
+            this.ckbColumnAutoGenerateKey.AutoSize = true;
+            this.ckbColumnAutoGenerateKey.Location = new System.Drawing.Point(368, 409);
+            this.ckbColumnAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnAutoGenerateKey.Name = "ckbColumnAutoGenerateKey";
+            this.ckbColumnAutoGenerateKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnAutoGenerateKey.TabIndex = 70;
+            this.ckbColumnAutoGenerateKey.UseVisualStyleBackColor = true;
+            // 
+            // lblAutoGenerateKey
+            // 
+            this.lblAutoGenerateKey.AutoSize = true;
+            this.lblAutoGenerateKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutoGenerateKey.Location = new System.Drawing.Point(15, 407);
+            this.lblAutoGenerateKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAutoGenerateKey.Name = "lblAutoGenerateKey";
+            this.lblAutoGenerateKey.Size = new System.Drawing.Size(15, 20);
+            this.lblAutoGenerateKey.TabIndex = 69;
+            this.lblAutoGenerateKey.Text = "-";
+            // 
+            // ckbColumnIsUnique
+            // 
+            this.ckbColumnIsUnique.AutoSize = true;
+            this.ckbColumnIsUnique.Location = new System.Drawing.Point(368, 376);
+            this.ckbColumnIsUnique.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnIsUnique.Name = "ckbColumnIsUnique";
+            this.ckbColumnIsUnique.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnIsUnique.TabIndex = 68;
+            this.ckbColumnIsUnique.UseVisualStyleBackColor = true;
+            // 
+            // lblColumnIsUnique
+            // 
+            this.lblColumnIsUnique.AutoSize = true;
+            this.lblColumnIsUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnIsUnique.Location = new System.Drawing.Point(15, 374);
+            this.lblColumnIsUnique.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnIsUnique.Name = "lblColumnIsUnique";
+            this.lblColumnIsUnique.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnIsUnique.TabIndex = 67;
+            this.lblColumnIsUnique.Text = "-";
+            // 
+            // txtColumnMaxLength
+            // 
+            this.txtColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMaxLength.Location = new System.Drawing.Point(204, 338);
+            this.txtColumnMaxLength.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMaxLength.Name = "txtColumnMaxLength";
+            this.txtColumnMaxLength.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMaxLength.TabIndex = 66;
+            this.txtColumnMaxLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnMaxLength
+            // 
+            this.lblColumnMaxLength.AutoSize = true;
+            this.lblColumnMaxLength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMaxLength.Location = new System.Drawing.Point(15, 341);
+            this.lblColumnMaxLength.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMaxLength.Name = "lblColumnMaxLength";
+            this.lblColumnMaxLength.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMaxLength.TabIndex = 65;
+            this.lblColumnMaxLength.Text = "-";
+            // 
+            // lblColumnDescription
+            // 
+            this.lblColumnDescription.AutoSize = true;
+            this.lblColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnDescription.Location = new System.Drawing.Point(15, 539);
+            this.lblColumnDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnDescription.Name = "lblColumnDescription";
+            this.lblColumnDescription.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnDescription.TabIndex = 64;
+            this.lblColumnDescription.Text = "-";
+            // 
+            // txtColumnDescription
+            // 
+            this.txtColumnDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnDescription.Location = new System.Drawing.Point(204, 539);
+            this.txtColumnDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnDescription.Name = "txtColumnDescription";
+            this.txtColumnDescription.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnDescription.TabIndex = 63;
+            this.txtColumnDescription.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtColumnMaxValue
+            // 
+            this.txtColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMaxValue.Location = new System.Drawing.Point(204, 272);
+            this.txtColumnMaxValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMaxValue.Name = "txtColumnMaxValue";
+            this.txtColumnMaxValue.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMaxValue.TabIndex = 62;
+            this.txtColumnMaxValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtColumnMinValue
+            // 
+            this.txtColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnMinValue.Location = new System.Drawing.Point(204, 239);
+            this.txtColumnMinValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnMinValue.Name = "txtColumnMinValue";
+            this.txtColumnMinValue.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnMinValue.TabIndex = 61;
+            this.txtColumnMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnMaxValue
+            // 
+            this.lblColumnMaxValue.AutoSize = true;
+            this.lblColumnMaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMaxValue.Location = new System.Drawing.Point(15, 275);
+            this.lblColumnMaxValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMaxValue.Name = "lblColumnMaxValue";
+            this.lblColumnMaxValue.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMaxValue.TabIndex = 60;
+            this.lblColumnMaxValue.Text = "-";
+            // 
+            // lblColumnMinValue
+            // 
+            this.lblColumnMinValue.AutoSize = true;
+            this.lblColumnMinValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnMinValue.Location = new System.Drawing.Point(15, 242);
+            this.lblColumnMinValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnMinValue.Name = "lblColumnMinValue";
+            this.lblColumnMinValue.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnMinValue.TabIndex = 59;
+            this.lblColumnMinValue.Text = "-";
+            // 
+            // ckbColumnIsNullable
+            // 
+            this.ckbColumnIsNullable.AutoSize = true;
+            this.ckbColumnIsNullable.Location = new System.Drawing.Point(368, 145);
+            this.ckbColumnIsNullable.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnIsNullable.Name = "ckbColumnIsNullable";
+            this.ckbColumnIsNullable.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnIsNullable.TabIndex = 58;
+            this.ckbColumnIsNullable.UseVisualStyleBackColor = true;
+            // 
+            // lblColumnlIsNullable
+            // 
+            this.lblColumnlIsNullable.AutoSize = true;
+            this.lblColumnlIsNullable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnlIsNullable.Location = new System.Drawing.Point(15, 143);
+            this.lblColumnlIsNullable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnlIsNullable.Name = "lblColumnlIsNullable";
+            this.lblColumnlIsNullable.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnlIsNullable.TabIndex = 57;
+            this.lblColumnlIsNullable.Text = "-";
+            // 
+            // txtColumnRegex
+            // 
+            this.txtColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnRegex.Location = new System.Drawing.Point(204, 305);
+            this.txtColumnRegex.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnRegex.Name = "txtColumnRegex";
+            this.txtColumnRegex.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnRegex.TabIndex = 56;
+            this.txtColumnRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnRegex
+            // 
+            this.lblColumnRegex.AutoSize = true;
+            this.lblColumnRegex.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnRegex.Location = new System.Drawing.Point(15, 308);
+            this.lblColumnRegex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnRegex.Name = "lblColumnRegex";
+            this.lblColumnRegex.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnRegex.TabIndex = 55;
+            this.lblColumnRegex.Text = "-";
+            // 
+            // cobColumnFKColumn
+            // 
+            this.cobColumnFKColumn.DisplayMember = "Name";
+            this.cobColumnFKColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobColumnFKColumn.FormattingEnabled = true;
+            this.cobColumnFKColumn.Location = new System.Drawing.Point(204, 469);
+            this.cobColumnFKColumn.Margin = new System.Windows.Forms.Padding(4);
+            this.cobColumnFKColumn.Name = "cobColumnFKColumn";
+            this.cobColumnFKColumn.Size = new System.Drawing.Size(184, 28);
+            this.cobColumnFKColumn.TabIndex = 54;
+            this.cobColumnFKColumn.ValueMember = "Name";
+            // 
+            // lblColumnFKColumn
+            // 
+            this.lblColumnFKColumn.AutoSize = true;
+            this.lblColumnFKColumn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnFKColumn.Location = new System.Drawing.Point(15, 473);
+            this.lblColumnFKColumn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnFKColumn.Name = "lblColumnFKColumn";
+            this.lblColumnFKColumn.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnFKColumn.TabIndex = 53;
+            this.lblColumnFKColumn.Text = "-";
+            // 
+            // cobColumnFKTable
+            // 
+            this.cobColumnFKTable.DisplayMember = "Name";
+            this.cobColumnFKTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobColumnFKTable.FormattingEnabled = true;
+            this.cobColumnFKTable.Location = new System.Drawing.Point(204, 436);
+            this.cobColumnFKTable.Margin = new System.Windows.Forms.Padding(4);
+            this.cobColumnFKTable.Name = "cobColumnFKTable";
+            this.cobColumnFKTable.Size = new System.Drawing.Size(184, 28);
+            this.cobColumnFKTable.TabIndex = 52;
+            this.cobColumnFKTable.ValueMember = "Name";
+            // 
+            // txtColumnNumberOfRows
+            // 
+            this.txtColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnNumberOfRows.Location = new System.Drawing.Point(350, 206);
+            this.txtColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnNumberOfRows.Name = "txtColumnNumberOfRows";
+            this.txtColumnNumberOfRows.Size = new System.Drawing.Size(36, 27);
+            this.txtColumnNumberOfRows.TabIndex = 51;
+            this.txtColumnNumberOfRows.Text = "0";
+            this.txtColumnNumberOfRows.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnNumberOfRows
+            // 
+            this.lblColumnNumberOfRows.AutoSize = true;
+            this.lblColumnNumberOfRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnNumberOfRows.Location = new System.Drawing.Point(15, 209);
+            this.lblColumnNumberOfRows.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnNumberOfRows.Name = "lblColumnNumberOfRows";
+            this.lblColumnNumberOfRows.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnNumberOfRows.TabIndex = 50;
+            this.lblColumnNumberOfRows.Text = "-";
+            // 
+            // ckbColumnDisplay
+            // 
+            this.ckbColumnDisplay.AutoSize = true;
+            this.ckbColumnDisplay.Location = new System.Drawing.Point(368, 178);
+            this.ckbColumnDisplay.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnDisplay.Name = "ckbColumnDisplay";
+            this.ckbColumnDisplay.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnDisplay.TabIndex = 49;
+            this.ckbColumnDisplay.UseVisualStyleBackColor = true;
+            // 
+            // ckbColumnIsKey
+            // 
+            this.ckbColumnIsKey.AutoSize = true;
+            this.ckbColumnIsKey.Location = new System.Drawing.Point(368, 112);
+            this.ckbColumnIsKey.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbColumnIsKey.Name = "ckbColumnIsKey";
+            this.ckbColumnIsKey.Size = new System.Drawing.Size(18, 17);
+            this.ckbColumnIsKey.TabIndex = 43;
+            this.ckbColumnIsKey.UseVisualStyleBackColor = true;
+            // 
+            // cobColumnType
+            // 
+            this.cobColumnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobColumnType.FormattingEnabled = true;
+            this.cobColumnType.Location = new System.Drawing.Point(204, 40);
+            this.cobColumnType.Margin = new System.Windows.Forms.Padding(4);
+            this.cobColumnType.Name = "cobColumnType";
+            this.cobColumnType.Size = new System.Drawing.Size(184, 28);
+            this.cobColumnType.TabIndex = 44;
+            // 
+            // txtColumnName
+            // 
+            this.txtColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtColumnName.Location = new System.Drawing.Point(204, 8);
+            this.txtColumnName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtColumnName.Name = "txtColumnName";
+            this.txtColumnName.Size = new System.Drawing.Size(184, 27);
+            this.txtColumnName.TabIndex = 41;
+            this.txtColumnName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblColumnFKTable
+            // 
+            this.lblColumnFKTable.AutoSize = true;
+            this.lblColumnFKTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnFKTable.Location = new System.Drawing.Point(15, 440);
+            this.lblColumnFKTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnFKTable.Name = "lblColumnFKTable";
+            this.lblColumnFKTable.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnFKTable.TabIndex = 48;
+            this.lblColumnFKTable.Text = "-";
+            // 
+            // lblColumnDisplay
+            // 
+            this.lblColumnDisplay.AutoSize = true;
+            this.lblColumnDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnDisplay.Location = new System.Drawing.Point(15, 176);
+            this.lblColumnDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnDisplay.Name = "lblColumnDisplay";
+            this.lblColumnDisplay.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnDisplay.TabIndex = 47;
+            this.lblColumnDisplay.Text = "-";
+            // 
+            // lblColumnIsKey
+            // 
+            this.lblColumnIsKey.AutoSize = true;
+            this.lblColumnIsKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnIsKey.Location = new System.Drawing.Point(15, 110);
+            this.lblColumnIsKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnIsKey.Name = "lblColumnIsKey";
+            this.lblColumnIsKey.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnIsKey.TabIndex = 46;
+            this.lblColumnIsKey.Text = "-";
+            // 
+            // lblColumnType
+            // 
+            this.lblColumnType.AutoSize = true;
+            this.lblColumnType.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnType.Location = new System.Drawing.Point(15, 44);
+            this.lblColumnType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnType.Name = "lblColumnType";
+            this.lblColumnType.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnType.TabIndex = 45;
+            this.lblColumnType.Text = "-";
+            // 
+            // lblColumnName
+            // 
+            this.lblColumnName.AutoSize = true;
+            this.lblColumnName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblColumnName.Location = new System.Drawing.Point(15, 11);
+            this.lblColumnName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblColumnName.Name = "lblColumnName";
+            this.lblColumnName.Size = new System.Drawing.Size(15, 20);
+            this.lblColumnName.TabIndex = 42;
+            this.lblColumnName.Text = "-";
+            // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(406, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1611,17 +1640,6 @@
         private System.Windows.Forms.Button btnUpdateMain;
         private System.Windows.Forms.Button btnUpdateColumn;
         private System.Windows.Forms.Panel pnlFileInfo;
-        private System.Windows.Forms.TextBox txtColumnNumberOfRows;
-        private System.Windows.Forms.Label lblColumnNumberOfRows;
-        private System.Windows.Forms.CheckBox ckbColumnDisplay;
-        private System.Windows.Forms.CheckBox ckbColumnIsKey;
-        private System.Windows.Forms.ComboBox cobColumnType;
-        private System.Windows.Forms.TextBox txtColumnName;
-        private System.Windows.Forms.Label lblColumnFKTable;
-        private System.Windows.Forms.Label lblColumnDisplay;
-        private System.Windows.Forms.Label lblColumnIsKey;
-        private System.Windows.Forms.Label lblColumnType;
-        private System.Windows.Forms.Label lblColumnName;
         private System.Windows.Forms.TreeView trvJsonFiles;
         private System.Windows.Forms.StatusStrip stsMain;
         private System.Windows.Forms.ToolStripStatusLabel sslMain;
@@ -1652,9 +1670,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiNewJsonFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiScanJsonFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiBackup;
-        private System.Windows.Forms.ComboBox cobColumnFKTable;
-        private System.Windows.Forms.ComboBox cobColumnFKColumn;
-        private System.Windows.Forms.Label lblColumnFKColumn;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguages;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHTW;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageENUS;
@@ -1672,36 +1687,20 @@
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveUp;
         private System.Windows.Forms.ToolStripMenuItem tmiColumnMoveDown;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem7;
-        private System.Windows.Forms.TextBox txtColumnRegex;
-        private System.Windows.Forms.Label lblColumnRegex;
-        private System.Windows.Forms.CheckBox ckbColumnIsNullable;
-        private System.Windows.Forms.Label lblColumnlIsNullable;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem tmiOpenFolder;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJsonFile;
-        private System.Windows.Forms.Label lblColumnDescription;
-        private System.Windows.Forms.TextBox txtColumnMaxValue;
-        private System.Windows.Forms.TextBox txtColumnMinValue;
-        private System.Windows.Forms.Label lblColumnMaxValue;
-        private System.Windows.Forms.Label lblColumnMinValue;
         private System.Windows.Forms.ToolStripMenuItem tmiViewJFIFile;
         private System.Windows.Forms.ToolStripMenuItem tmiRefreshFiles;
         private System.Windows.Forms.ToolStripMenuItem tmiRenameColumn;
         private System.Windows.Forms.Button btnLineMoveUp;
         private System.Windows.Forms.Button btnLineMoveDown;
-        private System.Windows.Forms.TextBox txtColumnMaxLength;
-        private System.Windows.Forms.Label lblColumnMaxLength;
-        private System.Windows.Forms.CheckBox ckbColumnIsUnique;
-        private System.Windows.Forms.Label lblColumnIsUnique;
-        private System.Windows.Forms.TextBox txtColumnDescription;
         private System.Windows.Forms.ToolStripMenuItem tmiJsonEditorBackup;
         private System.Windows.Forms.ToolStripMenuItem tmiTestDataBackup;
         private System.Windows.Forms.ToolStripMenuItem tmiAritiafelBackup;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem9;
         private System.Windows.Forms.ToolStripMenuItem tmiRunSomething;
         private System.Windows.Forms.ToolStripMenuItem tmiLanguageZHCN;
-        private System.Windows.Forms.CheckBox ckbColumnAutoGenerateKey;
-        private System.Windows.Forms.Label lblAutoGenerateKey;
         private System.Windows.Forms.DataGridView dgvLines;
         private System.Windows.Forms.ComboBox cobFindColumnName;
         private System.Windows.Forms.TextBox txtFindValue;
@@ -1709,10 +1708,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiColumnShowOnList;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem10;
         private System.Windows.Forms.ToolStripMenuItem tmiRenameDatabase;
-        private System.Windows.Forms.Label lblColumnChoicesCount;
-        private System.Windows.Forms.Button btnColumnEditChoices;
-        private System.Windows.Forms.Label lblColumnChoices;
-        private System.Windows.Forms.Label lblColumnChoiceName;
         private System.Windows.Forms.Panel pnlDateTimePicker;
         private SimpleDateTimePicker dtpMain;
         private System.Windows.Forms.Button btnCopyLine;
@@ -1749,5 +1744,42 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tmiExportToLangaugeFiles;
+        private System.Windows.Forms.ToolStripMenuItem tmiInsertFirst;
+        private System.Windows.Forms.TextBox txtDefaultValue;
+        private System.Windows.Forms.Label lblDefalutValue;
+        private System.Windows.Forms.Label lblColumnChoiceName;
+        private System.Windows.Forms.Label lblColumnChoicesCount;
+        private System.Windows.Forms.Button btnColumnEditChoices;
+        private System.Windows.Forms.Label lblColumnChoices;
+        private System.Windows.Forms.CheckBox ckbColumnAutoGenerateKey;
+        private System.Windows.Forms.Label lblAutoGenerateKey;
+        private System.Windows.Forms.CheckBox ckbColumnIsUnique;
+        private System.Windows.Forms.Label lblColumnIsUnique;
+        private System.Windows.Forms.TextBox txtColumnMaxLength;
+        private System.Windows.Forms.Label lblColumnMaxLength;
+        private System.Windows.Forms.Label lblColumnDescription;
+        private System.Windows.Forms.TextBox txtColumnDescription;
+        private System.Windows.Forms.TextBox txtColumnMaxValue;
+        private System.Windows.Forms.TextBox txtColumnMinValue;
+        private System.Windows.Forms.Label lblColumnMaxValue;
+        private System.Windows.Forms.Label lblColumnMinValue;
+        private System.Windows.Forms.CheckBox ckbColumnIsNullable;
+        private System.Windows.Forms.Label lblColumnlIsNullable;
+        private System.Windows.Forms.TextBox txtColumnRegex;
+        private System.Windows.Forms.Label lblColumnRegex;
+        private System.Windows.Forms.ComboBox cobColumnFKColumn;
+        private System.Windows.Forms.Label lblColumnFKColumn;
+        private System.Windows.Forms.ComboBox cobColumnFKTable;
+        private System.Windows.Forms.TextBox txtColumnNumberOfRows;
+        private System.Windows.Forms.Label lblColumnNumberOfRows;
+        private System.Windows.Forms.CheckBox ckbColumnDisplay;
+        private System.Windows.Forms.CheckBox ckbColumnIsKey;
+        private System.Windows.Forms.ComboBox cobColumnType;
+        private System.Windows.Forms.TextBox txtColumnName;
+        private System.Windows.Forms.Label lblColumnFKTable;
+        private System.Windows.Forms.Label lblColumnDisplay;
+        private System.Windows.Forms.Label lblColumnIsKey;
+        private System.Windows.Forms.Label lblColumnType;
+        private System.Windows.Forms.Label lblColumnName;
     }
 }

@@ -234,6 +234,9 @@
   <data name="JE_COLUMN_FK_TABLE" xml:space="preserve">
     <value>外部索引檔案</value>
   </data>
+  <data name="JE_COLUMN_DEFAULT_VALUE" xml:space="preserve">
+    <value>預設值</value>
+  </data>
   <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
     <value>是索引</value>
   </data>
@@ -845,5 +848,8 @@
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
     <value>JSON 資料檔案編輯器</value>
+  </data>
+  <data name="JE_TMI_INSERT_FIRST" xml:space="preserve">
+    <value>從開頭加入資料</value>
   </data>
 </root>

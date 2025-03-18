@@ -376,6 +376,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 預設值 的當地語系化字串。
+        /// </summary>
+        public static string JE_COLUMN_DEFAULT_VALUE {
+            get {
+                return ResourceManager.GetString("JE_COLUMN_DEFAULT_VALUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 欄位描述 的當地語系化字串。
         /// </summary>
         public static string JE_COLUMN_DESCRIPTION {
@@ -1794,6 +1803,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_HELP {
             get {
                 return ResourceManager.GetString("JE_TMI_HELP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 從開頭加入資料 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_INSERT_FIRST {
+            get {
+                return ResourceManager.GetString("JE_TMI_INSERT_FIRST", resourceCulture);
             }
         }
         

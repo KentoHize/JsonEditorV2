@@ -24,7 +24,8 @@ namespace JsonEditor
         public string MaxValue { get; set; }
         public long MaxLength { get; set; }
         public bool AutoGenerateKey { get; set; }
-        public bool IsUnique { get; set; }
+        public bool IsUnique { get; set; }        
+        public string DefaultValue { get; set; }
 
         [JsonIgnore]
         public bool Valid { get; set; } = true;
