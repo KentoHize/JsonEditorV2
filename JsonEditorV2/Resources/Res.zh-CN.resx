@@ -853,7 +853,7 @@
     从开头加入资料
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    {NOW()} 代表现在日期时间{GUID()} 代表新GUID
+    {NOW()} 代表现在日期和时间&#13;{GUID()} 代表新GUID
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     设定

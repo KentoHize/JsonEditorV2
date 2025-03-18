@@ -1996,7 +1996,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 {NOW()} 代表現在日期時間{GUID()} 代表新GUID 的當地語系化字串。
+        ///   查詢類似 {NOW()} 代表現在日期和時間        ///{GUID()} 代表新GUID 的當地語系化字串。
         /// </summary>
         public static string JE_TT_NOW_FUNCTION_GUID_FUNCTION {
             get {

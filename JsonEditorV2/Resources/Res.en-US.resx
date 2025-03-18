@@ -853,7 +853,7 @@
     <value>Insert Data from First Row</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>{NOW()} represent current date &amp; time{GUID()} represent new GUID</value>
+    <value>{NOW()} represent current date &amp; time&#13;{GUID()} represent new GUID</value>
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>Setting</value>
