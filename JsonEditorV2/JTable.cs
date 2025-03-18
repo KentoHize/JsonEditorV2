@@ -14,8 +14,8 @@ namespace JsonEditor
         public string Name { get; set; }
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
-        public List<SortInfo> SortInfoList { get; set; } //待開發 To Do        
-        public bool InsertFirst { get; set; }
+        public List<SortInfo> SortInfoList { get; set; } //待開發 To Do
+        public bool InsertFirst {get; set;}        
         public bool HasKey { get => Columns.Exists(m => m.IsKey); }
         public bool Loaded { get; set; }
         public bool Changed { get; set; }
@@ -133,6 +133,7 @@ namespace JsonEditor
             List<JColumn> jcs = new List<JColumn>(Columns);
             jfi.Name = Name;
             jfi.Columns = jcs;
+            jfi.InsertFirst = InsertFirst;
             return jfi;
         }
 
@@ -818,7 +819,7 @@ namespace JsonEditor
             return uniqueKey.ParseJType(Columns[index].Type);
         }
 
-        public void CopyLine(int index)
+        public void CopyLine(int index, bool insertFirst = false)
         {
             JLine jl = new JLine();
             for (int i = 0; i < Columns.Count; i++)
@@ -828,13 +829,14 @@ namespace JsonEditor
                 else
                     jl.Add(Lines[index][i]);
             }
-            if (InsertFirst)
+            
+            if (insertFirst)
                 Lines.Insert(0, jl);
             else
                 Lines.Add(jl);
         }
 
-        public void GenerateNewLine()
+        public void GenerateNewLine(bool insertFirst = false)
         {
             JLine jl = new JLine();
             for (int i = 0; i < Columns.Count; i++)
@@ -848,7 +850,7 @@ namespace JsonEditor
                 else
                     jl.Add(Columns[i].Type.InitialValue());
             }
-            if (InsertFirst)
+            if (insertFirst)
                 Lines.Insert(0, jl);
             else
                 Lines.Add(jl);

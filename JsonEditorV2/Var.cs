@@ -37,10 +37,11 @@ namespace JsonEditorV2
         public static int PrintPageIndex { get; set; } //列印中的頁數
         public static List<JTable> OpenedTable { get; set; } = new List<JTable>();
         public static JTable SelectedTable { get { if (OpenedTable == null || OpenedTable.Count == 0) return null; return OpenedTable[PageIndex]; } }
+        public static int SelectedTableIndex { get => Tables.IndexOf(SelectedTable); }
         public static JLine SelectedLine { get => SelectedTable[SelectedLineIndex]; }
         public static int SelectedLineIndex { get => LineIndexes[PageIndex]; set => LineIndexes[PageIndex] = value; }
-
         public static JTable SelectedColumnParentTable { get; set; }
+        public static int SelectedColumnParentTableIndex { get => Tables.IndexOf(SelectedColumnParentTable); }
         public static JColumn SelectedColumn { get; set; }
         public static int SelectedColumnIndex { get => SelectedColumnParentTable.Columns.IndexOf(SelectedColumn); }
 

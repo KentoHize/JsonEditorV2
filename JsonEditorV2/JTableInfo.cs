@@ -11,5 +11,6 @@ namespace JsonEditor
     {
         public string Name { get; set; }
         public List<JColumn> Columns { get; set; }
+        public bool InsertFirst { get; set; }
     }
 }

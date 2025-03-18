@@ -47,7 +47,7 @@ namespace JsonEditorV2
             lblColumnFKColumn.Text = Res.JE_COLUMN_FK_COLUMN;
             lblColumnNumberOfRows.Text = Res.JE_COLUMN_NUM_OF_ROWS;
             lblColumnRegex.Text = Res.JE_COLUMN_REGEX;
-            lblColumnlIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
+            lblColumnIsNullable.Text = Res.JE_COLUMN_IS_NULLABLE;
             lblColumnDescription.Text = Res.JE_COLUMN_DESCRIPTION;
             lblColumnMinValue.Text = Res.JE_COLUMN_MIN_VALUE;
             lblColumnMaxValue.Text = Res.JE_COLUMN_MAX_VALUE;
@@ -663,6 +663,7 @@ namespace JsonEditorV2
                 else
                 {
                     table.Columns = jti.Columns;
+                    table.InsertFirst = jti.InsertFirst;
                     //小檔案直接讀取 - 失敗時關閉
                     if (fi.Length < Setting.DontLoadFileBytesThreshold)
                         if (!LoadOrScanJsonFile(table))
@@ -671,7 +672,7 @@ namespace JsonEditorV2
                             return;
                         }
                 }
-                Var.Tables.Add(table);
+                Var.Tables.Add(table);                
             }
 
             Var.Database.CheckAllTablesValid();
@@ -1081,7 +1082,8 @@ namespace JsonEditorV2
             else if (e.Node.Parent == Var.RootNode)
             {
                 Var.SelectedColumn = null;
-                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString()); ;
+                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString());
+                
                 RefreshPnlFileInfo();
 
                 //更新Open Close
@@ -1099,6 +1101,7 @@ namespace JsonEditorV2
                 //更新選單
                 tmiViewJsonFile.Enabled = File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
                 tmiDisplayAllColumn.Checked = !Var.SelectedColumnParentTable.Columns.Exists(m => !m.Display);
+                tmiInsertFirst.Checked = Var.SelectedColumnParentTable.InsertFirst;
 
                 if (e.Button == MouseButtons.Right)
                 {
@@ -1108,7 +1111,7 @@ namespace JsonEditorV2
             }
             else
             {
-                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Parent.Tag.ToString());
+                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString());
                 Var.SelectedColumn = Var.SelectedColumnParentTable.Columns.Find(t => t.Name == e.Node.Tag.ToString());
                 RefreshPnlFileInfo();
                 if (e.Button == MouseButtons.Right)
@@ -1807,11 +1810,14 @@ namespace JsonEditorV2
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
                 return;
-            }
-
-            Var.SelectedTable.GenerateNewLine();
+            }            
+            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst);
             Var.SelectedTable.Changed = true;
-            Var.SelectedLineIndex = dgvLines.Rows.Count;
+
+            if (Var.SelectedTable.InsertFirst)
+                Var.SelectedLineIndex = 0;
+            else
+                Var.SelectedLineIndex = dgvLines.Rows.Count;           
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
 
@@ -2702,12 +2708,15 @@ namespace JsonEditorV2
         }
 
         public void btnCopyLine_Click(object sender, EventArgs e)
-        {
-            Var.SelectedTable.CopyLine(Var.SelectedLineIndex);
+        {   
+            Var.SelectedTable.CopyLine(Var.SelectedLineIndex, Var.SelectedTable.InsertFirst);
             Var.SelectedTable.Changed = true;
 
             sslMain.Text = string.Format(Res.JE_RUN_COPY_LINE_M_1, Var.SelectedTable.Name, Var.SelectedLineIndex);
-            Var.SelectedLineIndex = dgvLines.Rows.Count;
+            if (Var.SelectedTable.InsertFirst)
+                Var.SelectedLineIndex = 0;
+            else
+                Var.SelectedLineIndex = dgvLines.Rows.Count;
             Var.Database.CheckTableValid(Var.SelectedTable, Setting.TableCheckMethod);
             RefreshDgvLines();
             RefreshPnlMainValue();
@@ -3275,6 +3284,9 @@ namespace JsonEditorV2
                 return;            
             tmiInsertFirst.Checked = !tmiInsertFirst.Checked;
             Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
+            Var.SelectedColumnParentTable.Changed = true;
+            //Var.JFI.TablesInfo[Var.Tables.IndexOf(Var.SelectedColumnParentTable)].InsertFirst = tmiInsertFirst.Checked;
+            //Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
             Var.JFI.Changed = true;
         }
     }
