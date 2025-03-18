@@ -1111,7 +1111,7 @@ namespace JsonEditorV2
             }
             else
             {
-                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString());
+                Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Parent.Tag.ToString());
                 Var.SelectedColumn = Var.SelectedColumnParentTable.Columns.Find(t => t.Name == e.Node.Tag.ToString());
                 RefreshPnlFileInfo();
                 if (e.Button == MouseButtons.Right)
@@ -3284,9 +3284,6 @@ namespace JsonEditorV2
                 return;            
             tmiInsertFirst.Checked = !tmiInsertFirst.Checked;
             Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
-            Var.SelectedColumnParentTable.Changed = true;
-            //Var.JFI.TablesInfo[Var.Tables.IndexOf(Var.SelectedColumnParentTable)].InsertFirst = tmiInsertFirst.Checked;
-            //Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
             Var.JFI.Changed = true;
         }
     }
