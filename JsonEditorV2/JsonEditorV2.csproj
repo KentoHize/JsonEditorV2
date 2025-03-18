@@ -199,10 +199,12 @@
     <EmbeddedResource Include="Resources\Res.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Res.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Res.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Res.zh-CN.resx" />
     <EmbeddedResource Include="SimpleDateTimePicker.resx">

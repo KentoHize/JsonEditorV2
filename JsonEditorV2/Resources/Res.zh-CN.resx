@@ -118,732 +118,747 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_CONTACT_US" xml:space="preserve">
-    <value>错误回报：KentoHize@gmail.com</value>
+    错误回报：KentoHize@gmail.com
   </data>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
-    <value>JSON 资料档案编辑器</value>
+    JSON 资料档案编辑器
   </data>
   <data name="JE_ABOUT_MESSAGE_2" xml:space="preserve">
-    <value>作者：日濑健人</value>
+    作者：日濑健人
   </data>
   <data name="JE_ABOUT_TITLE" xml:space="preserve">
-    <value>关於</value>
+    关於
   </data>
   <data name="JE_BTN_CANCEL" xml:space="preserve">
-    <value>取消</value>
+    取消
   </data>
   <data name="JE_BTN_CLEAR_COLUMN" xml:space="preserve">
-    <value>清空</value>
+    清空
   </data>
   <data name="JE_BTN_CLEAR_MAIN" xml:space="preserve">
-    <value>清空</value>
+    清空
   </data>
   <data name="JE_BTN_CONFIRM" xml:space="preserve">
-    <value>确认</value>
+    确认
   </data>
   <data name="JE_BTN_COPY" xml:space="preserve">
-    <value>复制</value>
+    复制
   </data>
   <data name="JE_BTN_COPY_LINE" xml:space="preserve">
-    <value>复制资料行</value>
+    复制资料行
   </data>
   <data name="JE_BTN_DELETE" xml:space="preserve">
-    <value>删除</value>
+    删除
   </data>
   <data name="JE_BTN_DELETE_LINE" xml:space="preserve">
-    <value>删除资料</value>
+    删除资料
   </data>
   <data name="JE_BTN_EDIT_CHOICES" xml:space="preserve">
-    <value>编辑选项</value>
+    编辑选项
   </data>
   <data name="JE_BTN_FIND_LINE" xml:space="preserve">
-    <value>寻找资料行</value>
+    寻找资料行
   </data>
   <data name="JE_BTN_LINE_MOVE_DOWN" xml:space="preserve">
-    <value>下移资料行</value>
+    下移资料行
   </data>
   <data name="JE_BTN_LINE_MOVE_UP" xml:space="preserve">
-    <value>上移资料行</value>
+    上移资料行
   </data>
   <data name="JE_BTN_NEW_GUID" xml:space="preserve">
-    <value>新ID</value>
+    新ID
   </data>
   <data name="JE_BTN_NEW_LINE" xml:space="preserve">
-    <value>新增资料</value>
+    新增资料
   </data>
   <data name="JE_BTN_NEW_SORT_INFO" xml:space="preserve">
-    <value>新增排列规则</value>
+    新增排列规则
   </data>
   <data name="JE_BTN_REGENERATE_KEY" xml:space="preserve">
-    <value>重设索引</value>
+    重设索引
   </data>
   <data name="JE_BTN_RESET_VALUE" xml:space="preserve">
-    <value>重设值</value>
+    重设值
   </data>
   <data name="JE_BTN_UPDATE_COLUMN" xml:space="preserve">
-    <value>更新</value>
+    更新
   </data>
   <data name="JE_BTN_UPDATE_MAIN" xml:space="preserve">
-    <value>更新</value>
+    更新
   </data>
   <data name="JE_CHOICES_ADD_ITEM" xml:space="preserve">
-    <value>新增</value>
+    新增
   </data>
   <data name="JE_CHOICES_CONFIRM" xml:space="preserve">
-    <value>确认</value>
+    确认
   </data>
   <data name="JE_CHOICES_DELETE_ITEM" xml:space="preserve">
-    <value>删除</value>
+    删除
   </data>
   <data name="JE_CHOICE_DUPLICATE_ITEM" xml:space="preserve">
-    <value>值"{0}"已存在</value>
+    值"{0}"已存在
   </data>
   <data name="JE_COB_CHECK_METHOD" xml:space="preserve">
-    <value>档案库检查方式</value>
+    档案库检查方式
   </data>
   <data name="JE_COB_CHECK_METHOD_FULL_CHECK" xml:space="preserve">
-    <value>全部检查</value>
+    全部检查
   </data>
   <data name="JE_COB_CHECK_METHOD_NO_CHECK" xml:space="preserve">
-    <value>不检查</value>
+    不检查
   </data>
   <data name="JE_COB_CHECK_METHOD_ONE_INVALID_CHECK" xml:space="preserve">
-    <value>单项无效</value>
+    单项无效
   </data>
   <data name="JE_COB_SORT_ASCENDING" xml:space="preserve">
-    <value>升序</value>
+    升序
   </data>
   <data name="JE_COB_SORT_DESCENDING" xml:space="preserve">
-    <value>降序</value>
+    降序
   </data>
   <data name="JE_COLUMN_AUTO_GENERATE_KEY" xml:space="preserve">
-    <value>自动产生索引值</value>
+    自动产生索引值
   </data>
   <data name="JE_COLUMN_CHOICES" xml:space="preserve">
-    <value>栏位可选值</value>
+    栏位可选值
   </data>
   <data name="JE_COLUMN_DESCRIPTION" xml:space="preserve">
-    <value>栏位描述</value>
+    栏位描述
   </data>
   <data name="JE_COLUMN_DISPLAY" xml:space="preserve">
-    <value>显示在清单上</value>
+    显示在清单上
   </data>
   <data name="JE_COLUMN_FK_COLUMN" xml:space="preserve">
-    <value>外部索引栏位</value>
+    外部索引栏位
   </data>
   <data name="JE_COLUMN_FK_TABLE" xml:space="preserve">
-    <value>外部索引档案</value>
+    外部索引档案
+  </data>
+  <data name="JE_COLUMN_DEFAULT_VALUE" xml:space="preserve">
+    预设值
   </data>
   <data name="JE_COLUMN_IS_KEY" xml:space="preserve">
-    <value>是索引</value>
+    是索引
   </data>
   <data name="JE_COLUMN_IS_NULLABLE" xml:space="preserve">
-    <value>可以为Null值</value>
+    可以为Null值
   </data>
   <data name="JE_COLUMN_IS_UNIQUE" xml:space="preserve">
-    <value>唯一值</value>
+    唯一值
   </data>
   <data name="JE_COLUMN_MAX_LENGTH" xml:space="preserve">
-    <value>文字最大长度</value>
+    文字最大长度
   </data>
   <data name="JE_COLUMN_MAX_VALUE" xml:space="preserve">
-    <value>最大值</value>
+    最大值
   </data>
   <data name="JE_COLUMN_MIN_VALUE" xml:space="preserve">
-    <value>最小值</value>
+    最小值
   </data>
   <data name="JE_COLUMN_NAME" xml:space="preserve">
-    <value>栏位名称</value>
+    栏位名称
   </data>
   <data name="JE_COLUMN_NUM_OF_ROWS" xml:space="preserve">
-    <value>栏位行数</value>
+    栏位行数
   </data>
   <data name="JE_COLUMN_REGEX" xml:space="preserve">
-    <value>正则表达式</value>
+    正则表达式
   </data>
   <data name="JE_COLUMN_TYPE" xml:space="preserve">
-    <value>栏位型别</value>
+    栏位型别
   </data>
   <data name="JE_DATETIME_DAY" xml:space="preserve">
-    <value>日</value>
+    日
   </data>
   <data name="JE_DATETIME_HOUR" xml:space="preserve">
-    <value>时</value>
+    时
   </data>
   <data name="JE_DATETIME_MINUTE" xml:space="preserve">
-    <value>分</value>
+    分
   </data>
   <data name="JE_DATETIME_MONTH" xml:space="preserve">
-    <value>月</value>
+    月
   </data>
   <data name="JE_DATETIME_OK" xml:space="preserve">
-    <value>确认</value>
+    确认
   </data>
   <data name="JE_DATETIME_SECOND" xml:space="preserve">
-    <value>秒</value>
+    秒
   </data>
   <data name="JE_DATETIME_YEAR" xml:space="preserve">
-    <value>年</value>
+    年
   </data>
   <data name="JE_DIALOG_ALL_FILES" xml:space="preserve">
-    <value>所有档案(*.*)</value>
+    所有档案(*.*)
   </data>
   <data name="JE_DIALOG_CSV_FILE_FULL_NAME" xml:space="preserve">
-    <value>CSV档案(*.csv)</value>
+    CSV档案(*.csv)
   </data>
   <data name="JE_DIALOG_CS_FILE_FULL_NAME" xml:space="preserve">
-    <value>CS档案(*.cs)</value>
+    CS档案(*.cs)
   </data>
   <data name="JE_DIALOG_XML_FILE_FULL_NAME" xml:space="preserve">
-    <value>XML档案(*.xml)</value>
+    XML档案(*.xml)
   </data>
   <data name="JE_ERR_CHILD_COLUMN_COUNT_VARY" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，索引：{1}，栏位数量过多或过少</value>
+    无效的JSON档案"{0}.json"，索引：{1}，栏位数量过多或过少
   </data>
   <data name="JE_ERR_CHILD_COLUMN_NAME_VARY" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，索引：{1}，栏位名称"{2}"，不正确</value>
+    无效的JSON档案"{0}.json"，索引：{1}，栏位名称"{2}"，不正确
   </data>
   <data name="JE_ERR_CHILD_COLUMN_ORDER_VARY" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"顺序不正确</value>
+    无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"顺序不正确
   </data>
   <data name="JE_ERR_CHILD_COLUMN_TYPE_VARY" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"型别种类太多</value>
+    无效的JSON档案"{0}.json"，索引：{1}，栏位"{2}"型别种类太多
   </data>
   <data name="JE_ERR_CHILD_ELEMENT_NOT_OBJECT" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，索引：{1}，子元素非物件</value>
+    无效的JSON档案"{0}.json"，索引：{1}，子元素非物件
   </data>
   <data name="JE_ERR_DEFAULT_MESSAGE" xml:space="preserve">
-    <value>错误发生："{0}"</value>
+    错误发生："{0}"
   </data>
   <data name="JE_ERR_DEFAULT_TITLE" xml:space="preserve">
-    <value>错误</value>
+    错误
   </data>
   <data name="JE_ERR_EMPTY_FK_TABLE" xml:space="preserve">
-    <value>"{0}"资料数为0</value>
+    "{0}"资料数为0
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_JFI_FAILED_DEFAULT" xml:space="preserve">
-    <value>JSON关联档案格式不正确：{0}</value>
+    JSON关联档案格式不正确：{0}
   </data>
   <data name="JE_ERR_JSONCONVERT_DESERIALIZE_OBJECT_FAILED_DEFAULT" xml:space="preserve">
-    <value>档案"{0}.json"格式不正确：{1}</value>
+    档案"{0}.json"格式不正确：{1}
   </data>
   <data name="JE_ERR_LOAD_JFI_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>读取JSON关联档案"{0}"失败，请确认档案是否存在或损毁</value>
+    读取JSON关联档案"{0}"失败，请确认档案是否存在或损毁
   </data>
   <data name="JE_ERR_LOAD_JSON_FAILED_TITLE" xml:space="preserve">
-    <value>读取档案失败</value>
+    读取档案失败
   </data>
   <data name="JE_ERR_LOAD_JSON_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>读取档案"{0}"时发生错误，请确认档案是否存在或损毁</value>
+    读取档案"{0}"时发生错误，请确认档案是否存在或损毁
   </data>
   <data name="JE_ERR_RECOVER_FILE_M_1" xml:space="preserve">
-    <value>发现需要复原的档案"{0}"建立於 {1}，是否复原到原来的资料夹</value>
+    发现需要复原的档案"{0}"建立於 {1}，是否复原到原来的资料夹
   </data>
   <data name="JE_ERR_ROOT_ELEMENT_NOT_ARRAY" xml:space="preserve">
-    <value>无效的JSON档案"{0}.json"，根元素非阵列</value>
+    无效的JSON档案"{0}.json"，根元素非阵列
   </data>
   <data name="JE_ERR_SAVE_CSV_FAILED" xml:space="preserve">
-    <value>输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权</value>
+    输出CSV档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
   <data name="JE_ERR_SAVE_CS_FAILED" xml:space="preserve">
-    <value>输出CS档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权</value>
+    输出CS档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
   <data name="JE_ERR_SAVE_LANG_FILES_FAILED" xml:space="preserve">
-    <value>输出语言档案集"{0}"失败，请确认目标资料夹存在，并且对资料夹有存取权</value>
+    输出语言档案集"{0}"失败，请确认目标资料夹存在，并且对资料夹有存取权
   </data>
   <data name="JE_ERR_SAVE_LANG_FILES_INVALID" xml:space="preserve">
-    <value>目标档案"{0}.json"不能输出成为语言档案，合法档案必须存在资料型态为String的唯一Key</value>
+    目标档案"{0}.json"不能输出成为语言档案，合法档案必须存在资料型态为String的唯一Key
   </data>
   <data name="JE_ERR_SAVE_XML_FAILED" xml:space="preserve">
-    <value>输出XML档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权</value>
+    输出XML档案"{0}"失败，请确认目标资料夹不存在此档案，并且对资料夹有存取权
   </data>
   <data name="JE_ERR_SCAN_CSV_FILE_FAILED_DEFAULT" xml:space="preserve">
-    <value>扫描档案"{0}.csv"时发生错误:{1}</value>
+    扫描档案"{0}.csv"时发生错误:{1}
   </data>
   <data name="JE_ERR_SCAN_JSON_FAILED_TITLE" xml:space="preserve">
-    <value>扫描档案失败</value>
+    扫描档案失败
   </data>
   <data name="JE_ERR_TABLE_CONVERT_TO_CSV_FAILED" xml:space="preserve">
-    <value>"{0}"转换至CSV档案失败，详细讯息："{1}"</value>
+    "{0}"转换至CSV档案失败，详细讯息："{1}"
   </data>
   <data name="JE_ERR_TABLE_CONVERT_TO_XML_FAILED" xml:space="preserve">
-    <value>"{0}"转换至XML档案失败，详细讯息："{1}"</value>
+    "{0}"转换至XML档案失败，详细讯息："{1}"
   </data>
   <data name="JE_ERR_TABLE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
-    <value>档案"{0}.json"资料不合规则：行 {1}，栏位"{2}"，</value>
+    档案"{0}.json"资料不合规则：行 {1}，栏位"{2}"，
   </data>
   <data name="JE_ERR_TABLE_LOAD_JSON_FAILED_DEFAULT" xml:space="preserve">
-    <value>"{0}.json"档案资料与宣告格式不相容，资料载入失败</value>
+    "{0}.json"档案资料与宣告格式不相容，资料载入失败
   </data>
   <data name="JE_ERR_UNKNOWN_ERROR" xml:space="preserve">
-    <value>未知的错误</value>
+    未知的错误
   </data>
   <data name="JE_INPUTBOX_BTN_CANCEL" xml:space="preserve">
-    <value>取消</value>
+    取消
   </data>
   <data name="JE_INPUTBOX_BTN_CONFIRM" xml:space="preserve">
-    <value>确定</value>
+    确定
   </data>
   <data name="JE_INPUTBOX_DESCRIPTION" xml:space="preserve">
-    <value>档案名称</value>
+    档案名称
   </data>
   <data name="JE_INPUTBOX_DESCRIPTION_2" xml:space="preserve">
-    <value>栏位名称</value>
+    栏位名称
   </data>
   <data name="JE_INPUTBOX_DESCRIPTION_3" xml:space="preserve">
-    <value>档案库名称</value>
+    档案库名称
   </data>
   <data name="JE_INPUTBOX_FILE_EXISTS" xml:space="preserve">
-    <value>档案"{0}:已存在</value>
+    档案"{0}:已存在
   </data>
   <data name="JE_INPUTBOX_TITLE" xml:space="preserve">
-    <value>开新JSON档案</value>
+    开新JSON档案
   </data>
   <data name="JE_INPUTBOX_TITLE_2" xml:space="preserve">
-    <value>新增栏位</value>
+    新增栏位
   </data>
   <data name="JE_INPUTBOX_WRONG_COLUMN_NAME" xml:space="preserve">
-    <value>错误的栏位名称，请用'_'或非特殊文字开头，之後使用'_'、非特殊文字或是数字，长度不要超过50位</value>
+    错误的栏位名称，请用'_'或非特殊文字开头，之後使用'_'、非特殊文字或是数字，长度不要超过50位
   </data>
   <data name="JE_INPUTBOX_WRONG_DATABASE_NAME" xml:space="preserve">
-    <value>不符合规则的档案库名称</value>
+    不符合规则的档案库名称
   </data>
   <data name="JE_INPUTBOX_WRONG_FILE_NAME" xml:space="preserve">
-    <value>不符合规则的档案名称</value>
+    不符合规则的档案名称
   </data>
   <data name="JE_LBL_CHOICE_NAME" xml:space="preserve">
-    <value>选项</value>
+    选项
   </data>
   <data name="JE_LIST_FK" xml:space="preserve">
-    <value>外部索引</value>
+    外部索引
   </data>
   <data name="JE_LIST_INVALID" xml:space="preserve">
-    <value>无效</value>
+    无效
   </data>
   <data name="JE_LIST_ITEMS" xml:space="preserve">
-    <value>行资料</value>
+    行资料
   </data>
   <data name="JE_LIST_UNLOAD" xml:space="preserve">
-    <value>未读取</value>
+    未读取
   </data>
   <data name="JE_RUN_ADD_COLUMN_M_1" xml:space="preserve">
-    <value>栏位"{0}"已存在</value>
+    栏位"{0}"已存在
   </data>
   <data name="JE_RUN_COLUMN_MOVE_DOWN_M_1" xml:space="preserve">
-    <value>栏位"{0}"已移至底端</value>
+    栏位"{0}"已移至底端
   </data>
   <data name="JE_RUN_COLUMN_MOVE_TITLE" xml:space="preserve">
-    <value>移动栏位</value>
+    移动栏位
   </data>
   <data name="JE_RUN_COLUMN_MOVE_UP_M_1" xml:space="preserve">
-    <value>栏位"{0}"已移至顶端</value>
+    栏位"{0}"已移至顶端
   </data>
   <data name="JE_RUN_COPY_LINE_M_1" xml:space="preserve">
-    <value>"{0}"已新增资料行，第{1}行资料已复制</value>
+    "{0}"已新增资料行，第{1}行资料已复制
   </data>
   <data name="JE_RUN_DELETE_COLUMN_M_1" xml:space="preserve">
-    <value>档案内存在{0}笔资料，确定要一起删除栏位吗</value>
+    档案内存在{0}笔资料，确定要一起删除栏位吗
   </data>
   <data name="JE_RUN_DELETE_COLUMN_M_2" xml:space="preserve">
-    <value>栏位"{0}"已删除</value>
+    栏位"{0}"已删除
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_1" xml:space="preserve">
-    <value>确定删除档案"{0}.json"？(存档後档案将无法复原)</value>
+    确定删除档案"{0}.json"？(存档後档案将无法复原)
   </data>
   <data name="JE_RUN_DELETE_JSON_FILE_M_5" xml:space="preserve">
-    <value>档案"{0}.json"已删除</value>
+    档案"{0}.json"已删除
   </data>
   <data name="JE_RUN_DELETE_LINE_M_1" xml:space="preserve">
-    <value>"{0}"资料行已删除</value>
+    "{0}"资料行已删除
   </data>
   <data name="JE_RUN_EDIT_DATABASE_DESC_M_1" xml:space="preserve">
-    <value>说明已编辑</value>
+    说明已编辑
   </data>
   <data name="JE_RUN_EXPORT_INVALID_FILE" xml:space="preserve">
-    <value>存在不符合规则的资料，确定输出？</value>
+    存在不符合规则的资料，确定输出？
   </data>
   <data name="JE_RUN_EXPORT_TO_CSHARP_CLASS_M_1" xml:space="preserve">
-    <value>已输出C# Class档案至"{0}"</value>
+    已输出C# Class档案至"{0}"
   </data>
   <data name="JE_RUN_EXPORT_TO_CSV_M_1" xml:space="preserve">
-    <value>已使用CSV格式输出至"{0}"</value>
+    已使用CSV格式输出至"{0}"
   </data>
   <data name="JE_RUN_EXPORT_TO_LANG_FILES_M_1" xml:space="preserve">
-    <value>已输出语言档案集至"{0}"</value>
+    已输出语言档案集至"{0}"
   </data>
   <data name="JE_RUN_EXPORT_TO_XML_M_1" xml:space="preserve">
-    <value>已使用XML格式输出至"{0}"</value>
+    已使用XML格式输出至"{0}"
   </data>
   <data name="JE_RUN_FIND_NO_ITEM_FOUND" xml:space="preserve">
-    <value>栏位"{0}"，值"{1}"，搜寻失败</value>
+    栏位"{0}"，值"{1}"，搜寻失败
   </data>
   <data name="JE_RUN_FIND_TITLE" xml:space="preserve">
-    <value>寻找资料</value>
+    寻找资料
   </data>
   <data name="JE_RUN_LINE_MOVE_DOWN_M_1" xml:space="preserve">
-    <value>资料行"{0}"已移至底端</value>
+    资料行"{0}"已移至底端
   </data>
   <data name="JE_RUN_LINE_MOVE_TITLE" xml:space="preserve">
-    <value>移动资料行</value>
+    移动资料行
   </data>
   <data name="JE_RUN_LINE_MOVE_UP_M_1" xml:space="preserve">
-    <value>资料行"{0}"已移至顶端</value>
+    资料行"{0}"已移至顶端
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_1" xml:space="preserve">
-    <value>{0}档案已读入</value>
+    {0}档案已读入
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_2" xml:space="preserve">
-    <value>JSON关联档案不存在，扫描JSON资料夹以建立新的关联档案</value>
+    JSON关联档案不存在，扫描JSON资料夹以建立新的关联档案
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_3" xml:space="preserve">
-    <value>目标资料夹"{0}"没有Json档案存在</value>
+    目标资料夹"{0}"没有Json档案存在
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_M_4" xml:space="preserve">
-    <value>档案"{0}.json"未在JSON关联档案中出现，请确认JSON档案是否正确</value>
+    档案"{0}.json"未在JSON关联档案中出现，请确认JSON档案是否正确
   </data>
   <data name="JE_RUN_LOAD_JSON_FILES_TITLE" xml:space="preserve">
-    <value>读取档案库</value>
+    读取档案库
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_M_1" xml:space="preserve">
-    <value>已在"{0}"新建档案库</value>
+    已在"{0}"新建档案库
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_Q_1" xml:space="preserve">
-    <value>资料夹已有现存 {0} JSON档案，是否要清空资料夹</value>
+    资料夹已有现存 {0} JSON档案，是否要清空资料夹
   </data>
   <data name="JE_RUN_NEW_JSON_FILES_TITLE" xml:space="preserve">
-    <value>开新档案库</value>
+    开新档案库
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_M_2" xml:space="preserve">
-    <value>档案新建失败:"{0}"</value>
+    档案新建失败:"{0}"
   </data>
   <data name="JE_RUN_NEW_JSON_FILE_TITLE" xml:space="preserve">
-    <value>开新档案</value>
+    开新档案
   </data>
   <data name="JE_RUN_NEW_LINE_M_1" xml:space="preserve">
-    <value>"{0}"已新增资料</value>
+    "{0}"已新增资料
   </data>
   <data name="JE_RUN_NEW_LINE_M_2" xml:space="preserve">
-    <value>档案没有栏位不能新增资料</value>
+    档案没有栏位不能新增资料
   </data>
   <data name="JE_RUN_REGENERATE_KEY_M_1" xml:space="preserve">
-    <value>重新产生资料中栏位"{0}"的索引值，确定(覆盖原值)？</value>
+    重新产生资料中栏位"{0}"的索引值，确定(覆盖原值)？
   </data>
   <data name="JE_RUN_REGENERATE_KEY_M_2" xml:space="preserve">
-    <value>栏位"{0}"索引值已重设</value>
+    栏位"{0}"索引值已重设
   </data>
   <data name="JE_RUN_RENAME_COLUMN_M_1" xml:space="preserve">
-    <value>栏位"{0}"已存在</value>
+    栏位"{0}"已存在
   </data>
   <data name="JE_RUN_RENAME_COLUMN_M_2" xml:space="preserve">
-    <value>栏位已重新命名为"{0}"</value>
+    栏位已重新命名为"{0}"
   </data>
   <data name="JE_RUN_RENAME_COLUMN_TITLE" xml:space="preserve">
-    <value>重新命名</value>
+    重新命名
   </data>
   <data name="JE_RUN_RENAME_DATABASE_M_1" xml:space="preserve">
-    <value>档案库已重新命名为"{0}"</value>
+    档案库已重新命名为"{0}"
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_1" xml:space="preserve">
-    <value>档案"{0}.json"已存在</value>
+    档案"{0}.json"已存在
   </data>
   <data name="JE_RUN_RENAME_JSON_FILE_M_2" xml:space="preserve">
-    <value>档案已重新命名为"{0}"</value>
+    档案已重新命名为"{0}"
   </data>
   <data name="JE_RUN_RESET_VALUE_M_1" xml:space="preserve">
-    <value>确定重设所有栏位"{0}"的值</value>
+    确定重设所有栏位"{0}"的值
   </data>
   <data name="JE_RUN_RESET_VALUE_M_2" xml:space="preserve">
-    <value>栏位"{0}"所有值已重设</value>
+    栏位"{0}"所有值已重设
   </data>
   <data name="JE_RUN_SAVE_AS_JSON_FILES_M_1" xml:space="preserve">
-    <value>这不是一个空的资料夹，将清空所有档案，你确定吗?</value>
+    这不是一个空的资料夹，将清空所有档案，你确定吗?
   </data>
   <data name="JE_RUN_SAVE_FILES_CHECK" xml:space="preserve">
-    <value>档案库"{0}"尚未存档，是否存档？</value>
+    档案库"{0}"尚未存档，是否存档？
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_1" xml:space="preserve">
-    <value>存档取消，档案"{0}.json"，资料不合规则</value>
+    存档取消，档案"{0}.json"，资料不合规则
   </data>
   <data name="JE_RUN_SAVE_JSON_FILES_M_2" xml:space="preserve">
-    <value>"{0}"所有档案已存档</value>
+    "{0}"所有档案已存档
   </data>
   <data name="JE_RUN_SCAN_CSV_FILES_M_1" xml:space="preserve">
-    <value>目标资料夹"{0}"没有csv档案存在</value>
+    目标资料夹"{0}"没有csv档案存在
   </data>
   <data name="JE_RUN_SCAN_CSV_FILES_M_2" xml:space="preserve">
-    <value>{0}档案扫描完毕</value>
+    {0}档案扫描完毕
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_1" xml:space="preserve">
-    <value>资料夹"{0}"已存在JSON关联档案，确定继续扫描目标资料夹？(之後存档後将覆盖旧的JSON关联档)</value>
+    资料夹"{0}"已存在JSON关联档案，确定继续扫描目标资料夹？(之後存档後将覆盖旧的JSON关联档)
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_M_2" xml:space="preserve">
-    <value>{0}档案扫描完毕</value>
+    {0}档案扫描完毕
   </data>
   <data name="JE_RUN_SCAN_JSON_FILES_TITLE" xml:space="preserve">
-    <value>扫描档案库</value>
+    扫描档案库
   </data>
   <data name="JE_RUN_SORT_M_1" xml:space="preserve">
-    <value>确认以以下栏位和方式进行排序(无法还原)：{0}</value>
+    确认以以下栏位和方式进行排序(无法还原)：{0}
   </data>
   <data name="JE_RUN_SORT_M_2" xml:space="preserve">
-    <value>{0}已排序</value>
+    {0}已排序
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_5" xml:space="preserve">
-    <value>档案内存在{0}笔资料，确定要一起更改吗(型态不合的资料将设为初始值)</value>
+    档案内存在{0}笔资料，确定要一起更改吗(型态不合的资料将设为初始值)
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_M_6" xml:space="preserve">
-    <value>栏位"{0}"已更新</value>
+    栏位"{0}"已更新
   </data>
   <data name="JE_RUN_UPDATE_COLUMN_TITLE" xml:space="preserve">
-    <value>更新栏位</value>
+    更新栏位
   </data>
   <data name="JE_RUN_UPDATE_LINE_M_1" xml:space="preserve">
-    <value>"{0}"资料已更新</value>
+    "{0}"资料已更新
   </data>
   <data name="JE_TMI_ABOUT" xml:space="preserve">
-    <value>关於</value>
+    关於
   </data>
   <data name="JE_TMI_ADD_COLUMN" xml:space="preserve">
-    <value>增加栏位</value>
+    增加栏位
   </data>
   <data name="JE_TMI_ADD_ID_COLUMN" xml:space="preserve">
-    <value>增加ID栏位</value>
+    增加ID栏位
   </data>
   <data name="JE_TMI_CLEAR_SORT_INFO" xml:space="preserve">
-    <value>清除排序</value>
+    清除排序
   </data>
   <data name="JE_TMI_CLOSE_ALL_FILES" xml:space="preserve">
-    <value>关闭档案库</value>
+    关闭档案库
   </data>
   <data name="JE_TMI_CLOSE_JSON_FILE" xml:space="preserve">
-    <value>关闭</value>
+    关闭
   </data>
   <data name="JE_TMI_CLOSE_TAB" xml:space="preserve">
-    <value>关闭档案</value>
+    关闭档案
   </data>
   <data name="JE_TMI_COLLAPSE_ALL" xml:space="preserve">
-    <value>收缩全部</value>
+    收缩全部
   </data>
   <data name="JE_TMI_COLUMN_MOVE_BOTTOM" xml:space="preserve">
-    <value>置底</value>
+    置底
   </data>
   <data name="JE_TMI_COLUMN_MOVE_DOWN" xml:space="preserve">
-    <value>下移</value>
+    下移
   </data>
   <data name="JE_TMI_COLUMN_MOVE_TOP" xml:space="preserve">
-    <value>置顶</value>
+    置顶
   </data>
   <data name="JE_TMI_COLUMN_MOVE_UP" xml:space="preserve">
-    <value>上移</value>
+    上移
   </data>
   <data name="JE_TMI_COLUMN_SHOW_ON_LIST" xml:space="preserve">
-    <value>显示栏位</value>
+    显示栏位
   </data>
   <data name="JE_TMI_DELETE_COLUMN" xml:space="preserve">
-    <value>删除</value>
+    删除
   </data>
   <data name="JE_TMI_DELETE_JSON_FILE" xml:space="preserve">
-    <value>删除</value>
+    删除
   </data>
   <data name="JE_TMI_DISPLAY_ALL_COLUMN" xml:space="preserve">
-    <value>显示所有栏位</value>
+    显示所有栏位
   </data>
   <data name="JE_TMI_EDIT_DATABASE_DESCRIPTION" xml:space="preserve">
-    <value>编辑说明</value>
+    编辑说明
   </data>
   <data name="JE_TMI_EDIT_SORT_INFO" xml:space="preserve">
-    <value>排序</value>
+    排序
   </data>
   <data name="JE_TMI_EXIT" xml:space="preserve">
-    <value>离开</value>
+    离开
   </data>
   <data name="JE_TMI_EXPAND_ALL" xml:space="preserve">
-    <value>展开全部</value>
+    展开全部
   </data>
   <data name="JE_TMI_EXPORT" xml:space="preserve">
-    <value>输出</value>
+    输出
   </data>
   <data name="JE_TMI_EXPORT_FILE" xml:space="preserve">
-    <value>输出</value>
+    输出
   </data>
   <data name="JE_TMI_EXPORT_TO_CS" xml:space="preserve">
-    <value>输出为C# Class档案</value>
+    输出为C# Class档案
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV" xml:space="preserve">
-    <value>输出为CSV档案</value>
+    输出为CSV档案
   </data>
   <data name="JE_TMI_EXPORT_TO_CSV_FILE" xml:space="preserve">
-    <value>输出为CSV档案</value>
+    输出为CSV档案
   </data>
   <data name="JE_TMI_EXPORT_TO_CS_FILE" xml:space="preserve">
-    <value>输出为C# Class档案</value>
+    输出为C# Class档案
   </data>
   <data name="JE_TMI_EXPORT_TO_LANG_FILES" xml:space="preserve">
-    <value>输出为语言档案集</value>
+    输出为语言档案集
   </data>
   <data name="JE_TMI_EXPORT_TO_XML" xml:space="preserve">
-    <value>输出为XML档案</value>
+    输出为XML档案
   </data>
   <data name="JE_TMI_EXPORT_TO_XML_FILE" xml:space="preserve">
-    <value>输出为XML档案</value>
+    输出为XML档案
   </data>
   <data name="JE_TMI_FILE" xml:space="preserve">
-    <value>档案</value>
+    档案
   </data>
   <data name="JE_TMI_FUNCTION" xml:space="preserve">
-    <value>功能</value>
+    功能
   </data>
   <data name="JE_TMI_HELP" xml:space="preserve">
-    <value>说明</value>
+    说明
   </data>
   <data name="JE_TMI_LANGUAGES" xml:space="preserve">
-    <value>语言</value>
+    语言
   </data>
   <data name="JE_TMI_LOAD_JSON_FILES" xml:space="preserve">
-    <value>读取JSON档案库</value>
+    读取JSON档案库
   </data>
   <data name="JE_TMI_NEW_JSON_FILE" xml:space="preserve">
-    <value>新增JSON档案</value>
+    新增JSON档案
   </data>
   <data name="JE_TMI_NEW_JSON_FILES" xml:space="preserve">
-    <value>新建JSON档案库</value>
+    新建JSON档案库
   </data>
   <data name="JE_TMI_OPEN_FOLDER" xml:space="preserve">
-    <value>打开资料夹</value>
+    打开资料夹
   </data>
   <data name="JE_TMI_OPEN_JSON_FILE" xml:space="preserve">
-    <value>开启</value>
+    开启
   </data>
   <data name="JE_TMI_PRINT_LIST" xml:space="preserve">
-    <value>列印清单</value>
+    列印清单
   </data>
   <data name="JE_TMI_REFRESH_FILES" xml:space="preserve">
-    <value>重新整理</value>
+    重新整理
   </data>
   <data name="JE_TMI_RENAME_COLUMN" xml:space="preserve">
-    <value>重新命名</value>
+    重新命名
   </data>
   <data name="JE_TMI_RENAME_DATABASE" xml:space="preserve">
-    <value>重新命名</value>
+    重新命名
   </data>
   <data name="JE_TMI_RENAME_JSON_FILE" xml:space="preserve">
-    <value>重新命名</value>
+    重新命名
   </data>
   <data name="JE_TMI_SAVE_AS_JSON_FILES" xml:space="preserve">
-    <value>另存JSON档案库</value>
+    另存JSON档案库
   </data>
   <data name="JE_TMI_SAVE_JSON_FILES" xml:space="preserve">
-    <value>存取JSON档案库</value>
+    存取JSON档案库
   </data>
   <data name="JE_TMI_SCAN" xml:space="preserve">
-    <value>扫描</value>
+    扫描
   </data>
   <data name="JE_TMI_SCAN_CSV_FILES" xml:space="preserve">
-    <value>扫描CSV档案资料夹</value>
+    扫描CSV档案资料夹
   </data>
   <data name="JE_TMI_SCAN_JSON_FILES" xml:space="preserve">
-    <value>扫描JSON档案资料夹</value>
+    扫描JSON档案资料夹
   </data>
   <data name="JE_TMI_VIEW_JFI_FILE" xml:space="preserve">
-    <value>用记事本开启JSON关联档</value>
+    用记事本开启JSON关联档
   </data>
   <data name="JE_TMI_VIEW_JSON_FILE" xml:space="preserve">
-    <value>用记事本开启</value>
+    用记事本开启
   </data>
   <data name="JE_VAL_CHOICE_VALUE_NOT_EXIST" xml:space="preserve">
-    <value>值"{0}"，选项不存在</value>
+    值"{0}"，选项不存在
   </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
-    <value>自动产生索引栏位适用在不正确的型别上(只有数字、字串或是Guid可以被自动产生)</value>
+    自动产生索引栏位适用在不正确的型别上(只有数字、字串或是Guid可以被自动产生)
   </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_RESTRICT" xml:space="preserve">
-    <value>自动产生索引栏位附带限制条件(最小值、最大值、文字长度或正则表达式)</value>
+    自动产生索引栏位附带限制条件(最小值、最大值、文字长度或正则表达式)
   </data>
   <data name="JE_VAL_COLUMN_CHOICE_TYPE_CHOICES_NOT_EXISTS" xml:space="preserve">
-    <value>选择栏位没有可选值</value>
+    选择栏位没有可选值
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_MISSING" xml:space="preserve">
-    <value>外部索引栏位名遗失</value>
+    外部索引栏位名遗失
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_NOT_EXIST" xml:space="preserve">
-    <value>外部索引栏位不存在</value>
+    外部索引栏位不存在
   </data>
   <data name="JE_VAL_COLUMN_FK_COLUMN_TYPE_NOT_MATCH" xml:space="preserve">
-    <value>外部索引栏位型别与此栏位型别不合</value>
+    外部索引栏位型别与此栏位型别不合
   </data>
   <data name="JE_VAL_COLUMN_FK_TABLE_MISSING" xml:space="preserve">
-    <value>外部索引档案名遗失</value>
+    外部索引档案名遗失
   </data>
   <data name="JE_VAL_COLUMN_FK_TABLE_NOT_EXIST" xml:space="preserve">
-    <value>外部索引档案不存在</value>
+    外部索引档案不存在
   </data>
   <data name="JE_VAL_COLUMN_ILLEGAL_NAME" xml:space="preserve">
-    <value>栏位名称不正确</value>
+    栏位名称不正确
   </data>
   <data name="JE_VAL_COLUMN_ILLEGAL_REGULAR_EXPRESSION" xml:space="preserve">
-    <value>正则表达式格式错误</value>
+    正则表达式格式错误
   </data>
   <data name="JE_VAL_COLUMN_IS_KEY_AND_IS_NULL" xml:space="preserve">
-    <value>Key栏位不能为Null值</value>
+    Key栏位不能为Null值
   </data>
   <data name="JE_VAL_COLUMN_MAX_LEGNTH_IS_NEGATIVE" xml:space="preserve">
-    <value>文字最大长度错误，合法值为0(不限)或正整数</value>
+    文字最大长度错误，合法值为0(不限)或正整数
   </data>
   <data name="JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED" xml:space="preserve">
-    <value>"{0}"不是正确的最大值</value>
+    "{0}"不是正确的最大值
   </data>
   <data name="JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED" xml:space="preserve">
-    <value>"{0}"不是正确的最小值</value>
+    "{0}"不是正确的最小值
   </data>
   <data name="JE_VAL_COLUMN_MIN_VALUE_GREATER_THAN_MAX_VALUE" xml:space="preserve">
-    <value>最小值"{0}"高於最大值"{1}"</value>
+    最小值"{0}"高於最大值"{1}"
   </data>
   <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MAX_VALUE" xml:space="preserve">
-    <value>非数字或日期时间含有最大值</value>
+    非数字或日期时间含有最大值
   </data>
   <data name="JE_VAL_COLUMN_NOT_NUMBER_OR_DATETIME_HAVE_MIN_VALUE" xml:space="preserve">
-    <value>非数字或日期时间含有最小值</value>
+    非数字或日期时间含有最小值
   </data>
   <data name="JE_VAL_COLUMN_NUMBER_OF_ROWS_IS_NEGATIVE_OR_TOO_BIG" xml:space="preserve">
-    <value>栏位行数过大或为负值</value>
+    栏位行数过大或为负值
   </data>
   <data name="JE_VAL_COLUMN_NUMBER_OR_DATETIME_HAS_REGULAR_EXPRESSION" xml:space="preserve">
-    <value>数字或日期时间含有正则表达式验证</value>
+    数字或日期时间含有正则表达式验证
   </data>
   <data name="JE_VAL_DUPLICATE_KEY" xml:space="preserve">
-    <value>键值"{0}"重复</value>
+    键值"{0}"重复
   </data>
   <data name="JE_VAL_FK_VALUE_NOT_FOUND" xml:space="preserve">
-    <value>外部索引值"{0}"不存在</value>
+    外部索引值"{0}"不存在
   </data>
   <data name="JE_VAL_GREATER_THEN_MAX_VALUE" xml:space="preserve">
-    <value>"{0}"高於最大值"{1}"</value>
+    "{0}"高於最大值"{1}"
   </data>
   <data name="JE_VAL_INVALID_CAST" xml:space="preserve">
-    <value>"{0}"不符合资料型态</value>
+    "{0}"不符合资料型态
   </data>
   <data name="JE_VAL_JFI_FILE_INVALID_MESSAGE_PARTIAL" xml:space="preserve">
-    <value>JSON关联档案不合规则：档案"{0}"，栏位"{1}"，</value>
+    JSON关联档案不合规则：档案"{0}"，栏位"{1}"，
   </data>
   <data name="JE_VAL_LESS_THEN_MIN_VALUE" xml:space="preserve">
-    <value>"{0}"低於最小值"{1}"</value>
+    "{0}"低於最小值"{1}"
   </data>
   <data name="JE_VAL_NOT_NULLABLE" xml:space="preserve">
-    <value>不可以为Null值</value>
+    不可以为Null值
   </data>
   <data name="JE_VAL_REGEX_IS_NOT_MATCH" xml:space="preserve">
-    <value>"{0}"规则检查失败</value>
+    "{0}"规则检查失败
   </data>
   <data name="JE_VAL_SORT_DUPLICATE_COLUMN" xml:space="preserve">
-    <value>以下栏位发生重复：{0}</value>
+    以下栏位发生重复：{0}
   </data>
   <data name="JE_VAL_TEXT_MAXIMUM_LENGTH_OVER" xml:space="preserve">
-    <value>文字超过最大长度{0}</value>
+    文字超过最大长度{0}
   </data>
   <data name="JE_VAL_VALUE_IS_NOT_UNIQUE" xml:space="preserve">
-    <value>值"{0}"已存在</value>
+    值"{0}"已存在
   </data>
   <data name="JSON_FILE_EDITOR_TITLE" xml:space="preserve">
-    <value>JSON 资料档案编辑器</value>
+    JSON 资料档案编辑器
+  </data>
+  <data name="JE_TMI_INSERT_FIRST" xml:space="preserve">
+    从开头加入资料
+  </data>
+  <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
+    {NOW()} 代表现在日期时间{GUID()} 代表新GUID
+  </data>
+  <data name="JE_TMI_SETTING" xml:space="preserve">
+    设定
+  </data>
+  <data name="JE_TMI_USE_ARINA_YEAR" xml:space="preserve">
+    使用有奈纪年
   </data>
 </root>

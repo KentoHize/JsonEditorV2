@@ -1960,6 +1960,24 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 設定 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_SETTING {
+            get {
+                return ResourceManager.GetString("JE_TMI_SETTING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 使用有奈紀年 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_USE_ARINA_YEAR {
+            get {
+                return ResourceManager.GetString("JE_TMI_USE_ARINA_YEAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 用記事本開啟JSON關聯檔 的當地語系化字串。
         /// </summary>
         public static string JE_TMI_VIEW_JFI_FILE {
@@ -1974,6 +1992,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_VIEW_JSON_FILE {
             get {
                 return ResourceManager.GetString("JE_TMI_VIEW_JSON_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 {NOW()} 代表現在日期時間{GUID()} 代表新GUID 的當地語系化字串。
+        /// </summary>
+        public static string JE_TT_NOW_FUNCTION_GUID_FUNCTION {
+            get {
+                return ResourceManager.GetString("JE_TT_NOW_FUNCTION_GUID_FUNCTION", resourceCulture);
             }
         }
         

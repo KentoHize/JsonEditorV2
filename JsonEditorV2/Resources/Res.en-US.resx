@@ -852,4 +852,13 @@
   <data name="JE_TMI_INSERT_FIRST" xml:space="preserve">
     <value>Insert Data from First Row</value>
   </data>
+  <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
+    <value>{NOW()} represent current date &amp; time{GUID()} represent new GUID</value>
+  </data>
+  <data name="JE_TMI_SETTING" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="JE_TMI_USE_ARINA_YEAR" xml:space="preserve">
+    <value>Use Arina Year</value>
+  </data>
 </root>

@@ -129,6 +129,8 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
+            tmiArinaYear.Text = Res.JE_TMI_USE_ARINA_YEAR;
+            tmiSetting.Text = Res.JE_TMI_SETTING;
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -348,20 +350,20 @@ namespace JsonEditorV2
             if(txtDefaultValue.Text != "")
             {                
                 if(newType == JType.Object || newType == JType.Array) //物件或陣列
-                {   
-                    RabbitCouriers.SentErrorMessage("Object和Array有預設值");
+                {
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
                 }                
                 else if(newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
                 {
-                    RabbitCouriers.SentErrorMessage("非正確數字");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
                 }
                 else if(newType.IsDateTime()) //日期或時間
                 {
                     if(txtDefaultValue.Text != Const.FunctionOfNow && !CheckValueValid(txtDefaultValue.Text, newType))
                     {
-                        RabbitCouriers.SentErrorMessage("非正確日期或時間");
+                        RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
                     }
                 }
@@ -369,37 +371,37 @@ namespace JsonEditorV2
                 {
                     if (txtDefaultValue.Text != Const.FunctionOfGuid && !CheckValueValid(txtDefaultValue.Text, newType))
                     {
-                        RabbitCouriers.SentErrorMessage("非正確Guid");
+                        RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
                     }
                 }
                 else if(newType.IsStringFamily() && !CheckValueValid(txtDefaultValue.Text, newType)) //字串
                 {
-                    RabbitCouriers.SentErrorMessage("非正確字串");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
                 }
 
                 if(txtColumnRegex.Text != "" && !Regex.IsMatch(txtDefaultValue.Text, txtColumnRegex.Text)) //Regex存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessage("Regex不正確");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_REGEX_IS_NOT_MATCH", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text); 
                     return;
                 }
 
                 if (txtColumnMinValue.Text != "" && txtColumnMinValue.Text.CompareTo(txtDefaultValue.Text, newType) == 1) //最小值存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessage("比最小小");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_LESS_THEN_MIN_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMinValue.Text);                                       
                     return;
                 }
 
                 if (txtColumnMaxValue.Text != "" && txtColumnMaxValue.Text.CompareTo(txtDefaultValue.Text, newType) == -1) //最大值存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessage("比最大大");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_GREATER_THEN_MAX_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMaxValue.Text);                    
                     return;
                 }
 
-                if (txtColumnMaxLength.Text != "0" && txtDefaultValue.Text.Length > long.Parse(txtColumnMaxLength.Text)) //最大值存在，確認合規則
+                if (txtColumnMaxLength.Text != "0" && txtDefaultValue.Text.Length > long.Parse(txtColumnMaxLength.Text)) //最大長度值存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessage("比最長長");
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_TEXT_MAXIMUM_LENGTH_OVER", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxLength.Text);
                     return;
                 }
             }
@@ -3265,8 +3267,12 @@ namespace JsonEditorV2
 
             int index = Var.SelectedColumnIndex;
             foreach (JLine jl in Var.SelectedColumnParentTable)
-                if (Var.SelectedColumn.IsNullable)
+                if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
+                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaYear).ParseJType(Var.SelectedColumn.Type);
+                else if (Var.SelectedColumn.IsNullable)
                     jl[index] = null;
+                else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)
+                    jl[index] = Var.SelectedColumn.Choices[0];
                 else
                     jl[index] = Var.SelectedColumn.Type.InitialValue();
 
@@ -3366,8 +3372,8 @@ namespace JsonEditorV2
         }
 
         private void txtDefaultValue_Enter(object sender, EventArgs e)
-        {
-            tltMain.Show("{NOW()} 代表現在日期時間\n {GUID()} 代表新GUID", this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);
+        {   
+            tltMain.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);            
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)

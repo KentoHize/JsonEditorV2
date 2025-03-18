@@ -842,11 +842,11 @@ namespace JsonEditor
             for (int i = 0; i < Columns.Count; i++)
             {
                 if (Columns[i].AutoGenerateKey)
-                    jl.Add(GenerateKey(i));
-                else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)
-                    jl.Add(Columns[i].Choices[0]);
+                    jl.Add(GenerateKey(i));                
                 else if (!string.IsNullOrEmpty(Columns[i].DefaultValue))
                     jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue, useArinaYear).ParseJType(Columns[i].Type));
+                else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)
+                    jl.Add(Columns[i].Choices[0]);
                 else if (Columns[i].IsNullable)
                     jl.Add(null);
                 else

@@ -852,4 +852,13 @@
   <data name="JE_TMI_INSERT_FIRST" xml:space="preserve">
     <value>從開頭加入資料</value>
   </data>
+  <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
+    <value>{NOW()} 代表現在日期時間{GUID()} 代表新GUID</value>
+  </data>
+  <data name="JE_TMI_SETTING" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="JE_TMI_USE_ARINA_YEAR" xml:space="preserve">
+    <value>使用有奈紀年</value>
+  </data>
 </root>
