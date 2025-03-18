@@ -281,10 +281,6 @@ namespace JsonEditor
                         return r2;
                     break;
                 case JType.Date:
-                    if (DateTime.TryParse(value.ToString(), out DateTime r3) &&
-                        r3.TimeOfDay.TotalSeconds == 0)
-                        return r3;
-                    break;
                 case JType.Time:
                 case JType.DateTime:
                     if (DateTime.TryParse(value.ToString(), out DateTime r4))

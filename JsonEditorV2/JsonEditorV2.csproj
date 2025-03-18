@@ -132,6 +132,7 @@
     <Compile Include="JDatabase.cs" />
     <Compile Include="JFileInvalidException.cs" />
     <Compile Include="JFileInvalidReasons.cs" />
+    <Compile Include="JFunction.cs" />
     <Compile Include="JTableInfo.cs" />
     <Compile Include="JFilesInfo.cs" />
     <Compile Include="JLine.cs" />

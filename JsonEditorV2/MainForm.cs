@@ -287,13 +287,14 @@ namespace JsonEditorV2
 
             JType newType = (JType)cobColumnType.SelectedValue;
 
-            //自動產生值時取消最大、最小、長度、正則表達式條件
+            //自動產生值時取消最大、最小、長度、正則表達式條件及預設值
             if (ckbColumnAutoGenerateKey.Checked)
             {
                 txtColumnMaxLength.Text = "0";
                 txtColumnRegex.Text = "";
                 txtColumnMinValue.Text = "";
                 txtColumnMaxValue.Text = "";
+                txtDefaultValue.Text = "";
             }
 
             //確認最大、最小值正確
@@ -2359,6 +2360,7 @@ namespace JsonEditorV2
             txtColumnMinValue.Enabled =
             txtColumnMaxValue.Enabled = !ckbColumnAutoGenerateKey.Checked && cobColumnFKColumn.SelectedIndex == -1 &&
                 (result.IsDateTime() || result.IsNumber());
+            txtDefaultValue.Enabled = !ckbColumnAutoGenerateKey.Checked;
         }
 
         public void tmiRefreshFiles_Click(object sender, EventArgs e)
