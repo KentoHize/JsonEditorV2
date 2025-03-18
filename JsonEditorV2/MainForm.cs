@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Dynamic;
@@ -214,7 +215,7 @@ namespace JsonEditorV2
             }
         }
 
-        public static bool CheckMinMaxValue(string content, JType type)
+        public static bool CheckValueValid(string content, JType type)
         {
             if (string.IsNullOrEmpty(content))
                 return false;
@@ -231,6 +232,14 @@ namespace JsonEditorV2
                     return result.TimeOfDay.TotalSeconds == 0;
                 else
                     return true;
+            }
+            else if (type.IsStringFamily())
+            {
+                if (type == JType.Guid)
+                    return Regex.IsMatch(content, Const.RegexOfGuid);
+                else if (type == JType.Uri)
+                    return Regex.IsMatch(content, Const.RegexOfUri);
+                return true;
             }
             return false;
         }
@@ -295,14 +304,15 @@ namespace JsonEditorV2
             }
             else
             {
-                if (txtColumnMinValue.Text != "" && !CheckMinMaxValue(txtColumnMinValue.Text, newType))
+                txtColumnMaxLength.Text = "0";
+                if (txtColumnMinValue.Text != "" && !CheckValueValid(txtColumnMinValue.Text, newType))
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MIN_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMinValue.Text);
                     txtColumnMinValue.SelectAll();
                     txtColumnMinValue.Focus();
                     return;
                 }
-                if (txtColumnMaxValue.Text != "" && !CheckMinMaxValue(txtColumnMaxValue.Text, newType))
+                if (txtColumnMaxValue.Text != "" && !CheckValueValid(txtColumnMaxValue.Text, newType))
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_COLUMN_MAX_VALUE_CAST_FAILED", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxValue.Text);
                     txtColumnMaxValue.SelectAll();
@@ -331,6 +341,66 @@ namespace JsonEditorV2
                 txtColumnRegex.SelectAll();
                 txtColumnRegex.Focus();
                 return;
+            }
+
+            //確認預設值正確
+            if(txtDefaultValue.Text != "")
+            {                
+                if(newType == JType.Object || newType == JType.Array) //物件或陣列
+                {   
+                    RabbitCouriers.SentErrorMessage("Object和Array有預設值");
+                    return;
+                }                
+                else if(newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
+                {
+                    RabbitCouriers.SentErrorMessage("非正確數字");
+                    return;
+                }
+                else if(newType.IsDateTime()) //日期或時間
+                {
+                    if(txtDefaultValue.Text != Const.FunctionOfNow && !CheckValueValid(txtDefaultValue.Text, newType))
+                    {
+                        RabbitCouriers.SentErrorMessage("非正確日期或時間");
+                        return;
+                    }
+                }
+                else if(newType == JType.Guid) //Guid
+                {
+                    if (txtDefaultValue.Text != Const.FunctionOfGuid && !CheckValueValid(txtDefaultValue.Text, newType))
+                    {
+                        RabbitCouriers.SentErrorMessage("非正確Guid");
+                        return;
+                    }
+                }
+                else if(newType.IsStringFamily() && !CheckValueValid(txtDefaultValue.Text, newType)) //字串
+                {
+                    RabbitCouriers.SentErrorMessage("非正確字串");
+                    return;
+                }
+
+                if(txtColumnRegex.Text != "" && !Regex.IsMatch(txtDefaultValue.Text, txtColumnRegex.Text)) //Regex存在，確認合規則
+                {
+                    RabbitCouriers.SentErrorMessage("Regex不正確");
+                    return;
+                }
+
+                if (txtColumnMinValue.Text != "" && txtColumnMinValue.Text.CompareTo(txtDefaultValue.Text, newType) == 1) //最小值存在，確認合規則
+                {
+                    RabbitCouriers.SentErrorMessage("比最小小");
+                    return;
+                }
+
+                if (txtColumnMaxValue.Text != "" && txtColumnMaxValue.Text.CompareTo(txtDefaultValue.Text, newType) == -1) //最大值存在，確認合規則
+                {
+                    RabbitCouriers.SentErrorMessage("比最大大");
+                    return;
+                }
+
+                if (txtColumnMaxLength.Text != "0" && txtDefaultValue.Text.Length > long.Parse(txtColumnMaxLength.Text)) //最大值存在，確認合規則
+                {
+                    RabbitCouriers.SentErrorMessage("比最長長");
+                    return;
+                }
             }
 
             bool recheckTable = false;
@@ -366,6 +436,7 @@ namespace JsonEditorV2
             Var.SelectedColumn.Description = txtColumnDescription.Text;
             Var.SelectedColumn.NumberOfRows = Convert.ToInt32(txtColumnNumberOfRows.Text);
             Var.SelectedColumn.AutoGenerateKey = ckbColumnAutoGenerateKey.Checked;
+            Var.SelectedColumn.DefaultValue = txtDefaultValue.Text;
             if (cobColumnFKTable.SelectedValue != null && cobColumnFKColumn.SelectedValue != null)
             {
                 Var.SelectedColumn.FKTable = cobColumnFKTable.SelectedValue.ToString();
@@ -1156,6 +1227,7 @@ namespace JsonEditorV2
                 btnColumnEditChoices.Enabled = string.IsNullOrEmpty(Var.SelectedColumn.FKColumn);
                 btnUpdateColumn.Enabled = true;
                 btnResetValue.Enabled = true;
+                txtDefaultValue.Text = Var.SelectedColumn.DefaultValue;
             }
             else
             {
@@ -1268,6 +1340,7 @@ namespace JsonEditorV2
         public void btnClearColumn_Click(object sender, EventArgs e)
         {
             txtColumnName.Text = "";
+            txtDefaultValue.Text = "";
             cobColumnType.SelectedIndex = 0;
             ckbColumnDisplay.Checked = false;
             ckbColumnIsKey.Checked = false;

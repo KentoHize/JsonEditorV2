@@ -169,7 +169,6 @@ namespace JsonEditor
             }
         }
 
-
         /// <summary>
         /// 確認JType是數字
         /// </summary>
