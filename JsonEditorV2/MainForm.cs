@@ -3361,5 +3361,15 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
             Var.JFI.Changed = true;
         }
+
+        private void txtDefaultValue_Enter(object sender, EventArgs e)
+        {
+            tltMain.Show("{NOW()} 代表現在日期時間\n {GUID()} 代表新GUID", this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 100);
+        }
+
+        private void tmiArinaYear_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
