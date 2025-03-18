@@ -139,7 +139,7 @@ namespace JsonEditorV2
             tableCheckMethodList.Add(ValueCheckMethod.FullCheck, Res.JE_COB_CHECK_METHOD_FULL_CHECK);
             cobCheckMethod.DataSource = tableCheckMethodList.ToList();
             Var.LockCobCheckMethod = false;
-            cobCheckMethod.SelectedValue = Setting.TableCheckMethod;
+            
         }
         #endregion
 
@@ -165,7 +165,7 @@ namespace JsonEditorV2
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
-            dtpMain.PatchTextFromResource();
+            dtpMain.PatchTextFromResource();            
         }
 
         //取消FK
@@ -2240,6 +2240,7 @@ namespace JsonEditorV2
             Setting.LatestFolder2 = null;
             Setting.LatestFolder3 = null;
             Setting.LatestFolder4 = null;
+            Setting.UseArinaYear = false;
 
             //讀取Setting
             SettingShop.LoadIniFile(typeof(Setting));
@@ -2276,6 +2277,10 @@ namespace JsonEditorV2
             }
 
             ChangeCulture();
+
+            //設定初始值
+            cobCheckMethod.SelectedValue = Setting.TableCheckMethod;
+            tmiArinaYear.Checked = Setting.UseArinaYear;
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
