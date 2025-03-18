@@ -1885,7 +1885,7 @@ namespace JsonEditorV2
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
                 return;
             }            
-            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst);
+            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst, Setting.UseArinaYear);
             Var.SelectedTable.Changed = true;
 
             if (Var.SelectedTable.InsertFirst)
@@ -2770,7 +2770,10 @@ namespace JsonEditorV2
         public void ShowDateTimePicker(TextBox valueControl, DateTimePickerStyle style)
         {
             if (!DateTime.TryParse(valueControl.Text, out DateTime r1))
-                r1 = DateTime.Now;
+                if (Setting.UseArinaYear)
+                    r1 = DateTime.Now.AddYears(-2017);
+                else
+                    r1 = DateTime.Now;
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
             dtpMain.SetType(style);
@@ -3364,12 +3367,18 @@ namespace JsonEditorV2
 
         private void txtDefaultValue_Enter(object sender, EventArgs e)
         {
-            tltMain.Show("{NOW()} 代表現在日期時間\n {GUID()} 代表新GUID", this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 100);
+            tltMain.Show("{NOW()} 代表現在日期時間\n {GUID()} 代表新GUID", this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
         {
+            Setting.UseArinaYear = !Setting.UseArinaYear;
+            tmiArinaYear.Checked = Setting.UseArinaYear;
+        }
 
+        private void txtDefaultValue_Leave(object sender, EventArgs e)
+        {
+            tltMain.Hide(this);
         }
     }
 }

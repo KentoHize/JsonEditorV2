@@ -836,7 +836,7 @@ namespace JsonEditor
                 Lines.Add(jl);
         }
 
-        public void GenerateNewLine(bool insertFirst = false)
+        public void GenerateNewLine(bool insertFirst = false, bool useArinaYear = false)
         {
             JLine jl = new JLine();
             for (int i = 0; i < Columns.Count; i++)
@@ -846,7 +846,7 @@ namespace JsonEditor
                 else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)
                     jl.Add(Columns[i].Choices[0]);
                 else if (!string.IsNullOrEmpty(Columns[i].DefaultValue))
-                    jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue).ParseJType(Columns[i].Type));
+                    jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue, useArinaYear).ParseJType(Columns[i].Type));
                 else if (Columns[i].IsNullable)
                     jl.Add(null);
                 else

@@ -8,10 +8,13 @@ namespace JsonEditor
 {
     public static class JFunction
     {
-        public static string ParseFunction(string s)
+        public static string ParseFunction(string s, bool useArinaYear = false)
         {   
             //NOW
-            s = s.Replace("{NOW()}", DateTime.Now.ToString());
+            if(useArinaYear)
+                s = s.Replace("{NOW()}", DateTime.Now.AddYears(-2017).ToString());
+            else
+                s = s.Replace("{NOW()}", DateTime.Now.ToString());
             //GUID
             s = s.Replace("{GUID()}", Guid.NewGuid().ToString());
             return s;
