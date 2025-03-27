@@ -105,7 +105,8 @@ namespace JsonEditorV2
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_WRONG_FILE_NAME", Res.JE_TMI_RENAME_JSON_FILE);
                         return;
                     }
-                    else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")))
+                    else if (File.Exists(Path.Combine(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")) &&
+                             Path.GetFileNameWithoutExtension(Directory.GetFiles(Var.JFI.DirectoryPath, $"{txtInput.Text}.json")[0]) == txtInput.Text)
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_INPUTBOX_FILE_EXISTS", Res.JE_TMI_RENAME_JSON_FILE, $"{Var.JFI.DirectoryPath}\\{txtInput.Text}.json");
                         return;

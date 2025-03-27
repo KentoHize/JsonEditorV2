@@ -1918,7 +1918,11 @@ namespace JsonEditorV2
             }
             try
             {
-                Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
+                if (newName.ToLower() == Var.SelectedColumnParentTable.Name.ToLower())
+                    File.Move(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"),
+                        Path.Combine(Var.JFI.DirectoryPath, $"{newName}.json"));
+                else
+                    Var.RenamedFiles.Add(Path.Combine(Var.JFI.DirectoryPath, $"{Var.SelectedColumnParentTable.Name}.json"));
                 RenewFK(Var.SelectedColumnParentTable, newName);
                 Var.SelectedColumnParentTable.Name = newName;
                 Var.SelectedColumnParentTable.Changed = true;
