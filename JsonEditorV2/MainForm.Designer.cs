@@ -81,6 +81,7 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,8 +149,9 @@
             this.tmiEditSortInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiClearSortInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiAddIDColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiAddColumn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.tmiDisplayAllColumn = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiInsertFirst = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsColumnSelected = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -177,8 +179,6 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -792,6 +792,20 @@
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
             // 
+            // dtpMain
+            // 
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.CanNegative = false;
+            this.dtpMain.LeapYearAdjust = 0;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(435, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            // 
             // mnsMain
             // 
             this.mnsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -1199,33 +1213,33 @@
             this.tmiDisplayAllColumn,
             this.tmiInsertFirst});
             this.cmsJsonFileSelected.Name = "cmsMain";
-            this.cmsJsonFileSelected.Size = new System.Drawing.Size(211, 338);
+            this.cmsJsonFileSelected.Size = new System.Drawing.Size(89, 310);
             // 
             // tmiOpenJsonFile
             // 
             this.tmiOpenJsonFile.Name = "tmiOpenJsonFile";
-            this.tmiOpenJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiOpenJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiOpenJsonFile.Text = "X";
             this.tmiOpenJsonFile.Click += new System.EventHandler(this.tmiOpenJsonFile_Click);
             // 
             // tmiViewJsonFile
             // 
             this.tmiViewJsonFile.Name = "tmiViewJsonFile";
-            this.tmiViewJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiViewJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiViewJsonFile.Text = "X";
             this.tmiViewJsonFile.Click += new System.EventHandler(this.tmiViewJsonFile_Click);
             // 
             // tmiRenameJsonFile
             // 
             this.tmiRenameJsonFile.Name = "tmiRenameJsonFile";
-            this.tmiRenameJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiRenameJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiRenameJsonFile.Text = "X";
             this.tmiRenameJsonFile.Click += new System.EventHandler(this.tmiRenameJsonFile_Click);
             // 
             // tmiDeleteJsonFile
             // 
             this.tmiDeleteJsonFile.Name = "tmiDeleteJsonFile";
-            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiDeleteJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiDeleteJsonFile.Text = "X";
             this.tmiDeleteJsonFile.Click += new System.EventHandler(this.tmiDeleteJsonFile_Click);
             // 
@@ -1239,7 +1253,7 @@
             this.toolStripMenuItem1,
             this.tmiExportToLangaugeFiles});
             this.tmiExportFile.Name = "tmiExportFile";
-            this.tmiExportFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiExportFile.Size = new System.Drawing.Size(88, 24);
             this.tmiExportFile.Text = "X";
             // 
             // tmiExportCsvFile
@@ -1284,19 +1298,19 @@
             // 
             this.tmiCloseJsonFile.Enabled = false;
             this.tmiCloseJsonFile.Name = "tmiCloseJsonFile";
-            this.tmiCloseJsonFile.Size = new System.Drawing.Size(210, 24);
+            this.tmiCloseJsonFile.Size = new System.Drawing.Size(88, 24);
             this.tmiCloseJsonFile.Text = "X";
             this.tmiCloseJsonFile.Click += new System.EventHandler(this.tmiCloseJsonFile_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(207, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiEditSortInfo
             // 
             this.tmiEditSortInfo.Name = "tmiEditSortInfo";
-            this.tmiEditSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiEditSortInfo.Size = new System.Drawing.Size(88, 24);
             this.tmiEditSortInfo.Text = "X";
             this.tmiEditSortInfo.Click += new System.EventHandler(this.tmiEditSortInfo_Click);
             // 
@@ -1304,7 +1318,7 @@
             // 
             this.tmiClearSortInfo.Enabled = false;
             this.tmiClearSortInfo.Name = "tmiClearSortInfo";
-            this.tmiClearSortInfo.Size = new System.Drawing.Size(210, 24);
+            this.tmiClearSortInfo.Size = new System.Drawing.Size(88, 24);
             this.tmiClearSortInfo.Text = "X";
             this.tmiClearSortInfo.Visible = false;
             this.tmiClearSortInfo.Click += new System.EventHandler(this.tmiClearSortInfo_Click);
@@ -1312,33 +1326,38 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
-            // 
-            // tmiAddColumn
-            // 
-            this.tmiAddColumn.Name = "tmiAddColumn";
-            this.tmiAddColumn.Size = new System.Drawing.Size(210, 24);
-            this.tmiAddColumn.Text = "X";
-            this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiAddIDColumn
             // 
             this.tmiAddIDColumn.Name = "tmiAddIDColumn";
-            this.tmiAddIDColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiAddIDColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiAddIDColumn.Text = "X";
             this.tmiAddIDColumn.Click += new System.EventHandler(this.tmiAddIDColumn_Click);
+            // 
+            // tmiAddColumn
+            // 
+            this.tmiAddColumn.Name = "tmiAddColumn";
+            this.tmiAddColumn.Size = new System.Drawing.Size(88, 24);
+            this.tmiAddColumn.Text = "X";
+            this.tmiAddColumn.Click += new System.EventHandler(this.tmiAddColumn_Click);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(85, 6);
             // 
             // tmiDisplayAllColumn
             // 
             this.tmiDisplayAllColumn.Name = "tmiDisplayAllColumn";
-            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(210, 24);
+            this.tmiDisplayAllColumn.Size = new System.Drawing.Size(88, 24);
             this.tmiDisplayAllColumn.Text = "X";
             this.tmiDisplayAllColumn.Click += new System.EventHandler(this.tmiDisplayAllColumn_Click);
             // 
             // tmiInsertFirst
             // 
             this.tmiInsertFirst.Name = "tmiInsertFirst";
-            this.tmiInsertFirst.Size = new System.Drawing.Size(210, 24);
+            this.tmiInsertFirst.Size = new System.Drawing.Size(88, 24);
             this.tmiInsertFirst.Text = "X";
             this.tmiInsertFirst.Click += new System.EventHandler(this.tmiInsertFirst_Click);
             // 
@@ -1591,23 +1610,6 @@
             this.btnResetValue.Text = "-";
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(406, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            // 
-            // toolStripMenuItem13
-            // 
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(207, 6);
             // 
             // MainForm
             // 

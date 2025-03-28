@@ -40,18 +40,18 @@ namespace JsonEditorV2
                     91, 92, 93, 94, 95, 96, 97, 98, 99
                 };
 
-        private static readonly byte[] years99 = {
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-                    31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-                    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-                    51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-                    61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-                    71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
-                    81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
-                    91, 92, 93, 94, 95, 96, 97, 98, 99,
-                };
+        //private static readonly byte[] years99 = {
+        //            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+        //            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        //            21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+        //            31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+        //            41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+        //            51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+        //            61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+        //            71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+        //            81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+        //            91, 92, 93, 94, 95, 96, 97, 98, 99,
+        //        };
 
         private static readonly byte[] months = {
                     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -105,6 +105,8 @@ namespace JsonEditorV2
                     51, 52, 53, 54, 55, 56, 57, 58, 59
                 };
 
+        private static readonly char[] sign = { '+', '-' };
+
         [Description("顯示型態")]
         public DateTimePickerStyle Style { get => _Style; set => _Style = value; }
 
@@ -124,11 +126,20 @@ namespace JsonEditorV2
 
         public TextBox BindingControl { get; set; }
 
+        [Description("閏年調整")]
+        public int LeapYearAdjust { get; set; }        
+
+        [Description("可使用負數")]
+        public bool CanNegative { get; set; }
+
         public DateTime GetValue()
         {
             if (!int.TryParse(txtMillisecond.Text, out int milsec))
                 milsec = 0;
 
+            //0年
+
+            //Negative            
             return new DateTime((byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem,
                (byte)cobMonth.SelectedItem, (byte)cobDay.SelectedItem,
                (byte)cobHour.SelectedItem, (byte)cobMinute.SelectedItem,
@@ -140,7 +151,7 @@ namespace JsonEditorV2
             if(Style != DateTimePickerStyle.Time)
             { 
                 dud100Year.SelectedItem = Convert.ToByte(value.Year / 100);
-                cobYear.SelectedItem = Convert.ToByte(value.Year % 100);
+                cobYear.SelectedItem = Convert.ToByte(ModYear(value.Year, 100));
                 cobMonth.SelectedItem = Convert.ToByte(value.Month);            
                 SetDays(value.Year, value.Month);
                 cobDay.SelectedItem = Convert.ToByte(value.Day);
@@ -171,12 +182,13 @@ namespace JsonEditorV2
             PatchTextFromResource();
 
             dud100Year.Items.AddRange(years100inverse);
-            cobYear.DataSource = years99;
+            cobYear.DataSource = years100;
             cobMonth.DataSource = months;
             cobDay.DataSource = days31;
             cobHour.DataSource = hours;
             cobMinute.DataSource = minutes;
             cobSecond.DataSource = seconds;
+            cobSign.DataSource = sign;
         }
 
 
@@ -185,7 +197,7 @@ namespace JsonEditorV2
             dud100Year.SelectedIndex = dud100Year.Items.Count - 1;
             cobYear.SelectedIndex = cobMonth.SelectedIndex =
             cobDay.SelectedIndex = cobHour.SelectedIndex = cobMinute.SelectedIndex =
-            cobSecond.SelectedIndex = 0;
+            cobSecond.SelectedIndex = cobSign.SelectedIndex = 0;            
             txtMillisecond.Text = "000";
             dud100Year.Enabled = cobYear.Enabled = cobMonth.Enabled = cobDay.Enabled =
             cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = txtMillisecond.Enabled =
@@ -201,12 +213,21 @@ namespace JsonEditorV2
             if (type == DateTimePickerStyle.Time || type == DateTimePickerStyle.DateTime)
                 cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = true;
             if (type == DateTimePickerStyle.Time)
-                txtMillisecond.Enabled = true;
+                txtMillisecond.Enabled = true;            
+            cobSign.Enabled = CanNegative;
+        }
+
+        private int ModYear(int x, int y, bool withoutZero = false)
+        {
+            x %= y;
+            if (x < 0 || (x == 0 && withoutZero))
+                x += y;
+            return x;
         }
 
         public void SetDays(int year, int month, byte? day = 1)
         {   
-            switch (DateTime.DaysInMonth(year, month))
+            switch (DateTime.DaysInMonth(ModYear(year + LeapYearAdjust, 400, true), month))
             {
                 case 31:
                     cobDay.DataSource = days31;                   
@@ -231,11 +252,8 @@ namespace JsonEditorV2
         }
 
         private void dud100Year_SelectedItemChanged(object sender, EventArgs e)
-        {
-            if ((byte)dud100Year.SelectedItem == 0)
-                cobYear.DataSource = years99;
-            else
-                cobYear.DataSource = years100;
+        {  
+            cobYear.DataSource = years100;
             ValueChanged(sender, EventArgs.Empty);
         }
 

@@ -131,6 +131,7 @@
     <Compile Include="JColumn.cs" />
     <Compile Include="JColumnInvalidReasons.cs" />
     <Compile Include="JDatabase.cs" />
+    <Compile Include="JDateTime.cs" />
     <Compile Include="JFileInvalidException.cs" />
     <Compile Include="JFileInvalidReasons.cs" />
     <Compile Include="JFunction.cs" />

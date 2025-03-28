@@ -2791,6 +2791,7 @@ namespace JsonEditorV2
             dtpMain.SetValue(r1);
             pnlDateTimePicker.Top = valueControl.Top + valueControl.Height;
             pnlDateTimePicker.Left = 10;
+            //pnlDateTimePicker
             pnlDateTimePicker.BringToFront();
             pnlDateTimePicker.Show();
             dtpMain.Focus();
