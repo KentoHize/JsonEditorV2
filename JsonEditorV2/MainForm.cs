@@ -32,6 +32,9 @@ namespace JsonEditorV2
             Var.Database = new JDatabase();
             dtpMain.Leave += DtpMain_Leave;
             dtpMain.ValueChanged += DtpMain_ValueChanged;
+#if DEBUG
+            CheckForIllegalCrossThreadCalls = false;
+#endif
         }
 
         #region RESOURCES_TEXT_PATCH
@@ -554,7 +557,7 @@ namespace JsonEditorV2
                 return;
             fbdMain.SelectedPath = Application.StartupPath;
 #if DEBUG
-            fbdMain.SelectedPath = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\";
+            fbdMain.SelectedPath = @"C:\Programs\JsonEditorV2\JsonEditorV2\TestArea\";
 #endif
             DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
             if (dr == DialogResult.OK)

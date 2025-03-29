@@ -70,6 +70,17 @@ namespace JsonEditor
             //return DateTimeFormat.Format(this, format, DateTimeFormatInfo.GetInstance(provider));
         }
 
+        internal static string DateTimeReplaceYearToString(DateTime dateTime, CultureInfo cultureInfo, char format, int newYear)
+        {   
+            string s = cultureInfo.DateTimeFormat.GetAllDateTimePatterns(format)[0].Replace("yyyyy", newYear.ToString("00000"))
+                .Replace("yyyy", newYear.ToString("0000"))
+                .Replace("yyy", newYear.ToString("000"))
+                .Replace("yy", (newYear % 100).ToString("00"))
+                .Replace("y", (newYear % 100).ToString("0"));            
+            return dateTime.ToString(s);
+            
+        }
+
         public override string ToString()
         {
             
@@ -85,12 +96,12 @@ namespace JsonEditor
                 var n1 = _data / t400;
                 var n2 = _data % t400 + t400;
                 var n3 = new DateTime(n2); //月日以下可用
-
+                var y = n1 + 400 - n3.Year - 1;                
+                return DateTimeReplaceYearToString(n3, CultureInfo.CurrentCulture, 'G', (int)y);
+                //n3.ToString();
                 //var n4 = new DateTime(1, n3.Month, n3.Day, n3.)
                 return n3.ToString();
-                //改掉全部yyyy與yyy與yy或y即可
-                //CultureInfo.CurrentCulture.DateTimeFormat.GetAllDateTimePatterns();
-                //DateTimeFormat
+               
             }
         }
             //=> _data >= 0 ? new DateTime(_data).ToString() : string.Concat('-', new DateTime(( _data + 1)).ToString());

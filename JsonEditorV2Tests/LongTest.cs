@@ -57,7 +57,7 @@ namespace JsonEditorV2Tests
         [TestMethod]
         public void LoadJFITest()
         {
-            string JFITestFolder = @"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestData\Bad JFI File";
+            string JFITestFolder = @"C:\Programs\JsonEditorV2\JsonEditorV2\TestData\Bad JFI File";
             JETS = new JsonEditorTestSystem();
 
             string[] dirs = Directory.GetDirectories(JFITestFolder);

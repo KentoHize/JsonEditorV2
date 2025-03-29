@@ -54,6 +54,8 @@ namespace JsonEditorV2Tests
             TestThread.Start();
         }
 
+        
+
         private void MainForm_Shown(object sender, EventArgs e)
         {
             FormReady = true;
@@ -249,8 +251,6 @@ namespace JsonEditorV2Tests
 
             Control valueControl = SelectMainPanelValueControl(columnName);
 
-            //FKTable Date Picker
-
             DoEventsUntilFormReadyAndResetFormReady();
             IAsyncResult ar = MainForm.BeginInvoke((MethodInvoker)delegate
             {
@@ -436,9 +436,6 @@ namespace JsonEditorV2Tests
             else if (cultureName == "en-US")
                 MainFormInvoke(MainForm.tmiLanguageENUS_Click);
         }
-
-
-
         public void NewJsonFile(string fileName)
         {
             ClickOnTreeView(MouseButtons.Right);

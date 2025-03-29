@@ -67,6 +67,7 @@
     <Compile Include="LongTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProduceCNTranslate.cs" />
+    <Compile Include="UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
