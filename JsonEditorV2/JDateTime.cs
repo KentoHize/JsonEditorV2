@@ -27,6 +27,12 @@ namespace JsonEditor
         private long _data;
         public long Ticks { get => _data; set => _data = value; }
 
+        internal static char[] allStandardFormats = new char[19]
+        {
+            'd', 'D', 'f', 'F', 'g', 'G', 'm', 'M', 'o', 'O',
+            'r', 'R', 's', 't', 'T', 'u', 'U', 'y', 'Y'
+        };
+
         private const long TicksPerMillisecond = 10000L;
 
         private const long TicksPerSecond = 10000000L;
@@ -36,8 +42,8 @@ namespace JsonEditor
         private const long TicksPerHour = 36000000000L;
 
         private const long TicksPerDay = 864000000000L;
-                                  //9223372036854775807L
-                                  //3153284640000000000
+        //9223372036854775807L
+        //3153284640000000000
 
         private const int MillisPerSecond = 1000;
 
@@ -63,48 +69,42 @@ namespace JsonEditor
 
         public string ToString(string format, IFormatProvider provider)
         {
-            //To Do
-            return ToString();
-            //改掉format            
-            //CultureInfo.CurrentCulture.DateTimeFormat.GetAllDateTimePatterns();            
-            //return DateTimeFormat.Format(this, format, DateTimeFormatInfo.GetInstance(provider));
-        }
-
-        internal static string DateTimeReplaceYearToString(DateTime dateTime, CultureInfo cultureInfo, char format, int newYear)
-        {   
-            string s = cultureInfo.DateTimeFormat.GetAllDateTimePatterns(format)[0].Replace("yyyyy", newYear.ToString("00000"))
-                .Replace("yyyy", newYear.ToString("0000"))
-                .Replace("yyy", newYear.ToString("000"))
-                .Replace("yy", (newYear % 100).ToString("00"))
-                .Replace("y", (newYear % 100).ToString("0"));            
-            return dateTime.ToString(s);
-            
-        }
-
-        public override string ToString()
-        {
-            
-
-
             if (_data >= 0)
-            {
-                return new DateTime(_data).ToString();
-            }   
+                return new DateTime(_data).ToString(format, provider);
             else
             {
                 long t400 = TicksPerDay * DaysPer400Years;
-                var n1 = _data / t400;
-                var n2 = _data % t400 + t400;
-                var n3 = new DateTime(n2); //月日以下可用
-                var y = n1 + 400 - n3.Year - 1;                
-                return DateTimeReplaceYearToString(n3, CultureInfo.CurrentCulture, 'G', (int)y);
-                //n3.ToString();
-                //var n4 = new DateTime(1, n3.Month, n3.Day, n3.)
-                return n3.ToString();
-               
+                var dt = new DateTime(_data % t400 + t400);
+                return DateTimeReplaceYearToString(dt, (int)(_data / t400 + 399 - dt.Year), format, CultureInfo.CurrentCulture);
             }
         }
-            //=> _data >= 0 ? new DateTime(_data).ToString() : string.Concat('-', new DateTime(( _data + 1)).ToString());
+
+        internal static string DateTimeReplaceYearToString(DateTime dateTime, int newYear, string format = "", CultureInfo cultureInfo = null)
+        {
+            if (cultureInfo == null)
+                cultureInfo = CultureInfo.CurrentCulture;
+            if (format == null)
+                format = "";
+            
+            if (format.Length == 1 && format.IndexOfAny(allStandardFormats) != -1)
+                format = cultureInfo.DateTimeFormat.GetAllDateTimePatterns(format[0])[0];
+            format = format.Replace("%yyyyy", newYear.ToString("00000"))
+                .Replace("yyyyy", newYear.ToString("00000"))
+                .Replace("%yyyy", newYear.ToString("0000"))
+                .Replace("yyyy", newYear.ToString("0000"))
+                .Replace("%yyy", newYear.ToString("000"))
+                .Replace("yyy", newYear.ToString("000"))
+                .Replace("%yy", (newYear % 100).ToString("00"))
+                .Replace("yy", (newYear % 100).ToString("00"))
+                .Replace("%y", (newYear % 100).ToString("0"))
+                .Replace("y", (newYear % 100).ToString("0"));                
+
+            return dateTime.ToString(format);
+        }
+
+        public override string ToString()
+            => ToString(null, null);
+        //=> _data >= 0 ? new DateTime(_data).ToString() : string.Concat('-', new DateTime(( _data + 1)).ToString());
         //public string ToLongDateString()
         //    => _data >= 0 ? new DateTime(_data).ToLongDateString() : string.Concat('-', new DateTime(Math.Abs(_data + 1)).ToLongDateString());
         //public string ToShortDateString()
@@ -136,7 +136,7 @@ namespace JsonEditor
         //year can negative
         public JDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, Calendar calendar, DateTimeKind kind)
         {
-            
+
             if (year == 0 || month == 0 || day == 0 ||
                 year > 9999 || month > 12 || day > 31)
                 new DateTime(year, month, day); //Out of Range
@@ -169,10 +169,10 @@ namespace JsonEditor
 
         //private DateTime GetMinusDate()
         //{
-            //400 years Ticks
-            //long t400 = TicksPerDay * DaysPer400Years;
-            //int y = _data % t400 + t400;
-            //_data = -new DateTime(y + 1, 1, 1, 0, 0, 0, 0, calendar, kind).Subtract(new DateTime(y, month, day, hour, minute, second, millisecond, calendar, kind)).Ticks;
+        //400 years Ticks
+        //long t400 = TicksPerDay * DaysPer400Years;
+        //int y = _data % t400 + t400;
+        //_data = -new DateTime(y + 1, 1, 1, 0, 0, 0, 0, calendar, kind).Subtract(new DateTime(y, month, day, hour, minute, second, millisecond, calendar, kind)).Ticks;
         //}
 
         //return (int) (InternalTicks / 10000000 % 60);

@@ -37,29 +37,43 @@ namespace JsonEditorV2Tests
 			}
 		}
 
-		#region 其他測試屬性
-		//
-		// 您可以使用下列其他屬性撰寫測試: 
-		//
-		// 執行該類別中第一項測試前，使用 ClassInitialize 執行程式碼
-		// [ClassInitialize()]
-		// public static void MyClassInitialize(TestContext testContext) { }
-		//
-		// 在類別中的所有測試執行後，使用 ClassCleanup 執行程式碼
-		// [ClassCleanup()]
-		// public static void MyClassCleanup() { }
-		//
-		// 在執行每一項測試之前，先使用 TestInitialize 執行程式碼 
-		// [TestInitialize()]
-		// public void MyTestInitialize() { }
-		//
-		// 在執行每一項測試之後，使用 TestCleanup 執行程式碼
-		// [TestCleanup()]
-		// public void MyTestCleanup() { }
-		//
-		#endregion
 
-		[TestMethod]
+
+        #region 其他測試屬性
+        //
+        // 您可以使用下列其他屬性撰寫測試: 
+        //
+        // 執行該類別中第一項測試前，使用 ClassInitialize 執行程式碼
+        // [ClassInitialize()]
+        // public static void MyClassInitialize(TestContext testContext) { }
+        //
+        // 在類別中的所有測試執行後，使用 ClassCleanup 執行程式碼
+        // [ClassCleanup()]
+        // public static void MyClassCleanup() { }
+        //
+        // 在執行每一項測試之前，先使用 TestInitialize 執行程式碼 
+        // [TestInitialize()]
+        // public void MyTestInitialize() { }
+        //
+        // 在執行每一項測試之後，使用 TestCleanup 執行程式碼
+        // [TestCleanup()]
+        // public void MyTestCleanup() { }
+        //
+        #endregion
+
+        [TestMethod]
+        public void DateTimeTest()
+        {
+            DateTime dt = new DateTime();
+            dt.AddTicks(2000);
+            TestContext.WriteLine(dt.ToString("d"));
+            TestContext.WriteLine(dt.ToString("%d"));
+            TestContext.WriteLine(dt.ToString("dd"));
+            TestContext.WriteLine(dt.ToString(""));
+            TestContext.WriteLine(dt.ToString("G"));
+        }
+
+        [TestMethod]
 		public void JDateTimeTest()
 		{
 			JDateTime JDT = new JDateTime();
@@ -85,6 +99,8 @@ namespace JsonEditorV2Tests
             TestContext.WriteLine(GetTickString(600000000L));
             TestContext.WriteLine(GetTickString(36000000000L));           
             
+			
+
             //
             // TODO:  在此加入測試邏輯
             //
