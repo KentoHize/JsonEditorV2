@@ -2,6 +2,7 @@
 using Aritiafel.Items;
 using Aritiafel.Locations;
 using Aritiafel.Organizations;
+using Aritiafel.Organizations.RaeriharUniversity;
 using JsonEditor;
 using JsonEditorV2.Resources;
 using Newtonsoft.Json;
@@ -2783,11 +2784,8 @@ namespace JsonEditorV2
 
         public void ShowDateTimePicker(TextBox valueControl, DateTimePickerStyle style)
         {
-            if (!DateTime.TryParse(valueControl.Text, out DateTime r1))
-                if (Setting.UseArinaYear)
-                    r1 = DateTime.Now.AddYears(-2017);
-                else
-                    r1 = DateTime.Now;
+            if (!ArDateTime.TryParse(valueControl.Text, out ArDateTime r1))
+                r1 = ArDateTime.Now;
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
             dtpMain.SetType(style);

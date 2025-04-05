@@ -71,6 +71,7 @@ namespace JsonEditorV2Tests
             TestContext.WriteLine(dt.ToString("dd"));
             TestContext.WriteLine(dt.ToString(""));
             TestContext.WriteLine(dt.ToString("G"));
+
         }
 
         [TestMethod]
@@ -78,37 +79,59 @@ namespace JsonEditorV2Tests
 		{
 			JDateTime JDT = new JDateTime();
 			//JDT.
-			long tick = 0;
+			//long tick = 0;
+            List<long> testTicks = new List<long>{ -36000000000L, -600000000L, -10000000L, -1000, -1 };
 
+            testTicks.Add(0);
+
+            for (int i = testTicks.Count - 1; i >= 0; i--)
+                testTicks.Add(-testTicks[i]);
+            
             //JDateTime Minus1Tick = new JDateTime(-1);
             //         JDateTime Zero = new JDateTime(0);
             //         JDateTime OneTick = new JDateTime(1);
             //         JDateTime OneSecond = new JDateTime(1000000);
             //         JDateTime OneMinute = new JDateTime(60000000);
             //         JDateTime OneHour = new JDateTime(360000000);
-
-            TestContext.WriteLine(GetTickString(-36000000000L));
-            TestContext.WriteLine(GetTickString(-600000000L));
-            TestContext.WriteLine(GetTickString(-10000000L));
-            TestContext.WriteLine(GetTickString(-1000));
-            TestContext.WriteLine(GetTickString(-1));
-            TestContext.WriteLine(GetTickString(0));
-            TestContext.WriteLine(GetTickString(1));
-            TestContext.WriteLine(GetTickString(1000));
-            TestContext.WriteLine(GetTickString(10000000L));
-            TestContext.WriteLine(GetTickString(600000000L));
-            TestContext.WriteLine(GetTickString(36000000000L));           
+            for(int i = 0;  i < testTicks.Count; i++)
+            {
+                GetTickString(testTicks[i]);
+            }
             
-			
+            ////TestContext.WriteLine(GetTickString(-36000000000L));
+            ////TestContext.WriteLine(GetTickString(-600000000L));
+            ////TestContext.WriteLine(GetTickString(-10000000L));
+            ////TestContext.WriteLine(GetTickString(-1000));
+            ////TestContext.WriteLine(GetTickString(-1));
+            //TestContext.WriteLine(GetTickString(0));
+            //TestContext.WriteLine(GetTickString(1));
+            //TestContext.WriteLine(GetTickString(1000));
+            //TestContext.WriteLine(GetTickString(10000000L));
+            //TestContext.WriteLine(GetTickString(600000000L));
+            //TestContext.WriteLine(GetTickString(36000000000L));
+
+            //TestContext.WriteLine(GetTickString(36000000000L, "d"));
+            //TestContext.WriteLine(GetTickString(-36000000000L, "d"));
+
+
 
             //
             // TODO:  在此加入測試邏輯
             //
         }
 
-		internal string GetTickString(long ticks, string name = "")
-		{	
-			return $"{ticks} Tick(s):{new JDateTime(ticks).ToString()}";
+		internal void GetTickString(long ticks, string format = "")
+		{
+            if (string.IsNullOrEmpty(format))
+                format = "";
+            //TestContext.WriteLine($"{ticks} Tick(s)[{format}]:{new JDateTime(ticks).ToString(format)}");
+            //TestContext.WriteLine($"{ticks} Tick(s)[LongDate]:{new JDateTime(ticks).ToLongDateString()}");
+            //TestContext.WriteLine($"{ticks} Tick(s)[ShortDate]:{new JDateTime(ticks).ToShortDateString()}");
+            //TestContext.WriteLine($"{ticks} Tick(s)[LongTime]:{new JDateTime(ticks).ToLongTimeString()}");
+            //TestContext.WriteLine($"{ticks} Tick(s)[ShortTime]:{new JDateTime(ticks).ToShortTimeString()}");
+            TestContext.WriteLine($"{ticks} Tick(s)[Year]:{new JDateTime(ticks).Year}");
+
+            //return $"{ticks} Tick(s)[{format}]:{new JDateTime(ticks).ToString(format)}";
         }
 	}
 }

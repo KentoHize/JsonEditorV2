@@ -66,26 +66,20 @@ namespace JsonEditor
         internal const long MaxTicks = 3155378975999999999L;
 
         private const long MaxMillis = 315537897600000L;
-
-        public string ToString(string format, IFormatProvider provider)
-        {
-            if (_data >= 0)
-                return new DateTime(_data).ToString(format, provider);
-            else
-            {
-                long t400 = TicksPerDay * DaysPer400Years;
-                var dt = new DateTime(_data % t400 + t400);
-                return DateTimeReplaceYearToString(dt, (int)(_data / t400 + 399 - dt.Year), format, CultureInfo.CurrentCulture);
-            }
-        }
+        
+        
 
         internal static string DateTimeReplaceYearToString(DateTime dateTime, int newYear, string format = "", CultureInfo cultureInfo = null)
         {
+            //IFormatProvider provider = null;
+            //(provider
+
+
+             //(provider) .DateTimeFormat = dateTime;
             if (cultureInfo == null)
                 cultureInfo = CultureInfo.CurrentCulture;
-            if (format == null)
-                format = "";
-            
+            if (string.IsNullOrEmpty(format))
+                format = "G";
             if (format.Length == 1 && format.IndexOfAny(allStandardFormats) != -1)
                 format = cultureInfo.DateTimeFormat.GetAllDateTimePatterns(format[0])[0];
             format = format.Replace("%yyyyy", newYear.ToString("00000"))
@@ -97,13 +91,45 @@ namespace JsonEditor
                 .Replace("%yy", (newYear % 100).ToString("00"))
                 .Replace("yy", (newYear % 100).ToString("00"))
                 .Replace("%y", (newYear % 100).ToString("0"))
-                .Replace("y", (newYear % 100).ToString("0"));                
-
-            return dateTime.ToString(format);
+                .Replace("y", (newYear % 100).ToString("0"));
+            return dateTime.ToString(format, cultureInfo);
         }
+
+
+
+        public string ToString(string format, IFormatProvider provider)
+        {   
+            if (_data >= 0)
+                return new DateTime(_data).ToString(format, provider);
+            else
+            {
+                long t400 = TicksPerDay * DaysPer400Years;
+                DateTime dt = new DateTime(_data % t400 + t400);
+                return DateTimeReplaceYearToString(dt, (int)(_data / t400 + 399 - dt.Year), format, CultureInfo.CurrentCulture);
+            }
+            //formula
+            //year = _data / t400 + 399 - dt.Year
+            //others = new DateTime(_data % t400 + t400);
+        }
+
+        public string ToString(string format)
+            => ToString(format, null);
+
+        public string ToString(IFormatProvider provider)
+            => ToString(null, provider);
 
         public override string ToString()
             => ToString(null, null);
+
+        public string ToLongDateString()
+            => ToString("D", null);
+        public string ToLongTimeString()
+            => ToString("T", null);
+        public string ToShortDateString()
+            => ToString("d", null);
+        public string ToShortTimeString()
+            => ToString("t", null);
+     
         //=> _data >= 0 ? new DateTime(_data).ToString() : string.Concat('-', new DateTime(( _data + 1)).ToString());
         //public string ToLongDateString()
         //    => _data >= 0 ? new DateTime(_data).ToLongDateString() : string.Concat('-', new DateTime(Math.Abs(_data + 1)).ToLongDateString());
@@ -121,13 +147,6 @@ namespace JsonEditor
 
         public JDateTime(DateTime datetime)
             => _data = datetime.Ticks;
-
-        //public JDateTime(bool isNegative, DateTime datetime)            
-        //{   
-        //    _data = datetime.Ticks;
-        //    if (isNegative)
-        //        _data = -(_data + 1);
-        //}
 
         //public JDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, Calendar calendar, DateTimeKind kind)
         //    : this(false, year, month, day, hour, minute, second, millisecond, calendar, kind)
@@ -152,20 +171,38 @@ namespace JsonEditor
             else
                 _data = new DateTime(year, month, day, hour, minute, second, millisecond, calendar, kind).Ticks;
         }
-        public int Millisecond
-            => _data >= 0 ? (int)(_data / 10000 % 1000) : (int)-(-(_data + 1) / 10000 % 1000);
-        public int Second
-            => _data >= 0 ? (int)(_data / 10000000 % 60) : (int)-(-(_data + 1) / 10000000 % 60);
-        public int Minute
-            => _data >= 0 ? (int)(_data / 600000000 % 60) : (int)-(-(_data + 1) / 600000000 % 60);
-        public int Hour
-            => _data >= 0 ? (int)(_data / 36000000000L % 24) : (int)-(-(_data + 1) / 36000000000L % 24);
-        public int Day
-            => _data >= 0 ? new DateTime(_data).Day : -new DateTime(-(_data + 1)).Day;
-        public int Month
-            => new DateTime(_data).Month;
-        public int Year
-            => new DateTime(_data).Year;
+
+        //formula
+        //year = _data / t400 + 399 - dt.Year
+        //others = new DateTime(_data % t400 + t400);
+
+        //private int getYear()
+        //{
+        //    long t400 = TicksPerDay * DaysPer400Years;
+        //    _data / t400
+        //}
+
+        //public int Year
+        //    => 
+
+        //public int Millisecond
+        //    => _data >= 0 ? (int)(_data / 10000 % 1000) : (int)((_data) / 10000 % 1000 + 1000);
+            
+        //public int Second
+        //    => _data >= 0 ? (int)(_data / 10000000 % 60) : (int)-(-(_data + 1) / 10000000 % 60);
+        //public int Minute
+        //    => _data >= 0 ? (int)(_data / 600000000 % 60) : (int)-(-(_data + 1) / 600000000 % 60);
+        //public int Hour
+        //    => _data >= 0 ? (int)(_data / 36000000000L % 24) : (int)-(-(_data + 1) / 36000000000L % 24);
+        //public int Day
+        //    => _data >= 0 ? new DateTime(_data).Day : -new DateTime(-(_data + 1)).Day;
+        //public int Month
+        //    => new DateTime(_data).Month;
+        //public int Year
+        //    => new DateTime(_data).Year;
+        //public DayOfWeek DayOfWeek
+        //    => _data >= 0 ? (DayOfWeek)((_data / 864000000000L + 1) % 7) : (DayOfWeek)(((_data + 1) / 864000000000L + 1) % 7 + 7);
+            
 
         //private DateTime GetMinusDate()
         //{

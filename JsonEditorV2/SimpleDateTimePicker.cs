@@ -1,4 +1,5 @@
-﻿using JsonEditorV2.Resources;
+﻿using Aritiafel.Organizations.RaeriharUniversity;
+using JsonEditorV2.Resources;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -40,18 +41,18 @@ namespace JsonEditorV2
                     91, 92, 93, 94, 95, 96, 97, 98, 99
                 };
 
-        //private static readonly byte[] years99 = {
-        //            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        //            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-        //            21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-        //            31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-        //            41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-        //            51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-        //            61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-        //            71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
-        //            81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
-        //            91, 92, 93, 94, 95, 96, 97, 98, 99,
-        //        };
+        private static readonly byte[] years99 = {
+                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                    31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+                    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
+                    51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+                    61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+                    71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
+                    81, 82, 83, 84, 85, 86, 87, 88, 89, 90,
+                    91, 92, 93, 94, 95, 96, 97, 98, 99,
+                };
 
         private static readonly byte[] months = {
                     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
@@ -132,26 +133,41 @@ namespace JsonEditorV2
         [Description("可使用負數")]
         public bool CanNegative { get; set; }
 
-        public DateTime GetValue()
+        public ArDateTime GetValue()
         {
             if (!int.TryParse(txtMillisecond.Text, out int milsec))
                 milsec = 0;
-
             //0年
 
-            //Negative            
-            return new DateTime((byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem,
+            //Negative
+            return new ArDateTime(cobSign.SelectedIndex == 0 ? 1 : -1 * (byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem,
                (byte)cobMonth.SelectedItem, (byte)cobDay.SelectedItem,
                (byte)cobHour.SelectedItem, (byte)cobMinute.SelectedItem,
-               (byte)cobSecond.SelectedItem, milsec);
+               (byte)cobSecond.SelectedItem, milsec, true);
         }
 
-        public void SetValue(DateTime value)
+        public void SetValue(ArDateTime value)
         {
             if(Style != DateTimePickerStyle.Time)
-            { 
-                dud100Year.SelectedItem = Convert.ToByte(value.Year / 100);
-                cobYear.SelectedItem = Convert.ToByte(ModYear(value.Year, 100));
+            {
+                cobSign.SelectedIndex = value.Ticks >= 0 ? 0 : 1;
+                int year = value.Year, n1, n2;
+                if(year >= 0)
+                {
+                    n1 = Math.DivRem(year, 100, out n2);
+                }
+                else
+                {
+                    n1 = Math.DivRem(year, 100, out n2);
+                    if (n2 != 0)
+                    {
+                        n1 -= 1;
+                        n2 += 100;
+                    }   
+                }
+                dud100Year.SelectedItem = Convert.ToByte(n1);
+                cobYear.SelectedItem = Convert.ToByte(n2);
+
                 cobMonth.SelectedItem = Convert.ToByte(value.Month);            
                 SetDays(value.Year, value.Month);
                 cobDay.SelectedItem = Convert.ToByte(value.Day);
@@ -182,7 +198,7 @@ namespace JsonEditorV2
             PatchTextFromResource();
 
             dud100Year.Items.AddRange(years100inverse);
-            cobYear.DataSource = years100;
+            cobYear.DataSource = years99;
             cobMonth.DataSource = months;
             cobDay.DataSource = days31;
             cobHour.DataSource = hours;
@@ -209,7 +225,7 @@ namespace JsonEditorV2
             Style = type;
             Clear();
             if (type == DateTimePickerStyle.Date || type == DateTimePickerStyle.DateTime)
-                dud100Year.Enabled = cobYear.Enabled = cobMonth.Enabled = cobDay.Enabled = true;
+                cobSign.Enabled = dud100Year.Enabled = cobYear.Enabled = cobMonth.Enabled = cobDay.Enabled = true;
             if (type == DateTimePickerStyle.Time || type == DateTimePickerStyle.DateTime)
                 cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = true;
             if (type == DateTimePickerStyle.Time)
@@ -217,17 +233,17 @@ namespace JsonEditorV2
             cobSign.Enabled = CanNegative;
         }
 
-        private int ModYear(int x, int y, bool withoutZero = false)
-        {
-            x %= y;
-            if (x < 0 || (x == 0 && withoutZero))
-                x += y;
-            return x;
-        }
+        //private int ModYear(int x, int y, bool withoutZero = false)
+        //{
+        //    x %= y;
+        //    if (x < 0 || (x == 0 && withoutZero))
+        //        x += y;
+        //    return x;
+        //}
 
         public void SetDays(int year, int month, byte? day = 1)
         {   
-            switch (DateTime.DaysInMonth(ModYear(year + LeapYearAdjust, 400, true), month))
+            switch (ArDateTime.DaysInMonth(year, month))
             {
                 case 31:
                     cobDay.DataSource = days31;                   
@@ -253,7 +269,10 @@ namespace JsonEditorV2
 
         private void dud100Year_SelectedItemChanged(object sender, EventArgs e)
         {  
-            cobYear.DataSource = years100;
+            if(dud100Year.SelectedIndex != dud100Year.Items.Count - 1)
+                cobYear.DataSource = years100;
+            else
+                cobYear.DataSource = years99;
             ValueChanged(sender, EventArgs.Empty);
         }
 

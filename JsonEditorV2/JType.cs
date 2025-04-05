@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
+using Aritiafel.Organizations.RaeriharUniversity;
 
 namespace JsonEditor
 {
@@ -39,9 +40,9 @@ namespace JsonEditor
             switch (type)
             {
                 case JType.Date:
-                    return ((DateTime)instance).ToShortDateString();
+                    return ((ArDateTime)instance).ToShortDateString();
                 case JType.Time:
-                    return ((DateTime)instance).Millisecond == 0 ? ((DateTime)instance).ToLongTimeString() : ((DateTime)instance).ToString("HH:mm:ss.fff");
+                    return ((ArDateTime)instance).Millisecond == 0 ? ((ArDateTime)instance).ToLongTimeString() : ((ArDateTime)instance).ToShortTimeString();
                 default:
                     return instance.ToString();
             }
@@ -61,10 +62,12 @@ namespace JsonEditor
                 case JType.Byte:
                     return Convert.ToByte(instance).CompareTo(Convert.ToByte(value));
                 case JType.Time:
-                    return Convert.ToDateTime(instance).TimeOfDay.CompareTo(Convert.ToDateTime(value).TimeOfDay);
+                    return ((ArDateTime)instance).TimeOfDay.CompareTo(((ArDateTime)value).TimeOfDay);
+                    //Convert.ToDateTime(instance).TimeOfDay.CompareTo(Convert.ToDateTime(value).TimeOfDay);
                 case JType.Date:
                 case JType.DateTime:
-                    return Convert.ToDateTime(instance).CompareTo(Convert.ToDateTime(value));
+                    return ((ArDateTime)instance).CompareTo((ArDateTime)value);
+                    //return Convert.ToDateTime(instance).CompareTo(Convert.ToDateTime(value));
                 case JType.Double:
                     return Convert.ToDouble(instance).CompareTo(Convert.ToDouble(value));
                 case JType.Integer:
@@ -107,7 +110,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return DateTime.MinValue;
+                    return ArDateTime.MinValue;
                 case JType.Double:
                     return double.MinValue;
                 case JType.Integer:
@@ -143,11 +146,11 @@ namespace JsonEditor
                 case JType.Byte:
                     return byte.MaxValue;
                 case JType.Date:
-                    return DateTime.MaxValue.Date;
+                    return ArDateTime.MaxValue.Date;
                 case JType.Time:
-                    return DateTime.MinValue.AddDays(1).AddTicks(-1); //可研究
+                    return ArDateTime.MinValue.AddDays(1).Add(new TimeSpan(-1)); //可研究
                 case JType.DateTime:
-                    return DateTime.MaxValue;
+                    return ArDateTime.MaxValue;
                 case JType.Double:
                     return double.MaxValue;
                 case JType.Integer:
@@ -211,7 +214,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return new DateTime();
+                    return new ArDateTime();
                 case JType.Double:
                     return (double)0;
                 case JType.Guid:
@@ -283,7 +286,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    if (DateTime.TryParse(value.ToString(), out DateTime r4))
+                    if (ArDateTime.TryParse(value.ToString(), out ArDateTime r4))
                         return r4;
                     break;
                 case JType.Double:
@@ -375,7 +378,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return "DateTime";
+                    return "ArDateTime";
                 case JType.Double:
                     return "double";
                 case JType.Guid:
@@ -412,7 +415,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    return typeof(DateTime);
+                    return typeof(ArDateTime);
                 case JType.Double:
                     return typeof(double);
                 case JType.Guid:
@@ -462,11 +465,11 @@ namespace JsonEditor
                 case JTokenType.String:
                     if (Guid.TryParse(jt.ToString(), out Guid guid))
                         return JType.Guid;
-                    else if (DateTime.TryParse(jt.ToString(), out DateTime datetime))
+                    else if (ArDateTime.TryParse(jt.ToString(), out ArDateTime datetime))
                     {   
                         if (jt.ToString().Length > 10)
                             return JType.DateTime;
-                        else if (datetime.Date == DateTime.Today  && datetime.TimeOfDay.Ticks != 0)
+                        else if (datetime.Date == ArDateTime.Today  && datetime.TimeOfDay.Ticks != 0)
                             return JType.Time;
                         else if (datetime.TimeOfDay.Ticks == 0)
                             return JType.Date;
