@@ -127,7 +127,8 @@ namespace JsonEditorV2
 
         private void TextControl_Click(object sender, EventArgs e)
         {
-            (ValueControl as TextBox).SelectAll();
+            if((ValueControl as TextBox).Multiline != true)
+                (ValueControl as TextBox).SelectAll();
         }
 
         private void CheckControl_GotFocus(object sender, EventArgs e)

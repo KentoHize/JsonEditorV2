@@ -149,12 +149,13 @@ namespace JsonEditorV2
 
         private void DtpMain_ValueChanged(object sender, EventArgs e)
         {
+            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;            
             if (dtpMain.Style == DateTimePickerStyle.Date)
-                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date);
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date, fp);
             else if (dtpMain.Style == DateTimePickerStyle.Time)
-                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Time);
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Time, fp);
             else
-                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.DateTime);
+                Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.DateTime, fp);
         }
 
         private void DtpMain_Leave(object sender, EventArgs e)
@@ -2788,11 +2789,12 @@ namespace JsonEditorV2
                 r1 = ArDateTime.Now;
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
+            dtpMain.UseArinaYear = Setting.UseArinaYear;
+            dtpMain.CanNegative = true;
             dtpMain.SetType(style);
             dtpMain.SetValue(r1);
             pnlDateTimePicker.Top = valueControl.Top + valueControl.Height;
-            pnlDateTimePicker.Left = 10;
-            //pnlDateTimePicker
+            pnlDateTimePicker.Left = 10;            
             pnlDateTimePicker.BringToFront();
             pnlDateTimePicker.Show();
             dtpMain.Focus();

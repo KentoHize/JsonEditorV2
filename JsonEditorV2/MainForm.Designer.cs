@@ -797,8 +797,7 @@
             this.dtpMain.AutoSize = true;
             this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
             this.dtpMain.BindingControl = null;
-            this.dtpMain.CanNegative = false;
-            this.dtpMain.LeapYearAdjust = 0;
+            this.dtpMain.CanNegative = true;            
             this.dtpMain.Location = new System.Drawing.Point(4, 4);
             this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMain.Name = "dtpMain";

@@ -66,7 +66,7 @@
             // 
             // dud100Year
             // 
-            this.dud100Year.Location = new System.Drawing.Point(46, 12);
+            this.dud100Year.Location = new System.Drawing.Point(71, 12);
             this.dud100Year.Name = "dud100Year";
             this.dud100Year.ReadOnly = true;
             this.dud100Year.Size = new System.Drawing.Size(53, 25);
@@ -83,7 +83,7 @@
             "1",
             "2",
             "3"});
-            this.cobYear.Location = new System.Drawing.Point(105, 13);
+            this.cobYear.Location = new System.Drawing.Point(130, 13);
             this.cobYear.Name = "cobYear";
             this.cobYear.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cobYear.Size = new System.Drawing.Size(45, 23);
@@ -93,7 +93,7 @@
             // lblMonth
             // 
             this.lblMonth.AutoSize = true;
-            this.lblMonth.Location = new System.Drawing.Point(255, 17);
+            this.lblMonth.Location = new System.Drawing.Point(280, 17);
             this.lblMonth.Name = "lblMonth";
             this.lblMonth.Size = new System.Drawing.Size(12, 15);
             this.lblMonth.TabIndex = 2;
@@ -113,7 +113,7 @@
             this.cobMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobMonth.Enabled = false;
             this.cobMonth.FormattingEnabled = true;
-            this.cobMonth.Location = new System.Drawing.Point(204, 13);
+            this.cobMonth.Location = new System.Drawing.Point(229, 13);
             this.cobMonth.Name = "cobMonth";
             this.cobMonth.Size = new System.Drawing.Size(45, 23);
             this.cobMonth.TabIndex = 3;
@@ -131,7 +131,7 @@
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(375, 17);
+            this.lblDay.Location = new System.Drawing.Point(400, 17);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(12, 15);
             this.lblDay.TabIndex = 4;
@@ -142,7 +142,7 @@
             this.cobDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobDay.Enabled = false;
             this.cobDay.FormattingEnabled = true;
-            this.cobDay.Location = new System.Drawing.Point(321, 13);
+            this.cobDay.Location = new System.Drawing.Point(346, 13);
             this.cobDay.Name = "cobDay";
             this.cobDay.Size = new System.Drawing.Size(45, 23);
             this.cobDay.TabIndex = 10;
@@ -162,7 +162,7 @@
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Location = new System.Drawing.Point(156, 17);
+            this.lblYear.Location = new System.Drawing.Point(181, 17);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(12, 15);
             this.lblYear.TabIndex = 9;
@@ -206,8 +206,9 @@
             this.cobSign.FormattingEnabled = true;
             this.cobSign.Location = new System.Drawing.Point(13, 13);
             this.cobSign.Name = "cobSign";
-            this.cobSign.Size = new System.Drawing.Size(27, 23);
+            this.cobSign.Size = new System.Drawing.Size(45, 23);
             this.cobSign.TabIndex = 15;
+            this.cobSign.SelectedIndexChanged += new System.EventHandler(this.cobSign_SelectedIndexChanged);
             // 
             // SimpleDateTimePicker
             // 

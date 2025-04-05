@@ -111,24 +111,17 @@ namespace JsonEditorV2
         [Description("顯示型態")]
         public DateTimePickerStyle Style { get => _Style; set => _Style = value; }
 
-        private DateTimePickerStyle _Style;
-        //[Description("值")]
-        //public DateTime Value {
-        //    get
-        //    {
-        //                 if (DesignMode && Parent != null)
-        //        {
-        //            Parent.Refresh();
-        //        }
-        //    }
-        //}
+        private DateTimePickerStyle _Style;        
 
         public event EventHandler ValueChanged;
 
         public TextBox BindingControl { get; set; }
 
-        [Description("閏年調整")]
-        public int LeapYearAdjust { get; set; }        
+        //[Description("閏年調整")]
+        //public int LeapYearAdjust { get; set; }
+
+        [Description("使用有奈紀年")]
+        public bool UseArinaYear { get; set; }
 
         [Description("可使用負數")]
         public bool CanNegative { get; set; }
@@ -140,10 +133,11 @@ namespace JsonEditorV2
             //0年
 
             //Negative
-            return new ArDateTime(cobSign.SelectedIndex == 0 ? 1 : -1 * (byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem,
+            return new ArDateTime((cobSign.SelectedIndex == 0 ? 1 : -1) *
+                ((byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem),
                (byte)cobMonth.SelectedItem, (byte)cobDay.SelectedItem,
                (byte)cobHour.SelectedItem, (byte)cobMinute.SelectedItem,
-               (byte)cobSecond.SelectedItem, milsec, true);
+               (byte)cobSecond.SelectedItem, milsec, UseArinaYear);
         }
 
         public void SetValue(ArDateTime value)
@@ -151,7 +145,7 @@ namespace JsonEditorV2
             if(Style != DateTimePickerStyle.Time)
             {
                 cobSign.SelectedIndex = value.Ticks >= 0 ? 0 : 1;
-                int year = value.Year, n1, n2;
+                int year = UseArinaYear ? value.ArYear : value.Year, n1, n2;
                 if(year >= 0)
                 {
                     n1 = Math.DivRem(year, 100, out n2);
@@ -196,7 +190,7 @@ namespace JsonEditorV2
         {
             InitializeComponent();
             PatchTextFromResource();
-
+            CanNegative = true;
             dud100Year.Items.AddRange(years100inverse);
             cobYear.DataSource = years99;
             cobMonth.DataSource = months;
@@ -205,6 +199,7 @@ namespace JsonEditorV2
             cobMinute.DataSource = minutes;
             cobSecond.DataSource = seconds;
             cobSign.DataSource = sign;
+            
         }
 
 
@@ -216,8 +211,8 @@ namespace JsonEditorV2
             cobSecond.SelectedIndex = cobSign.SelectedIndex = 0;            
             txtMillisecond.Text = "000";
             dud100Year.Enabled = cobYear.Enabled = cobMonth.Enabled = cobDay.Enabled =
-            cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = txtMillisecond.Enabled =
-            false;
+            cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = txtMillisecond.Enabled = 
+            cobSign.Enabled = false;
         }
 
         public void SetType(DateTimePickerStyle type)
@@ -280,7 +275,9 @@ namespace JsonEditorV2
         {
             if (cobYear.DataSource == null || cobMonth.DataSource == null)
                 return;
-            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
+            SetDays((cobSign.SelectedIndex == 0 ? 1 : -1) * 
+                (Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem)),
+                (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
 
         }
@@ -321,6 +318,11 @@ namespace JsonEditorV2
         private void txtMillisecond_Click(object sender, EventArgs e)
         {
             txtMillisecond.SelectAll();
+        }
+
+        private void cobSign_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
     }
 }

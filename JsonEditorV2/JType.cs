@@ -34,15 +34,18 @@ namespace JsonEditor
         /// </summary>
         /// <param name="instance">實體</param>
         /// <param name="type">JType</param>
+        /// <param name="formatProvider">格式提供者</param>
         /// <returns>字串</returns>
-        public static string ToString(this object instance, JType type)
+        public static string ToString(this object instance, JType type, IFormatProvider formatProvider = null)
         {
             switch (type)
             {
                 case JType.Date:
-                    return ((ArDateTime)instance).ToShortDateString();
+                    return ((ArDateTime)instance).ToShortDateString(formatProvider);
                 case JType.Time:
-                    return ((ArDateTime)instance).Millisecond == 0 ? ((ArDateTime)instance).ToLongTimeString() : ((ArDateTime)instance).ToShortTimeString();
+                    return ((ArDateTime)instance).Millisecond == 0 ? ((ArDateTime)instance).ToLongTimeString(formatProvider) : ((ArDateTime)instance).ToShortTimeString(formatProvider);
+                case JType.DateTime:
+                    return ((ArDateTime)instance).ToString(formatProvider);
                 default:
                     return instance.ToString();
             }
