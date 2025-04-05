@@ -3,6 +3,7 @@ using JsonEditor;
 using JsonEditorV2.Resources;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -213,11 +214,12 @@ namespace JsonEditorV2
             }
 
             //確定型態符合
+            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
             if (ValueControl is Label)
                 return true;
             else if (ValueControl is TextBox)
-            {
-                if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, out parsedValue))
+            {   
+                if (!ChangeTextToString(ValueControl.Text).TryParseJType(JColumn.Type, fp, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
@@ -225,7 +227,7 @@ namespace JsonEditorV2
             }
             else if (ValueControl is CheckBox)
             {
-                if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, out parsedValue))
+                if (!(ValueControl as CheckBox).Checked.TryParseJType(JColumn.Type, fp, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_INVALID_CAST, ValueControl.Text));
                     return false;
@@ -233,7 +235,7 @@ namespace JsonEditorV2
             }
             else if (ValueControl is ComboBox) //確認Choice 正確
             {
-                if ((ValueControl as ComboBox).SelectedIndex == -1 || !(ValueControl as ComboBox).SelectedItem.TryParseJType(JColumn.Type, out parsedValue))
+                if ((ValueControl as ComboBox).SelectedIndex == -1 || !(ValueControl as ComboBox).SelectedItem.TryParseJType(JColumn.Type, fp, out parsedValue))
                 {
                     ValidControl.SetError(errPositionControl, string.Format(Res.JE_VAL_CHOICE_VALUE_NOT_EXIST, (ValueControl as ComboBox).SelectedItem ?? Const.NullString));
                     return false;
@@ -339,7 +341,7 @@ namespace JsonEditorV2
             switch (ValueControl)
             {
                 case TextBox TextControl:
-                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type));
+                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type, Setting.UseArinaYear ? null : CultureInfo.CurrentCulture));
                     break;
                 case CheckBox CheckControl:
                     CheckControl.Checked = (bool)value;

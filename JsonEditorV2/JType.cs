@@ -242,6 +242,10 @@ namespace JsonEditor
             }
         }
 
+
+        public static bool TryParseJType(this object value, JType type, out object result)
+            => value.TryParseJType(type, null, out result);
+
         /// <summary>
         /// JType的TryParse版本
         /// </summary>
@@ -249,16 +253,16 @@ namespace JsonEditor
         /// <param name="type">JType</param>
         /// <param name="result">失敗回傳初始值</param>
         /// <returns>是否成功</returns>
-        public static bool TryParseJType(this object value, JType type, out object result)
+        public static bool TryParseJType(this object value, JType type, IFormatProvider formatProvider, out object result)
         {
             try
             {
-                result = value.ParseJType(type);
+                result = value.ParseJType(type, formatProvider);
                 return true;
             }
             catch
             {
-                result = new object().ParseJType(type);
+                result = new object().ParseJType(type, formatProvider);
                 return false;
             }
         }
@@ -269,7 +273,7 @@ namespace JsonEditor
         /// <param name="value">輸入值</param>
         /// <param name="type">JType</param>
         /// <returns>輸出值</returns>
-        public static object ParseJType(this object value, JType type)
+        public static object ParseJType(this object value, JType type, IFormatProvider formatProvider = null)
         {
             if (value == null)
                 return null;
@@ -289,7 +293,7 @@ namespace JsonEditor
                 case JType.Date:
                 case JType.Time:
                 case JType.DateTime:
-                    if (ArDateTime.TryParse(value.ToString(), out ArDateTime r4))
+                    if (ArDateTime.TryParse(value.ToString(), formatProvider, out ArDateTime r4))
                         return r4;
                     break;
                 case JType.Double:

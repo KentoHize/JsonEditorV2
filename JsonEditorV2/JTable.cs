@@ -591,7 +591,7 @@ namespace JsonEditor
 
                     if (kvp.Value.Type == JTokenType.Null)
                         jl.Add(null);
-                    else if (kvp.Value.TryParseJType(Columns[j].Type, out object parsedObj))
+                    else if (kvp.Value.TryParseJType(Columns[j].Type, null, out object parsedObj))
                     {
                         jl.Add(parsedObj);
                         if (!Changed)

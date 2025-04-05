@@ -204,6 +204,7 @@ namespace JsonEditorV2
         //確認FKType
         private void CheckFKType(JTable sourceTable, JColumn sourceColumn, JType newType)
         {
+            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
             foreach (JTable jt in Var.Tables)
             {
                 List<int> columnIndexs = new List<int>();
@@ -215,7 +216,7 @@ namespace JsonEditorV2
                 {
                     for (int i = 0; i < columnIndexs.Count; i++)
                     {
-                        jl[columnIndexs[i]].TryParseJType(newType, out object result);
+                        jl[columnIndexs[i]].TryParseJType(newType, fp, out object result);
                         jl[columnIndexs[i]] = result;
                     }
                 }
@@ -475,6 +476,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
+            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
             //改型態檢查            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -483,7 +485,7 @@ namespace JsonEditorV2
                 //先檢查自己Table的值
                 foreach (JLine jl in Var.SelectedColumnParentTable)
                 {
-                    jl[index].TryParseJType(newType, out object result);
+                    jl[index].TryParseJType(newType, fp, out object result);
                     if (newType == JType.Choice)
                     {
                         if (result == null)
@@ -934,6 +936,7 @@ namespace JsonEditorV2
             dt.Columns.Add(new DataColumn { ColumnName = Const.HiddenColumnItemIndex, DataType = typeof(int) });
             dt.Columns.Add(Const.HiddenColumnStat);
 
+            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -943,7 +946,7 @@ namespace JsonEditorV2
                     {
                         if (Var.SelectedTable[i][j] == null)
                             continue;
-                        dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type);
+                        dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type, fp);
                     }
                 }
 

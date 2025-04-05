@@ -69,9 +69,9 @@ namespace JsonEditor
                 return JColumnInvalidReasons.NotNumberOrDateTimeHaveMinValue;
             else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
                 return JColumnInvalidReasons.NotNumberOrDateTimeHaveMaxValue;
-            else if (!jc.MinValue.TryParseJType(jc.Type, out object min) && !string.IsNullOrEmpty(jc.MinValue))
+            else if (!jc.MinValue.TryParseJType(jc.Type, Setting.UseArinaYear ? null : Setting.CI, out object min) && !string.IsNullOrEmpty(jc.MinValue))
                 return JColumnInvalidReasons.MinValueTypeCastFailed;
-            else if (!jc.MaxValue.TryParseJType(jc.Type, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
+            else if (!jc.MaxValue.TryParseJType(jc.Type, Setting.UseArinaYear ? null : Setting.CI, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
                 return JColumnInvalidReasons.MaxValueTypeCastFailed;
             else if (min != null && max != null && min.ToString() != "" && max.ToString() != "" && min.CompareTo(max, jc.Type) == 1)
                 return JColumnInvalidReasons.MinValueGreaterThanMaxValue;

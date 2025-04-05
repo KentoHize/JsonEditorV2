@@ -129,7 +129,7 @@ namespace JsonEditorV2Tests
             //TestContext.WriteLine($"{ticks} Tick(s)[ShortDate]:{new JDateTime(ticks).ToShortDateString()}");
             //TestContext.WriteLine($"{ticks} Tick(s)[LongTime]:{new JDateTime(ticks).ToLongTimeString()}");
             //TestContext.WriteLine($"{ticks} Tick(s)[ShortTime]:{new JDateTime(ticks).ToShortTimeString()}");
-            TestContext.WriteLine($"{ticks} Tick(s)[Year]:{new JDateTime(ticks).Year}");
+            //TestContext.WriteLine($"{ticks} Tick(s)[Year]:{new JDateTime(ticks).Year}");
 
             //return $"{ticks} Tick(s)[{format}]:{new JDateTime(ticks).ToString(format)}";
         }
