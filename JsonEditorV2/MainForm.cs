@@ -2559,7 +2559,12 @@ namespace JsonEditorV2
 
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
+            DialogResult dr = RabbitCouriers.SentNormalQuestion("Run Something，確定嗎?", "", ChoiceOptions.OKCancel);
+            
+            if (dr == DialogResult.OK)
+            {
 
+            }
             //fsx = new FileStream(@"C:\Programs\WinForm\JsonEditorV2\JsonEditorV2\TestArea\Output CSV\Articles.csv", FileMode.Open);
 
             //dtpMain.Value = DateTime.Now;
@@ -3412,7 +3417,7 @@ namespace JsonEditorV2
 
         private void btnHelpDefaultValue_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, Res.JE_COLUMN_DEFAULT_VALUE, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            RabbitCouriers.SentInformationByResource("JE_TT_NOW_FUNCTION_GUID_FUNCTION", Res.JE_COLUMN_DEFAULT_VALUE);
         }
     }
 }

@@ -155,9 +155,7 @@ namespace JsonEditorV2
 
                 dud100Year.SelectedItem = Convert.ToByte(n1);
                 cobYear.SelectedItem = Convert.ToByte(n2);
-
-                cobMonth.SelectedItem = Convert.ToByte(value.Month);            
-                SetDays(value.Year, value.Month);
+                cobMonth.SelectedItem = Convert.ToByte(value.Month);
                 cobDay.SelectedItem = Convert.ToByte(value.Day);
             }
             if(Style != DateTimePickerStyle.Date)
@@ -233,7 +231,7 @@ namespace JsonEditorV2
 
         public void SetDays(int year, int month, byte? day = 1)
         {   
-            switch (ArDateTime.DaysInMonth(year, month))
+            switch (ArDateTime.DaysInMonth(year, month, UseArinaYear))
             {
                 case 31:
                     cobDay.DataSource = days31;                   
@@ -319,6 +317,9 @@ namespace JsonEditorV2
 
         private void cobSign_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SetDays((cobSign.SelectedIndex == 0 ? 1 : -1) *
+                (Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem)),
+                (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
     }

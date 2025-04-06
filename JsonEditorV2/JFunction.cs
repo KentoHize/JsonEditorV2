@@ -27,11 +27,11 @@ namespace JsonEditor
             if (useArDate)
                 s = s.Replace("{NOW()}", ArDateTime.Now.ToString(ArinaOrganization.ArinaCultureInfo));
             else
-                s = s.Replace("{NOW()}", ArDateTime.Now.ToString());
+                s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString(ArDateTimeType.DateTime, 0));
             if (useArDate)
-                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToLongTimeString(ArinaOrganization.ArinaCultureInfo));
+                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("hh:MM:ss.fff", ArinaOrganization.ArinaCultureInfo));
             else
-                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToLongTimeString());
+                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("hh:MM:ss.fff"));
             if (useArDate)
                 s = s.Replace("{NOW('D')}", ArDateTime.Now.ToShortDateString(ArinaOrganization.ArinaCultureInfo));
             else
