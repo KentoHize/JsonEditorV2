@@ -853,11 +853,11 @@
     <value>Insert Data from First Row</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>Use {NOW()} represent current date &amp; time
-Use {NOW('T')} represent current time
-Use {NOW('D')} represent current date
-Use {COUNT()} represent current line's total count
-Use {GUID()} represent new GUID</value>
+    <value>Use {{NOW()}} represent current date &amp; time
+Use {{NOW('T')}} represent current time
+Use {{NOW('D')}} represent current date
+Use {{COUNT()}} represent number of rows
+Use {{GUID()}} represent new GUID</value>
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>Setting</value>

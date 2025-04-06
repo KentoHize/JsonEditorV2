@@ -754,7 +754,7 @@
     <value>用記事本開啟</value>
   </data>
   <data name="JE_VAL_CHOICE_VALUE_NOT_EXIST" xml:space="preserve">
-    <value>{</value>
+    <value>值"{0}"，選項不存在</value>
   </data>
   <data name="JE_VAL_COLUMN_AUTO_GENERATE_KEY_WITH_INAPPROPRIATE_TYPE" xml:space="preserve">
     <value>自動產生索引欄位適用在不正確的型別上(只有數字、字串或是Guid可以被自動產生)</value>
@@ -853,10 +853,10 @@
     <value>從開頭加入資料</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>{NOW()} 代表現在日期和時間
-{NOW('T')} 代表現在時間
-{NOW('D')} 代表現在日期
-{COUNT()} 代表目前資料行{GUID()} 代表新GUID</value>
+    <value>{{NOW()\}} 代表現在日期和時間
+{{NOW('T')}} 代表現在時間
+{{NOW('D')}} 代表現在日期
+{{COUNT()}} 代表目前資料行{{GUID()}} 代表新GUID</value>
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>設定</value>

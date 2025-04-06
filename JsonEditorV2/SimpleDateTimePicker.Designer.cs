@@ -49,7 +49,7 @@
             // lblDot
             // 
             this.lblDot.AutoSize = true;
-            this.lblDot.Location = new System.Drawing.Point(293, 51);
+            this.lblDot.Location = new System.Drawing.Point(298, 51);
             this.lblDot.Name = "lblDot";
             this.lblDot.Size = new System.Drawing.Size(11, 15);
             this.lblDot.TabIndex = 14;
@@ -58,7 +58,7 @@
             // lblSecond
             // 
             this.lblSecond.AutoSize = true;
-            this.lblSecond.Location = new System.Drawing.Point(375, 51);
+            this.lblSecond.Location = new System.Drawing.Point(380, 51);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(12, 15);
             this.lblSecond.TabIndex = 13;
@@ -66,7 +66,7 @@
             // 
             // dud100Year
             // 
-            this.dud100Year.Location = new System.Drawing.Point(71, 12);
+            this.dud100Year.Location = new System.Drawing.Point(71, 15);
             this.dud100Year.Name = "dud100Year";
             this.dud100Year.ReadOnly = true;
             this.dud100Year.Size = new System.Drawing.Size(53, 25);
@@ -93,7 +93,7 @@
             // lblMonth
             // 
             this.lblMonth.AutoSize = true;
-            this.lblMonth.Location = new System.Drawing.Point(280, 17);
+            this.lblMonth.Location = new System.Drawing.Point(289, 17);
             this.lblMonth.Name = "lblMonth";
             this.lblMonth.Size = new System.Drawing.Size(12, 15);
             this.lblMonth.TabIndex = 2;
@@ -113,7 +113,7 @@
             this.cobMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobMonth.Enabled = false;
             this.cobMonth.FormattingEnabled = true;
-            this.cobMonth.Location = new System.Drawing.Point(229, 13);
+            this.cobMonth.Location = new System.Drawing.Point(238, 13);
             this.cobMonth.Name = "cobMonth";
             this.cobMonth.Size = new System.Drawing.Size(45, 23);
             this.cobMonth.TabIndex = 3;
@@ -131,7 +131,7 @@
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(400, 17);
+            this.lblDay.Location = new System.Drawing.Point(409, 17);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(12, 15);
             this.lblDay.TabIndex = 4;
@@ -142,7 +142,7 @@
             this.cobDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobDay.Enabled = false;
             this.cobDay.FormattingEnabled = true;
-            this.cobDay.Location = new System.Drawing.Point(346, 13);
+            this.cobDay.Location = new System.Drawing.Point(355, 13);
             this.cobDay.Name = "cobDay";
             this.cobDay.Size = new System.Drawing.Size(45, 23);
             this.cobDay.TabIndex = 10;
@@ -182,7 +182,7 @@
             // txtMillisecond
             // 
             this.txtMillisecond.Enabled = false;
-            this.txtMillisecond.Location = new System.Drawing.Point(306, 46);
+            this.txtMillisecond.Location = new System.Drawing.Point(311, 47);
             this.txtMillisecond.MaxLength = 3;
             this.txtMillisecond.Name = "txtMillisecond";
             this.txtMillisecond.Size = new System.Drawing.Size(60, 25);
@@ -195,7 +195,7 @@
             this.cobSecond.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobSecond.Enabled = false;
             this.cobSecond.FormattingEnabled = true;
-            this.cobSecond.Location = new System.Drawing.Point(247, 47);
+            this.cobSecond.Location = new System.Drawing.Point(252, 47);
             this.cobSecond.Name = "cobSecond";
             this.cobSecond.Size = new System.Drawing.Size(45, 23);
             this.cobSecond.TabIndex = 7;
@@ -204,7 +204,7 @@
             // cobSign
             // 
             this.cobSign.FormattingEnabled = true;
-            this.cobSign.Location = new System.Drawing.Point(13, 13);
+            this.cobSign.Location = new System.Drawing.Point(13, 15);
             this.cobSign.Name = "cobSign";
             this.cobSign.Size = new System.Drawing.Size(45, 23);
             this.cobSign.TabIndex = 15;

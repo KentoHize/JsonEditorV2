@@ -83,8 +83,11 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnLineMoveDown, Res.JE_BTN_LINE_MOVE_DOWN);
             tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);
             lblCheckMethod.Text = Res.JE_COB_CHECK_METHOD;
-            tmiFile.Text = Res.JE_TMI_FILE;
-            tmiHelp.Text = Res.JE_TMI_HELP;
+            tmiFile.Text = $"{Res.JE_TMI_FILE}(&F)";            
+            tmiHelp.Text = $"{Res.JE_TMI_HELP}(&H)";
+            tmiLanguages.Text = $"{Res.JE_TMI_LANGUAGES}(&L)";
+            tmiSetting.Text = $"{Res.JE_TMI_SETTING}(&S)";
+            tmiBackup.Text = $"Backup(&B)";
             tmiAbout.Text = Res.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
             tmiLoadJsonFiles.Text = Res.JE_TMI_LOAD_JSON_FILES;
@@ -99,8 +102,7 @@ namespace JsonEditorV2
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
             tmiExportToCSFiles.Text = Res.JE_TMI_EXPORT_TO_CS;
-            tmiExportToLangaugeFiles.Text = Res.JE_TMI_EXPORT_TO_LANG_FILES;
-            tmiLanguages.Text = Res.JE_TMI_LANGUAGES;
+            tmiExportToLangaugeFiles.Text = Res.JE_TMI_EXPORT_TO_LANG_FILES;            
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
             tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
@@ -133,8 +135,7 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
-            tmiArinaYear.Text = Res.JE_TMI_USE_ARINA_YEAR;
-            tmiSetting.Text = Res.JE_TMI_SETTING;
+            tmiArinaYear.Text = Res.JE_TMI_USE_ARINA_YEAR;            
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
