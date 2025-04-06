@@ -1,4 +1,5 @@
-﻿using Aritiafel.Organizations;
+﻿using Aritiafel;
+using Aritiafel.Organizations;
 using JsonEditor;
 using JsonEditorV2.Resources;
 using System;
@@ -214,7 +215,7 @@ namespace JsonEditorV2
             }
 
             //確定型態符合
-            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
+            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
             if (ValueControl is Label)
                 return true;
             else if (ValueControl is TextBox)
@@ -341,7 +342,7 @@ namespace JsonEditorV2
             switch (ValueControl)
             {
                 case TextBox TextControl:
-                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type, Setting.UseArinaYear ? null : CultureInfo.CurrentCulture));
+                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type, Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null));
                     break;
                 case CheckBox CheckControl:
                     CheckControl.Checked = (bool)value;

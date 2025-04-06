@@ -844,7 +844,7 @@ namespace JsonEditor
                 if (Columns[i].AutoGenerateKey)
                     jl.Add(GenerateKey(i));                
                 else if (!string.IsNullOrEmpty(Columns[i].DefaultValue))
-                    jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue, useArinaYear).ParseJType(Columns[i].Type));
+                    jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue, useArinaYear, Lines.Count).ParseJType(Columns[i].Type));
                 else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)
                     jl.Add(Columns[i].Choices[0]);
                 else if (Columns[i].IsNullable)

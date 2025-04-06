@@ -149,7 +149,7 @@ namespace JsonEditorV2
 
         private void DtpMain_ValueChanged(object sender, EventArgs e)
         {
-            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;            
+            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
             if (dtpMain.Style == DateTimePickerStyle.Date)
                 Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date, fp);
             else if (dtpMain.Style == DateTimePickerStyle.Time)
@@ -204,7 +204,7 @@ namespace JsonEditorV2
         //確認FKType
         private void CheckFKType(JTable sourceTable, JColumn sourceColumn, JType newType)
         {
-            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
+            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
             foreach (JTable jt in Var.Tables)
             {
                 List<int> columnIndexs = new List<int>();
@@ -362,12 +362,19 @@ namespace JsonEditorV2
                 }                
                 else if(newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
-                    return;
+                    if(txtDefaultValue.Text != Const.FunctionOfCount)
+                    {
+                        RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
+                        return;
+                    }
                 }
                 else if(newType.IsDateTime()) //日期或時間
                 {
-                    if(txtDefaultValue.Text != Const.FunctionOfNow && !CheckValueValid(txtDefaultValue.Text, newType))
+                    // To Do
+                    if(txtDefaultValue.Text != Const.FunctionOfNow &&
+                       txtDefaultValue.Text != Const.FunctionOfNowT &&
+                       txtDefaultValue.Text != Const.FunctionOfNowD
+                        && !CheckValueValid(txtDefaultValue.Text, newType))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
@@ -476,7 +483,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
-            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
+            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
             //改型態檢查            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -936,7 +943,7 @@ namespace JsonEditorV2
             dt.Columns.Add(new DataColumn { ColumnName = Const.HiddenColumnItemIndex, DataType = typeof(int) });
             dt.Columns.Add(Const.HiddenColumnStat);
 
-            IFormatProvider fp = Setting.UseArinaYear ? null : CultureInfo.CurrentCulture;
+            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -3284,7 +3291,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             foreach (JLine jl in Var.SelectedColumnParentTable)
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
-                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaYear).ParseJType(Var.SelectedColumn.Type);
+                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaYear, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
                 else if (Var.SelectedColumn.IsNullable)
                     jl[index] = null;
                 else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)
@@ -3389,7 +3396,7 @@ namespace JsonEditorV2
 
         private void txtDefaultValue_Enter(object sender, EventArgs e)
         {   
-            tltMain.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);            
+            //tltMain.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);            
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
@@ -3400,7 +3407,12 @@ namespace JsonEditorV2
 
         private void txtDefaultValue_Leave(object sender, EventArgs e)
         {
-            tltMain.Hide(this);
+            //tltMain.Hide(this);
+        }
+
+        private void btnHelpDefaultValue_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, Res.JE_COLUMN_DEFAULT_VALUE, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

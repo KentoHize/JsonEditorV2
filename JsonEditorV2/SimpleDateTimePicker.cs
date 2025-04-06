@@ -144,21 +144,15 @@ namespace JsonEditorV2
         {
             if(Style != DateTimePickerStyle.Time)
             {
-                cobSign.SelectedIndex = value.Ticks >= 0 ? 0 : 1;
+                cobSign.SelectedIndex = 0;
                 int year = UseArinaYear ? value.ArYear : value.Year, n1, n2;
-                if(year >= 0)
+                if(year < 0)
                 {
-                    n1 = Math.DivRem(year, 100, out n2);
-                }
-                else
-                {
-                    n1 = Math.DivRem(year, 100, out n2);
-                    if (n2 != 0)
-                    {
-                        n1 -= 1;
-                        n2 += 100;
-                    }   
-                }
+                    cobSign.SelectedIndex = 1;
+                    year *= -1;
+                }                    
+                n1 = Math.DivRem(year, 100, out n2);
+
                 dud100Year.SelectedItem = Convert.ToByte(n1);
                 cobYear.SelectedItem = Convert.ToByte(n2);
 
@@ -224,8 +218,9 @@ namespace JsonEditorV2
             if (type == DateTimePickerStyle.Time || type == DateTimePickerStyle.DateTime)
                 cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = true;
             if (type == DateTimePickerStyle.Time)
-                txtMillisecond.Enabled = true;            
-            cobSign.Enabled = CanNegative;
+                txtMillisecond.Enabled = true;
+            if (!CanNegative)
+                cobSign.Enabled = false;
         }
 
         //private int ModYear(int x, int y, bool withoutZero = false)
@@ -286,7 +281,9 @@ namespace JsonEditorV2
         {
             if (cobYear.DataSource == null || cobMonth.DataSource == null)
                 return;
-            SetDays(Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem), (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
+            SetDays((cobSign.SelectedIndex == 0 ? 1 : -1) *
+                (Convert.ToInt16(dud100Year.SelectedItem) * 100 + Convert.ToInt16(cobYear.SelectedItem)),
+                (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
 

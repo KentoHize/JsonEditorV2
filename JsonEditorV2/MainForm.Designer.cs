@@ -179,6 +179,7 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
+            this.btnHelpDefaultValue = new System.Windows.Forms.Button();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -246,6 +247,7 @@
             // pnlFileInfo
             // 
             this.pnlFileInfo.AutoScroll = true;
+            this.pnlFileInfo.Controls.Add(this.btnHelpDefaultValue);
             this.pnlFileInfo.Controls.Add(this.txtDefaultValue);
             this.pnlFileInfo.Controls.Add(this.lblDefalutValue);
             this.pnlFileInfo.Controls.Add(this.lblColumnChoiceName);
@@ -797,13 +799,14 @@
             this.dtpMain.AutoSize = true;
             this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
             this.dtpMain.BindingControl = null;
-            this.dtpMain.CanNegative = true;            
+            this.dtpMain.CanNegative = true;
             this.dtpMain.Location = new System.Drawing.Point(4, 4);
             this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMain.Name = "dtpMain";
             this.dtpMain.Size = new System.Drawing.Size(435, 78);
             this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
             this.dtpMain.TabIndex = 0;
+            this.dtpMain.UseArinaYear = false;
             // 
             // mnsMain
             // 
@@ -1610,6 +1613,18 @@
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
             // 
+            // btnHelpDefaultValue
+            // 
+            this.btnHelpDefaultValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelpDefaultValue.Location = new System.Drawing.Point(168, 510);
+            this.btnHelpDefaultValue.Name = "btnHelpDefaultValue";
+            this.btnHelpDefaultValue.Size = new System.Drawing.Size(27, 27);
+            this.btnHelpDefaultValue.TabIndex = 40;
+            this.btnHelpDefaultValue.Text = "?";
+            this.btnHelpDefaultValue.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnHelpDefaultValue.UseVisualStyleBackColor = true;
+            this.btnHelpDefaultValue.Click += new System.EventHandler(this.btnHelpDefaultValue_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -1818,5 +1833,6 @@
         private System.Windows.Forms.ToolStripMenuItem tmiSetting;
         private System.Windows.Forms.ToolStripMenuItem tmiArinaYear;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
+        private System.Windows.Forms.Button btnHelpDefaultValue;
     }
 }

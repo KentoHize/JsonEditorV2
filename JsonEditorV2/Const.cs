@@ -10,7 +10,7 @@ namespace JsonEditorV2
 {
     public static class Const
     {
-        public const string VersionString = "Version 0.37";
+        public const string VersionString = "Version 0.38";
 
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 
@@ -24,6 +24,9 @@ namespace JsonEditorV2
 
         public const string FunctionOfNow = "{NOW()}";
         public const string FunctionOfGuid = "{GUID()}";
+        public const string FunctionOfNowT = "{NOW('T')}";
+        public const string FunctionOfNowD = "{NOW('D')}";
+        public const string FunctionOfCount = "{COUNT()}";
 
         public static string BackupFolder { get => Path.Combine(Application.UserAppDataPath, "Backup"); }
         public static string ApplicationDataFolder { get => Path.Combine(Application.UserAppDataPath); }

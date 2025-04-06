@@ -1996,7 +1996,10 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 {NOW()} 代表現在日期和時間        ///{GUID()} 代表新GUID 的當地語系化字串。
+        ///   查詢類似 {NOW()} 代表現在日期和時間
+        ///{NOW(&apos;T&apos;)} 代表現在時間
+        ///{NOW(&apos;D&apos;)} 代表現在日期
+        ///{COUNT()} 代表目前資料行        ///{GUID()} 代表新GUID 的當地語系化字串。
         /// </summary>
         public static string JE_TT_NOW_FUNCTION_GUID_FUNCTION {
             get {
@@ -2005,7 +2008,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 值&quot;{0}&quot;，選項不存在 的當地語系化字串。
+        ///   查詢類似 { 的當地語系化字串。
         /// </summary>
         public static string JE_VAL_CHOICE_VALUE_NOT_EXIST {
             get {

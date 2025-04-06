@@ -43,7 +43,7 @@ namespace JsonEditor
                 case JType.Date:
                     return ((ArDateTime)instance).ToShortDateString(formatProvider);
                 case JType.Time:
-                    return ((ArDateTime)instance).Millisecond == 0 ? ((ArDateTime)instance).ToLongTimeString(formatProvider) : ((ArDateTime)instance).ToShortTimeString(formatProvider);
+                    return ((ArDateTime)instance).Millisecond != 0 ? ((ArDateTime)instance).ToLongTimeString(formatProvider) : ((ArDateTime)instance).ToShortTimeString(formatProvider);
                 case JType.DateTime:
                     return ((ArDateTime)instance).ToString(formatProvider);
                 default:
