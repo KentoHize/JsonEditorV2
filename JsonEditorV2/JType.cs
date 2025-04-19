@@ -3,6 +3,8 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
 using Aritiafel.Organizations.RaeriharUniversity;
+using Aritiafel.Organizations.ArinaOrganization;
+using Aritiafel.Characters.Heroes;
 
 namespace JsonEditor
 {
@@ -41,11 +43,11 @@ namespace JsonEditor
             switch (type)
             {
                 case JType.Date:
-                    return ((ArDateTime)instance).ToShortDateString(formatProvider);
+                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.Date, formatProvider);
                 case JType.Time:
-                    return ((ArDateTime)instance).Millisecond != 0 ? ((ArDateTime)instance).ToLongTimeString(formatProvider) : ((ArDateTime)instance).ToShortTimeString(formatProvider);
+                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.Time, formatProvider);
                 case JType.DateTime:
-                    return ((ArDateTime)instance).ToString(formatProvider);
+                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.DateTime, formatProvider);
                 default:
                     return instance.ToString();
             }
@@ -274,52 +276,65 @@ namespace JsonEditor
         /// <param name="type">JType</param>
         /// <returns>輸出值</returns>
         public static object ParseJType(this object value, JType type, IFormatProvider formatProvider = null)
-        {
+        {   
             if (value == null)
                 return null;
-            if (value.ToString() == new object().ToString())
+            string s = value.ToString();
+            if (s == new object().ToString() || s == "")
                 return type.InitialValue();
 
             switch (type)
             {
                 case JType.Boolean:
-                    if (bool.TryParse(value.ToString(), out bool r1))
+                    if (bool.TryParse(s, out bool r1))
                         return r1;
                     break;
                 case JType.Byte:
-                    if (byte.TryParse(value.ToString(), out byte r2))
+                    if (byte.TryParse(s, out byte r2))
                         return r2;
                     break;
                 case JType.Date:
+                    if (ArDateTime.TryParseExact(s, "B", formatProvider, out ArDateTime rr1))
+                        return rr1;                    
+                    if (ArDateTime.TryParse(s, formatProvider, out rr1))
+                        return rr1;
+                    break;
                 case JType.Time:
+                    if (ArDateTime.TryParseExact(s, "C", formatProvider, out ArDateTime rr2))
+                        return rr2;                    
+                    if (ArDateTime.TryParse(s, formatProvider, out rr2))
+                        return rr2;
+                    break;
                 case JType.DateTime:
-                    if (ArDateTime.TryParse(value.ToString(), formatProvider, out ArDateTime r4))
-                        return r4;
+                    if (ArDateTime.TryParseExact(s, "A", formatProvider, out ArDateTime rr3))
+                        return rr3;                    
+                    if (ArDateTime.TryParse(s, formatProvider, out rr3))
+                        return rr3;
                     break;
                 case JType.Double:
-                    if (double.TryParse(value.ToString(), out double r5))
+                    if (double.TryParse(s, out double r5))
                         return r5;
                     break;
                 case JType.Guid:
-                    if (Guid.TryParse(value.ToString(), out Guid r6))
+                    if (Guid.TryParse(s, out Guid r6))
                         return r6;
                     break;
                 case JType.Integer:
-                    if (int.TryParse(value.ToString(), out int r7))
+                    if (int.TryParse(s, out int r7))
                         return r7;
                     break;
                 case JType.Long:
-                    if (long.TryParse(value.ToString(), out long r8))
+                    if (long.TryParse(s, out long r8))
                         return r8;
                     break;
                 case JType.None:
                     return null;
                 case JType.Uri:
-                    if (Uri.TryCreate(value.ToString(), UriKind.RelativeOrAbsolute, out Uri r10))
+                    if (Uri.TryCreate(s, UriKind.RelativeOrAbsolute, out Uri r10))
                         return r10;
                     break;
                 case JType.Decimal:
-                    if (decimal.TryParse(value.ToString(), out decimal r11))
+                    if (decimal.TryParse(s, out decimal r11))
                         return r11;
                     break;
                 case JType.Array:
@@ -327,9 +342,9 @@ namespace JsonEditor
                     return value;
                 case JType.Choice:
                 case JType.String:
-                    return value.ToString();
+                    return s;
                 default:
-                    return value.ToString();
+                    return s;
             }
 
             throw new InvalidCastException();

@@ -1,11 +1,12 @@
 ﻿using System;
 using Aritiafel.Characters.Heroes;
+using Aritiafel.Locations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JsonEditorV2Tests
 {
     [TestClass]
-    public class Backup
+    public class BackupOrRun
     {
 
         [TestMethod]
@@ -13,6 +14,12 @@ namespace JsonEditorV2Tests
         {
             Tina.SaveProject(ProjectChoice.JsonEditorV2);
         }
-       
+
+        [TestMethod]
+
+        public void ResetIniFile()
+        {
+            //SettingShop.ResetIniFile();
+        }
     }
 }

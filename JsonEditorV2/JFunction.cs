@@ -1,7 +1,9 @@
 ﻿using Aritiafel;
+using Aritiafel.Organizations.ArinaOrganization;
 using Aritiafel.Organizations.RaeriharUniversity;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,28 +23,16 @@ namespace JsonEditor
 
         //internal static string 
 
-        public static string ParseFunction(string s, bool useArDate = false, params object[] args)
+        public static string ParseFunction(string s, params object[] args)
         {
             //NOW
-            if (useArDate)
-                s = s.Replace("{NOW()}", ArDateTime.Now.ToString(ArinaOrganization.ArinaCultureInfo));
-            else
-                s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString( ArDateTimeType.DateTime, 0));
-            if (useArDate)
-                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("hh:MM:ss.fff", ArinaOrganization.ArinaCultureInfo));
-            else
-                s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("hh:MM:ss.fff"));
-            if (useArDate)
-                s = s.Replace("{NOW('D')}", ArDateTime.Now.ToShortDateString(ArinaOrganization.ArinaCultureInfo));
-            else
-                s = s.Replace("{NOW('D')}", ArDateTime.Now.ToShortDateString());
+            s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString());
+            s = s.Replace("{NOW('T')}", ArDateTime.Now.ToStandardString(ArStandardDateTimeType.Time));
+            s = s.Replace("{NOW('D')}", ArDateTime.Now.ToStandardString(ArStandardDateTimeType.Date));
             //COUNT
             s = s.Replace("{COUNT()}", args[0].ToString());
             //GUID
             s = s.Replace("{GUID()}", Guid.NewGuid().ToString());
-
-            //DateTime d;
-            
             return s;
         }
     }

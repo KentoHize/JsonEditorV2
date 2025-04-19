@@ -215,7 +215,7 @@ namespace JsonEditorV2
             }
 
             //確定型態符合
-            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.SystemCI;
             if (ValueControl is Label)
                 return true;
             else if (ValueControl is TextBox)
@@ -342,7 +342,7 @@ namespace JsonEditorV2
             switch (ValueControl)
             {
                 case TextBox TextControl:
-                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type, Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null));
+                    TextControl.Text = ChangeStringToText(value.ToString(JColumn.Type, Setting.UICI));
                     break;
                 case CheckBox CheckControl:
                     CheckControl.Checked = (bool)value;

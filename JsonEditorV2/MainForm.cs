@@ -33,7 +33,7 @@ namespace JsonEditorV2
             InitializeComponent();
             Var.Database = new JDatabase();
             dtpMain.Leave += DtpMain_Leave;
-            dtpMain.ValueChanged += DtpMain_ValueChanged;
+            dtpMain.ValueChanged += DtpMain_ValueChanged;            
 #if DEBUG
             CheckForIllegalCrossThreadCalls = false;
 #endif
@@ -151,7 +151,7 @@ namespace JsonEditorV2
 
         private void DtpMain_ValueChanged(object sender, EventArgs e)
         {
-            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UICI;
             if (dtpMain.Style == DateTimePickerStyle.Date)
                 Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date, fp);
             else if (dtpMain.Style == DateTimePickerStyle.Time)
@@ -206,7 +206,7 @@ namespace JsonEditorV2
         //確認FKType
         private void CheckFKType(JTable sourceTable, JColumn sourceColumn, JType newType)
         {
-            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.SystemCI;
             foreach (JTable jt in Var.Tables)
             {
                 List<int> columnIndexs = new List<int>();
@@ -485,7 +485,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
-            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.SystemCI;
             //改型態檢查            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -945,7 +945,7 @@ namespace JsonEditorV2
             dt.Columns.Add(new DataColumn { ColumnName = Const.HiddenColumnItemIndex, DataType = typeof(int) });
             dt.Columns.Add(Const.HiddenColumnStat);
 
-            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UICI;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -2251,7 +2251,8 @@ namespace JsonEditorV2
               .ToList();
 
             //預讀預設值
-            Setting.UICI = new CultureInfo("en-US");
+            Setting.UICI = Mylar.ArinaCultureInfo;
+            Setting.SystemCI = Mylar.ArinaCultureInfo;
             Setting.TableCheckMethod = ValueCheckMethod.OneInvalidCheck;
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
@@ -2263,7 +2264,7 @@ namespace JsonEditorV2
             Setting.LatestFolder4 = null;
             Setting.UseArinaDate = false;
 
-            //讀取Setting
+            //讀取Setting            
             SettingShop.LoadIniFile(typeof(Setting));
 
             //最新資料庫位置更新
@@ -3298,7 +3299,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             foreach (JLine jl in Var.SelectedColumnParentTable)
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
-                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaDate, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
+                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
                 else if (Var.SelectedColumn.IsNullable)
                     jl[index] = null;
                 else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)
@@ -3407,8 +3408,9 @@ namespace JsonEditorV2
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
-        {
+        {   
             Setting.UseArinaDate = !Setting.UseArinaDate;
+            Setting.SystemCI = Setting.UseArinaDate ? Mylar.ArinaCultureInfo : CultureInfo.InvariantCulture;
             tmiArinaDate.Checked = Setting.UseArinaDate;
         }
 
