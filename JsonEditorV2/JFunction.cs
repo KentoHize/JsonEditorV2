@@ -1,6 +1,7 @@
 ﻿using Aritiafel;
 using Aritiafel.Organizations.ArinaOrganization;
 using Aritiafel.Organizations.RaeriharUniversity;
+using JsonEditorV2;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,13 +23,13 @@ namespace JsonEditor
         //List<JFunc>
 
         //internal static string 
-
+        //改為可以傳入值
         public static string ParseFunction(string s, params object[] args)
         {
             //NOW
-            s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString());
-            s = s.Replace("{NOW('T')}", ArDateTime.Now.ToStandardString(ArStandardDateTimeType.Time));
-            s = s.Replace("{NOW('D')}", ArDateTime.Now.ToStandardString(ArStandardDateTimeType.Date));
+            s = s.Replace("{NOW()}", ArDateTime.Now.ToString("a"));
+            s = s.Replace("{NOW('D')}", ArDateTime.Now.ToString("B"));
+            s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("C"));            
             //COUNT
             s = s.Replace("{COUNT()}", args[0].ToString());
             //GUID

@@ -17,7 +17,7 @@ namespace JsonEditor
         public List<JColumn> Columns { get; set; } = new List<JColumn>();
         public List<JLine> Lines { get; set; } = new List<JLine>();
         public List<SortInfo> SortInfoList { get; set; } //待開發 To Do
-        public bool InsertFirst {get; set;}        
+        public bool InsertFirst { get; set; }
         public bool HasKey { get => Columns.Exists(m => m.IsKey); }
         public bool Loaded { get; set; }
         public bool Changed { get; set; }
@@ -68,7 +68,7 @@ namespace JsonEditor
 
             for (int i = 0; i < Columns.Count; i++)
             {
-                if (Columns[i].Name.StartsWith(" ") || Columns[i].Name.EndsWith(" ") || 
+                if (Columns[i].Name.StartsWith(" ") || Columns[i].Name.EndsWith(" ") ||
                     Columns[i].Name.Contains(",") || Columns[i].Name.Contains("\"") ||
                     Columns[i].Name.Contains("\n"))
                     sb.AppendFormat("\"{0}\"", Columns[i].Name.Replace("\"", "\"\""));
@@ -80,13 +80,13 @@ namespace JsonEditor
             sb.AppendLine();
 
             for (int i = 0; i < Lines.Count; i++)
-            {   
-                for(int j = 0; j < Columns.Count; j++)
+            {
+                for (int j = 0; j < Columns.Count; j++)
                 {
                     value = Lines[i][j]?.ToString(Columns[j].Type);
                     if (value == null)
                         ;
-                    else if (value.StartsWith(" ") || value.EndsWith(" ") || 
+                    else if (value.StartsWith(" ") || value.EndsWith(" ") ||
                         value.Contains(",") || value.Contains("\"") ||
                         value.Contains("\n"))
                         sb.AppendFormat("\"{0}\"", value.Replace("\"", "\"\""));
@@ -150,10 +150,19 @@ namespace JsonEditor
             {
                 var line = new ExpandoObject() as IDictionary<string, object>;
                 for (int i = 0; i < Columns.Count; i++)
-                    if(Columns[i].Type.IsDateTime())
-                        line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type));
+                {
+                    if (Columns[i].Type.IsDateTime())
+                    {
+                        if (Columns[i].Type == JType.DateTime)
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "a"));
+                        else if (Columns[i].Type == JType.Date)
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "B"));
+                        else if (Columns[i].Type == JType.Time)
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "C"));
+                    }
                     else
                         line.Add(Columns[i].Name, jl[i]);
+                }
                 result.Add(line);
             }
             return result;
@@ -325,15 +334,15 @@ namespace JsonEditor
             bool firstLine = true;
             bool inDoubleQuotes = false;
             bool foundDoubleQuotes = false;
-            while(postion != csv.Length)
-            {               
+            while (postion != csv.Length)
+            {
                 switch (csv[postion])
-                {   
+                {
                     case ',':
                         if (inDoubleQuotes)
                         {
-                            postion++;                           
-                        }   
+                            postion++;
+                        }
                         else
                         {
                             if (firstLine)
@@ -349,11 +358,11 @@ namespace JsonEditor
                             {
                                 Lines[Lines.Count - 1].Add(value.ToString());
                                 value = new StringBuilder();
-                            }                                
+                            }
                             columnIndex++;
                             if (columnIndex > columnCount)
                                 throw new ArgumentOutOfRangeException("Column Index Out of Range");
-                        }   
+                        }
                         break;
                     case '"':
                         if (foundDoubleQuotes)
@@ -368,14 +377,14 @@ namespace JsonEditor
                             inDoubleQuotes = false;
                             if (firstLine)
                             {
-                                if (value.ToString() != "")                                    
+                                if (value.ToString() != "")
                                     Columns.Add(new JColumn(value.ToString()));
                                 else
                                     Columns.Add(new JColumn($"Column-{Guid.NewGuid().ToString()}"));
                                 value = new StringBuilder();
-                            }   
+                            }
                             else
-                            {   
+                            {
                                 Lines[Lines.Count - 1].Add(value.ToString());
                                 columnIndex++;
                                 while (columnIndex < columnCount)
@@ -384,7 +393,7 @@ namespace JsonEditor
                                     columnIndex++;
                                 }
                                 value = new StringBuilder();
-                            }                                
+                            }
                         }
                         else if (csv[postion + 1] != '"')
                             inDoubleQuotes = false;
@@ -418,14 +427,14 @@ namespace JsonEditor
                             }
                             if (firstLine)
                                 firstLine = false;
-                            if(postion != csv.Length - 1)
+                            if (postion != csv.Length - 1)
                                 Lines.Add(new JLine());
                             columnIndex = 0;
                         }
                         break;
                     case ' ':
                         if (inDoubleQuotes)
-                            value.Append(' ');                        
+                            value.Append(' ');
                         break;
                     case '\r':
                         if (inDoubleQuotes)
@@ -437,7 +446,7 @@ namespace JsonEditor
                 }
                 postion++;
             }
-            if(value.Length != 0)
+            if (value.Length != 0)
                 Lines[Lines.Count - 1].Add(value.ToString());
 
             while (columnIndex < columnCount)
@@ -647,7 +656,7 @@ namespace JsonEditor
                 }
 
                 //Type
-                if (jl[i].GetType() != Columns[i].Type.ToType() && 
+                if (jl[i].GetType() != Columns[i].Type.ToType() &&
                     Columns[i].Type != JType.Object && Columns[i].Type != JType.Array)
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.WrongType);
@@ -655,7 +664,7 @@ namespace JsonEditor
                 }
 
                 //Choice
-                if(Columns[i].Type == JType.Choice && !Columns[i].Choices.Contains(jl[i].ToString()))
+                if (Columns[i].Type == JType.Choice && !Columns[i].Choices.Contains(jl[i].ToString()))
                 {
                     AddInvalidRecord(indexOfLine, i, JValueInvalidReasons.ChoiceValueNotExists);
                     return false;
@@ -812,12 +821,12 @@ namespace JsonEditor
             }
 
             uniqueKey = startValue;
-            while(Lines.Exists(m => m.Values[index].CompareTo(uniqueKey, Columns[index].Type) == 0))
+            while (Lines.Exists(m => m.Values[index].CompareTo(uniqueKey, Columns[index].Type) == 0))
             {
                 uniqueKey++;
-                if(uniqueKey == startValue)
+                if (uniqueKey == startValue)
                     return null;
-            }            
+            }
             return uniqueKey.ParseJType(Columns[index].Type);
         }
 
@@ -831,7 +840,7 @@ namespace JsonEditor
                 else
                     jl.Add(Lines[index][i]);
             }
-            
+
             if (insertFirst)
                 Lines.Insert(0, jl);
             else
@@ -844,7 +853,7 @@ namespace JsonEditor
             for (int i = 0; i < Columns.Count; i++)
             {
                 if (Columns[i].AutoGenerateKey)
-                    jl.Add(GenerateKey(i));                
+                    jl.Add(GenerateKey(i));
                 else if (!string.IsNullOrEmpty(Columns[i].DefaultValue))
                     jl.Add(JFunction.ParseFunction(Columns[i].DefaultValue, Lines.Count).ParseJType(Columns[i].Type));
                 else if (Columns[i].Type == JType.Choice && Columns[i].Choices.Count != 0)

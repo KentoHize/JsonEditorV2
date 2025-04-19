@@ -128,8 +128,8 @@ namespace JsonEditorV2
 
         public ArDateTime GetValue()
         {
-            if (!int.TryParse(txtMillisecond.Text, out int milsec))
-                milsec = 0;
+            if (!int.TryParse(txtDecimalSecond.Text.PadRight(7, '0'), out int tick))
+                tick = 0;
             //0年
 
             //Negative
@@ -137,7 +137,7 @@ namespace JsonEditorV2
                 ((byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem),
                (byte)cobMonth.SelectedItem, (byte)cobDay.SelectedItem,
                (byte)cobHour.SelectedItem, (byte)cobMinute.SelectedItem,
-               (byte)cobSecond.SelectedItem, milsec, UseArinaYear);
+               (byte)cobSecond.SelectedItem, 0, UseArinaYear).AddTicks(tick);
         }
 
         public void SetValue(ArDateTime value)
@@ -165,7 +165,7 @@ namespace JsonEditorV2
                 cobSecond.SelectedItem = Convert.ToByte(value.Second);
             }
             if(Style == DateTimePickerStyle.Time)
-                txtMillisecond.Text = value.Millisecond.ToString().PadRight(3, '0');
+                txtDecimalSecond.Text = (value.Millisecond * 10000 + value.RemainTick).ToString();
         }
 
         public void PatchTextFromResource()
@@ -201,9 +201,9 @@ namespace JsonEditorV2
             cobYear.SelectedIndex = cobMonth.SelectedIndex =
             cobDay.SelectedIndex = cobHour.SelectedIndex = cobMinute.SelectedIndex =
             cobSecond.SelectedIndex = cobSign.SelectedIndex = 0;            
-            txtMillisecond.Text = "000";
+            txtDecimalSecond.Text = "0000000";
             dud100Year.Enabled = cobYear.Enabled = cobMonth.Enabled = cobDay.Enabled =
-            cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = txtMillisecond.Enabled = 
+            cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = txtDecimalSecond.Enabled = 
             cobSign.Enabled = false;
         }
 
@@ -216,7 +216,7 @@ namespace JsonEditorV2
             if (type == DateTimePickerStyle.Time || type == DateTimePickerStyle.DateTime)
                 cobHour.Enabled = cobMinute.Enabled = cobSecond.Enabled = true;
             if (type == DateTimePickerStyle.Time)
-                txtMillisecond.Enabled = true;
+                txtDecimalSecond.Enabled = true;
             if (!CanNegative)
                 cobSign.Enabled = false;
         }
@@ -305,14 +305,14 @@ namespace JsonEditorV2
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
 
-        private void txtMillisecond_TextChanged(object sender, EventArgs e)
+        private void txtDecimalSecond_TextChanged(object sender, EventArgs e)
         {
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
 
-        private void txtMillisecond_Click(object sender, EventArgs e)
+        private void txtDecimalSecond_Click(object sender, EventArgs e)
         {
-            txtMillisecond.SelectAll();
+            //txtDecimalSecond.SelectAll();
         }
 
         private void cobSign_SelectedIndexChanged(object sender, EventArgs e)

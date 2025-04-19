@@ -31,26 +31,35 @@ namespace JsonEditor
 
     public static class JTypeExtentions
     {
+        public static string ToString(this object instance, JType type)
+            => instance.ToString(type, null, null);
+        public static string ToString(this object instance, JType type, IFormatProvider formatProvider)
+            => instance.ToString(type, null, formatProvider);
+        public static string ToString(this object instance, JType type, string format)
+            => instance.ToString(type, format, null);
+
         /// <summary>
         /// JType轉換成字串
         /// </summary>
         /// <param name="instance">實體</param>
         /// <param name="type">JType</param>
+        /// <param name="format">格式字串</param>
         /// <param name="formatProvider">格式提供者</param>
         /// <returns>字串</returns>
-        public static string ToString(this object instance, JType type, IFormatProvider formatProvider = null)
+        public static string ToString(this object instance, JType type, string format, IFormatProvider formatProvider)
         {
-            switch (type)
+            if(type.IsDateTime())
             {
-                case JType.Date:
-                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.Date, formatProvider);
-                case JType.Time:
-                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.Time, formatProvider);
-                case JType.DateTime:
-                    return ((ArDateTime)instance).ToStandardString(ArStandardDateTimeType.DateTime, formatProvider);
-                default:
-                    return instance.ToString();
+                if (type == JType.Date && string.IsNullOrEmpty(format))
+                    format = "D";
+                if (type == JType.Time && string.IsNullOrEmpty(format))
+                    format = "C";
+                if (type == JType.DateTime && string.IsNullOrEmpty(format))
+                    format = "g";
+                return ((ArDateTime)instance).ToString(format, formatProvider);
             }
+            else
+                return instance.ToString();
         }
 
         /// <summary>
