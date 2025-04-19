@@ -1796,7 +1796,7 @@ namespace JsonEditorV2
             using (FileStream fs = new FileStream(Path.Combine(Var.JFI.DirectoryPath, $"{jt.Name}.json"), FileMode.Create))
             {
                 StreamWriter sw = new StreamWriter(fs);
-                sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(), Newtonsoft.Json.Formatting.Indented));
+                sw.Write(JsonConvert.SerializeObject(jt.GetJsonObject(Setting.SystemCI), Newtonsoft.Json.Formatting.Indented));
                 sw.Close();
 
             }
@@ -2700,10 +2700,11 @@ namespace JsonEditorV2
 
         private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
         {
-            if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri)
+            if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri ||
+                Var.SelectedTable.Columns[columnIndex].Type.IsDateTime())
                 return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
             else
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text.ToString(Var.SelectedTable.Columns[columnIndex].Type));
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text);
         }
 
         public void btnFindConfirm_Click(object sender, EventArgs e)
@@ -2803,11 +2804,12 @@ namespace JsonEditorV2
 
         public void ShowDateTimePicker(TextBox valueControl, DateTimePickerStyle style)
         {
-            if (!ArDateTime.TryParse(valueControl.Text, out ArDateTime r1))
+            if (!ArDateTime.TryParse(valueControl.Text, Setting.UICI, out ArDateTime r1))
                 r1 = ArDateTime.Now;
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
-            dtpMain.UseArinaYear = Setting.UseArinaDate;
+            //dtpMain.UseArinaYear = Setting.UseArinaDate;
+            dtpMain.UseArinaYear = Setting.UICI == Mylar.ArinaCultureInfo;
             dtpMain.CanNegative = true;
             dtpMain.SetType(style);
             dtpMain.SetValue(r1);

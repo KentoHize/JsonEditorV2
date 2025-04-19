@@ -180,7 +180,7 @@ namespace JsonEditorV2
                 if (newValue != null)
                     SetValueToString(newValue);
             }
-            else if (JColumn.Type == JType.Date || JColumn.Type == JType.Time || JColumn.Type == JType.DateTime)
+            else if (JColumn.Type.IsDateTime())
             {
                 DateTimePickerStyle style = DateTimePickerStyle.DateTime;
                 switch (JColumn.Type)
@@ -215,7 +215,7 @@ namespace JsonEditorV2
             }
 
             //確定型態符合
-            IFormatProvider fp = Setting.SystemCI;
+            IFormatProvider fp = Setting.UICI;
             if (ValueControl is Label)
                 return true;
             else if (ValueControl is TextBox)

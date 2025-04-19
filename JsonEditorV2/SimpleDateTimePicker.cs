@@ -322,5 +322,10 @@ namespace JsonEditorV2
                 (byte)cobMonth.SelectedItem, (byte?)cobDay.SelectedItem);
             ValueChanged?.Invoke(sender, EventArgs.Empty);
         }
+
+        private void cobYear_Format(object sender, ListControlConvertEventArgs e)
+        {   
+            e.Value = ((byte)e.ListItem).ToString("00");
+        }
     }
 }

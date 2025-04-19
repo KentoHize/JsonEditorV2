@@ -143,7 +143,7 @@ namespace JsonEditor
         /// 擷取存檔用的Data Object
         /// </summary>
         /// <returns>Json Object</returns>
-        public object GetJsonObject()
+        public object GetJsonObject(IFormatProvider formatProvider)
         {
             List<object> result = new List<object>();
             foreach (JLine jl in Lines)
@@ -154,11 +154,11 @@ namespace JsonEditor
                     if (Columns[i].Type.IsDateTime())
                     {
                         if (Columns[i].Type == JType.DateTime)
-                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "a"));
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "a", formatProvider));
                         else if (Columns[i].Type == JType.Date)
-                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "B"));
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "B", formatProvider));
                         else if (Columns[i].Type == JType.Time)
-                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "C"));
+                            line.Add(Columns[i].Name, jl[i]?.ToString(Columns[i].Type, "C", formatProvider));
                     }
                     else
                         line.Add(Columns[i].Name, jl[i]);

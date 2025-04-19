@@ -89,6 +89,7 @@
             this.cobYear.Size = new System.Drawing.Size(45, 23);
             this.cobYear.TabIndex = 1;
             this.cobYear.SelectedIndexChanged += new System.EventHandler(this.cobYear_SelectedIndexChanged);
+            this.cobYear.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.cobYear_Format);
             // 
             // lblMonth
             // 

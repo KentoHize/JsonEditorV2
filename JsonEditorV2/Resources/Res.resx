@@ -853,7 +853,7 @@
     <value>從開頭加入資料</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>{{NOW()\}} 代表現在日期和時間
+    <value>{{NOW()}} 代表現在日期和時間
 {{NOW('T')}} 代表現在時間
 {{NOW('D')}} 代表現在日期
 {{COUNT()}} 代表目前資料行{{GUID()}} 代表新GUID</value>

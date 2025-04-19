@@ -1996,7 +1996,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 {{NOW()\}} 代表現在日期和時間
+        ///   查詢類似 {{NOW()}} 代表現在日期和時間
         ///{{NOW(&apos;T&apos;)}} 代表現在時間
         ///{{NOW(&apos;D&apos;)}} 代表現在日期
         ///{{COUNT()}} 代表目前資料行        ///{{GUID()}} 代表新GUID 的當地語系化字串。
