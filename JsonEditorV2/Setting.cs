@@ -12,12 +12,13 @@ namespace JsonEditorV2
     public static class Setting
     {
         public static ValueCheckMethod TableCheckMethod { get; set; }
-        public static CultureInfo CI { get; set; }
+        public static CultureInfo UICI { get; set; }
+        public static CultureInfo SystemCI { get; set; }
         public static long DontLoadFileBytesThreshold { get; set; } //bytes
         public static int NumberOfRowsMaxValue { get; set; }
         public static Color InvalidLineBackColor { get; set; }
         public static int DgvLinesColumnStandardWidth { get; set; }
-        public static bool UseArinaYear { get; set; }
+        public static bool UseArinaDate { get; set; }
         public static string LatestFolder1 { get; set; }
         public static string LatestFolder2 { get; set; }
         public static string LatestFolder3 { get; set; }

@@ -2,6 +2,7 @@
 using Aritiafel.Items;
 using Aritiafel.Locations;
 using Aritiafel.Organizations;
+using Aritiafel.Organizations.ArinaOrganization;
 using Aritiafel.Organizations.RaeriharUniversity;
 using JsonEditor;
 using JsonEditorV2.Resources;
@@ -135,7 +136,7 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
-            tmiArinaYear.Text = Res.JE_TMI_USE_ARINA_YEAR;            
+            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_YEAR;            
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -150,7 +151,7 @@ namespace JsonEditorV2
 
         private void DtpMain_ValueChanged(object sender, EventArgs e)
         {
-            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
             if (dtpMain.Style == DateTimePickerStyle.Date)
                 Var.BindingTextbox.Text = dtpMain.GetValue().ToString(JType.Date, fp);
             else if (dtpMain.Style == DateTimePickerStyle.Time)
@@ -167,7 +168,7 @@ namespace JsonEditorV2
 
         private void ChangeCulture()
         {
-            Res.Culture = Setting.CI;
+            Res.Culture = Setting.UICI;
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
@@ -205,7 +206,7 @@ namespace JsonEditorV2
         //確認FKType
         private void CheckFKType(JTable sourceTable, JColumn sourceColumn, JType newType)
         {
-            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
             foreach (JTable jt in Var.Tables)
             {
                 List<int> columnIndexs = new List<int>();
@@ -484,7 +485,7 @@ namespace JsonEditorV2
 
             Var.SelectedColumn.IsKey = ckbColumnIsKey.Checked;
 
-            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
             //改型態檢查            
             if (Var.SelectedColumn.Type != newType)
             {
@@ -944,7 +945,7 @@ namespace JsonEditorV2
             dt.Columns.Add(new DataColumn { ColumnName = Const.HiddenColumnItemIndex, DataType = typeof(int) });
             dt.Columns.Add(Const.HiddenColumnStat);
 
-            IFormatProvider fp = Setting.UseArinaYear ? ArinaOrganization.ArinaCultureInfo : null;
+            IFormatProvider fp = Setting.UseArinaDate ? ArinaOrganization.ArinaCultureInfo : null;
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -1396,26 +1397,26 @@ namespace JsonEditorV2
                 else
                     continue;
 
-                if (tsmi.Name.Contains(Setting.CI.Name.Remove(2, 1).ToUpper()))
+                if (tsmi.Name.Contains(Setting.UICI.Name.Remove(2, 1).ToUpper()))
                     tsmi.Checked = true;
             }
         }
 
         private void tmiLanguageZHCN_Click(object sender, EventArgs e)
         {
-            Setting.CI = new CultureInfo("zh-CN");
+            Setting.UICI = new CultureInfo("zh-CN");
             ChangeCulture();
         }
 
         public void tmiLanguageZHTW_Click(object sender, EventArgs e)
         {
-            Setting.CI = new CultureInfo("zh-TW");
+            Setting.UICI = new CultureInfo("zh-TW");
             ChangeCulture();
         }
 
         public void tmiLanguageENUS_Click(object sender, EventArgs e)
         {
-            Setting.CI = new CultureInfo("en-US");
+            Setting.UICI = new CultureInfo("en-US");
             ChangeCulture();
         }
 
@@ -1903,7 +1904,7 @@ namespace JsonEditorV2
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
                 return;
             }            
-            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst, Setting.UseArinaYear);
+            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst, Setting.UseArinaDate);
             Var.SelectedTable.Changed = true;
 
             if (Var.SelectedTable.InsertFirst)
@@ -2250,7 +2251,7 @@ namespace JsonEditorV2
               .ToList();
 
             //預讀預設值
-            Setting.CI = new CultureInfo("en-US");
+            Setting.UICI = new CultureInfo("en-US");
             Setting.TableCheckMethod = ValueCheckMethod.OneInvalidCheck;
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
@@ -2260,7 +2261,7 @@ namespace JsonEditorV2
             Setting.LatestFolder2 = null;
             Setting.LatestFolder3 = null;
             Setting.LatestFolder4 = null;
-            Setting.UseArinaYear = false;
+            Setting.UseArinaDate = false;
 
             //讀取Setting
             SettingShop.LoadIniFile(typeof(Setting));
@@ -2300,7 +2301,7 @@ namespace JsonEditorV2
 
             //設定初始值
             cobCheckMethod.SelectedValue = Setting.TableCheckMethod;
-            tmiArinaYear.Checked = Setting.UseArinaYear;
+            tmiArinaDate.Checked = Setting.UseArinaDate;
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -2805,7 +2806,7 @@ namespace JsonEditorV2
                 r1 = ArDateTime.Now;
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
-            dtpMain.UseArinaYear = Setting.UseArinaYear;
+            dtpMain.UseArinaYear = Setting.UseArinaDate;
             dtpMain.CanNegative = true;
             dtpMain.SetType(style);
             dtpMain.SetValue(r1);
@@ -3297,7 +3298,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             foreach (JLine jl in Var.SelectedColumnParentTable)
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
-                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaYear, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
+                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Setting.UseArinaDate, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
                 else if (Var.SelectedColumn.IsNullable)
                     jl[index] = null;
                 else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)
@@ -3407,8 +3408,8 @@ namespace JsonEditorV2
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
         {
-            Setting.UseArinaYear = !Setting.UseArinaYear;
-            tmiArinaYear.Checked = Setting.UseArinaYear;
+            Setting.UseArinaDate = !Setting.UseArinaDate;
+            tmiArinaDate.Checked = Setting.UseArinaDate;
         }
 
         private void txtDefaultValue_Leave(object sender, EventArgs e)
@@ -3419,6 +3420,12 @@ namespace JsonEditorV2
         private void btnHelpDefaultValue_Click(object sender, EventArgs e)
         {
             RabbitCouriers.SentInformationByResource("JE_TT_NOW_FUNCTION_GUID_FUNCTION", Res.JE_COLUMN_DEFAULT_VALUE);
+        }
+
+        private void tmiLanguageZHAO_Click(object sender, EventArgs e)
+        {
+            Setting.UICI = Mylar.ArinaCultureInfo;
+            ChangeCulture();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace JsonEditor
             if (useArDate)
                 s = s.Replace("{NOW()}", ArDateTime.Now.ToString(ArinaOrganization.ArinaCultureInfo));
             else
-                s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString(ArDateTimeType.DateTime, 0));
+                s = s.Replace("{NOW()}", ArDateTime.Now.ToStandardString( ArDateTimeType.DateTime, 0));
             if (useArDate)
                 s = s.Replace("{NOW('T')}", ArDateTime.Now.ToString("hh:MM:ss.fff", ArinaOrganization.ArinaCultureInfo));
             else
