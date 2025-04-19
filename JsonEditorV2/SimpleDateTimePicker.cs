@@ -165,7 +165,7 @@ namespace JsonEditorV2
                 cobSecond.SelectedItem = Convert.ToByte(value.Second);
             }
             if(Style == DateTimePickerStyle.Time)
-                txtDecimalSecond.Text = (value.Millisecond * 10000 + value.RemainTick).ToString();
+                txtDecimalSecond.Text = (value.Millisecond * 10000 + value.RemainTick).ToString("0000000");
         }
 
         public void PatchTextFromResource()
@@ -326,6 +326,12 @@ namespace JsonEditorV2
         private void cobYear_Format(object sender, ListControlConvertEventArgs e)
         {   
             e.Value = ((byte)e.ListItem).ToString("00");
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            if(ArDateTime.TryParse(Clipboard.GetText(), Setting.UICI, out ArDateTime result))
+                SetValue(result);
         }
     }
 }

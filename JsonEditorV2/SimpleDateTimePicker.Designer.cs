@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimpleDateTimePicker));
             this.lblDot = new System.Windows.Forms.Label();
             this.lblSecond = new System.Windows.Forms.Label();
             this.dud100Year = new System.Windows.Forms.DomainUpDown();
@@ -44,12 +46,14 @@
             this.txtDecimalSecond = new System.Windows.Forms.TextBox();
             this.cobSecond = new System.Windows.Forms.ComboBox();
             this.cobSign = new System.Windows.Forms.ComboBox();
+            this.btnPaste = new System.Windows.Forms.Button();
+            this.imgMain = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // lblDot
             // 
             this.lblDot.AutoSize = true;
-            this.lblDot.Location = new System.Drawing.Point(295, 48);
+            this.lblDot.Location = new System.Drawing.Point(289, 48);
             this.lblDot.Name = "lblDot";
             this.lblDot.Size = new System.Drawing.Size(11, 15);
             this.lblDot.TabIndex = 14;
@@ -58,7 +62,7 @@
             // lblSecond
             // 
             this.lblSecond.AutoSize = true;
-            this.lblSecond.Location = new System.Drawing.Point(406, 47);
+            this.lblSecond.Location = new System.Drawing.Point(383, 47);
             this.lblSecond.Name = "lblSecond";
             this.lblSecond.Size = new System.Drawing.Size(12, 15);
             this.lblSecond.TabIndex = 13;
@@ -66,10 +70,10 @@
             // 
             // dud100Year
             // 
-            this.dud100Year.Location = new System.Drawing.Point(68, 12);
+            this.dud100Year.Location = new System.Drawing.Point(49, 12);
             this.dud100Year.Name = "dud100Year";
             this.dud100Year.ReadOnly = true;
-            this.dud100Year.Size = new System.Drawing.Size(53, 25);
+            this.dud100Year.Size = new System.Drawing.Size(39, 25);
             this.dud100Year.TabIndex = 0;
             this.dud100Year.Text = "00";
             this.dud100Year.SelectedItemChanged += new System.EventHandler(this.dud100Year_SelectedItemChanged);
@@ -83,7 +87,7 @@
             "1",
             "2",
             "3"});
-            this.cobYear.Location = new System.Drawing.Point(127, 10);
+            this.cobYear.Location = new System.Drawing.Point(92, 10);
             this.cobYear.Name = "cobYear";
             this.cobYear.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cobYear.Size = new System.Drawing.Size(45, 23);
@@ -94,7 +98,7 @@
             // lblMonth
             // 
             this.lblMonth.AutoSize = true;
-            this.lblMonth.Location = new System.Drawing.Point(286, 14);
+            this.lblMonth.Location = new System.Drawing.Point(247, 14);
             this.lblMonth.Name = "lblMonth";
             this.lblMonth.Size = new System.Drawing.Size(12, 15);
             this.lblMonth.TabIndex = 2;
@@ -114,7 +118,7 @@
             this.cobMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobMonth.Enabled = false;
             this.cobMonth.FormattingEnabled = true;
-            this.cobMonth.Location = new System.Drawing.Point(235, 10);
+            this.cobMonth.Location = new System.Drawing.Point(198, 10);
             this.cobMonth.Name = "cobMonth";
             this.cobMonth.Size = new System.Drawing.Size(45, 23);
             this.cobMonth.TabIndex = 3;
@@ -132,7 +136,7 @@
             // lblDay
             // 
             this.lblDay.AutoSize = true;
-            this.lblDay.Location = new System.Drawing.Point(406, 14);
+            this.lblDay.Location = new System.Drawing.Point(365, 14);
             this.lblDay.Name = "lblDay";
             this.lblDay.Size = new System.Drawing.Size(12, 15);
             this.lblDay.TabIndex = 4;
@@ -143,7 +147,7 @@
             this.cobDay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobDay.Enabled = false;
             this.cobDay.FormattingEnabled = true;
-            this.cobDay.Location = new System.Drawing.Point(352, 10);
+            this.cobDay.Location = new System.Drawing.Point(315, 10);
             this.cobDay.Name = "cobDay";
             this.cobDay.Size = new System.Drawing.Size(45, 23);
             this.cobDay.TabIndex = 10;
@@ -163,7 +167,7 @@
             // lblYear
             // 
             this.lblYear.AutoSize = true;
-            this.lblYear.Location = new System.Drawing.Point(178, 14);
+            this.lblYear.Location = new System.Drawing.Point(140, 14);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(12, 15);
             this.lblYear.TabIndex = 9;
@@ -183,10 +187,10 @@
             // txtDecimalSecond
             // 
             this.txtDecimalSecond.Enabled = false;
-            this.txtDecimalSecond.Location = new System.Drawing.Point(308, 44);
+            this.txtDecimalSecond.Location = new System.Drawing.Point(301, 44);
             this.txtDecimalSecond.MaxLength = 7;
             this.txtDecimalSecond.Name = "txtDecimalSecond";
-            this.txtDecimalSecond.Size = new System.Drawing.Size(89, 25);
+            this.txtDecimalSecond.Size = new System.Drawing.Size(75, 25);
             this.txtDecimalSecond.TabIndex = 8;
             this.txtDecimalSecond.Click += new System.EventHandler(this.txtDecimalSecond_Click);
             this.txtDecimalSecond.TextChanged += new System.EventHandler(this.txtDecimalSecond_TextChanged);
@@ -196,7 +200,7 @@
             this.cobSecond.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobSecond.Enabled = false;
             this.cobSecond.FormattingEnabled = true;
-            this.cobSecond.Location = new System.Drawing.Point(249, 44);
+            this.cobSecond.Location = new System.Drawing.Point(243, 44);
             this.cobSecond.Name = "cobSecond";
             this.cobSecond.Size = new System.Drawing.Size(45, 23);
             this.cobSecond.TabIndex = 7;
@@ -207,14 +211,33 @@
             this.cobSign.FormattingEnabled = true;
             this.cobSign.Location = new System.Drawing.Point(10, 12);
             this.cobSign.Name = "cobSign";
-            this.cobSign.Size = new System.Drawing.Size(45, 23);
+            this.cobSign.Size = new System.Drawing.Size(34, 23);
             this.cobSign.TabIndex = 15;
             this.cobSign.SelectedIndexChanged += new System.EventHandler(this.cobSign_SelectedIndexChanged);
+            // 
+            // btnPaste
+            // 
+            this.btnPaste.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnPaste.ImageIndex = 0;
+            this.btnPaste.ImageList = this.imgMain;
+            this.btnPaste.Location = new System.Drawing.Point(419, 9);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(28, 26);
+            this.btnPaste.TabIndex = 16;
+            this.btnPaste.UseVisualStyleBackColor = true;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            // 
+            // imgMain
+            // 
+            this.imgMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgMain.ImageStream")));
+            this.imgMain.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgMain.Images.SetKeyName(0, "Paste.png");
             // 
             // SimpleDateTimePicker
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.btnPaste);
             this.Controls.Add(this.cobSign);
             this.Controls.Add(this.lblDot);
             this.Controls.Add(this.lblSecond);
@@ -255,5 +278,7 @@
         private System.Windows.Forms.TextBox txtDecimalSecond;
         private System.Windows.Forms.ComboBox cobSecond;
         private System.Windows.Forms.ComboBox cobSign;
+        private System.Windows.Forms.Button btnPaste;
+        private System.Windows.Forms.ImageList imgMain;
     }
 }

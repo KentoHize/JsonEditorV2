@@ -82,7 +82,6 @@
             this.tbpStart = new System.Windows.Forms.TabPage();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlDateTimePicker = new System.Windows.Forms.Panel();
-            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.mnsMain = new System.Windows.Forms.MenuStrip();
             this.tmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiNewJsonFiles = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,8 +106,9 @@
             this.tmiFunction = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSortList = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguages = new System.Windows.Forms.ToolStripMenuItem();
-            this.tmiLanguageENUS = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmiLanguageZHAO = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripSeparator();
+            this.tmiLanguageENUS = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguageZHCN = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiLanguageZHTW = new System.Windows.Forms.ToolStripMenuItem();
             this.tmiSetting = new System.Windows.Forms.ToolStripMenuItem();
@@ -180,7 +180,7 @@
             this.lblCheckMethod = new System.Windows.Forms.Label();
             this.prdMain = new System.Windows.Forms.PrintDialog();
             this.btnResetValue = new System.Windows.Forms.Button();
-            this.tmiLanguageZHAO = new System.Windows.Forms.ToolStripMenuItem();
+            this.dtpMain = new JsonEditorV2.SimpleDateTimePicker();
             this.pnlFileInfo.SuspendLayout();
             this.stsMain.SuspendLayout();
             this.tbcMain.SuspendLayout();
@@ -728,6 +728,7 @@
             this.imlMain.Images.SetKeyName(5, "DownArrow.png");
             this.imlMain.Images.SetKeyName(6, "Find.png");
             this.imlMain.Images.SetKeyName(7, "Copy.png");
+            this.imlMain.Images.SetKeyName(8, "Paste.png");
             // 
             // stsMain
             // 
@@ -806,20 +807,7 @@
             this.pnlDateTimePicker.Size = new System.Drawing.Size(569, 104);
             this.pnlDateTimePicker.TabIndex = 0;
             this.pnlDateTimePicker.Visible = false;
-            // 
-            // dtpMain
-            // 
-            this.dtpMain.AutoSize = true;
-            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
-            this.dtpMain.BindingControl = null;
-            this.dtpMain.CanNegative = true;
-            this.dtpMain.Location = new System.Drawing.Point(4, 4);
-            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpMain.Name = "dtpMain";
-            this.dtpMain.Size = new System.Drawing.Size(438, 78);
-            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
-            this.dtpMain.TabIndex = 0;
-            this.dtpMain.UseArinaYear = false;
+            this.pnlDateTimePicker.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDateTimePicker_Paint);
             // 
             // mnsMain
             // 
@@ -833,7 +821,7 @@
             this.tmiBackup});
             this.mnsMain.Location = new System.Drawing.Point(0, 0);
             this.mnsMain.Name = "mnsMain";
-            this.mnsMain.Size = new System.Drawing.Size(1509, 28);
+            this.mnsMain.Size = new System.Drawing.Size(1509, 30);
             this.mnsMain.TabIndex = 24;
             this.mnsMain.Text = "menuStrip1";
             // 
@@ -856,7 +844,7 @@
             this.tmiExit});
             this.tmiFile.Name = "tmiFile";
             this.tmiFile.ShortcutKeyDisplayString = "";
-            this.tmiFile.Size = new System.Drawing.Size(33, 24);
+            this.tmiFile.Size = new System.Drawing.Size(33, 26);
             this.tmiFile.Text = "X";
             // 
             // tmiNewJsonFiles
@@ -1002,7 +990,7 @@
             this.tmiFunction.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiSortList});
             this.tmiFunction.Name = "tmiFunction";
-            this.tmiFunction.Size = new System.Drawing.Size(33, 24);
+            this.tmiFunction.Size = new System.Drawing.Size(33, 23);
             this.tmiFunction.Text = "X";
             this.tmiFunction.Visible = false;
             // 
@@ -1021,32 +1009,39 @@
             this.tmiLanguageZHCN,
             this.tmiLanguageZHTW});
             this.tmiLanguages.Name = "tmiLanguages";
-            this.tmiLanguages.Size = new System.Drawing.Size(33, 24);
+            this.tmiLanguages.Size = new System.Drawing.Size(33, 26);
             this.tmiLanguages.Text = "X";
             // 
-            // tmiLanguageENUS
+            // tmiLanguageZHAO
             // 
-            this.tmiLanguageENUS.Name = "tmiLanguageENUS";
-            this.tmiLanguageENUS.Size = new System.Drawing.Size(224, 26);
-            this.tmiLanguageENUS.Text = "English(en-US)";
-            this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
+            this.tmiLanguageZHAO.Name = "tmiLanguageZHAO";
+            this.tmiLanguageZHAO.Size = new System.Drawing.Size(207, 26);
+            this.tmiLanguageZHAO.Text = "正體通用(zh-AO)";
+            this.tmiLanguageZHAO.Click += new System.EventHandler(this.tmiLanguageZHAO_Click);
             // 
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(204, 6);
+            // 
+            // tmiLanguageENUS
+            // 
+            this.tmiLanguageENUS.Name = "tmiLanguageENUS";
+            this.tmiLanguageENUS.Size = new System.Drawing.Size(207, 26);
+            this.tmiLanguageENUS.Text = "English(en-US)";
+            this.tmiLanguageENUS.Click += new System.EventHandler(this.tmiLanguageENUS_Click);
             // 
             // tmiLanguageZHCN
             // 
             this.tmiLanguageZHCN.Name = "tmiLanguageZHCN";
-            this.tmiLanguageZHCN.Size = new System.Drawing.Size(224, 26);
+            this.tmiLanguageZHCN.Size = new System.Drawing.Size(207, 26);
             this.tmiLanguageZHCN.Text = "简体中文(zh-CN)";
             this.tmiLanguageZHCN.Click += new System.EventHandler(this.tmiLanguageZHCN_Click);
             // 
             // tmiLanguageZHTW
             // 
             this.tmiLanguageZHTW.Name = "tmiLanguageZHTW";
-            this.tmiLanguageZHTW.Size = new System.Drawing.Size(224, 26);
+            this.tmiLanguageZHTW.Size = new System.Drawing.Size(207, 26);
             this.tmiLanguageZHTW.Text = "繁體中文(zh-TW)";
             this.tmiLanguageZHTW.Click += new System.EventHandler(this.tmiLanguageZHTW_Click);
             // 
@@ -1055,13 +1050,13 @@
             this.tmiSetting.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiArinaDate});
             this.tmiSetting.Name = "tmiSetting";
-            this.tmiSetting.Size = new System.Drawing.Size(33, 24);
+            this.tmiSetting.Size = new System.Drawing.Size(33, 26);
             this.tmiSetting.Text = "X";
             // 
             // tmiArinaDate
             // 
             this.tmiArinaDate.Name = "tmiArinaDate";
-            this.tmiArinaDate.Size = new System.Drawing.Size(224, 26);
+            this.tmiArinaDate.Size = new System.Drawing.Size(102, 26);
             this.tmiArinaDate.Text = "X";
             this.tmiArinaDate.Click += new System.EventHandler(this.tmiArinaYear_Click);
             // 
@@ -1070,7 +1065,7 @@
             this.tmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tmiAbout});
             this.tmiHelp.Name = "tmiHelp";
-            this.tmiHelp.Size = new System.Drawing.Size(33, 24);
+            this.tmiHelp.Size = new System.Drawing.Size(33, 26);
             this.tmiHelp.Text = "X";
             // 
             // tmiAbout
@@ -1089,7 +1084,7 @@
             this.toolStripMenuItem9,
             this.tmiRunSomething});
             this.tmiBackup.Name = "tmiBackup";
-            this.tmiBackup.Size = new System.Drawing.Size(73, 24);
+            this.tmiBackup.Size = new System.Drawing.Size(73, 26);
             this.tmiBackup.Text = "Backup";
             // 
             // tmiJsonEditorBackup
@@ -1628,12 +1623,19 @@
             this.btnResetValue.UseVisualStyleBackColor = true;
             this.btnResetValue.Click += new System.EventHandler(this.btnResetValue_Click);
             // 
-            // tmiLanguageZHAO
+            // dtpMain
             // 
-            this.tmiLanguageZHAO.Name = "tmiLanguageZHAO";
-            this.tmiLanguageZHAO.Size = new System.Drawing.Size(224, 26);
-            this.tmiLanguageZHAO.Text = "正體通用(zh-AO)";
-            this.tmiLanguageZHAO.Click += new System.EventHandler(this.tmiLanguageZHAO_Click);
+            this.dtpMain.AutoSize = true;
+            this.dtpMain.BackColor = System.Drawing.SystemColors.Window;
+            this.dtpMain.BindingControl = null;
+            this.dtpMain.CanNegative = true;
+            this.dtpMain.Location = new System.Drawing.Point(4, 4);
+            this.dtpMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpMain.Name = "dtpMain";
+            this.dtpMain.Size = new System.Drawing.Size(438, 78);
+            this.dtpMain.Style = JsonEditorV2.DateTimePickerStyle.DateTime;
+            this.dtpMain.TabIndex = 0;
+            this.dtpMain.UseArinaYear = false;
             // 
             // MainForm
             // 

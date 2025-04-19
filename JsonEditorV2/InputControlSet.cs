@@ -385,8 +385,7 @@ namespace JsonEditorV2
                 case JType.Guid:
                     btn = new Button { Name = $"btn{name}", Width = 50, Text = Res.JE_BTN_NEW_GUID };
                     toolTip.SetToolTip(btn, Res.JE_BTN_NEW_GUID);
-                    btn.Click += BtnNewGUID_Click;
-                    
+                    btn.Click += BtnNewGUID_Click;                    
                     return btn;
                 case JType.Date:
                 case JType.Time:

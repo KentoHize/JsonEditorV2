@@ -476,8 +476,9 @@ namespace JsonEditor
         /// 掃Json物件
         /// </summary>
         /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
+        /// <param name="formatProvider">格式提供者</param>
         /// <param name="numberOfRowsMaxValue">欄位最大行數</param>
-        public void ScanJson(object jArray, int numberOfRowsMaxValue = 20)
+        public void ScanJson(object jArray, int numberOfRowsMaxValue = 20, IFormatProvider formatProvider = null)
         {
             Lines.Clear();
             Columns.Clear();
@@ -539,7 +540,7 @@ namespace JsonEditor
                 {
                     if (line.ContainsKey(Columns[i].Name))
                     {
-                        jl.Add(line[Columns[i].Name].ParseJType(Columns[i].Type));
+                        jl.Add(line[Columns[i].Name].ParseJType(Columns[i].Type, formatProvider));
                         if (Columns[i].Type == JType.String)
                             if (line[Columns[i].Name] != null)
                                 charsCountDivide10[i] += line[Columns[i].Name].ToString().Length / 10;
@@ -574,7 +575,7 @@ namespace JsonEditor
         /// 讀取Json物件
         /// </summary>
         /// <param name="jArray">物件化的Json String(從JsonConvert傳來)</param>
-        public void LoadJson(object jArray)
+        public void LoadJson(object jArray, IFormatProvider formatProvider)
         {
             Lines.Clear();
 
@@ -602,7 +603,7 @@ namespace JsonEditor
 
                     if (kvp.Value.Type == JTokenType.Null)
                         jl.Add(null);
-                    else if (kvp.Value.TryParseJType(Columns[j].Type, null, out object parsedObj))
+                    else if (kvp.Value.TryParseJType(Columns[j].Type, formatProvider, out object parsedObj))
                     {
                         jl.Add(parsedObj);
                         if (!Changed)

@@ -303,19 +303,19 @@ namespace JsonEditor
                         return r2;
                     break;
                 case JType.Date:
-                    if (ArDateTime.TryParseExact(s, "B", formatProvider, out ArDateTime rr1))
+                    if (s.Length >= Mylar.StandardDateLength && ArDateTime.TryParseExact(s, "B", formatProvider, out ArDateTime rr1))
                         return rr1;                    
                     if (ArDateTime.TryParse(s, formatProvider, out rr1))
                         return rr1;
                     break;
                 case JType.Time:
-                    if (ArDateTime.TryParseExact(s, "C", formatProvider, out ArDateTime rr2))
+                    if (s.Length >= Mylar.StandardTimeLength && ArDateTime.TryParseExact(s, "C", formatProvider, out ArDateTime rr2))
                         return rr2;                    
                     if (ArDateTime.TryParse(s, formatProvider, out rr2))
                         return rr2;
                     break;
                 case JType.DateTime:
-                    if (ArDateTime.TryParseExact(s, "A", formatProvider, out ArDateTime rr3))
+                    if (s.Length >= Mylar.StandardShortDateTimeLength && ArDateTime.TryParseExact(s, "a", formatProvider, out ArDateTime rr3))
                         return rr3;                    
                     if (ArDateTime.TryParse(s, formatProvider, out rr3))
                         return rr3;

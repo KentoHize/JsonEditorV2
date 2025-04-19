@@ -1699,9 +1699,9 @@ namespace JsonEditorV2
             try
             {
                 if (scan)
-                    jt.ScanJson(jsonObject, Setting.NumberOfRowsMaxValue);
+                    jt.ScanJson(jsonObject, Setting.NumberOfRowsMaxValue, Setting.SystemCI);
                 else
-                    jt.LoadJson(jsonObject);
+                    jt.LoadJson(jsonObject, Setting.SystemCI);
             }
             catch (JFileInvalidException ex)
             {
@@ -3430,6 +3430,11 @@ namespace JsonEditorV2
         {
             Setting.UICI = Mylar.ArinaCultureInfo;
             ChangeCulture();
+        }
+
+        private void pnlDateTimePicker_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
