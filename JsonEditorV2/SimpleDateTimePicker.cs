@@ -256,11 +256,14 @@ namespace JsonEditorV2
         }
 
         private void dud100Year_SelectedItemChanged(object sender, EventArgs e)
-        {  
+        {
+            byte selectItem = (byte)cobYear.SelectedItem;
             if(dud100Year.SelectedIndex != dud100Year.Items.Count - 1)
                 cobYear.DataSource = years100;
             else
                 cobYear.DataSource = years99;
+            if((byte)cobYear.SelectedItem != selectItem)
+                cobYear.SelectedItem = selectItem;
             ValueChanged(sender, EventArgs.Empty);
         }
 

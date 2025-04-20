@@ -303,21 +303,27 @@ namespace JsonEditor
                         return r2;
                     break;
                 case JType.Date:
-                    if (s.Length >= Mylar.StandardDateLength && ArDateTime.TryParseExact(s, "B", formatProvider, out ArDateTime rr1))
-                        return rr1;                    
-                    if (ArDateTime.TryParse(s, formatProvider, out rr1))
+                    if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd", out ArDateTime rr4))
+                        return rr4;
+                    //if (s.Length >= Mylar.StandardDateLength && ArDateTime.TryParseExact(s, "B", formatProvider, out ArDateTime rr1))
+                    //    return rr1;                    
+                    if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr1))
                         return rr1;
                     break;
                 case JType.Time:
-                    if (s.Length >= Mylar.StandardTimeLength && ArDateTime.TryParseExact(s, "C", formatProvider, out ArDateTime rr2))
-                        return rr2;                    
-                    if (ArDateTime.TryParse(s, formatProvider, out rr2))
+                    if (ArDateTime.TryParseExact(s, "hh':'mm':'ss.fff", out ArDateTime rr5))
+                        return rr5;
+                    //if (s.Length >= Mylar.StandardTimeLength && ArDateTime.TryParseExact(s, "C", formatProvider, out ArDateTime rr2))
+                    //    return rr2;
+                    if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr2))
                         return rr2;
                     break;
                 case JType.DateTime:
-                    if (s.Length >= Mylar.StandardShortDateTimeLength && ArDateTime.TryParseExact(s, "a", formatProvider, out ArDateTime rr3))
-                        return rr3;                    
-                    if (ArDateTime.TryParse(s, formatProvider, out rr3))
+                    if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd hh':'mm':'ss", out ArDateTime rr6))
+                        return rr6;
+                    //if (s.Length >= Mylar.StandardShortDateTimeLength && ArDateTime.TryParseExact(s, "a", formatProvider, out ArDateTime rr3))
+                    //    return rr3;
+                    if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr3))
                         return rr3;
                     break;
                 case JType.Double:

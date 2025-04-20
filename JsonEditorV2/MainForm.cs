@@ -3412,7 +3412,7 @@ namespace JsonEditorV2
         private void tmiArinaYear_Click(object sender, EventArgs e)
         {   
             Setting.UseArinaDate = !Setting.UseArinaDate;
-            Setting.SystemCI = Setting.UseArinaDate ? Mylar.ArinaCultureInfo : CultureInfo.InvariantCulture;
+            Setting.SystemCI = Setting.UseArinaDate ? Mylar.ArinaCultureInfo : CultureInfo.CurrentCulture;
             tmiArinaDate.Checked = Setting.UseArinaDate;
         }
 
@@ -3426,15 +3426,17 @@ namespace JsonEditorV2
             RabbitCouriers.SentInformationByResource("JE_TT_NOW_FUNCTION_GUID_FUNCTION", Res.JE_COLUMN_DEFAULT_VALUE);
         }
 
-        private void tmiLanguageZHAO_Click(object sender, EventArgs e)
+        private void tmiLanguageZHAA_Click(object sender, EventArgs e)
         {
             Setting.UICI = Mylar.ArinaCultureInfo;
             ChangeCulture();
         }
 
-        private void pnlDateTimePicker_Paint(object sender, PaintEventArgs e)
+        private void tmiOpenINI_Click(object sender, EventArgs e)
         {
-
+            if (File.Exists(SettingShop.DefaultSettingFilePath))
+                Process.Start("notepad.exe", SettingShop.DefaultSettingFilePath);
+            
         }
     }
 }
