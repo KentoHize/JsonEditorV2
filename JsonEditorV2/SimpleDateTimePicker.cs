@@ -137,7 +137,7 @@ namespace JsonEditorV2
                 ((byte)dud100Year.SelectedItem * 100 + (byte)cobYear.SelectedItem),
                (byte)cobMonth.SelectedItem, (byte)cobDay.SelectedItem,
                (byte)cobHour.SelectedItem, (byte)cobMinute.SelectedItem,
-               (byte)cobSecond.SelectedItem, 0, UseArinaYear).AddTicks(tick);
+               (byte)cobSecond.SelectedItem, 0, !UseArinaYear).AddTicks(tick);
         }
 
         public void SetValue(ArDateTime value)
@@ -145,7 +145,7 @@ namespace JsonEditorV2
             if(Style != DateTimePickerStyle.Time)
             {
                 cobSign.SelectedIndex = 0;
-                int year = UseArinaYear ? value.ArYear : value.Year, n1, n2;
+                int year = UseArinaYear ? value.Year : value.CEYear, n1, n2;
                 if(year < 0)
                 {
                     cobSign.SelectedIndex = 1;
