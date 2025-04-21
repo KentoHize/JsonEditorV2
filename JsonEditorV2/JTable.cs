@@ -607,7 +607,20 @@ namespace JsonEditor
                     {
                         jl.Add(parsedObj);
                         if (!Changed)
-                            Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type);
+                        {
+                            if (Columns[j].Type.IsDateTime())
+                            {
+                                if (Columns[j].Type == JType.DateTime)
+                                    Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type, "a", formatProvider);
+                                else if (Columns[j].Type == JType.Date)
+                                    Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type, "B", formatProvider);
+                                else if (Columns[j].Type == JType.Date)
+                                    Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type, "C", formatProvider);
+                            }
+                            else
+                                Changed = kvp.Value.ToString() != parsedObj.ToString(Columns[j].Type, formatProvider);                            
+                        }    
+                            
                     }
                     else
                     {
