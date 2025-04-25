@@ -366,19 +366,17 @@ namespace JsonEditorV2
                 }
                 else if (newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
                 {
-                    if (txtDefaultValue.Text != Const.FunctionOfCount)
+                    // txtDefaultValue.Text != Const.FunctionOfCount
+                    if (!JFunction.TryParseString(txtDefaultValue.Text, out _))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
                     }
                 }
                 else if (newType.IsDateTime()) //日期或時間
-                {
-                    // To Do
-                    if (txtDefaultValue.Text != Const.FunctionOfNow &&
-                       txtDefaultValue.Text != Const.FunctionOfNowT &&
-                       txtDefaultValue.Text != Const.FunctionOfNowD
-                        && !CheckValueValid(txtDefaultValue.Text, newType))
+                {   
+                    if (!JFunction.TryParseString(txtDefaultValue.Text, out _) &&
+                       !CheckValueValid(txtDefaultValue.Text, newType))
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
@@ -394,10 +392,14 @@ namespace JsonEditorV2
                 }
                 else if (newType.IsStringFamily() && !CheckValueValid(txtDefaultValue.Text, newType)) //字串
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
-                    return;
+                    if (!JFunction.TryParseString(txtDefaultValue.Text, out _))
+                    {
+                        RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
+                        return;
+                    }
                 }
 
+                //To Do
                 if (txtColumnRegex.Text != "" && !Regex.IsMatch(txtDefaultValue.Text, txtColumnRegex.Text)) //Regex存在，確認合規則
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_REGEX_IS_NOT_MATCH", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
@@ -416,13 +418,13 @@ namespace JsonEditorV2
                     return;
                 }
 
-                if (txtColumnMaxLength.Text != "0" && txtDefaultValue.Text.Length > long.Parse(txtColumnMaxLength.Text)) //最大長度值存在，確認合規則
+                //To Do
+                if (txtColumnMaxLength.Text != "0" && txtDefaultValue.Text.Length > long.Parse(txtColumnMaxLength.Text)) //最大長度值存在，確認合規則 
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_TEXT_MAXIMUM_LENGTH_OVER", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtColumnMaxLength.Text);
                     return;
                 }
             }
-
             bool recheckTable = false;
 
             //讀檔
@@ -3310,7 +3312,7 @@ namespace JsonEditorV2
             int index = Var.SelectedColumnIndex;
             foreach (JLine jl in Var.SelectedColumnParentTable)
                 if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
-                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type);
+                    jl[index] = JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Var.SelectedColumn.Type.IsDateTime(), Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type, Setting.SystemCI);
                 else if (Var.SelectedColumn.IsNullable)
                     jl[index] = null;
                 else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)

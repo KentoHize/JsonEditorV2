@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+	<LangVersion>Latest</LangVersion>
     <PublishUrl>C:\Publish\JsonEditor V2\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>

@@ -853,11 +853,14 @@
     <value>Insert Data from First Row</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>Use {{NOW()}} represent current date &amp; time
-Use {{NOW('T')}} represent current time
-Use {{NOW('D')}} represent current date
-Use {{COUNT()}} represent number of rows
-Use {{GUID()}} represent new GUID</value>
+    <value>Experimental Function, Use it carefully.
+{{NOW()}} gets current date &amp; time.
+{{NOW('T')}} gets current time.
+{{NOW('D','ja-JP')}} gets current date in Japan culture.
+{{NOW('G','zh-AA')}} gets general current date &amp; time in Arina culture.
+{{NOW('A')}} gets standard date &amp; time.
+{{COUNT()}} gets numbers or rows.
+{{GUID()}} gets new GUID.</value>
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>Setting</value>

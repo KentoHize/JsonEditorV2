@@ -853,10 +853,14 @@
     <value>从开头加入资料</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>{{NOW()}} 代表现在日期和时间
+    <value>实验功能请小心使用
+{{NOW()}} 代表现在日期和时间
 {{NOW('T')}} 代表现在时间
-{{NOW('D')}} 代表现在日期
-{{COUNT()}} 代表目前资料行{{GUID()}} 代表新GUID</value>
+{{NOW('D','ja-JP')}} 代表日本的日期格式
+{{NOW('G','zh-AA')}} 代表有奈的普通日期格式
+{{NOW('A')}} 代表标准格式
+{{COUNT()}} 代表目前资料行
+{{GUID()}} 代表新GUID</value>
   </data>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>设定</value>
