@@ -10,7 +10,7 @@ namespace JsonEditorV2
 {
     public static class Const
     {
-        public const string VersionString = "Version 0.38";
+        public const string VersionString = "Version 0.39";
 
         public const string NumberOfRowsRegex = @"^\d{1,2}$";
 

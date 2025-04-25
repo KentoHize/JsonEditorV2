@@ -55,7 +55,7 @@ namespace JsonEditor
                 if (type == JType.Time && string.IsNullOrEmpty(format))
                     format = "C";
                 if (type == JType.DateTime && string.IsNullOrEmpty(format))
-                    format = "g";
+                    format = "G";
                 return ((ArDateTime)instance).ToString(format, formatProvider);
             }
             else
@@ -303,26 +303,26 @@ namespace JsonEditor
                         return r2;
                     break;
                 case JType.Date:
-                    if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd", out ArDateTime rr4))
-                        return rr4;                    
+                    //if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd", out ArDateTime rr4))
+                    //    return rr4;
                     if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr1))
                         return rr1;
                     break;
                 case JType.Time:
-                    if (ArDateTime.TryParseExact(s, "hh':'mm':'ss.fff", out ArDateTime rr5))
-                    {
-                        rr5 = rr5.AddDays(1).AddHours(-8);
-                        return rr5;
-                    }
+                    //if (ArDateTime.TryParseExact(s, "hh':'mm':'ss.fff", out ArDateTime rr5))
+                    //{
+                    //    rr5 = rr5.AddDays(1).AddHours(-8);
+                    //    return rr5;
+                    //}
                     if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr2))
                         return rr2;
                     break;
                 case JType.DateTime:
-                    if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd hh':'mm':'ss", out ArDateTime rr6))
-                    {
-                        rr6 = rr6.AddHours(-8);
-                        return rr6;
-                    }
+                    //if (ArDateTime.TryParseExact(s, "yyyy'/'MM'/'dd hh':'mm':'ss", out ArDateTime rr6))
+                    //{
+                    //    rr6 = rr6.AddHours(-8);
+                    //    return rr6;
+                    //}
                     if (ArDateTime.TryParse(s, formatProvider, out ArDateTime rr3))
                         return rr3;
                     break;

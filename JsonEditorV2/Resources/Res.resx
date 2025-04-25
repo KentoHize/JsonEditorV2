@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_CONTACT_US" xml:space="preserve">
-    <value>錯誤回報：KentoHize@gmail.com</value>
+    <value>錯誤回報：KentoHize@arinaorganization.org</value>
   </data>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
     <value>JSON 資料檔案編輯器</value>
@@ -861,7 +861,7 @@
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>設定</value>
   </data>
-  <data name="JE_TMI_USE_ARINA_YEAR" xml:space="preserve">
-    <value>使用有奈紀年</value>
+  <data name="JE_TMI_USE_ARINA_DATE" xml:space="preserve">
+    <value>檔案使用有奈紀年</value>
   </data>
 </root>

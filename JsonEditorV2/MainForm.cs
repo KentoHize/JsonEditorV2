@@ -33,7 +33,7 @@ namespace JsonEditorV2
             InitializeComponent();
             Var.Database = new JDatabase();
             dtpMain.Leave += DtpMain_Leave;
-            dtpMain.ValueChanged += DtpMain_ValueChanged;            
+            dtpMain.ValueChanged += DtpMain_ValueChanged;
 #if DEBUG
             CheckForIllegalCrossThreadCalls = false;
 #endif
@@ -84,7 +84,7 @@ namespace JsonEditorV2
             tltMain.SetToolTip(btnLineMoveDown, Res.JE_BTN_LINE_MOVE_DOWN);
             tltMain.SetToolTip(btnColumnEditChoices, Res.JE_BTN_EDIT_CHOICES);
             lblCheckMethod.Text = Res.JE_COB_CHECK_METHOD;
-            tmiFile.Text = $"{Res.JE_TMI_FILE}(&F)";            
+            tmiFile.Text = $"{Res.JE_TMI_FILE}(&F)";
             tmiHelp.Text = $"{Res.JE_TMI_HELP}(&H)";
             tmiLanguages.Text = $"{Res.JE_TMI_LANGUAGES}(&L)";
             tmiSetting.Text = $"{Res.JE_TMI_SETTING}(&S)";
@@ -103,7 +103,7 @@ namespace JsonEditorV2
             tmiExportToCsvFiles.Text = Res.JE_TMI_EXPORT_TO_CSV;
             tmiExportToXmlFiles.Text = Res.JE_TMI_EXPORT_TO_XML;
             tmiExportToCSFiles.Text = Res.JE_TMI_EXPORT_TO_CS;
-            tmiExportToLangaugeFiles.Text = Res.JE_TMI_EXPORT_TO_LANG_FILES;            
+            tmiExportToLangaugeFiles.Text = Res.JE_TMI_EXPORT_TO_LANG_FILES;
             tmiExit.Text = Res.JE_TMI_EXIT;
             tmiOpenJsonFile.Text = Res.JE_TMI_OPEN_JSON_FILE;
             tmiViewJsonFile.Text = Res.JE_TMI_VIEW_JSON_FILE;
@@ -136,7 +136,7 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
-            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_YEAR;            
+            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -145,7 +145,7 @@ namespace JsonEditorV2
             tableCheckMethodList.Add(ValueCheckMethod.FullCheck, Res.JE_COB_CHECK_METHOD_FULL_CHECK);
             cobCheckMethod.DataSource = tableCheckMethodList.ToList();
             Var.LockCobCheckMethod = false;
-            
+
         }
         #endregion
 
@@ -172,7 +172,9 @@ namespace JsonEditorV2
             RabbitCouriers.RegisterRMAndCI(Res.ResourceManager, Res.Culture);
             RefreshTmiLanguages();
             PatchTextFromResource();
-            dtpMain.PatchTextFromResource();            
+            dtpMain.PatchTextFromResource();
+            if (Var.JFI != null)
+                RefreshDgvLines();
         }
 
         //取消FK
@@ -355,25 +357,25 @@ namespace JsonEditorV2
             }
 
             //確認預設值正確
-            if(txtDefaultValue.Text != "")
-            {                
-                if(newType == JType.Object || newType == JType.Array) //物件或陣列
+            if (txtDefaultValue.Text != "")
+            {
+                if (newType == JType.Object || newType == JType.Array) //物件或陣列
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
-                }                
-                else if(newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
+                }
+                else if (newType.IsNumber() && !CheckValueValid(txtDefaultValue.Text, newType)) //數字
                 {
-                    if(txtDefaultValue.Text != Const.FunctionOfCount)
+                    if (txtDefaultValue.Text != Const.FunctionOfCount)
                     {
                         RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                         return;
                     }
                 }
-                else if(newType.IsDateTime()) //日期或時間
+                else if (newType.IsDateTime()) //日期或時間
                 {
                     // To Do
-                    if(txtDefaultValue.Text != Const.FunctionOfNow &&
+                    if (txtDefaultValue.Text != Const.FunctionOfNow &&
                        txtDefaultValue.Text != Const.FunctionOfNowT &&
                        txtDefaultValue.Text != Const.FunctionOfNowD
                         && !CheckValueValid(txtDefaultValue.Text, newType))
@@ -382,7 +384,7 @@ namespace JsonEditorV2
                         return;
                     }
                 }
-                else if(newType == JType.Guid) //Guid
+                else if (newType == JType.Guid) //Guid
                 {
                     if (txtDefaultValue.Text != Const.FunctionOfGuid && !CheckValueValid(txtDefaultValue.Text, newType))
                     {
@@ -390,27 +392,27 @@ namespace JsonEditorV2
                         return;
                     }
                 }
-                else if(newType.IsStringFamily() && !CheckValueValid(txtDefaultValue.Text, newType)) //字串
+                else if (newType.IsStringFamily() && !CheckValueValid(txtDefaultValue.Text, newType)) //字串
                 {
                     RabbitCouriers.SentErrorMessageByResource("JE_VAL_INVALID_CAST", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
                 }
 
-                if(txtColumnRegex.Text != "" && !Regex.IsMatch(txtDefaultValue.Text, txtColumnRegex.Text)) //Regex存在，確認合規則
+                if (txtColumnRegex.Text != "" && !Regex.IsMatch(txtDefaultValue.Text, txtColumnRegex.Text)) //Regex存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_REGEX_IS_NOT_MATCH", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text); 
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_REGEX_IS_NOT_MATCH", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text);
                     return;
                 }
 
                 if (txtColumnMinValue.Text != "" && txtColumnMinValue.Text.CompareTo(txtDefaultValue.Text, newType) == 1) //最小值存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_LESS_THEN_MIN_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMinValue.Text);                                       
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_LESS_THEN_MIN_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMinValue.Text);
                     return;
                 }
 
                 if (txtColumnMaxValue.Text != "" && txtColumnMaxValue.Text.CompareTo(txtDefaultValue.Text, newType) == -1) //最大值存在，確認合規則
                 {
-                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_GREATER_THEN_MAX_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMaxValue.Text);                    
+                    RabbitCouriers.SentErrorMessageByResource("JE_VAL_GREATER_THEN_MAX_VALUE", Res.JE_RUN_UPDATE_COLUMN_TITLE, txtDefaultValue.Text, txtColumnMaxValue.Text);
                     return;
                 }
 
@@ -498,8 +500,8 @@ namespace JsonEditorV2
                     if (newType == JType.Choice)
                     {
                         if (result == null)
-                        {                            
-                            if(!Var.SelectedColumn.IsNullable && Var.SelectedColumn.Choices.Count != 0)                            
+                        {
+                            if (!Var.SelectedColumn.IsNullable && Var.SelectedColumn.Choices.Count != 0)
                                 result = Var.SelectedColumn.Choices[0];
                         }
                         else
@@ -576,6 +578,7 @@ namespace JsonEditorV2
             if (dr == DialogResult.OK)
             {
                 Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+                Var.JFI.CalendarEra = Mylar.GetStandardCalendarEraName(Setting.SystemCI.DateTimeFormat);
                 string[] jsonfiles = Directory.GetFiles(fbdMain.SelectedPath, "*.json");
                 if (jsonfiles.Length > 0)
                 {
@@ -658,6 +661,7 @@ namespace JsonEditorV2
             Var.NotOnlyClose = true;
             tmiCloseAllFiles_Click(this, e);
             Var.JFI = new JFilesInfo(fbdMain.SelectedPath);
+            Var.JFI.CalendarEra = Mylar.GetStandardCalendarEraName(Setting.SystemCI.DateTimeFormat);
             Var.Tables = new List<JTable>();
 
             //全部讀取
@@ -691,7 +695,7 @@ namespace JsonEditorV2
             {
                 if (Setting.LatestFolder1 != null)
                     fbdMain.SelectedPath = Setting.LatestFolder1;
-                DialogResult dr = fbdMain.ShowDialogOrSetResult(this);                
+                DialogResult dr = fbdMain.ShowDialogOrSetResult(this);
                 if (dr != DialogResult.OK)
                     return;
                 path = fbdMain.SelectedPath;
@@ -730,6 +734,12 @@ namespace JsonEditorV2
                 return;
             }
             Var.JFI.DirectoryPath = path;
+            if (Var.JFI.CalendarEra == null)
+            {
+                Var.JFI.CalendarEra = Mylar.GetStandardCalendarEraName(Setting.SystemCI.DateTimeFormat);
+                Var.JFI.Changed = true;
+            }
+            ChangeFileUseArDate(Var.JFI.CalendarEra == ArCultureInfo.SystemCalendarEraName);
 
             //開始讀檔
             foreach (string file in jsonfiles)
@@ -762,7 +772,7 @@ namespace JsonEditorV2
                             return;
                         }
                 }
-                Var.Tables.Add(table);                
+                Var.Tables.Add(table);
             }
 
             Var.Database.CheckAllTablesValid();
@@ -949,20 +959,17 @@ namespace JsonEditorV2
             for (int i = 0; i < Var.SelectedTable.Count; i++)
             {
                 DataRow dr = dt.NewRow();
-                for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
+                Var.SelectedTable.Columns.ParallelFor(j =>
                 {
                     if (Var.SelectedTable.Columns[j].Display)
                     {
-                        if (Var.SelectedTable[i][j] == null)
-                            continue;
-                        dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type, fp);
+                        if (Var.SelectedTable[i][j] != null)
+                            dr[Var.SelectedTable.Columns[j].Name] = Var.SelectedTable[i][j].ToString(Var.SelectedTable.Columns[j].Type, fp);
                     }
-                }
-
+                });
                 dr[Const.HiddenColumnItemIndex] = i;
                 if (Var.SelectedTable.InvalidRecords.ContainsKey(i))
                     dr[Const.HiddenColumnStat] = "R";
-
                 dt.Rows.Add(dr);
             }
 
@@ -1021,7 +1028,7 @@ namespace JsonEditorV2
             btnLineMoveDown.Enabled = Var.SelectedLineIndex != Var.SelectedTable.Count - 1 && Var.SelectedLineIndex != -1;
             btnLineMoveUp.Enabled = Var.SelectedLineIndex != 0 && Var.SelectedLineIndex != -1;
             btnDeleteLine.Enabled =
-            btnCopyLine.Enabled = Var.SelectedLineIndex != -1;            
+            btnCopyLine.Enabled = Var.SelectedLineIndex != -1;
             RefreshTrvSelectedFileChange();
         }
 
@@ -1174,7 +1181,7 @@ namespace JsonEditorV2
             {
                 Var.SelectedColumn = null;
                 Var.SelectedColumnParentTable = Var.Tables.Find(m => m.Name == e.Node.Tag.ToString());
-                
+
                 RefreshPnlFileInfo();
 
                 //更新Open Close
@@ -1518,7 +1525,7 @@ namespace JsonEditorV2
         }
 
         public static bool SaveLanguageFiles(JTable jt, string folderName)
-        {   
+        {
             int keyColumnIndex = jt.Columns.FindIndex(m => m.IsKey);
             try
             {
@@ -1535,14 +1542,14 @@ namespace JsonEditorV2
                         line.Add("Value", jl[i]);
                         result.Add(line);
                     }
-                    
+
                     using (FileStream fs = new FileStream(Path.Combine(folderName, $"{jt.Columns[i].Name}.json"), FileMode.Create))
                     {
                         StreamWriter sw = new StreamWriter(fs);
                         sw.Write(JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));
                         sw.Close();
                     }
-                }              
+                }
             }
             catch (Exception ex)
             {
@@ -1903,14 +1910,14 @@ namespace JsonEditorV2
             {
                 RabbitCouriers.SentErrorMessageByResource("JE_RUN_NEW_LINE_M_2", Res.JE_BTN_NEW_LINE);
                 return;
-            }            
-            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst, Setting.UseArinaDate);
+            }
+            Var.SelectedTable.GenerateNewLine(Var.SelectedTable.InsertFirst, Setting.UICI == Mylar.ArinaCulture);
             Var.SelectedTable.Changed = true;
 
             if (Var.SelectedTable.InsertFirst)
                 Var.SelectedLineIndex = 0;
             else
-                Var.SelectedLineIndex = dgvLines.Rows.Count;           
+                Var.SelectedLineIndex = dgvLines.Rows.Count;
 
             sslMain.Text = string.Format(Res.JE_RUN_NEW_LINE_M_1, Var.SelectedTable.Name);
 
@@ -2251,8 +2258,8 @@ namespace JsonEditorV2
               .ToList();
 
             //預讀預設值
-            Setting.UICI = Mylar.ArinaCultureInfo;
-            Setting.SystemCI = Mylar.ArinaCultureInfo;
+            Setting.UICI = Mylar.ArinaCulture;
+            Setting.SystemCI = Mylar.ArinaCulture;
             Setting.TableCheckMethod = ValueCheckMethod.OneInvalidCheck;
             Setting.DontLoadFileBytesThreshold = 10000;
             Setting.NumberOfRowsMaxValue = 30;
@@ -2262,9 +2269,11 @@ namespace JsonEditorV2
             Setting.LatestFolder2 = null;
             Setting.LatestFolder3 = null;
             Setting.LatestFolder4 = null;
-            Setting.UseArinaDate = false;
 
-            //讀取Setting            
+            //有必要時重設
+            //SettingShop.ResetIniFile();
+
+            //讀取Setting
             SettingShop.LoadIniFile(typeof(Setting));
 
             //最新資料庫位置更新
@@ -2302,7 +2311,7 @@ namespace JsonEditorV2
 
             //設定初始值
             cobCheckMethod.SelectedValue = Setting.TableCheckMethod;
-            tmiArinaDate.Checked = Setting.UseArinaDate;
+            tmiArinaDate.Checked = Setting.SystemCI == Mylar.ArinaCulture;
             cobColumnType.SelectedIndex = 0;
             tbpStart.BackColor = this.BackColor;
 #if !DEBUG
@@ -2339,9 +2348,9 @@ namespace JsonEditorV2
             }
 
             //預先讀取
-            if(Var.PreloadDatabase != null)
+            if (Var.PreloadDatabase != null)
             {
-                if(Directory.Exists(Var.PreloadDatabase) &&
+                if (Directory.Exists(Var.PreloadDatabase) &&
                    File.Exists(Path.Combine(Var.PreloadDatabase, JFilesInfo.FilesInfoName)))
                 {
                     Var.DirectLoadFolder = Var.PreloadDatabase;
@@ -2366,7 +2375,7 @@ namespace JsonEditorV2
         }
 
         private void tmiLatestFolder_Click(object sender, EventArgs e)
-        {   
+        {
             Var.DirectLoadFolder = ((ToolStripMenuItem)sender).Text;
             tmiLoadJsonFiles_Click(sender, e);
         }
@@ -2563,7 +2572,7 @@ namespace JsonEditorV2
         private void tmiRunSomething_Click(object sender, EventArgs e)
         {
             DialogResult dr = RabbitCouriers.SentNormalQuestion("Run Something，確定嗎?", "", ChoiceOptions.OKCancel);
-            
+
             if (dr == DialogResult.OK)
             {
 
@@ -2702,9 +2711,9 @@ namespace JsonEditorV2
         {
             if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri ||
                 Var.SelectedTable.Columns[columnIndex].Type.IsDateTime())
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type).Contains(txtFindValue.Text));
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type, Setting.UICI).Contains(txtFindValue.Text));
             else
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type) == txtFindValue.Text);
+                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type, Setting.UICI) == txtFindValue.Text);
         }
 
         public void btnFindConfirm_Click(object sender, EventArgs e)
@@ -2809,19 +2818,19 @@ namespace JsonEditorV2
             Var.BindingTextbox = valueControl;
             pnlMain.Controls.Add(pnlDateTimePicker);
             //dtpMain.UseArinaYear = Setting.UseArinaDate;
-            dtpMain.UseArinaYear = Setting.UICI == Mylar.ArinaCultureInfo;
+            dtpMain.UseArinaYear = Setting.UICI == Mylar.ArinaCulture;
             dtpMain.CanNegative = true;
             dtpMain.SetType(style);
             dtpMain.SetValue(r1);
             pnlDateTimePicker.Top = valueControl.Top + valueControl.Height;
-            pnlDateTimePicker.Left = 10;            
+            pnlDateTimePicker.Left = 10;
             pnlDateTimePicker.BringToFront();
             pnlDateTimePicker.Show();
             dtpMain.Focus();
         }
 
         public void btnCopyLine_Click(object sender, EventArgs e)
-        {   
+        {
             Var.SelectedTable.CopyLine(Var.SelectedLineIndex, Var.SelectedTable.InsertFirst);
             Var.SelectedTable.Changed = true;
 
@@ -3398,22 +3407,48 @@ namespace JsonEditorV2
         private void tmiInsertFirst_Click(object sender, EventArgs e)
         {
             if (Var.SelectedColumnParentTable == null)
-                return;            
+                return;
             tmiInsertFirst.Checked = !tmiInsertFirst.Checked;
             Var.SelectedColumnParentTable.InsertFirst = tmiInsertFirst.Checked;
             Var.JFI.Changed = true;
         }
 
         private void txtDefaultValue_Enter(object sender, EventArgs e)
-        {   
+        {
             //tltMain.Show(Res.JE_TT_NOW_FUNCTION_GUID_FUNCTION, this, txtDefaultValue.Left, pnlFileInfo.Top + txtDefaultValue.Top - 20);            
+        }
+
+        private void ChangeFileUseArDate(bool useArDate)
+        {
+            Setting.SystemCI = useArDate ? Mylar.ArinaCulture : CultureInfo.CurrentCulture;
+
+            tmiArinaDate.Checked = Setting.SystemCI == Mylar.ArinaCulture;
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
         {   
-            Setting.UseArinaDate = !Setting.UseArinaDate;
-            Setting.SystemCI = Setting.UseArinaDate ? Mylar.ArinaCultureInfo : CultureInfo.CurrentCulture;
-            tmiArinaDate.Checked = Setting.UseArinaDate;
+            ChangeFileUseArDate(Setting.SystemCI != Mylar.ArinaCulture);
+            //有日期或時間檔案全都設定為有改
+            if (Var.JFI != null)
+            {   
+                foreach (JTable jt in Var.Tables)
+                {
+                    for (int i = 0; i < jt.Columns.Count; i++)
+                    {
+                        if (jt.Columns[i].Type == JType.Date || jt.Columns[i].Type == JType.DateTime)
+                        {
+                            if (!jt.Loaded)
+                                LoadOrScanJsonFile(jt, false);
+                            jt.Changed = true;
+                            break;
+                        }
+                    }
+                }
+
+                Var.JFI.CalendarEra = Mylar.GetStandardCalendarEraName(Setting.SystemCI.DateTimeFormat);
+                Var.JFI.Changed = true;
+                RefreshTrvJsonFiles();
+            }
         }
 
         private void txtDefaultValue_Leave(object sender, EventArgs e)
@@ -3428,7 +3463,7 @@ namespace JsonEditorV2
 
         private void tmiLanguageZHAA_Click(object sender, EventArgs e)
         {
-            Setting.UICI = Mylar.ArinaCultureInfo;
+            Setting.UICI = Mylar.ArinaCulture;
             ChangeCulture();
         }
 
@@ -3436,7 +3471,7 @@ namespace JsonEditorV2
         {
             if (File.Exists(SettingShop.DefaultSettingFilePath))
                 Process.Start("notepad.exe", SettingShop.DefaultSettingFilePath);
-            
+
         }
     }
 }

@@ -15,6 +15,7 @@ namespace JsonEditor
         public const string FilesInfoName = "JFilesInfo.json";
 
         public string Name { get; set; }
+        public string CalendarEra { get; set; }
         public string Description { get; set; }
         public List<JTableInfo> TablesInfo { get; set; }
 
@@ -69,9 +70,9 @@ namespace JsonEditor
                 return JColumnInvalidReasons.NotNumberOrDateTimeHaveMinValue;
             else if (!string.IsNullOrEmpty(jc.MaxValue) && !jc.Type.IsNumber() && !jc.Type.IsDateTime())
                 return JColumnInvalidReasons.NotNumberOrDateTimeHaveMaxValue;
-            else if (!jc.MinValue.TryParseJType(jc.Type, Setting.UseArinaDate ? null : Setting.UICI, out object min) && !string.IsNullOrEmpty(jc.MinValue))
+            else if (!jc.MinValue.TryParseJType(jc.Type, Setting.UICI, out object min) && !string.IsNullOrEmpty(jc.MinValue))
                 return JColumnInvalidReasons.MinValueTypeCastFailed;
-            else if (!jc.MaxValue.TryParseJType(jc.Type, Setting.UseArinaDate ? null : Setting.UICI, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
+            else if (!jc.MaxValue.TryParseJType(jc.Type, Setting.UICI, out object max) && !string.IsNullOrEmpty(jc.MaxValue))
                 return JColumnInvalidReasons.MaxValueTypeCastFailed;
             else if (min != null && max != null && min.ToString() != "" && max.ToString() != "" && min.CompareTo(max, jc.Type) == 1)
                 return JColumnInvalidReasons.MinValueGreaterThanMaxValue;

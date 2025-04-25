@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="JE_ABOUT_CONTACT_US" xml:space="preserve">
-    <value>Bug Report: KentoHize@gmail.com</value>
+    <value>Bug Report: KentoHize@arinaorganization.org</value>
   </data>
   <data name="JE_ABOUT_MESSAGE" xml:space="preserve">
     <value>JSON Files Editor</value>
@@ -862,7 +862,7 @@ Use {{GUID()}} represent new GUID</value>
   <data name="JE_TMI_SETTING" xml:space="preserve">
     <value>Setting</value>
   </data>
-  <data name="JE_TMI_USE_ARINA_YEAR" xml:space="preserve">
-    <value>Use Arina Year</value>
+  <data name="JE_TMI_USE_ARINA_DATE" xml:space="preserve">
+    <value>File Use Arina Date</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 錯誤回報：KentoHize@gmail.com 的當地語系化字串。
+        ///   查詢類似 錯誤回報：KentoHize@arinaorganization.org 的當地語系化字串。
         /// </summary>
         public static string JE_ABOUT_CONTACT_US {
             get {
@@ -1969,11 +1969,11 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 使用有奈紀年 的當地語系化字串。
+        ///   查詢類似 檔案使用有奈紀年 的當地語系化字串。
         /// </summary>
-        public static string JE_TMI_USE_ARINA_YEAR {
+        public static string JE_TMI_USE_ARINA_DATE {
             get {
-                return ResourceManager.GetString("JE_TMI_USE_ARINA_YEAR", resourceCulture);
+                return ResourceManager.GetString("JE_TMI_USE_ARINA_DATE", resourceCulture);
             }
         }
         

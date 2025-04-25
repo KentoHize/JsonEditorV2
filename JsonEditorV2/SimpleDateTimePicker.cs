@@ -221,17 +221,9 @@ namespace JsonEditorV2
                 cobSign.Enabled = false;
         }
 
-        //private int ModYear(int x, int y, bool withoutZero = false)
-        //{
-        //    x %= y;
-        //    if (x < 0 || (x == 0 && withoutZero))
-        //        x += y;
-        //    return x;
-        //}
-
         public void SetDays(int year, int month, byte? day = 1)
         {   
-            switch (ArDateTime.DaysInMonth(year, month, UseArinaYear))
+            switch (ArDateTime.DaysInMonth(year, month, !UseArinaYear))
             {
                 case 31:
                     cobDay.DataSource = days31;                   
