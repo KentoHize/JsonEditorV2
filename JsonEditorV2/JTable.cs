@@ -361,7 +361,13 @@ namespace JsonEditor
                             }
                             columnIndex++;
                             if (columnIndex > columnCount)
-                                throw new ArgumentOutOfRangeException("Column Index Out of Range");
+                            {   
+                                Columns.Add(new JColumn($"Column-{Guid.NewGuid().ToString()}"));                                
+                                columnCount++;
+
+                                for(int i = 0; i < Lines.Count; i++)
+                                    Lines[i].Add("");
+                            }   
                         }
                         break;
                     case '"':

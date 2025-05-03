@@ -853,7 +853,7 @@
     <value>Insert Data from First Row</value>
   </data>
   <data name="JE_TT_NOW_FUNCTION_GUID_FUNCTION" xml:space="preserve">
-    <value>Experimental Function, Use it carefully.
+    <value>Experimental function, use it carefully.
 {{NOW()}} gets current date &amp; time.
 {{NOW('T')}} gets current time.
 {{NOW('D','ja-JP')}} gets current date in Japan culture.
