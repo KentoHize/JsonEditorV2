@@ -872,7 +872,7 @@
     <value>方法</value>
   </data>
   <data name="JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE" xml:space="preserve">
-    <value>电子发票转换为JSON档案</value>
+    <value>电子发票转换为JSON档案(实验性功能)</value>
   </data>
   <data name="JE_DIALOG_JSON_FILE_FULL_NAME" xml:space="preserve">
     <value>Json档案(*.json)</value>

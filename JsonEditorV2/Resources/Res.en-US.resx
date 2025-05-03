@@ -872,7 +872,7 @@
     <value>Method</value>
   </data>
   <data name="JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE" xml:space="preserve">
-    <value>Taiwan Electronic Invoices To Json File</value>
+    <value>Taiwan Electronic Invoices To Json File(Experimental Function)</value>
   </data>
   <data name="JE_DIALOG_JSON_FILE_FULL_NAME" xml:space="preserve">
     <value>Java Script Object Notation File(*.json)</value>

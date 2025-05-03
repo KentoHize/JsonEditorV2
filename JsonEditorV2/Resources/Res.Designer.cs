@@ -1699,7 +1699,7 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 電子發票轉換為JSON檔案 的當地語系化字串。
+        ///   查詢類似 電子發票轉換為JSON檔案(實驗性功能) 的當地語系化字串。
         /// </summary>
         public static string JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE {
             get {
