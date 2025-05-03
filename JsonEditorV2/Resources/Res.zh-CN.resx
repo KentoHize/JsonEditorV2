@@ -868,4 +868,10 @@
   <data name="JE_TMI_USE_ARINA_DATE" xml:space="preserve">
     <value>档案使用有奈纪年</value>
   </data>
+  <data name="JE_TMI_METHOD" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK" xml:space="preserve">
+    <value />
+  </data>
 </root>

@@ -1681,6 +1681,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 電子發票轉換為帳簿 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK {
+            get {
+                return ResourceManager.GetString("JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 離開 的當地語系化字串。
         /// </summary>
         public static string JE_TMI_EXIT {
@@ -1830,6 +1839,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TMI_LOAD_JSON_FILES {
             get {
                 return ResourceManager.GetString("JE_TMI_LOAD_JSON_FILES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 方法 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_METHOD {
+            get {
+                return ResourceManager.GetString("JE_TMI_METHOD", resourceCulture);
             }
         }
         

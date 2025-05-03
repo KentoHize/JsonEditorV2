@@ -88,6 +88,7 @@ namespace JsonEditorV2
             tmiHelp.Text = $"{Res.JE_TMI_HELP}(&H)";
             tmiLanguages.Text = $"{Res.JE_TMI_LANGUAGES}(&L)";
             tmiSetting.Text = $"{Res.JE_TMI_SETTING}(&S)";
+            tmiMethod.Text = $"{Res.JE_TMI_METHOD}(&M)";
             tmiBackup.Text = $"Backup(&B)";
             tmiAbout.Text = Res.JE_TMI_ABOUT;
             tmiNewJsonFiles.Text = Res.JE_TMI_NEW_JSON_FILES;
@@ -136,7 +137,8 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
-            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;
+            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;            
+            tmiELtAB.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK;
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -816,6 +818,8 @@ namespace JsonEditorV2
             tmiNewJsonFile.Enabled =
             tmiSaveJsonFiles.Enabled =
             tmiSaveAsJsonFiles.Enabled = false;
+            tmiELtAB.Enabled = false;
+            
             Var.DblClick = false;
             if (Var.Tables == null)
                 return;
@@ -864,6 +868,7 @@ namespace JsonEditorV2
             tmiOpenFolder.Enabled =
             tmiSaveAsJsonFiles.Enabled =
             tmiSaveJsonFiles.Enabled = true;
+            tmiELtAB.Enabled = true;
             RefreshPnlFileInfo();
             RefreshTbcMain();
         }
@@ -3474,6 +3479,13 @@ namespace JsonEditorV2
             if (File.Exists(SettingShop.DefaultSettingFilePath))
                 Process.Start("notepad.exe", SettingShop.DefaultSettingFilePath);
 
+        }
+
+        private void tmiEItAB_Click(object sender, EventArgs e)
+        {
+
+
+            Methods.ElectronicInvoicesToAccountBook();
         }
     }
 }

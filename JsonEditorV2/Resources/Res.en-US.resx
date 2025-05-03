@@ -868,4 +868,10 @@
   <data name="JE_TMI_USE_ARINA_DATE" xml:space="preserve">
     <value>File Use Arina Date</value>
   </data>
+  <data name="JE_TMI_METHOD" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK" xml:space="preserve">
+    <value>Taiwan Electronic Invoices To Account Book</value>
+  </data>
 </root>
