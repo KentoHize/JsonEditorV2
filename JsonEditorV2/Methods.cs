@@ -54,8 +54,7 @@ namespace JsonEditorV2
                 if (Var.Database.Tables[i].Name == "Result")
                     continue;
                 for(int j = 1; j < Var.Database.Tables[i].Count + 1; j++)
-                {
-                    //if (Var.Database.Tables[i].Lines[j][0].ToString(Var.Database.Tables[i].Columns[0].Type) == "M")
+                {   
                     if (j == Var.Database.Tables[i].Count || Var.Database.Tables[i].Lines[j][0].ToString() == "M")
                     {
                         if(products != null || j == Var.Database.Tables[i].Count)
@@ -94,9 +93,8 @@ namespace JsonEditorV2
                         }
 
                         if (Var.Database.Tables[i].Lines[j][4].ToString() == InvoiceConfirmed)
-                        {
-                            //InvoiceDateTime = ArDateTime.Parse(Var.Database.Tables[i].Lines[j][5].ToString());
-                            //2024-08-3014:56:38
+                        {   
+                            InvoiceNumber = Var.Database.Tables[i].Lines[j][1].ToString();
                             ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceDateTime);
                             CustomerBusinessIDNumber = Var.Database.Tables[i].Lines[j][6].ToString();
                             CustomerName = ArinaLimitedCorp;// Var.Database.Tables[i].Lines[j][7].ToString();
@@ -130,7 +128,7 @@ namespace JsonEditorV2
                     }
                 }
             }
-            sw.WriteLine(JsonConvert.SerializeObject(jArray, Formatting.Indented));
+            sw.WriteLine(JsonConvert.SerializeObject(new JArray(jArray.OrderBy(m => m["InvoiceDateTime"])), Formatting.Indented));
             sw.Close();
         }
     }
