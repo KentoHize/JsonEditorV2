@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using JsonEditor;
 using Newtonsoft.Json.Linq;
 using Aritiafel.Organizations.RaeriharUniversity;
+using System.Globalization;
 
 namespace JsonEditorV2
 {
@@ -62,14 +63,14 @@ namespace JsonEditorV2
                             JObject jObject = new JObject
                             {
                                 { "InvoiceNumber", InvoiceNumber },
-                                { "InvoiceDateTime", InvoiceDateTime.ToStandardString() },
+                                { "InvoiceDateTime", InvoiceDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
                                 { "CustomerBusinessIDNumber", CustomerBusinessIDNumber },
                                 { "CustomerName", CustomerName },
                                 { "SellerBusinessIDNumber", SellerBusinessIDNumber },
                                 { "SellerName", SellerName },
                                 { "SellingPrice", SellingPrice },
                                 { "Tax", Tax },
-                                { "InvoiceConfirmDateTime", InvoiceConfirmDateTime.ToStandardString() },
+                                { "InvoiceConfirmDateTime", InvoiceConfirmDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
                                 { "Note", Note }
                             };
                             JArray jArrayProducts = new JArray();
@@ -96,14 +97,14 @@ namespace JsonEditorV2
                         {
                             //InvoiceDateTime = ArDateTime.Parse(Var.Database.Tables[i].Lines[j][5].ToString());
                             //2024-08-3014:56:38
-                            InvoiceDateTime = ArDateTime.ParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat);
+                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceDateTime);
                             CustomerBusinessIDNumber = Var.Database.Tables[i].Lines[j][6].ToString();
                             CustomerName = ArinaLimitedCorp;// Var.Database.Tables[i].Lines[j][7].ToString();
                             SellerBusinessIDNumber = Var.Database.Tables[i].Lines[j][8].ToString();
                             SellerName = Var.Database.Tables[i].Lines[j][9].ToString();
                             SellingPrice = int.Parse(Var.Database.Tables[i].Lines[j][12].ToString());
                             Tax = int.Parse(Var.Database.Tables[i].Lines[j][15].ToString());
-                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, out InvoiceConfirmDateTime);
+                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceConfirmDateTime);
                             Note = Var.Database.Tables[i].Lines[j][22].ToString();
                             products = new List<Product>();
                             use = true;

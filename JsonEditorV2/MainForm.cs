@@ -138,7 +138,7 @@ namespace JsonEditorV2
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
             tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;            
-            tmiELtAB.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK;
+            tmiELtAB.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE;
 
             Var.LockCobCheckMethod = true;
             Dictionary<ValueCheckMethod, string> tableCheckMethodList = new Dictionary<ValueCheckMethod, string>();
@@ -3483,9 +3483,16 @@ namespace JsonEditorV2
 
         private void tmiEItAB_Click(object sender, EventArgs e)
         {
+            DialogResult dr;
+            sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
+            sfdMain.FileName = $"Result.json";
+            sfdMain.Filter = $"{Res.JE_DIALOG_JSON_FILE_FULL_NAME}|*.json|{Res.JE_DIALOG_ALL_FILES}|*.*";
+            dr = sfdMain.ShowDialogOrSetResult(this);
+            if (dr != DialogResult.OK)
+                return;
 
-
-            Methods.ElectronicInvoicesToAccountBook();
+            Methods.ElectronicInvoicesToAccountBook(sfdMain.FileName);
+            sslMain.Text = string.Format(Res.JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1, sfdMain.FileName);
         }
     }
 }

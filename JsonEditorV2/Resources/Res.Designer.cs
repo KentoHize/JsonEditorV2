@@ -601,6 +601,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 Json檔案(*.json) 的當地語系化字串。
+        /// </summary>
+        public static string JE_DIALOG_JSON_FILE_FULL_NAME {
+            get {
+                return ResourceManager.GetString("JE_DIALOG_JSON_FILE_FULL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 XML檔案(*.xml) 的當地語系化字串。
         /// </summary>
         public static string JE_DIALOG_XML_FILE_FULL_NAME {
@@ -1092,6 +1101,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_RUN_EDIT_DATABASE_DESC_M_1 {
             get {
                 return ResourceManager.GetString("JE_RUN_EDIT_DATABASE_DESC_M_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 {0} 已建檔完成 的當地語系化字串。
+        /// </summary>
+        public static string JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1 {
+            get {
+                return ResourceManager.GetString("JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1", resourceCulture);
             }
         }
         
@@ -1681,11 +1699,11 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
-        ///   查詢類似 電子發票轉換為帳簿 的當地語系化字串。
+        ///   查詢類似 電子發票轉換為JSON檔案 的當地語系化字串。
         /// </summary>
-        public static string JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK {
+        public static string JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE {
             get {
-                return ResourceManager.GetString("JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK", resourceCulture);
+                return ResourceManager.GetString("JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE", resourceCulture);
             }
         }
         

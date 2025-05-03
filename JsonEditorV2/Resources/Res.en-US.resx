@@ -871,7 +871,13 @@
   <data name="JE_TMI_METHOD" xml:space="preserve">
     <value>Method</value>
   </data>
-  <data name="JE_TMI_ELECTRONIC_INVOICE_TO_ACCOUNT_BOOK" xml:space="preserve">
-    <value>Taiwan Electronic Invoices To Account Book</value>
+  <data name="JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE" xml:space="preserve">
+    <value>Taiwan Electronic Invoices To Json File</value>
+  </data>
+  <data name="JE_DIALOG_JSON_FILE_FULL_NAME" xml:space="preserve">
+    <value>Java Script Object Notation File(*.json)</value>
+  </data>
+  <data name="JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1" xml:space="preserve">
+    <value>{0} created.</value>
   </data>
 </root>
