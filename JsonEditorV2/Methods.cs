@@ -28,6 +28,7 @@ namespace JsonEditorV2
 
         public const string PizzaHutIgnoreString = "===以下為備註===";
         public const string ArinaLimitedCorp = "有奈有限公司";
+        public const string ArinaLimitedCorpID = "96839103";
 
         public static void ElectronicInvoicesToAccountBook(string fileName = "Result.json")
         {
@@ -97,7 +98,10 @@ namespace JsonEditorV2
                             InvoiceNumber = Var.Database.Tables[i].Lines[j][1].ToString();
                             ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceDateTime);
                             CustomerBusinessIDNumber = Var.Database.Tables[i].Lines[j][6].ToString();
-                            CustomerName = ArinaLimitedCorp;// Var.Database.Tables[i].Lines[j][7].ToString();
+                            if(CustomerBusinessIDNumber == ArinaLimitedCorpID)
+                                CustomerName = ArinaLimitedCorp;
+                            else
+                                CustomerName = Var.Database.Tables[i].Lines[j][7].ToString();
                             SellerBusinessIDNumber = Var.Database.Tables[i].Lines[j][8].ToString();
                             SellerName = Var.Database.Tables[i].Lines[j][9].ToString();
                             SellingPrice = int.Parse(Var.Database.Tables[i].Lines[j][12].ToString());
