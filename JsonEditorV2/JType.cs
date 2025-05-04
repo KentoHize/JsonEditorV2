@@ -55,7 +55,7 @@ namespace JsonEditor
                 if (type == JType.Time && string.IsNullOrEmpty(format))
                     format = "C";
                 if (type == JType.DateTime && string.IsNullOrEmpty(format))
-                    format = "G";
+                    format = "g";
                 return ((ArDateTime)instance).ToString(format, formatProvider);
             }
             else
