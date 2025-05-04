@@ -880,4 +880,19 @@
   <data name="JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1" xml:space="preserve">
     <value>{0} 已建檔完成</value>
   </data>
+  <data name="JE_CORPBOX_CORP_NAME" xml:space="preserve">
+    <value>營利事業名稱</value>
+  </data>
+  <data name="JE_CORPBOX_CORP_ID" xml:space="preserve">
+    <value>營利事業統一編號</value>
+  </data>
+  <data name="JE_BTN_BROWSE" xml:space="preserve">
+    <value>瀏覽</value>
+  </data>
+  <data name="JE_LBL_CONVERT_TO" xml:space="preserve">
+    <value>輸出至</value>
+  </data>
+  <data name="JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY" xml:space="preserve">
+    <value>輸出資料夾位置不能為空</value>
+  </data>
 </root>

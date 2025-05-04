@@ -3478,21 +3478,19 @@ namespace JsonEditorV2
         {
             if (File.Exists(SettingShop.DefaultSettingFilePath))
                 Process.Start("notepad.exe", SettingShop.DefaultSettingFilePath);
-
         }
 
         private void tmiEItAB_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            sfdMain.InitialDirectory = Var.JFI.DirectoryPath;
-            sfdMain.FileName = $"Result.json";
-            sfdMain.Filter = $"{Res.JE_DIALOG_JSON_FILE_FULL_NAME}|*.json|{Res.JE_DIALOG_ALL_FILES}|*.*";
-            dr = sfdMain.ShowDialogOrSetResult(this);
+            frmCorporation fc = new frmCorporation();// RyabrarFactory.CreateOrGet<frmCorporation>();
+            fc.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE;
+            DialogResult dr = fc.ShowDialogOrCallEvent(this);
+
             if (dr != DialogResult.OK)
                 return;
 
-            Methods.ElectronicInvoicesToAccountBook(sfdMain.FileName);
-            sslMain.Text = string.Format(Res.JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1, sfdMain.FileName);
+            string file = Methods.ElectronicInvoicesToAccountBook(fc.OutputFolderPath, new KeyValuePair<string, string>(fc.CorporationID, fc.CorporationName));
+            sslMain.Text = string.Format(Res.JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1, file);
         }
     }
 }

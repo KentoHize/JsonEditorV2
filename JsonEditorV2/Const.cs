@@ -28,6 +28,8 @@ namespace JsonEditorV2
         public const string FunctionOfNowD = "{NOW('D')}";
         public const string FunctionOfCount = "{COUNT()}";
 
+        public const string ArinaLimitedCorpName = "有奈有限公司";
+        public const string ArinaLimitedCorpID = "96839103";
         public static string BackupFolder { get => Path.Combine(Application.UserAppDataPath, "Backup"); }
         public static string ApplicationDataFolder { get => Path.Combine(Application.UserAppDataPath); }
         public static string BackupRecoverFile { get => Path.Combine(BackupFolder, "Recover.ini"); }

@@ -97,6 +97,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 瀏覽 的當地語系化字串。
+        /// </summary>
+        public static string JE_BTN_BROWSE {
+            get {
+                return ResourceManager.GetString("JE_BTN_BROWSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 取消 的當地語系化字串。
         /// </summary>
         public static string JE_BTN_CANCEL {
@@ -507,6 +516,33 @@ namespace JsonEditorV2.Resources {
         public static string JE_COLUMN_TYPE {
             get {
                 return ResourceManager.GetString("JE_COLUMN_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 營利事業統一編號 的當地語系化字串。
+        /// </summary>
+        public static string JE_CORPBOX_CORP_ID {
+            get {
+                return ResourceManager.GetString("JE_CORPBOX_CORP_ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 營利事業名稱 的當地語系化字串。
+        /// </summary>
+        public static string JE_CORPBOX_CORP_NAME {
+            get {
+                return ResourceManager.GetString("JE_CORPBOX_CORP_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 輸出資料夾位置不能為空 的當地語系化字串。
+        /// </summary>
+        public static string JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY {
+            get {
+                return ResourceManager.GetString("JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY", resourceCulture);
             }
         }
         
@@ -966,6 +1002,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_LBL_CHOICE_NAME {
             get {
                 return ResourceManager.GetString("JE_LBL_CHOICE_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 輸出至 的當地語系化字串。
+        /// </summary>
+        public static string JE_LBL_CONVERT_TO {
+            get {
+                return ResourceManager.GetString("JE_LBL_CONVERT_TO", resourceCulture);
             }
         }
         

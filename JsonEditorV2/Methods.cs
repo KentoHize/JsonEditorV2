@@ -9,6 +9,7 @@ using JsonEditor;
 using Newtonsoft.Json.Linq;
 using Aritiafel.Organizations.RaeriharUniversity;
 using System.Globalization;
+using Aritiafel.Locations;
 
 namespace JsonEditorV2
 {
@@ -24,9 +25,7 @@ namespace JsonEditorV2
         }
 
         public const string InvoiceConfirmed = "開立已確認";
-        public const string InvoiceDateTimeFormat = "yyyy-MM-ddHH:mm:ss";
-        public const string ArinaLimitedCorp = "有奈有限公司";
-        public const string ArinaLimitedCorpID = "96839103";
+        public const string InvoiceDateTimeFormat = "yyyy-MM-ddHH:mm:ss";        
 
         //特殊處理
         //智冠
@@ -34,9 +33,9 @@ namespace JsonEditorV2
         //PizzaHut
         public const string PizzaHutName = "富利餐飲股份有限公司";
 
-        public static void ElectronicInvoicesToAccountBook(string fileName = "Result.json")
+        public static string ElectronicInvoicesToAccountBook(string folder, KeyValuePair<string, string> selfIDName = default)
         {
-            StreamWriter sw = new StreamWriter(Path.Combine(Var.JFI.DirectoryPath, fileName));
+            
             JArray jArray = new JArray();
 
             bool use = false;
@@ -111,12 +110,15 @@ namespace JsonEditorV2
                             InvoiceNumber = Var.Database.Tables[i].Lines[j][1].ToString();
                             InvoiceDateTime = dt;
                             CustomerBusinessIDNumber = Var.Database.Tables[i].Lines[j][6].ToString();
-                            if(CustomerBusinessIDNumber == ArinaLimitedCorpID)
-                                CustomerName = ArinaLimitedCorp;
+                            if(CustomerBusinessIDNumber == selfIDName.Key)
+                                CustomerName = selfIDName.Value;
                             else
                                 CustomerName = Var.Database.Tables[i].Lines[j][7].ToString();
                             SellerBusinessIDNumber = Var.Database.Tables[i].Lines[j][8].ToString();
-                            SellerName = Var.Database.Tables[i].Lines[j][9].ToString();
+                            if (SellerBusinessIDNumber == selfIDName.Key)
+                                SellerName = selfIDName.Value;
+                            else
+                                SellerName = Var.Database.Tables[i].Lines[j][9].ToString();
                             SellingPrice = int.Parse(Var.Database.Tables[i].Lines[j][12].ToString());
                             Tax = int.Parse(Var.Database.Tables[i].Lines[j][15].ToString());
                             ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceConfirmDateTime);                            
@@ -158,9 +160,11 @@ namespace JsonEditorV2
                 }
             }
             //去除所有非本年的資料
-
+            string file = Path.Combine(folder, $"{defaultYear:0000}.json");
+            StreamWriter sw = new StreamWriter(file);
             sw.WriteLine(JsonConvert.SerializeObject(new JArray(jArray.OrderBy(m => m["InvoiceDateTime"])), Formatting.Indented));
             sw.Close();
+            return file;
         }
     }
 }

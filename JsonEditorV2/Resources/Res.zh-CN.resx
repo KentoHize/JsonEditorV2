@@ -880,4 +880,19 @@
   <data name="JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1" xml:space="preserve">
     <value>{0} 已建档完成</value>
   </data>
+  <data name="JE_CORPBOX_CORP_NAME" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JE_CORPBOX_CORP_ID" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JE_BTN_BROWSE" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JE_LBL_CONVERT_TO" xml:space="preserve">
+    <value />
+  </data>
+  <data name="JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY" xml:space="preserve">
+    <value />
+  </data>
 </root>
