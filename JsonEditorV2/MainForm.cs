@@ -3484,6 +3484,11 @@ namespace JsonEditorV2
         {
             frmCorporation fc = new frmCorporation();// RyabrarFactory.CreateOrGet<frmCorporation>();
             fc.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE;
+            if (Mylar.UserIsAuthorSelf())  //自己
+            {
+                fc.CorporationID = Const.ArinaLimitedCorpID;
+                fc.CorporationName = Const.ArinaLimitedCorpName;
+            }
             DialogResult dr = fc.ShowDialogOrCallEvent(this);
 
             if (dr != DialogResult.OK)
