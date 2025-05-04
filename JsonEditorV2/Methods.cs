@@ -25,10 +25,14 @@ namespace JsonEditorV2
 
         public const string InvoiceConfirmed = "開立已確認";
         public const string InvoiceDateTimeFormat = "yyyy-MM-ddHH:mm:ss";
-
-        public const string PizzaHutIgnoreString = "===以下為備註===";
         public const string ArinaLimitedCorp = "有奈有限公司";
         public const string ArinaLimitedCorpID = "96839103";
+
+        //特殊處理
+        //智冠
+        public const string SoftWorldName = "智冠科技股份有限公司";
+        //PizzaHut
+        public const string PizzaHutName = "富利餐飲股份有限公司";
 
         public static void ElectronicInvoicesToAccountBook(string fileName = "Result.json")
         {
@@ -46,6 +50,7 @@ namespace JsonEditorV2
             int Tax = default; //稅額
             string Note = ""; //備註
             ArDateTime InvoiceConfirmDateTime = default; //開立日期時間
+            int defaultYear = -1;
 
             for (int i = 0; i < Var.Database.Tables.Count; i++)
             {
@@ -58,9 +63,8 @@ namespace JsonEditorV2
                 {   
                     if (j == Var.Database.Tables[i].Count || Var.Database.Tables[i].Lines[j][0].ToString() == "M")
                     {
-                        if(products != null || j == Var.Database.Tables[i].Count)
-                        {
-                            
+                        if(products != null)
+                        {   
                             JObject jObject = new JObject
                             {                                
                                 { "InvoiceNumber", InvoiceNumber },
@@ -89,17 +93,23 @@ namespace JsonEditorV2
                             }
                             jObject.Add("Products", jArrayProducts);
                             jArray.Add(jObject);
-
-                            if(j == Var.Database.Tables[i].Count)
-                                break;
+                            products = null;
                         }
 
-                        //發票開立確認並且不重複存在
+                        if (j == Var.Database.Tables[i].Count)
+                            break;
+
+                        ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out ArDateTime dt);
+                        if (defaultYear == -1 && dt != default)
+                            defaultYear = dt.Year;
+
+                        //發票開立確認、不重複存在、本年資料
                         if (Var.Database.Tables[i].Lines[j][4].ToString() == InvoiceConfirmed &&
-                            !jArray.Any(m => m["InvoiceNumber"].ToString() == Var.Database.Tables[i].Lines[j][1].ToString()))
-                        {   
+                            !jArray.Any(m => m["InvoiceNumber"].ToString() == Var.Database.Tables[i].Lines[j][1].ToString()) &&
+                            (defaultYear == -1 || dt.Year == defaultYear))
+                        {
                             InvoiceNumber = Var.Database.Tables[i].Lines[j][1].ToString();
-                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceDateTime);
+                            InvoiceDateTime = dt;
                             CustomerBusinessIDNumber = Var.Database.Tables[i].Lines[j][6].ToString();
                             if(CustomerBusinessIDNumber == ArinaLimitedCorpID)
                                 CustomerName = ArinaLimitedCorp;
@@ -109,8 +119,7 @@ namespace JsonEditorV2
                             SellerName = Var.Database.Tables[i].Lines[j][9].ToString();
                             SellingPrice = int.Parse(Var.Database.Tables[i].Lines[j][12].ToString());
                             Tax = int.Parse(Var.Database.Tables[i].Lines[j][15].ToString());
-                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceConfirmDateTime);
-                            
+                            ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceConfirmDateTime);                            
                             Note = Var.Database.Tables[i].Lines[j][22].ToString();
                             products = new List<Product>();
                             use = true;
@@ -119,23 +128,37 @@ namespace JsonEditorV2
                             use = false;
                     }
                     else
-                    {
-                        if (Var.Database.Tables[i].Lines[j][4].ToString() == PizzaHutIgnoreString)
-                            use = false;
+                    {   
                         if (!use)
                             continue;
-                        Product p = new Product
+
+                        Product p = new Product();
+                        double a;
+                        p.Name = Var.Database.Tables[i].Lines[j][4].ToString();
+                        p.Quantifier = Var.Database.Tables[i].Lines[j][6].ToString();
+                        double.TryParse(Var.Database.Tables[i].Lines[j][5].ToString(), out a);
+                        p.Quantity = (int)a;
+                        double.TryParse(Var.Database.Tables[i].Lines[j][7].ToString(), out a);
+                        p.Price = (int)a;
+                        p.Note = Var.Database.Tables[i].Lines[j][9].ToString();
+                        if (SellerName.Contains(SoftWorldName))
                         {
-                            Name = Var.Database.Tables[i].Lines[j][4].ToString(),
-                            Quantity = (int)double.Parse(Var.Database.Tables[i].Lines[j][5].ToString()),
-                            Quantifier = Var.Database.Tables[i].Lines[j][6].ToString(),
-                            Price = (int)double.Parse(Var.Database.Tables[i].Lines[j][7].ToString()),
-                            Note = Var.Database.Tables[i].Lines[j][9].ToString()
-                        };
-                        products.Add(p);
+                            if (p.Name == "MyCard點數")
+                                p.Price = 1;
+                        }
+                        else if(SellerName.Contains(PizzaHutName))
+                        {
+                            //if(p.Price == 0)
+                            //    p = null;
+                        }
+
+                        if (p != null)
+                            products.Add(p);
                     }
                 }
             }
+            //去除所有非本年的資料
+
             sw.WriteLine(JsonConvert.SerializeObject(new JArray(jArray.OrderBy(m => m["InvoiceDateTime"])), Formatting.Indented));
             sw.Close();
         }
