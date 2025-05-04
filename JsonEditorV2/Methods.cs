@@ -46,7 +46,6 @@ namespace JsonEditorV2
             int Tax = default; //稅額
             string Note = ""; //備註
             ArDateTime InvoiceConfirmDateTime = default; //開立日期時間
-            List<Product> products = null;//商品列表
 
             for (int i = 0; i < Var.Database.Tables.Count; i++)
             {
@@ -54,23 +53,25 @@ namespace JsonEditorV2
                     MainForm.LoadOrScanJsonFile(Var.Database.Tables[i]);
                 if (Var.Database.Tables[i].Name == "Result")
                     continue;
-                for(int j = 1; j < Var.Database.Tables[i].Count + 1; j++)
+                List<Product> products = null;//商品列表
+                for (int j = 1; j < Var.Database.Tables[i].Count + 1; j++)
                 {   
                     if (j == Var.Database.Tables[i].Count || Var.Database.Tables[i].Lines[j][0].ToString() == "M")
                     {
                         if(products != null || j == Var.Database.Tables[i].Count)
                         {
+                            
                             JObject jObject = new JObject
-                            {
+                            {                                
                                 { "InvoiceNumber", InvoiceNumber },
-                                { "InvoiceDateTime", InvoiceDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
+                                { "InvoiceDateTime", InvoiceDateTime == default ? "-" : InvoiceDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
                                 { "CustomerBusinessIDNumber", CustomerBusinessIDNumber },
                                 { "CustomerName", CustomerName },
                                 { "SellerBusinessIDNumber", SellerBusinessIDNumber },
                                 { "SellerName", SellerName },
                                 { "SellingPrice", SellingPrice },
                                 { "Tax", Tax },
-                                { "InvoiceConfirmDateTime", InvoiceConfirmDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
+                                { "InvoiceConfirmDateTime", InvoiceConfirmDateTime == default ? "-" : InvoiceConfirmDateTime.ToStandardString(Aritiafel.Organizations.ArinaOrganization.ArStandardDateTimeType.ShortDateTime) },
                                 { "Note", Note }
                             };
                             JArray jArrayProducts = new JArray();
@@ -93,7 +94,9 @@ namespace JsonEditorV2
                                 break;
                         }
 
-                        if (Var.Database.Tables[i].Lines[j][4].ToString() == InvoiceConfirmed)
+                        //發票開立確認並且不重複存在
+                        if (Var.Database.Tables[i].Lines[j][4].ToString() == InvoiceConfirmed &&
+                            !jArray.Any(m => m["InvoiceNumber"].ToString() == Var.Database.Tables[i].Lines[j][1].ToString()))
                         {   
                             InvoiceNumber = Var.Database.Tables[i].Lines[j][1].ToString();
                             ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][5].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceDateTime);
@@ -107,6 +110,7 @@ namespace JsonEditorV2
                             SellingPrice = int.Parse(Var.Database.Tables[i].Lines[j][12].ToString());
                             Tax = int.Parse(Var.Database.Tables[i].Lines[j][15].ToString());
                             ArDateTime.TryParseExact(Var.Database.Tables[i].Lines[j][23].ToString(), InvoiceDateTimeFormat, CultureInfo.CurrentCulture, out InvoiceConfirmDateTime);
+                            
                             Note = Var.Database.Tables[i].Lines[j][22].ToString();
                             products = new List<Product>();
                             use = true;
