@@ -9,6 +9,7 @@ using JsonEditorV2.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
@@ -137,7 +138,7 @@ namespace JsonEditorV2
             tmiDeleteColumn.Text = Res.JE_TMI_DELETE_COLUMN;
             tmiCloseTab.Text = Res.JE_TMI_CLOSE_TAB;
             tmiInsertFirst.Text = Res.JE_TMI_INSERT_FIRST;
-            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;            
+            tmiArinaDate.Text = Res.JE_TMI_USE_ARINA_DATE;
             tmiELtAB.Text = Res.JE_TMI_ELECTRONIC_INVOICE_TO_JSON_FILE;
 
             Var.LockCobCheckMethod = true;
@@ -376,7 +377,7 @@ namespace JsonEditorV2
                     }
                 }
                 else if (newType.IsDateTime()) //日期或時間
-                {   
+                {
                     if (!JFunction.TryParseString(txtDefaultValue.Text, out _) &&
                        !CheckValueValid(txtDefaultValue.Text, newType))
                     {
@@ -819,7 +820,7 @@ namespace JsonEditorV2
             tmiSaveJsonFiles.Enabled =
             tmiSaveAsJsonFiles.Enabled = false;
             tmiELtAB.Enabled = false;
-            
+
             Var.DblClick = false;
             if (Var.Tables == null)
                 return;
@@ -1022,10 +1023,20 @@ namespace JsonEditorV2
             }
 
             cobFindColumnName.DataSource = null;
-            cobFindColumnName.ValueMember = "Name";
-            cobFindColumnName.DisplayMember = "Name";
-            cobFindColumnName.DataSource = Var.SelectedTable.Columns;
+            cobFindColumnName.ValueMember = "Value";
+            cobFindColumnName.DisplayMember = "Key";
+            Dictionary<string, string> findDataSource = new()
+            {
+                { Res.JE_TXT_ALL, null }
+            };
 
+            Var.SelectedTable.Columns.ForEach(m =>
+            {
+                if (m.Display)
+                    findDataSource.Add(m.Name, m.Name);
+            });
+
+            cobFindColumnName.DataSource = new BindingSource { DataSource = findDataSource };
             Var.LockPnlMain = false;
 
             btnNewLine.Enabled =
@@ -2714,13 +2725,36 @@ namespace JsonEditorV2
                     dgvLines.Rows[i].DefaultCellStyle.BackColor = Setting.InvalidLineBackColor;
         }
 
+        //未使用平行尋找
         private int FindItemIndexFromSelectedTable(int columnIndex, int startIndex = 0)
         {
-            if (Var.SelectedTable.Columns[columnIndex].Type == JType.String || Var.SelectedTable.Columns[columnIndex].Type == JType.Uri ||
-                Var.SelectedTable.Columns[columnIndex].Type.IsDateTime())
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type, Setting.UICI).Contains(txtFindValue.Text));
-            else
-                return Var.SelectedTable.Lines.FindIndex(startIndex, m => (m.Values[columnIndex] ?? "").ToString(Var.SelectedTable.Columns[columnIndex].Type, Setting.UICI) == txtFindValue.Text);
+            for (int i = startIndex; i < Var.SelectedTable.Lines.Count; i++)
+            {
+                for (int j = 0; j < Var.SelectedTable.Columns.Count; j++)
+                {
+                    if (columnIndex != -1)
+                        j = columnIndex;
+
+                    if(Var.SelectedTable.Lines[i][j] != null)
+                    {
+                        if (Var.SelectedTable.Columns[j].Type == JType.String || Var.SelectedTable.Columns[j].Type == JType.Uri ||
+                            Var.SelectedTable.Columns[j].Type.IsDateTime())
+                        {
+                            if (Var.SelectedTable.Lines[i][j].ToString(Var.SelectedTable.Columns[j].Type, Setting.UICI).Contains(txtFindValue.Text))
+                                return i;
+                        }
+                        else
+                        {
+                            if (Var.SelectedTable.Lines[i][j].ToString(Var.SelectedTable.Columns[j].Type, Setting.UICI) == txtFindValue.Text)
+                                return i;
+                        }
+                    }
+
+                    if (columnIndex != -1)
+                        break;
+                }
+            }
+            return -1;
         }
 
         public void btnFindConfirm_Click(object sender, EventArgs e)
@@ -2728,9 +2762,15 @@ namespace JsonEditorV2
             if (txtFindValue.Text == "" || Var.SelectedTable == null)
                 return;
 
-            int columnIndex = Var.SelectedTable.Columns.FindIndex(m => m.Name == cobFindColumnName.SelectedValue.ToString());
-            if (columnIndex == -1)
-                return;
+            int columnIndex;
+            if (cobFindColumnName.SelectedValue == null)
+                columnIndex = -1;//All
+            else
+            {
+                columnIndex = Var.SelectedTable.Columns.FindIndex(m => m.Name == cobFindColumnName.SelectedValue.ToString());
+                if (columnIndex == -1)
+                    return;
+            }
 
             int itemIndex = FindItemIndexFromSelectedTable(columnIndex, Var.SelectedLineIndex + 1);
             if (itemIndex == -1)
@@ -2744,7 +2784,12 @@ namespace JsonEditorV2
                     dgvLines.FirstDisplayedScrollingRowIndex = dgvLines.SelectedRows[0].Index;
             }
             else
-                RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
+            {
+                if (columnIndex != -1)
+                    RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND", Res.JE_RUN_FIND_TITLE, Var.SelectedTable.Columns[columnIndex].Name, txtFindValue.Text);
+                else
+                    RabbitCouriers.SentWarningMessageByResource("JE_RUN_FIND_NO_ITEM_FOUND_ALL", Res.JE_RUN_FIND_TITLE, txtFindValue.Text);
+            }
         }
 
         private void tmiColumnShowOnList_Click(object sender, EventArgs e)
@@ -3433,11 +3478,11 @@ namespace JsonEditorV2
         }
 
         private void tmiArinaYear_Click(object sender, EventArgs e)
-        {   
+        {
             ChangeFileUseArDate(Setting.SystemCI != Mylar.ArinaCulture);
             //有日期或時間檔案全都設定為有改
             if (Var.JFI != null)
-            {   
+            {
                 foreach (JTable jt in Var.Tables)
                 {
                     for (int i = 0; i < jt.Columns.Count; i++)

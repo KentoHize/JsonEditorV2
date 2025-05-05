@@ -1213,6 +1213,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 值&quot;{0}&quot;，搜尋失敗 的當地語系化字串。
+        /// </summary>
+        public static string JE_RUN_FIND_NO_ITEM_FOUND_ALL {
+            get {
+                return ResourceManager.GetString("JE_RUN_FIND_NO_ITEM_FOUND_ALL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 尋找資料 的當地語系化字串。
         /// </summary>
         public static string JE_RUN_FIND_TITLE {
@@ -2089,6 +2098,15 @@ namespace JsonEditorV2.Resources {
         public static string JE_TT_NOW_FUNCTION_GUID_FUNCTION {
             get {
                 return ResourceManager.GetString("JE_TT_NOW_FUNCTION_GUID_FUNCTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 全部 的當地語系化字串。
+        /// </summary>
+        public static string JE_TXT_ALL {
+            get {
+                return ResourceManager.GetString("JE_TXT_ALL", resourceCulture);
             }
         }
         

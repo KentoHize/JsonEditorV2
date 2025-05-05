@@ -881,18 +881,24 @@
     <value>{0} 已建档完成</value>
   </data>
   <data name="JE_CORPBOX_CORP_NAME" xml:space="preserve">
-    <value />
+    <value>营利事业名称</value>
   </data>
   <data name="JE_CORPBOX_CORP_ID" xml:space="preserve">
-    <value />
+    <value>营利事业统一编号</value>
   </data>
   <data name="JE_BTN_BROWSE" xml:space="preserve">
-    <value />
+    <value>浏览</value>
   </data>
   <data name="JE_LBL_CONVERT_TO" xml:space="preserve">
-    <value />
+    <value>输出至</value>
   </data>
   <data name="JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY" xml:space="preserve">
-    <value />
+    <value>输出资料夹位置不能为空</value>
+  </data>
+  <data name="JE_TXT_ALL" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="JE_RUN_FIND_NO_ITEM_FOUND_ALL" xml:space="preserve">
+    <value>值"{0}"，搜寻失败</value>
   </data>
 </root>

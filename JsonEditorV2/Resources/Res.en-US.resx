@@ -895,4 +895,10 @@
   <data name="JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY" xml:space="preserve">
     <value>An output folder must be chosen.</value>
   </data>
+  <data name="JE_TXT_ALL" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="JE_RUN_FIND_NO_ITEM_FOUND_ALL" xml:space="preserve">
+    <value>Value "{0}", data not found.</value>
+  </data>
 </root>

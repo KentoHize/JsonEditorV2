@@ -895,4 +895,10 @@
   <data name="JE_CORPBOX_VAL_OUTPUT_FOLDER_EMPTY" xml:space="preserve">
     <value>輸出資料夾位置不能為空</value>
   </data>
+  <data name="JE_TXT_ALL" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="JE_RUN_FIND_NO_ITEM_FOUND_ALL" xml:space="preserve">
+    <value>值"{0}"，搜尋失敗</value>
+  </data>
 </root>
