@@ -901,4 +901,7 @@
   <data name="JE_RUN_FIND_NO_ITEM_FOUND_ALL" xml:space="preserve">
     <value>值"{0}"，搜尋失敗</value>
   </data>
+  <data name="JE_TMI_COLUMN_DUPLICATE" xml:space="preserve">
+    <value>重複欄位</value>
+  </data>
 </root>

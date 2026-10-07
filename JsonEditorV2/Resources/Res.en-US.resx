@@ -901,4 +901,7 @@
   <data name="JE_RUN_FIND_NO_ITEM_FOUND_ALL" xml:space="preserve">
     <value>Value "{0}", data not found.</value>
   </data>
+  <data name="JE_TMI_COLUMN_DUPLICATE" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
 </root>

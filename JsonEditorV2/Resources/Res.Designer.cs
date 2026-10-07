@@ -1663,6 +1663,15 @@ namespace JsonEditorV2.Resources {
         }
         
         /// <summary>
+        ///   查詢類似 重複欄位 的當地語系化字串。
+        /// </summary>
+        public static string JE_TMI_COLUMN_DUPLICATE {
+            get {
+                return ResourceManager.GetString("JE_TMI_COLUMN_DUPLICATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查詢類似 置底 的當地語系化字串。
         /// </summary>
         public static string JE_TMI_COLUMN_MOVE_BOTTOM {

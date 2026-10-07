@@ -130,6 +130,7 @@ namespace JsonEditorV2
             tmiViewJFIFile.Text = Res.JE_TMI_VIEW_JFI_FILE;
             tmiRefreshFiles.Text = Res.JE_TMI_REFRESH_FILES;
             tmiRenameColumn.Text = Res.JE_TMI_RENAME_COLUMN;
+            tmiDuplicateColumn.Text = Res.JE_TMI_COLUMN_DUPLICATE;
             tmiColumnShowOnList.Text = Res.JE_TMI_COLUMN_SHOW_ON_LIST;
             tmiColumnMoveTop.Text = Res.JE_TMI_COLUMN_MOVE_TOP;
             tmiColumnMoveUp.Text = Res.JE_TMI_COLUMN_MOVE_UP;
@@ -1312,6 +1313,7 @@ namespace JsonEditorV2
                 return;
 
             JTable jt = new JTable(fileName, true);
+            jt.Changed = true;
             Var.Tables.Add(jt);
             Var.JFI.Changed = true;
             RefreshTrvJsonFiles();
@@ -2735,7 +2737,7 @@ namespace JsonEditorV2
                     if (columnIndex != -1)
                         j = columnIndex;
 
-                    if(Var.SelectedTable.Lines[i][j] != null)
+                    if (Var.SelectedTable.Lines[i][j] != null && Var.SelectedTable.Columns[j].Display)
                     {
                         if (Var.SelectedTable.Columns[j].Type == JType.String || Var.SelectedTable.Columns[j].Type == JType.Uri ||
                             Var.SelectedTable.Columns[j].Type.IsDateTime())
@@ -3541,6 +3543,63 @@ namespace JsonEditorV2
 
             string file = Methods.ElectronicInvoicesToAccountBook(fc.OutputFolderPath, new KeyValuePair<string, string>(fc.CorporationID, fc.CorporationName));
             sslMain.Text = string.Format(Res.JE_RUN_ELECTRONIC_INVOICE_TO_JSON_FILE_M_1, file);
+        }
+
+        private void tmiDuplicateColumn_Click(object sender, EventArgs e)
+        {
+            string columnName = frmInputBox.Show(this, InputBoxTypes.RenameColumn);
+            if (string.IsNullOrEmpty(columnName))
+                return;
+
+            if (Var.SelectedColumnParentTable.Columns.Exists(m => m.Name == columnName))
+            {
+                RabbitCouriers.SentErrorMessageByResource("JE_RUN_ADD_COLUMN_M_1", Res.JE_TMI_COLUMN_DUPLICATE, columnName);
+                return;
+            }
+
+            if (!Var.SelectedColumnParentTable.Loaded)
+                if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
+                    return;
+
+            if (Var.SelectedColumnParentTable.Count != 0)
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    jl.Add("");
+
+            JColumn jc = new JColumn(columnName);
+            jc.AutoGenerateKey = Var.SelectedColumn.AutoGenerateKey;
+            jc.Choices = new List<string>(Var.SelectedColumn.Choices);
+            jc.DefaultValue = Var.SelectedColumn.DefaultValue;
+            jc.Description = Var.SelectedColumn.Description;
+            jc.Display = Var.SelectedColumn.Display;
+            jc.FKTable = Var.SelectedColumn.FKTable;
+            jc.FKColumn = Var.SelectedColumn.FKColumn;
+            jc.IsKey = Var.SelectedColumn.IsKey;
+            jc.IsNullable = Var.SelectedColumn.IsNullable;
+            jc.IsUnique = Var.SelectedColumn.IsUnique;
+            jc.MaxValue = Var.SelectedColumn.MaxValue;
+            jc.MinValue = Var.SelectedColumn.MinValue;
+            jc.MaxLength = Var.SelectedColumn.MaxLength;
+            jc.NumberOfRows = Var.SelectedColumn.NumberOfRows;
+            jc.RegularExpression = Var.SelectedColumn.RegularExpression;
+            jc.Type = Var.SelectedColumn.Type;
+
+            if (Var.SelectedColumnParentTable.Count != 0)
+                foreach (JLine jl in Var.SelectedColumnParentTable)
+                    if (!string.IsNullOrEmpty(Var.SelectedColumn.DefaultValue))
+                        jl.Add(JFunction.ParseFunction(Var.SelectedColumn.DefaultValue, Var.SelectedColumn.Type.IsDateTime(), Var.SelectedColumnParentTable.Lines.Count).ParseJType(Var.SelectedColumn.Type, Setting.SystemCI));
+                    else if (Var.SelectedColumn.IsNullable)
+                        jl.Add(null);
+                    else if (Var.SelectedColumn.Type == JType.Choice && Var.SelectedColumn.Choices.Count != 0)
+                        jl.Add(Var.SelectedColumn.Choices[0]);
+                    else
+                        jl.Add(Var.SelectedColumn.Type.InitialValue());
+
+            Var.SelectedColumnParentTable.Columns.Add(jc);
+            Var.SelectedColumn = jc;
+            Var.SelectedColumnParentTable.Changed = true;
+            Var.JFI.Changed = true;
+            //btnResetValue_Click(sender, e);
+            RefreshTrvJsonFiles();
         }
     }
 }
