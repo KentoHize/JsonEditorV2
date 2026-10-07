@@ -3561,10 +3561,6 @@ namespace JsonEditorV2
                 if (!LoadOrScanJsonFile(Var.SelectedColumnParentTable))
                     return;
 
-            if (Var.SelectedColumnParentTable.Count != 0)
-                foreach (JLine jl in Var.SelectedColumnParentTable)
-                    jl.Add("");
-
             JColumn jc = new JColumn(columnName);
             jc.AutoGenerateKey = Var.SelectedColumn.AutoGenerateKey;
             jc.Choices = new List<string>(Var.SelectedColumn.Choices);
@@ -3597,8 +3593,7 @@ namespace JsonEditorV2
             Var.SelectedColumnParentTable.Columns.Add(jc);
             Var.SelectedColumn = jc;
             Var.SelectedColumnParentTable.Changed = true;
-            Var.JFI.Changed = true;
-            //btnResetValue_Click(sender, e);
+            Var.JFI.Changed = true;            
             RefreshTrvJsonFiles();
         }
     }
